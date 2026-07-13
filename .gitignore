@@ -1,0 +1,66 @@
+# Lawfully obtained game inputs (never publish)
+/input/
+/original/
+*.chd
+*.iso
+*.cue
+*.ccd
+*.img
+*.sub
+*.mds
+*.mdf
+*.pbp
+*.ecm
+
+# Raw disc tracks and executable dumps
+*.bin
+*.raw
+*.track
+
+# Extracted copyrighted game content and generated images
+/extracted/
+/work/
+/build/
+/out/
+/dist/
+/rebuild/
+/modded/
+/runtime/bizhawk/
+
+# BIOS, proprietary SDKs, and locally supplied license data
+/bios/
+/sdk/
+/psyq/
+/proprietary/
+/license-data/
+/tools/local/
+/runtime/ghidra/
+
+# Reverse-engineering and emulator working state
+*.gpr
+*.rep/
+*.sav
+*.srm
+*.mcd
+*.state
+*.sst
+*.bkpt
+*.bk2
+
+# Tool caches, logs, and temporary files
+.cache/
+.tmp/
+tmp/
+temp/
+*.log
+*.bak
+*.tmp
+*.swp
+*~
+
+# Common OS and editor metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
