@@ -10,6 +10,7 @@
 * **Review**: Manually reviewed the PsyQ crt0 startup chain (`start`→`stup1`→`InitHeap`→`stup0`→`main`→`trap`), promoting 4 functions to `confidence = manual` and locating `main` at `0x800226a4` as the crt0-to-game-code boundary.
 * **Coordination**: Removed the file-based handoff claim/coordination system (`docs/handoffs/`) at the repository owner's direction. Agents now commit and push completed work directly instead of waiting for user review; see `AGENTS.md`'s "Commit and push" section. Configured `origin` to `https://github.com/RieLoveChan/RiePS1`.
 * **Review**: Manually reviewed `main` (`0x800226a4`), confirming it is a standard PS1 main loop (subsystem init, RCNT2 vsync/timer IRQ setup via correctly-named PsyQ kernel calls, then an infinite frame loop). All 12 of its unnamed callees matched no PsyQ signature, confirming genuinely DDR-5th-Mix-specific code has now been located and is ready for review.
+* **Schema**: Added a quirk-entry schema for recording non-standard engineering practices, with a two-tier structure (per-game log, promoted to a cross-game vendor-quirks log only once a pattern is independently confirmed in a second game). Created the (currently empty) DDR 5th Mix quirk log and the cross-game log.
 
 ## 2026-07-12
 * **Validation**: Added a pinned BizHawk 2.11 launcher and Lua probe for deterministic PS1 execution evidence.
