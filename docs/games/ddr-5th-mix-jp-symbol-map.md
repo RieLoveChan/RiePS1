@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13) | 6 |
+| `confidence = manual` (hand-reviewed 2026-07-13) | 7 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 980 |
+| `confidence = unverified` (default `FUN_########` names) | 979 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -164,12 +164,56 @@ first read from the call site alone, and reading the callee's actual body
 overturned it. Superseded text is marked, not silently deleted, in both the
 CSV and this document.
 
+# Manual review: `FUN_80022cf8` — the game's mode/screen dispatcher
+
+Reviewed by hand on 2026-07-13. `FUN_80022cf8` (`0x80022cf8`, 524 bytes, 14
+callees — the largest function reviewed so far) promoted to `confidence =
+manual`, `source_status = disassembly_reviewed`. This is the highest-value
+structural finding to date:
+
+- It reads a 16-bit field at `PTR_DAT_800ac8e8+0x28` and dispatches by exact
+  value to one of ~9 distinct branches: `0`, `2`, `4`, `0x10`, `0x20`,
+  `0x32`, `0x80`, `0xff`, plus a default (`0x10` and anything unmatched
+  falls to the default branch too). These sparse, non-sequential values are
+  exactly the shape of a hand-assigned enum of game screens/states (title,
+  mode select, gameplay, etc.), not a naturally-occurring counter.
+- `mode == 2` reads a **second** 16-bit field at `+0x2a` ("submode") and
+  dispatches again on it (0/1/2). `submode == 0` calls
+  `FUN_8009f820(0x280, 0x1e0)` — `0x280`/`0x1e0` are `640`/`480`,
+  screen-dimension-shaped arguments, suggestive of a full-screen clear on
+  entry to that submode (a transition/fade). The unmatched-`mode` default
+  branch also reads `+0x2a` (0/1) and dispatches a third time.
+- Every branch converges on a shared epilogue: `FUN_80023744()`,
+  `FUN_8009971c()`, and conditionally `FUN_80023210(0x80)` if
+  `PTR_DAT_800ac8ec[7] != 0` — logic that runs every frame regardless of
+  mode.
+- Called once per iteration of `main`'s per-frame loop (see the `main`
+  review above), consistent with a screen/mode dispatcher being the thing
+  that decides what a frame actually does.
+
+**14 new call targets discovered, none yet reviewed**: the ~9 mode-specific
+handlers (`FUN_8009f390`, `FUN_800231b0`, `FUN_8009f820`, `FUN_80049dec`,
+`FUN_80023048`, `FUN_800230cc`, `FUN_80021a30`, `FUN_800219b8`,
+`FUN_80022fb0`, `FUN_800232cc`, `FUN_80022b30`) and the 3-function common
+epilogue (`FUN_80023744`, `FUN_8009971c`, `FUN_80023210`). No names are
+proposed for any of them, nor for `PTR_DAT_800ac8e8+0x28`/`+0x2a` or
+`PTR_DAT_800ac8ec[0x10]`/`[7]` — "mode dispatcher" and "submode" describe
+the *shape* of the code, observed directly; what each specific mode value
+*means* (which screen, which state) is not yet known and would require
+reviewing the individual handlers or finding a string/asset reference tying
+a value to a screen name.
+
+Practically, this is the entry point for mapping the game's entire top-level
+flow: enumerating every place `PTR_DAT_800ac8e8+0x28` is written (not just
+read here) would recover the full set of valid mode values and likely the
+transitions between them.
+
 # What this map is not yet
 
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only the 6 functions above have `source_status` above
+- Only the 7 functions above have `source_status` above
   `decompiler_output_only`, out of 2,026. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
