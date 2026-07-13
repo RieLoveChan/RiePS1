@@ -9,6 +9,7 @@ timestamp: 2026-07-13T00:00:00-04:00
 Schema: [/docs/foundations/revision-manifest-schema.md](/docs/foundations/revision-manifest-schema.md).
 Symbol map: [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md).
 Quirk log: [/docs/games/ddr-5th-mix-jp-quirks.md](/docs/games/ddr-5th-mix-jp-quirks.md).
+Screen flow: [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md).
 
 # Revision identity
 
