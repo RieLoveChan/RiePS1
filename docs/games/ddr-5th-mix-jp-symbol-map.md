@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13) | 5 |
+| `confidence = manual` (hand-reviewed 2026-07-13) | 6 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 981 |
+| `confidence = unverified` (default `FUN_########` names) | 980 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -113,13 +113,12 @@ disassembly_reviewed`. Structurally a standard PS1 main loop:
    calls, another independent corroboration of the PsyQ 4.4.0 identification
    (these are exact official kernel function names, not generic guesses).
 3. Calls `FUN_8003bbf8` once more, then enters an infinite two-level loop:
-   an inner wait-loop calling `FUN_8002216c` + `ResetRCnt` while a flag byte
-   at `PTR_DAT_800ac8e8[9]` is zero, then a per-frame body calling
+   an inner loop calling `FUN_8002216c` + `ResetRCnt` while
+   `PTR_DAT_800ac8e8[9] != 0`, then a per-frame body calling
    `FUN_80022cf8`, `GetRCnt`/`ResetRCnt`, `FUN_800973e8`,
    `FUN_8002112c`, `FUN_8002d630`, `FUN_80028034`, all gated by the same
-   struct's flags. The two nested `while` conditions both test
-   `PTR_DAT_800ac8e8[9]`, so this looks like a mode/exit flag shared across
-   both loop levels — not yet confirmed which.
+   struct's flags — **corrected 2026-07-13**: this is *not* a spin/wait loop
+   (see `FUN_8002216c`'s own review below); it always runs exactly once.
 4. **Every one of the 12 unnamed callees above matched no PsyQ signature**,
    confirming they are DDR-5th-Mix application code, not library code — this
    is the confirmed start of genuinely game-specific reverse engineering.
@@ -130,12 +129,47 @@ order, loop position) is a structural fact, not an identity claim, per
 `AGENTS.md`'s "do not silently turn guesses into names." They are listed, in
 call order, in `main`'s symbol-map row `notes` as the next review targets.
 
+# Manual review: `FUN_8002216c` — corrects the "wait loop" hypothesis
+
+Reviewed by hand on 2026-07-13. `FUN_8002216c` (`0x8002216c`, 156 bytes)
+promoted to `confidence = manual`, `source_status = disassembly_reviewed`.
+Its body:
+
+```
+bzero(PTR_DAT_800ac8e8, 0x140);   // zero a ~320-byte state block
+FUN_8009f508();
+PTR_DAT_800ac8ec[0x50] = 0;
+FUN_8009978c();
+DAT_800e2ad0 = 0;
+PTR_DAT_800ac8e8[9]  = 0;         // <- the exact flag main's inner
+PTR_DAT_800ac8e8[10] = 0;         //    do-while(...[9] != 0) tests
+PTR_DAT_800ac8e8[11] = 0;
+PTR_DAT_800ac8e8[0x3f..0x42] = 1; // four flag bytes forced to 1
+```
+
+Because this function unconditionally zeroes offset 9, and that is the exact
+byte `main`'s inner `do { FUN_8002216c(); ResetRCnt(...); } while
+(PTR_DAT_800ac8e8[9] != 0)` loop tests, **that loop always runs exactly
+once** — it is not a spin/wait loop, despite its call-site shape suggesting
+one at first read. This corrects the "inner wait-loop" description in the
+`main` review above. No name is proposed (`bzero`-then-fixed-flags reads as
+a per-scene/state reset routine called once at the top of each outer-loop
+pass, but that is a hypothesis about *purpose*, not a confirmed identity —
+the two unnamed callees `FUN_8009f508`/`FUN_8009978c` remain unreviewed and
+could change that reading).
+
+This is exactly the kind of correction the confidence-tier system exists
+for: the original "wait loop" phrasing in `main`'s notes was a reasonable
+first read from the call site alone, and reading the callee's actual body
+overturned it. Superseded text is marked, not silently deleted, in both the
+CSV and this document.
+
 # What this map is not yet
 
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only the 5 functions above have `source_status` above
+- Only the 6 functions above have `source_status` above
   `decompiler_output_only`, out of 2,026. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
