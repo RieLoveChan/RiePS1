@@ -27,8 +27,8 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13) | 4 |
-| `confidence = library_signature` | 1,041 |
+| `confidence = manual` (hand-reviewed 2026-07-13) | 5 |
+| `confidence = library_signature` | 1,040 |
 | `confidence = unverified` (default `FUN_########` names) | 981 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
@@ -90,12 +90,7 @@ generic guesses.
 
 **`main` at `0x800226a4` is the crt0-to-game-code boundary**: everything at
 or before `stup0` is PsyQ startup boilerplate; everything reachable from
-`main` is DDR-5th-Mix-specific code. This makes `main` the highest-value
-next manual-review target, but its own 408-byte body has not been read yet
-(still `confidence = library_signature`) — its symbol-map row and
-`InitHeap`'s are annotated with this finding in their `notes` column without
-changing their tier, since annotating a call site is not the same as
-reviewing the callee's own body.
+`main` is DDR-5th-Mix-specific code.
 
 The decompiler also threw a `pcode error ... Unable to resolve constructor`
 immediately after `stup0`'s body, at `0x800207ac` — exactly the
@@ -103,19 +98,53 @@ immediately after `stup0`'s body, at `0x800207ac` — exactly the
 that the marker is a non-code object-boundary artifact colliding with the
 fallthrough instruction stream, not a real instruction.
 
+# Manual review: `main`'s game loop structure
+
+Reviewed by hand on 2026-07-13. `main` (`0x800226a4`, 408 bytes, 19
+callees) promoted to `confidence = manual`, `source_status =
+disassembly_reviewed`. Structurally a standard PS1 main loop:
+
+1. Calls `__main` (already reviewed, no-op) then 5 unnamed init-looking
+   calls in sequence: `FUN_80021dfc`, `FUN_80027f7c`, `FUN_8007b778(0x80, 0)`,
+   `FUN_800972a4`, `FUN_8003bbe8`.
+2. Installs a root-counter interrupt handler for RCNT2
+   (event class `0xf2000003`) via `OpenEvent` → `EnableEvent` → `SetRCnt` →
+   `StartRCnt` — all four already correctly PsyQ-signature-named kernel BIOS
+   calls, another independent corroboration of the PsyQ 4.4.0 identification
+   (these are exact official kernel function names, not generic guesses).
+3. Calls `FUN_8003bbf8` once more, then enters an infinite two-level loop:
+   an inner wait-loop calling `FUN_8002216c` + `ResetRCnt` while a flag byte
+   at `PTR_DAT_800ac8e8[9]` is zero, then a per-frame body calling
+   `FUN_80022cf8`, `GetRCnt`/`ResetRCnt`, `FUN_800973e8`,
+   `FUN_8002112c`, `FUN_8002d630`, `FUN_80028034`, all gated by the same
+   struct's flags. The two nested `while` conditions both test
+   `PTR_DAT_800ac8e8[9]`, so this looks like a mode/exit flag shared across
+   both loop levels — not yet confirmed which.
+4. **Every one of the 12 unnamed callees above matched no PsyQ signature**,
+   confirming they are DDR-5th-Mix application code, not library code — this
+   is the confirmed start of genuinely game-specific reverse engineering.
+
+No semantic name is proposed for any of the 12 unnamed callees or for
+`PTR_DAT_800ac8e8`/`PTR_DAT_800ac8ec` — call-site structure (arguments, call
+order, loop position) is a structural fact, not an identity claim, per
+`AGENTS.md`'s "do not silently turn guesses into names." They are listed, in
+call order, in `main`'s symbol-map row `notes` as the next review targets.
+
 # What this map is not yet
 
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only the 4 functions above have `source_status` above
+- Only the 5 functions above have `source_status` above
   `decompiler_output_only`, out of 2,026. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
   object per the "Function accepted" gate in
   `/docs/workflows/decompile-recompile.md`.
-- Data/global symbols are out of scope for this file; see the symbol map
-  schema's "Non-goals".
+- Data/global symbols (e.g. `PTR_DAT_800ac8e8`) are out of scope for this
+  file; see the symbol map schema's "Non-goals". A `globals.csv` following
+  the same schema would be the natural place to track that struct once
+  someone starts reverse-engineering its layout.
 
 # Reproduction
 

@@ -9,6 +9,7 @@
 * **Schema**: Added a symbol map schema (CSV columns, confidence tiers) and exported the first tool-generated symbol map for the boot executable (2,026 functions; 1,045 PsyQ-signature-matched, 981 unverified).
 * **Review**: Manually reviewed the PsyQ crt0 startup chain (`start`→`stup1`→`InitHeap`→`stup0`→`main`→`trap`), promoting 4 functions to `confidence = manual` and locating `main` at `0x800226a4` as the crt0-to-game-code boundary.
 * **Coordination**: Removed the file-based handoff claim/coordination system (`docs/handoffs/`) at the repository owner's direction. Agents now commit and push completed work directly instead of waiting for user review; see `AGENTS.md`'s "Commit and push" section. Configured `origin` to `https://github.com/RieLoveChan/RiePS1`.
+* **Review**: Manually reviewed `main` (`0x800226a4`), confirming it is a standard PS1 main loop (subsystem init, RCNT2 vsync/timer IRQ setup via correctly-named PsyQ kernel calls, then an infinite frame loop). All 12 of its unnamed callees matched no PsyQ signature, confirming genuinely DDR-5th-Mix-specific code has now been located and is ready for review.
 
 ## 2026-07-12
 * **Validation**: Added a pinned BizHawk 2.11 launcher and Lua probe for deterministic PS1 execution evidence.
