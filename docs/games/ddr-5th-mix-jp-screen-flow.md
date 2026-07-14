@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-14T20:00:00-04:00
+timestamp: 2026-07-14T22:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -48,10 +48,33 @@ and those modes' own handlers transition straight back to `0x10` (subject
 to a button-bit condition). Mode `0x10`/submode `0x00` always forwards
 immediately to mode `4`, which itself flows onward to mode `2` — so the
 "item 0" menu choice and the automatic submode-`0x00` forward reach the
-same destination. No confirmed transition currently lands on `0x00`,
-`0x04`, or `0xff` themselves (consistent with `0x00` being a boot-only
-entry point, and `0x04`/`0xff` being reached some other way not yet
-found).
+same destination. No confirmed transition currently lands on `0x00` or `0x04` themselves
+(consistent with `0x00` being a boot-only entry point; `0x04` still has no
+confirmed source). `0xff` *is* now confirmed reachable — see below.
+
+## Submode-transition primitives
+
+`FUN_80023210` (`SetMode`) has two siblings, found 2026-07-14 the same way
+(`tools/ghidra/scripts/DumpFieldXrefs.java` against `PTR_DAT_800ac8e8`,
+this time grepped for `+0x2a` instead of `+0x28`):
+
+- **`FUN_800231b0`** = `NextSubmode()`: `{ +0x2c = 0; +0x2a = +0x2a + 1;
+  }`. Called from nearly every handler reviewed so far — it's the generic
+  "advance to the next step within this screen" primitive, not
+  screen-specific logic as it first appeared.
+- **`FUN_80023230`** = `SetSubmode(value)`: `{ +0x2a = value; +0x2c = 0;
+  +0x2e = 0; }`. Its only confirmed caller (`FUN_800235f8`, mode
+  `0x00`/submode `0x00`, argument `1`) belongs to mode `0x00`'s own local
+  sequence.
+
+**Also confirmed**: `FUN_80021374` (`0x80021374`, previously an
+unexplained second `+0x28` reader) is a **service/reset-combo watcher** —
+gated on two flags and `mode != 0xff`, it checks a controller-button combo
+across up to 2 ports and, on match, calls `FUN_80023210(0xff)`: a
+**confirmed transition to mode `0xff`**. This explains mode `0xff`'s
+elaborate 5-way dispatch (a GPU reset and a main-loop-restart flag write)
+as a genuine reset/service state, not a sentinel that happens to have
+submodes.
 
 # Fill-in instructions
 
@@ -134,7 +157,7 @@ references that might name the 3 menu items directly.
 | `0x20` | — | `FUN_800219b8` (60 B) | Checks bit `0x40` of a 32-bit field at `+0x54`; if set, calls `FUN_80023210(0x10)` — a **confirmed transition to mode `0x10`**. **Byte-for-byte identical body to mode `0x32`'s handler** (`FUN_80021a30`) — same field, same bit, same call, same target. Reachable *from* mode `0x10`'s own menu (item 2 — see `0x10`/submode `0x01` row), forming a menu↔here loop. | | `unverified` | | |
 | `0x32` | — | `FUN_80021a30` (60 B) | Byte-for-byte identical to mode `0x20`'s handler (`FUN_800219b8`) above, including its confirmed transition to mode `0x10` — see that row. Reachable *from* mode `0x10`'s own menu (item 1). | | `unverified` | | |
 | `0x80` | — | *(none)* | No handler call at all — just sets `PTR_DAT_800ac8ec[0] = 0` then falls to the shared epilogue. Possibly a "clear/idle" mode rather than a screen. **Confirmed transition target** of `FUN_80022cf8`'s own shared epilogue, from *any* mode, whenever `PTR_DAT_800ac8ec[7] != 0` (see "Mode-transition primitive" above). | | `unverified` | | **Correction 2026-07-14**: an earlier version of this row proposed **Caution** here, reasoning from mode `0x00`'s `+0x17 = 0x80` write. That write turned out not to be the real transition mechanism (see mode `0x00`/submode `0x02`'s note) — the actual confirmed way to reach `0x80` is a global flag check in the dispatcher's own epilogue, reachable from any mode, which reads more like a service/reset/interrupt state than a step in a fixed attract sequence. Reset to `unverified` rather than keep an unsupported guess; superseded, not deleted. |
-| `0xff` | `0x00`–`0x04` | `FUN_800234cc` / `FUN_80023500` / `FUN_80023544` / `FUN_8002356c` / `FUN_8002358c` | `FUN_80022fb0` (152 B) also reads `+0x2a` and, if `< 5`, dispatches through a jump table at `0x8001a840` — **confirmed 2026-07-14** by reading its raw bytes (`tools/ghidra/scripts/DumpJumpTable.java`): submode 0-4 map to these 5 functions in order, exactly. All five now **reviewed 2026-07-14**: submode `0x04` (`FUN_8002358c`) calls the real PsyQ kernel function `ResetGraph(1)` and writes `PTR_DAT_800ac8e8[9] = 1` (see symbol-map's review for why this can't affect `main`'s own do-while, and what it might affect instead). Submodes `0x00`/`0x01`/`0x02` each gate a short call sequence behind a distinct global flag (`DAT_800e2a60`, `DAT_800ac88c`, `DAT_800ac890`); submode `0x03` is a bare call to the shared `FUN_800231b0`. `0xff` is a common sentinel ("uninitialized"/"none") value in many codebases — worth keeping in mind as an alternative to "it's a real screen," especially now that it turns out to have 5 real sub-branches, a GPU reset, and a loop-flag write like a genuine screen transition would. | | `unverified` | | |
+| `0xff` | `0x00`–`0x04` | `FUN_800234cc` / `FUN_80023500` / `FUN_80023544` / `FUN_8002356c` / `FUN_8002358c` | `FUN_80022fb0` (152 B) also reads `+0x2a` and, if `< 5`, dispatches through a jump table at `0x8001a840` — **confirmed 2026-07-14** by reading its raw bytes (`tools/ghidra/scripts/DumpJumpTable.java`): submode 0-4 map to these 5 functions in order, exactly. All five now **reviewed 2026-07-14**: submode `0x04` (`FUN_8002358c`) calls the real PsyQ kernel function `ResetGraph(1)` and writes `PTR_DAT_800ac8e8[9] = 1` (see symbol-map's review for why this can't affect `main`'s own do-while, and what it might affect instead). Submodes `0x00`/`0x01`/`0x02` each gate a short call sequence behind a distinct global flag (`DAT_800e2a60`, `DAT_800ac88c`, `DAT_800ac890`); submode `0x03` is a bare call to the shared `FUN_800231b0` (now confirmed as `NextSubmode`). **Confirmed 2026-07-14**: reachable via `FUN_80021374`, a service/reset-combo watcher outside the dispatcher tree that transitions here on a specific controller-button combo (see "Submode-transition primitives" above) — `0xff` is a genuine reset/service state, not a sentinel value. | | `unverified` | | |
 | *(default)* | `0x00` | `FUN_800232cc` (168 B) | Reached when `mode` matches none of the above (or `mode == 0x10` explicitly). Same handler as `0x10`/submode `0x00` above — unconditionally forwards to mode `4`. | | `unverified` | | |
 | *(default)* | `0x01` | `FUN_80022b30` (456 B) | Same handler as `0x10`/submode `0x01` above — the menu. | Title / Mode Select | `suspected` | | Same reasoning as `0x10`/submode `0x01` row. |
 
@@ -208,18 +231,26 @@ separate rows since it isn't mode-specific.
   mode but an alias/placeholder, or the default branch is intentionally
   shared infrastructure that `0x10` also happens to want.
 - **How does mode `0x10`'s submode (`+0x2a`) ever reach `1`, to run the
-  menu (`FUN_80022b30`) at all?** `FUN_80023210` (`SetMode`) always resets
-  submode to `0` on transition, and submode `0`'s handler
-  (`FUN_800232cc`) unconditionally forwards to mode `4` on its very first
-  (and, per that reset, only) run. For the menu to ever be seen on
-  screen, something must advance `+0x2a` from `0` to `1` independently of
-  `SetMode` — no such write has been found yet. Candidates: a write inside
-  `FUN_800222fc` or `FUN_8002a9dc` (both called from `FUN_800232cc`,
-  neither reviewed yet), or a write outside the mode-dispatcher tree
-  entirely (the same way `FUN_80021374` reads `+0x28` from outside the
-  tree — see above). Enumerating `+0x2a`'s write sites the same way
-  `tools/ghidra/scripts/DumpFieldXrefs.java` found `+0x28`'s would answer
-  this directly.
+  menu (`FUN_80022b30`) at all?** Investigated 2026-07-14, prompted by the
+  repository owner's hypothesis that the menu might be armed during
+  Memory Card Auto Load (mode `0x00`), which would explain it being ready
+  the instant the player presses Start. **Not confirmed**: enumerating
+  every write to `+0x2a` across all 58 functions referencing
+  `PTR_DAT_800ac8e8` (see "Submode-transition primitives" above) found
+  exactly three writers — `SetMode`'s reset-to-`0`, `NextSubmode`'s
+  increment, and `SetSubmode`'s direct set — and mode `0x00`'s own
+  `SetSubmode(1)` call advances *its own* local sequence, unrelated to
+  mode `0x10`. Tracing every confirmed call site of all three still shows
+  no path that leaves submode `== 1` while mode remains `0x10` across a
+  frame boundary: `FUN_800232cc` calls `NextSubmode()` then
+  unconditionally `SetMode(4)` in the same execution, so any momentary
+  submode `1` is overwritten back to `0` before the dispatcher's next
+  read. This is now a well-supported puzzle rather than a review gap —
+  the search was exhaustive over every function touching this specific
+  global. Remaining candidates: a write reachable through some other
+  global/pointer that aliases the same struct (not yet identified), or
+  the menu genuinely being unreachable through normal play (vestigial /
+  debug-only code).
 
 # Citations
 

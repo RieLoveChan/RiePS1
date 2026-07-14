@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-14T20:00:00-04:00
+timestamp: 2026-07-14T22:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 25 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 28 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 961 |
+| `confidence = unverified` (default `FUN_########` names) | 958 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -442,6 +442,58 @@ likely a shared draw/sprite routine given its coordinate-shaped
 arguments). `SetDispMask` is an already-known PsyQ kernel function, not
 new application code — its use here is further corroboration of the
 PsyQ 4.4.0 toolchain, alongside `ResetGraph` found earlier the same day.
+
+# Manual review: `SetMode` has siblings — `NextSubmode`/`SetSubmode` — plus a service/reset-combo watcher
+
+Reviewed by hand on 2026-07-14 while chasing a repository-owner hypothesis
+("maybe mode `0x10`'s menu is armed during Memory Card Auto Load, which is
+why it's ready the instant the player presses Start") using the same
+58-function `PTR_DAT_800ac8e8` cross-reference dump from the `SetMode`
+discovery above, this time grepped for `0x2a` (submode) instead of `0x28`
+(mode).
+
+- **`FUN_800231b0`** — called from nearly every handler reviewed so far,
+  previously treated as an unexplained "shared call" — turns out to be
+  **`NextSubmode()`**: `{ +0x2c = 0; +0x2a = +0x2a + 1; }`. It's the
+  generic "advance to the next step within the current screen" primitive,
+  the submode-level sibling of `SetMode`. Promoted to `confidence =
+  manual`.
+- **`FUN_80023230`** is **`SetSubmode(newSubmode)`**: `{ +0x2a = param;
+  +0x2c = 0; +0x2e = 0; }` — sets submode directly instead of
+  incrementing, mirroring `SetMode` one field down. Promoted to
+  `confidence = manual`. Its only confirmed caller among these 58
+  functions is `FUN_800235f8` (mode `0x00`/submode `0x00`), calling it
+  with `1` to advance mode `0x00`'s own local 3-step sequence — this call
+  is local to mode `0x00`'s own state machine, not a mechanism for arming
+  mode `0x10`'s submode.
+- **The repository owner's hypothesis is not confirmed by this evidence**:
+  every write to `+0x2a` found among all 58 functions belongs to one of
+  these three primitives (`SetMode`'s reset-to-`0`, `NextSubmode`'s
+  increment, `SetSubmode`'s direct set), and tracing every one of their
+  confirmed call sites shows no path that leaves submode `== 1` while mode
+  remains `0x10` across a frame boundary — `FUN_800232cc` (mode
+  `0x10`/submode `0x00`) calls `NextSubmode()` then unconditionally
+  `SetMode(4)` in the same execution, so any momentary submode `1` is
+  immediately overwritten back to `0` before the dispatcher's next read.
+  Testing the hypothesis was still worthwhile: it prompted re-reading
+  `FUN_800231b0` for the first time, resolving what it actually does.
+- **A genuine side-discovery**: `FUN_80021374` (`0x80021374`, 252 bytes —
+  the function flagged as an unexplained second `+0x28` reader in the
+  `SetMode` review above) is a **service/reset-combo watcher**. Gated on
+  two byte flags (`PTR_DAT_800ac8ec[0]`/`[6]`) and `mode != 0xff`, it
+  checks up to 2 controller ports for a specific input combo (bit `0x800`
+  in one word, bit `0x100` in the other) and, on match, resets several
+  `DAT_800e29xx` globals and calls `FUN_80023210(0xff)` — a **confirmed
+  transition to mode `0xff`**. This explains why mode `0xff` has such an
+  elaborate 5-way jump-table dispatch (a real `ResetGraph` call and a
+  main-loop-restart flag write, see `FUN_8002358c`'s review): it's a
+  genuine reset/service state reachable via a button chord, not a sentinel
+  value that happens to have submodes. Promoted to `confidence = manual`.
+
+**The "how does mode `0x10`'s submode ever reach `1`" question remains
+open** — if anything, it's now better-supported as a genuine puzzle rather
+than a gap in review coverage, since the search for `+0x2a`'s write sites
+was exhaustive across every function touching `PTR_DAT_800ac8e8`.
 
 # What this map is not yet
 
