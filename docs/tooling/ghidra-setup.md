@@ -62,6 +62,14 @@ each of the three pieces; do not guess download URLs.
   don't warrant a full jump-table-style dump (headless: `-postScript
   DumpShorts.java 0xADDR N`). Used to read a menu's 3-entry destination-mode
   table — see the symbol map's `FUN_80022b30` review.
+- `/tools/ghidra/scripts/DumpBytes.java` — reads N raw bytes starting at an
+  address and prints a hex+ASCII dump, like a minimal `hexdump -C`, for
+  inspecting embedded string/format data byte-by-byte (headless:
+  `-postScript DumpBytes.java 0xADDR N`, `N` in decimal — Java's
+  `Integer.parseInt` rejects a `0x` prefix on the count argument, unlike
+  the address argument which Ghidra's own `AddressFactory` parses). Used to
+  find a 42-entry screen-name string table — see the symbol map's "Data
+  discovery" section.
 
 # Two non-obvious `analyzeHeadless` gotchas
 

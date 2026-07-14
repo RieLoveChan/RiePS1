@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T04:00:00-04:00
+timestamp: 2026-07-15T06:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 39 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 40 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 947 |
+| `confidence = unverified` (default `FUN_########` names) | 946 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -635,6 +635,82 @@ helper), `FUN_80042e1c`. Also newly visible: the `PTR_DAT_8001bcd4` table
 and the `PTR_LAB_800d9ac0`/`PTR_LAB_800d9ac4`/`PTR_FUN_800d9abc`
 function-pointer arrays `DAT_80105120` indexes into — none of their
 contents beyond the one `"TEST_MODE"` string have been read.
+
+# Data discovery: a 42-entry screen-name string table at `0x8001bb10`
+
+While chasing `FUN_80049dec`'s `"TEST_MODE"` string and its
+`DAT_80105120`-keyed state machine (see the mode `0x02` review above),
+reading the raw bytes around the pointer table it copies from
+(`tools/ghidra/scripts/DumpBytes.java` against `0x8001bb00`, 656 bytes)
+turned up something far bigger: **a complete, ordered table of 42
+null-terminated ASCII screen-name strings**, each one pointed to in turn
+by a 42-entry pointer array starting at `0x8001bcd4` (the exact table
+`FUN_80049dec` reads from). In order:
+
+`BOOT`, `PREPARE`, `INTRO`, `HOW TO`, `DANCING`, `STAGE END`, `RESULT`,
+`NON STOP I`, `NON STOP C`, `STYLE SEL`, `MODE SEL`, `CHARA SEL`,
+`MUSIC SEL`, `SEQKIND SEL`, `LINK SEL`, `COURSE SEL`, `INRAN SEL`,
+`EDSEQ_SEL`, `SELECT END`, `NAME ENTRY`, `PRE_END`, `ENDING`,
+`URL&PASS`, `LINK START`, `LINK END`, `GAME_OVER`, `PLAY START`,
+`GAME ??`, `PUSH START`, `WARNING`, `KONAMI`, `BEMANI`, `TOSHIBA`,
+`TMOVIE`, `TITLE`, `CATCH DEMO`, `PLAY DEMO`, `RANKING`, `LETS LINK`,
+`DEMO ??`, `TEST_MODE`, `OTHER`.
+
+(Immediately preceding this table, at `0x8001bb10`, is the literal
+`"data/mdb/mdb.bin"` filename already found in `FUN_80049d3c`'s review —
+the two data tables sit in the same object/source file.)
+
+**This is almost certainly the game's real, top-level screen/state enum**
+— `DAT_80105120` (the state variable `FUN_80049dec` and `FUN_80049d3c`
+both touch) indexes into three parallel function-pointer tables
+(`PTR_LAB_800d9ac0` = update, `PTR_LAB_800d9ac4` = exit,
+`PTR_FUN_800d9abc` = enter) and, evidently, this name table — a textbook
+enter/exit/update state machine with named states, developer debug
+strings and all. Per `/docs/foundations/screen-flow-schema.md`'s own
+confidence rule ("a string reference" is explicit qualifying evidence
+for `confidence: manual` or higher), these names are about as strong as
+reverse-engineering evidence gets.
+
+**Direct corroboration of the repository owner's domain-knowledge
+account** (see `/docs/games/ddr-5th-mix-jp-screen-flow.md`'s "Known
+screen sequence"): `WARNING` = the safety warning ("Caution"); `KONAMI`,
+`BEMANI`, `TOSHIBA` = three separate company-logo screens (not one
+generic "Company" screen — DDR 5th Mix (Japan) credits Konami, the
+Bemani brand, and Toshiba EMI specifically); `PLAY DEMO` = the
+"Gameplay Demonstration"; `RANKING` = "Ranking"; `HOW TO` = "How To
+Play"; `MODE SEL`/`MUSIC SEL` match "Mode Select"/"Music Select"; `TITLE`
+is the title screen. Several names go well beyond what genre knowledge
+alone predicted: `DANCING` (actual gameplay), `STAGE END`, `RESULT`,
+`NON STOP I`/`NON STOP C` (a marathon/nonstop play mode), `CHARA SEL`,
+`SEQKIND SEL`, `LINK SEL`/`LINK START`/`LINK END`/`LETS LINK` (a
+cabinet-link/versus feature), `COURSE SEL`, `INRAN SEL`, `EDSEQ_SEL`,
+`NAME ENTRY`, `URL&PASS`, `ENDING`, `GAME_OVER`, `CATCH DEMO`, and the
+placeholder-looking `GAME ??`/`DEMO ??`.
+
+**What is NOT yet established**: how `DAT_80105120`'s state machine
+relates to `PTR_DAT_800ac8e8`'s `mode`/`submode` fields that
+`FUN_80022cf8` (the dispatcher this whole document's mode table is built
+around) dispatches on. One concrete link is confirmed: `FUN_80049d3c`
+(reached from mode `0x04`, part of the boot chain) zeroes `DAT_80105120`
+and calls `PTR_FUN_800d9abc[0]` — i.e. explicitly enters state `0`,
+`"BOOT"` — right before mode `0x04` hands off toward mode `2`. Combined
+with `FUN_80049dec` (mode `0x02`/submode `0x02`) being the per-frame
+*update* pump for whichever `DAT_80105120` state is current, the
+best-supported picture right now is: **`PTR_DAT_800ac8e8`'s mode/submode
+system is boot/system-level infrastructure (memory card, GPU reset,
+asset/database loading, resolution switching), and once it settles into
+mode `0x02`/submode `0x02`, `DAT_80105120`'s richer state machine — named
+by this table — becomes the actual, ongoing screen flow.** This is not
+yet confirmed by reading the three function-pointer tables' actual
+contents or tracing whether mode `0x02` is ever left again during normal
+play; that's the natural next step.
+
+**This is exactly the kind of discovery `/docs/foundations/
+symbol-map-schema.md`'s own non-goals note anticipates** ("globals
+should get their own `globals.csv`... once that work starts") — a
+`DAT_80105120` screen-flow document, structured like this one but keyed
+on the new field, is likely the right next artifact once the three
+function-pointer tables are read.
 
 # What this map is not yet
 

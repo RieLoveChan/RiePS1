@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T04:00:00-04:00
+timestamp: 2026-07-15T06:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -16,6 +16,70 @@ per-frame loop. Reads a 16-bit "mode" field at `PTR_DAT_800ac8e8+0x28`;
 `mode == 2` and the unmatched-mode default both additionally read a 16-bit
 "submode" field at `PTR_DAT_800ac8e8+0x2a`. Full structural review:
 `/docs/games/ddr-5th-mix-jp-symbol-map.md`, "Manual review: `FUN_80022cf8`".
+
+# The real screen enum: `DAT_80105120`
+
+**Discovered 2026-07-14, likely the single highest-value finding in this
+document.** While reviewing `FUN_80049dec` (mode `0x02`/submode `0x02`)
+and its `"TEST_MODE"` string, reading the raw bytes around the data table
+it copies from (`tools/ghidra/scripts/DumpBytes.java`) turned up a
+**complete, ordered table of 42 null-terminated screen-name strings** at
+`0x8001bb10`, each pointed to by a 42-entry pointer array at `0x8001bcd4`:
+
+`BOOT`, `PREPARE`, `INTRO`, `HOW TO`, `DANCING`, `STAGE END`, `RESULT`,
+`NON STOP I`, `NON STOP C`, `STYLE SEL`, `MODE SEL`, `CHARA SEL`,
+`MUSIC SEL`, `SEQKIND SEL`, `LINK SEL`, `COURSE SEL`, `INRAN SEL`,
+`EDSEQ_SEL`, `SELECT END`, `NAME ENTRY`, `PRE_END`, `ENDING`,
+`URL&PASS`, `LINK START`, `LINK END`, `GAME_OVER`, `PLAY START`,
+`GAME ??`, `PUSH START`, `WARNING`, `KONAMI`, `BEMANI`, `TOSHIBA`,
+`TMOVIE`, `TITLE`, `CATCH DEMO`, `PLAY DEMO`, `RANKING`, `LETS LINK`,
+`DEMO ??`, `TEST_MODE`, `OTHER`.
+
+This is almost certainly the game's **real, top-level screen/state enum**
+— indexed by `DAT_80105120` through three parallel function-pointer
+tables (update/exit/enter), a textbook state machine. Full evidence and
+addresses: symbol map, "Data discovery: a 42-entry screen-name string
+table."
+
+**Directly confirms the repository owner's domain-knowledge account**
+(see "Known screen sequence" below), with a literal string reference —
+the schema's own bar for `confidence: manual`/`verified`, not a guess:
+
+| String | Matches |
+|---|---|
+| `WARNING` | "Caution" |
+| `KONAMI`, `BEMANI`, `TOSHIBA` | "Company" — turns out to be **three** separate logo screens, not one |
+| `HOW TO` | "How To Play" |
+| `PLAY DEMO` | "Gameplay Demonstration" |
+| `RANKING` | "Ranking" |
+| `MODE SEL`, `MUSIC SEL` | "Mode Select" / "Music Select" |
+| `TITLE` | Title screen |
+
+Many more names go beyond what genre knowledge alone predicted:
+`DANCING` (actual gameplay), `STAGE END`, `RESULT`, `NON STOP I`/
+`NON STOP C` (a marathon mode), `CHARA SEL`, `LINK SEL`/`LINK START`/
+`LINK END`/`LETS LINK` (a cabinet-link/versus feature), `COURSE SEL`,
+`EDSEQ_SEL`, `NAME ENTRY`, `URL&PASS`, `ENDING`, `GAME_OVER`, `CATCH
+DEMO`, and placeholder-looking `GAME ??`/`DEMO ??`.
+
+**Not yet established**: exactly how `DAT_80105120`'s state machine
+relates to `PTR_DAT_800ac8e8`'s `mode`/`submode` fields this document's
+"Mode table" is built around. One concrete link is confirmed: mode
+`0x04`'s `FUN_80049d3c` zeroes `DAT_80105120` and enters state `0`
+(`"BOOT"`) as part of the boot chain, and `FUN_80049dec` (mode
+`0x02`/submode `0x02`) is the per-frame *update* pump for whichever
+`DAT_80105120` state is current. Best-supported picture right now:
+`PTR_DAT_800ac8e8`'s system is boot/infrastructure control, and once it
+settles into mode `0x02`/submode `0x02`, `DAT_80105120`'s named state
+machine becomes the actual, ongoing screen flow — but this isn't
+confirmed by reading the three function-pointer tables themselves yet,
+nor has it been confirmed that mode `0x02` is never left again during
+normal play. A `DAT_80105120`-keyed table, structured like this
+document's "Mode table" below, is the natural next artifact once those
+function-pointer tables are read — worth deciding with the repository
+owner before building it out, since it may partly supersede the
+speculative "Proposed screen" guesses already recorded below rather than
+extend them.
 
 # Mode-transition primitive
 
@@ -105,6 +169,17 @@ values below):
    logo images) → **How To Play** → **Gameplay Demonstration** (always the
    *same* song on the console's first boot; varies on later loop
    iterations) → **Ranking** → back to **Company**.
+
+**Update 2026-07-14 — directly confirmed, not just genre-informed
+anymore**: see "The real screen enum: `DAT_80105120`" above. The game's
+own debug strings include `WARNING` (Caution), `KONAMI`/`BEMANI`/
+`TOSHIBA` (Company — three separate logo screens), `HOW TO`, `PLAY DEMO`
+(Gameplay Demonstration), and `RANKING`, matching this account closely.
+This is string-reference evidence, the schema's own bar for
+`manual`/`verified` confidence — but it confirms the *names exist in the
+game*, not yet their exact ordering/transitions or that they're reached
+by `PTR_DAT_800ac8e8`'s mode dispatcher at all (they index a different
+state variable, `DAT_80105120` — see above for what's still open).
 
 **One concrete pairing already has structural support**: `FUN_8002216c`
 (reviewed in the symbol map) unconditionally zeroes
@@ -209,18 +284,17 @@ separate rows since it isn't mode-specific.
 
 # Open structural questions
 
-- **What is `DAT_80105120`'s state machine, and how does it relate to
-  `PTR_DAT_800ac8e8`'s mode/submode system?** Discovered 2026-07-14 in
-  mode `0x02`/submode `0x02` (`FUN_80049dec`) and mode `0x04`'s music-
-  database loader (`FUN_80049d3c`): a *separate* enter/exit/update state
-  machine, indexed by `DAT_80105120` through three function-pointer
-  tables (`PTR_LAB_800d9ac0`/`PTR_LAB_800d9ac4`/`PTR_FUN_800d9abc`), with
-  at least one entry's data including a pointer to the literal string
-  `"TEST_MODE"`. Reading the contents of `PTR_DAT_8001bcd4`'s table (which
-  `FUN_80049dec` copies from) and the three function-pointer arrays
-  would clarify whether this is a debug/service menu bolted onto the side
-  of the main game, a more fundamental sub-screen system the main mode
-  dispatcher delegates to, or something else entirely.
+- **Exactly how does `DAT_80105120`'s 42-state screen machine relate to
+  `PTR_DAT_800ac8e8`'s mode/submode system?** See "The real screen enum:
+  `DAT_80105120`" above for the full string table (`BOOT`, `PREPARE`,
+  `WARNING`, `KONAMI`, `PLAY DEMO`, `TEST_MODE`, etc.) and what's already
+  confirmed (mode `0x04` initializes it to state `0`/`BOOT`; mode
+  `0x02`/submode `0x02` pumps it every frame). Reading the three
+  function-pointer tables' actual contents (`PTR_LAB_800d9ac0` = update,
+  `PTR_LAB_800d9ac4` = exit, `PTR_FUN_800d9abc` = enter) would confirm
+  which function implements each named screen and whether mode `0x02` is
+  ever left again during normal play, or whether the entire rest of the
+  game runs inside it.
 - **What are `PTR_DAT_800ac8e8+0x2c` and `+0x2e`?** `FUN_80023210`
   (`SetMode`) zeroes both of them alongside `submode` (`+0x2a`) on every
   mode transition, but nothing reviewed so far reads or writes either field
