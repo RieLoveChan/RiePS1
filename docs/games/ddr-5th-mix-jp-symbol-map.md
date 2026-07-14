@@ -1,10 +1,10 @@
 ---
 type: Symbol Map
 title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
-description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain has had its first manual review pass.
+description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-13T00:00:00-04:00
+timestamp: 2026-07-14T12:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13) | 7 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 12 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 979 |
+| `confidence = unverified` (default `FUN_########` names) | 974 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -207,6 +207,59 @@ Practically, this is the entry point for mapping the game's entire top-level
 flow: enumerating every place `PTR_DAT_800ac8e8+0x28` is written (not just
 read here) would recover the full set of valid mode values and likely the
 transitions between them.
+
+# Manual review: five of the mode dispatcher's handlers — `+0x2a` is not scoped to `mode == 2`
+
+Reviewed by hand on 2026-07-14 using `DumpFunctionDetail.java`: the five
+smallest/simplest handler targets discovered by `FUN_80022cf8`'s review
+(`FUN_80023048` mode `0x00`, `FUN_800230cc` mode `0x04`, `FUN_800219b8` mode
+`0x20`, `FUN_80021a30` mode `0x32`, `FUN_80022fb0` mode `0xff`). All five
+promoted to `confidence = manual`, `source_status = disassembly_reviewed`.
+
+- **`FUN_80023048`** (mode `0x00`, 132 bytes) and **`FUN_800230cc`** (mode
+  `0x04`, 112 bytes) both read the 16-bit field at
+  `PTR_DAT_800ac8e8+0x2a` — the same "submode" field `FUN_80022cf8` itself
+  reads for `mode == 2` and the unmatched-mode default — and dispatch on it
+  again, 3-way and 2-way respectively. **This corrects the screen-flow
+  table's "single call, no args observed" notes for both rows**, recorded
+  before either body had been read; superseded, not deleted, per the usual
+  correction convention. `FUN_800230cc` also unconditionally copies one byte
+  field to another every call regardless of submode:
+  `PTR_DAT_800ac8ec[0xbb] = PTR_DAT_800ac8ec[0x52]`.
+- **`FUN_80022fb0`** (mode `0xff`, 152 bytes) also reads `+0x2a` and, if its
+  value is `< 5`, dispatches through a compiler-generated jump table at
+  `0x8001a840` that Ghidra's decompiler couldn't recover ("Too many
+  branches"; it mis-renders the indirect `jr` as a function call). The 5
+  code blocks laid out immediately after the jump each call a distinct
+  target (`FUN_800234cc`, `FUN_80023500`, `FUN_80023544`, `FUN_8002356c`,
+  `FUN_8002358c`); their in-memory order is consistent with standard MIPS
+  switch codegen mapping submode values `0..4` to these blocks in order, but
+  the jump table's actual bytes at `0x8001a840` were not read, so that
+  mapping is inferred from layout convention, not confirmed.
+- So **four of the five modes reviewed so far that touch `+0x2a` at all**
+  (`0x00`, `0x04`, `0xff`, plus `0x02` and the default from the earlier
+  `FUN_80022cf8` review) all read the *same* field — `+0x2a` is evidently a
+  general-purpose sub-state/phase value reused across most or all screens,
+  not something scoped to whatever screen `mode == 2` represents. This is a
+  more useful structural fact than any individual handler's body: it means
+  "submode" is probably better read as a per-screen phase counter (e.g.
+  init/active/exit) than a screen-specific parameter.
+- **`FUN_800219b8`** (mode `0x20`, 60 bytes) and **`FUN_80021a30`** (mode
+  `0x32`, 60 bytes) are **byte-for-byte identical**: both check bit `0x40`
+  of the 32-bit field at `PTR_DAT_800ac8e8+0x54`, and if set, call
+  `FUN_80023210(0x10)` (the same function the shared per-frame epilogue
+  calls with argument `0x80`). Neither reads `+0x2a`. Two different mode
+  values reaching identical code is the same shape of question the
+  `FUN_80022cf8` review already flagged for `0x10`/default — whether these
+  are true aliases of one screen or independently-implemented but
+  coincidentally identical logic is not yet resolved.
+
+**10 new call targets discovered, none yet reviewed**: `FUN_800235f8`,
+`FUN_80023690`, `FUN_80022f04` (mode `0x00`'s submode branches);
+`FUN_8002340c`, `FUN_80023474` (mode `0x04`'s submode branches);
+`FUN_800234cc`, `FUN_80023500`, `FUN_80023544`, `FUN_8002356c`,
+`FUN_8002358c` (mode `0xff`'s inferred jump-table targets). No names
+proposed for any of them, nor for `PTR_DAT_800ac8e8+0x54`'s bit `0x40`.
 
 # What this map is not yet
 
