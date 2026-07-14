@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T00:00:00-04:00
+timestamp: 2026-07-15T02:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 30 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 36 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 956 |
+| `confidence = unverified` (default `FUN_########` names) | 950 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -536,6 +536,59 @@ asset-load gateway to it.
 `InitGeom`, `ClearImage2`, `DrawSync`, `LoadImage` are all already-known
 PsyQ library functions, not new application code — their density here is
 further corroboration of the PsyQ 4.4.0 toolchain.
+
+# Manual review: mode `0x04`'s six callees — a literal filename and real audio setup
+
+Reviewed by hand on 2026-07-14, completing mode `0x04`'s call tree
+(`FUN_8002340c`/`FUN_80023474`, reviewed earlier the same day). All six
+promoted to `confidence = manual`.
+
+- **`FUN_80049d3c`** (called from both of mode `0x04`'s handlers) contains
+  this project's **first literal filename string**:
+  `FUN_8007eea8("data/mdb/mdb.bin")` — "mdb" is a standard abbreviation
+  for "music database," and this is almost certainly the game's song/
+  chart metadata file. It also initializes two per-something record
+  structures (stride `0x9284` bytes — plausibly one per player), then
+  calls six more unreviewed functions and a function pointer.
+- **`FUN_8002a7a4`** (called by `FUN_80023474`, mode `0x04`/submode
+  `0x02`, right before its transition to mode `2`) is pure SPU/audio
+  setup using real, already-signature-named PsyQ sound calls:
+  `SsUtSetReverbType(3)`, `SpuClearReverbWorkArea(3)`,
+  `SsSetSerialAttr(0,0,1)`, `SsSetReservedVoice(0x14)`,
+  `SpuSetTransferMode(0)`, `SsUtSetReverbDepth(0x28,0x28)`.
+- **`FUN_8009b0a8`** (same caller) is a **settings/options clamp-and-
+  validate routine**: roughly 25 distinct byte fields of a config struct
+  at `PTR_DAT_800e0b18` (a third distinct struct, not
+  `PTR_DAT_800ac8e8`/`ec`) are each compared against a max and reset to a
+  default if out of range — reads exactly like sanitizing memory-card-
+  loaded settings before they're used.
+- **`FUN_800a0cb0`** (called by `FUN_8002340c`'s first-time path) and
+  **`FUN_800236cc`** (a bare no-op, called by `FUN_80023474`) are small;
+  **`FUN_800a0ce0`** is a thin wrapper around the still-unreviewed
+  `FUN_800a00d4`, whose return value is the actual "ready" condition
+  gating mode `0x04`'s transition onward.
+
+**This reframes the whole `0x00 → 0x10 → 0x04` chain as a boot/loading
+sequence, not a series of visible screens**: Memory Card Auto Load (mode
+`0x00`) → GPU reset + asset load (mode `0x10`/submode `0x00`) → settings
+validation + music database load + SPU/reverb setup (mode `0x04`) → mode
+`2`. Mode `2`'s own submodes (already reviewed: a `640×480` screen clear,
+a conditional call, and `FUN_80049dec`) are now the most likely place to
+find the *first* genuinely visible screen in this chain, rather than
+modes `0x10` or `0x04` themselves. **Also corrects an imprecise reading
+of `FUN_8002340c`'s two branches** from its earlier review: its "flag
+zero" branch calls `FUN_80023230(2)` (`SetSubmode(2)` — stays in mode
+`0x04`, advances to submode `2`, i.e. `FUN_80023474`), while only its
+"flag nonzero" branch calls `FUN_80023210(2)` (`SetMode(2)` — actually
+leaves mode `0x04`). The two are easy to conflate since both take literal
+argument `2`; only the second is a mode transition.
+
+**New call targets discovered, none yet reviewed**: `FUN_800a00d4`,
+`FUN_8007eea8`, `FUN_8009851c`, `FUN_80042f60`, `FUN_80049fd4`,
+`FUN_80042df8`, `FUN_8008eb48`, `FUN_800a22b0`, `FUN_800a22d0`,
+`FUN_800a22f0`. `SsUtSetReverbType`/`SpuClearReverbWorkArea`/
+`SsSetSerialAttr`/`SsSetReservedVoice`/`SpuSetTransferMode`/
+`SsUtSetReverbDepth` are already-known PsyQ library functions.
 
 # What this map is not yet
 

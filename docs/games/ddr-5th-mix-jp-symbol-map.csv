@@ -201,7 +201,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x800235f8,152,FUN_800235f8,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: mode-0x00/submode-0x00 handler. Zeroes 8 byte fields at PTR_DAT_800ac8ec+0x9c..0x9f and +0xac..0xaf, zeroes PTR_DAT_800ac8e8+0x17, sets the 16-bit field at PTR_DAT_800ac8e8+0x22 = 2, zeroes the 16-bit field at PTR_DAT_800ac8e8+0xac, then calls FUN_80023230(1). Reads as an init/reset step for whatever state machine +0x22 (a countdown, see FUN_80023690/FUN_80022f04) and +0xac..0xaf (flags FUN_80022f04 checks) belong to.",1,1,main,"New call target: FUN_80023230."
 0x80023690,44,FUN_80023690,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: mode-0x00/submode-0x01 handler. Sets the 16-bit field at PTR_DAT_800ac8e8+0x22 = 4, then calls FUN_800231b0() (the widely-shared commit/present call). This is the write that arms the countdown FUN_80022f04 (submode 0x02) decrements every call.",1,1,main,"FUN_800231b0 already known/shared across many handlers; no other new call targets."
 0x800236bc,16,FUN_800236bc,,DEFAULT,unverified,decompiler_output_only,,0,0,main,
-0x800236cc,8,FUN_800236cc,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
+0x800236cc,8,FUN_800236cc,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: called by FUN_80023474 (mode 0x04/submode 0x02). void FUN_800236cc(void) { return; } -- a bare `jr ra`/`nop`, an empty no-op stub, matching the same shape as `__main`'s PsyQ crt0 placeholder.",1,0,main,"No-op; possibly a vestigial/placeholder call left in from a template, or a hook point intentionally left empty."
 0x80023744,476,FUN_80023744,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x80023c00,444,FUN_80023c00,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x80023dbc,224,FUN_80023dbc,,DEFAULT,unverified,decompiler_output_only,,6,0,main,
@@ -335,7 +335,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x8002a680,24,FUN_8002a680,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x8002a698,48,FUN_8002a698,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x8002a6c8,32,FUN_8002a6c8,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
-0x8002a7a4,92,FUN_8002a7a4,,DEFAULT,unverified,decompiler_output_only,,1,7,main,
+0x8002a7a4,92,FUN_8002a7a4,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: called by FUN_80023474 (mode 0x04/submode 0x02) just before its transition to mode 2. Pure SPU/audio setup using real, already-signature-named PsyQ sound library calls: SsUtSetReverbType(3), SpuClearReverbWorkArea(3), SsSetSerialAttr(0,0,1), SsSetReservedVoice(0x14), SpuSetTransferMode(0), FUN_80032bac(), SsUtSetReverbDepth(0x28,0x28). No application-specific logic -- a ""configure the SPU reverb/sound system"" routine.",1,7,main,"New call target: FUN_80032bac (the rest are already-known PsyQ sound library functions, further corroborating PsyQ 4.4.0). Confirms mode 0x04's transition to mode 2 involves setting up audio infrastructure, consistent with FUN_80049d3c's music-database load in the same handler."
 0x8002a80c,32,FUN_8002a80c,,DEFAULT,unverified,decompiler_output_only,,3,0,main,
 0x8002a82c,132,FUN_8002a82c,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x8002a8b0,8,FUN_8002a8b0,,DEFAULT,unverified,decompiler_output_only,,40,0,main,
@@ -1182,7 +1182,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x80049b84,44,FUN_80049b84,,DEFAULT,unverified,decompiler_output_only,,3,0,main,
 0x80049bb0,116,FUN_80049bb0,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x80049c24,280,FUN_80049c24,,DEFAULT,unverified,decompiler_output_only,,1,5,main,
-0x80049d3c,176,FUN_80049d3c,,DEFAULT,unverified,decompiler_output_only,,3,8,main,
+0x80049d3c,176,FUN_80049d3c,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: called by both of mode 0x04's handlers (FUN_8002340c's ""already flagged"" path and FUN_80023474). Initializes 2 record structures (stride 0x9284 bytes, almost certainly one per player) with fields set to 0x10/0x10/0xff, zeroes DAT_800f2908, then calls **FUN_8007eea8(""data/mdb/mdb.bin"")** -- a literal filename string, loading what is almost certainly the game's music/song metadata database (""mdb"" = music database, a standard abbreviation) -- followed by FUN_8009851c(), FUN_8002a8b0(), FUN_80042f60(), FUN_80049fd4(), FUN_80042df8(), FUN_8008eb48(), then zeroes DAT_80105120 and calls a function pointer at PTR_FUN_800d9abc(&DAT_80105120, 0).",3,8,main,"First literal filename string found in this project (""data/mdb/mdb.bin""), and the strongest domain-specific evidence yet: mode 0x04 loads the song database. New call targets: FUN_8007eea8, FUN_8009851c, FUN_80042f60, FUN_80049fd4, FUN_80042df8, FUN_8008eb48 (FUN_8002a8b0 already known from FUN_8002358c's review). See screen-flow doc for how this reframes the mode 0x00->0x10->0x04->0x02 chain."
 0x80049dec,280,FUN_80049dec,,DEFAULT,unverified,decompiler_output_only,,1,1,main,
 0x80049f4c,48,FUN_80049f4c,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x80049fd4,408,FUN_80049fd4,,DEFAULT,unverified,decompiler_output_only,,1,2,main,
@@ -1829,7 +1829,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x8009ab24,788,FUN_8009ab24,,DEFAULT,unverified,decompiler_output_only,,1,6,main,
 0x8009ae38,240,FUN_8009ae38,,DEFAULT,unverified,decompiler_output_only,,1,2,main,
 0x8009af28,384,FUN_8009af28,,DEFAULT,unverified,decompiler_output_only,,1,7,main,
-0x8009b0a8,1240,FUN_8009b0a8,,DEFAULT,unverified,decompiler_output_only,,1,3,main,
+0x8009b0a8,1240,FUN_8009b0a8,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: called by FUN_80023474 (mode 0x04/submode 0x02). A settings/options clamp-and-validate routine: for roughly 25 distinct byte fields of a config struct at PTR_DAT_800e0b18 (offsets 0x70-0xa2, including a 2-entry loop at 0x76/0x77 -- plausibly one per player), each field is compared against a maximum and reset to a corresponding DAT_800e0bXX default if out of range. Ends by branching on option [0x70] (calls FUN_800a22b0() unless it equals exactly 1, in which case FUN_800a22d0()) then calling FUN_800a22f0(option[0x71]).",1,3,main,"New call targets: FUN_800a22b0, FUN_800a22d0, FUN_800a22f0. PTR_DAT_800e0b18 is a third distinct struct (not PTR_DAT_800ac8e8/ec) -- likely the memory-card-loaded settings/options block, being sanitized here right after mode 0x00 (Memory Card Auto Load) and before entering mode 2. Options [0x70]/[0x71] look like per-player or per-mode selectors given the branch structure."
 0x8009b588,48,FUN_8009b588,,DEFAULT,unverified,decompiler_output_only,,2,0,main,
 0x8009b5b8,40,FUN_8009b5b8,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x8009b5e0,24,FUN_8009b5e0,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
@@ -1884,8 +1884,8 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x800a0930,252,FUN_800a0930,,DEFAULT,unverified,decompiler_output_only,,1,3,main,
 0x800a0a2c,300,FUN_800a0a2c,,DEFAULT,unverified,decompiler_output_only,,1,3,main,
 0x800a0c04,172,FUN_800a0c04,,DEFAULT,unverified,decompiler_output_only,,1,1,main,
-0x800a0cb0,48,FUN_800a0cb0,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
-0x800a0ce0,32,FUN_800a0ce0,,DEFAULT,unverified,decompiler_output_only,,1,1,main,
+0x800a0cb0,48,FUN_800a0cb0,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: called by FUN_8002340c (mode 0x04/submode 0x00, first-time path). Sets byte 1 of DAT_800f2900 = 1 (the same global FUN_8002358c, mode 0xff/submode 4, also writes), and zeroes PTR_DAT_800ac8ec[0x51]/[0x40]/[0x41]. Small flag-reset helper; no PsyQ library calls.",1,0,main,"Shares DAT_800f2900 with FUN_8002358c (mode 0xff/submode 4) -- both set its byte 1 to 1; purpose of that flag still unclear."
+0x800a0ce0,32,FUN_800a0ce0,,DEFAULT,manual,disassembly_reviewed,"Read disassembly + decompiled C 2026-07-14: a thin one-line wrapper, void FUN_800a0ce0(void) { FUN_800a00d4(); }. Its return value (checked by its caller FUN_80023474, mode 0x04/submode 0x02, as `> 0`) actually comes from FUN_800a00d4, not reviewed yet.",1,1,main,"New call target: FUN_800a00d4 -- this is the real ""is it ready"" check gating mode 0x04's transition to mode 2; not yet reviewed."
 0x800a0d00,48,FUN_800a0d00,,DEFAULT,unverified,decompiler_output_only,,0,0,main,
 0x800a0d30,32,FUN_800a0d30,,DEFAULT,unverified,decompiler_output_only,,0,1,main,
 0x800a0d50,52,FUN_800a0d50,,DEFAULT,unverified,decompiler_output_only,,0,0,main,
