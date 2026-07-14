@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T06:00:00-04:00
+timestamp: 2026-07-15T08:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -660,57 +660,83 @@ by a 42-entry pointer array starting at `0x8001bcd4` (the exact table
 `"data/mdb/mdb.bin"` filename already found in `FUN_80049d3c`'s review —
 the two data tables sit in the same object/source file.)
 
-**This is almost certainly the game's real, top-level screen/state enum**
-— `DAT_80105120` (the state variable `FUN_80049dec` and `FUN_80049d3c`
-both touch) indexes into three parallel function-pointer tables
-(`PTR_LAB_800d9ac0` = update, `PTR_LAB_800d9ac4` = exit,
-`PTR_FUN_800d9abc` = enter) and, evidently, this name table — a textbook
-enter/exit/update state machine with named states, developer debug
-strings and all. Per `/docs/foundations/screen-flow-schema.md`'s own
-confidence rule ("a string reference" is explicit qualifying evidence
-for `confidence: manual` or higher), these names are about as strong as
-reverse-engineering evidence gets.
+**Corrected 2026-07-15** (was: "almost certainly the game's real,
+top-level screen/state enum, indexed by `DAT_80105120`"): reading the
+raw contents of the three function-pointer tables `DAT_80105120` indexes
+into (`tools/ghidra/scripts/DumpJumpTable.java` against `0x800d9abc`, 60
+entries) refutes the direct-index claim. The table holds exactly **45
+valid code-address entries** (indices `0`–`44`, all in the `0x8004xxxx`
+range), followed by 3 non-pointer words, then a `0xFFFFFFFF` terminator
+at index `48`. `45 = 15 × 3` — consistent with **15 states, each with an
+enter/update/exit triple**, not 42. Since 15 ≠ 42, `DAT_80105120` almost
+certainly does **not** directly index this 42-name string table after
+all; the two are more likely separate structures that merely happen to
+be touched by the same function (`FUN_80049dec`) and share proximity
+(`FUN_80049d3c` also zeroing `DAT_80105120`, unrelated to the name
+table). Superseded, not deleted, per the usual correction convention —
+this was a real overclaim, caught by reading the data instead of
+stopping at a plausible-sounding inference.
+
+**The 42-name string table itself is unaffected by this correction** —
+those are still real, literal strings, still strong evidence for the
+screen identities they name (see below); what's withdrawn is only the
+specific claim that `DAT_80105120` is the index that selects among them.
+Given the table is scanned/copied specifically by the same function that
+also drives the 15-state `DAT_80105120` machine, and stops exactly at
+the `"TEST_MODE"`-labeled entry, a more conservative reading is that the
+42-name table is a **debug/test-mode menu listing** (a list of
+jump-to-screen targets for a developer/service menu) rather than the
+engine's own live state enum — though this is itself still a hypothesis,
+not confirmed.
+
+**Bonus finding**: immediately after the 45-entry table's `0xFFFFFFFF`
+terminator (`0x800d9b80` onward) are 6 words of small packed 16-bit value
+pairs, then more embedded strings — `"Game Mode"`, `"Diet Mode"` (partial,
+cut off in the 60-entry dump) — a different, unexplored table, plausibly
+game-option/settings names ("Diet Mode" is a real, documented DDR feature
+— a calorie-tracking workout mode). Not yet followed up.
 
 **Direct corroboration of the repository owner's domain-knowledge
 account** (see `/docs/games/ddr-5th-mix-jp-screen-flow.md`'s "Known
-screen sequence"): `WARNING` = the safety warning ("Caution"); `KONAMI`,
-`BEMANI`, `TOSHIBA` = three separate company-logo screens (not one
-generic "Company" screen — DDR 5th Mix (Japan) credits Konami, the
-Bemani brand, and Toshiba EMI specifically); `PLAY DEMO` = the
-"Gameplay Demonstration"; `RANKING` = "Ranking"; `HOW TO` = "How To
-Play"; `MODE SEL`/`MUSIC SEL` match "Mode Select"/"Music Select"; `TITLE`
-is the title screen. Several names go well beyond what genre knowledge
-alone predicted: `DANCING` (actual gameplay), `STAGE END`, `RESULT`,
-`NON STOP I`/`NON STOP C` (a marathon/nonstop play mode), `CHARA SEL`,
-`SEQKIND SEL`, `LINK SEL`/`LINK START`/`LINK END`/`LETS LINK` (a
-cabinet-link/versus feature), `COURSE SEL`, `INRAN SEL`, `EDSEQ_SEL`,
-`NAME ENTRY`, `URL&PASS`, `ENDING`, `GAME_OVER`, `CATCH DEMO`, and the
-placeholder-looking `GAME ??`/`DEMO ??`.
+screen sequence") stands regardless of the correction above: `WARNING` =
+the safety warning ("Caution"); `KONAMI`, `BEMANI`, `TOSHIBA` = three
+separate company-logo screens (not one generic "Company" screen — DDR
+5th Mix (Japan) credits Konami, the Bemani brand, and Toshiba EMI
+specifically); `PLAY DEMO` = the "Gameplay Demonstration"; `RANKING` =
+"Ranking"; `HOW TO` = "How To Play"; `MODE SEL`/`MUSIC SEL` match "Mode
+Select"/"Music Select"; `TITLE` is the title screen. Several names go
+well beyond what genre knowledge alone predicted: `DANCING` (actual
+gameplay), `STAGE END`, `RESULT`, `NON STOP I`/`NON STOP C` (a
+marathon/nonstop play mode), `CHARA SEL`, `SEQKIND SEL`, `LINK SEL`/
+`LINK START`/`LINK END`/`LETS LINK` (a cabinet-link/versus feature),
+`COURSE SEL`, `INRAN SEL`, `EDSEQ_SEL`, `NAME ENTRY`, `URL&PASS`,
+`ENDING`, `GAME_OVER`, `CATCH DEMO`, and the placeholder-looking
+`GAME ??`/`DEMO ??`.
 
-**What is NOT yet established**: how `DAT_80105120`'s state machine
+**What is NOT yet established**: what `DAT_80105120`'s 15-state machine
+actually governs (its states have not been read — the 45 function
+addresses resolve to code but none carry semantic names yet), how it
 relates to `PTR_DAT_800ac8e8`'s `mode`/`submode` fields that
-`FUN_80022cf8` (the dispatcher this whole document's mode table is built
-around) dispatches on. One concrete link is confirmed: `FUN_80049d3c`
-(reached from mode `0x04`, part of the boot chain) zeroes `DAT_80105120`
-and calls `PTR_FUN_800d9abc[0]` — i.e. explicitly enters state `0`,
-`"BOOT"` — right before mode `0x04` hands off toward mode `2`. Combined
-with `FUN_80049dec` (mode `0x02`/submode `0x02`) being the per-frame
-*update* pump for whichever `DAT_80105120` state is current, the
-best-supported picture right now is: **`PTR_DAT_800ac8e8`'s mode/submode
-system is boot/system-level infrastructure (memory card, GPU reset,
-asset/database loading, resolution switching), and once it settles into
-mode `0x02`/submode `0x02`, `DAT_80105120`'s richer state machine — named
-by this table — becomes the actual, ongoing screen flow.** This is not
-yet confirmed by reading the three function-pointer tables' actual
-contents or tracing whether mode `0x02` is ever left again during normal
-play; that's the natural next step.
+`FUN_80022cf8` dispatches on, and what actually indexes into the 42-name
+table if not `DAT_80105120`. One concrete link is still confirmed:
+`FUN_80049d3c` (reached from mode `0x04`, part of the boot chain) zeroes
+`DAT_80105120` and calls entry `0` of the 15-state table, and
+`FUN_80049dec` (mode `0x02`/submode `0x02`) is the per-frame pump for
+whichever of the 15 states is current — so `PTR_DAT_800ac8e8`'s
+mode/submode system (boot/infrastructure) does hand off to *some* other
+state machine once it settles into mode `0x02`/submode `0x02`; this
+15-state machine, not necessarily the 42-name enum, is what it hands off
+to. Reading the 15 states' actual code (starting with entry `0`,
+`0x80049c24`) is the natural next step.
 
 **This is exactly the kind of discovery `/docs/foundations/
 symbol-map-schema.md`'s own non-goals note anticipates** ("globals
 should get their own `globals.csv`... once that work starts") — a
-`DAT_80105120` screen-flow document, structured like this one but keyed
-on the new field, is likely the right next artifact once the three
-function-pointer tables are read.
+`globals.csv` tracking `DAT_80105120`, its 15-entry state table, and the
+42-name string table (now known to be separate structures) is a good
+candidate for when that work starts, rather than assuming in advance
+they'll collapse into one screen-flow document the way `PTR_DAT_800ac8e8`
+did.
 
 # What this map is not yet
 

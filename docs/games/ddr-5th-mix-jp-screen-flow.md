@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T06:00:00-04:00
+timestamp: 2026-07-15T08:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -17,10 +17,12 @@ per-frame loop. Reads a 16-bit "mode" field at `PTR_DAT_800ac8e8+0x28`;
 "submode" field at `PTR_DAT_800ac8e8+0x2a`. Full structural review:
 `/docs/games/ddr-5th-mix-jp-symbol-map.md`, "Manual review: `FUN_80022cf8`".
 
-# The real screen enum: `DAT_80105120`
+# A 42-entry screen-name string table
 
-**Discovered 2026-07-14, likely the single highest-value finding in this
-document.** While reviewing `FUN_80049dec` (mode `0x02`/submode `0x02`)
+**Discovered 2026-07-14, likely still one of the highest-value findings
+in this document** (see the correction below for what it turned out not
+to be linked to). While reviewing `FUN_80049dec` (mode `0x02`/submode
+`0x02`)
 and its `"TEST_MODE"` string, reading the raw bytes around the data table
 it copies from (`tools/ghidra/scripts/DumpBytes.java`) turned up a
 **complete, ordered table of 42 null-terminated screen-name strings** at
@@ -35,15 +37,30 @@ it copies from (`tools/ghidra/scripts/DumpBytes.java`) turned up a
 `TMOVIE`, `TITLE`, `CATCH DEMO`, `PLAY DEMO`, `RANKING`, `LETS LINK`,
 `DEMO ??`, `TEST_MODE`, `OTHER`.
 
-This is almost certainly the game's **real, top-level screen/state enum**
-— indexed by `DAT_80105120` through three parallel function-pointer
-tables (update/exit/enter), a textbook state machine. Full evidence and
-addresses: symbol map, "Data discovery: a 42-entry screen-name string
-table."
+**Corrected 2026-07-15**: this table was first described here as
+"indexed by `DAT_80105120`," inferred from both being touched by the
+same function (`FUN_80049dec`). Reading `DAT_80105120`'s actual
+function-pointer tables (`tools/ghidra/scripts/DumpJumpTable.java`
+against `0x800d9abc`) refutes that: the table holds exactly 45 valid
+code-address entries (`45 = 15 × 3`, an enter/update/exit triple for 15
+states), terminated by `0xFFFFFFFF` — not 42. Since 15 ≠ 42,
+`DAT_80105120` almost certainly does **not** directly index this
+42-name table. The two are more likely separate structures. See the
+symbol map's corrected write-up for the full reasoning; superseded, not
+deleted.
+
+**The string table itself is unaffected by this correction** — these are
+still real, literal strings naming real screens; what's withdrawn is
+only the claim about which variable indexes them. A more conservative
+reading, given the table is scanned specifically up to its
+`"TEST_MODE"`-labeled entry: it's a **debug/test-mode menu listing**
+(jump-to-screen targets for a service menu) rather than the engine's own
+live state variable — itself still a hypothesis, not confirmed.
 
 **Directly confirms the repository owner's domain-knowledge account**
-(see "Known screen sequence" below), with a literal string reference —
-the schema's own bar for `confidence: manual`/`verified`, not a guess:
+(see "Known screen sequence" below) regardless, with a literal string
+reference — the schema's own bar for `confidence: manual`/`verified`,
+not a guess:
 
 | String | Matches |
 |---|---|
@@ -62,24 +79,24 @@ Many more names go beyond what genre knowledge alone predicted:
 `EDSEQ_SEL`, `NAME ENTRY`, `URL&PASS`, `ENDING`, `GAME_OVER`, `CATCH
 DEMO`, and placeholder-looking `GAME ??`/`DEMO ??`.
 
-**Not yet established**: exactly how `DAT_80105120`'s state machine
-relates to `PTR_DAT_800ac8e8`'s `mode`/`submode` fields this document's
-"Mode table" is built around. One concrete link is confirmed: mode
-`0x04`'s `FUN_80049d3c` zeroes `DAT_80105120` and enters state `0`
-(`"BOOT"`) as part of the boot chain, and `FUN_80049dec` (mode
-`0x02`/submode `0x02`) is the per-frame *update* pump for whichever
-`DAT_80105120` state is current. Best-supported picture right now:
-`PTR_DAT_800ac8e8`'s system is boot/infrastructure control, and once it
-settles into mode `0x02`/submode `0x02`, `DAT_80105120`'s named state
-machine becomes the actual, ongoing screen flow — but this isn't
-confirmed by reading the three function-pointer tables themselves yet,
-nor has it been confirmed that mode `0x02` is never left again during
-normal play. A `DAT_80105120`-keyed table, structured like this
-document's "Mode table" below, is the natural next artifact once those
-function-pointer tables are read — worth deciding with the repository
-owner before building it out, since it may partly supersede the
-speculative "Proposed screen" guesses already recorded below rather than
-extend them.
+**Not yet established**: what `DAT_80105120`'s 15-state machine actually
+governs (its states' code hasn't been read yet — only that 45 function
+addresses exist), how it relates to `PTR_DAT_800ac8e8`'s `mode`/`submode`
+fields this document's "Mode table" is built around, and — now that the
+direct-index link is refuted — what (if anything) actually indexes into
+the 42-name table. One concrete link still holds: mode `0x04`'s
+`FUN_80049d3c` zeroes `DAT_80105120` and enters state `0` of the
+*15-state* table as part of the boot chain, and `FUN_80049dec` (mode
+`0x02`/submode `0x02`) is the per-frame update pump for whichever of
+those 15 states is current. So `PTR_DAT_800ac8e8`'s system (boot/
+infrastructure) does hand off to *some* other state machine once it
+settles into mode `0x02`/submode `0x02` — just not necessarily the
+42-name one. Reading the 15 states' actual code (starting at entry `0`,
+`0x80049c24`) is the natural next step; a `globals.csv` tracking
+`DAT_80105120`, its real 15-entry table, and the separate 42-name table
+is likely the right artifact once more is known, rather than assuming in
+advance they collapse into one screen-flow document the way
+`PTR_DAT_800ac8e8` did.
 
 # Mode-transition primitive
 
@@ -171,7 +188,7 @@ values below):
    iterations) → **Ranking** → back to **Company**.
 
 **Update 2026-07-14 — directly confirmed, not just genre-informed
-anymore**: see "The real screen enum: `DAT_80105120`" above. The game's
+anymore**: see "A 42-entry screen-name string table" above. The game's
 own debug strings include `WARNING` (Caution), `KONAMI`/`BEMANI`/
 `TOSHIBA` (Company — three separate logo screens), `HOW TO`, `PLAY DEMO`
 (Gameplay Demonstration), and `RANKING`, matching this account closely.
