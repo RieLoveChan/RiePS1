@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-14T18:00:00-04:00
+timestamp: 2026-07-14T20:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 23 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 25 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 963 |
+| `confidence = unverified` (default `FUN_########` names) | 961 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -387,6 +387,61 @@ While grepping the same 58-function dump, `FUN_80021374` (`0x80021374`,
 `+0x54`/`+0x58` region already seen gating mode `0x20`/`0x32`'s handlers —
 shaped like a controller-input check, not part of the dispatcher tree
 reviewed so far. Not yet reviewed in full; flagged as a new lead.
+
+# Manual review: mode `0x10`'s handlers — a real menu, not a splash screen
+
+Reviewed by hand on 2026-07-14 to test a hypothesis from the screen-flow
+doc ("is mode `0x10` the Company/logo screen?"). Both of mode `0x10`
+(default-branch)'s submode handlers promoted to `confidence = manual`.
+
+- **`FUN_800232cc`** (submode `0x00`) sets four 16-bit fields
+  (`PTR_DAT_800ac8e8+0xc/+0xe/+0x10/+0x12`) to `0x140`/`0xf0`/`4`/`1` —
+  `320`/`240` is the other standard PS1 display resolution (the
+  `FUN_80022cf8` review already found `640`/`480` used elsewhere) — then
+  calls the real PsyQ kernel function **`SetDispMask(1)`** (enables
+  display output), conditionally calls `FUN_8002a9dc(&DAT_80118e48,
+  &DAT_8011acb8)`, and **unconditionally calls `FUN_80023210(4)`** — a
+  confirmed transition to mode `4`, every time this submode runs. Since
+  `FUN_80023210` (`SetMode`) always resets submode to `0`, this handler is
+  guaranteed to be the *first* thing that runs after any transition into
+  mode `0x10` (or any other unmatched mode), and it always immediately
+  forwards onward to mode `4` in that same call.
+- **`FUN_80022b30`** (submode `0x01`, 456 bytes, the largest handler
+  reviewed so far) is a genuine **menu/selector**, not passive display
+  code: it iterates up to 2 controller-port input words at
+  `PTR_DAT_800ac8e8+0x54`/`+0x58`, using bit `0x1000` to decrement and bit
+  `0x4000` to increment a selection index at `+0x2c` (wrapped `% 3` — a
+  3-item cycle), and bit `0x20` as a confirm button. On confirm, it reads
+  the selected item's target mode from a 3-entry table at `DAT_800ac8e0`
+  and calls `FUN_80023210(target)` to transition there (calling
+  `FUN_80049d3c()` first if the target is specifically mode `2`). If
+  nothing confirms after checking both ports, it instead draws the idle
+  menu via 5 calls to `FUN_80021470()`.
+- **The table's contents were read directly** with the new
+  `tools/ghidra/scripts/DumpShorts.java`: `DAT_800ac8e0 = { 4, 0x32, 0x20
+  }`. All three are modes already reviewed elsewhere in this project —
+  and mode `0x20`/mode `0x32`'s own handlers (`FUN_800219b8`/
+  `FUN_80021a30`) transition *back* to mode `0x10` (see the "five smallest
+  handlers" review above). So **mode `0x10` and modes `0x20`/`0x32` form a
+  menu ↔ preview loop**: selecting item 1 or 2 leaves the menu for a
+  "preview" state that can return to the menu, while selecting item 0
+  (mode `4`) heads onward toward mode `0x04` → mode `2` and doesn't loop
+  back (no confirmed return path yet).
+
+**This refutes the screen-flow doc's "mode `0x10` = Company" hypothesis**:
+a passive logo/splash screen would not contain d-pad-driven selection
+logic, a confirm button, and a lookup table of destination screens. The
+structural shape here — cycle-and-confirm across up to 2 controller ports
+— is a genuine interactive menu, most consistent with a **title/mode-select
+hub**, not part of a non-interactive attract loop. Superseded, not
+deleted; see screen-flow doc for the corrected table entry.
+
+**New call targets discovered, none yet reviewed**: `FUN_800222fc`,
+`FUN_8002a9dc`, `FUN_80021470` (called 5 times from `FUN_80022b30`,
+likely a shared draw/sprite routine given its coordinate-shaped
+arguments). `SetDispMask` is an already-known PsyQ kernel function, not
+new application code — its use here is further corroboration of the
+PsyQ 4.4.0 toolchain, alongside `ResetGraph` found earlier the same day.
 
 # What this map is not yet
 

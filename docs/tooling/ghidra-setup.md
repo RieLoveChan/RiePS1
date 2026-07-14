@@ -56,6 +56,12 @@ each of the three pieces; do not guess download URLs.
   0xADDR`). Used to find every write site of a mode/state field reached
   only through a global pointer — see the symbol map's `FUN_80023210`
   review.
+- `/tools/ghidra/scripts/DumpShorts.java` — reads N consecutive signed
+  16-bit values starting at an address and prints each in decimal and hex;
+  for small data tables (e.g. a menu's list of destination values) that
+  don't warrant a full jump-table-style dump (headless: `-postScript
+  DumpShorts.java 0xADDR N`). Used to read a menu's 3-entry destination-mode
+  table — see the symbol map's `FUN_80022b30` review.
 
 # Two non-obvious `analyzeHeadless` gotchas
 
