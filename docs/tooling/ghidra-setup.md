@@ -48,6 +48,14 @@ each of the three pieces; do not guess download URLs.
   exists; for confirming MIPS switch-statement jump tables the decompiler
   couldn't recover on its own (headless: `-postScript DumpJumpTable.java
   0xADDR N`).
+- `/tools/ghidra/scripts/DumpFieldXrefs.java` — finds every function that
+  references a given global address and prints each one's decompiled C, so
+  a specific struct-field offset (e.g. `+0x28`) can be grepped for across
+  every function touching that global, without decompiling the whole
+  ~2,000-function program (headless: `-postScript DumpFieldXrefs.java
+  0xADDR`). Used to find every write site of a mode/state field reached
+  only through a global pointer — see the symbol map's `FUN_80023210`
+  review.
 
 # Two non-obvious `analyzeHeadless` gotchas
 

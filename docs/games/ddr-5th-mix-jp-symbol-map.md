@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-14T16:00:00-04:00
+timestamp: 2026-07-14T18:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 22 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 23 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 964 |
+| `confidence = unverified` (default `FUN_########` names) | 963 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -327,6 +327,66 @@ previous section — mode `0x00`'s three submode handlers (`FUN_800235f8`,
 of them, nor for `PTR_DAT_800ac8e8+0x17`/`+0x22`, `PTR_DAT_800ac8ec+0xac..
 0xaf`/`[6]`, or the globals `DAT_800ac88c`/`DAT_800ac890`/`DAT_800e2a60`/
 `DAT_800f2900`.
+
+# Manual review: `FUN_80023210` is the game's `SetMode` primitive — resolves the "+0x28 write site" question
+
+Reviewed by hand on 2026-07-14, found via a new tool
+(`tools/ghidra/scripts/DumpFieldXrefs.java`) that dumps decompiled C for
+every function referencing a given global address — run against
+`PTR_DAT_800ac8e8` (`0x800ac8e8`) itself, which returned 58 referencing
+functions. Grepping that output for `0x28` turned up exactly one write
+site, inside a function already seen constantly throughout this review as
+a mystery "shared call" (`FUN_80023210`, promoted to `confidence =
+manual`):
+
+```c
+void FUN_80023210(undefined2 param_1)
+{
+  *(undefined2 *)(PTR_DAT_800ac8e8 + 0x28) = param_1;  // mode
+  *(undefined2 *)(PTR_DAT_800ac8e8 + 0x2a) = 0;         // submode
+  *(undefined2 *)(PTR_DAT_800ac8e8 + 0x2c) = 0;         // ? — new field
+  *(undefined2 *)(PTR_DAT_800ac8e8 + 0x2e) = 0;         // ? — new field
+}
+```
+
+This is a **`SetMode(newMode)` primitive**: it writes its argument directly
+into the exact field `FUN_80022cf8` dispatches on, and clears not just
+`submode` (`+0x2a`, already known) but two further 16-bit fields
+(`+0x2c`, `+0x2e`) never seen before — hinting the mode/submode dispatch
+may go at least one level deeper than currently mapped.
+
+**This resolves the screen-flow doc's long-open "where is `+0x28` ever
+written" question**: among all 58 functions that reference
+`PTR_DAT_800ac8e8`, `+0x28` is written *only* here. Every one of this
+project's already-reviewed call sites to `FUN_80023210` is therefore a
+**confirmed mode transition**, not just a call-site fact:
+
+- `FUN_80022cf8`'s own epilogue → mode `0x80`, conditional on
+  `PTR_DAT_800ac8ec[7] != 0` — reachable from **any** mode, not scoped to
+  one screen.
+- `FUN_800219b8` (mode `0x20`) and `FUN_80021a30` (mode `0x32`) → mode
+  `0x10`, conditional on a bit in `+0x54`.
+- `FUN_80022f04` (mode `0x00`/submode `0x02`, when its countdown expires)
+  → mode `0x10`.
+- `FUN_8002340c` (mode `0x04`/submode `0x00`, `PTR_DAT_800ac8ec[6] != 0`
+  branch) → mode `2`.
+- `FUN_80023474` (mode `0x04`/submode `0x02`, when `FUN_800a0ce0() > 0`) →
+  mode `2`.
+
+**This corrects the previous hypothesis about `PTR_DAT_800ac8e8+0x17`**
+(recorded as a "candidate mode-transition write" in `FUN_80022f04`'s
+review above): that same function calls `FUN_80023210(0x10)` in the same
+body where it writes `+0x17 = 0x80`, so the actual, immediate mode
+transition it performs is to `0x10`, confirmed directly — not `0x80`.
+`+0x17`'s purpose is not explained by this finding and remains open.
+Superseded, not deleted, per the usual correction convention.
+
+While grepping the same 58-function dump, `FUN_80021374` (`0x80021374`,
+252 bytes) turned up as a **second, previously undiscovered read site of
+`+0x28`** (checks `mode != 0xff`), guarding a block that tests bits in the
+`+0x54`/`+0x58` region already seen gating mode `0x20`/`0x32`'s handlers —
+shaped like a controller-input check, not part of the dispatcher tree
+reviewed so far. Not yet reviewed in full; flagged as a new lead.
 
 # What this map is not yet
 
