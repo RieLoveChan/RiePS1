@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T15:00:00-04:00
+timestamp: 2026-07-15T16:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -143,6 +143,7 @@ a **confirmed transition**, not just a call-site observation:
 | `0x10`/submode `0x01` | confirm button, item 0 selected | `4` | `FUN_80022b30` (via `DAT_800ac8e0[0]`) |
 | `0x10`/submode `0x01` | confirm button, item 1 selected | `0x32` | `FUN_80022b30` (via `DAT_800ac8e0[1]`) |
 | `0x10`/submode `0x01` | confirm button, item 2 selected | `0x20` | `FUN_80022b30` (via `DAT_800ac8e0[2]`) |
+| *(any mode, in the game loop)* | Start+Select combo (`suspected` bit match) | `0xff` | `FUN_80021374` |
 
 **Mode `0x10` and modes `0x20`/`0x32` form a loop**: mode `0x10`'s menu
 (submode `0x01`, `FUN_80022b30`) can send the player to `0x20` or `0x32`,
@@ -177,6 +178,21 @@ across up to 2 ports and, on match, calls `FUN_80023210(0xff)`: a
 elaborate 5-way dispatch (a GPU reset and a main-loop-restart flag write)
 as a genuine reset/service state, not a sentinel that happens to have
 submodes.
+
+**Identified 2026-07-15**: the repository owner describes a real Consumer-
+build feature matching this structurally — pressing **Start+Select**
+during the game loop (outside the Caution screen) immediately returns to
+the `KONAMI`/`BEMANI`/`TOSHIBA` attract-loop screens. `FUN_80021374`'s
+button-combo-triggered transition to mode `0xff` (a reset/service state
+that performs a GPU reset and re-arms `main`'s loop-restart flag) is a
+strong structural match for exactly this behavior. Recorded at
+`suspected` — the specific bits checked (`0x800` in one input word,
+`0x100` in another) haven't been independently confirmed against this
+game's controller-bit convention as meaning "Start+Select," but the
+overall shape (a button-combo watcher that forces a full reset-like
+state) fits well. This also **withdraws `FUN_80021374` as evidence** for
+the "arcade-only leftover" quirk entry — it's better explained as a real,
+intentional Consumer-build feature; see the quirks doc's correction.
 
 # Fill-in instructions
 
@@ -315,7 +331,7 @@ chain not yet mapped.
 | `0x20` | — | `FUN_800219b8` (60 B) | Checks bit `0x40` of a 32-bit field at `+0x54`; if set, calls `FUN_80023210(0x10)` — a **confirmed transition to mode `0x10`**. **Byte-for-byte identical body to mode `0x32`'s handler** (`FUN_80021a30`) — same field, same bit, same call, same target. Reachable *from* mode `0x10`'s own menu (item 2 — see `0x10`/submode `0x01` row), forming a menu↔here loop. | | `unverified` | | |
 | `0x32` | — | `FUN_80021a30` (60 B) | Byte-for-byte identical to mode `0x20`'s handler (`FUN_800219b8`) above, including its confirmed transition to mode `0x10` — see that row. Reachable *from* mode `0x10`'s own menu (item 1). | | `unverified` | | |
 | `0x80` | — | *(none)* | No handler call at all — just sets `PTR_DAT_800ac8ec[0] = 0` then falls to the shared epilogue. Possibly a "clear/idle" mode rather than a screen. **Confirmed transition target** of `FUN_80022cf8`'s own shared epilogue, from *any* mode, whenever `PTR_DAT_800ac8ec[7] != 0` (see "Mode-transition primitive" above). | | `unverified` | | **Correction 2026-07-14**: an earlier version of this row proposed **Caution** here, reasoning from mode `0x00`'s `+0x17 = 0x80` write. That write turned out not to be the real transition mechanism (see mode `0x00`/submode `0x02`'s note) — the actual confirmed way to reach `0x80` is a global flag check in the dispatcher's own epilogue, reachable from any mode, which reads more like a service/reset/interrupt state than a step in a fixed attract sequence. Reset to `unverified` rather than keep an unsupported guess; superseded, not deleted. |
-| `0xff` | `0x00`–`0x04` | `FUN_800234cc` / `FUN_80023500` / `FUN_80023544` / `FUN_8002356c` / `FUN_8002358c` | `FUN_80022fb0` (152 B) also reads `+0x2a` and, if `< 5`, dispatches through a jump table at `0x8001a840` — **confirmed 2026-07-14** by reading its raw bytes (`tools/ghidra/scripts/DumpJumpTable.java`): submode 0-4 map to these 5 functions in order, exactly. All five now **reviewed 2026-07-14**: submode `0x04` (`FUN_8002358c`) calls the real PsyQ kernel function `ResetGraph(1)` and writes `PTR_DAT_800ac8e8[9] = 1` (see symbol-map's review for why this can't affect `main`'s own do-while, and what it might affect instead). Submodes `0x00`/`0x01`/`0x02` each gate a short call sequence behind a distinct global flag (`DAT_800e2a60`, `DAT_800ac88c`, `DAT_800ac890`); submode `0x03` is a bare call to the shared `FUN_800231b0` (now confirmed as `NextSubmode`). **Confirmed 2026-07-14**: reachable via `FUN_80021374`, a service/reset-combo watcher outside the dispatcher tree that transitions here on a specific controller-button combo (see "Submode-transition primitives" above) — `0xff` is a genuine reset/service state, not a sentinel value. | | `unverified` | | |
+| `0xff` | `0x00`–`0x04` | `FUN_800234cc` / `FUN_80023500` / `FUN_80023544` / `FUN_8002356c` / `FUN_8002358c` | `FUN_80022fb0` (152 B) also reads `+0x2a` and, if `< 5`, dispatches through a jump table at `0x8001a840` — **confirmed 2026-07-14** by reading its raw bytes (`tools/ghidra/scripts/DumpJumpTable.java`): submode 0-4 map to these 5 functions in order, exactly. All five now **reviewed 2026-07-14**: submode `0x04` (`FUN_8002358c`) calls the real PsyQ kernel function `ResetGraph(1)` and writes `PTR_DAT_800ac8e8[9] = 1` (see symbol-map's review for why this can't affect `main`'s own do-while, and what it might affect instead). Submodes `0x00`/`0x01`/`0x02` each gate a short call sequence behind a distinct global flag (`DAT_800e2a60`, `DAT_800ac88c`, `DAT_800ac890`); submode `0x03` is a bare call to the shared `FUN_800231b0` (now confirmed as `NextSubmode`). **Confirmed 2026-07-14**: reachable via `FUN_80021374`, a service/reset-combo watcher outside the dispatcher tree that transitions here on a specific controller-button combo (see "Submode-transition primitives" above) — `0xff` is a genuine reset/service state, not a sentinel value. | Return-to-attract-loop (Start+Select) | `suspected` | | **2026-07-15**: the repository owner describes Start+Select, pressed during the game loop, immediately returning to the `KONAMI`/`BEMANI`/`TOSHIBA` attract screens — a strong structural match for `FUN_80021374`'s button-combo-triggered transition here (GPU reset + loop-restart flag, consistent with unwinding back toward the boot chain). Not a byte-level confirmation of the exact bits meaning "Start+Select" specifically. This also means `FUN_80021374` is likely a legitimate Consumer-build feature, not the arcade-leftover evidence an earlier quirks-doc entry cited it as — see the quirks doc's correction. |
 | *(default)* | `0x00` | `FUN_800232cc` (168 B) | Reached when `mode` matches none of the above (or `mode == 0x10` explicitly). Same handler as `0x10`/submode `0x00` above — unconditionally forwards to mode `4`. | | `unverified` | | |
 | *(default)* | `0x01` | `FUN_80022b30` (456 B) | Same handler as `0x10`/submode `0x01` above — the menu. | Title / Mode Select | `suspected` | | Same reasoning as `0x10`/submode `0x01` row. |
 
