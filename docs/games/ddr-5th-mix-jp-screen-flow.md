@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-14T12:00:00-04:00
+timestamp: 2026-07-14T14:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -28,13 +28,55 @@ reads the handler's own code and confirms or refutes the guess. Don't
 worry about being wrong — a rejected guess with its reasoning recorded is
 still useful; it rules something out.
 
+# Known screen sequence (domain knowledge)
+
+The repository owner is a former StepMania Team developer and, from that
+background plus general BEMANI-genre convention, describes the expected
+boot-to-attract sequence for a game like this (confidence: `suspected` for
+all of it — genre/franchise knowledge, not yet matched to specific mode
+values below):
+
+1. **PS BIOS logo** — not game code; happens before `main` is ever reached.
+2. **Memory Card Auto Load** — checks whether a memory card is inserted; if
+   it holds this game's system data, loads it automatically; if a card is
+   inserted but has no system data, prompts the user to create it.
+3. **Caution** — a safety warning screen (rough movement on the Dance Pad
+   can cause injury), standard for DDR/BEMANI cabinets.
+4. **Attract Loop** — standard across BEMANI titles: **Company** (splash/
+   logo images) → **How To Play** → **Gameplay Demonstration** (always the
+   *same* song on the console's first boot; varies on later loop
+   iterations) → **Ranking** → back to **Company**.
+
+**One concrete pairing already has structural support**: `FUN_8002216c`
+(reviewed in the symbol map) unconditionally zeroes
+`PTR_DAT_800ac8e8+0x28` — the mode field itself — as part of the state
+reset `main` calls once before its per-frame loop starts. That makes
+`mode == 0x00` the value the dispatcher is guaranteed to see on the very
+first frame after boot, which lines up with **Memory Card Auto Load** being
+first in the sequence above. This is still `suspected`, not `manual`: it's
+consistent with mode `0x00` running first, not proof of what mode `0x00`
+*represents* — that requires reading `FUN_80023048`'s three submode
+targets (`FUN_800235f8`, `FUN_80023690`, `FUN_80022f04`, all still
+unreviewed) for card-I/O calls or related evidence.
+
+Pairing the remaining five screens (**Caution**, **Company**, **How To
+Play**, **Gameplay Demonstration**, **Ranking**) to specific mode/submode
+values is still open — mode numbers are not guaranteed to run in
+chronological/sequence order, so no other row below has a proposed screen
+yet. The two most promising ways to close this gap: read the still-
+unreviewed handlers for string/asset references (a loaded texture or song
+ID would pin a screen immediately), or enumerate every write site of
+`PTR_DAT_800ac8e8+0x28` (already an open question below) to recover the
+actual mode transition graph and compare its shape against this known
+6-step loop.
+
 # Mode table
 
 | Mode | Submode | Handler(s) | Structural facts | Proposed screen | `confidence` | Evidence | Notes |
 |---|---|---|---|---|---|---|---|
-| `0x00` | `0x00` | `FUN_800235f8` | **Corrected 2026-07-14** (was "single call, no args observed" before `FUN_80023048`'s body was read): mode `0x00`'s handler (`FUN_80023048`, 132 B) is itself a 3-way dispatcher on the same `+0x2a` field mode `0x02`/default/`0xff` use — see symbol-map's `FUN_80023048` review. | | `unverified` | | |
-| `0x00` | `0x01` | `FUN_80023690` | Same `FUN_80023048` dispatcher as above. | | `unverified` | | |
-| `0x00` | `0x02` | `FUN_80022f04` | Same `FUN_80023048` dispatcher as above. | | `unverified` | | |
+| `0x00` | `0x00` | `FUN_800235f8` | **Corrected 2026-07-14** (was "single call, no args observed" before `FUN_80023048`'s body was read): mode `0x00`'s handler (`FUN_80023048`, 132 B) is itself a 3-way dispatcher on the same `+0x2a` field mode `0x02`/default/`0xff` use — see symbol-map's `FUN_80023048` review. | Memory Card Auto Load | `suspected` | | Mode `0x00` is guaranteed to be the first mode value the dispatcher ever sees, since `FUN_8002216c`'s boot-time state reset zeroes the mode field itself (see "Known screen sequence" above) — matches this screen being first in the boot sequence. Submode `0x00` unconfirmed as any particular sub-step (e.g. "detect card") — `FUN_800235f8` itself not yet read. |
+| `0x00` | `0x01` | `FUN_80023690` | Same `FUN_80023048` dispatcher as above. | Memory Card Auto Load | `suspected` | | Same reasoning as submode `0x00` row. Possible sub-step: "load system data" or "prompt to create data" per the user's description — not yet distinguished, `FUN_80023690` unread. |
+| `0x00` | `0x02` | `FUN_80022f04` | Same `FUN_80023048` dispatcher as above. | Memory Card Auto Load | `suspected` | | Same reasoning as submode `0x00` row. Possible sub-step: transition out to **Caution** (the next screen in the known sequence) — not yet distinguished, `FUN_80022f04` unread. |
 | `0x02` | `0x00` | `FUN_8009f820(0x280, 0x1e0)` then `FUN_800231b0` (32 B) | Args `0x280`/`0x1e0` = 640/480 — screen-dimension-shaped; likely a full-screen clear, then a second call. | | `unverified` | | |
 | `0x02` | `0x01` | `FUN_8009f390` (100 B), conditionally `FUN_800231b0` (32 B) if result `> 0` | `FUN_800231b0` is shared with submode `0x00` above — possibly a common "commit/present" step. | | `unverified` | | |
 | `0x02` | `0x02` | `FUN_80049dec` (280 B) | Single call, no args observed. | | `unverified` | | |
