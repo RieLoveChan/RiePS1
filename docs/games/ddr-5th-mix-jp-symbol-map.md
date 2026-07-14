@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-14T12:00:00-04:00
+timestamp: 2026-07-14T16:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 12 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 22 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 974 |
+| `confidence = unverified` (default `FUN_########` names) | 964 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -262,6 +262,71 @@ promoted to `confidence = manual`, `source_status = disassembly_reviewed`.
 `FUN_800234cc`, `FUN_80023500`, `FUN_80023544`, `FUN_8002356c`,
 `FUN_8002358c` (mode `0xff`'s inferred jump-table targets). No names
 proposed for any of them, nor for `PTR_DAT_800ac8e8+0x54`'s bit `0x40`.
+
+# Manual review: ten submode handlers — a candidate mode-transition write and a re-armed loop flag
+
+Reviewed by hand on 2026-07-14: all ten remaining call targets from the
+previous section — mode `0x00`'s three submode handlers (`FUN_800235f8`,
+`FUN_80023690`, `FUN_80022f04`), mode `0x04`'s two (`FUN_8002340c`,
+`FUN_80023474`), and mode `0xff`'s five confirmed jump-table targets
+(`FUN_800234cc`, `FUN_80023500`, `FUN_80023544`, `FUN_8002356c`,
+`FUN_8002358c`). All ten promoted to `confidence = manual`,
+`source_status = disassembly_reviewed`.
+
+- **Mode `0x00` is a 3-step countdown state machine**: submode `0x00`
+  (`FUN_800235f8`) zeroes several flag bytes and sets a 16-bit field at
+  `PTR_DAT_800ac8e8+0x22` to `2`; submode `0x01` (`FUN_80023690`) resets
+  that same field to `4`; submode `0x02` (`FUN_80022f04`) decrements it
+  every call. When it underflows to `-1` *and* four byte flags at
+  `PTR_DAT_800ac8ec+0xac..0xaf` are still zero, it writes
+  **`PTR_DAT_800ac8e8+0x17 = 0x80`** — `0x80` is a literal top-level mode
+  constant, one of `FUN_80022cf8`'s own dispatched values. This is the
+  strongest lead yet on the long-open "where is the mode field ever
+  written?" question: `+0x17` looks like a queued/pending next-mode value,
+  though no code that copies `+0x17` into the actual mode field (`+0x28`)
+  has been found yet — that remains the missing link.
+- **Mode `0x04`'s two submodes coordinate through a shared flag**:
+  submode `0x02` (`FUN_80023474`), when `FUN_800a0ce0()` returns `> 0`,
+  sets `PTR_DAT_800ac8ec[6] = 1` — the exact byte submode `0x00`
+  (`FUN_8002340c`) reads to choose between two different call sequences.
+  One submode changing another submode's future behavior via a shared byte
+  is now a directly observed pattern, not a guess.
+- **A global flag is shared across two different top-level modes**:
+  `DAT_800ac88c` is read by both `FUN_8002340c` (mode `0x04`/submode
+  `0x00`) and `FUN_80023500` (mode `0xff`/submode `0x01`, a confirmed
+  jump-table target). The same condition gating handlers under two
+  unrelated mode values suggests this is cross-cutting game state (e.g. a
+  first-boot/attract-mode/session flag), not something scoped to either
+  screen.
+- **`FUN_800231b0`** (already flagged as shared in the `FUN_80022cf8`
+  review) is now confirmed called from 6 of these 10 handlers directly
+  (`FUN_80023690`, `FUN_800234cc`, `FUN_80023500`, `FUN_80023544`,
+  `FUN_8002356c`, plus its earlier known call sites) — strong evidence it's
+  a generic per-transition "commit/present" routine rather than anything
+  screen-specific.
+- **`FUN_8002358c`** (mode `0xff`/submode `0x04`) is the first of these ten
+  to reach a real, already-PsyQ-signature-named library call:
+  **`ResetGraph(1)`**, a standard PsyQ `libgpu` GPU-state reset — further
+  corroboration of the PsyQ 4.4.0 toolchain (not new evidence by itself,
+  since `ResetGraph` was already signature-matched, but confirmation this
+  code path reaches it). The same function also writes
+  **`PTR_DAT_800ac8e8[9] = 1`** — the exact byte `main`'s inner
+  `do-while(...[9] != 0)` loop tests. This *cannot* affect that specific
+  loop (`FUN_8002216c` unconditionally re-zeroes offset `9` every
+  outer-loop pass, before the loop's own condition is ever checked — see
+  the `FUN_8002216c` review above), so the write must matter to something
+  else that reads offset `9` later in the same frame — most likely one of
+  `main`'s still-unreviewed post-dispatcher per-frame calls
+  (`FUN_800973e8`, `FUN_8002112c`, `FUN_8002d630`, `FUN_80028034`). Flagged
+  as an open question rather than assumed dead code.
+
+**12 new call targets discovered, none yet reviewed**: `FUN_80023230`,
+`FUN_800a0cb0`, `FUN_80049d3c`, `FUN_800a0ce0`, `FUN_8002a7a4`,
+`FUN_8009b0a8`, `FUN_800236cc`, `FUN_80022148`, `FUN_80029390`,
+`FUN_80026940`, `FUN_80025b18`, `FUN_8002a8b0`. No names proposed for any
+of them, nor for `PTR_DAT_800ac8e8+0x17`/`+0x22`, `PTR_DAT_800ac8ec+0xac..
+0xaf`/`[6]`, or the globals `DAT_800ac88c`/`DAT_800ac890`/`DAT_800e2a60`/
+`DAT_800f2900`.
 
 # What this map is not yet
 
