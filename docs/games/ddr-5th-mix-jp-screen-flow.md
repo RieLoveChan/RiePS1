@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T02:00:00-04:00
+timestamp: 2026-07-15T04:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -147,10 +147,21 @@ settings validation + **music database load** (a literal
 `"data/mdb/mdb.bin"` file open, this project's first found filename
 string) + SPU/reverb setup (`0x04`) → mode `2`. This pushes the search
 for the *first genuinely visible* screen further down the chain than
-previously assumed — mode `2`'s own submodes (a `640×480` screen clear,
-a conditional call, and `FUN_80049dec`, none read in detail yet) are now
-the best candidate for where a real screen identity might first show up,
-rather than modes `0x10` or `0x04` themselves.
+previously assumed.
+
+**Update 2026-07-14, after reviewing mode `2`'s own submodes**: they
+don't supply that screen identity either. Submodes `0x00`/`0x01` are a
+confirmed, generic **resolution-switch utility** (display off → resize
+to `640×480` → delay → display on) — independently corroborated by the
+repository owner's own recollection of DDR 5th Mix changing resolution in
+BizHawk. Submode `0x02` drives an apparently unrelated state machine that
+touches a `"TEST_MODE"` string (see "Open structural questions" below).
+Every mode reviewed in this chain so far — `0x00`, `0x10`, `0x04`, `0x02`
+— has turned out to be infrastructure (memory card I/O, GPU reset, asset/
+database loading, resolution switching) rather than a screen with a
+visible identity of its own. The first genuinely visible attract-loop
+screen has not been located yet; it's reached from somewhere later in the
+chain not yet mapped.
 
 # Mode table
 
@@ -159,9 +170,9 @@ rather than modes `0x10` or `0x04` themselves.
 | `0x00` | `0x00` | `FUN_800235f8` | **Reviewed 2026-07-14**: zeroes 8 byte flags (`PTR_DAT_800ac8ec+0x9c..0x9f`, `+0xac..0xaf`), zeroes `PTR_DAT_800ac8e8+0x17`, sets a 16-bit countdown at `+0x22` to `2`, calls `FUN_80023230(1)`. Reads as the "init" step of a 3-step countdown state machine spanning all three submodes of this mode. | Memory Card Auto Load | `suspected` | | Mode `0x00` is guaranteed to be the first mode value the dispatcher ever sees, since `FUN_8002216c`'s boot-time state reset zeroes the mode field itself (see "Known screen sequence" above) — matches this screen being first in the boot sequence. Submode `0x00` reads as an init/reset step generically; nothing card-I/O-specific observed yet — `FUN_80023230` (its one callee) unread. |
 | `0x00` | `0x01` | `FUN_80023690` | **Reviewed 2026-07-14**: resets the same `+0x22` countdown to `4`, then calls the widely-shared `FUN_800231b0` "commit/present" routine. Arms the countdown submode `0x02` decrements. | Memory Card Auto Load | `suspected` | | Same reasoning as submode `0x00` row. Possible sub-step: "load system data" or "prompt to create data" per the user's description — not yet distinguished; nothing in this body is card-specific either. |
 | `0x00` | `0x02` | `FUN_80022f04` | **Reviewed 2026-07-14**: decrements the `+0x22` countdown every call; when it underflows to `-1` and the 4 flags submode `0x00` zeroed are still zero, writes `PTR_DAT_800ac8e8+0x17 = 0x80`, then resets `+0x22` to `0x10` and calls `FUN_80023210(0x10)` — a **confirmed transition to mode `0x10`** (see "Mode-transition primitive" above). | Memory Card Auto Load | `suspected` | | Same reasoning as submode `0x00` row. **Correction 2026-07-14**: an earlier version of this note treated the `+0x17 = 0x80` write as a candidate queued-next-mode, hypothesizing a transition to mode `0x80`. `FUN_80023210` is now confirmed as the only function that writes the real mode field, and this handler calls it with `0x10`, not `0x80` — so the actual transition target is `0x10`, confirmed, not `0x80`. `+0x17`'s purpose is still unexplained. Superseded, not deleted. |
-| `0x02` | `0x00` | `FUN_8009f820(0x280, 0x1e0)` then `FUN_800231b0` (32 B) | Args `0x280`/`0x1e0` = 640/480 — screen-dimension-shaped; likely a full-screen clear, then a second call. | | `unverified` | | |
-| `0x02` | `0x01` | `FUN_8009f390` (100 B), conditionally `FUN_800231b0` (32 B) if result `> 0` | `FUN_800231b0` is shared with submode `0x00` above — possibly a common "commit/present" step. | | `unverified` | | |
-| `0x02` | `0x02` | `FUN_80049dec` (280 B) | Single call, no args observed. | | `unverified` | | |
+| `0x02` | `0x00` | `FUN_8009f820(0x280, 0x1e0)` then `FUN_800231b0` (32 B) | **Reviewed 2026-07-14**: `bzero`s an 8-byte state block and stores the target width/height (`640`/`480`) for submode `0x01`'s sequence below. | | `unverified` | | |
+| `0x02` | `0x01` | `FUN_8009f390` (100 B), conditionally `FUN_800231b0` (32 B) if result `> 0` | **Reviewed 2026-07-14, confirmed by the repository owner's own BizHawk observation**: a 7-step state machine that calls `SetDispMask(0)` (display OFF), clears the screen to black at `640×480` (`ClearImage2`+`DrawSync`+`FUN_8009f0a8`), waits a few frames, then `SetDispMask(1)` (display ON) — **a display-off/resize/delay/display-on resolution-change sequence**, exactly matching what the owner recalled seeing in BizHawk. Returns `1` ("done") only after all 7 steps complete, `0` otherwise — explaining why `FUN_80022cf8`'s dispatcher only advances submode (via the shared `FUN_800231b0`/`NextSubmode`) when this returns `> 0`. | | `unverified` | | Confirmed as generic infrastructure (a resolution switcher to `640×480`), not a screen with its own visible identity. |
+| `0x02` | `0x02` | `FUN_80049dec` (280 B) | **Reviewed 2026-07-14**: unrelated to the resolution switch above — drives a separate enter/exit/update state machine keyed on `DAT_80105120` (shared with `FUN_80049d3c`, mode `0x04`'s music-database loader) through three function-pointer tables, then copies a table of records ending at one containing **`PTR_s_TEST_MODE_8001bd74`** — a pointer to the literal string `"TEST_MODE"` — before calling `FUN_80042e1c()`. | | `unverified` | | **First human-readable string found in this project.** Concrete evidence of a debug/service test-mode feature, though its relationship to the main `PTR_DAT_800ac8e8` mode/screen system mapped throughout this document is not yet clear — `DAT_80105120` looks like an independent state variable. See "Open structural questions" below. |
 | `0x04` | `0x00` | `FUN_8002340c` | **Reviewed 2026-07-14** (corrects "single call, no args observed"): mode `0x04`'s handler (`FUN_800230cc`, 112 B) also dispatches on `+0x2a`. This branch, if global `DAT_800ac88c == 0`, checks byte flag `PTR_DAT_800ac8ec[6]`: **zero** → `FUN_800a0cb0()` (reviewed: small flag reset) then `FUN_80023230(2)` — this is `SetSubmode(2)`, **staying in mode `0x04`**, advancing to submode `0x02` below, *not* a mode transition; **nonzero** → `FUN_80049d3c()` (reviewed: loads `"data/mdb/mdb.bin"`, the music database — see submode `0x02`'s row) then `FUN_80023210(2)` — this *is* `SetMode(2)`, a **confirmed transition to mode `2`**. `PTR_DAT_800ac8ec[6]` is set by submode `0x02` below — first visit takes the "zero" path (wait via submode `0x02`), later visits take the "nonzero" path directly (fast-path, flag already set). | | `unverified` | | **Correction 2026-07-14**: an earlier version of this row's prose attached "confirmed transition to mode 2" ambiguously to both branches; only the "nonzero" branch actually transitions mode — the "zero" branch only changes submode. Clarified, not a factual reversal (the mode-table's transition-primitive listing was already correct). |
 | `0x04` | `0x02` | `FUN_80023474` | Same `FUN_800230cc` dispatcher as above; submode `0x01` calls neither branch. **Reviewed 2026-07-14**: if `FUN_800a0ce0() > 0` (wraps the unreviewed `FUN_800a00d4` — the real "ready" check), sets `PTR_DAT_800ac8ec[6] = 1` (read by submode `0x00` above, enabling its fast-path on the *next* visit to mode `0x04`), then calls `FUN_8002a7a4()` (reviewed: real PsyQ SPU/reverb setup — `SsUtSetReverbType`, `SpuClearReverbWorkArea`, `SsSetReservedVoice`, etc.), `FUN_8009b0a8()` (reviewed: clamps ~25 option/settings bytes of a third struct, `PTR_DAT_800e0b18`, to valid ranges — reads like sanitizing memory-card-loaded settings), `FUN_800236cc()` (reviewed: bare no-op stub), `FUN_80049d3c()` (reviewed: **loads `"data/mdb/mdb.bin"`** — this project's first literal filename string, almost certainly the song/chart metadata database), `FUN_80023210(2)` — a **confirmed transition to mode `2`**. | | `unverified` | | This handler is the closest thing to hard domain evidence found so far: it validates settings, loads the music database, and configures SPU reverb, all before entering mode `2`. Whatever mode `2` turns out to be, it needs music-database access and audio ready — consistent with (but not proof of) something music-playing, like the user's described **Gameplay Demonstration**, though this could equally just be shared infrastructure every music-playing screen needs (including real gameplay), not evidence for one specific named screen over another. |
 | `0x04` | *(any)* | *(shared tail)* | Every call to `FUN_800230cc`, regardless of submode, also copies `PTR_DAT_800ac8ec[0xbb] = PTR_DAT_800ac8ec[0x52]` unconditionally. | | `unverified` | | |
@@ -198,6 +209,18 @@ separate rows since it isn't mode-specific.
 
 # Open structural questions
 
+- **What is `DAT_80105120`'s state machine, and how does it relate to
+  `PTR_DAT_800ac8e8`'s mode/submode system?** Discovered 2026-07-14 in
+  mode `0x02`/submode `0x02` (`FUN_80049dec`) and mode `0x04`'s music-
+  database loader (`FUN_80049d3c`): a *separate* enter/exit/update state
+  machine, indexed by `DAT_80105120` through three function-pointer
+  tables (`PTR_LAB_800d9ac0`/`PTR_LAB_800d9ac4`/`PTR_FUN_800d9abc`), with
+  at least one entry's data including a pointer to the literal string
+  `"TEST_MODE"`. Reading the contents of `PTR_DAT_8001bcd4`'s table (which
+  `FUN_80049dec` copies from) and the three function-pointer arrays
+  would clarify whether this is a debug/service menu bolted onto the side
+  of the main game, a more fundamental sub-screen system the main mode
+  dispatcher delegates to, or something else entirely.
 - **What are `PTR_DAT_800ac8e8+0x2c` and `+0x2e`?** `FUN_80023210`
   (`SetMode`) zeroes both of them alongside `submode` (`+0x2a`) on every
   mode transition, but nothing reviewed so far reads or writes either field

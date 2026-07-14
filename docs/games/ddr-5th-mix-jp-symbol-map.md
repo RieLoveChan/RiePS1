@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T02:00:00-04:00
+timestamp: 2026-07-15T04:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 36 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 39 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 950 |
+| `confidence = unverified` (default `FUN_########` names) | 947 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -589,6 +589,52 @@ argument `2`; only the second is a mode transition.
 `FUN_800a22f0`. `SsUtSetReverbType`/`SpuClearReverbWorkArea`/
 `SsSetSerialAttr`/`SsSetReservedVoice`/`SpuSetTransferMode`/
 `SsUtSetReverbDepth` are already-known PsyQ library functions.
+
+# Manual review: mode `0x02` is a resolution-switch utility, plus a `"TEST_MODE"` string
+
+Reviewed by hand on 2026-07-14, prompted by the repository owner recalling
+(from prior BizHawk observation) that DDR 5th Mix switches display
+resolutions during play — a direct, independent hint about what to look
+for. All three of mode `0x02`'s submode handlers promoted to `confidence
+= manual`.
+
+- **`FUN_8009f820`** (submode `0x00`, called with args `640`/`480`) just
+  zeroes an 8-byte state block and stores the target width/height.
+- **`FUN_8009f390`** (submode `0x01`) is a 7-step (`0`–`6`) state machine
+  over that block: step `0` saves and clears a flag; step `1` calls
+  **`SetDispMask(0)`** (display OFF); step `2` clears the screen to black
+  at the stored `640×480` via `ClearImage2`/`DrawSync` then calls
+  `FUN_8009f0a8(width, height)`; step `3` waits a few frames (a counter
+  `> 2`); step `4` calls **`SetDispMask(1)`** (display ON); step `5`
+  restores the saved flag; step `6` reports "done." **This is confirmed,
+  directly, as a display-off / resize / delay / display-on resolution-
+  change sequence** — exactly the pattern the repository owner recalled
+  observing in BizHawk. Independent confirmation between a runtime
+  observation and the disassembly, not just code-reading alone.
+- **`FUN_80049dec`** (submode `0x02`) is structurally unrelated to the
+  resolution change — it drives a **separate state machine** keyed on
+  `DAT_80105120` (the same global `FUN_80049d3c`, mode `0x04`'s music-
+  database loader, also touches) through three parallel function-pointer
+  tables (update/exit/enter — a textbook state-machine dispatch pattern),
+  then copies a table of records ending at an entry containing
+  **`PTR_s_TEST_MODE_8001bd74`** — a pointer to the literal string
+  **`"TEST_MODE"`**, this project's first human-readable (non-filename)
+  string — into a local buffer before calling `FUN_80042e1c()`.
+
+**Mode `0x02`'s three submodes now read as two unrelated things sharing a
+mode number**: submodes `0x00`/`0x01` are a generic resolution-switch
+utility (confirmed, not screen-specific), while submode `0x02` touches an
+apparently separate `DAT_80105120`-keyed state machine that has at least
+one `"TEST_MODE"`-labeled entry. Neither reads as a "screen" with its own
+visible identity yet — reinforcing the pattern from modes `0x10`/`0x04`
+that these low mode numbers are infrastructure/utility states, not the
+attract-loop screens themselves.
+
+**New call targets discovered**: `FUN_8009f0a8` (resolution/graphics-mode
+helper), `FUN_80042e1c`. Also newly visible: the `PTR_DAT_8001bcd4` table
+and the `PTR_LAB_800d9ac0`/`PTR_LAB_800d9ac4`/`PTR_FUN_800d9abc`
+function-pointer arrays `DAT_80105120` indexes into — none of their
+contents beyond the one `"TEST_MODE"` string have been read.
 
 # What this map is not yet
 
