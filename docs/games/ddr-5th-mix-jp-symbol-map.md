@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-14T22:00:00-04:00
+timestamp: 2026-07-15T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -27,9 +27,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 28 |
+| `confidence = manual` (hand-reviewed 2026-07-13–14) | 30 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 958 |
+| `confidence = unverified` (default `FUN_########` names) | 956 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -494,6 +494,48 @@ discovery above, this time grepped for `0x2a` (submode) instead of `0x28`
 open** — if anything, it's now better-supported as a genuine puzzle rather
 than a gap in review coverage, since the search for `+0x2a`'s write sites
 was exhaustive across every function touching `PTR_DAT_800ac8e8`.
+
+# Manual review: mode `0x10`/submode `0x00`'s two callees — GPU reset and a reusable asset loader
+
+Reviewed by hand on 2026-07-14: `FUN_800232cc`'s (mode `0x10`/submode
+`0x00`) two remaining callees, checked while chasing the "does the menu
+get armed during boot" question above. Both promoted to `confidence =
+manual`. Neither touches submode, so they don't resolve that question,
+but they clarify what mode `0x10`/submode `0x00` is actually *for*.
+
+- **`FUN_800222fc`** is pure GPU reinitialization, built entirely from
+  real, already-signature-named PsyQ library calls: `ResetGraph(1)`,
+  `GsInitGraph2(width, height, mode, dith, 0)` (reading the exact `320`/
+  `240`/`4`/`1` fields `FUN_800232cc` just set), `GsInit3D()`,
+  `InitGeom()`, then a `ClearImage2` (black screen clear) and
+  `DrawSync(0)`. No application-specific logic at all — a generic "reset
+  the GPU to a known 320×240 state" routine.
+- **`FUN_8002a9dc`** — called from **22 places project-wide**, not just
+  here, confirming it's a generic reusable utility rather than
+  screen-specific code — is an **asset-loading routine**: given a small
+  header (two counts + two array offsets), it first draws a sequence of
+  primitives/sprites (phase 1), then uploads a sequence of images to VRAM
+  via the real PsyQ kernel function **`LoadImage`**, replacing pixels
+  equal to `0x7c1f` (a 15-bit transparency/"magic pink" key color) with
+  `0` first (phase 2).
+
+**This reframes mode `0x10`/submode `0x00`** (previously described as
+"unconditionally forwards to mode `4`") as **generic screen-entry
+boilerplate**: reset the GPU, conditionally load whatever assets the
+caller-supplied tables (`DAT_80118e48`/`DAT_8011acb8` in this call site)
+point to, then hand off to mode `4`. It reads less like a screen in its
+own right and more like a loading/transition step specifically gating
+entry to mode `4` — consistent with mode `4` (== mode `0x04`, already
+reviewed) being the more likely candidate for an actual first visible
+screen after Memory Card Auto Load, with mode `0x10` as the GPU-reset/
+asset-load gateway to it.
+
+**New call targets discovered**: `FUN_8002200c`, `FUN_80036648`,
+`FUN_80036668` (from `FUN_800222fc`); `FUN_8002a8b8`, `FUN_800223a8`
+(from `FUN_8002a9dc`). `ResetGraph`, `GsInitGraph2`, `GsInit3D`,
+`InitGeom`, `ClearImage2`, `DrawSync`, `LoadImage` are all already-known
+PsyQ library functions, not new application code — their density here is
+further corroboration of the PsyQ 4.4.0 toolchain.
 
 # What this map is not yet
 
