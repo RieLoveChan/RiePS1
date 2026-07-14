@@ -4,13 +4,15 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T08:00:00-04:00
+timestamp: 2026-07-15T10:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,026 rows, one per function).
+(2,028 rows, one per function — 2,026 from the original bulk export plus
+2 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
+never turned into functions; see the `DAT_80105120` review below).
 
 # Provenance
 
@@ -26,10 +28,10 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,026 |
-| `confidence = manual` (hand-reviewed 2026-07-13–14) | 40 |
+| Total functions | 2,028 (2,026 original + 2 added 2026-07-15) |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 43 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 946 |
+| `confidence = unverified` (default `FUN_########` names) | 945 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -737,6 +739,50 @@ should get their own `globals.csv`... once that work starts") — a
 candidate for when that work starts, rather than assuming in advance
 they'll collapse into one screen-flow document the way `PTR_DAT_800ac8e8`
 did.
+
+# Manual review: `DAT_80105120` state 0's enter/update/exit triple
+
+Reviewed by hand on 2026-07-15, following up on the corrected
+understanding that `DAT_80105120`'s table holds 15 states (45 entries ÷
+3), not 42. Read state 0's three callbacks — `FUN_80049c24` (enter, raw
+table entry `0`), and two addresses Ghidra's auto-analysis had never
+turned into functions (only reachable via the indirect enter/update/exit
+dispatch, so auto-analysis never found a direct call/branch to them):
+`FUN_80049f7c` (update, entry `1`) and `FUN_80049fa4` (exit, entry `2`).
+
+**Tool improvement**: `tools/ghidra/scripts/DumpFunctionDetail.java` now
+creates a function boundary (via `CreateFunctionCmd`, disassembling
+first if needed) when asked to dump an address that isn't already a
+recognized function — this is exactly the situation `FUN_80049f7c`/
+`FUN_80049fa4` were in. This only edits the Ghidra project's own
+analysis database, not the target binary.
+
+- **`FUN_80049c24`** (enter) is called *directly* by `FUN_80049d3c`
+  (mode `0x04`'s music-database loader) as part of the boot chain —
+  confirming `DAT_80105120`'s state machine is explicitly bootstrapped
+  from there, not something that starts on its own. It posts a sequence
+  of notification codes through the pervasive `FUN_8002a8b0(code)`
+  (seen everywhere in this project but still not understood — a generic
+  event/message-post primitive, going by how many different call sites
+  use it with different literal codes), and initializes a 2-player
+  record structure using **the same inline init code**
+  (`stride 0x9284`, fields `0x10`/`0x10`/`0xff`) already seen in
+  `FUN_80049d3c` itself — a shared source pattern, not coincidence. The
+  real per-state logic is one level deeper, in the unreviewed
+  `FUN_8004ba34`.
+- **`FUN_80049f7c`** (update) is a thin wrapper: it always returns the
+  literal `0`, meaning it never itself decides to leave state `0` — since
+  `FUN_80049dec`'s dispatcher only transitions when the update callback's
+  return value differs from the current state, whatever actually decides
+  when to leave state `0` must live in its callee, `FUN_8004bbb4`.
+- **`FUN_80049fa4`** (exit) is likewise a thin wrapper around
+  `FUN_8004bc54`.
+
+None of the three reveal a semantic screen identity by themselves — no
+strings, no PsyQ calls, just event-posting and delegation to deeper
+functions (`FUN_8004ba34`/`FUN_8004bbb4`/`FUN_8004bc54`) that hold the
+actual substance. Those three are the natural next read if this thread
+continues.
 
 # What this map is not yet
 

@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T10:00:00-04:00
+timestamp: 2026-07-15T12:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -91,8 +91,18 @@ the 42-name table. One concrete link still holds: mode `0x04`'s
 those 15 states is current. So `PTR_DAT_800ac8e8`'s system (boot/
 infrastructure) does hand off to *some* other state machine once it
 settles into mode `0x02`/submode `0x02` — just not necessarily the
-42-name one. Reading the 15 states' actual code (starting at entry `0`,
-`0x80049c24`) is the natural next step; a `globals.csv` tracking
+42-name one.
+
+**Update 2026-07-15**: read state `0`'s enter/update/exit triple
+(`FUN_80049c24`/`FUN_80049f7c`/`FUN_80049fa4` — the latter two didn't
+even have Ghidra-recognized function boundaries until now; see the
+symbol map's tooling note). None reveal a screen identity yet: enter
+posts generic notification codes and shares init code with
+`FUN_80049d3c`; update always returns a literal `0` (never itself
+triggers a transition — whatever decides to leave state `0` must live
+deeper); exit is a thin wrapper. The real logic for state `0` is one
+level deeper still, in unreviewed `FUN_8004ba34`/`FUN_8004bbb4`/
+`FUN_8004bc54`. A `globals.csv` tracking
 `DAT_80105120`, its real 15-entry table, and the separate 42-name table
 is likely the right artifact once more is known, rather than assuming in
 advance they collapse into one screen-flow document the way

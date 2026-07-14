@@ -42,7 +42,12 @@ each of the three pieces; do not guess download URLs.
 - `/tools/ghidra/scripts/DumpFunctionDetail.java` — prints disassembly and
   decompiled C for one or more functions given by address; the standard
   manual-review evidence source (headless: `-postScript
-  DumpFunctionDetail.java 0xADDR [0xADDR ...]`).
+  DumpFunctionDetail.java 0xADDR [0xADDR ...]`). If no function exists yet
+  at an address (common for indirect-call-only targets, e.g. entries in a
+  hand-rolled function-pointer table, that auto-analysis never reached),
+  it creates one first via `CreateFunctionCmd` — this only edits the
+  Ghidra project's analysis database, not the target binary. Added
+  2026-07-15 while reading `DAT_80105120`'s state-machine callbacks.
 - `/tools/ghidra/scripts/DumpJumpTable.java` — reads N consecutive 32-bit
   words starting at an address and resolves each to a function name if one
   exists; for confirming MIPS switch-statement jump tables the decompiler
