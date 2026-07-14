@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T14:00:00-04:00
+timestamp: 2026-07-15T15:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -207,6 +207,27 @@ values below):
    logo images) → **How To Play** → **Gameplay Demonstration** (always the
    *same* song on the console's first boot; varies on later loop
    iterations) → **Ranking** → back to **Company**.
+
+**2026-07-15 — the actual gameplay session flow** (distinct from the
+attract loop above; starts once a player presses Start), per the same
+domain-knowledge source, specific to Consumer (home) BEMANI releases:
+**Caution** → **Style Select** → **Select Character** → **Select
+Music** → **Gameplay** → **Result screen**, which then branches
+depending on settings: back to **Select Music**, to a **Summary
+screen**, or to **Game Over**.
+
+This maps directly onto more of the 42-name string table, independently
+of the attract-loop matches already found: `WARNING` (Caution — same
+screen the attract loop also uses), `STYLE SEL` (Style Select),
+`CHARA SEL` (Select Character), `MUSIC SEL` (Select Music), `DANCING`
+(Gameplay), `RESULT` (Result screen), `GAME_OVER` (Game Over). No string
+in the table obviously matches "Summary" yet — `ENDING`, `PRE_END`, or
+`SELECT END` are candidates but none confirmed; worth keeping in mind
+once more of the table's owning code is read. Same evidentiary status as
+the rest of this section: the strings' *existence* is confirmed (string
+reference), this specific session-flow *ordering* is still the
+domain-knowledge account, not yet independently verified against the
+transition code itself.
 
 **Update 2026-07-14 — directly confirmed, not just genre-informed
 anymore**: see "A 42-entry screen-name string table" above. The game's

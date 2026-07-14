@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T12:00:00-04:00
+timestamp: 2026-07-15T15:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -700,20 +700,26 @@ game-option/settings names ("Diet Mode" is a real, documented DDR feature
 
 **Direct corroboration of the repository owner's domain-knowledge
 account** (see `/docs/games/ddr-5th-mix-jp-screen-flow.md`'s "Known
-screen sequence") stands regardless of the correction above: `WARNING` =
-the safety warning ("Caution"); `KONAMI`, `BEMANI`, `TOSHIBA` = three
-separate company-logo screens (not one generic "Company" screen — DDR
-5th Mix (Japan) credits Konami, the Bemani brand, and Toshiba EMI
-specifically); `PLAY DEMO` = the "Gameplay Demonstration"; `RANKING` =
-"Ranking"; `HOW TO` = "How To Play"; `MODE SEL`/`MUSIC SEL` match "Mode
-Select"/"Music Select"; `TITLE` is the title screen. Several names go
-well beyond what genre knowledge alone predicted: `DANCING` (actual
-gameplay), `STAGE END`, `RESULT`, `NON STOP I`/`NON STOP C` (a
-marathon/nonstop play mode), `CHARA SEL`, `SEQKIND SEL`, `LINK SEL`/
-`LINK START`/`LINK END`/`LETS LINK` (a cabinet-link/versus feature),
-`COURSE SEL`, `INRAN SEL`, `EDSEQ_SEL`, `NAME ENTRY`, `URL&PASS`,
-`ENDING`, `GAME_OVER`, `CATCH DEMO`, and the placeholder-looking
-`GAME ??`/`DEMO ??`.
+screen sequence") stands regardless of the correction above, across two
+separate accounts — the attract loop and (added 2026-07-15) the actual
+gameplay session flow (Caution → Style Select → Select Character →
+Select Music → Gameplay → Result → Select Music/Summary/Game Over):
+`WARNING` = the safety warning ("Caution", shared by both accounts);
+`KONAMI`, `BEMANI`, `TOSHIBA` = three separate company-logo screens (not
+one generic "Company" screen — DDR 5th Mix (Japan) credits Konami, the
+Bemani brand, and Toshiba EMI specifically); `PLAY DEMO` = "Gameplay
+Demonstration"; `RANKING` = "Ranking"; `HOW TO` = "How To Play";
+`STYLE SEL` = "Style Select"; `CHARA SEL` = "Select Character";
+`MUSIC SEL` = "Select Music"; `DANCING` = actual gameplay; `RESULT` =
+the result screen; `GAME_OVER` = "Game Over"; `TITLE` is the title
+screen. No string obviously matches the account's "Summary" screen yet
+— `ENDING`, `PRE_END`, `SELECT END` are candidates, none confirmed.
+Remaining names still go beyond what either account predicted:
+`STAGE END`, `NON STOP I`/`NON STOP C` (a marathon/nonstop play mode),
+`SEQKIND SEL`, `LINK SEL`/`LINK START`/`LINK END`/`LETS LINK` (a
+cabinet-link/versus feature), `COURSE SEL`, `INRAN SEL`, `EDSEQ_SEL`,
+`NAME ENTRY`, `URL&PASS`, `ENDING`, `CATCH DEMO`, and the
+placeholder-looking `GAME ??`/`DEMO ??`.
 
 **What is NOT yet established**: what `DAT_80105120`'s state machine
 actually governs, how it relates to `PTR_DAT_800ac8e8`'s `mode`/`submode`
