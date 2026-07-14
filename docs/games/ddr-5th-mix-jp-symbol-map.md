@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T10:00:00-04:00
+timestamp: 2026-07-15T12:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -29,9 +29,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,028 (2,026 original + 2 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 43 |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 46 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 945 |
+| `confidence = unverified` (default `FUN_########` names) | 942 |
 | Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -715,21 +715,25 @@ marathon/nonstop play mode), `CHARA SEL`, `SEQKIND SEL`, `LINK SEL`/
 `ENDING`, `GAME_OVER`, `CATCH DEMO`, and the placeholder-looking
 `GAME ??`/`DEMO ??`.
 
-**What is NOT yet established**: what `DAT_80105120`'s 15-state machine
-actually governs (its states have not been read — the 45 function
-addresses resolve to code but none carry semantic names yet), how it
-relates to `PTR_DAT_800ac8e8`'s `mode`/`submode` fields that
-`FUN_80022cf8` dispatches on, and what actually indexes into the 42-name
-table if not `DAT_80105120`. One concrete link is still confirmed:
-`FUN_80049d3c` (reached from mode `0x04`, part of the boot chain) zeroes
-`DAT_80105120` and calls entry `0` of the 15-state table, and
-`FUN_80049dec` (mode `0x02`/submode `0x02`) is the per-frame pump for
-whichever of the 15 states is current — so `PTR_DAT_800ac8e8`'s
-mode/submode system (boot/infrastructure) does hand off to *some* other
-state machine once it settles into mode `0x02`/submode `0x02`; this
-15-state machine, not necessarily the 42-name enum, is what it hands off
-to. Reading the 15 states' actual code (starting with entry `0`,
-`0x80049c24`) is the natural next step.
+**What is NOT yet established**: what `DAT_80105120`'s state machine
+actually governs, how it relates to `PTR_DAT_800ac8e8`'s `mode`/`submode`
+fields that `FUN_80022cf8` dispatches on, and what actually indexes into
+the 42-name table if not `DAT_80105120`. One concrete link is still
+confirmed: `FUN_80049d3c` (reached from mode `0x04`, part of the boot
+chain) zeroes `DAT_80105120` and enters its state `0`, and `FUN_80049dec`
+(mode `0x02`/submode `0x02`) is the per-frame pump for it — so
+`PTR_DAT_800ac8e8`'s mode/submode system (boot/infrastructure) does hand
+off to *some* other state machine once it settles into mode
+`0x02`/submode `0x02`.
+
+**Corrected further below** (see "a nested child state machine... corrects
+the '15 states' model"): reading state `0`'s own code revealed the raw
+45-entry region isn't one 15-state table for `DAT_80105120` at all — it's
+`DAT_80105120`'s own 1-state table (3 words) followed immediately by a
+*separate*, nested 14-state child machine at a different global. Neither
+count matches `42`, so the main conclusion of this section (not the same
+enum as the string table) stands; only the specific "15 states" shape was
+wrong.
 
 **This is exactly the kind of discovery `/docs/foundations/
 symbol-map-schema.md`'s own non-goals note anticipates** ("globals
@@ -742,13 +746,15 @@ did.
 
 # Manual review: `DAT_80105120` state 0's enter/update/exit triple
 
-Reviewed by hand on 2026-07-15, following up on the corrected
+Reviewed by hand on 2026-07-15, following up on the (at-the-time)
 understanding that `DAT_80105120`'s table holds 15 states (45 entries ÷
-3), not 42. Read state 0's three callbacks — `FUN_80049c24` (enter, raw
-table entry `0`), and two addresses Ghidra's auto-analysis had never
-turned into functions (only reachable via the indirect enter/update/exit
-dispatch, so auto-analysis never found a direct call/branch to them):
-`FUN_80049f7c` (update, entry `1`) and `FUN_80049fa4` (exit, entry `2`).
+3) — itself corrected further below once this section's own review
+turned up a cleaner explanation. Read state 0's three callbacks —
+`FUN_80049c24` (enter, raw table entry `0`), and two addresses Ghidra's
+auto-analysis had never turned into functions (only reachable via the
+indirect enter/update/exit dispatch, so auto-analysis never found a
+direct call/branch to them): `FUN_80049f7c` (update, entry `1`) and
+`FUN_80049fa4` (exit, entry `2`).
 
 **Tool improvement**: `tools/ghidra/scripts/DumpFunctionDetail.java` now
 creates a function boundary (via `CreateFunctionCmd`, disassembling
@@ -780,9 +786,56 @@ analysis database, not the target binary.
 
 None of the three reveal a semantic screen identity by themselves — no
 strings, no PsyQ calls, just event-posting and delegation to deeper
-functions (`FUN_8004ba34`/`FUN_8004bbb4`/`FUN_8004bc54`) that hold the
-actual substance. Those three are the natural next read if this thread
-continues.
+functions (`FUN_8004ba34`/`FUN_8004bbb4`/`FUN_8004bc54`).
+
+# Manual review: a nested child state machine, and a reusable "tick" primitive — corrects the "15 states" model
+
+Reviewed by hand on 2026-07-15, one level deeper than the section above.
+This is the second correction to the `DAT_80105120` table's shape in as
+many reviews — recorded because it changes the count again, cleanly this
+time, with direct evidence rather than inference from raw byte counts
+alone.
+
+- **`FUN_8004ba34`** (called as `FUN_8004ba34(param_1+4)`, i.e. with a
+  pointer to a *different* global 4 bytes after `DAT_80105120` — call it
+  `DAT_80105124`) zeroes that global and calls
+  `(*(code*)PTR_FUN_800d9ac8)(param_1, 0)`: it bootstraps a **second,
+  independent nested state machine** at `DAT_80105124`, the same way
+  `FUN_80049d3c` bootstraps `DAT_80105120` itself.
+- **`FUN_8004bbb4`** (called as `FUN_8004bbb4(param_1+4)`) is a
+  **generic, reusable, parameterized version of `FUN_80049dec`'s
+  state-machine-tick logic** — same update-then-conditionally-exit-then-
+  enter shape, but taking the state pointer and implicitly using
+  whichever 3 tables sit at fixed offsets from it, instead of hardcoding
+  `DAT_80105120`. This confirms the engine has one reusable "tick a state
+  machine" primitive, used both for the top-level `DAT_80105120` (via
+  `FUN_80049dec`'s specialized copy) and recursively for nested children.
+- **`FUN_8004bc54`** confirms the same pattern for the exit side.
+
+**Reading `DAT_80105124`'s own three tables directly**
+(`tools/ghidra/scripts/DumpJumpTable.java` against `0x800d9ac8`, 42
+entries) settles the shape cleanly: `enter` = a flat 14-entry array at
+`0x800d9ac8`, `update` = a flat 14-entry array at `0x800d9b00` (exactly
+14 words later), `exit` = a flat 14-entry array at `0x800d9b38` (14 words
+after that) — `14 × 3 = 42`, ending exactly where the non-pointer data
+found earlier begins. **This means the raw 45-entry region documented
+above was never one 15-state table for `DAT_80105120`** — it was
+`DAT_80105120`'s own tiny 1-state (3-word) table immediately followed by
+`DAT_80105124`'s separate 14-state (42-word) table. `DAT_80105120`
+itself, as far as every call site found so far shows, only ever holds
+state `0` — the real branching happens one level down, in this child.
+
+**Corrected, not deleted**: the previous section's "15 states" framing
+(inferred from `45 ÷ 3` alone, before any of these three functions were
+read) is superseded by this cleaner, directly-confirmed model. Neither
+count (`15` nor `14`) matches the 42-name string table's `42` entries, so
+that correction from earlier still stands regardless of which reading is
+right.
+
+**New call target, not yet reviewed**: `FUN_8004bcc8` — `DAT_80105124`'s
+own state-0 enter callback (raw table entry `0` of its 14). Whether it
+recurses into a *third* level of nested state machine, following the
+same pattern, is the natural next thing to check.
 
 # What this map is not yet
 

@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T12:00:00-04:00
+timestamp: 2026-07-15T14:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -79,34 +79,45 @@ Many more names go beyond what genre knowledge alone predicted:
 `EDSEQ_SEL`, `NAME ENTRY`, `URL&PASS`, `ENDING`, `GAME_OVER`, `CATCH
 DEMO`, and placeholder-looking `GAME ??`/`DEMO ??`.
 
-**Not yet established**: what `DAT_80105120`'s 15-state machine actually
-governs (its states' code hasn't been read yet — only that 45 function
-addresses exist), how it relates to `PTR_DAT_800ac8e8`'s `mode`/`submode`
-fields this document's "Mode table" is built around, and — now that the
-direct-index link is refuted — what (if anything) actually indexes into
-the 42-name table. One concrete link still holds: mode `0x04`'s
-`FUN_80049d3c` zeroes `DAT_80105120` and enters state `0` of the
-*15-state* table as part of the boot chain, and `FUN_80049dec` (mode
-`0x02`/submode `0x02`) is the per-frame update pump for whichever of
-those 15 states is current. So `PTR_DAT_800ac8e8`'s system (boot/
-infrastructure) does hand off to *some* other state machine once it
+**Not yet established**: what `DAT_80105120`'s state machine actually
+governs, how it relates to `PTR_DAT_800ac8e8`'s `mode`/`submode` fields
+this document's "Mode table" is built around, and — now that the
+direct-index link to the 42-name table is refuted — what (if anything)
+actually indexes into that table. One concrete link still holds: mode
+`0x04`'s `FUN_80049d3c` zeroes `DAT_80105120` and enters its state `0` as
+part of the boot chain, and `FUN_80049dec` (mode `0x02`/submode `0x02`)
+is the per-frame update pump for it. So `PTR_DAT_800ac8e8`'s system
+(boot/infrastructure) does hand off to *some* other state machine once it
 settles into mode `0x02`/submode `0x02` — just not necessarily the
 42-name one.
 
 **Update 2026-07-15**: read state `0`'s enter/update/exit triple
 (`FUN_80049c24`/`FUN_80049f7c`/`FUN_80049fa4` — the latter two didn't
 even have Ghidra-recognized function boundaries until now; see the
-symbol map's tooling note). None reveal a screen identity yet: enter
-posts generic notification codes and shares init code with
-`FUN_80049d3c`; update always returns a literal `0` (never itself
-triggers a transition — whatever decides to leave state `0` must live
-deeper); exit is a thin wrapper. The real logic for state `0` is one
-level deeper still, in unreviewed `FUN_8004ba34`/`FUN_8004bbb4`/
-`FUN_8004bc54`. A `globals.csv` tracking
-`DAT_80105120`, its real 15-entry table, and the separate 42-name table
-is likely the right artifact once more is known, rather than assuming in
-advance they collapse into one screen-flow document the way
-`PTR_DAT_800ac8e8` did.
+symbol map's tooling note), then one level deeper still
+(`FUN_8004ba34`/`FUN_8004bbb4`/`FUN_8004bc54`). This second level revealed
+something that **corrects the "15 states" count from the same day**:
+`FUN_8004ba34` doesn't hold "state 0's real logic" so much as bootstrap a
+*second, independent, nested state machine* on a different global
+(`DAT_80105120+4`), and `FUN_8004bbb4`/`FUN_8004bc54` turn out to be a
+**generic, reusable version of `FUN_80049dec`'s own tick logic**,
+parameterized by whichever state pointer is passed in. Reading that
+nested machine's own tables directly confirmed its exact shape: **14
+states**, as 3 flat 14-entry arrays (not 15, not interleaved triples).
+So the earlier "45 raw entries = 15 states for `DAT_80105120`" reading
+was wrong in its specifics: those 45 entries are actually
+`DAT_80105120`'s own tiny 1-state table (3 words) immediately followed by
+this *separate* child machine's 14-state table (42 words).
+`DAT_80105120` itself, as far as every call site found so far shows, only
+ever holds state `0` — all the real branching happens one level down.
+Neither `15` nor `14` matches `42`, so this section's main conclusion (not
+the same enum as the string table) is unaffected; only the specific state
+count was corrected, twice now, as deeper reads kept refining a claim
+that started as an inference from raw byte counts alone. A `globals.csv`
+tracking `DAT_80105120`, its real nested-child structure, and the
+separate 42-name table is likely the right artifact once more is known,
+rather than assuming in advance they collapse into one screen-flow
+document the way `PTR_DAT_800ac8e8` did.
 
 # Mode-transition primitive
 
