@@ -232,10 +232,12 @@ promoted to `confidence = manual`, `source_status = disassembly_reviewed`.
   branches"; it mis-renders the indirect `jr` as a function call). The 5
   code blocks laid out immediately after the jump each call a distinct
   target (`FUN_800234cc`, `FUN_80023500`, `FUN_80023544`, `FUN_8002356c`,
-  `FUN_8002358c`); their in-memory order is consistent with standard MIPS
-  switch codegen mapping submode values `0..4` to these blocks in order, but
-  the jump table's actual bytes at `0x8001a840` were not read, so that
-  mapping is inferred from layout convention, not confirmed.
+  `FUN_8002358c`). **Confirmed 2026-07-14** by reading the table's raw bytes
+  with the new `tools/ghidra/scripts/DumpJumpTable.java`: entries 0–4 are
+  exactly `0x80022ff0`/`0x80023000`/`0x80023010`/`0x80023020`/`0x80023030`,
+  i.e. submode `0`→`FUN_800234cc`, `1`→`FUN_80023500`, `2`→`FUN_80023544`,
+  `3`→`FUN_8002356c`, `4`→`FUN_8002358c` — exactly matching the layout-
+  convention inference, no longer a guess.
 - So **four of the five modes reviewed so far that touch `+0x2a` at all**
   (`0x00`, `0x04`, `0xff`, plus `0x02` and the default from the earlier
   `FUN_80022cf8` review) all read the *same* field — `+0x2a` is evidently a

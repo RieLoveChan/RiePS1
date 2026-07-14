@@ -39,6 +39,15 @@ each of the three pieces; do not guess download URLs.
   `tools/ghidra/scripts/ReportProgramSummary.java` against an already-analyzed
   program and prints image base, entry point, language, detected PsyQ
   version, memory blocks, and function/symbol counts.
+- `/tools/ghidra/scripts/DumpFunctionDetail.java` — prints disassembly and
+  decompiled C for one or more functions given by address; the standard
+  manual-review evidence source (headless: `-postScript
+  DumpFunctionDetail.java 0xADDR [0xADDR ...]`).
+- `/tools/ghidra/scripts/DumpJumpTable.java` — reads N consecutive 32-bit
+  words starting at an address and resolves each to a function name if one
+  exists; for confirming MIPS switch-statement jump tables the decompiler
+  couldn't recover on its own (headless: `-postScript DumpJumpTable.java
+  0xADDR N`).
 
 # Two non-obvious `analyzeHeadless` gotchas
 
