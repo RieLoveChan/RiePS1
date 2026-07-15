@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T19:00:00-04:00
+timestamp: 2026-07-15T20:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -351,8 +351,40 @@ then `SELECT CHARACTER`, then `SELECT MUSIC`. This independently confirms the
 that outer state 2 enters this game-setup flow. The subsequent static review
 in "Outer state 2" now identifies their numeric selector substates and exact
 callbacks, including the intervening `LINK START` router. The later
-`DANCING → RESULT → ...` portion remains the domain-knowledge account pending
-equivalent runtime/static transition evidence.
+`RESULT → ...` branching remains the domain-knowledge account
+pending equivalent runtime/static transition evidence; the static review
+below now confirms the intervening `DANCING` and `STAGE END` states.
+
+# Static route from MUSIC SEL into gameplay
+
+Reviewed 2026-07-15 with Ghidra 12.1.2 by continuing through the 15-state
+game-session child's tables at `0x800def08`/`0x800def44`/`0x800def80`.
+After selector substate 5 terminates, child state 1 returns child state 5.
+That path is now:
+
+`MUSIC SEL -> state 5 / PREPARE -> state 4 / INTRO -> state 6 / DANCING -> state 7 / STAGE END`
+
+The identities come from direct writes to `DAT_800f2908` and the ordered
+screen-name table, not from screenshot resemblance:
+
+| Child state | Enter / update / exit | Screen evidence |
+|---|---|---|
+| 5 | `FUN_8006efd4` / `FUN_80070ab4` / `FUN_8006f0a0` | entry writes index 1 = `PREPARE`; update returns state 4 after 28 frames |
+| 4 | `FUN_8006f1fc` / `FUN_8006f380` / `FUN_80070aac` | entry writes index 2 = `INTRO`; exit is a no-op |
+| 6 | `FUN_80070bc4` / `FUN_8006f49c` / `FUN_8006f6cc` | entry writes index 4 = `DANCING`; exit computes/stores per-player result data |
+| 7 | `FUN_8006f784` / `FUN_8006f888` / `FUN_8006fa30` | entry writes index 5 = `STAGE END`; exit accumulates player/session result counters |
+
+`FUN_8006f380` can leave `INTRO` for state 6 when `FUN_8007fdec()` is
+not `-1`; its timeout and ordinary completion paths return state 7 instead.
+That proves both edges statically but does not yet justify a semantic name
+for the condition. During `DANCING`, `FUN_8006f49c` normally remains in
+state 6 and returns state 7 on reviewed completion branches, establishing
+the gameplay-to-stage-end edge. `STAGE END` can subsequently return states
+1, 8, or 11 under different session conditions; those downstream states
+remain the next unresolved part of the graph.
+
+This review also corrects the earlier CSV label of state 5 as `INTRO`:
+index 1 is `PREPARE`; `INTRO` is index 2 and belongs to child state 4.
 
 **Update 2026-07-14 — directly confirmed, not just genre-informed
 anymore**: see "A 42-entry screen-name string table" above. The game's

@@ -4,14 +4,14 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T19:00:00-04:00
+timestamp: 2026-07-15T20:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,060 rows, one per function — 2,026 from the original bulk export plus
-34 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
+(2,069 rows, one per function — 2,026 from the original bulk export plus
+43 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
 never turned into functions; see the `DAT_80105120` and outer-state-2
 reviews below).
 
@@ -29,11 +29,11 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,060 (2,026 original + 34 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 116 |
+| Total functions | 2,069 (2,026 original + 43 added 2026-07-15) |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 125 |
 | `confidence = library_signature` | 1,040 |
 | `confidence = unverified` (default `FUN_########` names) | 904 |
-| Combined function-body coverage | 501,812 of 1,050,624 `t_size` bytes (~48%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
+| Combined function-body coverage | 504,344 of 1,050,624 `t_size` bytes (~48%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
 suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
@@ -977,8 +977,28 @@ captures while also exposing the invisible/interstitial router and the
 character-select skip path. `MODE SEL` is present in the shared selector,
 but the reviewed router has no normal transition into substate 1.
 
-`DumpFunctionDetail.java` created 26 indirect callback boundaries during
-this review, bringing the project/map to 2,060 functions. All 26 new rows and
+Following the selector's terminal path completes the next part of the static
+screen graph. Child state 1 returns state 5; state 5's entry
+`FUN_8006efd4` writes screen index 1, correctly `PREPARE` (the earlier
+`INTRO` label was an off-by-one documentation error), and its update
+`FUN_80070ab4` returns state 4 after 28 frames. State 4's entry
+`FUN_8006f1fc` writes index 2, exactly `INTRO`. Its update
+`FUN_8006f380` has two outgoing destinations: state 6 for one
+`FUN_8007fdec` result and state 7 on timeout/normal completion.
+
+The destination identities are now direct rather than inferred from genre
+flow. State 6 entry `FUN_80070bc4` writes index 4, `DANCING`; its update is
+`FUN_8006f49c` and exit is `FUN_8006f6cc`, which computes/stores per-player
+result data. State 7 entry `FUN_8006f784` writes index 5, `STAGE END`; its
+update/exit callbacks are `FUN_8006f888`/`FUN_8006fa30`, including timed
+transition work and result/stat accumulation. Thus the ordinary reviewed
+path is now `MUSIC SEL -> PREPARE -> INTRO -> DANCING -> STAGE END`, with
+the precise condition selecting INTRO's state-6 versus state-7 branch still
+left semantically unnamed because `FUN_8007fdec` itself has not been reviewed.
+
+`DumpFunctionDetail.java` created 35 indirect callback boundaries during
+this and the immediately following gameplay-state review, bringing the
+project/map to 2,069 functions. All 35 new rows and
 8 previously exported wrapper/router rows were manually reviewed and are
 recorded in the CSV. The exact hierarchy and callback table is also recorded
 in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
@@ -988,8 +1008,8 @@ in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 116 rows currently have `source_status` above
-  `decompiler_output_only`, out of 2,060. Before trusting any other
+- Only 125 rows currently have `source_status` above
+  `decompiler_output_only`, out of 2,069. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
   object per the "Function accepted" gate in
