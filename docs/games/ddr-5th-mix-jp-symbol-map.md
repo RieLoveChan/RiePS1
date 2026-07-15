@@ -10,8 +10,8 @@ timestamp: 2026-07-15T15:00:00-04:00
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,028 rows, one per function — 2,026 from the original bulk export plus
-2 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
+(2,031 rows, one per function — 2,026 from the original bulk export plus
+5 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
 never turned into functions; see the `DAT_80105120` review below).
 
 # Provenance
@@ -28,11 +28,11 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,028 (2,026 original + 2 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 46 |
+| Total functions | 2,031 (2,026 original + 5 added 2026-07-15) |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 54 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 942 |
-| Combined function-body coverage | 496,888 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
+| `confidence = unverified` (default `FUN_########` names) | 937 |
+| Combined function-body coverage | 497,368 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
 suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
@@ -838,10 +838,32 @@ count (`15` nor `14`) matches the 42-name string table's `42` entries, so
 that correction from earlier still stands regardless of which reading is
 right.
 
-**New call target, not yet reviewed**: `FUN_8004bcc8` — `DAT_80105124`'s
-own state-0 enter callback (raw table entry `0` of its 14). Whether it
-recurses into a *third* level of nested state machine, following the
-same pattern, is the natural next thing to check.
+**State 0 reviewed one level deeper (2026-07-15)** with Ghidra 12.1.2,
+`DumpFunctionDetail.java`, and `DumpJumpTable.java`. Its outer triple is:
+
+- **Enter `FUN_8004bcc8`** (68 bytes): wraps global counter
+  `DAT_800f28f8` to zero only above `0x3fffffff`, then calls
+  `FUN_80053ed8(param_1+4)`.
+- **Update `FUN_8004b554`** (256 bytes): while neither of two controller/
+  input words has a bit in mask `0x820`, calls
+  `FUN_80053f68(param_1+4)` and returns `0`; when the mask is observed,
+  prepares display/control state, posts code `0x30d`, and returns `1`,
+  requesting the outer 14-state machine transition from state 0 to state
+  1. The specific button identity remains unclaimed.
+- **Exit `FUN_8004bd0c`** (32 bytes): delegates to
+  `FUN_80054010(param_1+4)`.
+
+This **does not create a third copy of the same generic 14-state
+machine**, but it does reveal a different subordinate machine embedded at
+`param_1+4`. `FUN_80053ed8` initializes that child to state `6` normally,
+or state `0` when `DAT_800f2908` is `0x1c`/`0x1d`. A direct read of table
+`0x800ddc68` confirms 7 enter callbacks; `FUN_80053f68` and
+`FUN_80054010` confirm parallel update/exit tables at `0x800ddc84` and
+`0x800ddca0`. `FUN_80053f68` is another update → conditional exit → enter
+tick primitive and always returns `0` to the outer state. The two initial
+enter callbacks reviewed here set `DAT_800f2908=0x1d` (state 0) or
+`0x25` (state 6), but their callees remain unnamed, so there still is not
+enough evidence to assign a screen identity.
 
 # What this map is not yet
 

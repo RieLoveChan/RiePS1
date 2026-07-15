@@ -119,6 +119,19 @@ separate 42-name table is likely the right artifact once more is known,
 rather than assuming in advance they collapse into one screen-flow
 document the way `PTR_DAT_800ac8e8` did.
 
+**Update 2026-07-15**: reviewing `DAT_80105124` state 0's full callback
+triple (`FUN_8004bcc8` enter, newly delimited `FUN_8004b554` update, and
+newly delimited `FUN_8004bd0c` exit) found no third instance of that same
+14-state structure. Instead, state 0 owns a different subordinate
+**7-state** enter/update/exit dispatcher embedded at `param_1+4`, with
+tables at `0x800ddc68`, `0x800ddc84`, and `0x800ddca0`. Its normal initial
+state is 6; state 0 is selected only when `DAT_800f2908` is `0x1c` or
+`0x1d`. The outer state-0 update returns state `1` when mask `0x820` is
+seen in either of two controller/input words; otherwise it ticks the
+7-state child and stays in state 0. This establishes one real transition
+in the 14-state machine (`0 -> 1` under that input condition), but neither
+the mask's button identity nor any screen identity is claimed yet.
+
 # Mode-transition primitive
 
 **`FUN_80023210`** (`0x80023210`) is the *only* function, among the 58
