@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T21:00:00-04:00
+timestamp: 2026-07-15T22:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -419,8 +419,40 @@ behind the genre-level "Result back to Select Music" branch.
 
 Terminal child state 14 makes `FUN_8006ffd8` report completion. The enclosing
 outer-state update `FUN_8004b800` then returns outer state 0 or 10 according
-to `PTR_DAT_800ac8e8[0xff]`, so the game-session child is now traced through
-its handoff back to the outer machine.
+to `PTR_DAT_800ac8e8[0xff]`. That handoff is now fully resolved:
+
+```text
+child terminal 14
+└─ common outer-state-2 cleanup: FUN_8004be30 → FUN_80070154
+   ├─ latch +0xff == 0 → outer 0 → PLAY DEMO → attract loop
+   └─ latch +0xff != 0 → outer 10
+                         → 42-tick radial transition
+                         → outer 11
+                         → 512x480 / 640x480 restoration pipeline
+                         → outer 1
+                         → title/PUSH START main menu
+```
+
+Outer state 10 uses callbacks `FUN_8004c0f0`/`FUN_8004c11c`/
+`FUN_8004c154`; outer 11 uses `FUN_8004c15c`/`FUN_8004c184`/
+`FUN_8004c1b4`. Neither writes `DAT_800f2908` or owns another child machine:
+they are graphical/infrastructure transitions, not semantic screens.
+
+The effective latch address is `0x800100ff`. `FUN_8006ffd8` reads it to
+force child state 14 when nonzero, and `FUN_8004b800` reads it to select the
+outer destination. `FUN_8002313c` is its direct setter; child `GAME_OVER`
+and wait-state exits call it unconditionally, while `FUN_8006e43c` can call
+it after a long Cross hold during PLAY START/selector/RESULT. Main-menu entry
+clears the latch through `FUN_800535b0`; full runtime-block initialization
+also clears it via `bzero`.
+
+This gives both conditional destinations exact static identities. If the
+latch is still clear when completion is reported, the destination is attract
+at `PLAY DEMO`; the latched/forced path performs post-session transitions and
+returns to the main menu. Because the mapped `GAME_OVER` and wait-state exits
+set the latch before outer dispatch, those end routes take the menu branch;
+the clear-latch edge is retained as a conditional path, not labeled as every
+ordinary game completion.
 
 This review also corrects the earlier CSV label of state 5 as `INTRO`:
 index 1 is `PREPARE`; `INTRO` is index 2 and belongs to child state 4.
