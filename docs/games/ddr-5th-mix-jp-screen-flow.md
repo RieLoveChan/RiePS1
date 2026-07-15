@@ -135,6 +135,36 @@ screen identity is claimed yet. The bit identities and newly-pressed
 semantics were confirmed later the same day by tracing the sole writers of
 `DAT_800e3b60`/`DAT_800e3b70`; see the symbol map's PAD review.
 
+**Update 2026-07-15 — state 1 identified**: the repository owner's runtime
+screenshot after pressing Circle or Start shows the main menu with 11 entries.
+That observation matches the state-1 implementation exactly: enter callback
+`FUN_8004bd2c` selects screen-name index `0x1c` (`PUSH START`), loads
+`title_25`/`hbota_25`, and initializes an 11-entry selector;
+`FUN_80050e5c` handles Up/Down and Start/Circle confirmation; update callback
+`FUN_8004b654` maps its result to the next outer state. The screenshot itself
+is intentionally not tracked because it is copyrighted game output.
+
+| Main-menu row | Selector result | Next `DAT_80105124` state |
+|---|---:|---:|
+| `GAME MODE` | 1 | 2 |
+| `EVENT MODE` | 2 | 2 (different setup flags) |
+| `LESSON MODE` | 3 | 3 |
+| `TRAINING` | 4 | 4 |
+| `EDIT` | 5 | 5 |
+| `DATA BANK` | 6 | 12 |
+| `ARCADE LINK` | 7 | 6 |
+| `RECORDS` | 9 | 7 |
+| `OPTION` | 10 | 8 |
+| `GALLERY MODE` | 12 | 13 |
+| `INFORMATION` | 11 | 9 |
+| 900-frame inactivity timeout | 13 | 0 (Attract Loop; runtime-confirmed by repository owner) |
+
+This identifies state 1 as the **main menu on the title/PUSH START screen**
+at `confidence: verified`: literal resource/string evidence, exact agreement
+with all 11 visible rows, and the owner's runtime observation agree. It also
+turns states 2–9, 12, and 13 into semantically constrained next targets even
+before their callback bodies are reviewed.
+
 # Mode-transition primitive
 
 **`FUN_80023210`** (`0x80023210`) is the *only* function, among the 58

@@ -10,8 +10,8 @@ timestamp: 2026-07-15T15:00:00-04:00
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,031 rows, one per function — 2,026 from the original bulk export plus
-5 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
+(2,034 rows, one per function — 2,026 from the original bulk export plus
+8 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
 never turned into functions; see the `DAT_80105120` review below).
 
 # Provenance
@@ -28,11 +28,11 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,031 (2,026 original + 5 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 56 |
+| Total functions | 2,034 (2,026 original + 8 added 2026-07-15) |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 71 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 935 |
-| Combined function-body coverage | 497,368 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
+| `confidence = unverified` (default `FUN_########` names) | 923 |
+| Combined function-body coverage | 497,988 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
 suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
@@ -907,13 +907,47 @@ enter callbacks reviewed here set `DAT_800f2908=0x1d` (state 0) or
 `0x25` (state 6), but their callees remain unnamed, so there still is not
 enough evidence to assign a screen identity.
 
+# Manual review: `DAT_80105124` state 1 is the main menu
+
+Reviewed by hand on 2026-07-15 with Ghidra 12.1.2,
+`DumpFunctionDetail.java`, and a repository-owner-supplied runtime screenshot
+(kept outside Git because it is copyrighted game output). The screenshot shows
+the main menu immediately after Circle or Start with exactly 11 choices:
+`GAME MODE`, `EVENT MODE`, `LESSON MODE`, `TRAINING`, `EDIT`, `DATA BANK`,
+`ARCADE LINK`, `RECORDS`, `OPTION`, `GALLERY MODE`, and `INFORMATION`.
+
+The state-1 callback triple independently matches that observation:
+
+- **Enter `FUN_8004bd2c`** (136 bytes) sets `DAT_800f2908=0x1c`, whose
+  entry in the previously dumped 42-name table is `PUSH START`; loads the
+  `title_25` and `hbota_25` resources through `FUN_8004d010`; initializes
+  an 11-entry enabled selector through `FUN_800535b0`; and resets its local
+  fields.
+- **Update `FUN_8004b654`** (428 bytes) performs the initial framebuffer
+  clear, calls `FUN_80050e5c`, and maps its result to the next outer state.
+  `FUN_80050e5c` handles Up/Down newly-pressed edges on either controller,
+  confirms with Start or Circle (`0x820`), draws the 11-entry selector, and
+  returns a distinct code for each selected row. After 900 inactive frames it
+  returns code 13, which the outer callback maps back to state 0. The
+  repository owner confirms from runtime observation that reaching this
+  timeout returns to the Attract Loop.
+- **Exit `FUN_8004bdb4`** (56 bytes) posts shutdown/transition events and
+  calls the currently empty `FUN_8004d078` cleanup hook.
+
+The selection mapping is exact: menu indices 0..10 return codes
+`1,2,3,4,5,6,7,9,10,12,11`; `FUN_8004b654` maps those to outer states
+`2,2,3,4,5,12,6,7,8,13,9`. Thus Game and Event Mode deliberately share
+state 2 with different setup flags, while the remaining visible choices each
+have their own destination. This is sufficient static and visual evidence to
+identify outer state 1 as the **main menu on the title/PUSH START screen**.
+
 # What this map is not yet
 
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only the 7 functions above have `source_status` above
-  `decompiler_output_only`, out of 2,026. Before trusting any other
+- Only 71 rows currently have `source_status` above
+  `decompiler_output_only`, out of 2,034. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
   object per the "Function accepted" gate in
