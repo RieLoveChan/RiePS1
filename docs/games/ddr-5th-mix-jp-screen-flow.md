@@ -136,7 +136,8 @@ semantics were confirmed later the same day by tracing the sole writers of
 `DAT_800e3b60`/`DAT_800e3b70`; see the symbol map's PAD review.
 
 **Update 2026-07-15 — state 1 identified**: the repository owner's runtime
-screenshot after pressing Circle or Start shows the main menu with 11 entries.
+screenshot, subsequently renamed locally to `MainMenu.png`, after pressing
+Circle or Start shows the main menu with 11 entries.
 That observation matches the state-1 implementation exactly: enter callback
 `FUN_8004bd2c` selects screen-name index `0x1c` (`PUSH START`), loads
 `title_25`/`hbota_25`, and initializes an 11-entry selector;
@@ -164,6 +165,15 @@ at `confidence: verified`: literal resource/string evidence, exact agreement
 with all 11 visible rows, and the owner's runtime observation agree. It also
 turns states 2–9, 12, and 13 into semantically constrained next targets even
 before their callback bodies are reviewed.
+
+**Additional runtime captures, 2026-07-15**: the owner followed five of those
+rows and supplied screenshots whose visible headings are `ARCADE LINK`,
+`RECORDS`, `OPTION`, `GALLERY MODE`, and `INFORMATION`. Combined with the exact
+selector mapping above, this confirms the destination identities of outer
+states 6, 7, 8, 13, and 9 respectively. The images remain untracked as
+copyrighted game output. A `RECORDS` capture showing `NO MUSIC` also confirms
+that this destination can render its empty/no-records state; it does not yet
+identify the record-data structure.
 
 # Mode-transition primitive
 
@@ -284,11 +294,16 @@ screen the attract loop also uses), `STYLE SEL` (Style Select),
 (Gameplay), `RESULT` (Result screen), `GAME_OVER` (Game Over). No string
 in the table obviously matches "Summary" yet — `ENDING`, `PRE_END`, or
 `SELECT END` are candidates but none confirmed; worth keeping in mind
-once more of the table's owning code is read. Same evidentiary status as
-the rest of this section: the strings' *existence* is confirmed (string
-reference), this specific session-flow *ordering* is still the
-domain-knowledge account, not yet independently verified against the
-transition code itself.
+once more of the table's owning code is read.
+
+**Runtime confirmation 2026-07-15**: three additional owner-supplied captures
+show the beginning of the actual `GAME MODE` route in order: `SELECT STYLE`,
+then `SELECT CHARACTER`, then `SELECT MUSIC`. This independently confirms the
+`STYLE SEL → CHARA SEL → MUSIC SEL` visible ordering described above and shows
+that outer state 2 enters this game-setup flow. It does **not** yet identify
+the numeric nested-state values or transition callbacks for those three
+screens. The later `DANCING → RESULT → ...` portion remains the domain-
+knowledge account pending equivalent runtime/static transition evidence.
 
 **Update 2026-07-14 — directly confirmed, not just genre-informed
 anymore**: see "A 42-entry screen-name string table" above. The game's
