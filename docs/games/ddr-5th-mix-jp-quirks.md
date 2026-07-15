@@ -46,11 +46,12 @@ documented BEMANI convention, not an inaccessible leftover. `FUN_80021374`
 transitioning to mode `0xff` on a specific 2-word button-combo check is a
 strong structural match for exactly this. Withdrawn as arcade-leftover
 evidence, superseded not deleted; see the screen-flow doc's confirmed
-transitions for the corrected reading. The exact bit values checked
-(`0x800`/`0x100`) have not been independently confirmed against this
-game's actual controller-bit convention as meaning "Start+Select"
-specifically — treat the combo identity as a strong structural match,
-not a byte-level proof, until that's checked.
+transitions for the corrected reading. **Updated 2026-07-15**: tracing the
+sole per-frame input producer confirms the exact convention:
+`0x800` is Start in the held word and `0x100` is Select in the
+newly-pressed word, so the Start+Select trigger itself is now statically
+confirmed. The remaining `suspected` status applies to the broader
+cross-title vendor-practice claim, not to this Consumer-build trigger.
 
 **What's non-standard**: the repository owner (former StepMania Team
 developer) notes that PS1 releases of BEMANI titles are ports of their

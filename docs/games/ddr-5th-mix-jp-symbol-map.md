@@ -1,7 +1,7 @@
 ---
 type: Symbol Map
 title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
-description: Function symbol map for SLPM_868.97;1 with confidence tiers; the PsyQ crt0 startup chain and 12 mode-dispatcher-reachable functions have had manual review passes.
+description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
 timestamp: 2026-07-15T15:00:00-04:00
@@ -29,9 +29,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,031 (2,026 original + 5 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 54 |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 56 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 937 |
+| `confidence = unverified` (default `FUN_########` names) | 935 |
 | Combined function-body coverage | 497,368 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -130,6 +130,47 @@ No semantic name is proposed for any of the 12 unnamed callees or for
 order, loop position) is a structural fact, not an identity claim, per
 `AGENTS.md`'s "do not silently turn guesses into names." They are listed, in
 call order, in `main`'s symbol-map row `notes` as the next review targets.
+
+# Manual review: PsyQ PAD initialization and the per-frame input adapter
+
+Reviewed by hand on 2026-07-15 with Ghidra 12.1.2,
+`DumpFunctionDetail.java`, and the new `DumpDataXrefs.java`.
+
+`DumpDataXrefs.java 0x800e3b60 0x800e3b70` found exactly one
+`WRITE` reference to each global, both inside **`FUN_8002112c`**.
+All other classified references are reads (some indirect-address
+references remain typed generically as `DATA`, but their instructions are
+`lw`, not stores). The producer chain is:
+
+1. **`FUN_80021dfc`**, main's first game-specific initializer, calls the
+   PsyQ-signature-named `PadInitDirect(0x800e2a68, 0x800e2a9c)` and then
+   `PadStartCom()`. These are two receive buffers, one per controller port,
+   separated by `0x34` bytes and filled by the PAD subsystem.
+2. **`FUN_8002112c`**, called once per frame from `main`, validates each
+   packet (status byte 0; controller-type high nibble 4 or 7), combines and
+   inverts its two active-low button bytes, and calculates
+   `newly_pressed = ~previous & current` plus the inverse release edge.
+3. It snapshots port 1's newly-pressed word to **`DAT_800e3b60`** and
+   port 2's to **`DAT_800e3b70`**. Their surrounding layout is:
+
+| Port | Previous held | Current held | Newly pressed | Newly released |
+|---|---|---|---|---|
+| 1 | `DAT_800e3b58` | `DAT_800e3b5c` | `DAT_800e3b60` | `DAT_800e3b64` |
+| 2 | `DAT_800e3b68` | `DAT_800e3b6c` | `DAT_800e3b70` | `DAT_800e3b74` |
+
+This makes the relevant bit identities recoverable from the packet byte
+order itself: `0x800 = Start`, `0x100 = Select`, and
+`0x20 = Circle`. Consequently `FUN_8004b554`'s `0x820` test means
+**Start or Circle newly pressed** on either port. Re-reading
+`FUN_80021374` against the same layout also upgrades its earlier
+Start+Select interpretation from structural match to static confirmation:
+it requires Start held in the current word (`+0x50/+0x60 & 0x800`) and
+Select newly pressed in the edge word (`+0x54/+0x64 & 0x100`), then enters
+mode `0xff`.
+
+The low-level serial polling is therefore PsyQ PAD library/BIOS work;
+`FUN_8002112c` is the game's per-frame adapter and edge detector, not the
+hardware protocol driver itself.
 
 # Manual review: `FUN_8002216c` — corrects the "wait loop" hypothesis
 
@@ -849,7 +890,8 @@ right.
   `FUN_80053f68(param_1+4)` and returns `0`; when the mask is observed,
   prepares display/control state, posts code `0x30d`, and returns `1`,
   requesting the outer 14-state machine transition from state 0 to state
-  1. The specific button identity remains unclaimed.
+  1. A later input-producer trace identifies this mask as Start or Circle
+  newly pressed; see the PAD review above.
 - **Exit `FUN_8004bd0c`** (32 bytes): delegates to
   `FUN_80054010(param_1+4)`.
 

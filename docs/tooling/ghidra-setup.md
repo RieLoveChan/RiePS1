@@ -61,6 +61,13 @@ each of the three pieces; do not guess download URLs.
   0xADDR`). Used to find every write site of a mode/state field reached
   only through a global pointer — see the symbol map's `FUN_80023210`
   review.
+- `/tools/ghidra/scripts/DumpDataXrefs.java` — lists every reference to one
+  or more exact data addresses with Ghidra's read/write classification,
+  containing function, and source instruction (headless:
+  `-postScript DumpDataXrefs.java 0xADDR [0xADDR ...]`). Added to prove
+  that `FUN_8002112c` is the sole writer of the two per-port
+  newly-pressed globals before reviewing it as the game's per-frame PAD
+  adapter.
 - `/tools/ghidra/scripts/DumpShorts.java` — reads N consecutive signed
   16-bit values starting at an address and prints each in decimal and hex;
   for small data tables (e.g. a menu's list of destination values) that
