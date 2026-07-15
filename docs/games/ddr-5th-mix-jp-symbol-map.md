@@ -29,9 +29,9 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,034 (2,026 original + 8 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 71 |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 82 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 923 |
+| `confidence = unverified` (default `FUN_########` names) | 912 |
 | Combined function-body coverage | 497,988 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -580,7 +580,7 @@ asset-load gateway to it.
 PsyQ library functions, not new application code — their density here is
 further corroboration of the PsyQ 4.4.0 toolchain.
 
-# Manual review: mode `0x04`'s six callees — a literal filename and real audio setup
+# Manual review: mode `0x04`'s six callees — a build marker and real audio setup
 
 Reviewed by hand on 2026-07-14, completing mode `0x04`'s call tree
 (`FUN_8002340c`/`FUN_80023474`, reviewed earlier the same day). All six
@@ -588,9 +588,12 @@ promoted to `confidence = manual`.
 
 - **`FUN_80049d3c`** (called from both of mode `0x04`'s handlers) contains
   this project's **first literal filename string**:
-  `FUN_8007eea8("data/mdb/mdb.bin")` — "mdb" is a standard abbreviation
-  for "music database," and this is almost certainly the game's song/
-  chart metadata file. It also initializes two per-something record
+  `FUN_8007eea8("data/mdb/mdb.bin")`. **Correction 2026-07-15**:
+  `FUN_8007eea8` is exactly `jr ra; nop`; it cannot load or parse the named
+  file. The path is a retained source/build marker, while the 47-record
+  runtime music table is already linked at `DAT_800df3d8`; see
+  `/docs/games/ddr-5th-mix-jp-music-database.md`. The function also
+  initializes two per-something record
   structures (stride `0x9284` bytes — plausibly one per player), then
   calls six more unreviewed functions and a function pointer.
 - **`FUN_8002a7a4`** (called by `FUN_80023474`, mode `0x04`/submode
@@ -614,7 +617,7 @@ promoted to `confidence = manual`.
 **This reframes the whole `0x00 → 0x10 → 0x04` chain as a boot/loading
 sequence, not a series of visible screens**: Memory Card Auto Load (mode
 `0x00`) → GPU reset + asset load (mode `0x10`/submode `0x00`) → settings
-validation + music database load + SPU/reverb setup (mode `0x04`) → mode
+validation + linked-metadata/state initialization + SPU/reverb setup (mode `0x04`) → mode
 `2`. Mode `2`'s own submodes (already reviewed: a `640×480` screen clear,
 a conditional call, and `FUN_80049dec`) are now the most likely place to
 find the *first* genuinely visible screen in this chain, rather than
@@ -626,8 +629,8 @@ zero" branch calls `FUN_80023230(2)` (`SetSubmode(2)` — stays in mode
 leaves mode `0x04`). The two are easy to conflate since both take literal
 argument `2`; only the second is a mode transition.
 
-**New call targets discovered, none yet reviewed**: `FUN_800a00d4`,
-`FUN_8007eea8`, `FUN_8009851c`, `FUN_80042f60`, `FUN_80049fd4`,
+**New call targets discovered in the 2026-07-14 pass**: `FUN_800a00d4`,
+`FUN_8007eea8` (reviewed 2026-07-15 as a no-op), `FUN_8009851c`, `FUN_80042f60`, `FUN_80049fd4`,
 `FUN_80042df8`, `FUN_8008eb48`, `FUN_800a22b0`, `FUN_800a22d0`,
 `FUN_800a22f0`. `SsUtSetReverbType`/`SpuClearReverbWorkArea`/
 `SsSetSerialAttr`/`SsSetReservedVoice`/`SpuSetTransferMode`/
@@ -656,8 +659,8 @@ for. All three of mode `0x02`'s submode handlers promoted to `confidence
   observation and the disassembly, not just code-reading alone.
 - **`FUN_80049dec`** (submode `0x02`) is structurally unrelated to the
   resolution change — it drives a **separate state machine** keyed on
-  `DAT_80105120` (the same global `FUN_80049d3c`, mode `0x04`'s music-
-  database loader, also touches) through three parallel function-pointer
+  `DAT_80105120` (the same global the mode-`0x04` initializer
+  `FUN_80049d3c` also touches) through three parallel function-pointer
   tables (update/exit/enter — a textbook state-machine dispatch pattern),
   then copies a table of records ending at an entry containing
   **`PTR_s_TEST_MODE_8001bd74`** — a pointer to the literal string
@@ -679,7 +682,7 @@ and the `PTR_LAB_800d9ac0`/`PTR_LAB_800d9ac4`/`PTR_FUN_800d9abc`
 function-pointer arrays `DAT_80105120` indexes into — none of their
 contents beyond the one `"TEST_MODE"` string have been read.
 
-# Data discovery: a 42-entry screen-name string table at `0x8001bb10`
+# Data discovery: a 42-entry screen-name string table at `0x8001bb24`
 
 While chasing `FUN_80049dec`'s `"TEST_MODE"` string and its
 `DAT_80105120`-keyed state machine (see the mode `0x02` review above),
@@ -700,7 +703,7 @@ by a 42-entry pointer array starting at `0x8001bcd4` (the exact table
 `DEMO ??`, `TEST_MODE`, `OTHER`.
 
 (Immediately preceding this table, at `0x8001bb10`, is the literal
-`"data/mdb/mdb.bin"` filename already found in `FUN_80049d3c`'s review —
+`"data/mdb/mdb.bin"` source/build marker found in `FUN_80049d3c`'s review —
 the two data tables sit in the same object/source file.)
 
 **Corrected 2026-07-15** (was: "almost certainly the game's real,
@@ -811,7 +814,7 @@ recognized function — this is exactly the situation `FUN_80049f7c`/
 analysis database, not the target binary.
 
 - **`FUN_80049c24`** (enter) is called *directly* by `FUN_80049d3c`
-  (mode `0x04`'s music-database loader) as part of the boot chain —
+  (mode `0x04`'s initializer containing the inert `mdb.bin` marker) as part of the boot chain —
   confirming `DAT_80105120`'s state machine is explicitly bootstrapped
   from there, not something that starts on its own. It posts a sequence
   of notification codes through the pervasive `FUN_8002a8b0(code)`
@@ -946,7 +949,7 @@ identify outer state 1 as the **main menu on the title/PUSH START screen**.
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 71 rows currently have `source_status` above
+- Only 82 rows currently have `source_status` above
   `decompiler_output_only`, out of 2,034. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0

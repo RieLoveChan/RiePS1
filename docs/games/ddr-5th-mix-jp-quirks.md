@@ -28,7 +28,7 @@ usage, or similar.
 
 `status: suspected_shared`
 
-**Location**: the 42-entry screen-name string table at `0x8001bb10`
+**Location**: the 42-entry screen-name string table at `0x8001bb24`
 (includes a literal `"TEST_MODE"` entry); the still-unresolved question
 of how mode `0x10`/submode `0x01`'s interactive menu (`FUN_80022b30`) is
 ever actually reached in play (see

@@ -4,3 +4,4 @@
 * [DDR 5th Mix (Japan) symbol map](ddr-5th-mix-jp-symbol-map.md) - First-pass, tool-generated function symbol map with confidence tiers.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.
+* [DDR 5th Mix (Japan) linked music database](ddr-5th-mix-jp-music-database.md) - Reproducible export and field map for the 47 linked music-info records associated with the `mdb.bin` build marker.
