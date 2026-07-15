@@ -4,15 +4,16 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T15:00:00-04:00
+timestamp: 2026-07-15T19:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,034 rows, one per function — 2,026 from the original bulk export plus
-8 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
-never turned into functions; see the `DAT_80105120` review below).
+(2,060 rows, one per function — 2,026 from the original bulk export plus
+34 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
+never turned into functions; see the `DAT_80105120` and outer-state-2
+reviews below).
 
 # Provenance
 
@@ -28,11 +29,11 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,034 (2,026 original + 8 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 82 |
+| Total functions | 2,060 (2,026 original + 34 added 2026-07-15) |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 116 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 912 |
-| Combined function-body coverage | 497,988 of 1,050,624 `t_size` bytes (~47%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
+| `confidence = unverified` (default `FUN_########` names) | 904 |
+| Combined function-body coverage | 501,812 of 1,050,624 `t_size` bytes (~48%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
 suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
@@ -944,13 +945,51 @@ state 2 with different setup flags, while the remaining visible choices each
 have their own destination. This is sufficient static and visual evidence to
 identify outer state 1 as the **main menu on the title/PUSH START screen**.
 
+# Manual review: outer state 2 owns the STYLE/CHARA/MUSIC selector
+
+Reviewed by hand on 2026-07-15 with Ghidra 12.1.2,
+`DumpJumpTable.java`, and `DumpFunctionDetail.java`, following the main
+menu's confirmed `GAME MODE`/`EVENT MODE → DAT_80105124 state 2` mapping.
+The previously unrecognized outer callback triple is `FUN_8004bdec`
+(enter), `FUN_8004b800` (update), and `FUN_8004be30` (exit). It delegates
+to a 15-state child through `FUN_8006fe7c`/`FUN_8006ffd8`/`FUN_80070154`,
+using enter/update/exit arrays at `0x800def08`/`0x800def44`/`0x800def80`.
+
+Child state 0 is a `PLAY START` transition. Child state 1 owns a further
+six-state selector through `FUN_80075580`/`FUN_80075604`/`FUN_800756ac`,
+with arrays at `0x800defe8`/`0x800df000`/`0x800df018`. Its screen-entry
+callbacks provide exact identities by writing the known screen-name index:
+
+- `FUN_800756f0`: substate 0, `DAT_800f2908=9` = `STYLE SEL`.
+- `FUN_800757e0`: substate 1, `DAT_800f2908=10` = `MODE SEL`.
+- `FUN_80075840`: substate 2, `DAT_800f2908=11` = `CHARA SEL`.
+- `FUN_800754b4`: substate 3, `DAT_800f2908=12` = `MUSIC SEL`.
+- `FUN_80075a40`: substate 4, `DAT_800f2908=23` = `LINK START`.
+- `FUN_80075ae0`: terminal substate 5, return-only no-op.
+
+The central router `FUN_80075af8` confirms the graph rather than leaving it
+to screenshot ordering: `STYLE(0) → LINK START(4)`;
+`LINK START(4) → CHARA(2)` when config byte
+`PTR_DAT_800e0b18[0x98] == 1`, otherwise directly to `MUSIC(3)` after
+initializing default player/character fields; `CHARA(2) → MUSIC(3)`; and
+`MUSIC(3) → terminal(5)`. This matches the owner's consecutive runtime
+captures while also exposing the invisible/interstitial router and the
+character-select skip path. `MODE SEL` is present in the shared selector,
+but the reviewed router has no normal transition into substate 1.
+
+`DumpFunctionDetail.java` created 26 indirect callback boundaries during
+this review, bringing the project/map to 2,060 functions. All 26 new rows and
+8 previously exported wrapper/router rows were manually reviewed and are
+recorded in the CSV. The exact hierarchy and callback table is also recorded
+in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
+
 # What this map is not yet
 
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 82 rows currently have `source_status` above
-  `decompiler_output_only`, out of 2,034. Before trusting any other
+- Only 116 rows currently have `source_status` above
+  `decompiler_output_only`, out of 2,060. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
   object per the "Function accepted" gate in
@@ -974,7 +1013,7 @@ identify outer state 1 as the **main menu on the title/PUSH START screen**.
    tools\ghidra\scripts -postScript DumpFunctionDetail.java 0xADDR [0xADDR
    ...]` prints disassembly and decompiled C for each address. Re-running
    `ExportSymbolMap.java` afterwards will **overwrite** any manually-edited
-   rows (including the four above) since it always regenerates from scratch
+   rows (including all manually reviewed rows above) since it always regenerates from scratch
    — there is no merge step yet. Diff before overwriting, or extend the
    script to preserve `confidence >= manual` rows.
 

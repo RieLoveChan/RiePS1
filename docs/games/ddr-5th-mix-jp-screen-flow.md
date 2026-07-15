@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T16:00:00-04:00
+timestamp: 2026-07-15T19:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -175,6 +175,54 @@ copyrighted game output. A `RECORDS` capture showing `NO MUSIC` also confirms
 that this destination can render its empty/no-records state; it does not yet
 identify the record-data structure.
 
+# Outer state 2: confirmed game-session selector hierarchy
+
+**Reviewed 2026-07-15** with Ghidra 12.1.2,
+`DumpJumpTable.java`, and `DumpFunctionDetail.java`. The outer
+`DAT_80105124` tables identify state 2's callback triple exactly:
+
+| Role | Table entry | Function | Result |
+|---|---|---|---|
+| Enter | `0x800d9ad0` | `FUN_8004bdec` | Initializes a 15-state child at `param_1+4` through `FUN_8006fe7c` |
+| Update | `0x800d9b08` | `FUN_8004b800` | Ticks that child through `FUN_8006ffd8`; remains in outer state 2 until child state 14 |
+| Exit | `0x800d9b40` | `FUN_8004be30` | Cleans up the child through `FUN_80070154` |
+
+The child uses three flat 15-entry arrays: enter `0x800def08`, update
+`0x800def44`, and exit `0x800def80`. Its state 0 is a `PLAY START`
+transition (`FUN_80070664` sets screen-name index `0x1a`); its state 1
+(`FUN_80070730`/`FUN_80070788`/`FUN_8006eefc`) owns another, six-state
+selector. That selector's arrays are enter `0x800defe8`, update
+`0x800df000`, and exit `0x800df018`.
+
+The visible screen identities are now direct code evidence: each enter
+callback writes the corresponding index into `DAT_800f2908`, and those
+indices resolve against the already-dumped 42-name table.
+
+| Selector substate | Screen index/name | Enter | Update | Confirmed next state |
+|---:|---|---|---|---|
+| 0 | `9` / `STYLE SEL` | `FUN_800756f0` | `FUN_80075738` | 4 / `LINK START` |
+| 1 | `10` / `MODE SEL` | `FUN_800757e0` | `FUN_80075818` | Remains 1; no normal incoming route found in the reviewed router |
+| 2 | `11` / `CHARA SEL` | `FUN_80075840` | `FUN_80075894` | 3 / `MUSIC SEL` |
+| 3 | `12` / `MUSIC SEL` | `FUN_800754b4` | `FUN_8007596c` | 5 / terminal |
+| 4 | `23` / `LINK START` | `FUN_80075a40` | `FUN_80075a90` | 2 / `CHARA SEL`, or 3 / `MUSIC SEL` |
+| 5 | terminal | `FUN_80075ae0` (no-op) | `FUN_80075ae8` (unreviewed) | — |
+
+`FUN_80075af8` is the central next-substate router. It maps
+`STYLE SEL (0) → LINK START (4)`, `CHARA SEL (2) → MUSIC SEL (3)`, and
+`MUSIC SEL (3) → terminal (5)`. At `LINK START`, config byte
+`PTR_DAT_800e0b18[0x98] == 1` selects `CHARA SEL`; otherwise the routine
+initializes default character/player fields and skips directly to
+`MUSIC SEL`. Thus the screenshot-observed route is statically confirmed as:
+
+`PLAY START → STYLE SEL → LINK START → CHARA SEL → MUSIC SEL`
+
+with the alternate route `LINK START → MUSIC SEL` when character selection
+is disabled/skipped. `MODE SEL` exists in the shared selector but is not on
+this normal transition graph as currently reviewed. Once the selector reaches
+terminal substate 5, the 15-state parent advances to its state 5 for a short
+post-selection transition; outer state 2 itself continues owning later
+session phases rather than ending at music selection.
+
 # Mode-transition primitive
 
 **`FUN_80023210`** (`0x80023210`) is the *only* function, among the 58
@@ -300,10 +348,11 @@ once more of the table's owning code is read.
 show the beginning of the actual `GAME MODE` route in order: `SELECT STYLE`,
 then `SELECT CHARACTER`, then `SELECT MUSIC`. This independently confirms the
 `STYLE SEL → CHARA SEL → MUSIC SEL` visible ordering described above and shows
-that outer state 2 enters this game-setup flow. It does **not** yet identify
-the numeric nested-state values or transition callbacks for those three
-screens. The later `DANCING → RESULT → ...` portion remains the domain-
-knowledge account pending equivalent runtime/static transition evidence.
+that outer state 2 enters this game-setup flow. The subsequent static review
+in "Outer state 2" now identifies their numeric selector substates and exact
+callbacks, including the intervening `LINK START` router. The later
+`DANCING → RESULT → ...` portion remains the domain-knowledge account pending
+equivalent runtime/static transition evidence.
 
 **Update 2026-07-14 — directly confirmed, not just genre-informed
 anymore**: see "A 42-entry screen-name string table" above. The game's
