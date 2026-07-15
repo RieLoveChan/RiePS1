@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T23:30:00-04:00
+timestamp: 2026-07-15T23:55:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -1076,9 +1076,22 @@ The captures give this non-negotiable visible order: `WARNING -> KONAMI ->
 BEMANI -> Dancemania/intercord japan/TOSHIBA EMI promotional presentation ->
 DDR 5thMIX title presentation -> HOW TO PLAY -> DEMONSTRATION -> BEST RANKING
 -> WARNING`. Multiple captures are intermediate changes within a presentation,
-not evidence for additional child states. Exact internal boundaries for the
-logo/promotional frames and HOW TO PLAY remain to be traced below the coarse
-seven-state dispatcher.
+not evidence for additional child states.
+
+`FUN_8004c27c` resolves the state-0 ambiguity. It owns six sequential
+resource IDs and durations: `0x7e/300`, `0x7b/300`, `0x79/300`,
+`0x7d/260`, `0x7a/260`, and `0x7c/20`, followed by a terminal wait. Their
+start counters are 1, 301, 601, 901, 1161, 1421, and 1441; the earliest
+state-2 transition is counter 1506. Correlating that fixed order with the
+captures maps the resources to WARNING, KONAMI, BEMANI, the sponsor card,
+the Dancemania montage, and a short bridge. `DAT_800f2908` remains
+`0x1d/WARNING` throughout, proving that the company cards are not separate
+dispatcher states.
+
+State 2 is a single 481-tick TITLE presentation: fade-in at 1–31, stable
+brightness at 32–448, fade-out at 449–469, then black through the transition
+to state 5. Captures 06 and 07 are visual phases of this one state, without a
+code-level boundary between them.
 
 TITLE requests load group 6. The resulting CD descriptor at `DAT_800ad590`
 is size `0x2e58`, absolute LBA `0x7a80`; that falls inside `READ_DT.BIN` at
@@ -1087,24 +1100,35 @@ relative offset `0x1630000`. The extracted range begins with literal
 `3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`,
 and loads at `0x801e4000`. PLAY DEMO calls its init/update/exit at offsets
 `+0x13c`/`+0x1e8`/`+0x284`; decoded calls include `GsSetFlatLight`,
-`GsSetLightMode`, and `GsSetAmbient`. This proves an executable automated
-3D demo rather than prerecorded video. It shares player context, audio, and
-engine infrastructure with gameplay, but importing/decompiling the overlay
-is still required before claiming literal reuse of chart/judgment/scoring code.
+`GsSetLightMode`, and `GsSetAmbient`. This proves executable 3D rendering
+rather than prerecorded video. State 2 has no HOW TO substate and enters this
+overlay directly; the runtime ordering therefore identifies state 5 as HOW TO
+PLAY by strong inference, pending overlay import or per-frame PC tracing for
+an exact internal boundary.
 
-`DumpFunctionDetail.java` created 84 indirect callback boundaries during
-this and the immediately following gameplay-state review, bringing the
-project/map to 2,118 functions. All 84 new rows and 17 previously exported
-wrapper/router/classifier rows were manually reviewed and are recorded in
-the CSV. The exact hierarchy and callback table is also recorded
-in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
+Literal gameplay reuse is now proven elsewhere: states 3 and 4, both index
+`0x23/CATCH DEMO`, implement the visible gameplay DEMONSTRATION after state
+5. State 3 selects and loads one of ten music records, starts audio, and
+advances after 16 ticks. State 4 configures both players and shares
+`FUN_8007fc8c`, the large per-frame `FUN_8007fdec`, and `FUN_80081e90`
+with the normal DANCING route, then fades before state 6. State 6 alone loads
+and renders BEST RANKING before returning to WARNING. Thus the state-5
+`inst demo` overlay's own chart/judgment/scoring reuse remains unproven, but
+the following CATCH DEMO path demonstrably reuses gameplay internals.
+
+`DumpFunctionDetail.java`, `DumpBytes.java 0x8001bdf4 56`, and targeted
+xref dumps provide the reproducible evidence. Seven existing helpers were
+promoted after this deeper review; the map remains at 2,118 functions, with
+190 manual rows and 509,608 function-body bytes. The exact hierarchy, timers,
+and runtime correlation are recorded in
+`/docs/games/ddr-5th-mix-jp-screen-flow.md`.
 
 # What this map is not yet
 
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 183 rows currently have `source_status` above
+- Only 190 rows currently have `source_status` above
   `decompiler_output_only`, out of 2,118. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0

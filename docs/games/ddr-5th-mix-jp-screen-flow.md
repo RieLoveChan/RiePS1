@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T23:30:00-04:00
+timestamp: 2026-07-15T23:55:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -493,7 +493,12 @@ finds only states 9 (`GAME_OVER`) and 10 (`ENDING`) transition naturally to
 requires it already set. Therefore no valid player-session path reaches
 outer 0/RANKING; that edge is defensive or historical, not a session route.
 
-# Confirmed attract child and PLAY DEMO overlay
+# Confirmed attract presentation internals
+
+Reviewed with Ghidra 12.1.2 against boot-executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`, using
+`DumpFunctionDetail.java`, `DumpBytes.java 0x8001bdf4 56`, and targeted
+data-xref dumps.
 
 The seven-state child owned by outer state 0 now has exact screen identities.
 Written from the runtime-observed loop boundary, its cyclic transition graph
@@ -518,38 +523,89 @@ show RANKING immediately before the return to WARNING. State 1 is a second
 screen index `0x25` is `RANKING`; the true `PLAY DEMO` is index `0x24` and
 uses callbacks `FUN_80054618`/`FUN_800546d8`/`FUN_800547cc`.
 
-The child states are coarser than the captured presentation. State 0 begins
-at `WARNING`, and the logo/promotional changes occur before the child reaches
-state 2/`TITLE`; HOW TO PLAY occurs after the title presentation and before
-the visible gameplay demonstration. The exact per-frame boundaries for
-`KONAMI`, `BEMANI`, `TOSHIBA`, `TMOVIE`, the title changes, and HOW TO PLAY
-still need tracing inside the callbacks.
+## State 0: WARNING through the company/promotional block
 
-`TITLE` triggers load group 6, whose descriptor reads `0x2e58` bytes from
-absolute CD LBA `0x7a80` into `0x801e4000`. This is `READ_DT.BIN` relative
-offset `0x1630000`; the blob begins with `inst demo` and hashes to
-`3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`.
-PLAY DEMO invokes overlay entries `0x801e413c`, `0x801e41e8`, and
-`0x801e4284`. Direct decoding finds executable MIPS and 3D-lighting calls,
-proving an automated rendered demo rather than prerecorded video. It reuses
-player structures, audio/timeline state, and general engine infrastructure;
-whether its internal overlay literally reuses DANCING's chart, judgment, or
-scoring implementation remains unproven until that overlay is imported and
-decompiled.
+`FUN_80054054` writes `DAT_800f2908=0x1d` (`WARNING`) and loads resource
+group 3. Its update is only a wrapper around `FUN_8004c27c`, which owns the
+whole six-resource presentation:
 
-This review also corrects the earlier CSV label of state 5 as `INTRO`:
-index 1 is `PREPARE`; `INTRO` is index 2 and belongs to child state 4.
+| Start counter | Resource ID | Duration | Runtime-correlated content |
+|---:|---:|---:|---|
+| 1 | `0x7e` | 300 | WARNING |
+| 301 | `0x7b` | 300 | KONAMI |
+| 601 | `0x79` | 300 | BEMANI |
+| 901 | `0x7d` | 260 | Dancemania/intercord/TOSHIBA EMI sponsor card |
+| 1161 | `0x7a` | 260 | Dancemania series montage |
+| 1421 | `0x7c` | 20 | promotion-to-title bridge, not separately captured |
+| 1441 | none | until elapsed 65 | terminal wait before state 2 |
 
-**Update 2026-07-14 — directly confirmed, not just genre-informed
-anymore**: see "A 42-entry screen-name string table" above. The game's
+The earliest transition to state 2 is counter 1506. The first six resource
+associations combine this exact static chronology with the owner's consecutive
+captures; the code contains IDs, not literal filenames. Importantly,
+`DAT_800f2908` remains `WARNING` throughout. KONAMI, BEMANI, TOSHIBA, and
+the montage are timed segments inside state 0, not dispatcher states.
+
+## State 2: TITLE
+
+`FUN_800541a8` writes index `0x22` (`TITLE`), loads group 6, and queues
+`title_25`, `hbota_25`, and resource `0x70`. Its 481-tick update has no
+substate: ticks 1–31 fade in, 32–448 hold brightness `0x80`, 449–469 fade
+out, and 470–481 are black before returning state 5. Captures 06 and 07 are
+therefore one TITLE state. Their resemblance to fade-in and stable-title
+phases is consistent but not an exact tick assignment without a dynamic log.
+
+Group 6 also loads the `0x2e58`-byte `inst demo` overlay from absolute CD
+LBA `0x7a80` into `0x801e4000` (`READ_DT.BIN+0x1630000`, SHA-256
+`3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`).
+On tick 481 the dispatcher exits TITLE and enters state 5 in the same update.
+
+## States 5, 3, and 4: instruction demo versus gameplay demonstration
+
+State 5 writes `0x24` (`PLAY DEMO`), selects one of 12 scripts, and invokes
+`inst demo` at `0x801e413c`/`0x801e41e8`/`0x801e4284`. The overlay is
+executable MIPS with 3D-lighting calls, not prerecorded video. State 2 never
+writes `HOW TO`, has no local substate, and goes directly to state 5; combined
+with the captured TITLE → HOW TO PLAY → DEMONSTRATION order, this makes HOW TO
+PLAY a strong inference for the initial visible phase of `inst demo`. Its
+exact overlay substate/timer remains unproven until overlay import or a
+per-frame PC/counter trace.
+
+After state 5, states 3 and 4 both write/retain index `0x23` (`CATCH DEMO`)
+and implement the actual gameplay demonstration:
+
+- State 3 selects sequentially from ten music IDs, loads the chosen record and
+  audio, applies a short visual transition, and advances after 16 ticks.
+- State 4 configures both player records and literally shares
+  `FUN_8007fc8c` initialization, `FUN_8007fdec` per-frame timeline/gameplay
+  core, and `FUN_80081e90` cleanup with the normal DANCING path. Its terminal
+  phase fades for 30 ticks before state 6.
+
+The ten demo IDs resolve through the linked music database to `17SAI`,
+`DANCING ALL ALONE`, `TEST MY BEST`, `RIGHT NOW`, `ROMANCE NO KAMISAMA`,
+`NEVER ENDING STORY`, `MY GENERATION(Fat Beat Mix)`, `DIVE`,
+`STILL IN MY HEART`, and `NO LIMIT(RM Remix)`. State 3 → 4 does not change
+`DAT_800f2908`; there is no separate dispatcher state for the visible
+DEMONSTRATION label.
+
+This proves literal gameplay-engine reuse for the CATCH DEMO states, while
+the state-5 overlay's own chart/judgment/scoring reuse remains unproven.
+
+## State 6: BEST RANKING and loop closure
+
+`FUN_800547f4` writes `0x25` (`RANKING`) and loads ranking group 12.
+`FUN_8005484c` renders through counter `0x438`, fades through `0x455`,
+and returns state 0 at `0x456`. State 0 then starts again at WARNING, matching
+capture 11.
+
+**Historical update 2026-07-14, superseded by the callback mapping above**:
+see "A 42-entry screen-name string table" above. The game's
 own debug strings include `WARNING` (Caution), `KONAMI`/`BEMANI`/
 `TOSHIBA` (Company — three separate logo screens), `HOW TO`, `PLAY DEMO`
 (Gameplay Demonstration), and `RANKING`, matching this account closely.
-This is string-reference evidence, the schema's own bar for
-`manual`/`verified` confidence — but it confirms the *names exist in the
-game*, not yet their exact ordering/transitions or that they're reached
-by `PTR_DAT_800ac8e8`'s mode dispatcher at all (they index a different
-state variable, `DAT_80105120` — see above for what's still open).
+This string evidence established that the names exist in the game, but at
+that time did not establish their exact order or owner. The later seven-state
+callback and runtime review above now resolves that gap; the earlier proposed
+direct relationship to `DAT_80105120` was separately withdrawn.
 
 **One concrete pairing already has structural support**: `FUN_8002216c`
 (reviewed in the symbol map) unconditionally zeroes
@@ -563,9 +619,9 @@ consistent with mode `0x00` running first, not proof of what mode `0x00`
 targets (`FUN_800235f8`, `FUN_80023690`, `FUN_80022f04`, all still
 unreviewed) for card-I/O calls or related evidence.
 
-Pairing the remaining five screens (**Caution**, **Company**, **How To
-Play**, **Gameplay Demonstration**, **Ranking**) to specific mode/submode
-values is still open. An earlier version of this section proposed
+The former task of pairing these screens directly to top-level mode/submode
+values is superseded: they are presentations inside the nested attract child,
+not separate top-level modes. An earlier version of this section proposed
 **mode `0x10` = Company**, reasoning from the transition graph alone (it's
 reached by 3 independent transitions plus the unmatched-mode default).
 **Reading `FUN_800232cc`/`FUN_80022b30` (mode `0x10`'s own two submode
