@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T23:00:00-04:00
+timestamp: 2026-07-15T23:30:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -308,24 +308,60 @@ reads the handler's own code and confirms or refutes the guess. Don't
 worry about being wrong — a rejected guess with its reasoning recorded is
 still useful; it rules something out.
 
-# Known screen sequence (domain knowledge)
+# Observed boot and attract sequence
 
-The repository owner is a former StepMania Team developer and, from that
-background plus general BEMANI-genre convention, describes the expected
-boot-to-attract sequence for a game like this (confidence: `suspected` for
-all of it — genre/franchise knowledge, not yet matched to specific mode
-values below):
+The repository owner is a former StepMania Team developer. The first two
+items below remain domain knowledge; the game-owned visible sequence is now
+runtime evidence rather than a genre-based hypothesis:
 
 1. **PS BIOS logo** — not game code; happens before `main` is ever reached.
 2. **Memory Card Auto Load** — checks whether a memory card is inserted; if
    it holds this game's system data, loads it automatically; if a card is
    inserted but has no system data, prompts the user to create it.
-3. **Caution** — a safety warning screen (rough movement on the Dance Pad
-   can cause injury), standard for DDR/BEMANI cabinets.
-4. **Attract Loop** — standard across BEMANI titles: **Company** (splash/
-   logo images) → **How To Play** → **Gameplay Demonstration** (always the
-   *same* song on the console's first boot; varies on later loop
-   iterations) → **Ranking** → back to **Company**.
+3. **Attract Loop** — begins at **WARNING**, not at Company or Ranking.
+   The exact visible order is recorded below and returns from BEST RANKING
+   to WARNING.
+
+**Runtime confirmation 2026-07-15 — authoritative visible order**: the
+owner supplied 11 consecutively named captures, `AttractLoop_01.png` through
+`AttractLoop_10.png` plus `AttractLoop_11_Repeat.png`. They are successive
+visible changes, not a claim that every capture is a distinct internal
+screen. The files remain untracked because they are copyrighted game output.
+
+| Capture | Visible content |
+|---|---|
+| `01` | `WARNING` |
+| `02` | KONAMI logo |
+| `03` | BEMANI card |
+| `04` | Dancemania / intercord japan / TOSHIBA EMI sponsor card |
+| `05` | Dancemania series montage; continuation of the promotional block |
+| `06` | DDR 5thMIX logo transition |
+| `07` | DDR 5thMIX title presentation |
+| `08` | `HOW TO PLAY` |
+| `09` | `DEMONSTRATION` automated gameplay |
+| `10` | `BEST RANKING` |
+| `11 Repeat` | `WARNING`, proving the loop boundary |
+
+Therefore the observed cycle is:
+
+```text
+WARNING
+→ KONAMI
+→ BEMANI
+→ Dancemania / intercord japan / TOSHIBA EMI promotional presentation
+→ DDR 5thMIX title presentation
+→ HOW TO PLAY
+→ DEMONSTRATION
+→ BEST RANKING
+→ WARNING
+```
+
+Captures `04`/`05` and `06`/`07` deliberately preserve intermediate visible
+changes inside two presentations. The string table contains `TOSHIBA`,
+`TMOVIE`, `TITLE`, `CATCH DEMO`, `PLAY DEMO`, and `RANKING`, but resemblance
+alone is insufficient to assign every captured frame boundary to one of
+those internal names. In particular, this evidence fixes temporal order
+without pretending that 11 captured changes equal 11 dispatcher states.
 
 **2026-07-15 — the actual gameplay session flow** (distinct from the
 attract loop above; starts once a player presses Start), per the same
@@ -447,8 +483,10 @@ clears the latch through `FUN_800535b0`; full runtime-block initialization
 also clears it via `bzero`.
 
 This gives both conditional destinations exact static identities. If the
-latch is still clear when completion is reported, the destination is attract
-at `RANKING`; the latched/forced path performs post-session transitions and
+latch is still clear when completion is reported, the destination is outer
+state 0; its constructor selects internal attract state 6/`RANKING` on that
+specific entry path. This is not the observed loop boundary, which is
+`WARNING`. The latched/forced path performs post-session transitions and
 returns to the main menu. An exhaustive audit of the 15 update callbacks
 finds only states 9 (`GAME_OVER`) and 10 (`ENDING`) transition naturally to
 14, and both exits set the latch before outer dispatch. The force path also
@@ -457,21 +495,35 @@ outer 0/RANKING; that edge is defensive or historical, not a session route.
 
 # Confirmed attract child and PLAY DEMO overlay
 
-The seven-state child owned by outer state 0 now has exact screen identities:
+The seven-state child owned by outer state 0 now has exact screen identities.
+Written from the runtime-observed loop boundary, its cyclic transition graph
+is:
 
 ```text
-RANKING (state 6, initial)
-→ WARNING (0)
+WARNING (state 0)
 → TITLE (2)
 → PLAY DEMO (5)
 → CATCH DEMO phase 1 (3)
 → CATCH DEMO phase 2 (4)
 → RANKING (6)
+→ WARNING (0)
 ```
 
-State 1 is a second `RANKING` variant that returns to `WARNING`. Crucially,
+`FUN_80053ed8` stores state 6 as its default constructor choice, or state 0
+when inherited `DAT_800f2908` is `0x1c`/`0x1d`. That implementation detail
+does **not** make RANKING the first observed screen of the attract loop: the
+consecutive runtime captures above establish WARNING as the visible start and
+show RANKING immediately before the return to WARNING. State 1 is a second
+`RANKING` variant that also returns to `WARNING`. Crucially,
 screen index `0x25` is `RANKING`; the true `PLAY DEMO` is index `0x24` and
 uses callbacks `FUN_80054618`/`FUN_800546d8`/`FUN_800547cc`.
+
+The child states are coarser than the captured presentation. State 0 begins
+at `WARNING`, and the logo/promotional changes occur before the child reaches
+state 2/`TITLE`; HOW TO PLAY occurs after the title presentation and before
+the visible gameplay demonstration. The exact per-frame boundaries for
+`KONAMI`, `BEMANI`, `TOSHIBA`, `TMOVIE`, the title changes, and HOW TO PLAY
+still need tracing inside the callbacks.
 
 `TITLE` triggers load group 6, whose descriptor reads `0x2e58` bytes from
 absolute CD LBA `0x7a80` into `0x801e4000`. This is `READ_DT.BIN` relative

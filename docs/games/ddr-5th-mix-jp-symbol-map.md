@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T23:00:00-04:00
+timestamp: 2026-07-15T23:30:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -1031,10 +1031,12 @@ nonzero forces child state 14 and selects outer state 10. This behavior is
 proven without proposing a source-level field name.
 
 Both conditional destinations share outer-state-2 cleanup through
-`FUN_8004be30 -> FUN_80070154`. With the latch clear, outer state 0 enters
-its normal subordinate state 6; `FUN_800547f4` writes screen index `0x25`,
-`RANKING` — correcting the earlier off-by-one `PLAY DEMO` label. With the
-latch set, the new outer-state callbacks establish:
+`FUN_8004be30 -> FUN_80070154`. With the latch clear, outer state 0's
+constructor selects subordinate state 6; `FUN_800547f4` writes screen index
+`0x25`, `RANKING` — correcting the earlier off-by-one `PLAY DEMO` label.
+This describes that conditional entry path, not the runtime-observed start of
+the cyclic presentation. With the latch set, the new outer-state callbacks
+establish:
 
 - Outer 10: `FUN_8004c0f0` / `FUN_8004c11c` / `FUN_8004c154`. It runs
   `FUN_80052534`'s radial 4x3-cell transition for 42 updates, then returns 11.
@@ -1059,11 +1061,24 @@ The forced-terminal path requires the latch to be nonzero already. Therefore
 no well-formed player-session path reaches outer 0/RANKING; that edge is a
 defensive/historical conditional, not part of the playable session graph.
 
-Outer state 0's own seven-state attract child is now mapped directly:
-`RANKING(6) -> WARNING(0) -> TITLE(2) -> PLAY DEMO(5) -> CATCH DEMO(3)
--> CATCH DEMO(4) -> RANKING(6)`. State 1 is a second RANKING path returning
-to WARNING. The real `PLAY DEMO` index is `0x24`, not `0x25`, and its triple
-is `FUN_80054618`/`FUN_800546d8`/`FUN_800547cc`.
+Outer state 0's own seven-state attract child is now mapped directly. Rotated
+to the runtime-observed loop boundary, it is `WARNING(0) -> TITLE(2) -> PLAY
+DEMO(5) -> CATCH DEMO(3) -> CATCH DEMO(4) -> RANKING(6) -> WARNING(0)`.
+State 1 is a second RANKING path returning to WARNING. `FUN_80053ed8` does
+choose state 6 by default (and state 0 when inherited `DAT_800f2908` is
+`0x1c`/`0x1d`), but 11 consecutive runtime captures establish WARNING as the
+first visible point and RANKING as the last presentation before WARNING
+repeats. Thus the constructor choice must not be reported as the observed
+start of the loop. The real `PLAY DEMO` index is `0x24`, not `0x25`, and its
+triple is `FUN_80054618`/`FUN_800546d8`/`FUN_800547cc`.
+
+The captures give this non-negotiable visible order: `WARNING -> KONAMI ->
+BEMANI -> Dancemania/intercord japan/TOSHIBA EMI promotional presentation ->
+DDR 5thMIX title presentation -> HOW TO PLAY -> DEMONSTRATION -> BEST RANKING
+-> WARNING`. Multiple captures are intermediate changes within a presentation,
+not evidence for additional child states. Exact internal boundaries for the
+logo/promotional frames and HOW TO PLAY remain to be traced below the coarse
+seven-state dispatcher.
 
 TITLE requests load group 6. The resulting CD descriptor at `DAT_800ad590`
 is size `0x2e58`, absolute LBA `0x7a80`; that falls inside `READ_DT.BIN` at
