@@ -4,14 +4,14 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T22:00:00-04:00
+timestamp: 2026-07-15T23:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,092 rows, one per function — 2,026 from the original bulk export plus
-66 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
+(2,118 rows, one per function — 2,026 from the original bulk export plus
+92 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
 never turned into functions; see the `DAT_80105120` and outer-state-2
 reviews below).
 
@@ -29,11 +29,11 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,092 (2,026 original + 66 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 157 |
+| Total functions | 2,118 (2,026 original + 92 added 2026-07-15) |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 183 |
 | `confidence = library_signature` | 1,040 |
 | `confidence = unverified` (default `FUN_########` names) | 895 |
-| Combined function-body coverage | 506,364 of 1,050,624 `t_size` bytes (~48%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
+| Combined function-body coverage | 509,608 of 1,050,624 `t_size` bytes (~49%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
 suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
@@ -1010,9 +1010,9 @@ The post-stage graph is also statically closed through the child terminal:
   It branches to state 9, 10, or 13 according to session flags and
   `FUN_80093e44`.
 - State 9 is `GAME_OVER` and returns terminal state 14 after its fade.
-  State 13 is `NAME ENTRY`, then returns state 10. State 10 has a null enter
-  callback, retains the inherited `LINK END` screen, waits for completion,
-  and returns terminal 14.
+  State 13 is `NAME ENTRY`, then returns state 10. The now-exact state-10
+  entry `FUN_80070d9c` writes index `0x15`, `ENDING`; its update waits for
+  the ending subsystem, then returns terminal 14.
 
 Returning state 1 does not always mean `MUSIC SEL`: `FUN_80075580` starts
 selector substate 3 (`MUSIC SEL`) exactly when
@@ -1030,10 +1030,10 @@ outer state 0 if the byte is still zero when the child reports completion;
 nonzero forces child state 14 and selects outer state 10. This behavior is
 proven without proposing a source-level field name.
 
-Both branches share outer-state-2 cleanup through
+Both conditional destinations share outer-state-2 cleanup through
 `FUN_8004be30 -> FUN_80070154`. With the latch clear, outer state 0 enters
 its normal subordinate state 6; `FUN_800547f4` writes screen index `0x25`,
-`PLAY DEMO`, so the session returns directly to the attract loop. With the
+`RANKING` — correcting the earlier off-by-one `PLAY DEMO` label. With the
 latch set, the new outer-state callbacks establish:
 
 - Outer 10: `FUN_8004c0f0` / `FUN_8004c11c` / `FUN_8004c154`. It runs
@@ -1043,7 +1043,7 @@ latch set, the new outer-state callbacks establish:
   outer state 1, the confirmed title/PUSH START main menu.
 
 The latch is set unconditionally by the exits from child `GAME_OVER` state 9
-and inherited-screen wait state 10. `FUN_8006e43c` can also set it during
+and `ENDING` state 10. `FUN_8006e43c` can also set it during
 PLAY START, selector, or RESULT after Cross is held for more than `0x3c`
 frames (or through a separate immediate RESULT/session-flag condition).
 Main-menu entry `FUN_8004bd2c -> FUN_800535b0` clears it again.
@@ -1052,9 +1052,34 @@ dispatch and take the outer-10/menu branch; outer 0 remains the exact
 clear-latch destination, not a claim that every ordinary game completion
 uses it.
 
-`DumpFunctionDetail.java` created 58 indirect callback boundaries during
+An exhaustive review of all 15 update callbacks makes that stronger: the only
+natural transitions into terminal 14 are states 9 and 10, and the generic
+tick invokes their latch-setting exits before `FUN_8004b800` reads the byte.
+The forced-terminal path requires the latch to be nonzero already. Therefore
+no well-formed player-session path reaches outer 0/RANKING; that edge is a
+defensive/historical conditional, not part of the playable session graph.
+
+Outer state 0's own seven-state attract child is now mapped directly:
+`RANKING(6) -> WARNING(0) -> TITLE(2) -> PLAY DEMO(5) -> CATCH DEMO(3)
+-> CATCH DEMO(4) -> RANKING(6)`. State 1 is a second RANKING path returning
+to WARNING. The real `PLAY DEMO` index is `0x24`, not `0x25`, and its triple
+is `FUN_80054618`/`FUN_800546d8`/`FUN_800547cc`.
+
+TITLE requests load group 6. The resulting CD descriptor at `DAT_800ad590`
+is size `0x2e58`, absolute LBA `0x7a80`; that falls inside `READ_DT.BIN` at
+relative offset `0x1630000`. The extracted range begins with literal
+`"inst demo"`, has SHA-256
+`3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`,
+and loads at `0x801e4000`. PLAY DEMO calls its init/update/exit at offsets
+`+0x13c`/`+0x1e8`/`+0x284`; decoded calls include `GsSetFlatLight`,
+`GsSetLightMode`, and `GsSetAmbient`. This proves an executable automated
+3D demo rather than prerecorded video. It shares player context, audio, and
+engine infrastructure with gameplay, but importing/decompiling the overlay
+is still required before claiming literal reuse of chart/judgment/scoring code.
+
+`DumpFunctionDetail.java` created 84 indirect callback boundaries during
 this and the immediately following gameplay-state review, bringing the
-project/map to 2,092 functions. All 58 new rows and 17 previously exported
+project/map to 2,118 functions. All 84 new rows and 17 previously exported
 wrapper/router/classifier rows were manually reviewed and are recorded in
 the CSV. The exact hierarchy and callback table is also recorded
 in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
@@ -1064,8 +1089,8 @@ in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 157 rows currently have `source_status` above
-  `decompiler_output_only`, out of 2,092. Before trusting any other
+- Only 183 rows currently have `source_status` above
+  `decompiler_output_only`, out of 2,118. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
   object per the "Function accepted" gate in

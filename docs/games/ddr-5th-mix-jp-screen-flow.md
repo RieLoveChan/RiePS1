@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T22:00:00-04:00
+timestamp: 2026-07-15T23:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -396,8 +396,8 @@ STAGE END (7)
    ├─ configured continuation → selector owner (1)
    └─ finish → LINK END (12)
       ├─ session flags set → GAME_OVER (9) → terminal (14)
-      ├─ name-entry condition → NAME ENTRY (13) → wait state (10) → terminal (14)
-      └─ otherwise → wait state (10) → terminal (14)
+      ├─ name-entry condition → NAME ENTRY (13) → ENDING (10) → terminal (14)
+      └─ otherwise → ENDING (10) → terminal (14)
 ```
 
 Direct screen-index evidence and callback triples:
@@ -406,7 +406,7 @@ Direct screen-index evidence and callback triples:
 |---|---|---|---|
 | 8 | `RESULT` (index 6) | `FUN_80070bf8` / `FUN_80070c70` / `FUN_80070d04` | 1 or 11 |
 | 9 | `GAME_OVER` (index 25) | `FUN_80070d3c` / `FUN_8006fba4` / `FUN_80070d6c` | 14 |
-| 10 | inherited `LINK END` | null / `FUN_80070e2c` / `FUN_80070ebc` | 10 or 14 |
+| 10 | `ENDING` (index 21) | `FUN_80070d9c` / `FUN_80070e2c` / `FUN_80070ebc` | 10 or 14 |
 | 11 | `PRE_END` (index 20) | `FUN_80070f04` / `FUN_80070f54` / `FUN_80071004` | 1 or 12 |
 | 12 | `LINK END` (index 24) | `FUN_8007102c` / `FUN_80071084` / `FUN_800710f8` | 9, 10, or 13 |
 | 13 | `NAME ENTRY` (index 19) | `FUN_80071118` / `FUN_80071168` / `FUN_80071214` | 10 |
@@ -424,7 +424,7 @@ to `PTR_DAT_800ac8e8[0xff]`. That handoff is now fully resolved:
 ```text
 child terminal 14
 └─ common outer-state-2 cleanup: FUN_8004be30 → FUN_80070154
-   ├─ latch +0xff == 0 → outer 0 → PLAY DEMO → attract loop
+   ├─ latch +0xff == 0 → outer 0 → RANKING → attract loop
    └─ latch +0xff != 0 → outer 10
                          → 42-tick radial transition
                          → outer 11
@@ -448,11 +448,42 @@ also clears it via `bzero`.
 
 This gives both conditional destinations exact static identities. If the
 latch is still clear when completion is reported, the destination is attract
-at `PLAY DEMO`; the latched/forced path performs post-session transitions and
-returns to the main menu. Because the mapped `GAME_OVER` and wait-state exits
-set the latch before outer dispatch, those end routes take the menu branch;
-the clear-latch edge is retained as a conditional path, not labeled as every
-ordinary game completion.
+at `RANKING`; the latched/forced path performs post-session transitions and
+returns to the main menu. An exhaustive audit of the 15 update callbacks
+finds only states 9 (`GAME_OVER`) and 10 (`ENDING`) transition naturally to
+14, and both exits set the latch before outer dispatch. The force path also
+requires it already set. Therefore no valid player-session path reaches
+outer 0/RANKING; that edge is defensive or historical, not a session route.
+
+# Confirmed attract child and PLAY DEMO overlay
+
+The seven-state child owned by outer state 0 now has exact screen identities:
+
+```text
+RANKING (state 6, initial)
+→ WARNING (0)
+→ TITLE (2)
+→ PLAY DEMO (5)
+→ CATCH DEMO phase 1 (3)
+→ CATCH DEMO phase 2 (4)
+→ RANKING (6)
+```
+
+State 1 is a second `RANKING` variant that returns to `WARNING`. Crucially,
+screen index `0x25` is `RANKING`; the true `PLAY DEMO` is index `0x24` and
+uses callbacks `FUN_80054618`/`FUN_800546d8`/`FUN_800547cc`.
+
+`TITLE` triggers load group 6, whose descriptor reads `0x2e58` bytes from
+absolute CD LBA `0x7a80` into `0x801e4000`. This is `READ_DT.BIN` relative
+offset `0x1630000`; the blob begins with `inst demo` and hashes to
+`3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`.
+PLAY DEMO invokes overlay entries `0x801e413c`, `0x801e41e8`, and
+`0x801e4284`. Direct decoding finds executable MIPS and 3D-lighting calls,
+proving an automated rendered demo rather than prerecorded video. It reuses
+player structures, audio/timeline state, and general engine infrastructure;
+whether its internal overlay literally reuses DANCING's chart, judgment, or
+scoring implementation remains unproven until that overlay is imported and
+decompiled.
 
 This review also corrects the earlier CSV label of state 5 as `INTRO`:
 index 1 is `PREPARE`; `INTRO` is index 2 and belongs to child state 4.
