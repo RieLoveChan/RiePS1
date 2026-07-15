@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T20:00:00-04:00
+timestamp: 2026-07-15T21:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -350,10 +350,9 @@ then `SELECT CHARACTER`, then `SELECT MUSIC`. This independently confirms the
 `STYLE SEL → CHARA SEL → MUSIC SEL` visible ordering described above and shows
 that outer state 2 enters this game-setup flow. The subsequent static review
 in "Outer state 2" now identifies their numeric selector substates and exact
-callbacks, including the intervening `LINK START` router. The later
-`RESULT → ...` branching remains the domain-knowledge account
-pending equivalent runtime/static transition evidence; the static review
-below now confirms the intervening `DANCING` and `STAGE END` states.
+callbacks, including the intervening `LINK START` router. The static reviews
+below now confirm the later `DANCING`, `STAGE END`, `RESULT`, selector-return,
+`PRE_END`, `LINK END`, `NAME ENTRY`, and `GAME_OVER` branches as well.
 
 # Static route from MUSIC SEL into gameplay
 
@@ -376,12 +375,52 @@ screen-name table, not from screenshot resemblance:
 
 `FUN_8006f380` can leave `INTRO` for state 6 when `FUN_8007fdec()` is
 not `-1`; its timeout and ordinary completion paths return state 7 instead.
-That proves both edges statically but does not yet justify a semantic name
-for the condition. During `DANCING`, `FUN_8006f49c` normally remains in
-state 6 and returns state 7 on reviewed completion branches, establishing
-the gameplay-to-stage-end edge. `STAGE END` can subsequently return states
-1, 8, or 11 under different session conditions; those downstream states
-remain the next unresolved part of the graph.
+During `DANCING`, `FUN_8006f49c` normally remains in state 6 and returns
+state 7 on reviewed completion branches. The reviewed classifier's operational
+returns are `-1` prestart/not ready, `0` timeline active, `1`/`2` normal
+terminal conditions, and `-2` a special terminal condition; interpreting
+`-2` specifically as failure remains an inference.
+
+# Result and end-of-session branches
+
+Parallel static review on 2026-07-15 resolves every destination reached from
+`STAGE END` and closes the child graph at terminal state 14:
+
+```text
+STAGE END (7)
+├─ next stage, direct selector return → selector owner (1)
+├─ normal result route → RESULT (8)
+│  ├─ next stage → selector owner (1)
+│  └─ no next stage → PRE_END (11)
+└─ alternate end route → PRE_END (11)
+   ├─ configured continuation → selector owner (1)
+   └─ finish → LINK END (12)
+      ├─ session flags set → GAME_OVER (9) → terminal (14)
+      ├─ name-entry condition → NAME ENTRY (13) → wait state (10) → terminal (14)
+      └─ otherwise → wait state (10) → terminal (14)
+```
+
+Direct screen-index evidence and callback triples:
+
+| State | Screen | Enter / update / exit | Destinations |
+|---|---|---|---|
+| 8 | `RESULT` (index 6) | `FUN_80070bf8` / `FUN_80070c70` / `FUN_80070d04` | 1 or 11 |
+| 9 | `GAME_OVER` (index 25) | `FUN_80070d3c` / `FUN_8006fba4` / `FUN_80070d6c` | 14 |
+| 10 | inherited `LINK END` | null / `FUN_80070e2c` / `FUN_80070ebc` | 10 or 14 |
+| 11 | `PRE_END` (index 20) | `FUN_80070f04` / `FUN_80070f54` / `FUN_80071004` | 1 or 12 |
+| 12 | `LINK END` (index 24) | `FUN_8007102c` / `FUN_80071084` / `FUN_800710f8` | 9, 10, or 13 |
+| 13 | `NAME ENTRY` (index 19) | `FUN_80071118` / `FUN_80071168` / `FUN_80071214` | 10 |
+
+State 1 owns the selector rather than naming one fixed screen. Its initializer
+`FUN_80075580` enters substate 3 (`MUSIC SEL`) when
+`(DAT_800f2914 > 0 || DAT_800f291f > 1) && DAT_800f291c == 1`; otherwise
+it restarts at substate 0 (`STYLE SEL`). This supplies the exact condition
+behind the genre-level "Result back to Select Music" branch.
+
+Terminal child state 14 makes `FUN_8006ffd8` report completion. The enclosing
+outer-state update `FUN_8004b800` then returns outer state 0 or 10 according
+to `PTR_DAT_800ac8e8[0xff]`, so the game-session child is now traced through
+its handoff back to the outer machine.
 
 This review also corrects the earlier CSV label of state 5 as `INTRO`:
 index 1 is `PREPARE`; `INTRO` is index 2 and belongs to child state 4.

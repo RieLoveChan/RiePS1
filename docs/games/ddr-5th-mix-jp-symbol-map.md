@@ -4,14 +4,14 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T20:00:00-04:00
+timestamp: 2026-07-15T21:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,069 rows, one per function — 2,026 from the original bulk export plus
-43 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
+(2,086 rows, one per function — 2,026 from the original bulk export plus
+60 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
 never turned into functions; see the `DAT_80105120` and outer-state-2
 reviews below).
 
@@ -29,11 +29,11 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,069 (2,026 original + 43 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–15) | 125 |
+| Total functions | 2,086 (2,026 original + 60 added 2026-07-15) |
+| `confidence = manual` (hand-reviewed 2026-07-13–15) | 143 |
 | `confidence = library_signature` | 1,040 |
-| `confidence = unverified` (default `FUN_########` names) | 904 |
-| Combined function-body coverage | 504,344 of 1,050,624 `t_size` bytes (~48%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
+| `confidence = unverified` (default `FUN_########` names) | 903 |
+| Combined function-body coverage | 506,160 of 1,050,624 `t_size` bytes (~48%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
 suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
@@ -993,14 +993,39 @@ result data. State 7 entry `FUN_8006f784` writes index 5, `STAGE END`; its
 update/exit callbacks are `FUN_8006f888`/`FUN_8006fa30`, including timed
 transition work and result/stat accumulation. Thus the ordinary reviewed
 path is now `MUSIC SEL -> PREPARE -> INTRO -> DANCING -> STAGE END`, with
-the precise condition selecting INTRO's state-6 versus state-7 branch still
-left semantically unnamed because `FUN_8007fdec` itself has not been reviewed.
+the precise human meaning of every timeline condition kept conservative.
+The now-reviewed `FUN_8007fdec` classifies the per-player timeline as
+`-1` prestart/not ready, `0` active, `1`/`2` normal terminal conditions,
+and `-2` a special terminal condition. Calling `-2` specifically a gameplay
+failure would still be inference, so the map does not assert that name.
 
-`DumpFunctionDetail.java` created 35 indirect callback boundaries during
+The post-stage graph is also statically closed through the child terminal:
+
+- State 8 is `RESULT` (`FUN_80070bf8`/`FUN_80070c70`/`FUN_80070d04`).
+  Completion returns state 1 when another selected stage exists, otherwise
+  state 11.
+- State 11 is `PRE_END` (`FUN_80070f04`/`FUN_80070f54`/`FUN_80071004`).
+  It either returns selector-owner state 1 or advances to state 12.
+- State 12 is `LINK END` (`FUN_8007102c`/`FUN_80071084`/`FUN_800710f8`).
+  It branches to state 9, 10, or 13 according to session flags and
+  `FUN_80093e44`.
+- State 9 is `GAME_OVER` and returns terminal state 14 after its fade.
+  State 13 is `NAME ENTRY`, then returns state 10. State 10 has a null enter
+  callback, retains the inherited `LINK END` screen, waits for completion,
+  and returns terminal 14.
+
+Returning state 1 does not always mean `MUSIC SEL`: `FUN_80075580` starts
+selector substate 3 (`MUSIC SEL`) exactly when
+`(DAT_800f2914 > 0 || DAT_800f291f > 1) && DAT_800f291c == 1`; otherwise
+it starts substate 0 (`STYLE SEL`). When child state 14 is reached,
+`FUN_8004b800` closes outer state 2 by returning outer state 0 or 10 according
+to `PTR_DAT_800ac8e8[0xff]`.
+
+`DumpFunctionDetail.java` created 52 indirect callback boundaries during
 this and the immediately following gameplay-state review, bringing the
-project/map to 2,069 functions. All 35 new rows and
-8 previously exported wrapper/router rows were manually reviewed and are
-recorded in the CSV. The exact hierarchy and callback table is also recorded
+project/map to 2,086 functions. All 52 new rows and 9 previously exported
+wrapper/router/classifier rows were manually reviewed and are recorded in
+the CSV. The exact hierarchy and callback table is also recorded
 in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
 
 # What this map is not yet
@@ -1008,8 +1033,8 @@ in `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 125 rows currently have `source_status` above
-  `decompiler_output_only`, out of 2,069. Before trusting any other
+- Only 143 rows currently have `source_status` above
+  `decompiler_output_only`, out of 2,086. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
   object per the "Function accepted" gate in
