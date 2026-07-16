@@ -31,8 +31,12 @@ Choose the output contract first:
 - **Static recompilation/porting** translates behavior to a new host and is a
   distinct project with emulation/compatibility boundaries to define.
 
-Record exact versions in a future machine-readable tool manifest. Containerize
-or script installation only after choosing the first target game and revision.
+The first machine-readable build manifest is
+`/config/ddr5thmix/build.json`. Its bounded assembly path pins GCC 14.2.0 and
+GNU binutils 2.43 for `mipsel-none-elf`; see
+[/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md).
+This is an accepted bootstrap for exact assembly bytes, not evidence that GNU
+GCC reproduces the identified PsyQ 4.4.0 C compiler or linker.
 
 # Additional useful tools
 

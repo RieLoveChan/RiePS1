@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "target": "Dance Dance Revolution 5th Mix (Japan)",
+  "executable": {
+    "sha256": "4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee",
+    "load_address": "0x8001a800",
+    "header_size": 2048
+  },
+  "toolchain": {
+    "target": "mipsel-none-elf",
+    "gcc_version": "14.2.0",
+    "binutils_version": "2.43"
+  },
+  "functions": [
+    {
+      "name": "FUN_8007eea8",
+      "address": "0x8007eea8",
+      "size": 8,
+      "source": "src/ddr5thmix/FUN_8007eea8.s",
+      "section": ".text.FUN_8007eea8"
+    }
+  ]
+}

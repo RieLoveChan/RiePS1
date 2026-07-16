@@ -55,7 +55,9 @@ and record full-disc, per-track, and main-executable hashes.
 3. Create revision and tool-version manifest schemas.
 4. Script extraction, hashing, and executable discovery.
 5. Create the Ghidra loader/project recipe and function-map format.
-6. Establish the smallest deterministic build and automated comparison loop.
+6. ~~Establish the smallest deterministic build and automated comparison
+   loop.~~ Completed for `FUN_8007eea8`; see
+   [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md).
 
 # Citations
 
