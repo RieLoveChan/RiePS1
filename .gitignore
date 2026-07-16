@@ -18,6 +18,7 @@
 *.track
 
 # Extracted copyrighted game content and generated images
+/*.png
 /extracted/
 /work/
 /build/

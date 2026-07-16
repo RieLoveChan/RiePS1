@@ -4,7 +4,7 @@ title: Portable Ghidra + ghidra_psx_ldr Setup
 description: A self-contained, git-ignored Ghidra 12.1.2 install with the ghidra_psx_ldr extension, plus headless import/report scripts.
 resource: https://github.com/NationalSecurityAgency/ghidra
 tags: [ps1, ghidra, tooling, static-analysis, psyq]
-timestamp: 2026-07-13T00:00:00-04:00
+timestamp: 2026-07-16T00:00:00-04:00
 ---
 
 # Layout
@@ -35,6 +35,10 @@ each of the three pieces; do not guess download URLs.
 - `/tools/ghidra/Import-BootExecutable.ps1` — headless import + full
   auto-analysis of a boot executable into a named Ghidra project, using the
   PSX loader.
+- `/tools/ghidra/Import-RawOverlay.ps1` — extracts one byte range from a
+  lawful local input, refuses it unless its SHA-256 matches, imports it with
+  Ghidra's `BinaryLoader` at the supplied runtime address, and optionally
+  delimits/decompiles known entry points with `DumpFunctionDetail.java`.
 - `/tools/ghidra/Report-ProgramSummary.ps1` — runs
   `tools/ghidra/scripts/ReportProgramSummary.java` against an already-analyzed
   program and prints image base, entry point, language, detected PsyQ
@@ -82,6 +86,30 @@ each of the three pieces; do not guess download URLs.
   the address argument which Ghidra's own `AddressFactory` parses). Used to
   find a 42-entry screen-name string table — see the symbol map's "Data
   discovery" section.
+
+# Raw overlay import
+
+Raw overlays have no PS-X EXE header, so the PSX loader cannot infer their
+runtime address. `Import-RawOverlay.ps1` makes all non-obvious inputs explicit
+and keeps the extracted copyrighted bytes under ignored `work/`:
+
+```powershell
+& tools/ghidra/Import-RawOverlay.ps1 `
+  -InputPath work/ddr5thmix-extract/read_dt.bin `
+  -OutputPath work/ddr5thmix-overlays/inst-demo.bin `
+  -Offset 0x1630000 -Length 0x2e58 `
+  -ExpectedSha256 3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb `
+  -BaseAddress 0x801e4000 `
+  -ProjectDir runtime/ghidra/projects -ProjectName ddr5thmix `
+  -BlockName inst_demo `
+  -EntryPoints '0x801e413c','0x801e41e8','0x801e4284'
+```
+
+For DDR 5th Mix this reproduces an 11,864-byte program named
+`inst-demo.bin`. Ghidra 12.1.2 identifies the requested language as
+`PSX:LE:32:default:default`; the three entry points delimit cleanly as 172,
+156, and 68 bytes. The source range, output hash, load address, tool version,
+and command-list analysis are recorded in the game's screen-flow concept.
 
 # Two non-obvious `analyzeHeadless` gotchas
 

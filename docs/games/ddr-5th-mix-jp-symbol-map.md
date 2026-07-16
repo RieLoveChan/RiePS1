@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-15T23:55:00-04:00
+timestamp: 2026-07-16T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -359,10 +359,10 @@ previous section — mode `0x00`'s three submode handlers (`FUN_800235f8`,
   loop (`FUN_8002216c` unconditionally re-zeroes offset `9` every
   outer-loop pass, before the loop's own condition is ever checked — see
   the `FUN_8002216c` review above), so the write must matter to something
-  else that reads offset `9` later in the same frame — most likely one of
-  `main`'s still-unreviewed post-dispatcher per-frame calls
-  (`FUN_800973e8`, `FUN_8002112c`, `FUN_8002d630`, `FUN_80028034`). Flagged
-  as an open question rather than assumed dead code.
+  else that reads offset `9` later in the same frame. `FUN_8002112c` was
+  subsequently reviewed as the PAD adapter and does not resolve this; the
+  same-frame consumer, if any, remains an open question rather than assumed
+  dead code.
 
 **12 new call targets discovered, none yet reviewed**: `FUN_80023230`,
 `FUN_800a0cb0`, `FUN_80049d3c`, `FUN_800a0ce0`, `FUN_8002a7a4`,
@@ -766,16 +766,13 @@ cabinet-link/versus feature), `COURSE SEL`, `INRAN SEL`, `EDSEQ_SEL`,
 `NAME ENTRY`, `URL&PASS`, `ENDING`, `CATCH DEMO`, and the
 placeholder-looking `GAME ??`/`DEMO ??`.
 
-**What is NOT yet established**: what `DAT_80105120`'s state machine
-actually governs, how it relates to `PTR_DAT_800ac8e8`'s `mode`/`submode`
-fields that `FUN_80022cf8` dispatches on, and what actually indexes into
-the 42-name table if not `DAT_80105120`. One concrete link is still
-confirmed: `FUN_80049d3c` (reached from mode `0x04`, part of the boot
-chain) zeroes `DAT_80105120` and enters its state `0`, and `FUN_80049dec`
-(mode `0x02`/submode `0x02`) is the per-frame pump for it — so
-`PTR_DAT_800ac8e8`'s mode/submode system (boot/infrastructure) does hand
-off to *some* other state machine once it settles into mode
-`0x02`/submode `0x02`.
+**Status at discovery time, resolved further below**: the relationship
+between `DAT_80105120`, `PTR_DAT_800ac8e8`, and the 42-name array was not yet
+established here. Later callback review proved that mode `0x02`/submode
+`0x02` pumps a one-state `DAT_80105120` wrapper, which owns the separate
+14-state `DAT_80105124` child. Individual child callbacks write indices via
+`DAT_800f2908`; the still-open part is which code consumes the complete
+42-entry pointer array beyond those live labels and the suspected debug menu.
 
 **Corrected further below** (see "a nested child state machine... corrects
 the '15 states' model"): reading state `0`'s own code revealed the raw
@@ -1101,10 +1098,15 @@ relative offset `0x1630000`. The extracted range begins with literal
 and loads at `0x801e4000`. PLAY DEMO calls its init/update/exit at offsets
 `+0x13c`/`+0x1e8`/`+0x284`; decoded calls include `GsSetFlatLight`,
 `GsSetLightMode`, and `GsSetAmbient`. This proves executable 3D rendering
-rather than prerecorded video. State 2 has no HOW TO substate and enters this
-overlay directly; the runtime ordering therefore identifies state 5 as HOW TO
-PLAY by strong inference, pending overlay import or per-frame PC tracing for
-an exact internal boundary.
+rather than prerecorded video. **The 2026-07-16 raw import closes the pending
+boundary question**: `FUN_801e413c` installs a command list at `0x801e66c4`,
+`FUN_801e41e8` runs 96 non-jump callbacks plus one explicit jump for exactly
+1,910 scripted ticks, and
+returns complete at the null callback at `0x801e69cc`; `FUN_801e4284` is the
+cleanup entry. State 2 has no HOW TO substate and enters this overlay directly,
+while states 3/4 begin the later DEMONSTRATION, so runtime order now confirms
+state 5 as HOW TO PLAY. The overlay functions live in a separate raw program
+and are not included in this main-executable CSV's 2,118-function count.
 
 Literal gameplay reuse is now proven elsewhere: states 3 and 4, both index
 `0x23/CATCH DEMO`, implement the visible gameplay DEMONSTRATION after state

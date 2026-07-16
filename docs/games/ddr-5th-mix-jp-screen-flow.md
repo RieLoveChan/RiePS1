@@ -3,7 +3,7 @@ type: Screen Flow
 title: Dance Dance Revolution 5th Mix (Japan) — Screen/Mode Flow
 description: Maps the game's mode dispatcher (FUN_80022cf8) to hypothesized and confirmed screen identities.
 tags: [ps1, ddr5thmix, screen-flow, reverse-engineering]
-timestamp: 2026-07-15T23:55:00-04:00
+timestamp: 2026-07-16T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
@@ -79,7 +79,8 @@ Many more names go beyond what genre knowledge alone predicted:
 `EDSEQ_SEL`, `NAME ENTRY`, `URL&PASS`, `ENDING`, `GAME_OVER`, `CATCH
 DEMO`, and placeholder-looking `GAME ??`/`DEMO ??`.
 
-**Not yet established**: what `DAT_80105120`'s state machine actually
+**Status at discovery time (resolved by the later updates below)**: what
+`DAT_80105120`'s state machine actually
 governs, how it relates to `PTR_DAT_800ac8e8`'s `mode`/`submode` fields
 this document's "Mode table" is built around, and — now that the
 direct-index link to the 42-name table is refuted — what (if anything)
@@ -561,14 +562,34 @@ On tick 481 the dispatcher exits TITLE and enters state 5 in the same update.
 
 ## States 5, 3, and 4: instruction demo versus gameplay demonstration
 
-State 5 writes `0x24` (`PLAY DEMO`), selects one of 12 scripts, and invokes
-`inst demo` at `0x801e413c`/`0x801e41e8`/`0x801e4284`. The overlay is
-executable MIPS with 3D-lighting calls, not prerecorded video. State 2 never
-writes `HOW TO`, has no local substate, and goes directly to state 5; combined
-with the captured TITLE → HOW TO PLAY → DEMONSTRATION order, this makes HOW TO
-PLAY a strong inference for the initial visible phase of `inst demo`. Its
-exact overlay substate/timer remains unproven until overlay import or a
-per-frame PC/counter trace.
+State 5 writes `0x24` (`PLAY DEMO`), selects one of 12 presentation variants,
+and invokes `inst demo` at `0x801e413c`/`0x801e41e8`/`0x801e4284`.
+The overlay is executable MIPS with 3D-lighting calls, not prerecorded video.
+
+**Resolved 2026-07-16 by raw-overlay import**: the hash-gated range was
+imported with Ghidra 12.1.2 `BinaryLoader` at `0x801e4000`, using
+`/tools/ghidra/Import-RawOverlay.ps1`. The three caller-supplied addresses are
+confirmed as init/update/exit functions. Init installs a fixed command list at
+`0x801e66c4`; update (`FUN_801e41e8`) ticks it through
+`FUN_801e42ec`, renders only while the list is active, and returns true when
+the list reaches its null callback at `0x801e69cc`.
+
+The command list contains 96 non-jump callbacks plus one explicit jump from
+`0x801e67f4` to `0x801e67fc`, 24 waits of 60 ticks, five waits of 80 ticks,
+two 20-tick interpolations, and six 5-tick interpolations. The exact scripted
+duration is therefore **1,910 ticks**. The first segment
+(`0x801e66c4`–`0x801e67ec`, 550 ticks) enables render slots 0–3 and performs
+the staged camera/object transitions; the jumped-to segment
+(`0x801e67fc`–`0x801e69c4`, 1,360 ticks) runs the repeated instruction
+presentation and enables slots 4–6 before the terminator.
+
+State 2 never writes `HOW TO`, has no local substate, and goes directly to
+state 5. State 5 now has a code-proven terminal boundary after those 1,910
+ticks, and the next outer states 3/4 implement the captured DEMONSTRATION.
+Together with the runtime order `TITLE → HOW TO PLAY → DEMONSTRATION`, this
+confirms the entire state-5 overlay as the HOW TO PLAY presentation; a dynamic
+trace is needed only to attach individual visible instructional cards to
+specific command addresses, not to establish the state boundary.
 
 After state 5, states 3 and 4 both write/retain index `0x23` (`CATCH DEMO`)
 and implement the actual gameplay demonstration:
@@ -615,9 +636,8 @@ reset `main` calls once before its per-frame loop starts. That makes
 first frame after boot, which lines up with **Memory Card Auto Load** being
 first in the sequence above. This is still `suspected`, not `manual`: it's
 consistent with mode `0x00` running first, not proof of what mode `0x00`
-*represents* — that requires reading `FUN_80023048`'s three submode
-targets (`FUN_800235f8`, `FUN_80023690`, `FUN_80022f04`, all still
-unreviewed) for card-I/O calls or related evidence.
+*represents*. Those three submode targets were later reviewed and did not
+provide card-I/O-specific evidence, so the pairing remains `suspected`.
 
 The former task of pairing these screens directly to top-level mode/submode
 values is superseded: they are presentations inside the nested attract child,
@@ -634,11 +654,10 @@ logic across up to 2 controller ports. Mode `0x10` reads much more like a
 this time backed by the handler's own control-flow shape rather than the
 transition graph alone. Superseded, not deleted; see mode `0x10`'s rows
 below and the symbol map's `FUN_80022b30` review for the full evidence.
-None of Caution/Company/How To Play/Gameplay Demonstration/Ranking have a
-proposed pairing yet — the natural next step is reading the still-
-unreviewed `FUN_80021470` (the draw call `FUN_80022b30` uses for its idle
-menu, called 5 times with coordinate-shaped arguments) for string/texture
-references that might name the 3 menu items directly.
+At that stage none of Caution/Company/How To Play/Gameplay
+Demonstration/Ranking had a proposed pairing. The nested attract-child mapping
+above later superseded that mode-first search; `FUN_80021470` remains relevant
+only to naming the apparently unreachable three-item mode-`0x10` menu.
 
 **Update 2026-07-14, after reviewing mode `0x04`'s full call tree**: the
 whole `0x00 → 0x10 → 0x04` chain increasingly reads as **boot/loading
@@ -648,9 +667,9 @@ settings validation + linked-metadata/state initialization (including the
 literal `"data/mdb/mdb.bin"` source/build marker) + SPU/reverb setup
 (`0x04`) → mode `2`. **Correction 2026-07-15**: the marker's call target,
 `FUN_8007eea8`, is a return-only no-op, not a file open; the runtime music
-table is already linked into the executable. This pushes the search
-for the *first genuinely visible* screen further down the chain than
-previously assumed.
+table is already linked into the executable. At that point this pushed the
+search for the first visible screen further down the chain; the later nested
+callback mapping above found it inside mode `0x02`'s child hierarchy.
 
 **Update 2026-07-14, after reviewing mode `2`'s own submodes**: they
 don't supply that screen identity either. Submodes `0x00`/`0x01` are a
@@ -658,13 +677,13 @@ confirmed, generic **resolution-switch utility** (display off → resize
 to `640×480` → delay → display on) — independently corroborated by the
 repository owner's own recollection of DDR 5th Mix changing resolution in
 BizHawk. Submode `0x02` drives an apparently unrelated state machine that
-touches a `"TEST_MODE"` string (see "Open structural questions" below).
+touches a `"TEST_MODE"` string.
 Every mode reviewed in this chain so far — `0x00`, `0x10`, `0x04`, `0x02`
 — has turned out to be infrastructure (memory card I/O, GPU reset, asset/
 database loading, resolution switching) rather than a screen with a
-visible identity of its own. The first genuinely visible attract-loop
-screen has not been located yet; it's reached from somewhere later in the
-chain not yet mapped.
+visible identity of its own. **Superseded 2026-07-15**: mode `0x02`/submode
+`0x02` pumps the one-state wrapper and 14-state child mapped above; the
+seven-state attract child within that hierarchy owns the visible loop.
 
 # Mode table
 
@@ -675,7 +694,7 @@ chain not yet mapped.
 | `0x00` | `0x02` | `FUN_80022f04` | **Reviewed 2026-07-14**: decrements the `+0x22` countdown every call; when it underflows to `-1` and the 4 flags submode `0x00` zeroed are still zero, writes `PTR_DAT_800ac8e8+0x17 = 0x80`, then resets `+0x22` to `0x10` and calls `FUN_80023210(0x10)` — a **confirmed transition to mode `0x10`** (see "Mode-transition primitive" above). | Memory Card Auto Load | `suspected` | | Same reasoning as submode `0x00` row. **Correction 2026-07-14**: an earlier version of this note treated the `+0x17 = 0x80` write as a candidate queued-next-mode, hypothesizing a transition to mode `0x80`. `FUN_80023210` is now confirmed as the only function that writes the real mode field, and this handler calls it with `0x10`, not `0x80` — so the actual transition target is `0x10`, confirmed, not `0x80`. `+0x17`'s purpose is still unexplained. Superseded, not deleted. |
 | `0x02` | `0x00` | `FUN_8009f820(0x280, 0x1e0)` then `FUN_800231b0` (32 B) | **Reviewed 2026-07-14**: `bzero`s an 8-byte state block and stores the target width/height (`640`/`480`) for submode `0x01`'s sequence below. | | `unverified` | | |
 | `0x02` | `0x01` | `FUN_8009f390` (100 B), conditionally `FUN_800231b0` (32 B) if result `> 0` | **Reviewed 2026-07-14, confirmed by the repository owner's own BizHawk observation**: a 7-step state machine that calls `SetDispMask(0)` (display OFF), clears the screen to black at `640×480` (`ClearImage2`+`DrawSync`+`FUN_8009f0a8`), waits a few frames, then `SetDispMask(1)` (display ON) — **a display-off/resize/delay/display-on resolution-change sequence**, exactly matching what the owner recalled seeing in BizHawk. Returns `1` ("done") only after all 7 steps complete, `0` otherwise — explaining why `FUN_80022cf8`'s dispatcher only advances submode (via the shared `FUN_800231b0`/`NextSubmode`) when this returns `> 0`. | | `unverified` | | Confirmed as generic infrastructure (a resolution switcher to `640×480`), not a screen with its own visible identity. |
-| `0x02` | `0x02` | `FUN_80049dec` (280 B) | **Reviewed 2026-07-14**: unrelated to the resolution switch above — drives a separate enter/exit/update state machine keyed on `DAT_80105120` (shared with `FUN_80049d3c`, mode `0x04`'s initializer containing the inert `mdb.bin` marker) through three function-pointer tables, then copies a table of records ending at one containing **`PTR_s_TEST_MODE_8001bd74`** — a pointer to the literal string `"TEST_MODE"` — before calling `FUN_80042e1c()`. | | `unverified` | | **First human-readable string found in this project.** Concrete evidence of a debug/service test-mode feature, though its relationship to the main `PTR_DAT_800ac8e8` mode/screen system mapped throughout this document is not yet clear — `DAT_80105120` looks like an independent state variable. See "Open structural questions" below. |
+| `0x02` | `0x02` | `FUN_80049dec` (280 B) | **Reviewed 2026-07-14**: unrelated to the resolution switch above — drives a separate enter/exit/update state machine keyed on `DAT_80105120` (shared with `FUN_80049d3c`, mode `0x04`'s initializer containing the inert `mdb.bin` marker) through three function-pointer tables, then copies a table of records ending at one containing **`PTR_s_TEST_MODE_8001bd74`** — a pointer to the literal string `"TEST_MODE"` — before calling `FUN_80042e1c()`. | Main nested-state pump | `manual` | Function tables and child callbacks reviewed | **Updated 2026-07-15**: `DAT_80105120` is the one-state wrapper; it owns the separate 14-state `DAT_80105124` child whose attract/menu/game-session branches are mapped above. The 42-name array is separate, while child enter callbacks select individual indices through `DAT_800f2908`. |
 | `0x04` | `0x00` | `FUN_8002340c` | **Reviewed 2026-07-14** (corrects "single call, no args observed"): mode `0x04`'s handler (`FUN_800230cc`, 112 B) also dispatches on `+0x2a`. This branch, if global `DAT_800ac88c == 0`, checks byte flag `PTR_DAT_800ac8ec[6]`: **zero** → `FUN_800a0cb0()` (reviewed: small flag reset) then `FUN_80023230(2)` — this is `SetSubmode(2)`, **staying in mode `0x04`**, advancing to submode `0x02` below, *not* a mode transition; **nonzero** → `FUN_80049d3c()` (reviewed: initializer containing the inert `"data/mdb/mdb.bin"` marker) then `FUN_80023210(2)` — this *is* `SetMode(2)`, a **confirmed transition to mode `2`**. `PTR_DAT_800ac8ec[6]` is set by submode `0x02` below — first visit takes the "zero" path (wait via submode `0x02`), later visits take the "nonzero" path directly (fast-path, flag already set). | | `unverified` | | **Correction 2026-07-15**: `FUN_8007eea8`, which receives the marker pointer, is `jr ra; nop`; this call is not a music-database load. The 2026-07-14 transition correction remains valid. |
 | `0x04` | `0x02` | `FUN_80023474` | Same `FUN_800230cc` dispatcher as above; submode `0x01` calls neither branch. **Reviewed 2026-07-14**: if `FUN_800a0ce0() > 0` (wraps the unreviewed `FUN_800a00d4` — the real "ready" check), sets `PTR_DAT_800ac8ec[6] = 1` (read by submode `0x00` above, enabling its fast-path on the *next* visit to mode `0x04`), then calls `FUN_8002a7a4()` (reviewed: real PsyQ SPU/reverb setup), `FUN_8009b0a8()` (reviewed settings clamp), `FUN_800236cc()` (reviewed no-op), `FUN_80049d3c()` (initializer containing the inert `"data/mdb/mdb.bin"` marker), and `FUN_80023210(2)` — a **confirmed transition to mode `2`**. | | `unverified` | | **Correction 2026-07-15**: this validates settings and configures audio, but does not load `mdb.bin`; `FUN_8007eea8` is a no-op and the 47-record music table is statically linked. See the music-database data map. |
 | `0x04` | *(any)* | *(shared tail)* | Every call to `FUN_800230cc`, regardless of submode, also copies `PTR_DAT_800ac8ec[0xbb] = PTR_DAT_800ac8ec[0x52]` unconditionally. | | `unverified` | | |
@@ -709,33 +728,34 @@ separate rows since it isn't mode-specific.
   writer of the real mode field, the actual transition this handler
   performs is to `0x10`, not `0x80` — `+0x17` is not the transition
   mechanism. Its actual purpose is still unknown.
+- ~~How does `DAT_80105120` relate to the 42-name table and the visible game
+  states?~~ **Resolved structurally 2026-07-15**: `DAT_80105120` is a
+  one-state wrapper pumped by mode `0x02`/submode `0x02`; its state 0 owns the
+  separate 14-state child at `DAT_80105124`. That child, its seven-state
+  attract child, and its 15-state gameplay child are mapped above. The
+  42-name pointer array is not the wrapper's function table; individual enter
+  callbacks instead write name indices to `DAT_800f2908`.
+- ~~What does `FUN_80021374` do?~~ **Resolved 2026-07-15**: the sole PAD
+  producer proves it checks Start held plus Select newly pressed on either
+  port, then selects mode `0xff`; the observed Consumer-build behavior is a
+  return to the attract loop.
+- ~~Which functions write `+0x2a` and is it mode-2-specific?~~ **Resolved
+  2026-07-14**: the exhaustive field-xref review found only `SetMode`
+  (clear), `NextSubmode` (increment), and `SetSubmode` (direct assignment).
+  It is a general phase/substate field shared by multiple modes.
 
 # Open structural questions
 
-- **Exactly how does `DAT_80105120`'s 42-state screen machine relate to
-  `PTR_DAT_800ac8e8`'s mode/submode system?** See "The real screen enum:
-  `DAT_80105120`" above for the full string table (`BOOT`, `PREPARE`,
-  `WARNING`, `KONAMI`, `PLAY DEMO`, `TEST_MODE`, etc.) and what's already
-  confirmed (mode `0x04` initializes it to state `0`/`BOOT`; mode
-  `0x02`/submode `0x02` pumps it every frame). Reading the three
-  function-pointer tables' actual contents (`PTR_LAB_800d9ac0` = update,
-  `PTR_LAB_800d9ac4` = exit, `PTR_FUN_800d9abc` = enter) would confirm
-  which function implements each named screen and whether mode `0x02` is
-  ever left again during normal play, or whether the entire rest of the
-  game runs inside it.
+- **What consumes the complete 42-entry screen-name pointer array?** Direct
+  callback writes prove many indices label live screens, while the scan up to
+  `TEST_MODE` also supports a debug-menu use. The array is not a 42-state
+  `DAT_80105120` dispatcher table; other consumers and the exact role of the
+  pointer array remain to be mapped.
 - **What are `PTR_DAT_800ac8e8+0x2c` and `+0x2e`?** `FUN_80023210`
   (`SetMode`) zeroes both of them alongside `submode` (`+0x2a`) on every
   mode transition, but nothing reviewed so far reads or writes either field
   outside of that. Possibly a second/third dispatch layer below submode
   (a "sub-submode"), not yet exercised by any handler reviewed to date.
-- **What does `FUN_80021374` (`0x80021374`, 252 bytes) do?** Discovered as
-  a second read site of `+0x28` (checks `mode != 0xff`) while resolving the
-  question above, via `tools/ghidra/scripts/DumpFieldXrefs.java`'s
-  cross-reference dump. It also reads bits in the `PTR_DAT_800ac8e8+0x54`/
-  `+0x58` region already seen gating mode `0x20`/`0x32` — shaped like a
-  controller-input check — but isn't called from anywhere in the
-  `FUN_80022cf8` dispatcher tree mapped so far, so it's reached some other
-  way. Not yet reviewed.
 - **What is `PTR_DAT_800ac8e8+0x17`?** Written to `0x80` by mode
   `0x00`/submode `0x02` (`FUN_80022f04`) alongside a confirmed transition to
   mode `0x10` (see "Resolved structural questions" above) — so it isn't the
@@ -746,16 +766,9 @@ separate rows since it isn't mode-specific.
   loop-pass reset (`FUN_8002216c`) unconditionally zeroes that same byte
   right before the one place it's actually tested. The write can't be dead
   code — something else must read offset `9` within the same frame, before
-  the next outer pass's reset runs. The prime suspects are `main`'s four
-  still-unreviewed post-dispatcher per-frame calls: `FUN_800973e8`,
-  `FUN_8002112c`, `FUN_8002d630`, `FUN_80028034`.
-- **`+0x2a` ("submode") is read by at least 4 different modes' handlers**
-  (`0x00`, `0x02`, `0xff`, and the unmatched-mode default — see the table
-  above), not just `mode == 2` as first thought. This suggests `+0x2a` is a
-  general per-screen phase/sub-state counter (e.g. init/active/exit) reused
-  across most or all screens, rather than a parameter specific to whichever
-  screen `mode == 2` is. Finding every write site of `+0x2a` (same idea as
-  the `+0x28` bullet below) would settle this.
+  the next outer pass's reset runs. `FUN_8002112c` has since been reviewed as
+  the PAD adapter and does not resolve this; the same-frame consumer, if any,
+  remains unidentified.
 - Modes `0x20` and `0x32` (`FUN_800219b8`/`FUN_80021a30`) have byte-for-byte
   identical handler bodies, and mode `0x10` and the unmatched-mode default
   reach the exact same submode dispatch (see bullet below) — two independent
