@@ -89,6 +89,7 @@ if ($actualExeHash -ne $expectedExeHash) {
 
 $assembler = Resolve-CrossTool "$($manifest.toolchain.target)-as"
 $compiler = Resolve-CrossTool "$($manifest.toolchain.target)-gcc"
+$linker = Resolve-CrossTool "$($manifest.toolchain.target)-ld"
 $objcopy = Resolve-CrossTool "$($manifest.toolchain.target)-objcopy"
 $objdump = Resolve-CrossTool "$($manifest.toolchain.target)-objdump"
 
@@ -111,22 +112,62 @@ if (-not (Test-Path -LiteralPath $sourcePath -PathType Leaf)) {
 
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 $objectPath = Join-Path $OutDir "$Function.o"
+$linkedPath = Join-Path $OutDir "$Function.elf"
 $binaryPath = Join-Path $OutDir "$Function.bin"
 $referencePath = Join-Path $OutDir "$Function.reference.bin"
 $disassemblyPath = Join-Path $OutDir "$Function.objdump.txt"
+$linkerScriptPath = Join-Path $OutDir "$Function.ld"
 $reportPath = Join-Path $OutDir "$Function.match.json"
 
-& $assembler -EL -march=r3000 -mabi=32 -o $objectPath $sourcePath
-if ($LASTEXITCODE -ne 0) {
-    throw "Assembler failed with exit code $LASTEXITCODE."
+$language = [string]$entry.language
+$extractPath = $objectPath
+if ($language -eq 'asm') {
+    & $assembler -EL -march=r3000 -mabi=32 -o $objectPath $sourcePath
+    if ($LASTEXITCODE -ne 0) {
+        throw "Assembler failed with exit code $LASTEXITCODE."
+    }
+}
+elseif ($language -eq 'c') {
+    $cflags = @($entry.cflags | ForEach-Object { [string]$_ })
+    & $compiler @cflags -c -o $objectPath $sourcePath
+    if ($LASTEXITCODE -ne 0) {
+        throw "Compiler failed with exit code $LASTEXITCODE."
+    }
+
+    $linkerLines = [System.Collections.Generic.List[string]]::new()
+    $linkerLines.Add('OUTPUT_ARCH(mips)')
+    $linkerLines.Add('SECTIONS')
+    $linkerLines.Add('{')
+    $linkerLines.Add("    . = $($entry.address);")
+    $linkerLines.Add("    $($entry.section) : { KEEP(*($($entry.section))) }")
+    $linkerLines.Add('}')
+    if ($entry.PSObject.Properties.Name -contains 'symbols') {
+        foreach ($symbol in $entry.symbols.PSObject.Properties) {
+            if ($symbol.Name -notmatch '^[A-Za-z_][A-Za-z0-9_]*$') {
+                throw "Invalid linker symbol name: $($symbol.Name)"
+            }
+            [void](ConvertFrom-HexAddress ([string]$symbol.Value))
+            $linkerLines.Add("$($symbol.Name) = $($symbol.Value);")
+        }
+    }
+    $linkerLines | Set-Content -LiteralPath $linkerScriptPath -Encoding ascii
+
+    & $linker -EL -T $linkerScriptPath -e $Function -o $linkedPath $objectPath
+    if ($LASTEXITCODE -ne 0) {
+        throw "Linker failed with exit code $LASTEXITCODE."
+    }
+    $extractPath = $linkedPath
+}
+else {
+    throw "Unsupported source language '$language' for $Function."
 }
 
-& $objcopy -O binary "--only-section=$($entry.section)" $objectPath $binaryPath
+& $objcopy -O binary "--only-section=$($entry.section)" $extractPath $binaryPath
 if ($LASTEXITCODE -ne 0) {
     throw "objcopy failed with exit code $LASTEXITCODE."
 }
 
-$disassembly = & $objdump -dr -m mips:3000 $objectPath
+$disassembly = & $objdump -dr -m mips:3000 $extractPath
 if ($LASTEXITCODE -ne 0) {
     throw "objdump failed with exit code $LASTEXITCODE."
 }
@@ -171,6 +212,7 @@ $report = [ordered]@{
     executable_sha256 = $actualExeHash
     executable_file_offset = ('0x{0:x}' -f $fileOffset)
     source = $entry.source
+    language = $language
     compiler = "GCC $compilerVersion"
     assembler = $assemblerVersion
     expected_size = $functionSize

@@ -124,7 +124,7 @@ Recorded for later extraction/inventory work, not yet analyzed:
 | `chdman` | 0.275 (MAME 0.275) | Repository-local only, `/tools/local/chdman/chdman.exe`, git-ignored per `/docs/foundations/legal-provenance.md` | `chdman.exe extractcd -i <chd> -o track.cue -ob track.bin` |
 | `Read-BootExecutable.ps1` | This repository, `/tools/iso9660/Read-BootExecutable.ps1` | Project-written | `Read-BootExecutable.ps1 -BinPath track.bin -OutDir <dir>` |
 | PowerShell | 7+ (`pwsh`) | Local environment | Hashing via `[System.Security.Cryptography.SHA256]`/`SHA1` in the same script |
-| GNU MIPS cross-tools | GCC 14.2.0; binutils 2.43; target `mipsel-none-elf` | PCSX-Redux Windows MIPS tool manager; installed locally, never vendored | `tools/build/Invoke-FunctionMatch.ps1 -ExePath <lawful-SLPM_868.97> -Function FUN_8007eea8` |
+| GNU MIPS cross-tools | GCC 14.2.0; binutils 2.43; target `mipsel-none-elf` | PCSX-Redux Windows MIPS tool manager; installed locally, never vendored | `tools/build/Invoke-FunctionMatch.ps1 -ExePath <lawful-SLPM_868.97> -Function <manifest-function>` |
 | Ghidra | 12.1.2 (`ghidra_12.1.2_PUBLIC_20260605.zip`) | Repository-local only, `/tools/local/ghidra_12.1.2_PUBLIC/`, git-ignored | `Import-BootExecutable.ps1` / `Report-ProgramSummary.ps1`, see `/docs/tooling/ghidra-setup.md` |
 | ghidra_psx_ldr | `2026.07.08` release, Ghidra-12.1.2-matched build | Repository-local only, installed into `Ghidra/Extensions/ghidra_psx_ldr/`, git-ignored | Loader `-loader PsxLoader` |
 | Eclipse Temurin JDK | 25.0.3+9 | Repository-local only, `/tools/local/jdk25/`, git-ignored | `JAVA_HOME` for the above |
