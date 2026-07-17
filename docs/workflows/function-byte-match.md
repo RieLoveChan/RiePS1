@@ -3,7 +3,7 @@ type: Playbook
 title: Per-function byte-match loop
 description: Hash-gated assembly and comparison loop for reconstructed DDR 5th Mix functions.
 tags: [ps1, workflow, matching, build, ddr5thmix]
-timestamp: 2026-07-16T00:00:00-04:00
+timestamp: 2026-07-17T00:00:00-04:00
 ---
 
 # Contract
@@ -68,6 +68,26 @@ The reconstruction required three controlled attempts:
 
 This is evidence that GCC 14.2.0 reproduces this small function under the
 recorded flags. It does not establish general equivalence with PsyQ 4.4.0.
+
+## `FUN_80023210` — sibling C pattern for mode transitions
+
+`FUN_80023210` is the 32-byte `SetMode` primitive immediately preceding
+`FUN_80023230` at `0x80023210`. It writes its `u16` argument to offset `0x28`,
+then clears submode and the two unknown fields at offsets `0x2a`, `0x2c`, and
+`0x2e`. With the same non-volatile external `PTR_DAT_800ac8e8` declaration,
+structure layout, compiler flags, and generated linker placement established
+for `FUN_80023230`, the first reconstruction attempt matches all 32 reference
+bytes. The built function bytes and reference slice share SHA-256
+`29be0968527e9aad066ece450b275c22b0de70865a1e09cc4e5ef26db63b2e53`.
+
+The generated sequence is `lui`/`lw` for the linked pointer, one load-delay
+`nop`, four consecutive `sh` stores, and `jr $ra`, with the final store to
+offset `0x2e` scheduled in the return delay slot. This establishes a reusable
+local pattern for short state-mutator functions: model the state pointer as a
+linked external symbol, retain ordinary RAM as non-volatile unless hardware or
+concurrency evidence says otherwise, use exact-width fields at their observed
+offsets, and keep `-fdelayed-branch` enabled. It is evidence for this sibling
+pair, not a general compiler-equivalence claim.
 
 # Acceptance boundary
 
