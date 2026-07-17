@@ -63,7 +63,7 @@ The reconstruction required three controlled attempts:
    return delay slot.
 3. Using the external non-volatile RAM symbol allowed `-fdelayed-branch` to
    schedule the final store into the `jr $ra` delay slot. The result is the
-   exact 28-byte reference sequence, with matching source/reference SHA-256
+   exact 28-byte reference sequence, with matching built/reference SHA-256
    `e5a72934d2e749864691d7b5e9a704e755dd6ed1fe89d1e6dbf95cba18a6390b`.
 
 This is evidence that GCC 14.2.0 reproduces this small function under the
@@ -88,6 +88,33 @@ linked external symbol, retain ordinary RAM as non-volatile unless hardware or
 concurrency evidence says otherwise, use exact-width fields at their observed
 offsets, and keep `-fdelayed-branch` enabled. It is evidence for this sibling
 pair, not a general compiler-equivalence claim.
+
+## `FUN_800231b0` — register-allocation constraint without emitted code
+
+`FUN_800231b0` is the 32-byte `NextSubmode` primitive at `0x800231b0`. It
+clears the unknown `u16` field at offset `0x2c`, reads and increments the
+`u16` submode at `0x2a`, and writes the incremented value back in the return
+delay slot. The accepted build and reference slice share SHA-256
+`32cf79c2477fc88366732c01727b9c5b965bcced84a4c66612a29a7b546103d4`.
+
+Straightforward C produced the correct eight-instruction shape and semantics,
+but reversed the two working registers: GCC 14.2.0 kept the state pointer in
+`v0` and the counter in `v1`, while the reference keeps the pointer in `v1`
+and the counter in `v0`. Writing the global access directly did not change the
+allocation. Binding the pointer to `v1` with an empty input/output constraint
+added a `move`; changing that to an input-only constraint still added a
+`move`. Binding the counter to `v0` with an input/output constraint selected
+the right registers but introduced an extra load-delay `nop` and prevented the
+reference instruction order.
+
+The accepted source instead places an empty inline-assembly clobber of `$2`
+(`v0`) immediately after loading the state pointer. It emits no instruction,
+but makes `v0` unavailable while GCC allocates the live pointer, so the pointer
+lands in `v1`; `v0` is then reused for the counter. The scheduler remains free
+to place the clear of offset `0x2c` in the `lhu` load-delay slot and the final
+submode store in the `jr $ra` delay slot. This is a narrow GCC compatibility
+constraint for reproducing observed register allocation, not evidence that
+the original source contained inline assembly.
 
 # Acceptance boundary
 

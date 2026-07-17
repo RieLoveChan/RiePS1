@@ -1,6 +1,7 @@
 # Knowledge Bundle Update Log
 
 ## 2026-07-17
+* **Matching submode increment**: Reconstructed `FUN_800231b0` (`NextSubmode`) in C and matched all 32 reference bytes at `0x800231b0` (file offset `0x91b0`, SHA-256 `32cf79c2477fc88366732c01727b9c5b965bcced84a4c66612a29a7b546103d4`). Plain C matched the instruction count and semantics but swapped `v0`/`v1`; direct global access did not change it, pointer register constraints added a `move`, and a counter input/output constraint added a load-delay `nop`. The accepted empty `$2` clobber emits no code, keeps the pointer in `v1` and counter in `v0`, and preserves both the `lhu` load-delay clear and `jr $ra` delay-slot store. This is a GCC register-allocation compatibility constraint, not a claim about original inline assembly.
 * **Matching mode-transition function**: Reconstructed `FUN_80023210` (`SetMode`) in C and matched all 32 reference bytes at `0x80023210` (file offset `0x9210`, SHA-256 `29be0968527e9aad066ece450b275c22b0de70865a1e09cc4e5ef26db63b2e53`) on the first attempt with GCC 14.2.0/binutils 2.43. The sibling confirms the reusable `FUN_80023230` pattern: a linked non-volatile `PTR_DAT_800ac8e8`, exact-width structure fields, one load-delay `nop`, and the last `sh` scheduled into the `jr $ra` delay slot under `-fdelayed-branch`. Re-ran the earlier assembly and C matches successfully; this remains bounded per-function evidence, not a whole-toolchain or executable match claim.
 
 ## 2026-07-16
