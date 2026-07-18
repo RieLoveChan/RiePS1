@@ -116,6 +116,34 @@ submode store in the `jr $ra` delay slot. This is a narrow GCC compatibility
 constraint for reproducing observed register allocation, not evidence that
 the original source contained inline assembly.
 
+## `FUN_8002313c` — multi-global termination-latch setter
+
+`FUN_8002313c` is a 52-byte routine at `0x8002313c`. It copies the low byte
+of `DAT_800e2a60` into `PTR_DAT_800ac8ec+0x66`, sets
+`PTR_DAT_800ac8ec[4]` to one, and sets the outer-session termination latch at
+`PTR_DAT_800ac8e8+0xff` to one. Ghidra 12.1.2 finds four direct call sites
+across three functions: the `GAME_OVER` exit, the `ENDING` exit, and two
+branches of the session Cross-hold detector.
+
+The reconstruction exposed two independent compiler-compatibility problems.
+Straightforward C with a volatile global pointer produced only 48 bytes by
+hoisting both pointer loads. Two empty memory barriers restored the reference
+store/reload phases and 52-byte shape, but GCC permuted `a0`, `v0`, and `v1`.
+Clobber-only variants either left that permutation unchanged or destroyed the
+reusable `a0` address base. Modeling an aligned page through an integer or
+full symbol address introduced an unwanted address-construction instruction.
+Fixing both the second pointer and its literal value made `li` precede `lw`,
+which required a load-delay `nop` absent from the reference.
+
+The accepted source fixes only the first pointer/value pair to `v1`/`v0`,
+uses empty memory barriers at the two observed reload boundaries, and fixes
+only the second pointer to `v0`. Leaving the literal unconstrained lets GCC
+place `li v1,1` in the second pointer load's delay slot; `v1` then remains live
+for the final store in the `jr $ra` delay slot. These constraints emit no
+instructions and are narrow GCC compatibility aids, not a claim about the
+original PsyQ source. The built function and reference slice share SHA-256
+`849b35e29c1f8ffc60ea0b8d2e8fe8b7cd4d79ef6d70f85bd4fc9d230aea1346`.
+
 ## `FUN_80023170` — shared session-entry flag reset
 
 `FUN_80023170` is a 32-byte routine at `0x80023170`. It loads the state
