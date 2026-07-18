@@ -189,6 +189,28 @@ This is a recorded GCC/PsyQ ABI-layout compatibility boundary, not evidence
 that the original source contained inline assembly. A future whole-object
 toolchain strategy may replace this shim.
 
+## `FUN_800234cc` — conditional calls and shrink-wrap boundary
+
+`FUN_800234cc` is a 52-byte mode-`0xff`/submode-`0x00` handler at
+`0x800234cc`. If `DAT_800e2a60` is zero, it calls `FUN_80022148(0)` and then
+`FUN_800231b0`; otherwise it returns through the shared epilogue.
+
+Straightforward GCC C placed the frame only inside the taken branch and
+tail-called the second function, producing 56 bytes and a different control
+flow. Disabling shrink-wrap and sibling-call optimization moved the frame to
+entry but duplicated the epilogue, grew the function to 68 bytes, and retained
+GCC's `sp+0x14` `ra` slot instead of PsyQ's `sp+0x10`. The accepted bounded
+inline sequence preserves the single shared epilogue and all three
+manifest-linked relocations. One final correction used explicit `addu
+$a0,$zero,$zero`: GNU assembler's `move` pseudo-op selected the equivalent
+`or` encoding, while the reference uses `addu`.
+
+The final function matches all 52 bytes; the built and reference slices share
+SHA-256
+`f89d1b763810e38465070c5d387121ad700729c11fd2e3f7febbc0b0111a9a8d`.
+As with `FUN_8002356c`, the inline body is a documented compatibility shim,
+not a claim about original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
