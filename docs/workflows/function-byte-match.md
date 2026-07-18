@@ -3,7 +3,7 @@ type: Playbook
 title: Per-function byte-match loop
 description: Hash-gated assembly and comparison loop for reconstructed DDR 5th Mix functions.
 tags: [ps1, workflow, matching, build, ddr5thmix]
-timestamp: 2026-07-17T00:00:00-04:00
+timestamp: 2026-07-18T00:00:00-04:00
 ---
 
 # Contract
@@ -115,6 +115,23 @@ to place the clear of offset `0x2c` in the `lhu` load-delay slot and the final
 submode store in the `jr $ra` delay slot. This is a narrow GCC compatibility
 constraint for reproducing observed register allocation, not evidence that
 the original source contained inline assembly.
+
+## `FUN_80023170` — shared session-entry flag reset
+
+`FUN_80023170` is a 32-byte routine at `0x80023170`. It loads the state
+pointer from `PTR_DAT_800ac8e8` once and clears four still-unknown byte fields
+at offsets `0xf7`, `0xf6`, `0x101`, and `0x100`, in that order. Its two direct
+callers are the 15-state session child's state-0 `PLAY START` entry
+(`FUN_80070664`) and state-1 selector entry (`FUN_80070730`). This supports
+describing it as a shared session-entry flag reset, but does not establish the
+meaning of any individual field.
+
+The first C reconstruction matched all 32 reference bytes without an inline
+assembly constraint. The same linked, non-volatile state-pointer pattern used
+by the adjacent mode/submode primitives produces the expected `lui`/`lw`, load
+delay `nop`, four `sb` stores, and final store in the `jr $ra` delay slot. The
+built function and reference slice share SHA-256
+`101d8bf4ee4e498991ec6a61004b1e4dbf1c8d54133af6a9005f72b63f0c816e`.
 
 # Acceptance boundary
 
