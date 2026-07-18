@@ -211,6 +211,25 @@ SHA-256
 As with `FUN_8002356c`, the inline body is a documented compatibility shim,
 not a claim about original source form.
 
+## `FUN_800230cc` — three-way dispatcher with a shared tail
+
+`FUN_800230cc` is a 112-byte mode-`0x04` handler at `0x800230cc`. It reads
+the signed submode at `PTR_DAT_800ac8e8+0x2a`: zero calls `FUN_8002340c`, two
+calls `FUN_80023474`, and other values call neither. All three paths converge
+before copying `PTR_DAT_800ac8ec[0x52]` to offset `0xbb` and returning through
+one epilogue.
+
+The direct C reconstruction preserved the semantics but GCC duplicated the
+copy and epilogue into all three paths and saved `ra` at its usual
+`sp+0x14`, unlike the reference's `sp+0x10`. The accepted bounded inline
+sequence retains the source-level dispatch structure while pinning the shared
+tail, exact branch layout, four manifest-linked relocations, and load/branch
+delay slots. It matches all 112 bytes; the built and reference slices share
+SHA-256
+`cb26535e271b9b4a3943fa914b8ce9d231ccef8c092f14964ec68d2865f1fe8a`.
+This shim records a current GCC/PsyQ compatibility limit and may be replaced
+when whole-object compiler/linker evidence supplies a better strategy.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
