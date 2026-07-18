@@ -161,6 +161,17 @@ delay `nop`, four `sb` stores, and final store in the `jr $ra` delay slot. The
 built function and reference slice share SHA-256
 `101d8bf4ee4e498991ec6a61004b1e4dbf1c8d54133af6a9005f72b63f0c816e`.
 
+## `FUN_800236cc` — empty C hook
+
+`FUN_800236cc` is an 8-byte no-op at `0x800236cc`, called from mode
+`0x04`/submode `0x02`. An empty C function compiled with the established
+flags produces exactly `jr $ra` followed by `nop`, matching all 8 reference
+bytes on the first attempt. The built function and reference slice share
+SHA-256
+`6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1`.
+Unlike the initial `FUN_8007eea8` assembly source, this proves the same no-op
+shape directly from C under the pinned GCC configuration.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
