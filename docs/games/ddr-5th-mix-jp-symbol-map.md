@@ -31,7 +31,8 @@ decompiler_output_only`.
 |---|---|
 | Total functions | 2,118 (2,026 original + 92 added 2026-07-15) |
 | `confidence = manual` (hand-reviewed 2026-07-13–18) | 191 |
-| `confidence = library_signature` | 1,040 |
+| `confidence = verified` | 4 |
+| `confidence = library_signature` | 1,036 |
 | `confidence = unverified` (default `FUN_########` names) | 887 |
 | Combined function-body coverage | 509,608 of 1,050,624 `t_size` bytes (~49%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 

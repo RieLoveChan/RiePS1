@@ -239,6 +239,38 @@
         "-fno-asynchronous-unwind-tables",
         "-fdelayed-branch"
       ]
+    },
+    {
+      "name": "SetVertex0",
+      "address": "0x80055984",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/SetVertex0.s",
+      "section": ".text.SetVertex0"
+    },
+    {
+      "name": "SetVertex1",
+      "address": "0x80055994",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/SetVertex1.s",
+      "section": ".text.SetVertex1"
+    },
+    {
+      "name": "SetVertex2",
+      "address": "0x800559a4",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/SetVertex2.s",
+      "section": ".text.SetVertex2"
+    },
+    {
+      "name": "SetVertexTri",
+      "address": "0x800559b4",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/SetVertexTri.s",
+      "section": ".text.SetVertexTri"
     }
   ]
 }

@@ -230,6 +230,31 @@ SHA-256
 This shim records a current GCC/PsyQ compatibility limit and may be replaced
 when whole-object compiler/linker evidence supplies a better strategy.
 
+## PsyQ `SetVertex` block — first real GTE/COP2 matches
+
+The contiguous PsyQ 4.4.0 LIBGTE wrappers `SetVertex0` (`0x80055984`, 16
+bytes), `SetVertex1` (`0x80055994`, 16 bytes), `SetVertex2` (`0x800559a4`,
+16 bytes), and `SetVertexTri` (`0x800559b4`, 32 bytes) are the first accepted
+functions containing real GTE/COP2 memory operations. They are executable
+code in the main image, not the loader's synthetic one-byte `gte_*`
+pseudo-functions at `0x20000000`.
+
+The first three wrappers load one vertex's two words into GTE data-register
+pairs 0/1, 2/3, or 4/5. `SetVertexTri` performs all six `lwc2` loads from
+arguments `a0`, `a1`, and `a2`. Tracked assembly with explicit
+`noreorder`/`nomacro` matches all 80 reference bytes on the first attempt.
+The per-function built/reference SHA-256 values are:
+
+- `SetVertex0`: `8901c82b29e97a0872c9fd5622f44111796ce9318a26a18975ce2f078be0889a`
+- `SetVertex1`: `31d133f533d6ea6694167ba27242e6f92ba829910c13a98083b1fb8ea360f562`
+- `SetVertex2`: `1f5f773f52612acebf941e8e82f5296a637277bc37c7c344a4083d8090a338f9`
+- `SetVertexTri`: `3eccebd144d7b6f0d0646a1f467529f2fc7e48c9710d690f881bd866ac476944`
+
+This is reusable evidence for recognizing and assembling the same LIBGTE
+patterns in other legally analyzed PS1 software. Byte identity is established
+only for this DDR 5th Mix revision and pinned toolchain; other PsyQ versions,
+library builds, or link layouts still require their own hashes and comparison.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
