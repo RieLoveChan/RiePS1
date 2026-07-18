@@ -172,6 +172,23 @@ SHA-256
 Unlike the initial `FUN_8007eea8` assembly source, this proves the same no-op
 shape directly from C under the pinned GCC configuration.
 
+## `FUN_8002356c` — one-call wrapper and frame-layout boundary
+
+`FUN_8002356c` is a 32-byte mode-`0xff`/submode-`0x03` handler at
+`0x8002356c`; its only action is calling `FUN_800231b0` (`NextSubmode`).
+Straightforward GCC C optimized the wrapper into an 8-byte tail call.
+`-fno-optimize-sibling-calls` restored the 24-byte stack frame, `jal`, and
+return sequence, but GCC saved `ra` at `sp+0x14`; the reference saves it at
+`sp+0x10`. The frame size and every other instruction already agreed.
+
+The accepted bounded source uses an inline sequence solely to preserve the
+observed PsyQ frame slot and instruction order. It links the `jal` target
+through the manifest and matches all 32 bytes, with built/reference SHA-256
+`5b73884804fb5ff3d5b4e2742236b994d91ed57a487b99f89b8481a57da29882`.
+This is a recorded GCC/PsyQ ABI-layout compatibility boundary, not evidence
+that the original source contained inline assembly. A future whole-object
+toolchain strategy may replace this shim.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the

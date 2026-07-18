@@ -143,6 +143,30 @@
       }
     },
     {
+      "name": "FUN_8002356c",
+      "address": "0x8002356c",
+      "size": 32,
+      "language": "c",
+      "source": "src/ddr5thmix/FUN_8002356c.c",
+      "section": ".text.FUN_8002356c",
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
+      "symbols": {
+        "FUN_800231b0": "0x800231b0"
+      }
+    },
+    {
       "name": "FUN_800236cc",
       "address": "0x800236cc",
       "size": 8,
