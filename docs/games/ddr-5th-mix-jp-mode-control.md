@@ -1,7 +1,7 @@
 ---
 type: Reconstructed Module
 title: DDR 5th Mix Mode-Control Module
-description: Reproducible game-owned module grouping twelve accepted mode/submode and session-control functions.
+description: Reproducible game-owned module grouping nineteen accepted mode/submode and session-control functions.
 tags: [ps1, ddr5thmix, decompilation, module, state-machine]
 timestamp: 2026-07-19T00:00:00-04:00
 ---
@@ -23,34 +23,27 @@ large screen implementations and PsyQ library functions.
 | `FUN_800231b0` | 32 | Increment submode and clear `unknown_02c`. |
 | `FUN_80023210` | 32 | Set mode and reset subordinate state. |
 | `FUN_80023230` | 28 | Set submode and reset subordinate state. |
+| `FUN_800232cc` | 168 | Mode-`0x10`/default initialization and transition to mode 4. |
 | `FUN_8002340c` | 104 | Mode-4 initialization branch and transition to submode 2 or mode 2. |
 | `FUN_80023474` | 88 | Mode-4 readiness completion, settings/audio setup, and transition to mode 2. |
 | `FUN_800234cc` | 52 | Conditional mode-`0xff` handler. |
+| `FUN_80023500` | 68 | Mode-`0xff` submode-1 gated call sequence. |
+| `FUN_80023544` | 40 | Mode-`0xff` submode-2 flag clear and advance. |
 | `FUN_8002356c` | 32 | One-call mode-`0xff` wrapper. |
+| `FUN_8002358c` | 108 | Mode-`0xff` submode-4 GPU reset and state reset. |
+| `FUN_800235f8` | 152 | Mode-0 submode-0 initialization. |
+| `FUN_80023690` | 44 | Mode-0 submode-1 countdown arming. |
+| `FUN_800236bc` | 16 | Secondary-state byte-0 setter. |
 | `FUN_800236cc` | 8 | Empty mode-4 hook. |
 
-Total: twelve functions and 608 selected bytes.
+Total: nineteen functions and 1,204 selected bytes.
 
 # Range inventory
 
 The bounded `0x800230cc–0x800236cc` review finds 18 function starts covering
-1,168 attributed bytes. Eleven are now accepted members of `mode-control`:
-`FUN_800230cc`, `FUN_8002313c`, `FUN_80023170`, `FUN_800231b0`,
-`FUN_80023210`, `FUN_80023230`, `FUN_8002340c`, `FUN_80023474`,
-`FUN_800234cc`, `FUN_8002356c`, and `FUN_800236cc` (572 bytes). The twelfth
-accepted member, `FUN_80022148`, is an external dependency outside the range.
-
-Seven in-range functions remain outside the reconstructed module:
-
-| Function | Bytes | Inventory classification |
-|---|---:|---|
-| `FUN_800232cc` | 168 | Reviewed mode-`0x10`/default handler; forwards to mode 4. |
-| `FUN_80023500` | 68 | Reviewed mode-`0xff` submode-1 handler. |
-| `FUN_80023544` | 40 | Reviewed mode-`0xff` submode-2 handler. |
-| `FUN_8002358c` | 108 | Reviewed mode-`0xff` submode-4 GPU-reset handler. |
-| `FUN_800235f8` | 152 | Reviewed mode-0 submode-0 initialization handler. |
-| `FUN_80023690` | 44 | Reviewed mode-0 submode-1 countdown handler. |
-| `FUN_800236bc` | 16 | Reviewed byte setter for `DdrSecondaryState+0x00`; no callers identified. |
+1,168 attributed bytes. All 18 are now accepted members of `mode-control`.
+The nineteenth member, `FUN_80022148` (36 bytes), is the external snapshot
+dependency called by the in-range mode-`0xff` path.
 
 This is a logical/code-range inventory, not proof of an original PsyQ object
 boundary. No linker map or object archive has yet tied all 18 functions to one
@@ -58,7 +51,7 @@ source object.
 
 # Shared layout
 
-`/src/ddr5thmix/mode_control.h` replaces five private, inconsistent partial
+`/src/ddr5thmix/mode_control.h` replaces several private, inconsistent partial
 struct declarations. It exposes only observed fields, preserves unknown
 padding, and asserts every relied-on offset at compile time. In
 `FUN_80023170`, an empty input/output register constraint intentionally removes

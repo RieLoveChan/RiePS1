@@ -43,12 +43,35 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module mode-control
 ```
 
-The module contains twelve accepted C functions and 608 compared bytes. Its
+The module contains nineteen accepted C functions and 1,204 compared bytes. Its
 shared `/src/ddr5thmix/mode_control.h` records the two partial state layouts
 used by the functions; compile-time offset assertions prevent a field-map edit
 from silently moving an observed access.
 
 # Accepted functions
+
+## Completed `0x800230cc–0x800236cc` range
+
+The final seven in-range functions add 596 exact bytes and close every function
+boundary in the inventory. `FUN_800236bc` is a first-attempt direct C match;
+the six handlers use bounded semantic inline sequences to retain PsyQ frame,
+reload, register, and delay-slot layout.
+
+| Function | Bytes | Built/reference SHA-256 |
+|---|---:|---|
+| `FUN_800232cc` | 168 | `6e0877b0ce7b9c852edc2b4dcf2354c1eb3274d8211974edfc4d6fe35f56c866` |
+| `FUN_80023500` | 68 | `15d901088d507fdaaadfbe80921317cc15958fe16a8c7f8ec94845346101991e` |
+| `FUN_80023544` | 40 | `4afac96478e4b9b2151461d7521d31587518a8fea3f4aa7df6f3137bae30b37c` |
+| `FUN_8002358c` | 108 | `dbfe7b5c93180b8993cd9c910371ae43fd87b016921621b5d197f484b90e07c7` |
+| `FUN_800235f8` | 152 | `3e40e705f0b079beae2ec7625ce7b301fbcbec9aef0f5cbbff915c3b67e464dc` |
+| `FUN_80023690` | 44 | `db411f78d03c5e62b31287a760f49c485cd2de3a14e2ce0c1161f2d0615033b0` |
+| `FUN_800236bc` | 16 | `11999692c02c317443898e7615fb70350b448e716aeccdc9e5ecaa5b3bbee78a` |
+
+Together with the earlier eleven in-range matches, all 18 inventoried
+functions and 1,168 attributed bytes now reproduce exactly. The module also
+contains the 36-byte external dependency `FUN_80022148`, for 19 functions and
+1,204 bytes total. This closes the logical range, not the still-unproven
+original PsyQ object boundary.
 
 ## Mode-4 handler pair and external snapshot dependency
 
