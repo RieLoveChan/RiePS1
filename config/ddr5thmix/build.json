@@ -11,6 +11,23 @@
     "gcc_version": "14.2.0",
     "binutils_version": "2.43"
   },
+  "modules": [
+    {
+      "name": "mode-control",
+      "description": "Game-owned mode/submode mutation, session-entry reset, termination latch, and bounded dispatcher handlers.",
+      "functions": [
+        "FUN_800230cc",
+        "FUN_8002313c",
+        "FUN_80023170",
+        "FUN_800231b0",
+        "FUN_80023210",
+        "FUN_80023230",
+        "FUN_800234cc",
+        "FUN_8002356c",
+        "FUN_800236cc"
+      ]
+    }
+  ],
   "functions": [
     {
       "name": "FUN_8007eea8",

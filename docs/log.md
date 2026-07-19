@@ -1,6 +1,7 @@
 # Knowledge Bundle Update Log
 
 ## 2026-07-19
+* **First global map and game-logic module**: Defined a global-map CSV schema and created the initial DDR 5th Mix map for `PTR_DAT_800ac8e8`, `PTR_DAT_800ac8ec`, and `DAT_800e2a60`, keeping runtime pointer targets distinct from fixed addresses. Consolidated the observed primary/secondary state offsets in a shared header with compile-time layout assertions; the fuller type exposed one negative result, where GCC merged four byte stores until a zero-instruction constraint removed its alignment inference. Added the named [`mode-control`](/docs/games/ddr-5th-mix-jp-mode-control.md) build module and an aggregate verifier; GCC 14.2.0/binutils 2.43 matched all nine functions and 380 selected bytes. This establishes the first reproducible multi-function unit without claiming whole-object or whole-executable linkage.
 * **Remaining exact-name GTE matches**: Reconstructed the 11 remaining real linked functions whose names exactly match the current GTE catalog: two identical `SetTransMatrix` copies, `MulMatrix0`, three matrix setters, two color setters, `AverageZ3`, `AverageZ4`, and `Lzc`. Semantic MIPS assembly retains the GTE register mapping, three MVMVA operations, AVSZ commands, and documented coprocessor latency; only GTE command encodings unsupported as assembler mnemonics use raw words. GNU binutils 2.43 matches all 632 selected bytes, bringing real GTE/COP2 coverage to 33 functions and 1,324 bytes and the manifest to 73 accepted functions.
 
 ## 2026-07-18

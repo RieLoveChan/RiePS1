@@ -3,7 +3,7 @@ type: Playbook
 title: Per-function byte-match loop
 description: Hash-gated assembly and comparison loop for reconstructed DDR 5th Mix functions.
 tags: [ps1, workflow, matching, build, ddr5thmix]
-timestamp: 2026-07-18T00:00:00-04:00
+timestamp: 2026-07-19T00:00:00-04:00
 ---
 
 # Contract
@@ -33,6 +33,20 @@ pwsh -File tools/build/Invoke-FunctionMatch.ps1 `
   -ExePath work/ddr5thmix-extract/exe/SLPM_868.97_1 `
   -Function FUN_8007eea8
 ```
+
+The manifest also defines named game-owned modules. Validate the initial
+`mode-control` unit and produce one aggregate JSON report with:
+
+```powershell
+pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
+  -ExePath work/ddr5thmix-extract/exe/SLPM_868.97_1 `
+  -Module mode-control
+```
+
+The module contains nine accepted C functions and 380 compared bytes. Its
+shared `/src/ddr5thmix/mode_control.h` records the two partial state layouts
+used by the functions; compile-time offset assertions prevent a field-map edit
+from silently moving an observed access.
 
 # Accepted functions
 
