@@ -241,6 +241,70 @@
       ]
     },
     {
+      "name": "LightColor",
+      "address": "0x800551b8",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.LightColor"
+    },
+    {
+      "name": "DpqColorLight",
+      "address": "0x800551e0",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.DpqColorLight"
+    },
+    {
+      "name": "DpqColor3",
+      "address": "0x80055208",
+      "size": 60,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.DpqColor3"
+    },
+    {
+      "name": "Intpl",
+      "address": "0x80055244",
+      "size": 36,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.Intpl"
+    },
+    {
+      "name": "Square12",
+      "address": "0x80055268",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.Square12"
+    },
+    {
+      "name": "Square0",
+      "address": "0x80055290",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.Square0"
+    },
+    {
+      "name": "OuterProduct12",
+      "address": "0x800552fc",
+      "size": 88,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.OuterProduct12"
+    },
+    {
+      "name": "OuterProduct0",
+      "address": "0x80055354",
+      "size": 88,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteColorMath.s",
+      "section": ".text.OuterProduct0"
+    },
+    {
       "name": "SetVertex0",
       "address": "0x80055984",
       "size": 16,

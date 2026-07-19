@@ -255,6 +255,38 @@ patterns in other legally analyzed PS1 software. Byte identity is established
 only for this DDR 5th Mix revision and pinned toolchain; other PsyQ versions,
 library builds, or link layouts still require their own hashes and comparison.
 
+## PsyQ GTE color/vector arithmetic block
+
+Eight further PsyQ 4.4.0 LIBGTE wrappers are reconstructed in the shared
+tracked source `src/ddr5thmix/GteColorMath.s`: `LightColor` (`0x800551b8`, 40
+bytes), `DpqColorLight` (`0x800551e0`, 40 bytes), `DpqColor3` (`0x80055208`,
+60 bytes), `Intpl` (`0x80055244`, 36 bytes), `Square12` (`0x80055268`, 40
+bytes), `Square0` (`0x80055290`, 40 bytes), `OuterProduct12` (`0x800552fc`,
+88 bytes), and `OuterProduct0` (`0x80055354`, 88 bytes).
+
+The wrappers expose three reusable instruction families. The color functions
+load GTE interpolation/color inputs and store one or three packed color
+results. The square pair differs only in the GTE shift-fraction bit and returns
+the destination pointer in the `jr ra` delay slot. The outer-product pair
+temporarily replaces three GTE control registers, performs the operation with
+or without the 12-bit fractional shift, stores MAC1-MAC3, and restores the
+saved control state. Explicit ordering and raw words for the GTE commands
+reproduce all 432 bytes. The per-function built/reference SHA-256 values are:
+
+- `LightColor`: `ae4cfe9745644b125bec4219d0660a7608bef37aec1d6cdb3d1e601e1112b0bf`
+- `DpqColorLight`: `a9fd370295eb8d79a4f5a8803c448bec1ea52cb588cfa1b044c8278438f9d470`
+- `DpqColor3`: `8e8ac1471c4c2028fb131b2ff67671b6d725c3169d777b44d4b717c2295a0563`
+- `Intpl`: `91a892c2adb57022e700b10f8801c3726a207157cba716c763b67d4daac4c510`
+- `Square12`: `8eb49b1a6805d4a218b9a35c2f9ab81c8cb702b3ced2c46674284158713c5aaf`
+- `Square0`: `99cb1c8d0c79529e8c6f1a56f640ebd7400c2eb0f57312cdc2e252c1e34f201b`
+- `OuterProduct12`: `51199c0b60ef58f1d276b5423b81401363531c429c7f335b84fdef9f4c3b1934`
+- `OuterProduct0`: `b0df3db5528e30315b774c82d909799911f21a661fc9d23bf7ce2dbb33ef3f53`
+
+Together with the four `SetVertex` wrappers, the accepted real GTE/COP2 set
+now covers 12 functions and 512 executable bytes. The reconstruction proves
+byte identity for the pinned executable and GNU assembler; it does not claim
+that the tracked assembly is Sony's original source.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
