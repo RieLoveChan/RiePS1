@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-18T00:00:00-04:00
+timestamp: 2026-07-19T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -31,8 +31,8 @@ decompiler_output_only`.
 |---|---|
 | Total functions | 2,118 (2,026 original + 92 added 2026-07-15) |
 | `confidence = manual` (hand-reviewed 2026-07-13–18) | 191 |
-| `confidence = verified` | 52 |
-| `confidence = library_signature` | 988 |
+| `confidence = verified` | 63 |
+| `confidence = library_signature` | 977 |
 | `confidence = unverified` (default `FUN_########` names) | 887 |
 | Combined function-body coverage | 509,608 of 1,050,624 `t_size` bytes (~49%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 

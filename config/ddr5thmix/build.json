@@ -655,6 +655,94 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
       "section": ".text.ReturnFromException"
+    },
+    {
+      "name": "SetTransMatrix_8002b210",
+      "address": "0x8002b210",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.SetTransMatrix_8002b210"
+    },
+    {
+      "name": "MulMatrix0",
+      "address": "0x80037208",
+      "size": 268,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.MulMatrix0"
+    },
+    {
+      "name": "SetRotMatrix",
+      "address": "0x800377e8",
+      "size": 48,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.SetRotMatrix"
+    },
+    {
+      "name": "SetLightMatrix",
+      "address": "0x80037818",
+      "size": 48,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.SetLightMatrix"
+    },
+    {
+      "name": "SetTransMatrix",
+      "address": "0x80037848",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.SetTransMatrix"
+    },
+    {
+      "name": "SetColorMatrix",
+      "address": "0x80037f88",
+      "size": 48,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.SetColorMatrix"
+    },
+    {
+      "name": "SetFarColor",
+      "address": "0x80038008",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.SetFarColor"
+    },
+    {
+      "name": "SetBackColor",
+      "address": "0x80054998",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.SetBackColor"
+    },
+    {
+      "name": "AverageZ3",
+      "address": "0x800552b8",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.AverageZ3"
+    },
+    {
+      "name": "AverageZ4",
+      "address": "0x800552d8",
+      "size": 36,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.AverageZ4"
+    },
+    {
+      "name": "Lzc",
+      "address": "0x800553ac",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteRemaining.s",
+      "section": ".text.Lzc"
     }
   ]
 }

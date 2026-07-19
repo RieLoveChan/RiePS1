@@ -316,6 +316,45 @@ The accepted real GTE/COP2 set now covers 22 functions and 692 executable
 bytes. `SetDQB` immediately follows this block but is intentionally left for
 a later unit so this change remains exactly ten newly accepted functions.
 
+## Remaining exact-name PsyQ GTE functions
+
+The 11 remaining real linked functions whose names exactly match the current
+GTE catalog are reconstructed in `src/ddr5thmix/GteRemaining.s`. They cover
+632 bytes: two identical `SetTransMatrix` copies (`0x8002b210` and
+`0x80037848`, 32 bytes each), `MulMatrix0` (`0x80037208`, 268 bytes),
+`SetRotMatrix` (`0x800377e8`, 48 bytes), `SetLightMatrix` (`0x80037818`, 48
+bytes), `SetColorMatrix` (`0x80037f88`, 48 bytes), `SetFarColor`
+(`0x80038008`, 32 bytes), `SetBackColor` (`0x80054998`, 32 bytes),
+`AverageZ3` (`0x800552b8`, 32 bytes), `AverageZ4` (`0x800552d8`, 36 bytes),
+and `Lzc` (`0x800553ac`, 24 bytes).
+
+The matrix setters map packed matrix words directly to the corresponding GTE
+control registers. The color setters scale each input by 16. `AverageZ3` and
+`AverageZ4` issue AVSZ3/AVSZ4 and return OTZ; `Lzc` preserves the two no-op
+latency slots between LZCS and LZCR. `MulMatrix0` performs three MVMVA
+operations and packs their results into the destination matrix. Raw `.word`
+directives are restricted to GTE command encodings that GNU objdump does not
+render as ordinary mnemonics; CPU instructions remain semantic assembly.
+
+The per-function built/reference SHA-256 values are:
+
+- `SetTransMatrix` (`0x8002b210`): `2f228789930df0a6d6db76e145ba3301694d7c01b9df2dbf45d2f48ad7aaee1`
+- `MulMatrix0`: `2cdd7a947dcf65933864dc985431b443aff64da08fe0b62b26cd8e2cdc3c9a30`
+- `SetRotMatrix`: `095799477a23b46afa40d99dc027e7ef467cd14b8e135234d7e5b5c9ebc07883`
+- `SetLightMatrix`: `b9ce521ecd6cadeda48a0828b73f9b37d260c4f83e4d3b099334608f9e8fe598`
+- `SetTransMatrix` (`0x80037848`): `2f228789930df0a6d6db76e145ba3301694d7c01b9df2dbf45d2f48ad7aaee1`
+- `SetColorMatrix`: `32169d0ce375b3a1a24a5beadfd11cd857ce0a89d610ddf3a1f3855fa6ed34f6`
+- `SetFarColor`: `7c5febbc8fceb4e4b3065c8276416832651867316006f05c53e0a20b893d522d`
+- `SetBackColor`: `e4dc8b65f4b8d01e34793cfd9e1ecc838abd27d016ca1c2a4291a20b613ab61e`
+- `AverageZ3`: `72234e789d3afcc248b054abf035921eb4c095bb91a156c0df29e023db02b263`
+- `AverageZ4`: `ca098524f15b22f4ea8ac38b7d348e2cdce3c58babac70b15baa82d7af5f4115`
+- `Lzc`: `3ee60c6a11ec8f3821342fb5db4619b7c2f355e751f0614f0e77c2f32e7cd8df`
+
+This raises accepted real GTE/COP2 coverage to 33 functions and 1,324
+executable bytes. The evidence proves byte identity only for the pinned game
+revision and recorded GNU binutils 2.43 workflow; it does not claim Sony's
+original source.
+
 ## PsyQ BIOS/kernel trampoline block
 
 Thirty 12-byte PsyQ wrappers are reconstructed through the project-authored
