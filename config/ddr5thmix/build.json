@@ -90,6 +90,16 @@
         "FUN_80071248",
         "FUN_80071250"
       ]
+    },
+    {
+      "name": "game-session-opening",
+      "description": "Gameplay-session states 0-3: PLAY START, selector ownership, NON STOP I, and NON STOP C callbacks.",
+      "functions": [
+        "FUN_80070664", "FUN_8006ede8", "FUN_800706dc",
+        "FUN_80070730", "FUN_80070788", "FUN_8006eefc",
+        "FUN_80070260", "FUN_80070850", "FUN_80070958",
+        "FUN_80070980", "FUN_800709e0", "FUN_80070a84"
+      ]
     }
   ],
   "functions": [
@@ -1519,6 +1529,65 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionRouter.s",
       "section": ".text.FUN_80071250"
+    },
+    {
+      "name": "FUN_80070664", "address": "0x80070664", "size": 120,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070664",
+      "symbols": { "FUN_80023170": "0x80023170", "FUN_8004d080": "0x8004d080", "FUN_8006cbd4": "0x8006cbd4", "FUN_8007b778": "0x8007b778", "FUN_8007f07c": "0x8007f07c" }
+    },
+    {
+      "name": "FUN_8006ede8", "address": "0x8006ede8", "size": 276,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_8006ede8",
+      "symbols": { "FUN_800358f8": "0x800358f8", "FUN_8004d0a0": "0x8004d0a0", "FUN_8006e43c": "0x8006e43c", "FUN_8007638c": "0x8007638c" }
+    },
+    {
+      "name": "FUN_800706dc", "address": "0x800706dc", "size": 84,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_800706dc",
+      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_80049b84": "0x80049b84", "FUN_8004d158": "0x8004d158" }
+    },
+    {
+      "name": "FUN_80070730", "address": "0x80070730", "size": 88,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070730",
+      "symbols": { "FUN_80023170": "0x80023170", "FUN_800236bc": "0x800236bc", "FUN_8002a8b0": "0x8002a8b0", "FUN_80075580": "0x80075580" }
+    },
+    {
+      "name": "FUN_80070788", "address": "0x80070788", "size": 200,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070788",
+      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_8006e43c": "0x8006e43c", "FUN_80075604": "0x80075604", "FUN_80085c54": "0x80085c54" }
+    },
+    {
+      "name": "FUN_8006eefc", "address": "0x8006eefc", "size": 216,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_8006eefc",
+      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_800756ac": "0x800756ac" }
+    },
+    {
+      "name": "FUN_80070260", "address": "0x80070260", "size": 148,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070260",
+      "symbols": { "FUN_8007fab0": "0x8007fab0", "FUN_800991e0": "0x800991e0" }
+    },
+    {
+      "name": "FUN_80070850", "address": "0x80070850", "size": 264,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070850",
+      "symbols": { "FUN_80028358": "0x80028358", "FUN_8007fdec": "0x8007fdec", "FUN_80098f8c": "0x80098f8c" }
+    },
+    {
+      "name": "FUN_80070958", "address": "0x80070958", "size": 40,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070958"
+    },
+    {
+      "name": "FUN_80070980", "address": "0x80070980", "size": 96,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070980",
+      "symbols": { "FUN_80028358": "0x80028358", "FUN_800703e0": "0x800703e0", "FUN_800aadac": "0x800aadac" }
+    },
+    {
+      "name": "FUN_800709e0", "address": "0x800709e0", "size": 164,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_800709e0",
+      "symbols": { "FUN_800358f8": "0x800358f8", "FUN_8007638c": "0x8007638c", "FUN_8007b778": "0x8007b778", "FUN_8007fdec": "0x8007fdec" }
+    },
+    {
+      "name": "FUN_80070a84", "address": "0x80070a84", "size": 40,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070a84",
+      "symbols": { "FUN_80028358": "0x80028358", "FUN_8007f07c": "0x8007f07c" }
     }
   ]
 }
