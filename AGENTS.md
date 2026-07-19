@@ -5,8 +5,9 @@ PlayStation 1 software. Read `spec.md`, then `docs/index.md`, before working.
 
 ## Non-negotiable rules
 
-- Put all documentation and research in `docs/`. `AGENTS.md` is the sole
-  root-level documentation exception requested by the repository owner.
+- Put all documentation and research in `docs/`. `AGENTS.md` and the
+  owner-requested project landing page `README.md` are the only root-level
+  documentation exceptions.
 - Treat `docs/` as an Open Knowledge Format (OKF) 0.1 bundle. Every Markdown
   concept other than reserved `index.md` and `log.md` files must begin with
   YAML frontmatter containing a non-empty `type`.

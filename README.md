@@ -62,6 +62,7 @@ currently covers 83 of 2,118 functions (about 3.9%).
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)
 - [Screen flow](docs/games/ddr-5th-mix-jp-screen-flow.md)
 - [Byte-match workflow](docs/workflows/function-byte-match.md)
+- [External screen-selector work package](docs/workflows/external-agent-screen-selector.md)
 - [Legal provenance policy](docs/foundations/legal-provenance.md)
 
 See [AGENTS.md](AGENTS.md) before making changes. Correctness and byte-match
