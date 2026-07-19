@@ -14,10 +14,10 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Function inventory | 2,124 total: 110 verified, 154 manually reviewed, 977 library signatures, 883 unverified |
-| Exact reconstruction | 110 functions / 7,064 selected bytes |
+| Function inventory | 2,124 total: 119 verified, 145 manually reviewed, 977 library signatures, 883 unverified |
+| Exact reconstruction | 119 functions / 8,748 selected bytes |
 | PsyQ coverage | 30 BIOS/kernel trampolines and 33 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 19 functions / 1,204 bytes; `runtime-core`: 5 functions / 1,824 bytes; `screen-selector`: 22 functions / 2,344 bytes |
+| Game-owned modules | `mode-control`: 19/1,204; `runtime-core`: 5/1,824; `screen-selector`: 22/2,344; `game-session-router`: 9/1,684 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | 11,864 bytes delimited; 1,910 scripted ticks identified |
@@ -25,7 +25,7 @@ and validate its recorded hashes before comparison.
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress. Exact accepted reconstruction
-currently covers 110 of 2,124 functions (about 5.2%).
+currently covers 119 of 2,124 functions (about 5.6%).
 
 ## Completed foundations
 
@@ -40,11 +40,13 @@ currently covers 110 of 2,124 functions (about 5.2%).
   the five-function `runtime-core` module.
 - All 18 selector-table entries, three MUSIC SEL helpers, and the central
   router reconstructed as the 22-function `screen-selector` module.
+- Outer session wrappers, the 15-state child lifecycle router, and terminal
+  callbacks reconstructed as the 9-function `game-session-router` module.
 
 ## Recommended next targets
 
-1. **Reconstruct the 15-state gameplay-session routers:** begin with the small
-   wrappers around PREPARE, INTRO, DANCING, STAGE END, RESULT, and termination.
+1. **Reconstruct the remaining gameplay-session callbacks:** group the 42
+   unmatched callbacks into entry/selection, gameplay, result, and ending phases.
 2. **Promote the HOW TO PLAY overlay into a module:** its boundaries and timing
    are known, but its code is not yet reconstructed.
 3. **Expand verified global layouts:** resolve consumers of offsets `0x09`,
@@ -60,6 +62,7 @@ currently covers 110 of 2,124 functions (about 5.2%).
 - [Mode-control module](docs/games/ddr-5th-mix-jp-mode-control.md)
 - [Runtime-core module](docs/games/ddr-5th-mix-jp-runtime-core.md)
 - [Screen-selector module](docs/games/ddr-5th-mix-jp-screen-selector.md)
+- [Game-session router module](docs/games/ddr-5th-mix-jp-game-session-router.md)
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)
 - [Screen flow](docs/games/ddr-5th-mix-jp-screen-flow.md)
 - [Byte-match workflow](docs/workflows/function-byte-match.md)

@@ -75,6 +75,21 @@
         "FUN_80075af0",
         "FUN_80075af8"
       ]
+    },
+    {
+      "name": "game-session-router",
+      "description": "Outer game-session wrappers, 15-state child lifecycle router, and terminal callbacks.",
+      "functions": [
+        "FUN_8004b800",
+        "FUN_8004bdec",
+        "FUN_8004be30",
+        "FUN_8006fe7c",
+        "FUN_8006ffd8",
+        "FUN_80070154",
+        "FUN_80071240",
+        "FUN_80071248",
+        "FUN_80071250"
+      ]
     }
   ],
   "functions": [
@@ -1396,6 +1411,114 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075af8"
+    },
+    {
+      "name": "FUN_8004b800",
+      "address": "0x8004b800",
+      "size": 564,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_8004b800",
+      "symbols": {
+        "FUN_80097e7c": "0x80097e7c",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_80097e60": "0x80097e60",
+        "FUN_80097e44": "0x80097e44",
+        "FUN_80097e28": "0x80097e28",
+        "FUN_800497bc": "0x800497bc",
+        "FUN_80097e98": "0x80097e98",
+        "FUN_80097ea8": "0x80097ea8",
+        "FUN_80097d28": "0x80097d28",
+        "FUN_8006ffd8": "0x8006ffd8"
+      }
+    },
+    {
+      "name": "FUN_8004bdec",
+      "address": "0x8004bdec",
+      "size": 68,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_8004bdec",
+      "symbols": {
+        "FUN_8006fe7c": "0x8006fe7c"
+      }
+    },
+    {
+      "name": "FUN_8004be30",
+      "address": "0x8004be30",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_8004be30",
+      "symbols": {
+        "FUN_80070154": "0x80070154"
+      }
+    },
+    {
+      "name": "FUN_8006fe7c",
+      "address": "0x8006fe7c",
+      "size": 348,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_8006fe7c",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8007ef8c": "0x8007ef8c",
+        "FUN_8006fdb4": "0x8006fdb4",
+        "FUN_8006fd04": "0x8006fd04",
+        "FUN_8009ff8c": "0x8009ff8c",
+        "FUN_80028358": "0x80028358"
+      }
+    },
+    {
+      "name": "FUN_8006ffd8",
+      "address": "0x8006ffd8",
+      "size": 380,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_8006ffd8",
+      "symbols": {}
+    },
+    {
+      "name": "FUN_80070154",
+      "address": "0x80070154",
+      "size": 268,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_80070154",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8009643c": "0x8009643c",
+        "FUN_8006fd04": "0x8006fd04",
+        "FUN_8007ee38": "0x8007ee38",
+        "FUN_8007f07c": "0x8007f07c",
+        "FUN_8007f67c": "0x8007f67c",
+        "FUN_8005f088": "0x8005f088"
+      }
+    },
+    {
+      "name": "FUN_80071240",
+      "address": "0x80071240",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_80071240"
+    },
+    {
+      "name": "FUN_80071248",
+      "address": "0x80071248",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_80071248"
+    },
+    {
+      "name": "FUN_80071250",
+      "address": "0x80071250",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionRouter.s",
+      "section": ".text.FUN_80071250"
     }
   ]
 }

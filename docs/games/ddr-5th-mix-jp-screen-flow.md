@@ -188,6 +188,12 @@ identify the record-data structure.
 | Update | `0x800d9b08` | `FUN_8004b800` | Ticks that child through `FUN_8006ffd8`; remains in outer state 2 until child state 14 |
 | Exit | `0x800d9b40` | `FUN_8004be30` | Cleans up the child through `FUN_80070154` |
 
+The three wrappers, child init/tick/cleanup functions, and terminal-state
+callbacks are now exact in the
+[game-session-router module](/docs/games/ddr-5th-mix-jp-game-session-router.md):
+nine functions and 1,684 selected bytes. This does not yet claim the other 42
+distinct callbacks in the three child tables.
+
 The child uses three flat 15-entry arrays: enter `0x800def08`, update
 `0x800def44`, and exit `0x800def80`. Its state 0 is a `PLAY START`
 transition (`FUN_80070664` sets screen-name index `0x1a`); its state 1
