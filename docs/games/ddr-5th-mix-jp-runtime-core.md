@@ -55,6 +55,15 @@ counter/direction bytes, screen-range flag, and the 0x140-byte prefix cleared
 by `FUN_8002216c`. That cleared prefix is not evidence that the allocation
 ends at offset 0x140.
 
+The eight 32-bit input-state values are represented by four-byte,
+two-byte-aligned `DdrInputWord` fields. Modeling them as native `u32`
+raised the whole partial struct's inferred alignment to four, causing GCC to
+merge the two observed halfword clears at `+0x2c/+0x2e` in the previously
+accepted `SetMode`. The aggregate mode-control regression exposed this.
+Keeping their verified width without asserting unproven four-byte alignment
+restores the original stores; compile-time size/alignment/offset assertions
+and all three module verifiers pass.
+
 # Reproduction and limits
 
 Run:

@@ -5,6 +5,10 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
+typedef struct DdrInputWord {
+    u16 half[2];
+} DdrInputWord;
+
 typedef struct DdrModeState {
     u8 unknown_000[0x06];
     u8 unknown_006;
@@ -38,22 +42,22 @@ typedef struct DdrModeState {
     u8 unknown_043[0x02];
     u8 pad_valid_mask;
     u8 unknown_046[0x06];
-    u32 pad1_previous;
-    u32 pad1_held;
-    u32 pad1_pressed;
-    u32 pad1_released;
-    u32 pad2_previous;
-    u32 pad2_held;
-    u32 pad2_pressed;
-    u32 pad2_released;
-    u32 aux1_previous;
-    u32 aux1_held;
-    u32 aux1_pressed;
-    u32 aux1_released;
-    u32 aux2_previous;
-    u32 aux2_held;
-    u32 aux2_pressed;
-    u32 aux2_released;
+    DdrInputWord pad1_previous;
+    DdrInputWord pad1_held;
+    DdrInputWord pad1_pressed;
+    DdrInputWord pad1_released;
+    DdrInputWord pad2_previous;
+    DdrInputWord pad2_held;
+    DdrInputWord pad2_pressed;
+    DdrInputWord pad2_released;
+    DdrInputWord aux1_previous;
+    DdrInputWord aux1_held;
+    DdrInputWord aux1_pressed;
+    DdrInputWord aux1_released;
+    DdrInputWord aux2_previous;
+    DdrInputWord aux2_held;
+    DdrInputWord aux2_pressed;
+    DdrInputWord aux2_released;
     u8 unknown_08c[0x04];
     u8 counter_090;
     u8 direction_091;
@@ -99,6 +103,8 @@ typedef struct DdrSecondaryState {
 } DdrSecondaryState;
 
 #define DDR_STATIC_ASSERT(name, condition) typedef char name[(condition) ? 1 : -1]
+DDR_STATIC_ASSERT(ddr_input_word_size, sizeof(DdrInputWord) == 0x04);
+DDR_STATIC_ASSERT(ddr_input_word_alignment, __alignof__(DdrInputWord) == 0x02);
 DDR_STATIC_ASSERT(ddr_mode_offset, __builtin_offsetof(DdrModeState, mode) == 0x28);
 DDR_STATIC_ASSERT(ddr_mode_006_offset, __builtin_offsetof(DdrModeState, unknown_006) == 0x06);
 DDR_STATIC_ASSERT(ddr_mode_00c_offset, __builtin_offsetof(DdrModeState, unknown_00c) == 0x0c);

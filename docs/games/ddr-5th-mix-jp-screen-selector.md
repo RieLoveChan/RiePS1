@@ -1,5 +1,5 @@
 ---
-type: Concept
+type: Reconstructed Module
 title: Dance Dance Revolution 5th Mix (Japan) — Screen Selector Module
 description: Technical reconstruction and byte-matching evidence for the nested six-state screen selector hierarchy and next-state router.
 tags: [ps1, ddr5thmix, decompilation, screen-selector, state-machine]

@@ -10,10 +10,9 @@ timestamp: 2026-07-19T00:00:00-04:00
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
 Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
 Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
-(2,118 rows, one per function — 2,026 from the original bulk export plus
-92 added 2026-07-15 for indirect-call-only targets Ghidra's auto-analysis
-never turned into functions; see the `DAT_80105120` and outer-state-2
-reviews below).
+(2,124 rows, one per function — 2,026 from the original bulk export, 92 added
+2026-07-15 for indirect-call-only targets, and six selector exit/terminal
+callbacks added 2026-07-19 after inventorying all three selector tables).
 
 # Provenance
 
@@ -29,12 +28,12 @@ decompiler_output_only`.
 
 | Metric | Value |
 |---|---|
-| Total functions | 2,118 (2,026 original + 92 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–19) | 157 |
-| `confidence = verified` | 99 |
+| Total functions | 2,124 (2,026 original + 92 added 2026-07-15 + 6 added 2026-07-19) |
+| `confidence = manual` (hand-reviewed 2026-07-13–19) | 154 |
+| `confidence = verified` | 110 |
 | `confidence = library_signature` | 977 |
-| `confidence = unverified` (default `FUN_########` names) | 885 |
-| Combined function-body coverage | 509,608 of 1,050,624 `t_size` bytes (~49%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
+| `confidence = unverified` (default `FUN_########` names) | 883 |
+| Combined function-body coverage | 510,344 of 1,050,624 `t_size` bytes (~49%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
 suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
