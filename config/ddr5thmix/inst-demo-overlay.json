@@ -1,0 +1,813 @@
+{
+  "schema_version": 1,
+  "game": "ddr5thmix",
+  "target": "SLPM_868.97",
+  "module": "inst-demo-overlay",
+  "description": "DDR 5th Mix HOW TO PLAY executable overlay (inst-demo) functions.",
+  "overlay": {
+    "source_file": "READ_DT.BIN",
+    "file_offset": "0x1630000",
+    "length": 11864,
+    "sha256": "3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb",
+    "base_address": "0x801e4000",
+    "entry_points": {
+      "init": "0x801e413c",
+      "update": "0x801e41e8",
+      "exit": "0x801e4284"
+    }
+  },
+  "modules": [
+    {
+      "name": "inst-demo-overlay",
+      "description": "Complete 70-function executable surface of the inst-demo overlay.",
+      "functions": [
+        "FUN_801e4048",
+        "FUN_801e413c",
+        "FUN_801e41e8",
+        "FUN_801e4284",
+        "FUN_801e42c8",
+        "FUN_801e42d4",
+        "FUN_801e42ec",
+        "FUN_801e43a0",
+        "FUN_801e43b4",
+        "FUN_801e43bc",
+        "FUN_801e43f8",
+        "FUN_801e4418",
+        "FUN_801e4424",
+        "FUN_801e4474",
+        "FUN_801e44a0",
+        "FUN_801e4500",
+        "FUN_801e4540",
+        "FUN_801e4660",
+        "FUN_801e46d4",
+        "FUN_801e4718",
+        "FUN_801e4720",
+        "FUN_801e4748",
+        "FUN_801e4770",
+        "FUN_801e4798",
+        "FUN_801e47c0",
+        "FUN_801e47d4",
+        "FUN_801e47dc",
+        "FUN_801e4978",
+        "FUN_801e4bc0",
+        "FUN_801e4e70",
+        "FUN_801e4f68",
+        "FUN_801e5040",
+        "FUN_801e5178",
+        "FUN_801e5308",
+        "FUN_801e5420",
+        "FUN_801e55b8",
+        "FUN_801e5758",
+        "FUN_801e58dc",
+        "FUN_801e5ae0",
+        "FUN_801e5b88",
+        "FUN_801e5c98",
+        "FUN_801e5ca0",
+        "FUN_801e5cb8",
+        "FUN_801e5cd8",
+        "FUN_801e5d34",
+        "FUN_801e5d3c",
+        "FUN_801e5d44",
+        "FUN_801e5d4c",
+        "FUN_801e5d74",
+        "FUN_801e5e6c",
+        "FUN_801e5e74",
+        "FUN_801e5ec8",
+        "FUN_801e5ed0",
+        "FUN_801e5f08",
+        "FUN_801e5fa8",
+        "FUN_801e5fb0",
+        "FUN_801e5fe8",
+        "FUN_801e600c",
+        "FUN_801e601c",
+        "FUN_801e6084",
+        "FUN_801e6188",
+        "FUN_801e61b4",
+        "FUN_801e61e0",
+        "FUN_801e620c",
+        "FUN_801e6270",
+        "FUN_801e6320",
+        "FUN_801e634c",
+        "FUN_801e6408",
+        "FUN_801e64d4",
+        "FUN_801e64dc"
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "name": "FUN_801e4048",
+      "address": "0x801e4048",
+      "size": 244,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4048",
+      "symbols": {
+        "FUN_800548c8": "0x800548c8",
+        "FUN_80037988": "0x80037988",
+        "FUN_800548e8": "0x800548e8",
+        "FUN_80054968": "0x80054968"
+      }
+    },
+    {
+      "name": "FUN_801e413c",
+      "address": "0x801e413c",
+      "size": 172,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e413c",
+      "symbols": {
+        "FUN_801e4048": "0x801e4048",
+        "FUN_801e42d4": "0x801e42d4",
+        "FUN_801e5ae0": "0x801e5ae0",
+        "FUN_801e5040": "0x801e5040",
+        "FUN_801e5f08": "0x801e5f08",
+        "FUN_801e5758": "0x801e5758",
+        "FUN_801e5308": "0x801e5308"
+      }
+    },
+    {
+      "name": "FUN_801e41e8",
+      "address": "0x801e41e8",
+      "size": 156,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e41e8",
+      "symbols": {
+        "FUN_801e42ec": "0x801e42ec",
+        "FUN_80037988": "0x80037988",
+        "FUN_800548e8": "0x800548e8",
+        "FUN_80054968": "0x80054968",
+        "FUN_801e47dc": "0x801e47dc",
+        "FUN_801e5d74": "0x801e5d74",
+        "FUN_801e58dc": "0x801e58dc",
+        "FUN_801e5cd8": "0x801e5cd8",
+        "FUN_801e5420": "0x801e5420"
+      }
+    },
+    {
+      "name": "FUN_801e4284",
+      "address": "0x801e4284",
+      "size": 68,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4284",
+      "symbols": {
+        "FUN_801e5c98": "0x801e5c98",
+        "FUN_801e5ed0": "0x801e5ed0",
+        "FUN_801e600c": "0x801e600c",
+        "FUN_801e5d34": "0x801e5d34",
+        "FUN_801e5d4c": "0x801e5d4c"
+      }
+    },
+    {
+      "name": "FUN_801e42c8",
+      "address": "0x801e42c8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e42c8"
+    },
+    {
+      "name": "FUN_801e42d4",
+      "address": "0x801e42d4",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e42d4"
+    },
+    {
+      "name": "FUN_801e42ec",
+      "address": "0x801e42ec",
+      "size": 180,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e42ec"
+    },
+    {
+      "name": "FUN_801e43a0",
+      "address": "0x801e43a0",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e43a0"
+    },
+    {
+      "name": "FUN_801e43b4",
+      "address": "0x801e43b4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e43b4"
+    },
+    {
+      "name": "FUN_801e43bc",
+      "address": "0x801e43bc",
+      "size": 60,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e43bc",
+      "symbols": {
+        "FUN_801e5b88": "0x801e5b88"
+      }
+    },
+    {
+      "name": "FUN_801e43f8",
+      "address": "0x801e43f8",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e43f8"
+    },
+    {
+      "name": "FUN_801e4418",
+      "address": "0x801e4418",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4418"
+    },
+    {
+      "name": "FUN_801e4424",
+      "address": "0x801e4424",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4424",
+      "symbols": {
+        "FUN_801e5ca0": "0x801e5ca0"
+      }
+    },
+    {
+      "name": "FUN_801e4474",
+      "address": "0x801e4474",
+      "size": 44,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4474",
+      "symbols": {
+        "FUN_801e5ca0": "0x801e5ca0"
+      }
+    },
+    {
+      "name": "FUN_801e44a0",
+      "address": "0x801e44a0",
+      "size": 96,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e44a0",
+      "symbols": {
+        "FUN_801e5ec8": "0x801e5ec8",
+        "FUN_801e5d44": "0x801e5d44",
+        "FUN_801e5e74": "0x801e5e74"
+      }
+    },
+    {
+      "name": "FUN_801e4500",
+      "address": "0x801e4500",
+      "size": 64,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4500"
+    },
+    {
+      "name": "FUN_801e4540",
+      "address": "0x801e4540",
+      "size": 288,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4540",
+      "symbols": {
+        "FUN_801e5ec8": "0x801e5ec8",
+        "FUN_801e5d44": "0x801e5d44",
+        "FUN_801e61e0": "0x801e61e0",
+        "FUN_801e6188": "0x801e6188",
+        "FUN_801e61b4": "0x801e61b4"
+      }
+    },
+    {
+      "name": "FUN_801e4660",
+      "address": "0x801e4660",
+      "size": 116,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4660",
+      "symbols": {
+        "FUN_801e5ec8": "0x801e5ec8",
+        "FUN_801e5d44": "0x801e5d44"
+      }
+    },
+    {
+      "name": "FUN_801e46d4",
+      "address": "0x801e46d4",
+      "size": 68,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e46d4",
+      "symbols": {
+        "FUN_801e5d3c": "0x801e5d3c",
+        "FUN_801e5fe8": "0x801e5fe8"
+      }
+    },
+    {
+      "name": "FUN_801e4718",
+      "address": "0x801e4718",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4718"
+    },
+    {
+      "name": "FUN_801e4720",
+      "address": "0x801e4720",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4720",
+      "symbols": {
+        "FUN_801e5fa8": "0x801e5fa8"
+      }
+    },
+    {
+      "name": "FUN_801e4748",
+      "address": "0x801e4748",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4748",
+      "symbols": {
+        "FUN_801e5fb0": "0x801e5fb0"
+      }
+    },
+    {
+      "name": "FUN_801e4770",
+      "address": "0x801e4770",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4770",
+      "symbols": {
+        "FUN_801e5fb0": "0x801e5fb0"
+      }
+    },
+    {
+      "name": "FUN_801e4798",
+      "address": "0x801e4798",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4798",
+      "symbols": {
+        "FUN_801e5e6c": "0x801e5e6c"
+      }
+    },
+    {
+      "name": "FUN_801e47c0",
+      "address": "0x801e47c0",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e47c0"
+    },
+    {
+      "name": "FUN_801e47d4",
+      "address": "0x801e47d4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e47d4"
+    },
+    {
+      "name": "FUN_801e47dc",
+      "address": "0x801e47dc",
+      "size": 412,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e47dc",
+      "symbols": {
+        "FUN_800549b8": "0x800549b8"
+      }
+    },
+    {
+      "name": "FUN_801e4978",
+      "address": "0x801e4978",
+      "size": 584,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4978",
+      "symbols": {
+        "FUN_80098880": "0x80098880"
+      }
+    },
+    {
+      "name": "FUN_801e4bc0",
+      "address": "0x801e4bc0",
+      "size": 688,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4bc0",
+      "symbols": {
+        "FUN_80098880": "0x80098880"
+      }
+    },
+    {
+      "name": "FUN_801e4e70",
+      "address": "0x801e4e70",
+      "size": 248,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4e70",
+      "symbols": {
+        "FUN_801e4978": "0x801e4978",
+        "FUN_8004964c": "0x8004964c",
+        "FUN_8004971c": "0x8004971c"
+      }
+    },
+    {
+      "name": "FUN_801e4f68",
+      "address": "0x801e4f68",
+      "size": 216,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e4f68",
+      "symbols": {
+        "FUN_801e4bc0": "0x801e4bc0",
+        "FUN_801e4978": "0x801e4978"
+      }
+    },
+    {
+      "name": "FUN_801e5040",
+      "address": "0x801e5040",
+      "size": 312,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5040",
+      "symbols": {
+        "FUN_801e601c": "0x801e601c"
+      }
+    },
+    {
+      "name": "FUN_801e5178",
+      "address": "0x801e5178",
+      "size": 400,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5178"
+    },
+    {
+      "name": "FUN_801e5308",
+      "address": "0x801e5308",
+      "size": 280,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5308",
+      "symbols": {
+        "FUN_801e5178": "0x801e5178",
+        "FUN_80058420": "0x80058420",
+        "FUN_8005f298": "0x8005f298"
+      }
+    },
+    {
+      "name": "FUN_801e5420",
+      "address": "0x801e5420",
+      "size": 408,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5420",
+      "symbols": {
+        "FUN_80056af0": "0x80056af0",
+        "FUN_8005871c": "0x8005871c",
+        "FUN_8005e504": "0x8005e504"
+      }
+    },
+    {
+      "name": "FUN_801e55b8",
+      "address": "0x801e55b8",
+      "size": 416,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e55b8",
+      "symbols": {
+        "FUN_8007dd2c": "0x8007dd2c",
+        "FUN_8007cf38": "0x8007cf38"
+      }
+    },
+    {
+      "name": "FUN_801e5758",
+      "address": "0x801e5758",
+      "size": 388,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5758",
+      "symbols": {
+        "FUN_8007b778": "0x8007b778",
+        "FUN_800761c4": "0x800761c4",
+        "FUN_80049b30": "0x80049b30"
+      }
+    },
+    {
+      "name": "FUN_801e58dc",
+      "address": "0x801e58dc",
+      "size": 516,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e58dc",
+      "symbols": {
+        "FUN_800497bc": "0x800497bc",
+        "FUN_80056a08": "0x80056a08"
+      }
+    },
+    {
+      "name": "FUN_801e5ae0",
+      "address": "0x801e5ae0",
+      "size": 168,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5ae0",
+      "symbols": {
+        "FUN_800497bc": "0x800497bc",
+        "FUN_800549b8": "0x800549b8"
+      }
+    },
+    {
+      "name": "FUN_801e5b88",
+      "address": "0x801e5b88",
+      "size": 272,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5b88"
+    },
+    {
+      "name": "FUN_801e5c98",
+      "address": "0x801e5c98",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5c98"
+    },
+    {
+      "name": "FUN_801e5ca0",
+      "address": "0x801e5ca0",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5ca0"
+    },
+    {
+      "name": "FUN_801e5cb8",
+      "address": "0x801e5cb8",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5cb8"
+    },
+    {
+      "name": "FUN_801e5cd8",
+      "address": "0x801e5cd8",
+      "size": 92,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5cd8"
+    },
+    {
+      "name": "FUN_801e5d34",
+      "address": "0x801e5d34",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5d34"
+    },
+    {
+      "name": "FUN_801e5d3c",
+      "address": "0x801e5d3c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5d3c"
+    },
+    {
+      "name": "FUN_801e5d44",
+      "address": "0x801e5d44",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5d44"
+    },
+    {
+      "name": "FUN_801e5d4c",
+      "address": "0x801e5d4c",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5d4c",
+      "symbols": {
+        "FUN_8005b0b0": "0x8005b0b0",
+        "FUN_8005f2e4": "0x8005f2e4"
+      }
+    },
+    {
+      "name": "FUN_801e5d74",
+      "address": "0x801e5d74",
+      "size": 248,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5d74",
+      "symbols": {
+        "FUN_801e55b8": "0x801e55b8",
+        "FUN_80056148": "0x80056148"
+      }
+    },
+    {
+      "name": "FUN_801e5e6c",
+      "address": "0x801e5e6c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5e6c"
+    },
+    {
+      "name": "FUN_801e5e74",
+      "address": "0x801e5e74",
+      "size": 84,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5e74"
+    },
+    {
+      "name": "FUN_801e5ec8",
+      "address": "0x801e5ec8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5ec8"
+    },
+    {
+      "name": "FUN_801e5ed0",
+      "address": "0x801e5ed0",
+      "size": 56,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5ed0"
+    },
+    {
+      "name": "FUN_801e5f08",
+      "address": "0x801e5f08",
+      "size": 160,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5f08",
+      "symbols": {
+        "FUN_8007b778": "0x8007b778"
+      }
+    },
+    {
+      "name": "FUN_801e5fa8",
+      "address": "0x801e5fa8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5fa8"
+    },
+    {
+      "name": "FUN_801e5fb0",
+      "address": "0x801e5fb0",
+      "size": 56,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5fb0"
+    },
+    {
+      "name": "FUN_801e5fe8",
+      "address": "0x801e5fe8",
+      "size": 36,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e5fe8"
+    },
+    {
+      "name": "FUN_801e600c",
+      "address": "0x801e600c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e600c"
+    },
+    {
+      "name": "FUN_801e601c",
+      "address": "0x801e601c",
+      "size": 104,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e601c",
+      "symbols": {
+        "FUN_80098880": "0x80098880"
+      }
+    },
+    {
+      "name": "FUN_801e6084",
+      "address": "0x801e6084",
+      "size": 260,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e6084",
+      "symbols": {
+        "FUN_801e601c": "0x801e601c"
+      }
+    },
+    {
+      "name": "FUN_801e6188",
+      "address": "0x801e6188",
+      "size": 44,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e6188"
+    },
+    {
+      "name": "FUN_801e61b4",
+      "address": "0x801e61b4",
+      "size": 44,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e61b4"
+    },
+    {
+      "name": "FUN_801e61e0",
+      "address": "0x801e61e0",
+      "size": 44,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e61e0"
+    },
+    {
+      "name": "FUN_801e620c",
+      "address": "0x801e620c",
+      "size": 100,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e620c",
+      "symbols": {
+        "FUN_8005ebb4": "0x8005ebb4"
+      }
+    },
+    {
+      "name": "FUN_801e6270",
+      "address": "0x801e6270",
+      "size": 176,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e6270",
+      "symbols": {
+        "FUN_801e4978": "0x801e4978"
+      }
+    },
+    {
+      "name": "FUN_801e6320",
+      "address": "0x801e6320",
+      "size": 44,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e6320",
+      "symbols": {
+        "FUN_801e4978": "0x801e4978"
+      }
+    },
+    {
+      "name": "FUN_801e634c",
+      "address": "0x801e634c",
+      "size": 188,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e634c",
+      "symbols": {
+        "FUN_801e4978": "0x801e4978"
+      }
+    },
+    {
+      "name": "FUN_801e6408",
+      "address": "0x801e6408",
+      "size": 204,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e6408",
+      "symbols": {
+        "FUN_801e4978": "0x801e4978"
+      }
+    },
+    {
+      "name": "FUN_801e64d4",
+      "address": "0x801e64d4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e64d4"
+    },
+    {
+      "name": "FUN_801e64dc",
+      "address": "0x801e64dc",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s",
+      "section": ".text.FUN_801e64dc"
+    }
+  ]
+}
