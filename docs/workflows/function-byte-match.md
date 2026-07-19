@@ -43,12 +43,40 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module mode-control
 ```
 
-The module contains nine accepted C functions and 380 compared bytes. Its
+The module contains twelve accepted C functions and 608 compared bytes. Its
 shared `/src/ddr5thmix/mode_control.h` records the two partial state layouts
 used by the functions; compile-time offset assertions prevent a field-map edit
 from silently moving an observed access.
 
 # Accepted functions
+
+## Mode-4 handler pair and external snapshot dependency
+
+Three direct dependencies extend `mode-control` from nine functions/380 bytes
+to twelve functions/608 bytes:
+
+- `FUN_8002340c` (104 bytes) is the mode-4/submode-0 handler. It gates on
+  `DAT_800ac88c`, reads secondary-state byte `+0x06`, and either advances to
+  submode 2 or transitions to mode 2. Built/reference SHA-256:
+  `aae54597ee08056bba1debab97825d7afdb0eb84d1981c5dec7e26ed7c4f8387`.
+- `FUN_80023474` (88 bytes) is the mode-4/submode-2 completion handler. Once
+  its readiness call succeeds it sets secondary-state byte `+0x06`, runs the
+  audio/settings/init sequence, and transitions to mode 2. Built/reference
+  SHA-256:
+  `18e61d0289d4def33ce1ea53709b9149cc66d5376fb842f6e8619063d575994e`.
+- `FUN_80022148` (36 bytes), called externally by the mode-`0xff` path, copies
+  two opaque consecutive words from `0x800ac8f0` to `0x800e2ae0` and ignores
+  the caller's argument. Built/reference SHA-256:
+  `85a280ea5b4c136a4d727cd996d7ede89b7e6e67d499c625282766cad1ffcb94`.
+
+Straight C reproduced each operation but not its PsyQ layout. For the two
+handlers GCC shrink-wrapped frames, emitted tail calls, and duplicated
+epilogues. For the snapshot copy it materialized each global independently or
+selected different base/register ordering even when modeled as two contiguous
+structures. The accepted C files therefore use bounded semantic inline
+instructions with linker-resolved symbols; no raw reference bytes are
+embedded, and this is a compiler-compatibility shim rather than a claim that
+the original source used inline assembly.
 
 ## `FUN_8007eea8` — assembly
 

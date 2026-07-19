@@ -9,7 +9,7 @@ timestamp: 2026-07-19T00:00:00-04:00
 
 # Scope
 
-The initial CSV contains only the three fixed-address globals required by the
+The CSV contains the six fixed-address globals currently required by the
 first game-logic module. It follows the
 [global-map schema](/docs/foundations/global-map-schema.md). Pointer targets
 are runtime objects: their observed fields are expressed as offsets below and
@@ -35,13 +35,23 @@ are not given fabricated absolute addresses.
 
 | Offset | Width | Conservative field | Evidence |
 |---:|---:|---|---|
+| `0x00` | 1 | `unknown_000` | Written by `FUN_800236bc`; no caller is currently identified. |
 | `0x04` | 1 | `unknown_004` | Set to one by the termination-latch helper. |
+| `0x06` | 1 | `unknown_006` | Selects the two mode-4 initialization branches; set when the readiness path completes. |
 | `0x52` | 1 | `unknown_052` | Copied to `+0xbb` by the mode-4 dispatcher. |
 | `0x66` | 1 | `unknown_066` | Receives the low byte of `DAT_800e2a60`. |
 | `0xbb` | 1 | `unknown_0bb` | Receives `+0x52` after mode-4 dispatch. |
 
 The tracked header `/src/ddr5thmix/mode_control.h` encodes exactly these
 offsets with compile-time assertions. Padding and unknown fields remain opaque.
+
+# Opaque two-word snapshot
+
+`FUN_80022148` copies two consecutive words from fixed range
+`0x800ac8f0–0x800ac8f7` to `0x800e2ae0–0x800e2ae7`. The operation is verified,
+but neither range has a supported semantic name. In particular, the
+tool-assigned `PTR_DAT_800ac8f0` prefix is not treated as evidence that either
+word is a pointer.
 
 # Reproduction
 

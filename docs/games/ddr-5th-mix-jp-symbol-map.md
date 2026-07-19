@@ -30,10 +30,10 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,118 (2,026 original + 92 added 2026-07-15) |
-| `confidence = manual` (hand-reviewed 2026-07-13–19) | 181 |
-| `confidence = verified` | 73 |
+| `confidence = manual` (hand-reviewed 2026-07-13–19) | 180 |
+| `confidence = verified` | 76 |
 | `confidence = library_signature` | 977 |
-| `confidence = unverified` (default `FUN_########` names) | 887 |
+| `confidence = unverified` (default `FUN_########` names) | 885 |
 | Combined function-body coverage | 509,608 of 1,050,624 `t_size` bytes (~49%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
@@ -1131,7 +1131,7 @@ and runtime correlation are recorded in
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 254 rows currently have `source_status` above
+- Only 256 rows currently have `source_status` above
   `decompiler_output_only`, out of 2,118. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0

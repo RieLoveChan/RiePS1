@@ -17,11 +17,14 @@
       "description": "Game-owned mode/submode mutation, session-entry reset, termination latch, and bounded dispatcher handlers.",
       "functions": [
         "FUN_800230cc",
+        "FUN_80022148",
         "FUN_8002313c",
         "FUN_80023170",
         "FUN_800231b0",
         "FUN_80023210",
         "FUN_80023230",
+        "FUN_8002340c",
+        "FUN_80023474",
         "FUN_800234cc",
         "FUN_8002356c",
         "FUN_800236cc"
@@ -62,6 +65,31 @@
         "PTR_DAT_800ac8ec": "0x800ac8ec",
         "FUN_8002340c": "0x8002340c",
         "FUN_80023474": "0x80023474"
+      }
+    },
+    {
+      "name": "FUN_80022148",
+      "address": "0x80022148",
+      "size": 36,
+      "language": "c",
+      "source": "src/ddr5thmix/FUN_80022148.c",
+      "section": ".text.FUN_80022148",
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
+      "symbols": {
+        "PTR_DAT_800ac8f0": "0x800ac8f0",
+        "DAT_800e2ae0": "0x800e2ae0"
       }
     },
     {
@@ -210,6 +238,65 @@
         "DAT_800e2a60": "0x800e2a60",
         "FUN_80022148": "0x80022148",
         "FUN_800231b0": "0x800231b0"
+      }
+    },
+    {
+      "name": "FUN_8002340c",
+      "address": "0x8002340c",
+      "size": 104,
+      "language": "c",
+      "source": "src/ddr5thmix/FUN_8002340c.c",
+      "section": ".text.FUN_8002340c",
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
+      "symbols": {
+        "DAT_800ac88c": "0x800ac88c",
+        "PTR_DAT_800ac8ec": "0x800ac8ec",
+        "FUN_80049d3c": "0x80049d3c",
+        "FUN_80023210": "0x80023210",
+        "FUN_800a0cb0": "0x800a0cb0",
+        "FUN_80023230": "0x80023230"
+      }
+    },
+    {
+      "name": "FUN_80023474",
+      "address": "0x80023474",
+      "size": 88,
+      "language": "c",
+      "source": "src/ddr5thmix/FUN_80023474.c",
+      "section": ".text.FUN_80023474",
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
+      "symbols": {
+        "PTR_DAT_800ac8ec": "0x800ac8ec",
+        "FUN_800a0ce0": "0x800a0ce0",
+        "FUN_8002a7a4": "0x8002a7a4",
+        "FUN_8009b0a8": "0x8009b0a8",
+        "FUN_800236cc": "0x800236cc",
+        "FUN_80049d3c": "0x80049d3c",
+        "FUN_80023210": "0x80023210"
       }
     },
     {
