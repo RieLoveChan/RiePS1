@@ -1,0 +1,77 @@
+start_address,end_address,size,type,confidence,source_status,description
+0x801e4000,0x801e4047,72,header,verified,reference_structure,Overlay ASCII header ('inst demo')
+0x801e4048,0x801e413b,244,code,verified,hand_written_source,Overlay function FUN_801e4048
+0x801e413c,0x801e41e7,172,code,verified,hand_written_source,Overlay Init Entry Point
+0x801e41e8,0x801e4283,156,code,verified,hand_written_source,Overlay Update Entry Point
+0x801e4284,0x801e42c7,68,code,verified,hand_written_source,Overlay Exit Entry Point
+0x801e42c8,0x801e42d3,12,code,verified,hand_written_source,Overlay function FUN_801e42c8
+0x801e42d4,0x801e42eb,24,code,verified,hand_written_source,Overlay function FUN_801e42d4
+0x801e42ec,0x801e439f,180,code,verified,hand_written_source,Command List Script Interpreter / Engine Loop
+0x801e43a0,0x801e43b3,20,code,verified,hand_written_source,Overlay function FUN_801e43a0
+0x801e43b4,0x801e43bb,8,code,verified,hand_written_source,Overlay function FUN_801e43b4
+0x801e43bc,0x801e43f7,60,code,verified,hand_written_source,Overlay function FUN_801e43bc
+0x801e43f8,0x801e4417,32,code,verified,hand_written_source,Overlay function FUN_801e43f8
+0x801e4418,0x801e4423,12,code,verified,hand_written_source,Overlay function FUN_801e4418
+0x801e4424,0x801e4473,80,code,verified,hand_written_source,Overlay function FUN_801e4424
+0x801e4474,0x801e449f,44,code,verified,hand_written_source,Overlay function FUN_801e4474
+0x801e44a0,0x801e44ff,96,code,verified,hand_written_source,Overlay function FUN_801e44a0
+0x801e4500,0x801e453f,64,code,verified,hand_written_source,Overlay function FUN_801e4500
+0x801e4540,0x801e465f,288,code,verified,hand_written_source,Overlay function FUN_801e4540
+0x801e4660,0x801e46d3,116,code,verified,hand_written_source,Overlay function FUN_801e4660
+0x801e46d4,0x801e4717,68,code,verified,hand_written_source,Overlay function FUN_801e46d4
+0x801e4718,0x801e471f,8,code,verified,hand_written_source,Overlay function FUN_801e4718
+0x801e4720,0x801e4747,40,code,verified,hand_written_source,Overlay function FUN_801e4720
+0x801e4748,0x801e476f,40,code,verified,hand_written_source,Overlay function FUN_801e4748
+0x801e4770,0x801e4797,40,code,verified,hand_written_source,Overlay function FUN_801e4770
+0x801e4798,0x801e47bf,40,code,verified,hand_written_source,Overlay function FUN_801e4798
+0x801e47c0,0x801e47d3,20,code,verified,hand_written_source,Overlay function FUN_801e47c0
+0x801e47d4,0x801e47db,8,code,verified,hand_written_source,Overlay function FUN_801e47d4
+0x801e47dc,0x801e4977,412,code,verified,hand_written_source,Overlay function FUN_801e47dc
+0x801e4978,0x801e4bbf,584,code,verified,hand_written_source,Overlay function FUN_801e4978
+0x801e4bc0,0x801e4e6f,688,code,verified,hand_written_source,Overlay function FUN_801e4bc0
+0x801e4e70,0x801e4f67,248,code,verified,hand_written_source,Overlay function FUN_801e4e70
+0x801e4f68,0x801e503f,216,code,verified,hand_written_source,Overlay function FUN_801e4f68
+0x801e5040,0x801e5177,312,code,verified,hand_written_source,Overlay function FUN_801e5040
+0x801e5178,0x801e5307,400,code,verified,hand_written_source,Overlay function FUN_801e5178
+0x801e5308,0x801e541f,280,code,verified,hand_written_source,Overlay function FUN_801e5308
+0x801e5420,0x801e55b7,408,code,verified,hand_written_source,Overlay function FUN_801e5420
+0x801e55b8,0x801e5757,416,code,verified,hand_written_source,Overlay function FUN_801e55b8
+0x801e5758,0x801e58db,388,code,verified,hand_written_source,Overlay function FUN_801e5758
+0x801e58dc,0x801e5adf,516,code,verified,hand_written_source,Overlay function FUN_801e58dc
+0x801e5ae0,0x801e5b87,168,code,verified,hand_written_source,Overlay function FUN_801e5ae0
+0x801e5b88,0x801e5c97,272,code,verified,hand_written_source,Overlay function FUN_801e5b88
+0x801e5c98,0x801e5c9f,8,code,verified,hand_written_source,Overlay function FUN_801e5c98
+0x801e5ca0,0x801e5cb7,24,code,verified,hand_written_source,Overlay function FUN_801e5ca0
+0x801e5cb8,0x801e5cd7,32,code,verified,hand_written_source,Overlay function FUN_801e5cb8
+0x801e5cd8,0x801e5d33,92,code,verified,hand_written_source,Overlay function FUN_801e5cd8
+0x801e5d34,0x801e5d3b,8,code,verified,hand_written_source,Overlay function FUN_801e5d34
+0x801e5d3c,0x801e5d43,8,code,verified,hand_written_source,Overlay function FUN_801e5d3c
+0x801e5d44,0x801e5d4b,8,code,verified,hand_written_source,Overlay function FUN_801e5d44
+0x801e5d4c,0x801e5d73,40,code,verified,hand_written_source,Overlay function FUN_801e5d4c
+0x801e5d74,0x801e5e6b,248,code,verified,hand_written_source,Overlay function FUN_801e5d74
+0x801e5e6c,0x801e5e73,8,code,verified,hand_written_source,Overlay function FUN_801e5e6c
+0x801e5e74,0x801e5ec7,84,code,verified,hand_written_source,Overlay function FUN_801e5e74
+0x801e5ec8,0x801e5ecf,8,code,verified,hand_written_source,Overlay function FUN_801e5ec8
+0x801e5ed0,0x801e5f07,56,code,verified,hand_written_source,Overlay function FUN_801e5ed0
+0x801e5f08,0x801e5fa7,160,code,verified,hand_written_source,Overlay function FUN_801e5f08
+0x801e5fa8,0x801e5faf,8,code,verified,hand_written_source,Overlay function FUN_801e5fa8
+0x801e5fb0,0x801e5fe7,56,code,verified,hand_written_source,Overlay function FUN_801e5fb0
+0x801e5fe8,0x801e600b,36,code,verified,hand_written_source,Overlay function FUN_801e5fe8
+0x801e600c,0x801e601b,16,code,verified,hand_written_source,Overlay function FUN_801e600c
+0x801e601c,0x801e6083,104,code,verified,hand_written_source,Overlay function FUN_801e601c
+0x801e6084,0x801e6187,260,code,verified,hand_written_source,Overlay function FUN_801e6084
+0x801e6188,0x801e61b3,44,code,verified,hand_written_source,Overlay function FUN_801e6188
+0x801e61b4,0x801e61df,44,code,verified,hand_written_source,Overlay function FUN_801e61b4
+0x801e61e0,0x801e620b,44,code,verified,hand_written_source,Overlay function FUN_801e61e0
+0x801e620c,0x801e626f,100,code,verified,hand_written_source,Overlay function FUN_801e620c
+0x801e6270,0x801e631f,176,code,verified,hand_written_source,Overlay function FUN_801e6270
+0x801e6320,0x801e634b,44,code,verified,hand_written_source,Overlay function FUN_801e6320
+0x801e634c,0x801e6407,188,code,verified,hand_written_source,Overlay function FUN_801e634c
+0x801e6408,0x801e64d3,204,code,verified,hand_written_source,Overlay function FUN_801e6408
+0x801e64d4,0x801e64db,8,code,verified,hand_written_source,Overlay function FUN_801e64d4
+0x801e64dc,0x801e64e3,8,code,verified,hand_written_source,Overlay function FUN_801e64dc
+0x801e64e4,0x801e65eb,264,data_table,verified,reference_structure,Scripted tick & interpolation parameter tables
+0x801e65ec,0x801e664b,96,data_table,verified,reference_structure,Scripted parameter pointer arrays
+0x801e664c,0x801e66c3,120,data_table,verified,reference_structure,Callback command structure parameter arrays
+0x801e66c4,0x801e6b6b,1192,command_list,verified,reference_structure,"97-step command script (96 callbacks, 1 jump, 1,910 total ticks)"
+0x801e6b6c,0x801e6e57,748,data_unresolved,verified,reference_structure,3D lighting/model transform parameter tables and alignment padding

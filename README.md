@@ -14,18 +14,19 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Function inventory | 2,124 total: 131 verified, 133 manually reviewed, 977 library signatures, 883 unverified |
-| Exact reconstruction | 131 functions / 10,484 selected bytes |
+| Main-executable function inventory | 2,124 total: 131 verified, 133 manually reviewed, 977 library signatures, 883 unverified |
+| Exact reconstruction | 201 functions / 19,856 selected bytes: 131/10,484 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 30 BIOS/kernel trampolines and 33 real GTE/COP2 functions |
 | Game-owned modules | `mode-control`: 19/1,204; `runtime-core`: 5/1,824; `screen-selector`: 22/2,344; session router/opening: 21/3,420 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
-| HOW TO PLAY overlay | 11,864 bytes delimited; 1,910 scripted ticks identified |
+| HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; 748 data bytes unresolved; 1,910-tick script verified |
 | Music metadata | 47 statically linked music-info records mapped |
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress. Exact accepted reconstruction
-currently covers 131 of 2,124 functions (about 6.2%).
+currently covers 131 of 2,124 main-executable functions (about 6.2%), plus all
+70 identified functions in the separately loaded HOW TO PLAY overlay.
 
 ## Completed foundations
 
@@ -44,13 +45,16 @@ currently covers 131 of 2,124 functions (about 6.2%).
   callbacks reconstructed as the 9-function `game-session-router` module.
 - All twelve callbacks for session states 0–3 reconstructed as the
   1,736-byte `game-session-opening` module.
+- All 70 identified HOW TO PLAY overlay functions reconstructed across 9,372
+  exact code bytes, with a contiguous 11,864-byte structural map and verified
+  97-step/1,910-tick command trace.
 
 ## Recommended next targets
 
 1. **Reconstruct the remaining gameplay-session callbacks:** the router,
    terminal, and states 0–3 are exact; next group PREPARE/INTRO/DANCING/STAGE END.
-2. **Promote the HOW TO PLAY overlay into a module:** its boundaries and timing
-   are known, but its code is not yet reconstructed.
+2. **Resolve the remaining HOW TO PLAY overlay data:** classify and reconstruct
+   the final 748-byte 3D transform region before claiming a whole-overlay match.
 3. **Expand verified global layouts:** resolve consumers of offsets `0x09`,
    `0x17`, `0x2c`, and `0x2e`, and the 42-entry screen-name pointer array.
 4. **Advance to linked-object validation:** infer PsyQ object boundaries and
