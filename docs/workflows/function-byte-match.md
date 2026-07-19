@@ -316,6 +316,50 @@ The accepted real GTE/COP2 set now covers 22 functions and 692 executable
 bytes. `SetDQB` immediately follows this block but is intentionally left for
 a later unit so this change remains exactly ten newly accepted functions.
 
+## PsyQ BIOS/kernel trampoline block
+
+Thirty 12-byte PsyQ wrappers are reconstructed through the project-authored
+`BIOS_STUB` macro in `src/ddr5thmix/PsyqBiosStubs.s`. Each independently
+extracted section loads `t2` with BIOS vector `0xa0` or `0xb0`, jumps through
+`t2`, and loads the service number into `t1` in the `jr` delay slot. GNU
+binutils 2.43 reproduces all 360 selected bytes from the pinned executable.
+
+| Function | BIOS vector | Service | Built/reference SHA-256 |
+|---|---:|---:|---|
+| _bu_init | 0xa0 | 0x70 | 069d69bbe3437a869fba0234a94c0c3ccd061833fb108f2276c0fa79c2c30381 |
+| _card_info | 0xa0 | 0xab | 53c1d988b2c0c6536bf7b9c90ff04fee92d7d1eb00c3143d0ae1f8cb0572b82a |
+| _card_load | 0xa0 | 0xac | 6887fde04e1564fea90ebfec8d01b67f3eebf9f9b209d7165f72afc050d26edd |
+| _card_auto | 0xa0 | 0xad | 9b3a16e2068172686806086b600ecabdaa16dca605601bda6fb3e3ecf911a0b5 |
+| _card_write | 0xb0 | 0x4e | 75246fc473556dee52be69947e769e0e1f616e6b001e1ace3f220e5fb97711f7 |
+| _new_card | 0xb0 | 0x50 | b840e8f38866a987e914f45adad3da1f58faa57994fb49869a7cc31cbf332ade |
+| InitCARD2 | 0xb0 | 0x4a | 3dc545cd2a7eb02a71f69bb11d63a30fd43904f26456beaeba03a0b293cb6e02 |
+| StartCARD2 | 0xb0 | 0x4b | 3265341abe40d382a64b7dd8b9d7abddc9d3c04ec0787bdb61031d89c666d589 |
+| StopCARD2 | 0xb0 | 0x4c | 0bbe6cf1439cc86c67d4825252e8eec60a5f1959bcecab6e9c206f41278de0f8 |
+| _card_read | 0xb0 | 0x4f | 875fa8774175cad7c553fa1bcaa28639e989aa4933dedc1475a3e5eb84d9b6c5 |
+| _card_status | 0xb0 | 0x5c | f5716bf2e897fa21b1032ae94d5237405b67c3f14e059d64af038ea91e431ad8 |
+| exit | 0xb0 | 0x38 | d8fcf49b3617b308d46baa593e6665d34fab35e9b2ebb5cee8494c93b2f3df7e |
+| setjmp | 0xa0 | 0x13 | 0428ca0065f41fa0156f03a0626338006565f78c83f051dd0bcea81252136e5e |
+| strcat | 0xa0 | 0x15 | 67605f8a2752259efa7205a1130ded95d6b9c63f6cef61d4e17342c1d0095513 |
+| strcpy | 0xa0 | 0x19 | e920b48b8ffc89dc112ed9402a2880876d4654cbf215e0ecc3e47a016560f197 |
+| strlen | 0xa0 | 0x1b | 9b43b77c5973b779161d6023dd1eb3e629d2aa60aa1efeaf828361bb1cf3c862 |
+| bzero | 0xa0 | 0x28 | 2aa8646552ae17ada0051a3620196e0cf4b4608ee32803592285fec4a5e78320 |
+| memcpy | 0xa0 | 0x2a | ad7c5bc50bc07966feaaee9043cbb18cd00d1ff4ffbcfbe37fdad2b22ea2876d |
+| printf | 0xa0 | 0x3f | 698f6afd1bb5f561402d0aaf8212cde9ffe42f4e5d56589177383701bec561bd |
+| InitHeap | 0xa0 | 0x39 | 4487ee3019aae533a71d191483e6876aa40c2530923670ec0e012a78204fb863 |
+| FlushCache | 0xa0 | 0x44 | 86f1abc250b24950310dd74d53b0758baaa3393ae55aec766cc049a592b17cba |
+| GPU_cw | 0xa0 | 0x49 | 0a2181041688617d14ca99a521daa4c6337a216c66ad027d9763d257157c7527 |
+| DeliverEvent | 0xb0 | 0x07 | 1f3d5e03478b103c777dcf81a6aac086a8fe5763577fc1b7f3f63c137763e95a |
+| OpenEvent | 0xb0 | 0x08 | 836f0e0a8413aabe596d01d3caa02911d25cb8381476610f35490ee31acee142 |
+| CloseEvent | 0xb0 | 0x09 | b1b43358d552fbe8bd76d587dafc7b610606ca264232d149ac50d9fa8de2a369 |
+| WaitEvent | 0xb0 | 0x0a | 78085ffececd5ad12f53d0f8a6e5d760bb49f899bc77a8ce685911162424d647 |
+| TestEvent | 0xb0 | 0x0b | 5d756c5ef10f08bb8b4ef9304c79b2a3924ce3bea546c70a70a457bd6de497aa |
+| EnableEvent | 0xb0 | 0x0c | bb630b11b300ca136ec849b32f013e682b1df95abbe8a39ee561b3751d68c1d1 |
+| DisableEvent | 0xb0 | 0x0d | 8d198f2effdd0548cb262bb2893dc24159833d354326cbd2afde9140a0b858a4 |
+| ReturnFromException | 0xb0 | 0x17 | 6403f02e44574f9166b7e8b8d3cb89a7a05b124c57f6427b05647750b30f0d1f |
+
+These matches establish the linked trampoline encodings and service selectors;
+they do not reconstruct the BIOS implementations reached through the vectors.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the

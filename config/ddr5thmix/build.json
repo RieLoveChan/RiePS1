@@ -415,6 +415,246 @@
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
       "section": ".text.SetDQA"
+    },
+    {
+      "name": "_bu_init",
+      "address": "0x8003b2f8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._bu_init"
+    },
+    {
+      "name": "_card_info",
+      "address": "0x8003b308",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._card_info"
+    },
+    {
+      "name": "_card_load",
+      "address": "0x8003b318",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._card_load"
+    },
+    {
+      "name": "_card_auto",
+      "address": "0x8003b328",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._card_auto"
+    },
+    {
+      "name": "_card_write",
+      "address": "0x8003b378",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._card_write"
+    },
+    {
+      "name": "_new_card",
+      "address": "0x8003b388",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._new_card"
+    },
+    {
+      "name": "InitCARD2",
+      "address": "0x8003b468",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.InitCARD2"
+    },
+    {
+      "name": "StartCARD2",
+      "address": "0x8003b478",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.StartCARD2"
+    },
+    {
+      "name": "StopCARD2",
+      "address": "0x8003b488",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.StopCARD2"
+    },
+    {
+      "name": "_card_read",
+      "address": "0x8003ba38",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._card_read"
+    },
+    {
+      "name": "_card_status",
+      "address": "0x8003ba48",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text._card_status"
+    },
+    {
+      "name": "exit",
+      "address": "0x8003ba58",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.exit"
+    },
+    {
+      "name": "setjmp",
+      "address": "0x8003ba88",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.setjmp"
+    },
+    {
+      "name": "strcat",
+      "address": "0x8003ba98",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.strcat"
+    },
+    {
+      "name": "strcpy",
+      "address": "0x8003baa8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.strcpy"
+    },
+    {
+      "name": "strlen",
+      "address": "0x8003bab8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.strlen"
+    },
+    {
+      "name": "bzero",
+      "address": "0x8003bac8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.bzero"
+    },
+    {
+      "name": "memcpy",
+      "address": "0x8003bad8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.memcpy"
+    },
+    {
+      "name": "printf",
+      "address": "0x8003bae8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.printf"
+    },
+    {
+      "name": "InitHeap",
+      "address": "0x8003baf8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.InitHeap"
+    },
+    {
+      "name": "FlushCache",
+      "address": "0x8003bb08",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.FlushCache"
+    },
+    {
+      "name": "GPU_cw",
+      "address": "0x8003bb18",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.GPU_cw"
+    },
+    {
+      "name": "DeliverEvent",
+      "address": "0x8003bb48",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.DeliverEvent"
+    },
+    {
+      "name": "OpenEvent",
+      "address": "0x8003bb58",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.OpenEvent"
+    },
+    {
+      "name": "CloseEvent",
+      "address": "0x8003bb68",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.CloseEvent"
+    },
+    {
+      "name": "WaitEvent",
+      "address": "0x8003bb78",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.WaitEvent"
+    },
+    {
+      "name": "TestEvent",
+      "address": "0x8003bb88",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.TestEvent"
+    },
+    {
+      "name": "EnableEvent",
+      "address": "0x8003bb98",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.EnableEvent"
+    },
+    {
+      "name": "DisableEvent",
+      "address": "0x8003bba8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.DisableEvent"
+    },
+    {
+      "name": "ReturnFromException",
+      "address": "0x8003bbb8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.ReturnFromException"
     }
   ]
 }
