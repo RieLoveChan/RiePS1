@@ -36,6 +36,45 @@
         "FUN_800236bc",
         "FUN_800236cc"
       ]
+    },
+    {
+      "name": "runtime-core",
+      "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
+      "functions": [
+        "FUN_8002112c",
+        "FUN_8002216c",
+        "FUN_80022cf8",
+        "FUN_80023744",
+        "FUN_8009971c"
+      ]
+    },
+    {
+      "name": "screen-selector",
+      "description": "Game-owned nested six-state screen selector callbacks and next-state router.",
+      "functions": [
+        "FUN_80075258",
+        "FUN_800754b4",
+        "FUN_80075580",
+        "FUN_80075604",
+        "FUN_800756ac",
+        "FUN_800756f0",
+        "FUN_80075738",
+        "FUN_800757e0",
+        "FUN_80075818",
+        "FUN_80075838",
+        "FUN_80075840",
+        "FUN_80075894",
+        "FUN_8007593c",
+        "FUN_8007596c",
+        "FUN_80075a04",
+        "FUN_80075a40",
+        "FUN_80075a90",
+        "FUN_80075ab8",
+        "FUN_80075ae0",
+        "FUN_80075ae8",
+        "FUN_80075af0",
+        "FUN_80075af8"
+      ]
     }
   ],
   "functions": [
@@ -254,7 +293,19 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800232cc.c",
       "section": ".text.FUN_800232cc",
-      "cflags": ["-O2", "-G0", "-mips1", "-mabi=32", "-EL", "-fno-pic", "-mno-abicalls", "-ffreestanding", "-fno-builtin", "-fno-asynchronous-unwind-tables", "-fdelayed-branch"],
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
       "symbols": {
         "PTR_DAT_800ac8e8": "0x800ac8e8",
         "PTR_DAT_800ac8ec": "0x800ac8ec",
@@ -357,7 +408,19 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023500.c",
       "section": ".text.FUN_80023500",
-      "cflags": ["-O2", "-G0", "-mips1", "-mabi=32", "-EL", "-fno-pic", "-mno-abicalls", "-ffreestanding", "-fno-builtin", "-fno-asynchronous-unwind-tables", "-fdelayed-branch"],
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
       "symbols": {
         "DAT_800ac88c": "0x800ac88c",
         "FUN_80029390": "0x80029390",
@@ -373,7 +436,19 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023544.c",
       "section": ".text.FUN_80023544",
-      "cflags": ["-O2", "-G0", "-mips1", "-mabi=32", "-EL", "-fno-pic", "-mno-abicalls", "-ffreestanding", "-fno-builtin", "-fno-asynchronous-unwind-tables", "-fdelayed-branch"],
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
       "symbols": {
         "DAT_800ac890": "0x800ac890",
         "FUN_800231b0": "0x800231b0"
@@ -386,7 +461,19 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_8002358c.c",
       "section": ".text.FUN_8002358c",
-      "cflags": ["-O2", "-G0", "-mips1", "-mabi=32", "-EL", "-fno-pic", "-mno-abicalls", "-ffreestanding", "-fno-builtin", "-fno-asynchronous-unwind-tables", "-fdelayed-branch"],
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
       "symbols": {
         "ResetGraph": "0x800381e8",
         "PTR_DAT_800ac8ec": "0x800ac8ec",
@@ -402,7 +489,19 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800235f8.c",
       "section": ".text.FUN_800235f8",
-      "cflags": ["-O2", "-G0", "-mips1", "-mabi=32", "-EL", "-fno-pic", "-mno-abicalls", "-ffreestanding", "-fno-builtin", "-fno-asynchronous-unwind-tables", "-fdelayed-branch"],
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
       "symbols": {
         "PTR_DAT_800ac8ec": "0x800ac8ec",
         "PTR_DAT_800ac8e8": "0x800ac8e8",
@@ -416,7 +515,19 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023690.c",
       "section": ".text.FUN_80023690",
-      "cflags": ["-O2", "-G0", "-mips1", "-mabi=32", "-EL", "-fno-pic", "-mno-abicalls", "-ffreestanding", "-fno-builtin", "-fno-asynchronous-unwind-tables", "-fdelayed-branch"],
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
       "symbols": {
         "PTR_DAT_800ac8e8": "0x800ac8e8",
         "FUN_800231b0": "0x800231b0"
@@ -429,7 +540,19 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800236bc.c",
       "section": ".text.FUN_800236bc",
-      "cflags": ["-O2", "-G0", "-mips1", "-mabi=32", "-EL", "-fno-pic", "-mno-abicalls", "-ffreestanding", "-fno-builtin", "-fno-asynchronous-unwind-tables", "-fdelayed-branch"],
+      "cflags": [
+        "-O2",
+        "-G0",
+        "-mips1",
+        "-mabi=32",
+        "-EL",
+        "-fno-pic",
+        "-mno-abicalls",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-asynchronous-unwind-tables",
+        "-fdelayed-branch"
+      ],
       "symbols": {
         "PTR_DAT_800ac8ec": "0x800ac8ec"
       }
@@ -958,6 +1081,321 @@
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
       "section": ".text.Lzc"
+    },
+    {
+      "name": "FUN_8002112c",
+      "address": "0x8002112c",
+      "size": 584,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_8002112c",
+      "symbols": {
+        "FUN_8009c5f4": "0x8009c5f4",
+        "FUN_80021374": "0x80021374"
+      }
+    },
+    {
+      "name": "FUN_8002216c",
+      "address": "0x8002216c",
+      "size": 156,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_8002216c",
+      "symbols": {
+        "bzero": "0x8003bac8",
+        "FUN_8009f508": "0x8009f508",
+        "FUN_8009978c": "0x8009978c"
+      }
+    },
+    {
+      "name": "FUN_80022cf8",
+      "address": "0x80022cf8",
+      "size": 524,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_80022cf8",
+      "symbols": {
+        "FUN_80022fb0": "0x80022fb0",
+        "FUN_80023048": "0x80023048",
+        "FUN_800230cc": "0x800230cc",
+        "FUN_8009f820": "0x8009f820",
+        "FUN_800231b0": "0x800231b0",
+        "FUN_8009f390": "0x8009f390",
+        "FUN_80049dec": "0x80049dec",
+        "FUN_80021a30": "0x80021a30",
+        "FUN_800219b8": "0x800219b8",
+        "FUN_800232cc": "0x800232cc",
+        "FUN_80022b30": "0x80022b30",
+        "FUN_80023744": "0x80023744",
+        "FUN_8009971c": "0x8009971c",
+        "FUN_80023210": "0x80023210"
+      }
+    },
+    {
+      "name": "FUN_80023744",
+      "address": "0x80023744",
+      "size": 476,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_80023744"
+    },
+    {
+      "name": "FUN_8009971c",
+      "address": "0x8009971c",
+      "size": 84,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_8009971c"
+    },
+    {
+      "name": "FUN_80075258",
+      "address": "0x80075258",
+      "size": 604,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075258",
+      "symbols": {
+        "FUN_80090820": "0x80090820"
+      }
+    },
+    {
+      "name": "FUN_800754b4",
+      "address": "0x800754b4",
+      "size": 204,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_800754b4",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8008c964": "0x8008c964",
+        "FUN_80096558": "0x80096558",
+        "FUN_80028358": "0x80028358",
+        "FUN_8007b778": "0x8007b778",
+        "FUN_8007638c": "0x8007638c",
+        "FUN_80095cf8": "0x80095cf8",
+        "FUN_800358f8": "0x800358f8"
+      }
+    },
+    {
+      "name": "FUN_80075580",
+      "address": "0x80075580",
+      "size": 132,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075580"
+    },
+    {
+      "name": "FUN_80075604",
+      "address": "0x80075604",
+      "size": 168,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075604"
+    },
+    {
+      "name": "FUN_800756ac",
+      "address": "0x800756ac",
+      "size": 68,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_800756ac",
+      "symbols": {
+        "FUN_8007f07c": "0x8007f07c"
+      }
+    },
+    {
+      "name": "FUN_800756f0",
+      "address": "0x800756f0",
+      "size": 72,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_800756f0",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8008ff00": "0x8008ff00",
+        "FUN_8007f1a4": "0x8007f1a4"
+      }
+    },
+    {
+      "name": "FUN_80075738",
+      "address": "0x80075738",
+      "size": 168,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075738",
+      "symbols": {
+        "FUN_8007f218": "0x8007f218",
+        "FUN_800902cc": "0x800902cc",
+        "FUN_800a0094": "0x800a0094",
+        "FUN_80028358": "0x80028358",
+        "FUN_80075af8": "0x80075af8"
+      }
+    },
+    {
+      "name": "FUN_800757e0",
+      "address": "0x800757e0",
+      "size": 56,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_800757e0",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8007f1a4": "0x8007f1a4"
+      }
+    },
+    {
+      "name": "FUN_80075818",
+      "address": "0x80075818",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075818",
+      "symbols": {
+        "FUN_8007f218": "0x8007f218"
+      }
+    },
+    {
+      "name": "FUN_80075838",
+      "address": "0x80075838",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075838"
+    },
+    {
+      "name": "FUN_80075840",
+      "address": "0x80075840",
+      "size": 84,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075840",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_800919e4": "0x800919e4",
+        "FUN_8007b778": "0x8007b778",
+        "FUN_8007f1a4": "0x8007f1a4"
+      }
+    },
+    {
+      "name": "FUN_80075894",
+      "address": "0x80075894",
+      "size": 168,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075894",
+      "symbols": {
+        "FUN_8007f218": "0x8007f218",
+        "FUN_80091e20": "0x80091e20",
+        "FUN_800a0094": "0x800a0094",
+        "FUN_80028358": "0x80028358",
+        "FUN_80075af8": "0x80075af8"
+      }
+    },
+    {
+      "name": "FUN_8007593c",
+      "address": "0x8007593c",
+      "size": 48,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_8007593c",
+      "symbols": {
+        "FUN_80028358": "0x80028358",
+        "FUN_800924b4": "0x800924b4"
+      }
+    },
+    {
+      "name": "FUN_8007596c",
+      "address": "0x8007596c",
+      "size": 152,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_8007596c",
+      "symbols": {
+        "FUN_8008cd3c": "0x8008cd3c",
+        "FUN_800a0094": "0x800a0094",
+        "FUN_80028358": "0x80028358",
+        "FUN_80075af8": "0x80075af8"
+      }
+    },
+    {
+      "name": "FUN_80075a04",
+      "address": "0x80075a04",
+      "size": 60,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075a04",
+      "symbols": {
+        "FUN_8008e7bc": "0x8008e7bc",
+        "FUN_8007ee38": "0x8007ee38"
+      }
+    },
+    {
+      "name": "FUN_80075a40",
+      "address": "0x80075a40",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075a40",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8005f10c": "0x8005f10c"
+      }
+    },
+    {
+      "name": "FUN_80075a90",
+      "address": "0x80075a90",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075a90",
+      "symbols": {
+        "FUN_8005f12c": "0x8005f12c",
+        "FUN_80075af8": "0x80075af8"
+      }
+    },
+    {
+      "name": "FUN_80075ab8",
+      "address": "0x80075ab8",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075ab8",
+      "symbols": {
+        "FUN_8005f14c": "0x8005f14c",
+        "FUN_8002a8b0": "0x8002a8b0"
+      }
+    },
+    {
+      "name": "FUN_80075ae0",
+      "address": "0x80075ae0",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075ae0"
+    },
+    {
+      "name": "FUN_80075ae8",
+      "address": "0x80075ae8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075ae8"
+    },
+    {
+      "name": "FUN_80075af0",
+      "address": "0x80075af0",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075af0"
+    },
+    {
+      "name": "FUN_80075af8",
+      "address": "0x80075af8",
+      "size": 136,
+      "language": "asm",
+      "source": "src/ddr5thmix/ScreenSelector.s",
+      "section": ".text.FUN_80075af8"
     }
   ]
 }

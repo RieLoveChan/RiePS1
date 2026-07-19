@@ -48,7 +48,76 @@ shared `/src/ddr5thmix/mode_control.h` records the two partial state layouts
 used by the functions; compile-time offset assertions prevent a field-map edit
 from silently moving an observed access.
 
+Validate the game-owned per-frame runtime bridge with:
+
+```powershell
+pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
+  -ExePath work/ddr5thmix-extract/exe/SLPM_868.97_1 `
+  -Module runtime-core
+```
+
+`runtime-core` contains five accepted functions and 1,824 compared bytes.
+Validate the game-owned nested six-state screen selector with:
+
+```powershell
+pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
+  -ExePath work/ddr5thmix-extract/exe/SLPM_868.97_1 `
+  -Module screen-selector
+```
+
+`screen-selector` contains twenty-two accepted functions and 2,344 compared bytes.
+
 # Accepted functions
+
+## Screen-selector
+
+The twenty-two-function unit implements the enter/update/exit callback hierarchy and next-state router for the 6-substate gameplay session selector. GNU binutils 2.43 matches all 2,344 selected bytes:
+
+| Function | Bytes | Built/reference SHA-256 |
+|---|---:|---|
+| `FUN_80075258` | 604 | `7f75eb82b7ff9c223a2f3a6df9cd1aa58fc78cf7d8fdcebd293f0b2f6ef532b2` |
+| `FUN_800754b4` | 204 | `ed3e2bfadab3ebcaab87fe76eb9a826456070685be44f0bcfd7d59850c9535eb` |
+| `FUN_80075580` | 132 | `8ee08df11648a1c93a02a0b3e5ea167c9c0fbca11c0eb098e945112fa5727931` |
+| `FUN_80075604` | 168 | `50702c2e0b503fd9eeea45eb8a1ffac157dfbb3cae5374e2d3bb639eb38bc933` |
+| `FUN_800756ac` | 68 | `fc821fb9bece0e882eeef952f494f1c97ef157297e68cfb99092fc3f868c9ca7` |
+| `FUN_800756f0` | 72 | `58572186fa5591edfaeeeb8c0ef7ea6bf466a9d7008c2fbdf4cfd1469e38ec2d` |
+| `FUN_80075738` | 168 | `07d2c3ae945fc04dfca8b1a37c5ce9d7249b6b7724a3501064d1f2e96417743d` |
+| `FUN_800757e0` | 56 | `a49704e6c382103f6f1c4eef7ee50e24ec1469ff0fdb3c07e0b5711ddc3d4f13` |
+| `FUN_80075818` | 32 | `c717e58611412277ba87db35dcfbcc069da44d0c43888b5b8166ef2f856c59f1` |
+| `FUN_80075838` | 8 | `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1` |
+| `FUN_80075840` | 84 | `efd9d288d0705ef2fe600ca41fcdd5e01df348e3cf3832c3fcf9fa76a084cbe2` |
+| `FUN_80075894` | 168 | `0f0bf6083ef4a2bc1d7cecf1c0d5c07b469446d3e7af4ae8bc05bfdc3c6fd8c3` |
+| `FUN_8007593c` | 48 | `ad22c2a0fdad1379ddcf34c4fca7af5ed4aeceea7cf2518e1efd630d63fe151c` |
+| `FUN_8007596c` | 152 | `102b4bb2e23d702d08a54d6fa788cf503e7f4fe97bbcc3d2cae89b4f91efbbcb` |
+| `FUN_80075a04` | 60 | `0e3fc9eeb7eb0e9aa73eb7aa04e0e56e3009fe91a0f913d3957ebefb3b7e8ff1` |
+| `FUN_80075a40` | 80 | `6552bb76f28ceca47aeb6e2ac6ef554c602052c97486faecbf3cbb77eaecf414` |
+| `FUN_80075a90` | 40 | `aa026d36e2f1a6f8742b7bc608ff87754b2d6ff36a29be8ec3715c0eeb7658bb` |
+| `FUN_80075ab8` | 40 | `18bdcf7f7dfa737fe5cfbe218c50c5a31a4731be7bf93f7cd905be0f8fbf532d` |
+| `FUN_80075ae0` | 8 | `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1` |
+| `FUN_80075ae8` | 8 | `e7363c7ea5cd57a5cadba4dee6094510a4203175e28f46f49f81257af95fed0d` |
+| `FUN_80075af0` | 8 | `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1` |
+| `FUN_80075af8` | 136 | `ac2fbd081cfb29759c55b11894d0392336fd576a8d6faed17b8dfa6e7df88e5d` |
+
+See the [screen-selector concept](/docs/games/ddr-5th-mix-jp-screen-selector.md)
+for callback structure, router logic, and evidence.
+
+## Runtime-core
+
+The five-function unit connects the per-frame `main` loop to
+`mode-control`: the PAD/auxiliary input adapter, 0x140-byte state-prefix
+reset, mode/submode dispatcher, counter/derived-state updater, and screen-index
+range flag. GNU binutils 2.43 matches all 1,824 selected bytes:
+
+| Function | Bytes | Built/reference SHA-256 |
+|---|---:|---|
+| `FUN_8002112c` | 584 | `ec71afe8e5431d30698f04fd7a96f5961253072e99572749f9b40ba50512c1ba` |
+| `FUN_8002216c` | 156 | `83a471a336ab3136da9cfc59b654b8e4065339abcc288cac11b72a552358e202` |
+| `FUN_80022cf8` | 524 | `4057cd0604a3d2ef794d691ab19859e5a41507bcde9705c9eef3944d85fc5dae` |
+| `FUN_80023744` | 476 | `1b640a8f4f92bedb9f77b8187577a3555ac4f1d5257a43b070c4b5c80db88aa9` |
+| `FUN_8009971c` | 84 | `9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6` |
+
+See the [runtime-core concept](/docs/games/ddr-5th-mix-jp-runtime-core.md)
+for boundary, negative attempts, global-layout evidence, and limitations.
 
 ## Completed `0x800230cc–0x800236cc` range
 

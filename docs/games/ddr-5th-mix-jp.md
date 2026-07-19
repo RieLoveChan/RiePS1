@@ -10,6 +10,7 @@ Schema: [/docs/foundations/revision-manifest-schema.md](/docs/foundations/revisi
 Symbol map: [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md).
 Global map: [/docs/games/ddr-5th-mix-jp-globals.md](/docs/games/ddr-5th-mix-jp-globals.md).
 Mode-control module: [/docs/games/ddr-5th-mix-jp-mode-control.md](/docs/games/ddr-5th-mix-jp-mode-control.md).
+Runtime-core module: [/docs/games/ddr-5th-mix-jp-runtime-core.md](/docs/games/ddr-5th-mix-jp-runtime-core.md).
 Quirk log: [/docs/games/ddr-5th-mix-jp-quirks.md](/docs/games/ddr-5th-mix-jp-quirks.md).
 Screen flow: [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md).
 Music database: [/docs/games/ddr-5th-mix-jp-music-database.md](/docs/games/ddr-5th-mix-jp-music-database.md).

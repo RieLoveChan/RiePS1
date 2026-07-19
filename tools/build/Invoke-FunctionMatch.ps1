@@ -126,6 +126,30 @@ if ($language -eq 'asm') {
     if ($LASTEXITCODE -ne 0) {
         throw "Assembler failed with exit code $LASTEXITCODE."
     }
+    if ($entry.PSObject.Properties.Name -contains 'symbols') {
+        $linkerLines = [System.Collections.Generic.List[string]]::new()
+        $linkerLines.Add('OUTPUT_ARCH(mips)')
+        $linkerLines.Add('SECTIONS')
+        $linkerLines.Add('{')
+        $linkerLines.Add("    . = $($entry.address);")
+        $linkerLines.Add("    $($entry.section) : { KEEP(*($($entry.section))) }")
+        $linkerLines.Add('    /DISCARD/ : { *(*) }')
+        $linkerLines.Add('}')
+        foreach ($symbol in $entry.symbols.PSObject.Properties) {
+            if ($symbol.Name -notmatch '^[A-Za-z_][A-Za-z0-9_]*$') {
+                throw "Invalid linker symbol name: $($symbol.Name)"
+            }
+            [void](ConvertFrom-HexAddress ([string]$symbol.Value))
+            $linkerLines.Add("$($symbol.Name) = $($symbol.Value);")
+        }
+        $linkerLines | Set-Content -LiteralPath $linkerScriptPath -Encoding ascii
+
+        & $linker -EL -T $linkerScriptPath -e $Function -o $linkedPath $objectPath
+        if ($LASTEXITCODE -ne 0) {
+            throw "Linker failed with exit code $LASTEXITCODE."
+        }
+        $extractPath = $linkedPath
+    }
 }
 elseif ($language -eq 'c') {
     $cflags = @($entry.cflags | ForEach-Object { [string]$_ })
