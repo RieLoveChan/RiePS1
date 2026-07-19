@@ -4,6 +4,8 @@ title: External agent package — DDR 5th Mix screen selector
 description: Non-overlapping reconstruction package for the six-state STYLE/CHARACTER/MUSIC selector while runtime-core is developed separately.
 tags: [ps1, ddr5thmix, delegation, decompilation, state-machine]
 timestamp: 2026-07-19T00:00:00-04:00
+status: completed
+result_commit: 8a6ba1d
 ---
 
 # Objective
