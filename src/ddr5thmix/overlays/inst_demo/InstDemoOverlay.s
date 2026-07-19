@@ -66,7 +66,7 @@ FUN_801e4048:
 	lhu	$a1,102($s0)
 	lhu	$a2,104($s0)
 	jal	0x80054968
-	nop	
+	nop
 	lw	$ra,36($sp)
 	lw	$s4,32($sp)
 	lw	$s3,28($sp)
@@ -151,12 +151,12 @@ FUN_801e41e8:
 	addiu	$s0,$s0,-36
 	lhu	$a0,98($s0)
 	jal	0x800548e8
-	nop	
+	nop
 	lhu	$a0,100($s0)
 	lhu	$a1,102($s0)
 	lhu	$a2,104($s0)
 	jal	0x80054968
-	nop	
+	nop
 	jal	FUN_801e47dc
 	addu	$a0, $s1, $zero
 	jal	FUN_801e5d74
@@ -248,25 +248,25 @@ FUN_801e42ec:
 	bnez	$v0, .L801e438c
 	addu	$v0, $zero, $zero
 	lw	$v0,0($s0)
-	nop	
+	nop
 	beqz	$v0, .L801e4388
 	addu	$v1, $v0, $zero
 	sw	$a0,4($s0)
 	sw	$zero,8($s0)
 	lw	$v0,0($v1)
-	nop	
+	nop
 	beqz	$v0, .L801e437c
-	nop	
+	nop
 	lw	$a1,4($v1)
 	jalr	$v0
 	addu	$a0, $s0, $zero
 	beqz	$v0, .L801e4368
-	nop	
+	nop
 	j	.L801e4308
 	sw	$v0,0($s0)
 .L801e4368:
 	lw	$v0,0($s0)
-	nop	
+	nop
 	addiu	$v0,$v0,8
 	j	.L801e4308
 	sw	$v0,0($s0)
@@ -291,7 +291,7 @@ FUN_801e42ec:
 .type FUN_801e43a0, @function
 FUN_801e43a0:
 	lw	$v0,0($a1)
-	nop	
+	nop
 	sw	$v0,8($a0)
 	jr	$ra
 	addu	$v0, $zero, $zero
@@ -317,7 +317,7 @@ FUN_801e43bc:
 	addu	$v1, $a1, $zero
 	sw	$ra,24($sp)
 	lw	$v0,8($v1)
-	nop	
+	nop
 	sw	$v0,16($sp)
 	lw	$a0,12($a0)
 	lw	$a1,0($v1)
@@ -337,9 +337,9 @@ FUN_801e43bc:
 .type FUN_801e43f8, @function
 FUN_801e43f8:
 	lw	$v0,12($a0)
-	nop	
+	nop
 	lw	$v0,76($v0)
-	nop	
+	nop
 	bnez	$v0, FUN_801e4418
 	li	$v1,1
 	jr	$ra
@@ -373,13 +373,13 @@ FUN_801e4424:
 	addiu	$a0,$v1,84
 	addu	$v0,$a0,$v0
 	lbu	$v0,128($v0)
-	nop	
+	nop
 	beqz	$v0, .L801e445c
 	li	$a2,1
 	addu	$a2, $zero, $zero
 .L801e445c:
 	jal	FUN_801e5ca0
-	nop	
+	nop
 	lw	$ra,16($sp)
 	addu	$v0, $zero, $zero
 	jr	$ra
@@ -446,16 +446,16 @@ FUN_801e4500:
 	lw	$v1,12($a0)
 	lw	$v0,0($a1)
 	lw	$a0,1280($v1)
-	nop	
+	nop
 	sw	$v0,3104($a0)
 	lw	$v0,4($a1)
 	addiu	$v1,$v1,1280
 	sw	$v0,16($v1)
 	lw	$v0,8($a1)
-	nop	
+	nop
 	sw	$v0,20($v1)
 	lw	$v0,0($a1)
-	nop	
+	nop
 	sw	$v0,24($v1)
 	jr	$ra
 	addu	$v0, $zero, $zero
@@ -480,19 +480,19 @@ FUN_801e4540:
 	jal	FUN_801e5d44
 	addiu	$a0,$a0,1272
 	lw	$v1,12($s0)
-	nop	
+	nop
 	lw	$v0,1312($v1)
-	nop	
+	nop
 	beqz	$v0, .L801e4634
-	nop	
+	nop
 	lw	$v0,1280($v1)
-	nop	
+	nop
 	lhu	$v1,14($v0)
-	nop	
+	nop
 	addiu	$v1,$v1,20
 	sh	$v1,14($v0)
 	lw	$a0,12($s0)
-	nop	
+	nop
 	lw	$v1,1312($a0)
 	li	$v0,2
 	beq	$v1, $v0, .L801e45fc
@@ -500,9 +500,9 @@ FUN_801e4540:
 	beqz	$v0, .L801e45d0
 	li	$v0,1
 	beq	$v1, $v0, .L801e45ec
-	nop	
+	nop
 	j	.L801e464c
-	nop	
+	nop
 .L801e45d0:
 	li	$v0,3
 	beq	$v1, $v0, .L801e4610
@@ -510,18 +510,18 @@ FUN_801e4540:
 	beq	$v1, $v0, .L801e4624
 	li	$v0,1
 	j	.L801e464c
-	nop	
+	nop
 .L801e45ec:
 	jal	FUN_801e61e0
 	sb	$v1,1334($a0)
 	j	.L801e464c
-	nop	
+	nop
 .L801e45fc:
 	li	$v0,1
 	jal	FUN_801e6188
 	sb	$v0,1336($a0)
 	j	.L801e464c
-	nop	
+	nop
 .L801e4610:
 	li	$v1,1
 	sb	$v1,1336($a0)
@@ -532,12 +532,12 @@ FUN_801e4540:
 	jal	FUN_801e61b4
 	sb	$v0,1335($a0)
 	j	.L801e464c
-	nop	
+	nop
 .L801e4634:
 	lw	$v1,1280($v1)
-	nop	
+	nop
 	lhu	$v0,14($v1)
-	nop	
+	nop
 	addiu	$v0,$v0,-250
 	sh	$v0,14($v1)
 .L801e464c:
@@ -567,16 +567,16 @@ FUN_801e4660:
 	jal	FUN_801e5d44
 	addiu	$a0,$a0,1272
 	lw	$v0,12($s0)
-	nop	
+	nop
 	sb	$zero,1334($v0)
 	lw	$v0,12($s0)
-	nop	
+	nop
 	sb	$zero,1335($v0)
 	lw	$v0,12($s0)
-	nop	
+	nop
 	sb	$zero,1336($v0)
 	lw	$v0,12($s0)
-	nop	
+	nop
 	sb	$zero,1337($v0)
 	lw	$ra,20($sp)
 	lw	$s0,16($sp)
@@ -730,12 +730,12 @@ FUN_801e47dc:
 	addiu	$a0,$a0,-1
 	lw	$v0,40($a2)
 	lw	$v1,4($a2)
-	nop	
+	nop
 	subu	$v0,$v0,$v1
 	mult	$a0,$v0
 	mflo	$a1
 	lw	$v0,80($a2)
-	nop	
+	nop
 	div	$zero,$a1,$v0
 	mflo	$v0
 	sw	$a0,76($a2)
@@ -748,10 +748,10 @@ FUN_801e47dc:
 	mult	$a0,$v0
 	mflo	$a1
 	lw	$v0,80($a2)
-	nop	
+	nop
 	div	$zero,$a1,$v0
 	mflo	$v0
-	nop	
+	nop
 	addu	$v1,$v1,$v0
 	sw	$v1,4($a3)
 	lw	$v0,48($a2)
@@ -761,10 +761,10 @@ FUN_801e47dc:
 	mult	$a0,$v0
 	mflo	$a1
 	lw	$v0,80($a2)
-	nop	
+	nop
 	div	$zero,$a1,$v0
 	mflo	$v0
-	nop	
+	nop
 	addu	$v1,$v1,$v0
 	sw	$v1,8($a3)
 	lw	$v0,56($a2)
@@ -774,10 +774,10 @@ FUN_801e47dc:
 	mult	$a0,$v0
 	mflo	$a1
 	lw	$v0,80($a2)
-	nop	
+	nop
 	div	$zero,$a1,$v0
 	mflo	$v0
-	nop	
+	nop
 	addu	$v1,$v1,$v0
 	sw	$v1,12($a3)
 	lw	$v0,60($a2)
@@ -787,10 +787,10 @@ FUN_801e47dc:
 	mult	$a0,$v0
 	mflo	$a1
 	lw	$v0,80($a2)
-	nop	
+	nop
 	div	$zero,$a1,$v0
 	mflo	$v0
-	nop	
+	nop
 	addu	$v1,$v1,$v0
 	sw	$v1,16($a3)
 	lw	$v0,64($a2)
@@ -800,10 +800,10 @@ FUN_801e47dc:
 	mult	$a0,$v0
 	mflo	$a1
 	lw	$v0,80($a2)
-	nop	
+	nop
 	div	$zero,$a1,$v0
 	mflo	$v0
-	nop	
+	nop
 	addu	$v1,$v1,$v0
 	sw	$v1,20($a3)
 	lw	$v0,72($a2)
@@ -813,7 +813,7 @@ FUN_801e47dc:
 	mult	$a0,$v0
 	mflo	$a1
 	lw	$v0,80($a2)
-	nop	
+	nop
 	div	$zero,$a1,$v0
 	mflo	$v0
 	addu	$a0, $a3, $zero
@@ -822,7 +822,7 @@ FUN_801e47dc:
 	sw	$v1,24($a3)
 .L801e4968:
 	lw	$ra,16($sp)
-	nop	
+	nop
 	jr	$ra
 	addiu	$sp,$sp,24
 
@@ -901,7 +901,7 @@ FUN_801e4978:
 	sh	$v1,26($s0)
 	sh	$v1,34($s0)
 	lbu	$v0,21($s1)
-	nop	
+	nop
 	beqz	$v0, .L801e4abc
 	addu	$v1,$t3,$t1
 	addiu	$v0,$v1,-1
@@ -925,11 +925,11 @@ FUN_801e4978:
 	sb	$v1,37($s0)
 .L801e4adc:
 	lbu	$v0,20($s1)
-	nop	
+	nop
 	beqz	$v0, .L801e4afc
 	addu	$a2, $s0, $zero
 	lbu	$v0,7($s0)
-	nop	
+	nop
 	ori	$v0,$v0,0x2
 	sb	$v0,7($s0)
 .L801e4afc:
@@ -970,7 +970,7 @@ FUN_801e4978:
 	or	$v1,$v1,$v0
 	sw	$v1,0($a3)
 	lw	$v1,16($s1)
-	nop	
+	nop
 	sll	$v1,$v1,0x2
 	addu	$v1,$v1,$a2
 	lw	$v0,0($v1)
@@ -1052,67 +1052,67 @@ FUN_801e4bc0:
 	sh	$a0,32($s0)
 	sh	$v1,34($s0)
 	lbu	$v0,21($s2)
-	nop	
+	nop
 	beqz	$v0, .L801e4d28
-	nop	
+	nop
 	lbu	$v0,0($s1)
-	nop	
+	nop
 	sb	$v0,12($s0)
 	lbu	$v0,4($s1)
-	nop	
+	nop
 	addiu	$v0,$v0,-1
 	sb	$v0,13($s0)
 	lbu	$v0,8($s1)
-	nop	
+	nop
 	sb	$v0,20($s0)
 	lbu	$v0,12($s1)
-	nop	
+	nop
 	addiu	$v0,$v0,-1
 	sb	$v0,21($s0)
 	lbu	$v0,0($s1)
-	nop	
+	nop
 	sb	$v0,28($s0)
 	lbu	$v0,4($s1)
-	nop	
+	nop
 	sb	$v0,29($s0)
 	lbu	$v0,8($s1)
-	nop	
+	nop
 	sb	$v0,36($s0)
 	lbu	$v0,4($s1)
 	j	.L801e4d88
 	sb	$v0,37($s0)
 .L801e4d28:
 	lbu	$v0,0($s1)
-	nop	
+	nop
 	sb	$v0,12($s0)
 	lbu	$v0,4($s1)
-	nop	
+	nop
 	sb	$v0,13($s0)
 	lbu	$v0,8($s1)
-	nop	
+	nop
 	sb	$v0,20($s0)
 	lbu	$v0,4($s1)
-	nop	
+	nop
 	sb	$v0,21($s0)
 	lbu	$v0,0($s1)
-	nop	
+	nop
 	sb	$v0,28($s0)
 	lbu	$v0,12($s1)
-	nop	
+	nop
 	sb	$v0,29($s0)
 	lbu	$v0,8($s1)
-	nop	
+	nop
 	sb	$v0,36($s0)
 	lbu	$v0,12($s1)
-	nop	
+	nop
 	sb	$v0,37($s0)
 .L801e4d88:
 	lbu	$v0,20($s2)
-	nop	
+	nop
 	beqz	$v0, .L801e4da8
 	addu	$a2, $s0, $zero
 	lbu	$v0,7($s0)
-	nop	
+	nop
 	ori	$v0,$v0,0x2
 	sb	$v0,7($s0)
 .L801e4da8:
@@ -1153,7 +1153,7 @@ FUN_801e4bc0:
 	or	$v1,$v1,$v0
 	sw	$v1,0($a3)
 	lw	$v1,16($s2)
-	nop	
+	nop
 	sll	$v1,$v1,0x2
 	addu	$v1,$v1,$a2
 	lw	$v0,0($v1)
@@ -1268,10 +1268,10 @@ FUN_801e4f68:
 	jal	FUN_801e4978
 	addiu	$a2,$a2,27980
 	lw	$v1,124($s0)
-	nop	
+	nop
 	slti	$v0,$v1,4
 	beqz	$v0, .L801e4fdc
-	nop	
+	nop
 	lui	$v1,0x801e
 	addiu	$v1,$v1,28140
 	lw	$v0,4($v1)
@@ -1290,7 +1290,7 @@ FUN_801e4f68:
 .L801e5000:
 	addiu	$v1,$v1,28140
 	lw	$v0,4($v1)
-	nop	
+	nop
 	addiu	$v0,$v0,-1
 .L801e5010:
 	sw	$v0,4($v1)
@@ -1333,41 +1333,41 @@ FUN_801e5040:
 	addiu	$a0,$a0,132
 	lui	$v0,0x801e
 	lw	$v1,27132($v0)
-	nop	
+	nop
 	beqz	$v1, .L801e5118
 	addiu	$a0,$v0,27132
 	addiu	$a1,$a0,25
 .L801e5098:
 	lw	$v1,0($a0)
 	lw	$v0,-21($a1)
-	nop	
+	nop
 	sw	$v0,0($v1)
 	lw	$v1,0($a0)
 	lw	$v0,-17($a1)
-	nop	
+	nop
 	sw	$v0,4($v1)
 	lw	$v1,0($a0)
 	lw	$v0,-13($a1)
-	nop	
+	nop
 	sw	$v0,8($v1)
 	lw	$v1,0($a0)
 	lw	$v0,-9($a1)
-	nop	
+	nop
 	sw	$v0,12($v1)
 	lw	$v1,0($a0)
 	lw	$v0,-5($a1)
-	nop	
+	nop
 	sw	$v0,16($v1)
 	lw	$v1,0($a0)
 	lbu	$v0,-1($a1)
-	nop	
+	nop
 	sb	$v0,20($v1)
 	lw	$v1,0($a0)
 	lbu	$v0,0($a1)
 	addiu	$a0,$a0,28
 	sb	$v0,21($v1)
 	lw	$v0,0($a0)
-	nop	
+	nop
 	bnez	$v0, .L801e5098
 	addiu	$a1,$a1,28
 .L801e5118:
@@ -1387,7 +1387,7 @@ FUN_801e5040:
 	jal	FUN_801e601c
 	sw	$v0,12($s0)
 	lw	$v0,4($s1)
-	nop	
+	nop
 	addiu	$v0,$v0,48
 	sw	$v0,12($s1)
 	lw	$ra,24($sp)
@@ -1464,10 +1464,10 @@ FUN_801e5178:
 .L801e5250:
 	lbu	$v1,0($t1)
 	lw	$v0,0($a1)
-	nop	
+	nop
 	and	$v1,$v1,$v0
 	beqz	$v1, .L801e5270
-	nop	
+	nop
 	j	.L801e5274
 	sb	$t3,0($a0)
 .L801e5270:
@@ -1506,7 +1506,7 @@ FUN_801e5178:
 	addiu	$t2,$t2,1
 	slti	$v0,$t2,2
 	bnez	$v0, .L801e51a0
-	nop	
+	nop
 	lw	$s1,36($sp)
 	lw	$s0,32($sp)
 	jr	$ra
@@ -1586,11 +1586,11 @@ FUN_801e5308:
 	jal	FUN_801e5178
 	addu	$a0, $a1, $zero
 	jal	0x80058420
-	nop	
+	nop
 	jal	0x8005f298
-	nop	
+	nop
 	lw	$ra,16($sp)
-	nop	
+	nop
 	jr	$ra
 	addiu	$sp,$sp,24
 
@@ -1612,15 +1612,15 @@ FUN_801e5420:
 	sw	$s1,20($sp)
 	sw	$s0,16($sp)
 	lbu	$v0,4($s5)
-	nop	
+	nop
 	beqz	$v0, .L801e5590
-	nop	
+	nop
 	lbu	$v0,5($s5)
-	nop	
+	nop
 	bnez	$v0, .L801e5478
 	addu	$s2, $zero, $zero
 	lw	$v0,0($s5)
-	nop	
+	nop
 	addiu	$v0,$v0,1
 	sw	$v0,0($s5)
 .L801e5478:
@@ -1651,10 +1651,10 @@ FUN_801e5420:
 	lh	$v0,8($a0)
 	mflo	$v1
 	subu	$v0,$v0,$a3
-	nop	
+	nop
 	div	$zero,$v1,$v0
 	mflo	$v0
-	nop	
+	nop
 	addu	$a1,$a1,$v0
 	lw	$v0,8($s0)
 	addu	$s1, $zero, $zero
@@ -1671,9 +1671,9 @@ FUN_801e5420:
 	lhu	$v1,8($a1)
 	slt	$v0,$a0,$v0
 	beqz	$v0, .L801e554c
-	nop	
+	nop
 	lh	$v0,10($a1)
-	nop	
+	nop
 	beq	$v0, $a0, .L801e554c
 	addu	$a0, $s2, $zero
 	sh	$v1,10($a1)
@@ -1691,12 +1691,12 @@ FUN_801e5420:
 	addiu	$s2,$s2,1
 	slti	$v0,$s2,2
 	bnez	$v0, .L801e5490
-	nop	
+	nop
 	jal	0x8005871c
-	nop	
+	nop
 	lw	$a0,0($s5)
 	jal	0x8005e504
-	nop	
+	nop
 .L801e5590:
 	lw	$ra,44($sp)
 	lw	$s6,40($sp)
@@ -1729,17 +1729,17 @@ FUN_801e55b8:
 	sw	$s0,40($sp)
 	lw	$v0,0($a0)
 	lw	$a1,20($a0)
-	nop	
+	nop
 	beqz	$a1, .L801e563c
 	addiu	$s6,$v0,196
 	lw	$v0,2908($s6)
 	lw	$v1,24($a0)
-	nop	
+	nop
 	subu	$v0,$v0,$v1
 	sll	$v0,$v0,0xc
 	div	$zero,$v0,$a1
 	mflo	$s2
-	nop	
+	nop
 	bltz	$s2, .L801e5630
 	slti	$v0,$s2,4097
 	beqz	$v0, .L801e5634
@@ -1816,7 +1816,7 @@ FUN_801e55b8:
 	addiu	$s1,$s1,1
 	slti	$v0,$s1,16
 	bnez	$v0, .L801e56c0
-	nop	
+	nop
 	lw	$ra,76($sp)
 	lw	$s8,72($sp)
 	lw	$s7,68($sp)
@@ -1849,7 +1849,7 @@ FUN_801e5758:
 	sw	$s0,16($sp)
 	sw	$s3,0($s2)
 	lw	$v0,56($sp)
-	nop	
+	nop
 	beqz	$v0, .L801e579c
 	addu	$s1, $a3, $zero
 	j	.L801e57a0
@@ -1868,10 +1868,10 @@ FUN_801e5758:
 	sw	$zero,20($s2)
 	sw	$zero,24($s2)
 	lbu	$v0,5($s3)
-	nop	
+	nop
 	sb	$v0,38($s2)
 	lbu	$v0,7($s3)
-	nop	
+	nop
 	sltiu	$v0,$v0,16
 	bnez	$v0, .L801e57ec
 	sb	$s1,5($s3)
@@ -1918,15 +1918,15 @@ FUN_801e5758:
 	sll	$v0,$v0,0x2
 	addu	$v0,$v0,$v1
 	lw	$v1,0($v0)
-	nop	
+	nop
 	sw	$v1,24($s0)
 	lw	$v1,4($v0)
 	lw	$a0,28($s2)
-	nop	
+	nop
 	addu	$v1,$v1,$a0
 	sw	$v1,28($s0)
 	lw	$v0,8($v0)
-	nop	
+	nop
 	sw	$v0,32($s0)
 	sw	$zero,196($s3)
 	lw	$ra,36($sp)
@@ -1956,15 +1956,15 @@ FUN_801e58dc:
 	sw	$s1,44($sp)
 	sw	$s0,40($sp)
 	lbu	$v0,28($s2)
-	nop	
+	nop
 	beqz	$v0, .L801e5ab8
-	nop	
+	nop
 	lbu	$v0,29($s2)
-	nop	
+	nop
 	beqz	$v0, .L801e59a4
-	nop	
+	nop
 	lw	$v0,4($s2)
-	nop	
+	nop
 	addiu	$v0,$v0,1
 	jal	0x800497bc
 	sw	$v0,4($s2)
@@ -1979,19 +1979,19 @@ FUN_801e58dc:
 	addu	$v1,$s2,$a0
 .L801e595c:
 	lw	$v0,4($s2)
-	nop	
+	nop
 	andi	$v0,$v0,0x10
 	bnez	$v0, .L801e5988
 	addu	$v0,$a0,$a2
 	addu	$v0,$a0,$t0
 	lbu	$v0,0($v0)
-	nop	
+	nop
 	sb	$v0,8($v1)
 	j	.L801e5998
 	sb	$a3,29($s2)
 .L801e5988:
 	lbu	$v0,0($v0)
-	nop	
+	nop
 	sb	$v0,8($v1)
 	sb	$a1,29($s2)
 .L801e5998:
@@ -2005,7 +2005,7 @@ FUN_801e58dc:
 	jal	0x800497bc
 	addiu	$s4,$v0,3144
 	beqz	$v0, .L801e59c4
-	nop	
+	nop
 	li	$s0,5
 .L801e59c4:
 	blez	$s0, .L801e5a78
@@ -2039,14 +2039,14 @@ FUN_801e58dc:
 	swl	$t2,35($sp)
 	swr	$t2,32($sp)
 	lbu	$v1,0($v0)
-	nop	
+	nop
 	sll	$v0,$v1,0x2
 	addu	$v0,$v0,$v1
 	sll	$v0,$v0,0x4
 	addiu	$v0,$v0,160
 	addu	$v1,$s2,$s0
 	lbu	$v1,8($v1)
-	nop	
+	nop
 	beqz	$v1, .L801e5a6c
 	addu	$a0,$s3,$v0
 	jal	0x80056a08
@@ -2057,18 +2057,18 @@ FUN_801e58dc:
 	addiu	$s1,$s1,-20
 .L801e5a78:
 	jal	0x800497bc
-	nop	
+	nop
 	bnez	$v0, .L801e5aa0
-	nop	
+	nop
 	lbu	$v0,27($s2)
-	nop	
+	nop
 	beqz	$v0, .L801e5aa0
 	addiu	$a0,$s3,480
 	jal	0x80056a08
 	addiu	$a1,$s4,380
 .L801e5aa0:
 	lbu	$v0,8($s2)
-	nop	
+	nop
 	beqz	$v0, .L801e5ab8
 	addiu	$a0,$s3,160
 	jal	0x80056a08
@@ -2144,71 +2144,71 @@ FUN_801e5ae0:
 .type FUN_801e5b88, @function
 FUN_801e5b88:
 	lw	$v1,0($a0)
-	nop	
+	nop
 	lw	$v0,0($v1)
-	nop	
+	nop
 	sw	$v0,40($a0)
 	lw	$v0,4($v1)
-	nop	
+	nop
 	sw	$v0,44($a0)
 	lw	$v0,8($v1)
-	nop	
+	nop
 	sw	$v0,48($a0)
 	lw	$v0,12($v1)
-	nop	
+	nop
 	sw	$v0,56($a0)
 	lw	$v0,16($v1)
-	nop	
+	nop
 	sw	$v0,60($a0)
 	lw	$v0,20($v1)
-	nop	
+	nop
 	sw	$v0,64($a0)
 	lw	$v0,24($v1)
-	nop	
+	nop
 	sw	$v0,72($a0)
 	lw	$t0,16($sp)
 	beqz	$a1, .L801e5c14
-	nop	
+	nop
 	lw	$v0,0($a1)
-	nop	
+	nop
 	sw	$v0,4($a0)
 	lw	$v0,4($a1)
-	nop	
+	nop
 	sw	$v0,8($a0)
 	lw	$v0,8($a1)
 	j	.L801e5c38
 	sw	$v0,12($a0)
 .L801e5c14:
 	lw	$v0,0($v1)
-	nop	
+	nop
 	sw	$v0,4($a0)
 	lw	$v0,4($v1)
-	nop	
+	nop
 	sw	$v0,8($a0)
 	lw	$v0,8($v1)
-	nop	
+	nop
 	sw	$v0,12($a0)
 .L801e5c38:
 	beqz	$a2, .L801e5c64
-	nop	
+	nop
 	lw	$v0,0($a2)
-	nop	
+	nop
 	sw	$v0,20($a0)
 	lw	$v0,4($a2)
-	nop	
+	nop
 	sw	$v0,24($a0)
 	lw	$v0,8($a2)
 	j	.L801e5c88
 	sw	$v0,28($a0)
 .L801e5c64:
 	lw	$v0,12($v1)
-	nop	
+	nop
 	sw	$v0,20($a0)
 	lw	$v0,16($v1)
-	nop	
+	nop
 	sw	$v0,24($a0)
 	lw	$v0,20($v1)
-	nop	
+	nop
 	sw	$v0,28($a0)
 .L801e5c88:
 	sw	$a3,36($a0)
@@ -2224,7 +2224,7 @@ FUN_801e5b88:
 .type FUN_801e5c98, @function
 FUN_801e5c98:
 	jr	$ra
-	nop	
+	nop
 
 # ---------------------------------------------------------------------------
 # FUN_801e5ca0 (0x801e5ca0 - 0x801e5cb8) - 24 bytes
@@ -2255,7 +2255,7 @@ FUN_801e5cb8:
 	bgez	$v0, .L801e5cc0
 	addiu	$a0,$a0,-132
 	jr	$ra
-	nop	
+	nop
 
 # ---------------------------------------------------------------------------
 # FUN_801e5cd8 (0x801e5cd8 - 0x801e5d34) - 92 bytes
@@ -2272,11 +2272,11 @@ FUN_801e5cd8:
 	sw	$ra,24($sp)
 .L801e5cf0:
 	lbu	$v0,128($s0)
-	nop	
+	nop
 	beqz	$v0, .L801e5d10
-	nop	
+	nop
 	lw	$v0,0($s0)
-	nop	
+	nop
 	jalr	$v0
 	addu	$a0, $s0, $zero
 .L801e5d10:
@@ -2298,7 +2298,7 @@ FUN_801e5cd8:
 .type FUN_801e5d34, @function
 FUN_801e5d34:
 	jr	$ra
-	nop	
+	nop
 
 # ---------------------------------------------------------------------------
 # FUN_801e5d3c (0x801e5d3c - 0x801e5d44) - 8 bytes
@@ -2330,11 +2330,11 @@ FUN_801e5d4c:
 	addiu	$sp,$sp,-24
 	sw	$ra,16($sp)
 	jal	0x8005b0b0
-	nop	
+	nop
 	jal	0x8005f2e4
-	nop	
+	nop
 	lw	$ra,16($sp)
-	nop	
+	nop
 	jr	$ra
 	addiu	$sp,$sp,24
 
@@ -2351,32 +2351,32 @@ FUN_801e5d74:
 	sw	$ra,24($sp)
 	sw	$s0,16($sp)
 	lbu	$v0,36($s1)
-	nop	
+	nop
 	beqz	$v0, .L801e5e58
-	nop	
+	nop
 	lw	$v0,0($s1)
 	lw	$v1,32($s1)
-	nop	
+	nop
 	bltz	$v1, .L801e5e00
 	addiu	$s0,$v0,196
 	lbu	$v0,37($s1)
-	nop	
+	nop
 	bnez	$v0, .L801e5dd0
-	nop	
+	nop
 	lw	$v0,2908($s0)
 	lw	$v1,16($s1)
-	nop	
+	nop
 	addu	$v0,$v0,$v1
 	sw	$v0,2908($s0)
 .L801e5dd0:
 	lw	$v0,2916($s0)
-	nop	
+	nop
 	lhu	$v1,6($v0)
 	lw	$v0,2908($s0)
-	nop	
+	nop
 	slt	$v0,$v0,$v1
 	bnez	$v0, .L801e5df8
-	nop	
+	nop
 	sw	$zero,2908($s0)
 	sw	$zero,20($s1)
 .L801e5df8:
@@ -2384,7 +2384,7 @@ FUN_801e5d74:
 	addu	$a0, $s1, $zero
 .L801e5e00:
 	lw	$v0,28($s1)
-	nop	
+	nop
 	bgez	$v0, .L801e5e50
 	addiu	$v0,$v0,500
 	blez	$v0, .L801e5e1c
@@ -2437,7 +2437,7 @@ FUN_801e5e74:
 	addu	$v1,$v1,$v0
 	lw	$v0,12($v1)
 	lw	$v1,0($a0)
-	nop	
+	nop
 	addiu	$a2,$v1,196
 	sw	$v0,8($a0)
 	lw	$v0,2908($a2)
@@ -2452,7 +2452,7 @@ FUN_801e5e74:
 	sw	$v0,2916($a2)
 .L801e5ec0:
 	jr	$ra
-	nop	
+	nop
 
 # ---------------------------------------------------------------------------
 # FUN_801e5ec8 (0x801e5ec8 - 0x801e5ed0) - 8 bytes
@@ -2473,14 +2473,14 @@ FUN_801e5ec8:
 FUN_801e5ed0:
 	lw	$v1,0($a0)
 	lbu	$v0,38($a0)
-	nop	
+	nop
 	sb	$v0,5($v1)
 	lw	$v1,0($a0)
-	nop	
+	nop
 	lw	$v0,3140($v1)
-	nop	
+	nop
 	lw	$v0,12($v0)
-	nop	
+	nop
 	sw	$v0,3112($v1)
 	lw	$v0,0($a0)
 	jr	$ra
@@ -2528,7 +2528,7 @@ FUN_801e5f08:
 	sb	$v0,8($v1)
 	slti	$v0,$a0,20
 	bnez	$v0, .L801e5f74
-	nop	
+	nop
 	lw	$ra,24($sp)
 	lw	$s1,20($sp)
 	lw	$s0,16($sp)
@@ -2567,7 +2567,7 @@ FUN_801e5fb0:
 	sb	$v1,8($v0)
 .L801e5fe0:
 	jr	$ra
-	nop	
+	nop
 
 # ---------------------------------------------------------------------------
 # FUN_801e5fe8 (0x801e5fe8 - 0x801e600c) - 36 bytes
@@ -2585,7 +2585,7 @@ FUN_801e5fe8:
 	bnez	$v0, .L801e5ff0
 	addu	$v0,$a0,$v1
 	jr	$ra
-	nop	
+	nop
 
 # ---------------------------------------------------------------------------
 # FUN_801e600c (0x801e600c - 0x801e601c) - 16 bytes
@@ -2618,14 +2618,14 @@ FUN_801e601c:
 	and	$v1,$v1,$a0
 	sw	$v1,0($s0)
 	lh	$a0,6($v0)
-	nop	
+	nop
 	addu	$v1,$v1,$a0
 	sw	$v1,8($s0)
 	lbu	$v1,4($v0)
-	nop	
+	nop
 	sw	$v1,4($s0)
 	lh	$v0,8($v0)
-	nop	
+	nop
 	addu	$v1,$v1,$v0
 	sw	$v1,12($s0)
 	lw	$ra,20($sp)
@@ -2646,40 +2646,40 @@ FUN_801e6084:
 	sw	$s1,20($sp)
 	sw	$s0,16($sp)
 	lw	$v0,0($a1)
-	nop	
+	nop
 	beqz	$v0, .L801e6128
 	addiu	$a0,$a0,25
 .L801e60a8:
 	lw	$v1,0($a1)
 	lw	$v0,-21($a0)
-	nop	
+	nop
 	sw	$v0,0($v1)
 	lw	$v1,0($a1)
 	lw	$v0,-17($a0)
-	nop	
+	nop
 	sw	$v0,4($v1)
 	lw	$v1,0($a1)
 	lw	$v0,-13($a0)
-	nop	
+	nop
 	sw	$v0,8($v1)
 	lw	$v1,0($a1)
 	lw	$v0,-9($a0)
-	nop	
+	nop
 	sw	$v0,12($v1)
 	lw	$v1,0($a1)
 	lw	$v0,-5($a0)
-	nop	
+	nop
 	sw	$v0,16($v1)
 	lw	$v1,0($a1)
 	lbu	$v0,-1($a0)
-	nop	
+	nop
 	sb	$v0,20($v1)
 	lw	$v1,0($a1)
 	lbu	$v0,0($a0)
 	addiu	$a1,$a1,28
 	sb	$v0,21($v1)
 	lw	$v0,0($a1)
-	nop	
+	nop
 	bnez	$v0, .L801e60a8
 	addiu	$a0,$a0,28
 .L801e6128:
@@ -2699,7 +2699,7 @@ FUN_801e6084:
 	jal	FUN_801e601c
 	sw	$v0,12($s0)
 	lw	$v0,4($s1)
-	nop	
+	nop
 	addiu	$v0,$v0,48
 	sw	$v0,12($s1)
 	lw	$ra,24($sp)
@@ -2795,7 +2795,7 @@ FUN_801e620c:
 	jal	0x8005ebb4
 	sw	$v0,20($sp)
 	lw	$ra,24($sp)
-	nop	
+	nop
 	jr	$ra
 	addiu	$sp,$sp,32
 
@@ -2810,7 +2810,7 @@ FUN_801e6270:
 	addu	$a3, $a0, $zero
 	sw	$ra,16($sp)
 	lw	$v0,124($a3)
-	nop	
+	nop
 	addiu	$v1,$v0,1
 	slti	$v0,$v1,25
 	beqz	$v0, .L801e62bc
@@ -2827,7 +2827,7 @@ FUN_801e6270:
 	sw	$v0,12($v1)
 .L801e62bc:
 	lw	$v1,124($a3)
-	nop	
+	nop
 	slti	$v0,$v1,96
 	bnez	$v0, .L801e6300
 	lui	$a2,0x801e
@@ -2849,7 +2849,7 @@ FUN_801e6270:
 	jal	FUN_801e4978
 	addiu	$a2,$a2,27788
 	lw	$ra,16($sp)
-	nop	
+	nop
 	jr	$ra
 	addiu	$sp,$sp,24
 
@@ -2868,7 +2868,7 @@ FUN_801e6320:
 	jal	FUN_801e4978
 	addiu	$a2,$a2,27820
 	lw	$ra,16($sp)
-	nop	
+	nop
 	jr	$ra
 	addiu	$sp,$sp,24
 
@@ -2883,7 +2883,7 @@ FUN_801e634c:
 	addu	$a3, $a0, $zero
 	sw	$ra,16($sp)
 	lw	$v0,124($a3)
-	nop	
+	nop
 	addiu	$v1,$v0,1
 	slti	$v0,$v1,25
 	beqz	$v0, .L801e63a4
@@ -2903,7 +2903,7 @@ FUN_801e634c:
 	sw	$v0,8($v1)
 .L801e63a4:
 	lw	$v1,124($a3)
-	nop	
+	nop
 	slti	$v0,$v1,164
 	bnez	$v0, .L801e63e8
 	lui	$a2,0x801e
@@ -2925,7 +2925,7 @@ FUN_801e634c:
 	jal	FUN_801e4978
 	addiu	$a2,$a2,27852
 	lw	$ra,16($sp)
-	nop	
+	nop
 	jr	$ra
 	addiu	$sp,$sp,24
 
@@ -2952,7 +2952,7 @@ FUN_801e6408:
 	addiu	$a2,$a2,28044
 	lui	$a0,0x801e
 	lbu	$v0,27092($a0)
-	nop	
+	nop
 	addiu	$v1,$v0,1
 	addiu	$v0,$v0,-7
 	andi	$v0,$v0,0xff
@@ -2977,7 +2977,7 @@ FUN_801e6408:
 .L801e649c:
 	addiu	$v1,$v1,28108
 	lw	$v0,4($v1)
-	nop	
+	nop
 	addiu	$v0,$v0,-1
 .L801e64ac:
 	sw	$v0,4($v1)
@@ -2999,7 +2999,7 @@ FUN_801e6408:
 .type FUN_801e64d4, @function
 FUN_801e64d4:
 	jr	$ra
-	nop	
+	nop
 
 # ---------------------------------------------------------------------------
 # FUN_801e64dc (0x801e64dc - 0x801e64e4) - 8 bytes
@@ -3009,4 +3009,4 @@ FUN_801e64d4:
 .type FUN_801e64dc, @function
 FUN_801e64dc:
 	jr	$ra
-	nop	
+	nop

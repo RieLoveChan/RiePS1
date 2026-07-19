@@ -73,5 +73,5 @@ start_address,end_address,size,type,confidence,source_status,description
 0x801e64e4,0x801e65eb,264,data_table,verified,reference_structure,Scripted tick & interpolation parameter tables
 0x801e65ec,0x801e664b,96,data_table,verified,reference_structure,Scripted parameter pointer arrays
 0x801e664c,0x801e66c3,120,data_table,verified,reference_structure,Callback command structure parameter arrays
-0x801e66c4,0x801e6b6b,1200,command_list,verified,reference_structure,"97-step command script (96 callbacks, 1 jump, 1,910 total ticks)"
+0x801e66c4,0x801e6b6b,1192,command_list,verified,reference_structure,"97-step command script (96 callbacks, 1 jump, 1,910 total ticks)"
 0x801e6b6c,0x801e6e57,748,data_unresolved,verified,reference_structure,3D lighting/model transform parameter tables and alignment padding

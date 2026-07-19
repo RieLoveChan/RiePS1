@@ -10,6 +10,7 @@ param(
     [string]$ToolchainBin
 )
 
+Set-StrictMode -Off
 $ErrorActionPreference = 'Stop'
 
 function Get-ToolchainExecutable {
@@ -43,6 +44,21 @@ function Get-ToolchainExecutable {
 $as = Get-ToolchainExecutable -Name 'mipsel-none-elf-as'
 $ld = Get-ToolchainExecutable -Name 'mipsel-none-elf-ld'
 $objcopy = Get-ToolchainExecutable -Name 'mipsel-none-elf-objcopy'
+
+# Toolchain version validation
+$asVerOutput = & $as --version 2>&1 | Out-String
+$ldVerOutput = & $ld --version 2>&1 | Out-String
+$objcopyVerOutput = & $objcopy --version 2>&1 | Out-String
+
+if ($asVerOutput -notmatch '2\.43') {
+    throw "mipsel-none-elf-as version 2.43 required. Got: $asVerOutput"
+}
+if ($ldVerOutput -notmatch '2\.43') {
+    throw "mipsel-none-elf-ld version 2.43 required. Got: $ldVerOutput"
+}
+if ($objcopyVerOutput -notmatch '2\.43') {
+    throw "mipsel-none-elf-objcopy version 2.43 required. Got: $objcopyVerOutput"
+}
 
 if (-not (Test-Path -LiteralPath $OverlayPath)) {
     if (Test-Path -LiteralPath "work/ddr5thmix-extract/read_dt.bin") {
@@ -96,17 +112,19 @@ foreach ($f in $manifest.functions) {
 
 $totalBytes = 0
 $matchedCount = 0
+$funcReports = [System.Collections.Generic.List[object]]::new()
 
 foreach ($f in $manifest.functions) {
     $funcName = [string]$f.name
     $startAddr = [int64]"$($f.address)"
     $size = [int]$f.size
     $secName = [string]$f.section
-    
+    $refSha256 = [string]$f.reference_sha256
+
     $ldScript = Join-Path $scratchDir "$funcName.ld"
     $linkedElf = Join-Path $scratchDir "$funcName.elf"
     $binPath = Join-Path $scratchDir "$funcName.bin"
-    
+
     $ldLines = [System.Collections.Generic.List[string]]::new()
     $ldLines.Add("OUTPUT_ARCH(mips)")
     $ldLines.Add("SECTIONS")
@@ -118,40 +136,49 @@ foreach ($f in $manifest.functions) {
     foreach ($line in $symDefs) {
         $ldLines.Add($line)
     }
-    
+
     $ldLines | Set-Content -LiteralPath $ldScript -Encoding ascii
-    
+
     & $ld -EL -T $ldScript -e $funcName -o $linkedElf $objPath
     if ($LASTEXITCODE -ne 0) {
         throw "Linker failed for $funcName"
     }
-    
+
     & $objcopy -O binary $linkedElf $binPath
     if ($LASTEXITCODE -ne 0) {
         throw "Objcopy failed for $funcName"
     }
-    
+
     $builtBytes = [System.IO.File]::ReadAllBytes($binPath)
+    $builtSha256 = [System.BitConverter]::ToString($hasher.ComputeHash($builtBytes)).Replace('-', '').ToLowerInvariant()
     $off = [int]($startAddr - $baseAddr)
-    
-    $match = $true
-    if ($builtBytes.Length -ne $size) {
-        $match = $false
-    } else {
-        for ($i = 0; $i -lt $size; $i++) {
-            if ($builtBytes[$i] -ne $overlayBytes[$off + $i]) {
-                $match = $false
-                break
-            }
-        }
+
+    # Compute reference slice hash from overlay
+    $refSlice = [byte[]]::new($size)
+    [System.Buffer]::BlockCopy($overlayBytes, $off, $refSlice, 0, $size)
+    $actualRefSha256 = [System.BitConverter]::ToString($hasher.ComputeHash($refSlice)).Replace('-', '').ToLowerInvariant()
+
+    if ($refSha256 -and ($actualRefSha256 -ne $refSha256)) {
+        throw "Manifest reference SHA256 mismatch for $funcName. Expected $refSha256; got $actualRefSha256"
     }
-    
+
+    $match = ($builtSha256 -eq $actualRefSha256)
+
     if (-not $match) {
-        throw "Byte mismatch for function $funcName at address $($f.address)"
+        throw "Byte/hash mismatch for function $funcName at address $($f.address). Reference: $actualRefSha256; Built: $builtSha256"
     }
-    
+
     $matchedCount++
     $totalBytes += $size
+
+    $funcReports.Add([ordered]@{
+        name             = $funcName
+        address          = $f.address
+        size             = $size
+        reference_sha256 = $actualRefSha256
+        built_sha256     = $builtSha256
+        byte_match       = $match
+    })
 }
 
 $report = [ordered]@{
@@ -161,7 +188,13 @@ $report = [ordered]@{
     function_count    = $matchedCount
     expected_bytes    = $totalBytes
     executable_sha256 = $hash
-    byte_match        = $true
+    byte_match        = ($matchedCount -eq $manifest.functions.Count)
+    toolchain         = [ordered]@{
+        as      = "GNU binutils 2.43"
+        ld      = "GNU binutils 2.43"
+        objcopy = "GNU binutils 2.43"
+    }
+    functions         = $funcReports
 }
 
 $report | ConvertTo-Json -Depth 4

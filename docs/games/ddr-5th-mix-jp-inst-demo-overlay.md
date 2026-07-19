@@ -1,7 +1,7 @@
 ---
 type: Concept
 title: Dance Dance Revolution 5th Mix (Japan) — HOW TO PLAY Overlay Module
-description: Technical reconstruction, range map, command script verification, and byte-matching evidence for the complete inst-demo executable overlay.
+description: Structural inventory, range map, command script trace verification, toolchain versioning, and per-function byte-matching evidence for the inst-demo executable overlay.
 tags: [ps1, ddr5thmix, decompilation, overlay, state-machine, inst-demo]
 timestamp: 2026-07-19T00:00:00-04:00
 ---
@@ -9,13 +9,13 @@ timestamp: 2026-07-19T00:00:00-04:00
 # Overview
 
 The `inst-demo-overlay` module implements the executable overlay for the `DDR 5th Mix` **HOW TO PLAY** demonstration.
-Extracted from `READ_DT.BIN` at file offset `0x1630000` (length `0x2e58` / 11,864 bytes), the overlay is loaded dynamically into PS1 RAM at runtime base `0x801e4000`.
+Extracted from `READ_DT.BIN` at file offset `0x1630000` (length `0x2e58` / 11,864 bytes), the overlay is loaded dynamically into PS1 RAM at runtime base address `0x801e4000`.
 
 Unlike static video streams, the overlay executes real MIPS assembly instructions, animation command lists, and 3D graphics/lighting calculations to render the interactive tutorial sequence.
 
 # Range Map (11,864 Bytes Total)
 
-The complete `0x2e58`-byte range (`0x801e4000`–`0x801e6e57`) is fully accounted for without gaps:
+The complete `0x2e58`-byte range (`0x801e4000`–`0x801e6e57`) is fully accounted for without gaps or overlaps:
 
 | Address Range | Length | Classification | Description |
 |---|---:|---|---|
@@ -24,7 +24,7 @@ The complete `0x2e58`-byte range (`0x801e4000`–`0x801e6e57`) is fully accounte
 | `0x801e64e4`–`0x801e65eb` | 264 B | Data Table | Scripted tick and interpolation parameter tables |
 | `0x801e65ec`–`0x801e664b` | 96 B | Data Table | Scripted parameter pointer arrays |
 | `0x801e664c`–`0x801e66c3` | 120 B | Data Table | Callback command structure parameter arrays |
-| `0x801e66c4`–`0x801e6b6b` | 1,200 B | Command List | 97-step command script (96 callbacks, 1 jump, 1,910 ticks total) |
+| `0x801e66c4`–`0x801e6b6b` | 1,192 B | Command List | 97-step command script (96 callbacks, 1 jump, 1,910 total ticks) |
 | `0x801e6b6c`–`0x801e6e57` | 748 B | Unresolved Data | 3D transform matrices, lighting tables, and alignment padding |
 
 # Entry Points
@@ -35,32 +35,48 @@ The main executable interacts with the overlay via three primary entry points:
 2. **Update Entry** (`FUN_801e41e8` @ `0x801e41e8`, 156 bytes): Called once per frame by the attract state machine. Advances the command list script, updates camera/3D transformation matrices, and returns `1` when the sequence completes.
 3. **Exit Entry** (`FUN_801e4284` @ `0x801e4284`, 68 bytes): Cleans up allocated resources upon transition out of HOW TO PLAY.
 
-# Command Script & 1,910-Tick Verification
+# Command Script & 1,910-Tick Dynamic Trace
 
 The overlay's animation is driven by a command script runner (`FUN_801e42ec` @ `0x801e42ec`, 180 bytes) interpreting 8-byte steps `[func_ptr, arg1_ptr]` starting at `0x801e66c4`.
 
-Independent verification of the script execution trace confirms:
-- **Total Script Steps**: 97 steps (96 non-jump callbacks + 1 explicit jump at step 12).
+Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptTrace.ps1`) confirms:
+- **Total Script Steps**: 97 steps (96 non-jump callbacks + 1 explicit jump at step 12 from `0x801e6724` to `0x801e672c`).
+- **Null Terminator**: `0x801e69cc` (step 97).
 - **24 Waits of 60 Ticks**: 1,440 ticks total.
 - **5 Waits of 80 Ticks**: 400 ticks total.
-- **2 Interpolations of 20 Ticks**: 40 ticks total (index 3).
-- **6 Interpolations of 5 Ticks**: 30 ticks total (indices 4, 5, 6).
-- **Total Script Ticks**: **1,910 ticks** before reaching the null callback at `0x801e69cc`.
+- **2 Interpolations of 20 Ticks**: 40 ticks total.
+- **6 Interpolations of 5 Ticks**: 30 ticks total.
+- **Total Calculated Script Ticks**: **1,910 ticks** before reaching the null callback.
 
 # Code Surface & Verification Evidence
 
+- **Full Structural Inventory**: 11,864 bytes (`0x801e4000`–`0x801e6e57`)
+- **Code Surface Reconstructed**: 70 functions / 9,372 bytes (100% byte match on code surface)
+- **Unresolved Data Remaining**: 748 bytes (`0x801e6b6c`–`0x801e6e57`)
+- **Whole-Overlay Byte Match**: Not claimed; whole-overlay match requires semantic reconstruction of all data tables.
 - **Executable SHA-256**: `3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`
-- **Toolchain**: GCC 14.2.0 / GNU Binutils 2.43 (`mipsel-none-elf`)
+- **Toolchain Required & Verified**:
+  - `mipsel-none-elf-as` (GNU binutils 2.43)
+  - `mipsel-none-elf-ld` (GNU binutils 2.43)
+  - `mipsel-none-elf-objcopy` (GNU binutils 2.43)
 - **Source Files**: `/src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s` and `/src/ddr5thmix/overlays/inst_demo/inst_demo_overlay.h`
 - **Manifest**: `/config/ddr5thmix/inst-demo-overlay.json`
 - **Range Map CSV**: [/docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv](/docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv)
-- **Module Match Result**: `byte_match: true` (70 functions, 9,372 code bytes verified byte-for-byte)
 
-## Reproduction Command
+## Reproduction Commands
 
-```powershell
-pwsh -File tools/build/Invoke-OverlayMatch.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
-```
+1. **Per-Function SHA-256 and Code Surface Match**:
+   ```powershell
+   pwsh -File tools/build/Invoke-OverlayMatch.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
+   ```
+2. **11,864-Byte Range Map Structural Audit**:
+   ```powershell
+   pwsh -File tools/build/Invoke-OverlayRangeMapCheck.ps1
+   ```
+3. **97-Step / 1,910-Tick Script Trace Verification**:
+   ```powershell
+   pwsh -File tools/build/Test-InstDemoScriptTrace.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
+   ```
 
 # External Callees
 
