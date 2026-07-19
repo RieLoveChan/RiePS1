@@ -7,10 +7,10 @@ param(
     [int]$ExpectedTotalBytes = 11864,
 
     [Parameter(Mandatory = $false)]
-    [int64]$ExpectedStart = 0x801e4000,
+    [int64]$ExpectedStart = [Convert]::ToInt64("801e4000", 16),
 
     [Parameter(Mandatory = $false)]
-    [int64]$ExpectedEnd = 0x801e6e57
+    [int64]$ExpectedEnd = [Convert]::ToInt64("801e6e57", 16)
 )
 
 Set-StrictMode -Version Latest
@@ -38,13 +38,13 @@ if ($rows.Count -eq 0) {
 }
 
 # 1. Start address check
-$firstStart = [int64]"$($rows[0].start_address)"
+$firstStart = [Convert]::ToInt64($rows[0].start_address.Replace('0x',''), 16)
 if ($firstStart -ne $ExpectedStart) {
     throw "Range map does not start at expected 0x$($ExpectedStart.ToString('x')). Got: $($rows[0].start_address)"
 }
 
 # 2. End address check
-$lastEnd = [int64]"$($rows[-1].end_address)"
+$lastEnd = [Convert]::ToInt64($rows[-1].end_address.Replace('0x',''), 16)
 if ($lastEnd -ne $ExpectedEnd) {
     throw "Range map does not end at expected 0x$($ExpectedEnd.ToString('x')). Got: $($rows[-1].end_address)"
 }
@@ -55,8 +55,8 @@ $prevEnd = $ExpectedStart - 1
 
 foreach ($i in 0..($rows.Count - 1)) {
     $row = $rows[$i]
-    $start = [int64]"$($row.start_address)"
-    $end = [int64]"$($row.end_address)"
+    $start = [Convert]::ToInt64($row.start_address.Replace('0x',''), 16)
+    $end = [Convert]::ToInt64($row.end_address.Replace('0x',''), 16)
     $size = $row.size
 
     # Check start/end/size consistency

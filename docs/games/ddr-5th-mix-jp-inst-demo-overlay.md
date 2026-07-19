@@ -40,7 +40,7 @@ The main executable interacts with the overlay via three primary entry points:
 The overlay's animation is driven by a command script runner (`FUN_801e42ec` @ `0x801e42ec`, 180 bytes) interpreting 8-byte steps `[func_ptr, arg1_ptr]` starting at `0x801e66c4`.
 
 Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptTrace.ps1`) confirms:
-- **Total Script Steps**: 97 steps (96 non-jump callbacks + 1 explicit jump at step 12 from `0x801e6724` to `0x801e672c`).
+- **Total Script Steps**: 97 steps (96 non-jump callbacks + 1 explicit jump at step 38 from `0x801e67f4` to `0x801e67fc`).
 - **Null Terminator**: `0x801e69cc` (step 97).
 - **24 Waits of 60 Ticks**: 1,440 ticks total.
 - **5 Waits of 80 Ticks**: 400 ticks total.

@@ -71,8 +71,7 @@ $totalTicks = 0
 $targetWaitFunc    = [int64][System.Convert]::ToInt64("801e43a0", 16)
 $targetInterpFunc1 = [int64][System.Convert]::ToInt64("801e4474", 16)
 $targetInterpFunc2 = [int64][System.Convert]::ToInt64("801e4424", 16)
-$targetJumpFunc    = [int64][System.Convert]::ToInt64("801e4748", 16)
-$expectedJumpTgt   = [int64][System.Convert]::ToInt64("801e672c", 16)
+$targetJumpFunc    = [int64][System.Convert]::ToInt64("801e43b4", 16)
 
 while ($curr -lt ($baseAddr + $overlayBytes.Length)) {
     $w0 = Read-UInt32 -Addr $curr
@@ -115,10 +114,10 @@ while ($curr -lt ($baseAddr + $overlayBytes.Length)) {
             $totalTicks += 5
         }
     } elseif ($w0 -eq $targetJumpFunc) {
-        # Jump callback -> returns target 0x801e672c (step 13)
+        # Jump callback -> returns target from arg1
         $explicitJumps++
         $jumpSource = $curr
-        $jumpTarget = $expectedJumpTgt
+        $jumpTarget = $w1
     } else {
         $nonJumpCallbacks++
     }
@@ -137,8 +136,8 @@ if ($nonJumpCallbacks -ne 96) {
 if ($explicitJumps -ne 1) {
     throw "Derived explicit jumps mismatch. Expected 1; got $explicitJumps"
 }
-if ($jumpSource -ne [int64][System.Convert]::ToInt64("801e6724", 16) -or $jumpTarget -ne [int64][System.Convert]::ToInt64("801e672c", 16)) {
-    throw "Derived jump source/target mismatch. Expected 0x801e6724 -> 0x801e672c; got 0x$($jumpSource.ToString('x')) -> 0x$($jumpTarget.ToString('x'))"
+if ($jumpSource -ne [int64][System.Convert]::ToInt64("801e67f4", 16) -or $jumpTarget -ne [int64][System.Convert]::ToInt64("801e67fc", 16)) {
+    throw "Derived jump source/target mismatch. Expected 0x801e67f4 -> 0x801e67fc; got 0x$($jumpSource.ToString('x')) -> 0x$($jumpTarget.ToString('x'))"
 }
 if ($nullTerminator -ne [int64][System.Convert]::ToInt64("801e69cc", 16)) {
     throw "Derived null terminator mismatch. Expected 0x801e69cc; got 0x$($nullTerminator.ToString('x'))"
