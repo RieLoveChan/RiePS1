@@ -287,6 +287,35 @@ now covers 12 functions and 512 executable bytes. The reconstruction proves
 byte identity for the pinned executable and GNU assembler; it does not claim
 that the tracked assembly is Sony's original source.
 
+## PsyQ GTE register-setter block
+
+The next ten contiguous LIBGTE wrappers are reconstructed in
+`src/ddr5thmix/GteSetters.s`: `SetRGBfifo` (`0x800559d4`, 20 bytes),
+`SetIR123` (`0x800559e8`, 20 bytes), `SetIR0` (`0x800559fc`, 12 bytes),
+`SetSZfifo3` (`0x80055a08`, 20 bytes), `SetSZfifo4` (`0x80055a1c`, 24
+bytes), `SetSXSYfifo` (`0x80055a34`, 20 bytes), `SetRii` (`0x80055a48`,
+20 bytes), `SetMAC123` (`0x80055a5c`, 20 bytes), `SetData32`
+(`0x80055a70`, 12 bytes), and `SetDQA` (`0x80055a7c`, 12 bytes).
+
+Each wrapper performs only direct `lwc2`, `mtc2`, or `ctc2` transfers and
+returns. The tracked order reproduces all 180 bytes. The per-function
+built/reference SHA-256 values are:
+
+- `SetRGBfifo`: `ad199cbaca41bcea007b37230fbf5b5b4d7564f69951259361790ac0a5b136cb`
+- `SetIR123`: `6da9cf831c0db5d80eb5999464d1f03a4f775f37cc586406f93adc036b942b79`
+- `SetIR0`: `96f7dcc76ee52f98f3c538025fe3d5df5f0a5e20df30714924f9f0fc134b2eb3`
+- `SetSZfifo3`: `8087d1ed7c27a56546edfc5eb90c889963430f3eeccaf702df663c181854fcbd`
+- `SetSZfifo4`: `72d848610c07f57d296c6b6b120efcfab9a91cee5d935a03dd4f2f11bde50ef6`
+- `SetSXSYfifo`: `d1fe526732bfbe89e5afe1854f4b849aec907632f3461a18034aef3597b2a456`
+- `SetRii`: `ebf2ab5b55d34164ce9d996740d82449e99f98e4a65da7dcd9ad6e2f3cae7f17`
+- `SetMAC123`: `54b7eeb51ac9b243c2caf48a078814305b17ea82899ad749dc26ca4c547f5cbd`
+- `SetData32`: `e9189e5454ae227c211de6f62fe1f2602ca0d3e8b81e2524c511ba5d4085ec02`
+- `SetDQA`: `137430d515cfca2b9014536398a80cdb7341660e9b7ae4b91b8ffbe4fe866406`
+
+The accepted real GTE/COP2 set now covers 22 functions and 692 executable
+bytes. `SetDQB` immediately follows this block but is intentionally left for
+a later unit so this change remains exactly ten newly accepted functions.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the

@@ -335,6 +335,86 @@
       "language": "asm",
       "source": "src/ddr5thmix/SetVertexTri.s",
       "section": ".text.SetVertexTri"
+    },
+    {
+      "name": "SetRGBfifo",
+      "address": "0x800559d4",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetRGBfifo"
+    },
+    {
+      "name": "SetIR123",
+      "address": "0x800559e8",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetIR123"
+    },
+    {
+      "name": "SetIR0",
+      "address": "0x800559fc",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetIR0"
+    },
+    {
+      "name": "SetSZfifo3",
+      "address": "0x80055a08",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetSZfifo3"
+    },
+    {
+      "name": "SetSZfifo4",
+      "address": "0x80055a1c",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetSZfifo4"
+    },
+    {
+      "name": "SetSXSYfifo",
+      "address": "0x80055a34",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetSXSYfifo"
+    },
+    {
+      "name": "SetRii",
+      "address": "0x80055a48",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetRii"
+    },
+    {
+      "name": "SetMAC123",
+      "address": "0x80055a5c",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetMAC123"
+    },
+    {
+      "name": "SetData32",
+      "address": "0x80055a70",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetData32"
+    },
+    {
+      "name": "SetDQA",
+      "address": "0x80055a7c",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetDQA"
     }
   ]
 }
