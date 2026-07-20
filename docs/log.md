@@ -1,5 +1,8 @@
 # Knowledge Bundle Update Log
 
+## 2026-07-20
+* **External-agent acceptance workflow**: Added a repository-wide delivery policy that keeps delegated work at `candidate_for_audit` until a clean-checkout independent audit reproduces it. The workflow requires per-function reference/built hashes, identity-based equality across inventory/manifest/source/report/map sets, separate code/data/unresolved coverage claims, deterministic behavioral checkers, explicit Git path allowlists, and auditor-only promotion to `completed`.
+
 ## 2026-07-19
 * **HOW TO PLAY overlay integration audit**: Re-ran all 70 per-function hashes and 9,372 selected code bytes against the hash-gated overlay with GNU binutils 2.43, confirmed the 76-interval/11,864-byte map has no gaps or overlaps, and reproduced the 97-step/1,910-tick trace with the explicit callback-derived jump `0x801e67f4` → `0x801e67fc`. Regressed all five existing game-owned modules (67 functions/8,792 bytes) after merging the concurrent session and overlay work. Updated the repository overview to distinguish 131 exact main-executable functions/10,484 bytes from 70 exact overlay functions/9,372 bytes, for 201 functions/19,856 selected bytes overall; the overlay's final 748 data bytes remain explicitly unresolved.
 * **Game-session opening exact module**: Reconstructed all twelve callback-table functions for child states 0–3: PLAY START, the six-state selector owner, NON STOP I, and NON STOP C. Semantic MIPS assembly matched all 1,736 selected bytes with GCC 14.2.0/binutils 2.43. Together with `game-session-router`, the session now has 21 exact functions/3,420 bytes; project totals are 131 verified functions/10,484 bytes, with 133 manually reviewed rows remaining.
