@@ -100,6 +100,16 @@
         "FUN_80070260", "FUN_80070850", "FUN_80070958",
         "FUN_80070980", "FUN_800709e0", "FUN_80070a84"
       ]
+    },
+    {
+      "name": "game-session-gameplay",
+      "description": "Gameplay-session states 4-7: PREPARE, INTRO, DANCING, and STAGE END callbacks.",
+      "functions": [
+        "FUN_8006efd4", "FUN_80070ab4", "FUN_8006f0a0",
+        "FUN_8006f1fc", "FUN_8006f380", "FUN_80070aac",
+        "FUN_80070bc4", "FUN_8006f49c", "FUN_8006f6cc",
+        "FUN_8006f784", "FUN_8006f888", "FUN_8006fa30"
+      ]
     }
   ],
   "functions": [
@@ -1588,6 +1598,70 @@
       "name": "FUN_80070a84", "address": "0x80070a84", "size": 40,
       "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070a84",
       "symbols": { "FUN_80028358": "0x80028358", "FUN_8007f07c": "0x8007f07c" }
+    },
+    {
+      "name": "FUN_8006efd4", "address": "0x8006efd4", "size": 204,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006efd4",
+      "symbols": { "FUN_8007b778": "0x8007b778" }
+    },
+    {
+      "name": "FUN_80070ab4", "address": "0x80070ab4", "size": 272,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070ab4",
+      "symbols": {
+        "FUN_8007638c": "0x8007638c", "FUN_80028358": "0x80028358",
+        "FUN_8007f66c": "0x8007f66c", "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8005e6a8": "0x8005e6a8", "FUN_8007f06c": "0x8007f06c",
+        "FUN_8007f64c": "0x8007f64c", "FUN_8007f598": "0x8007f598"
+      }
+    },
+    {
+      "name": "FUN_8006f0a0", "address": "0x8006f0a0", "size": 348,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f0a0",
+      "symbols": { "FUN_8007638c": "0x8007638c", "FUN_800358f8": "0x800358f8" }
+    },
+    {
+      "name": "FUN_80070bc4", "address": "0x80070bc4", "size": 52,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070bc4",
+      "symbols": { "FUN_8002a8b0": "0x8002a8b0" }
+    },
+    {
+      "name": "FUN_8006f1fc", "address": "0x8006f1fc", "size": 388,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f1fc",
+      "symbols": {
+        "FUN_800a36f4": "0x800a36f4", "FUN_800a3724": "0x800a3724",
+        "FUN_8007fc8c": "0x8007fc8c", "FUN_800991e0": "0x800991e0",
+        "FUN_80028358": "0x80028358"
+      }
+    },
+    {
+      "name": "FUN_8006f380", "address": "0x8006f380", "size": 284,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f380",
+      "symbols": {
+        "FUN_80098f8c": "0x80098f8c", "FUN_80028358": "0x80028358",
+        "FUN_8007fdec": "0x8007fdec", "FUN_8006e5d4": "0x8006e5d4"
+      }
+    },
+    {
+      "name": "FUN_8006f49c", "address": "0x8006f49c", "size": 560,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f49c",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0", "FUN_80028358": "0x80028358",
+        "FUN_8007fdec": "0x8007fdec", "FUN_8006e5d4": "0x8006e5d4",
+        "FUN_8009ff74": "0x8009ff74", "FUN_8007f07c": "0x8007f07c",
+        "FUN_800705a4": "0x800705a4"
+      }
+    },
+    {
+      "name": "FUN_8006f6cc", "address": "0x8006f6cc", "size": 184,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f6cc",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0", "FUN_800a37f8": "0x800a37f8",
+        "FUN_80099628": "0x80099628"
+      }
+    },
+    {
+      "name": "FUN_80070aac", "address": "0x80070aac", "size": 8,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070aac"
     }
   ]
 }
