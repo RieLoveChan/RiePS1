@@ -1660,6 +1660,28 @@
       }
     },
     {
+      "name": "FUN_8006f784", "address": "0x8006f784", "size": 260,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f784",
+      "symbols": { "FUN_80028358": "0x80028358" }
+    },
+    {
+      "name": "FUN_8006f888", "address": "0x8006f888", "size": 424,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f888",
+      "symbols": {
+        "FUN_8007b778": "0x8007b778", "FUN_8007638c": "0x8007638c",
+        "FUN_800358f8": "0x800358f8", "FUN_80027ed4": "0x80027ed4",
+        "FUN_8007fdec": "0x8007fdec", "FUN_8007b960": "0x8007b960"
+      }
+    },
+    {
+      "name": "FUN_8006fa30", "address": "0x8006fa30", "size": 372,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006fa30",
+      "symbols": {
+        "FUN_80081e90": "0x80081e90", "FUN_8006e9ec": "0x8006e9ec",
+        "FUN_8006e750": "0x8006e750"
+      }
+    },
+    {
       "name": "FUN_80070aac", "address": "0x80070aac", "size": 8,
       "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070aac"
     }
