@@ -64,6 +64,81 @@ Re-running `DumpDataXrefs.java` byte-granular (every address, not just 4-byte-al
 
 **Checker**: `tools/build/Test-InstDemoRecordArray.ps1` reproduces the SHA-256 gate, the two all-zero-run assertions, the 460-byte zero-at-rest assertion for the resolved GPU record tail, not-all-zero assertions for the two newly-resolved data tables (structural presence only, no literal content), and the 13-entry pointer-table-to-record-address arithmetic against the hash-gated overlay bytes.
 
+## Third pass: dynamic verification attempt (BizHawk, 2026-07-23)
+
+Static analysis for the remaining 80 bytes was credibly exhausted after the
+second pass, so this pass tried **dynamic** evidence: running the actual
+game in BizHawk 2.11 (PSX core "Nymashock", a Waterbox/Nyma-wrapped
+Mednafen-derived core per this build's `config.ini`) with no controller
+input through the documented attract loop, to observe real memory reads/
+writes to the three still-unresolved sub-ranges while HOW TO PLAY plays.
+Full method, tooling, and the lag-frame/input-hold finding are in
+[/docs/tooling/bizhawk-harness.md](/docs/tooling/bizhawk-harness.md); this
+section records the result against this overlay's classification only.
+
+**Reaching HOW TO PLAY required one narrow, documented exception to
+zero input.** A fresh BizHawk session mounts an empty virtual memory card,
+which this game detects as "card present, no system data" and blocks on a
+real YES/NO dialog pair (the same "Memory Card Auto Load" boot step this
+project's screen-flow doc already describes) — not a synthetic skip of the
+attract loop. Dismissing both dialogs (one Circle press each) drops into
+the title/PUSH START main menu; its own documented 900-frame inactivity
+timeout returns to the attract loop's `WARNING` state, since the inherited
+screen index is `0x1c`. From there the run is genuinely zero-input through
+`WARNING` → `TITLE` → HOW TO PLAY, matching this document's own tick
+accounting. The active window was confirmed both by polling the documented
+screen-index global `DAT_800f2908` (`docs/games/ddr-5th-mix-jp-globals.md`)
+for its `PLAY DEMO` value (`0x24`) and, independently, by a mid-window
+screenshot literally showing the "HOW TO PLAY" tutorial screen. The
+measured active window (screen index entry to exit) was 1,989 frames,
+close to but not exactly the 1,910-tick script trace this document already
+verifies statically — consistent with an approximately 1:1 tick/frame
+relationship plus a few frames of detection-boundary slack, not an exact
+proof of 1:1 timing.
+
+**BizHawk's `event.on_bus_read`/`on_bus_write`/`on_bus_exec` bus-hook API
+was found non-functional for this specific core/session** and could not be
+used: `event.availableScopes()` returned zero scopes, and a control hook on
+the overlay's own Update Entry point (`FUN_801e41e8`, documented above as
+called unconditionally every active frame) never fired once across a full
+HOW TO PLAY window. This is recorded as a tooling limitation of this
+BizHawk build/core combination, not a claim about the game; see
+`docs/tooling/bizhawk-harness.md` for the diagnostic.
+
+**Fallback method and result**: per-frame byte-level polling
+(`memory.read_u8`, confirmed working throughout via the screen-index poll)
+of all three unresolved sub-ranges, plus a known-active control range
+(the first 4 bytes of the adjacent, already-resolved 14-entry timing
+table), across the entire visually-confirmed HOW TO PLAY window
+(frame 4170–6159). **Zero byte-value changes were observed in all three
+target ranges and the control range for the full 1,989-frame window.**
+This is a genuine negative result for *writes* specifically — it does not
+and cannot detect reads with no observable side effect, so it neither
+confirms nor refutes whether `FUN_801e5178`'s single ambiguous byte read
+into `0x801e6b84`–`0x801e6ba3` (documented above) actually executes at
+runtime; the control range is itself a read-only consumer per statics, so
+its own zero-change result was expected, not a validity check on the
+polling mechanism (which the working screen-index poll already validates
+independently).
+
+**No classification changes as a result of this pass.** All three
+sub-ranges remain `data_unresolved`/`unverified` in the range map CSV: a
+write-side dynamic negative, on top of two independent static
+zero-reference sweeps, still is not a consumer, and per this project's
+evidentiary standard a negative result records evidence without asserting
+resolution. This pass's value is a third, independent, dynamic line of
+evidence agreeing with the two static passes for the two all-zero runs,
+and an honest scope limit (write-only) for the partially-referenced
+32-byte table.
+
+**Reproduction**: `tools/bizhawk/probe-inst-demo-watch.lua`, run via
+`tools/bizhawk/run-probe.ps1 -Frames 13000 -LuaPath tools/bizhawk/probe-inst-demo-watch.lua`.
+Requires a local BizHawk 2.11 install and a lawful CHD in `input/chd/`
+(neither is committed to this repository); see
+`docs/tooling/bizhawk-harness.md` for full setup, the boot-dialog input
+sequence, the bus-hook non-functionality diagnostic, and a documented
+run-to-run timing-fragility caveat in the fixed-frame boot sequence.
+
 # Entry Points
 
 The main executable interacts with the overlay via three primary entry points:

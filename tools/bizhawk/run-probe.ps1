@@ -15,7 +15,10 @@ param(
 
     [Parameter()]
     [ValidateRange(5, 600)]
-    [int] $ReportTimeoutSeconds = 120
+    [int] $ReportTimeoutSeconds = 120,
+
+    [Parameter()]
+    [string] $LuaPath
 )
 
 $ErrorActionPreference = 'Stop'
@@ -78,7 +81,13 @@ foreach ($setting in @('AutoLoadLastSaveSlot', 'AutoSaveLastSaveSlot')) {
 }
 [IO.File]::WriteAllText($runConfigPath, $runConfigText, [Text.UTF8Encoding]::new($false))
 
-$luaPath = Join-Path $repoRoot 'tools\bizhawk\probe.lua'
+if (-not $LuaPath) {
+    $LuaPath = Join-Path $repoRoot 'tools\bizhawk\probe.lua'
+}
+if (-not (Test-Path -LiteralPath $LuaPath -PathType Leaf)) {
+    throw "Lua probe script was not found at: $LuaPath"
+}
+$luaPath = (Resolve-Path -LiteralPath $LuaPath).Path
 $wrapperPath = Join-Path $outputDir 'run-probe.lua'
 $escapeLua = { param([string] $Value) $Value.Replace('\', '\\').Replace('"', '\"') }
 $wrapper = @(
