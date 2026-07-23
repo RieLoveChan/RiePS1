@@ -86,6 +86,16 @@ each of the three pieces; do not guess download URLs.
   the address argument which Ghidra's own `AddressFactory` parses). Used to
   find a 42-entry screen-name string table — see the symbol map's "Data
   discovery" section.
+- `/tools/ghidra/scripts/DumpProgramInfoOptions.java` — dumps every
+  "Program Information" option name/value for the current program without
+  mutating it (headless: `-postScript DumpProgramInfoOptions.java`). Use
+  this to check whether Ghidra's `Analyzed` boolean is already `true`
+  before assuming a program has only had entry-point functions created —
+  headless import runs full auto-analysis by default whenever neither
+  `-noanalysis` nor an explicit analysis flag is passed, which is easy to
+  miss when only skimming a wrapper script's `-import` arguments. Added
+  2026-07-23 while re-auditing the `inst-demo.bin` overlay's analysis
+  state; see the overlay concept's "Second resolution pass" section.
 
 # Raw overlay import
 

@@ -29,6 +29,13 @@ Checks:
      tying FUN_801e5040's init-time record population loop to the
      13 x 32-byte draw-parameter record array this range map now
      documents.
+  5. The 168-byte timing/threshold record table (0x801e6ba4-0x801e6c4b)
+     and the 40-byte draw-enable flag array (0x801e6c64-0x801e6c8b),
+     both resolved in the 2026-07-23 full-auto-analysis pass, are NOT
+     all-zero -- structural evidence that they are compiled-in literal
+     data (unlike the runtime-populated, all-zero-at-rest 460-byte GPU
+     record tail in check 3), without asserting or embedding any of
+     their actual literal byte content.
 #>
 
 Set-StrictMode -Version Latest
@@ -81,12 +88,30 @@ function Read-UInt32At {
     return [int64][System.BitConverter]::ToUInt32($overlayBytes, $off)
 }
 
+function Test-NotAllZero {
+    param([string]$StartHex, [int]$Length, [string]$Label)
+    $off = Get-Offset $StartHex
+    for ($i = 0; $i -lt $Length; $i++) {
+        if ($overlayBytes[$off + $i] -ne 0) {
+            return $true
+        }
+    }
+    throw "$Label expected at least one non-zero byte across $Length bytes starting at offset $off; found all-zero."
+}
+
 # 2. All-zero, no-reference runs in the unresolved prefix.
 Test-AllZero -StartHex "801e6b6c" -Length 24 -Label "Prefix zero run A (0x801e6b6c)" | Out-Null
 Test-AllZero -StartHex "801e6c4c" -Length 24 -Label "Prefix zero run D (0x801e6c4c)" | Out-Null
 
 # 3. The 460-byte record-array tail is entirely zero at rest.
 Test-AllZero -StartHex "801e6c8c" -Length 460 -Label "Record-array tail (0x801e6c8c-0x801e6e57)" | Out-Null
+
+# 5. The two ranges resolved by the 2026-07-23 full-auto-analysis pass are
+#    compiled-in literal data (not runtime scratch), so they must not be
+#    all-zero. This asserts presence of real content without reading or
+#    embedding any specific byte value.
+Test-NotAllZero -StartHex "801e6ba4" -Length 168 -Label "Timing/threshold record table (0x801e6ba4-0x801e6c4b)" | Out-Null
+Test-NotAllZero -StartHex "801e6c64" -Length 40 -Label "Draw-enable flag array (0x801e6c64-0x801e6c8b)" | Out-Null
 
 # 4. The command-list's tail pointer table: 13 entries, 28-byte (0x1c)
 #    stride, starting at 0x801e69fc, each targeting one 32-byte (0x20)
@@ -113,20 +138,27 @@ for ($i = 0; $i -lt $expectedCount; $i++) {
 # pointer-table loop, so it is deliberately excluded from this check.
 
 $report = [ordered]@{
-    schema_version              = 1
-    overlay_sha256               = $hash
-    unresolved_range_start       = "0x801e6b6c"
-    unresolved_range_end         = "0x801e6e57"
-    unresolved_range_bytes       = 748
-    zero_run_a_bytes             = 24
-    zero_run_d_bytes             = 24
-    record_array_tail_zero_bytes = 460
-    pointer_table_base           = "0x801e69fc"
-    pointer_table_stride_bytes   = $stride
-    pointer_table_entries        = $foundCount
-    record_array_base            = "0x801e6c8c"
-    record_stride_bytes          = $recordStride
-    valid                        = $true
+    schema_version                  = 1
+    overlay_sha256                   = $hash
+    unresolved_range_start           = "0x801e6b6c"
+    unresolved_range_end             = "0x801e6e57"
+    unresolved_range_bytes           = 748
+    zero_run_a_bytes                 = 24
+    zero_run_d_bytes                 = 24
+    record_array_tail_zero_bytes     = 460
+    pointer_table_base               = "0x801e69fc"
+    pointer_table_stride_bytes       = $stride
+    pointer_table_entries            = $foundCount
+    record_array_base                = "0x801e6c8c"
+    record_stride_bytes              = $recordStride
+    timing_record_table_base         = "0x801e6ba4"
+    timing_record_table_bytes        = 168
+    timing_record_table_not_all_zero = $true
+    flag_array_base                  = "0x801e6c64"
+    flag_array_bytes                 = 40
+    flag_array_not_all_zero          = $true
+    still_unresolved_bytes           = 80
+    valid                            = $true
 }
 
 $report | ConvertTo-Json -Depth 4
