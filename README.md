@@ -20,7 +20,7 @@ and validate its recorded hashes before comparison.
 | Game-owned modules | `mode-control`: 19/1,204; `runtime-core`: 5/1,824; `screen-selector`: 22/2,344; session router/opening/gameplay: 33/6,776 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
-| HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; 748 data bytes unresolved; 1,910-tick script verified |
+| HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; 668 of 748 tail data bytes structurally resolved, 80 bytes unresolved after two static passes plus a dynamic (write-only) BizHawk pass; 1,910-tick script verified |
 | Music metadata | 47 statically linked music-info records mapped |
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
@@ -54,16 +54,22 @@ currently covers 143 of 2,124 main-executable functions (about 6.7%), plus all
 
 ## Recommended next targets
 
-1. **Resolve the remaining HOW TO PLAY overlay data:** classify and reconstruct
-   the final 748-byte 3D transform region before claiming a whole-overlay match.
-2. **Expand verified global layouts:** resolve consumers of offsets `0x09`,
+1. **Expand verified global layouts:** resolve consumers of offsets `0x09`,
    `0x17`, `0x2c`, and `0x2e`, and the 42-entry screen-name pointer array.
-3. **Advance to linked-object validation:** infer PsyQ object boundaries and
+2. **Advance to linked-object validation:** infer PsyQ object boundaries and
    reproduce inter-function layout instead of placing functions independently.
-4. **Reconstruct the RESULT/PRE_END/LINK END/GAME_OVER/ENDING/NAME ENTRY
+3. **Reconstruct the RESULT/PRE_END/LINK END/GAME_OVER/ENDING/NAME ENTRY
    callbacks:** outer states 8–13 close the remaining end-of-session branches
    documented in the screen-flow "Result and end-of-session branches" section
    but not yet reconstructed as a module.
+
+The HOW TO PLAY overlay's last 80 tail-data bytes (two 24-byte all-zero runs
+plus a partially-referenced 32-byte table) are a closed, documented evidentiary
+limit, not an open target: two independent static passes and a dynamic
+write-only BizHawk pass all found no consumer. See "Third pass: dynamic
+verification attempt" in
+[the overlay concept](docs/games/ddr-5th-mix-jp-inst-demo-overlay.md) before
+attempting a fourth pass.
 
 ## Documentation
 
