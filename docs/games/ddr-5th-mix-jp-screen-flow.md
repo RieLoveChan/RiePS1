@@ -424,6 +424,124 @@ returns are `-1` prestart/not ready, `0` timeline active, `1`/`2` normal
 terminal conditions, and `-2` a special terminal condition; interpreting
 `-2` specifically as failure remains an inference.
 
+# Structural inventory: PREPARE/INTRO/DANCING/STAGE END callbacks (2026-07-23)
+
+Investigation-only pass mirroring the HOW TO PLAY overlay's structural
+inventory[3]: confirms function boundaries and enumerates direct callees for
+the twelve callback-table entries listed above, before any reconstruction is
+attempted. No `.s` source was written and no byte match is claimed for this
+section. Boundaries and disassembly came from
+`DumpFunctionDetail.java` against the shared Ghidra 12.1.2 project's
+`SLPM_868.97_1` program (`runtime/ghidra/projects/ddr5thmix`); no full
+re-analysis was run and no other program in the project was touched.
+
+## Confirmed boundaries
+
+Ghidra's existing auto-analysis boundaries for all twelve functions are
+unchanged since the 2026-07-15 manual review that first populated the symbol
+map — sizes and per-function unique-callee counts match
+[the symbol map](/docs/games/ddr-5th-mix-jp-symbol-map.md) exactly, so no
+`CreateFunctionCmd` boundary fixes were needed this pass.
+
+| State | Role | Enter (bytes) | Update (bytes) | Exit (bytes) |
+|---:|---|---|---|---|
+| 5 | `PREPARE` | `FUN_8006efd4` (204) | `FUN_80070ab4` (272) | `FUN_8006f0a0` (348) |
+| 4 | `INTRO` | `FUN_8006f1fc` (388) | `FUN_8006f380` (284) | `FUN_80070aac` (8) |
+| 6 | `DANCING` | `FUN_80070bc4` (52) | `FUN_8006f49c` (560) | `FUN_8006f6cc` (184) |
+| 7 | `STAGE END` | `FUN_8006f784` (260) | `FUN_8006f888` (424) | `FUN_8006fa30` (372) |
+
+Total: twelve functions, 3,356 attributed bytes (sum of the auto-analysis
+function bodies above; not a claim about original object layout or gaps
+between them).
+
+## Direct callees
+
+27 distinct callee addresses are reached across the twelve functions (a few
+addresses are called from more than one of the twelve, and `FUN_8006f784`
+and `FUN_8006f888` each call one target twice within the same body). None of
+the 27 fall inside the address ranges already owned by the exact-matched
+`mode-control`, `runtime-core`, `screen-selector`, `game-session-router`, or
+`game-session-opening` modules. Three are already `manual`/
+`disassembly_reviewed` in the symbol map from the 2026-07-15 review; one
+carries a PsyQ library-signature name; the remaining 23 are unreviewed
+(`unverified`/`decompiler_output_only`).
+
+| Address | Symbol-map name | Bytes | Symbol-map status | Called from |
+|---|---|---:|---|---|
+| `0x8007fdec` | `FUN_8007fdec` | 8,356 | `manual` — per-player timeline classifier, reviewed 2026-07-15 | `FUN_8006f380`, `FUN_8006f49c`, `FUN_8006f888` |
+| `0x8007fc8c` | `FUN_8007fc8c` | 352 | `manual` — shared player/timeline init with attract `CATCH DEMO`, reviewed 2026-07-15 | `FUN_8006f1fc` |
+| `0x80081e90` | `FUN_80081e90` | 160 | `manual` — shared gameplay/demo cleanup, reviewed 2026-07-15 | `FUN_8006fa30` |
+| `0x800358f8` | `VSync` | 164 | `library_signature` — PsyQ-signature name, not independently reviewed | `FUN_8006f0a0`, `FUN_8006f888` |
+| `0x8002a8b0` | `FUN_8002a8b0` | 8 | `unverified` | `FUN_80070ab4`, `FUN_80070bc4`, `FUN_8006f49c`, `FUN_8006f6cc` |
+| `0x80027ed4` | `FUN_80027ed4` | 168 | `unverified` | `FUN_8006f888` |
+| `0x80028358` | `FUN_80028358` | 32 | `unverified` | `FUN_80070ab4`, `FUN_8006f1fc`, `FUN_8006f380`, `FUN_8006f49c`, `FUN_8006f784` (×2) |
+| `0x8005e6a8` | `FUN_8005e6a8` | 704 | `unverified` | `FUN_80070ab4` |
+| `0x8006e5d4` | `FUN_8006e5d4` | 196 | `unverified` | `FUN_8006f380`, `FUN_8006f49c` |
+| `0x8006e750` | `FUN_8006e750` | 668 | `unverified` | `FUN_8006fa30` |
+| `0x8006e9ec` | `FUN_8006e9ec` | 1,020 | `unverified` | `FUN_8006fa30` |
+| `0x8007638c` | `FUN_8007638c` | 156 | `unverified` | `FUN_80070ab4`, `FUN_8006f0a0`, `FUN_8006f888` (×2) |
+| `0x800705a4` | `FUN_800705a4` | 192 | `unverified` | `FUN_8006f49c` |
+| `0x8007f06c` | `FUN_8007f06c` | 16 | `unverified` | `FUN_80070ab4` |
+| `0x8007f07c` | `FUN_8007f07c` | 32 | `unverified` | `FUN_8006f49c` |
+| `0x8007f598` | `FUN_8007f598` | 180 | `unverified` | `FUN_80070ab4` |
+| `0x8007f64c` | `FUN_8007f64c` | 16 | `unverified` | `FUN_80070ab4` |
+| `0x8007f66c` | `FUN_8007f66c` | 16 | `unverified` | `FUN_80070ab4` |
+| `0x8007b778` | `FUN_8007b778` | 264 | `unverified` | `FUN_8006efd4`, `FUN_8006f888` |
+| `0x8007b960` | `FUN_8007b960` | 116 | `unverified` | `FUN_8006f888` |
+| `0x80098f8c` | `FUN_80098f8c` | 316 | `unverified` | `FUN_8006f380` |
+| `0x800991e0` | `FUN_800991e0` | 20 | `unverified` | `FUN_8006f1fc` |
+| `0x80099628` | `FUN_80099628` | 244 | `unverified` | `FUN_8006f6cc` |
+| `0x8009ff74` | `FUN_8009ff74` | 24 | `unverified` | `FUN_8006f49c` |
+| `0x800a36f4` | `FUN_800a36f4` | 48 | `unverified` | `FUN_8006f1fc` |
+| `0x800a3724` | `FUN_800a3724` | 48 | `unverified` | `FUN_8006f1fc` |
+| `0x800a37f8` | `FUN_800a37f8` | 84 | `unverified` | `FUN_8006f6cc` |
+
+All 27 rows already existed in the symbol map with these exact sizes; this
+pass added no new symbol-map rows and changed no confidence tier. Any future
+reconstruction of `PREPARE`/`INTRO`/`DANCING`/`STAGE END` as a module would
+need to reconstruct or otherwise resolve these 23 unreviewed and one
+library-signature callee first, alongside the already-reviewed three.
+
+## Data globals referenced but not yet catalogued
+
+The decompiled C for these twelve functions references 26 fixed-address
+globals absent from [the global map](/docs/games/ddr-5th-mix-jp-globals.md)
+(which currently covers `DAT_800f2900` and `DAT_800f2908` from the
+`runtime-core` module, both of which *are* referenced here and already
+documented). No field types, structure boundaries, or semantics are claimed
+for the new addresses below — they are recorded only as "referenced here,
+undocumented elsewhere," per this pass's investigation-only scope:
+
+`0x8001cac0`, `0x8001cac4`, `0x8001cac8`, `0x800e3bcb`, `0x800f28f8`,
+`0x800f28fc`, `0x800f290c`, `0x800f2910`, `0x800f2911`, `0x800f2912`,
+`0x800f2913`, `0x800f2914`, `0x800f2916`, `0x800f2918`, `0x800f291a`,
+`0x800f291e`, `0x800f2924`, `0x800f292c`, `0x800f292d`, `0x800f292e`,
+`0x800f299a`, `0x800f29a4`, `0x800f29c8`, `0x800fbbb0`, `0x800fbbb2`,
+`0x800fbc1e`.
+
+The `0x800f28f8`–`0x800f299a` cluster and the `0x800fbbb0`/`0x800fbbb2`/
+`0x800fbc1e` cluster read as two separate per-player (or per-timeline) field
+groups given their reuse pattern across `FUN_8006f380`/`FUN_8006f49c`/
+`FUN_8006f888`, but this is a structural observation, not a confirmed layout
+claim — no stride, count, or field width is asserted here.
+
+## Reproduction
+
+```powershell
+$env:JAVA_HOME = "tools/local/jdk25"
+& tools/local/ghidra_12.1.2_PUBLIC/support/analyzeHeadless.bat `
+  runtime/ghidra/projects ddr5thmix `
+  -process SLPM_868.97_1 -noanalysis `
+  -scriptPath tools/ghidra/scripts -postScript DumpFunctionDetail.java `
+  0x8006efd4 0x80070ab4 0x8006f0a0 0x8006f1fc 0x8006f380 0x80070aac `
+  0x80070bc4 0x8006f49c 0x8006f6cc 0x8006f784 0x8006f888 0x8006fa30
+```
+
+Reproduced against the same executable SHA-256 as the router/opening modules,
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`. This
+confirms boundaries and call graphs only; it is not a byte-match or
+reconstruction claim.
+
 # Result and end-of-session branches
 
 Parallel static review on 2026-07-15 resolves every destination reached from
@@ -820,3 +938,5 @@ separate rows since it isn't mode-specific.
 
 [1] [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md)
 [2] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[3] [/docs/games/ddr-5th-mix-jp-inst-demo-overlay.md](/docs/games/ddr-5th-mix-jp-inst-demo-overlay.md)
+[4] [/docs/games/ddr-5th-mix-jp-globals.md](/docs/games/ddr-5th-mix-jp-globals.md)
