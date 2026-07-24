@@ -14,10 +14,10 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,124 total: 143 verified, 121 manually reviewed, 977 library signatures, 883 unverified |
-| Exact reconstruction | 213 functions / 23,212 selected bytes: 143/13,840 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Main-executable function inventory | 2,124 total: 161 verified, 103 manually reviewed, 977 library signatures, 883 unverified |
+| Exact reconstruction | 231 functions / 25,172 selected bytes: 161/15,800 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 30 BIOS/kernel trampolines and 33 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 19/1,204; `runtime-core`: 5/1,824; `screen-selector`: 22/2,344; session router/opening/gameplay: 33/6,776 |
+| Game-owned modules | `mode-control`: 19/1,204; `runtime-core`: 5/1,824; `screen-selector`: 22/2,344; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; 668 of 748 tail data bytes structurally resolved, 80 bytes unresolved after two static passes plus a dynamic (write-only) BizHawk pass; 1,910-tick script verified |
@@ -25,7 +25,7 @@ and validate its recorded hashes before comparison.
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress. Exact accepted reconstruction
-currently covers 143 of 2,124 main-executable functions (about 6.7%), plus all
+currently covers 161 of 2,124 main-executable functions (about 7.6%), plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
 ## Completed foundations
@@ -46,8 +46,13 @@ currently covers 143 of 2,124 main-executable functions (about 6.7%), plus all
 - All twelve callbacks for session states 0–3 reconstructed as the
   1,736-byte `game-session-opening` module.
 - All twelve callbacks for session states 4–7 (PREPARE, INTRO, DANCING, STAGE
-  END) reconstructed as the 3,356-byte `game-session-gameplay` module,
-  closing the entire 15-state gameplay session.
+  END) reconstructed as the 3,356-byte `game-session-gameplay` module.
+- All eighteen callbacks for session states 8–13 (RESULT, GAME_OVER, ENDING,
+  PRE_END, LINK END, NAME ENTRY) reconstructed as the 1,960-byte
+  `game-session-endgame` module, closing the entire 15-state gameplay-session
+  child graph (states 0–14, all exact; 45 functions/8,736 bytes across
+  `game-session-opening`, `game-session-gameplay`, `game-session-endgame`,
+  and the terminal-state-14 callbacks in `game-session-router`).
 - All 70 identified HOW TO PLAY overlay functions reconstructed across 9,372
   exact code bytes, with a contiguous 11,864-byte structural map and verified
   97-step/1,910-tick command trace.
@@ -58,10 +63,6 @@ currently covers 143 of 2,124 main-executable functions (about 6.7%), plus all
    `0x17`, `0x2c`, and `0x2e`, and the 42-entry screen-name pointer array.
 2. **Advance to linked-object validation:** infer PsyQ object boundaries and
    reproduce inter-function layout instead of placing functions independently.
-3. **Reconstruct the RESULT/PRE_END/LINK END/GAME_OVER/ENDING/NAME ENTRY
-   callbacks:** outer states 8–13 close the remaining end-of-session branches
-   documented in the screen-flow "Result and end-of-session branches" section
-   but not yet reconstructed as a module.
 
 The HOW TO PLAY overlay's last 80 tail-data bytes (two 24-byte all-zero runs
 plus a partially-referenced 32-byte table) are a closed, documented evidentiary
@@ -82,6 +83,7 @@ attempting a fourth pass.
 - [Game-session router module](docs/games/ddr-5th-mix-jp-game-session-router.md)
 - [Game-session opening module](docs/games/ddr-5th-mix-jp-game-session-opening.md)
 - [Game-session gameplay module](docs/games/ddr-5th-mix-jp-game-session-gameplay.md)
+- [Game-session endgame module](docs/games/ddr-5th-mix-jp-game-session-endgame.md)
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)
 - [Screen flow](docs/games/ddr-5th-mix-jp-screen-flow.md)
 - [Byte-match workflow](docs/workflows/function-byte-match.md)

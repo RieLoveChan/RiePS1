@@ -110,6 +110,18 @@
         "FUN_80070bc4", "FUN_8006f49c", "FUN_8006f6cc",
         "FUN_8006f784", "FUN_8006f888", "FUN_8006fa30"
       ]
+    },
+    {
+      "name": "game-session-endgame",
+      "description": "Gameplay-session states 8-13: RESULT, GAME_OVER, ENDING, PRE_END, LINK END, and NAME ENTRY callbacks.",
+      "functions": [
+        "FUN_80070bf8", "FUN_80070c70", "FUN_80070d04",
+        "FUN_80070d3c", "FUN_8006fba4", "FUN_80070d6c",
+        "FUN_80070d9c", "FUN_80070e2c", "FUN_80070ebc",
+        "FUN_80070f04", "FUN_80070f54", "FUN_80071004",
+        "FUN_8007102c", "FUN_80071084", "FUN_800710f8",
+        "FUN_80071118", "FUN_80071168", "FUN_80071214"
+      ]
     }
   ],
   "functions": [
@@ -1684,6 +1696,107 @@
     {
       "name": "FUN_80070aac", "address": "0x80070aac", "size": 8,
       "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070aac"
+    },
+    {
+      "name": "FUN_80070bf8", "address": "0x80070bf8", "size": 120,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070bf8",
+      "symbols": { "FUN_800a1724": "0x800a1724", "FUN_80073d60": "0x80073d60" }
+    },
+    {
+      "name": "FUN_80070c70", "address": "0x80070c70", "size": 148,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070c70",
+      "symbols": { "FUN_800a0094": "0x800a0094", "FUN_80073554": "0x80073554", "FUN_8006e43c": "0x8006e43c" }
+    },
+    {
+      "name": "FUN_80070d04", "address": "0x80070d04", "size": 56,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d04",
+      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_80073df4": "0x80073df4" }
+    },
+    {
+      "name": "FUN_80070d3c", "address": "0x80070d3c", "size": 48,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d3c",
+      "symbols": { "FUN_8005f16c": "0x8005f16c" }
+    },
+    {
+      "name": "FUN_8006fba4", "address": "0x8006fba4", "size": 352,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_8006fba4",
+      "symbols": {
+        "FUN_8007f07c": "0x8007f07c", "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8005e6a8": "0x8005e6a8", "FUN_8005f18c": "0x8005f18c",
+        "FUN_8006e698": "0x8006e698"
+      }
+    },
+    {
+      "name": "FUN_80070d6c", "address": "0x80070d6c", "size": 48,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d6c",
+      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_8005f230": "0x8005f230", "FUN_8002313c": "0x8002313c" }
+    },
+    {
+      "name": "FUN_80070d9c", "address": "0x80070d9c", "size": 144,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d9c",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0", "FUN_80073e34": "0x80073e34",
+        "FUN_800a0f7c": "0x800a0f7c", "FUN_80075094": "0x80075094"
+      }
+    },
+    {
+      "name": "FUN_80070e2c", "address": "0x80070e2c", "size": 144,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070e2c",
+      "symbols": {
+        "FUN_800a0fb0": "0x800a0fb0", "FUN_80073e34": "0x80073e34",
+        "FUN_8007f218": "0x8007f218", "FUN_80075184": "0x80075184",
+        "FUN_8002a8b0": "0x8002a8b0", "FUN_8007f07c": "0x8007f07c"
+      }
+    },
+    {
+      "name": "FUN_80070ebc", "address": "0x80070ebc", "size": 72,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070ebc",
+      "symbols": { "FUN_8007f07c": "0x8007f07c", "FUN_800751c8": "0x800751c8", "FUN_8002313c": "0x8002313c" }
+    },
+    {
+      "name": "FUN_80070f04", "address": "0x80070f04", "size": 80,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070f04",
+      "symbols": { "FUN_8005f10c": "0x8005f10c", "FUN_8002a8b0": "0x8002a8b0", "FUN_8007f218": "0x8007f218" }
+    },
+    {
+      "name": "FUN_80070f54", "address": "0x80070f54", "size": 176,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070f54",
+      "symbols": { "FUN_80061e80": "0x80061e80", "FUN_800702f4": "0x800702f4" }
+    },
+    {
+      "name": "FUN_80071004", "address": "0x80071004", "size": 40,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071004",
+      "symbols": { "FUN_8005f14c": "0x8005f14c", "FUN_8002a8b0": "0x8002a8b0" }
+    },
+    {
+      "name": "FUN_8007102c", "address": "0x8007102c", "size": 88,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_8007102c",
+      "symbols": { "FUN_8005f10c": "0x8005f10c", "FUN_8007b778": "0x8007b778" }
+    },
+    {
+      "name": "FUN_80071084", "address": "0x80071084", "size": 116,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071084",
+      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_8005f12c": "0x8005f12c", "FUN_80093e44": "0x80093e44" }
+    },
+    {
+      "name": "FUN_800710f8", "address": "0x800710f8", "size": 32,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_800710f8",
+      "symbols": { "FUN_8005f14c": "0x8005f14c" }
+    },
+    {
+      "name": "FUN_80071118", "address": "0x80071118", "size": 80,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071118",
+      "symbols": { "FUN_80093f20": "0x80093f20" }
+    },
+    {
+      "name": "FUN_80071168", "address": "0x80071168", "size": 172,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071168",
+      "symbols": { "FUN_8007f218": "0x8007f218", "FUN_800a0094": "0x800a0094", "FUN_80094620": "0x80094620" }
+    },
+    {
+      "name": "FUN_80071214", "address": "0x80071214", "size": 44,
+      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071214",
+      "symbols": { "FUN_8007f07c": "0x8007f07c", "FUN_80095590": "0x80095590" }
     }
   ]
 }
