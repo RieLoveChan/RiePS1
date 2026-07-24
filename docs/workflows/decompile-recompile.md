@@ -58,6 +58,14 @@ and record full-disc, per-track, and main-executable hashes.
 6. ~~Establish the smallest deterministic build and automated comparison
    loop.~~ Completed for `FUN_8007eea8`; see
    [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md).
+7. Build evidence toward original PsyQ object-file boundaries and internal
+   layout (distinct from the independently placed function bodies gate 6
+   already proves): started with an address/offset-arithmetic method over
+   the existing symbol map plus targeted `DumpBytes.java` spot checks
+   against the shared Ghidra project, requiring no new extraction; see
+   [/docs/foundations/linked-object-evidence.md](/docs/foundations/linked-object-evidence.md)
+   for current findings, what remains open, and the falsifiable bar for a
+   future object-boundary-confirmed claim.
 
 # Citations
 

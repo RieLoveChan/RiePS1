@@ -1,5 +1,50 @@
 # Knowledge Bundle Update Log
 
+## 2026-07-24
+* **First linked-object-boundary evidence pass**: Added
+  `docs/foundations/linked-object-evidence.md`, this project's first pass at
+  evidence toward original PsyQ object boundaries, not just independently
+  placed function bodies. Alignment/padding check (angle 1): every already
+  non-zero gap between exact-matched functions in `mode-control` and the
+  merged four gameplay-session modules was byte-dumped with
+  `tools/ghidra/scripts/DumpBytes.java` and found to be dense real code, not
+  padding — including a previously unremarked fact that 48 of the 51
+  gameplay-session functions (all four logical modules combined, minus three
+  distant outer wrappers) occupy one single contiguous 9,328-byte range with
+  only two gaps, both fully explained by already-Ghidra-discovered
+  not-yet-matched sibling functions. In contrast, the 30-function PsyQ
+  BIOS-stub block shows a real, 100%-consistent 4-byte zero-padding
+  convention (16-byte rounding) at 24 of its 29 stub-to-stub boundaries, and
+  its larger
+  gaps contain two previously uncatalogued `BIOS_STUB`-shaped trampolines
+  (vector `0xb0`/service `0x3f`, vector `0xa0`/service `0x72`, not added to
+  the accepted manifest). Known-library cross-check (angle 2): found and
+  characterized a previously unremarked class of 491 symbol-map rows shaped
+  `<name>_OBJ_<hex-offset>`, all `ghidra_psx_ldr` PsyQ-signature tool output;
+  60 of 60 multi-row consecutive-address prefix runs are perfectly
+  consistent with one implied object-base address per run, and the
+  strongest single result is that one `SYS` run's implied base lands exactly
+  on `ResetGraph` — a function this
+  project had already independently hand-reviewed — with the same ~12KB
+  implied object also containing `SetDispMask`/`DrawSync`/`ClearImage2`/
+  `LoadImage`/`GsInitGraph2`/`GsInit3D`/`InitGeom`, all already-confirmed
+  PsyQ library functions, 97.7% byte-accounted with only three small
+  (dense-code, non-padding) residual gaps. Duplicate-body check (angle 3):
+  confirmed exactly two repeated hashes across the whole corpus — the
+  already-known substantive `SetTransMatrix` duplicate, and a separate,
+  weaker four-way collision of the trivial 8-byte `jr ra; nop` no-op body
+  across `screen-selector`/`mode-control`, explicitly distinguished as
+  expected-by-construction rather than informative. Residual-metadata check
+  (angle 4): corroborated the existing `2MBYTE_OBJ_B4` marker finding against
+  `ghidra_psx_ldr`'s own upstream README (fetched externally, not
+  reproduced) confirming its signature database is built from real PsyQ
+  `.LIB`/`.OBJ` files named after their origin object. States explicitly what
+  remains open (the un-cross-referenced object names' semantic identity, one
+  unexamined GTE-block gap, the two new BIOS stubs' unexplained 8-byte
+  prefix) and a falsifiable four-part bar for a future "object boundary
+  confirmed" claim. Does not claim any object boundary is confirmed and does
+  not modify the accepted-function manifest, symbol map, or build config.
+
 ## 2026-07-23
 * **Game-session endgame module complete — closes the entire 15-state gameplay-session child graph (states 0-14, all exact)**: Reconstructed all eighteen enter/update/exit callbacks for states 8-13 — `RESULT` (`FUN_80070bf8`/`FUN_80070c70`/`FUN_80070d04`, 324 B), `GAME_OVER` (`FUN_80070d3c`/`FUN_8006fba4`/`FUN_80070d6c`, 448 B), `ENDING` (`FUN_80070d9c`/`FUN_80070e2c`/`FUN_80070ebc`, 360 B), `PRE_END` (`FUN_80070f04`/`FUN_80070f54`/`FUN_80071004`, 296 B), `LINK END` (`FUN_8007102c`/`FUN_80071084`/`FUN_800710f8`, 236 B), and `NAME ENTRY` (`FUN_80071118`/`FUN_80071168`/`FUN_80071214`, 296 B) — as the new `game-session-endgame` module. Re-confirmed all 18 boundaries/sizes with `DumpFunctionDetail.java` against the shared Ghidra project's `SLPM_868.97_1` program before writing source, matching the 2026-07-15 static review in the screen-flow document's "Result and end-of-session branches" section exactly (no drift). Semantic MIPS assembly in the new `src/ddr5thmix/GameSessionEndgame.s` matches all 1,960 selected bytes with GCC 14.2.0/binutils 2.43 on the first attempt per function, registered as `game-session-endgame` in `config/ddr5thmix/build.json`; no compiler-compatibility shim was needed. Regressed all six existing modules (`mode-control` 19/1,204, `runtime-core` 5/1,824, `screen-selector` 22/2,344, `game-session-router` 9/1,684, `game-session-opening` 12/1,736, `game-session-gameplay` 12/3,356) — all pass. Together with the router's terminal-state-14 callbacks and the opening/gameplay modules, this completes all 45 enter/update/exit callback-table entries for the 15-state gameplay session (8,736 bytes across four modules) — every gameplay-session child state (0-14) is now exact. Promoted all 18 functions from `manual`/`disassembly_reviewed` to `verified`/`hand_written_source` in the symbol map, each row citing its built/reference SHA-256; project totals move to 161 verified/103 manual (was 143/121). Added OKF concept `docs/games/ddr-5th-mix-jp-game-session-endgame.md`, linked from the games index and README, and updated README's exact-reconstruction totals to 231 functions/25,172 selected bytes (161/15,800 main executable plus 70/9,372 HOW TO PLAY overlay); removed the now-completed RESULT/PRE_END/LINK END/GAME_OVER/ENDING/NAME ENTRY item from README's recommended next targets.
 * **Inst-demo-overlay 80-byte range, third pass: dynamic (BizHawk) verification, write-negative confirmed, no classification change**: Static analysis for the remaining 80 unresolved bytes (two 24-byte all-zero runs plus a partially-referenced 32-byte table) was credibly exhausted, so this pass tried running the actual game in BizHawk 2.11 (PSX core `Nymashock`, Waterbox/Nyma-wrapped) with no controller input through the documented attract loop, watching the three ranges while HOW TO PLAY plays. Reaching HOW TO PLAY required dismissing one real, documented boot-time dialog pair (BizHawk mounts a blank virtual memory card; the game detects "card present, no system data" exactly as the screen-flow doc's "Memory Card Auto Load" step describes) with a single `○` press each — not a synthetic skip — after which the title screen's own documented 900-frame inactivity timeout returns to the attract loop's `WARNING` state on its own; every frame from there through HOW TO PLAY is genuinely zero-input. The active window was confirmed both by polling the documented screen-index global `DAT_800f2908` and, independently, by a mid-window screenshot literally showing the "HOW TO PLAY" tutorial screen; its measured length (1,989 frames) is close to but not identical to the 1,910-tick script trace already verified statically. BizHawk's `event.on_bus_read`/`on_bus_write`/`on_bus_exec` bus-hook API was tested and found **non-functional for this core/session** (`event.availableScopes()` returns zero scopes; a control hook on a function documented as firing every active frame never fired once) — a tooling limitation, not a game claim, now recorded in `docs/tooling/bizhawk-harness.md` alongside an empirically-found BizHawk input-timing fact (simulated presses held only 1-2 frames can be silently dropped on a lag frame; hold ~10 frames) and the real (unprefixed, glyph-named) PSX joypad button names this core exposes to Lua. The working fallback, plain per-frame `memory.read_u8` polling/diffing (confirmed functional via the working screen-index poll), found **zero byte-value changes in all three target ranges across the full visually-confirmed HOW TO PLAY window** — a genuine dynamic negative result for writes specifically, on top of the two existing independent static zero-reference sweeps for the two all-zero runs; it cannot detect reads with no side effect, so it neither confirms nor refutes the partially-referenced table's single ambiguous static read. No range map CSV classification changed (all three sub-ranges remain `data_unresolved`/`unverified`): a third independent negative result does not by itself constitute a resolved consumer, per this project's evidentiary standard. Added `tools/bizhawk/probe-inst-demo-watch.lua` and a `-LuaPath` parameter on `tools/bizhawk/run-probe.ps1`; documented method, findings, and reproduction in a new "Third pass" section of `docs/games/ddr-5th-mix-jp-inst-demo-overlay.md` and in `docs/tooling/bizhawk-harness.md`. Also recorded, as a fragility caveat: this fixed-frame boot-dialog sequence diverged into an actual gameplay-session route (instead of returning to the attract loop) in one of six otherwise-identical runs, likely from disc-read timing jitter; only a visually-confirmed successful run's data is reported.

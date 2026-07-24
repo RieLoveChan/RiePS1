@@ -63,6 +63,12 @@ currently covers 161 of 2,124 main-executable functions (about 7.6%), plus all
    `0x17`, `0x2c`, and `0x2e`, and the 42-entry screen-name pointer array.
 2. **Advance to linked-object validation:** infer PsyQ object boundaries and
    reproduce inter-function layout instead of placing functions independently.
+   A first evidence pass is underway — see
+   [linked-object evidence](docs/foundations/linked-object-evidence.md) for
+   current findings (an alignment/padding survey, a corroborated PsyQ
+   library-object cross-check, and a duplicate-body check) and the
+   falsifiable bar for a future object-boundary-confirmed claim; no boundary
+   is confirmed yet.
 
 The HOW TO PLAY overlay's last 80 tail-data bytes (two 24-byte all-zero runs
 plus a partially-referenced 32-byte table) are a closed, documented evidentiary
@@ -87,6 +93,7 @@ attempting a fourth pass.
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)
 - [Screen flow](docs/games/ddr-5th-mix-jp-screen-flow.md)
 - [Byte-match workflow](docs/workflows/function-byte-match.md)
+- [Linked-object evidence](docs/foundations/linked-object-evidence.md)
 - [External screen-selector work package](docs/workflows/external-agent-screen-selector.md)
 - [External HOW TO PLAY overlay work package](docs/workflows/external-agent-inst-demo-overlay.md)
 - [Legal provenance policy](docs/foundations/legal-provenance.md)

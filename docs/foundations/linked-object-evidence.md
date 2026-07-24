@@ -1,0 +1,330 @@
+---
+type: Concept
+title: Linked-Object Evidence — Methodology, Findings, and Open Bar
+description: What this project has checked toward proving original PsyQ object-file boundaries and internal layout, what the evidence actually shows, and the falsifiable bar for a future object-boundary-confirmed claim.
+tags: [ps1, ddr5thmix, linking, psyq, object-boundaries, ghidra, evidence]
+timestamp: 2026-07-24T00:00:00-04:00
+---
+
+# Scope and honesty boundary
+
+Every reconstructed module in this project (`mode-control`, `runtime-core`,
+`screen-selector`, the four gameplay-session modules, and the PsyQ GTE/BIOS
+blocks) already carries the same caveat: exact per-function byte matches
+prove independently placed function bodies, not an original PsyQ object
+boundary, inter-function layout, or whole-executable match. This document is
+the first pass at building real evidence toward that separate, larger claim.
+It is **not** a claim that any object boundary is confirmed. It records what
+was checked, what the checked evidence actually shows (including where that
+is a clean negative result), and — per this project's evidentiary style — a
+falsifiable bar for what would justify a future "object boundary confirmed"
+claim. All addresses/sizes below come from `/config/ddr5thmix/build.json` and
+the existing Ghidra 12.1.2 project at `runtime/ghidra/projects/ddr5thmix`
+(program `SLPM_868.97_1`); no copyrighted byte content is reproduced, only
+addresses, sizes, counts, and instruction-shape descriptions already implied
+by this project's own prior published function reconstructions.
+
+# 1. Alignment/padding between already-matched functions
+
+For every contiguous or near-contiguous already-matched range, the gap
+between one function's end address and the next function's start address was
+computed from `build.json`, then any non-zero gap was inspected directly with
+`tools/ghidra/scripts/DumpBytes.java` against the shared project to determine
+whether the gap bytes are zero padding or further real code.
+
+## Application-code modules: no alignment padding found anywhere checked
+
+- **`screen-selector`** (22 functions): the sum of all function sizes (2,344
+  bytes) exactly equals the address span from the first function's start to
+  the last function's end. Zero gap between every one of the 21 adjacent
+  pairs. This was already implied by the existing per-function table but had
+  not been stated as a contiguity fact before.
+- **`mode-control`**'s four non-zero gaps inside `0x800230cc`–`0x800236cc`
+  (32, 64, 128, and 152 bytes, between `FUN_80023170`/`FUN_800231b0`,
+  `FUN_800231b0`/`FUN_80023210`, `FUN_80023230`/`FUN_800232cc`, and
+  `FUN_800232cc`/`FUN_8002340c`) contain **no** symbol-map row of any kind —
+  confirmed by a numeric-range sweep of the full CSV, not just an
+  exact-address check. Dumping the raw bytes at all four ranges shows dense,
+  valid MIPS instructions in every one (recognizable `lui`/`lw` loads of the
+  same fixed state-pointer pattern already documented for `SetMode`-family
+  functions, `jr $ra` returns with a store scheduled into the delay slot,
+  full stack-frame prologues/epilogues with `jal` call sites), never a run of
+  zero bytes. These are real, un-inventoried sibling functions that Ghidra's
+  bulk auto-analysis did not carve into a named `FUN_` entry — the same
+  situation this project already documented for `FUN_80049f7c`/`FUN_80049fa4`
+  in the symbol map — not linker padding. **The 1,168-byte figure already
+  published for this range is a sum of accepted-function sizes, not the
+  address span**; the true span is 1,544 bytes, and the 376-byte difference
+  is entirely accounted for by this dense, un-matched code, not by gaps.
+- **The four gameplay-session modules** (`game-session-router`, `-opening`,
+  `-gameplay`, `-endgame`; 51 functions total) are not four separately
+  contiguous ranges as their names might suggest. Sorting all 51 by address
+  shows that, apart from three outer-wrapper functions
+  (`FUN_8004b800`/`FUN_8004bdec`/`FUN_8004be30`, which sit in a distant,
+  unrelated part of the executable), the remaining 48 functions — spanning
+  all four logical modules — occupy one single contiguous 9,328-byte range
+  from `FUN_8006ede8` (`0x8006ede8`) through the end of `FUN_80071250`
+  (`0x80071258`), crossing logical-module boundaries with **zero** gap at
+  every crossing (confirmed for the `-opening`→`-gameplay` and
+  `-endgame`→`-router` transitions specifically). The only two non-zero gaps
+  inside that whole range (880 bytes between `FUN_80070260` and
+  `FUN_80070664`, 376 bytes between `FUN_8006fba4` and `FUN_8006fe7c`) are
+  each **exactly and completely** accounted for by already-Ghidra-discovered,
+  not-yet-matched functions already referenced as call targets elsewhere in
+  `build.json` (`FUN_800702f4`/`FUN_800703e0`/`FUN_800705a4`, sizes 236/452/192,
+  and `FUN_8006fd04`/`FUN_8006fdb4`, sizes 176/200): each one's end address is
+  the exact start address of the next, with no residual byte anywhere. This
+  is a genuinely new, previously unremarked structural fact: the entire
+  45-entry (15-state × enter/update/exit) gameplay-session callback table,
+  plus its child dispatcher, is one single dense original code region with no
+  internal padding at all.
+
+**Conclusion for application code**: in every range checked, the executable
+is 100% packed with valid instructions. There is no evidence anywhere in
+`mode-control`, `screen-selector`, or the combined gameplay-session region of
+any alignment quantum, padding byte, or dead space between functions —
+positive evidence of *density*, and a clean negative result for the
+"alignment padding" half of the angle-1 question in this part of the image.
+
+## The PsyQ BIOS/kernel trampoline block: a different, consistent convention
+
+The 30 already-matched 12-byte `BIOS_STUB` trampolines show a contrasting,
+internally consistent pattern. Sorting all 30 by address and computing every
+adjacent gap:
+
+- **24 of the 29 stub-to-stub transitions have exactly a 4-byte gap**, and
+  every one of those 4-byte gaps, dumped directly, is the single zero word
+  `00 00 00 00` — real, confirmed zero padding, not truncated code. Each
+  12-byte stub is therefore followed by a 4-byte zero pad to a 16-byte
+  boundary, with zero exceptions across the 24 sampled instances.
+- **The remaining transitions are larger** (68, 212, 1,444, 36, and 36
+  bytes) and are not simply bigger padding gaps: dumping them shows each one
+  begins and ends with the same 4-byte zero word, but the interior is dense,
+  real code — full stack-frame C functions (`addiu sp,sp,-0x18` /
+  `sw ra,0x10(sp)` prologues, `jal` call sites, matching epilogues) packed
+  with **zero** gap against each other where more than one appears in the
+  same window (confirmed in the 212-byte gap, which contains at least three
+  back-to-back subroutines with no inter-function padding at all — the same
+  density pattern as the application-code modules above).
+- **Two of these larger gaps (both 36 bytes) contain a previously
+  uncatalogued instance of the exact same `BIOS_STUB` three-instruction
+  shape already established for the 30 accepted trampolines** (`li t2,
+  <vector>`; `jr t2`; `li t1, <service>` in the delay slot) — one at vector
+  `0xb0`/service `0x3f` (between `exit` and `setjmp`), one at vector
+  `0xa0`/service `0x72` (between `GPU_cw` and `DeliverEvent`). Both are
+  preceded by an identical 8-byte pair of words that does not resemble
+  ordinary code and is not yet explained — flagged here as an open item,
+  not interpreted. Neither new stub has been added to the accepted-function
+  inventory or manifest; that requires the full hash-gated match pipeline
+  and is left as follow-up work, not asserted here.
+
+**Conclusion for the BIOS block**: this is a real, consistent, and
+falsifiable positive finding — a 4-byte zero-padding convention rounding
+each 12-byte trampoline to 16 bytes, with 100% consistency across every
+sampled boundary — and it is a genuinely different convention from the total
+absence of padding found everywhere else in this executable's own
+application code. That contrast is itself evidence: it is consistent with
+the BIOS stubs each having come from small, independently assembled/archived
+library objects (each individually rounded), while the application-code
+regions came from single translation units emitted with continuous function
+placement and no per-function alignment directive.
+
+## The PsyQ GTE library block
+
+The 33 already-matched real GTE/COP2 functions (`SetVertex*`, the color/
+vector block, the register-setter block, and `GteRemaining.s`'s matrix/color/
+Z/Lzc set) show the same density pattern as the application code: from
+`LightColor` (`0x800551b8`) through `SetDQA` (`0x80055a7c`), 21 of the 22
+adjacent pairs are zero-gap, with a single 1,472-byte gap between `Lzc` and
+`SetVertex0` left unexamined in this pass (not yet byte-dumped — an explicit
+open item, not assumed to be padding or code). The scattered `GteRemaining`
+functions outside that run (`SetTransMatrix_8002b210`, `MulMatrix0`,
+`SetRotMatrix`/`SetLightMatrix`/`SetTransMatrix`/`SetColorMatrix`/
+`SetFarColor`, `SetBackColor`) sit at widely separated addresses with large
+gaps (1,236 to 117,104 bytes) that were not characterized in this pass.
+
+# 2. Known PsyQ library object structure as a cross-check
+
+This project's Ghidra setup uses `ghidra_psx_ldr`'s bundled PsyQ 4.4.0
+signature database (`/docs/tooling/ghidra-setup.md`). Its own upstream
+documentation (`lab313ru/ghidra_psx_ldr`'s README, fetched 2026-07-24) confirms
+the signature database is built directly from real PsyQ `.LIB`/`.OBJ` files,
+and that its naming convention for a recognized object uses the object's own
+file name (its examples are `LIBSND` and `8MBYTE.OBJ`) — external,
+independent confirmation of what this project's symbol map had already
+inferred for the single marker row `2MBYTE_OBJ_B4` ("a ghidra_psx_ldr
+object-boundary marker... not a function name"). This document does not
+reproduce any signature database content itself — only the address/offset
+facts recoverable from this project's own already-exported symbol map CSV,
+which is original tool output, not copied PsyQ material.
+
+## A previously unremarked large class of rows: `<name>_OBJ_<offset>`
+
+Beyond that one marker row, the full symbol map contains **491 further rows**
+whose proposed name matches the same `<PREFIX>_OBJ_<hex-offset>` shape (e.g.
+`SPU_OBJ_D4`, `S_SAV_OBJ_130`, `VM_NO1_OBJ_1C4`, `SYS_OBJ_110`) — every one
+`confidence = library_signature`, `source_status = decompiler_output_only`,
+not independently reviewed before this pass. Grouping rows into maximal runs
+of *consecutive* (by address, no other-prefixed row intervening) same-prefix
+rows yields 89 runs, 60 of which have two or more rows. For every one of
+those 60 multi-row runs, the following check was run: does
+`address − declared_offset` equal the same constant for every row in the
+run? **60 of 60 are perfectly consistent** — every row's own address, minus
+its own declared hex offset, resolves to one identical implied object-base
+address for the whole run, with zero exceptions. (The name `SYS` recurs
+across two of the 89 runs, at addresses far apart — i.e. this grouping
+correctly treats them as two separate objects that happen to share the
+generic name `SYS`, each internally consistent on its own, rather than
+forcing one inconsistent merge.)
+
+This is strong, reproducible, internally self-checking evidence that
+`ghidra_psx_ldr`'s signature database is annotating genuine byte offsets
+**within one named original PsyQ object file** for each run — i.e. this is
+tool-recovered internal object layout, a materially different and stronger
+category of evidence than anything this project has used for object-boundary
+work before, and it required no new extraction: it was already sitting,
+unexamined, in the existing symbol-map CSV.
+
+## Direct cross-check against an independently confirmed function
+
+The strongest single data point: the first `SYS`-prefixed run's implied
+object base, computed purely from the `SYS_OBJ_*` rows'
+address-minus-offset arithmetic, is `0x800381e8` — which is exactly the
+address of `ResetGraph`, a real PsyQ kernel function this project
+independently hand-reviewed and cited well before this pass (see the symbol
+map's mode-`0x10` review). `ResetGraph`'s own recorded size (272 bytes) ends
+at exactly `0x800382f8`, which is exactly where the first `SYS_OBJ_110` row
+begins (`0x110` = 272). The same implied object (spanning `0x800381e8` to
+`0x8003b114`, 12,076 bytes) also contains `SetDispMask`, `DrawSync`,
+`ClearImage2`, `LoadImage`, `GsInitGraph2`, `GsInit3D`, and `InitGeom` — every
+one an independently signature-matched, several already hand-reviewed, real
+PsyQ kernel/`libgpu`-family function — interleaved with dozens of anonymous
+`SYS_OBJ_*` rows. Merging every symbol-map row (named or `SYS_OBJ_*`) in that
+12,076-byte range and checking coverage: 11,804 of 12,076 bytes (97.7%) are
+accounted for, in three residual gaps (116, 36, and 120 bytes). All three
+gaps were dumped directly and are dense real code (branches, `lui`/`lw`
+constant loads, `jal` call sites) — not padding, and not yet attributed to
+any named function.
+
+This is the strongest concrete result of this pass: a mechanically derived
+object boundary, computed purely from tool metadata, lands exactly on an
+address this project had already independently confirmed by hand as a real
+function's entry point, and the object's coherent 12KB span holds a cluster
+of other already-confirmed real library functions consistent with a single
+PsyQ graphics-kernel object.
+
+## What remains unconfirmed here
+
+The specific object names recovered this way (`SPU`, `S_SAV`, `S_SCA`,
+`VM_SEQ`, `MIDIREAD`, `TEMPO`, `SSSTART`, `SSTICK`, `SSEND`, and others
+clustered in `0x8002d9a8`–`0x80035xxx`) read, by their naming style, as a
+PsyQ SPU sequence/MIDI driver library family — but this was **not**
+independently verified against a primary, publicly documented PsyQ SDK
+manual table of contents or function list; a web search for the specific
+names returned no such primary source. This reading is left explicitly
+unconfirmed, distinct from the address/offset arithmetic above (which is
+independently, reproducibly checkable from this repository's own CSV without
+trusting the names' meaning at all).
+
+# 3. Duplicate function bodies
+
+Every SHA-256 hash recorded across `/docs/workflows/function-byte-match.md`
+was checked for exact duplicates: 110 hash occurrences resolve to 106
+distinct values. Exactly two values recur (accounting for all four repeat
+occurrences):
+
+- **`2f228789930df0a6d6db76e145ba3301694d7c01b9df2dbf45d2f48ad7aaee1`**,
+  twice: the already-documented `SetTransMatrix` duplicate at `0x8002b210`
+  and `0x80037848`, ~0x0c638 bytes apart in clearly different regions of the
+  executable (`0x8002b210` sits alone, isolated by a 49,112-byte gap from the
+  next GTE match; `0x80037848` sits inside the tight `MulMatrix0`/
+  `SetRotMatrix`/`SetLightMatrix`/`SetTransMatrix` run). This is a
+  **substantive**, non-trivial 32-byte routine duplicated verbatim — the kind
+  of duplication static linking produces when more than one translation unit
+  pulls in its own copy of a small library routine that the archive/linker
+  does not deduplicate across object files. Consistent with, but not proof
+  of, at least two separate object files both containing their own copy of
+  `SetTransMatrix`.
+- **`6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1`**, four
+  times: `FUN_80075838`, `FUN_80075ae0`, `FUN_80075af0` (all in
+  `screen-selector`) and `FUN_800236cc` (in `mode-control`). All four are the
+  trivial 8-byte `jr $ra; nop` no-op body. This is **weak** evidence of
+  shared object provenance — any empty C function compiles to the same two
+  instructions under this project's pinned flags regardless of which
+  translation unit or object it came from, so this collision is expected by
+  construction and is not treated as informative about object boundaries,
+  unlike the `SetTransMatrix` case.
+
+No other duplicate hash was found among currently accepted functions.
+
+# 4. Residual object/symbol metadata
+
+Beyond the `<name>_OBJ_<offset>` rows analyzed in full above (already the
+main finding of this pass), the symbol map's existing manual review already
+recorded one other residual artifact: the one-byte `2MBYTE_OBJ_B4` marker row
+at `0x800207ac`, immediately after `stup0`, which the decompiler could not
+parse as an instruction — independently corroborating that it is a
+non-code, tool-inserted object-boundary marker rather than a real byte.
+`ghidra_psx_ldr`'s own PsyQ-`XXX`/object-marker convention (per its upstream
+README) is the documented mechanism behind that marker. No other
+`analyzeHeadless`/Ghidra-native evidence of retained linker section names,
+`.comment`/debug-info remnants, or an unstripped local symbol table fragment
+was searched for or found in this pass; that remains open, not ruled out.
+
+# What would constitute sufficient evidence for "object boundary confirmed"
+
+Matching this project's evidentiary style elsewhere, a future claim that a
+specific original PsyQ object boundary is confirmed (not just plausible)
+should require all of the following, together, for that specific object:
+
+1. **A complete, contiguous byte account** for the claimed object's full
+   address range — every byte either an already-exact-matched function, a
+   function whose byte-identical body has been independently reconstructed
+   and hashed (even if not yet promoted to the main manifest), or explicitly
+   catalogued data — with zero unattributed bytes, reproduced via the same
+   kind of merge-and-gap-check used in this document.
+2. **An independently-derived boundary that agrees with the tool-derived
+   one.** The `SYS`/`ResetGraph` result above is a promising instance of
+   this (an address independently reached by hand-review agreeing with a
+   mechanically implied object base), but one match is not a pattern; at
+   least a second, unrelated instance would be needed.
+3. **A stated, checked alignment/padding convention at the object's actual
+   start and end boundaries** (not just its interior), distinguishing the
+   object from its immediate neighbors — as this pass found for the BIOS
+   stub block's 4-byte convention, but has not yet checked at any full
+   object's true edges.
+4. Explicit acknowledgment of what such a claim does **not** establish: it
+   would confirm one object's internal layout and boundary, not PSYLINK's
+   whole-executable section ordering, not that GNU binutils reproduces
+   PsyQ's own object format, and not a whole-image match.
+
+Absent all four, "object boundary confirmed" is not warranted, and this
+document does not make that claim. What it does establish: a reproducible
+method (address/offset arithmetic over the existing symbol-map CSV, plus
+targeted `DumpBytes.java` spot checks against the existing Ghidra project)
+that already produced one internally-consistent, independently-corroborated
+object-scale result (`SYS`/`ResetGraph`, §2) and one consistent padding-
+convention result (the BIOS stub block, §1) without requiring any new
+extraction, alongside a clean negative result (no alignment padding anywhere
+else checked) and several explicitly flagged open items (the two new BIOS
+stubs' unexplained 8-byte prefix, the unexamined `Lzc`→`SetVertex0` gap, and
+the un-cross-referenced object names' semantic identity).
+
+# Reproduction
+
+- Address/offset/gap arithmetic: read `/config/ddr5thmix/build.json` and
+  `/docs/games/ddr-5th-mix-jp-symbol-map.csv` directly; every figure above is
+  computed from those two tracked files alone.
+- Byte-content spot checks: `tools/ghidra/scripts/DumpBytes.java` against the
+  shared headless project (`runtime/ghidra/projects/ddr5thmix`, program
+  `SLPM_868.97_1`), e.g. `analyzeHeadless <project> ddr5thmix -process
+  SLPM_868.97_1 -noanalysis -scriptPath tools/ghidra/scripts -postScript
+  DumpBytes.java 0xADDR N`, per `/docs/tooling/ghidra-setup.md`.
+
+# Citations
+
+[1] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)
+[2] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[3] [/docs/tooling/ghidra-setup.md](/docs/tooling/ghidra-setup.md)
+[4] [ghidra_psx_ldr README](https://github.com/lab313ru/ghidra_psx_ldr/blob/master/README.md)
+[5] [/docs/workflows/decompile-recompile.md](/docs/workflows/decompile-recompile.md)

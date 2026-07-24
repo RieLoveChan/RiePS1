@@ -8,3 +8,4 @@
 * [Quirk entry schema](quirks-schema.md) - Format for recording non-standard engineering practices and promoting them from one game to a cross-game vendor pattern.
 * [Cross-game vendor/engine quirks](vendor-quirks.md) - Non-standard practices confirmed across more than one game.
 * [Screen/mode flow schema](screen-flow-schema.md) - Format for mapping a game's screen dispatcher to hypothesized and confirmed screen identities.
+* [Linked-object evidence](linked-object-evidence.md) - Methodology, findings, and falsifiable bar for proving original PsyQ object-file boundaries and internal layout.
