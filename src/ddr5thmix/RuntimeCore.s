@@ -953,3 +953,215 @@ FUN_8009971c:
     sb $zero,0xf4($v0)
     .end FUN_8009971c
     .size FUN_8009971c, . - FUN_8009971c
+
+    .section .text.main,"ax",@progbits
+    .globl main
+    .type main, @function
+    .ent main
+main:
+.L800226a4:
+    addiu $sp,$sp,-0x20
+.L800226a8:
+    sw $ra,0x1c($sp)
+.L800226ac:
+    sw $s2,0x18($sp)
+.L800226b0:
+    sw $s1,0x14($sp)
+.L800226b4:
+    jal __main
+.L800226b8:
+    sw $s0,0x10($sp)
+.L800226bc:
+    jal FUN_80021dfc
+.L800226c0:
+    lui $s0,0x800b
+.L800226c4:
+    jal FUN_80027f7c
+.L800226c8:
+    lui $s2,0x800e
+.L800226cc:
+    li $a0,0x80
+.L800226d0:
+    jal FUN_8007b778
+.L800226d4:
+    addu $a1,$zero,$zero
+.L800226d8:
+    jal FUN_800972a4
+.L800226dc:
+    nop
+.L800226e0:
+    jal FUN_8003bbe8
+.L800226e4:
+    nop
+.L800226e8:
+    lui $a0,0xf200
+.L800226ec:
+    ori $a0,$a0,0x3
+.L800226f0:
+    li $a1,0x2
+.L800226f4:
+    li $a2,0x1000
+.L800226f8:
+    lui $a3,0x8002
+.L800226fc:
+    jal OpenEvent
+.L80022700:
+    addiu $a3,$a3,0x2a40
+.L80022704:
+    lui $v1,0x800e
+.L80022708:
+    addu $a0,$v0,$zero
+.L8002270c:
+    jal EnableEvent
+.L80022710:
+    sw $v0,0x2968($v1)
+.L80022714:
+    lui $a0,0xf200
+.L80022718:
+    ori $a0,$a0,0x3
+.L8002271c:
+    li $a1,0x1
+.L80022720:
+    jal SetRCnt
+.L80022724:
+    li $a2,0x1000
+.L80022728:
+    lui $a0,0xf200
+.L8002272c:
+    jal StartRCnt
+.L80022730:
+    ori $a0,$a0,0x3
+.L80022734:
+    jal FUN_8003bbf8
+.L80022738:
+    nop
+.L8002273c:
+    lui $v0,0x800e
+.L80022740:
+    addiu $s1,$v0,0x2980
+.L80022744:
+    jal FUN_8002216c
+.L80022748:
+    nop
+.L8002274c:
+    lui $a0,0xf200
+.L80022750:
+    jal ResetRCnt
+.L80022754:
+    ori $a0,$a0,0x1
+.L80022758:
+    lw $v0,-0x3718($s0)
+.L8002275c:
+    nop
+.L80022760:
+    lbu $v0,0x9($v0)
+.L80022764:
+    nop
+.L80022768:
+    bne $v0,$zero,.L80022744
+.L8002276c:
+    nop
+.L80022770:
+    jal FUN_80022cf8
+.L80022774:
+    nop
+.L80022778:
+    lw $v0,-0x3718($s0)
+.L8002277c:
+    nop
+.L80022780:
+    sb $zero,0x5($v0)
+.L80022784:
+    lui $v0,0x800b
+.L80022788:
+    lw $v1,-0x3714($v0)
+.L8002278c:
+    li $v0,0x1
+.L80022790:
+    sb $v0,0x74($s1)
+.L80022794:
+    sb $v0,0x18($s1)
+.L80022798:
+    lbu $v0,0x4($v1)
+.L8002279c:
+    nop
+.L800227a0:
+    bne $v0,$zero,.L800227c0
+.L800227a4:
+    nop
+.L800227a8:
+    lw $v0,-0x3718($s0)
+.L800227ac:
+    nop
+.L800227b0:
+    lhu $v1,0xe($v0)
+.L800227b4:
+    li $v0,0x1e0
+.L800227b8:
+    bne $v1,$v0,.L800227c8
+.L800227bc:
+    nop
+.L800227c0:
+    sb $zero,0x74($s1)
+.L800227c4:
+    sb $zero,0x18($s1)
+.L800227c8:
+    lui $a0,0xf200
+.L800227cc:
+    jal GetRCnt
+.L800227d0:
+    ori $a0,$a0,0x1
+.L800227d4:
+    jal FUN_800973e8
+.L800227d8:
+    sw $v0,0x2978($s2)
+.L800227dc:
+    lui $a0,0xf200
+.L800227e0:
+    jal ResetRCnt
+.L800227e4:
+    ori $a0,$a0,0x1
+.L800227e8:
+    nop
+.L800227ec:
+    nop
+.L800227f0:
+    lw $v1,-0x3718($s0)
+.L800227f4:
+    nop
+.L800227f8:
+    lhu $v0,0x20($v1)
+.L800227fc:
+    nop
+.L80022800:
+    addiu $v0,$v0,0x1
+.L80022804:
+    jal FUN_8002112c
+.L80022808:
+    sh $v0,0x20($v1)
+.L8002280c:
+    jal FUN_8002d630
+.L80022810:
+    nop
+.L80022814:
+    jal FUN_80028034
+.L80022818:
+    nop
+.L8002281c:
+    lw $v0,-0x3718($s0)
+.L80022820:
+    nop
+.L80022824:
+    lbu $v0,0x9($v0)
+.L80022828:
+    nop
+.L8002282c:
+    beq $v0,$zero,.L80022770
+.L80022830:
+    nop
+.L80022834:
+    j 0x80022744
+.L80022838:
+    nop
+    .end main
+    .size main, . - main

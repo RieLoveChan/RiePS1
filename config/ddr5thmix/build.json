@@ -34,7 +34,8 @@
         "FUN_800235f8",
         "FUN_80023690",
         "FUN_800236bc",
-        "FUN_800236cc"
+        "FUN_800236cc",
+        "FUN_80022b30"
       ]
     },
     {
@@ -45,7 +46,8 @@
         "FUN_8002216c",
         "FUN_80022cf8",
         "FUN_80023744",
-        "FUN_8009971c"
+        "FUN_8009971c",
+        "main"
       ]
     },
     {
@@ -626,6 +628,19 @@
       ]
     },
     {
+      "name": "FUN_80022b30",
+      "address": "0x80022b30",
+      "size": 456,
+      "language": "asm",
+      "source": "src/ddr5thmix/FUN_80022b30.s",
+      "section": ".text.FUN_80022b30",
+      "symbols": {
+        "FUN_80049d3c": "0x80049d3c",
+        "FUN_80023210": "0x80023210",
+        "FUN_80021470": "0x80021470"
+      }
+    },
+    {
       "name": "LightColor",
       "address": "0x800551b8",
       "size": 40,
@@ -1193,6 +1208,35 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCore.s",
       "section": ".text.FUN_8009971c"
+    },
+    {
+      "name": "main",
+      "address": "0x800226a4",
+      "size": 408,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.main",
+      "symbols": {
+        "__main": "0x800206f8",
+        "FUN_80021dfc": "0x80021dfc",
+        "FUN_80027f7c": "0x80027f7c",
+        "FUN_8007b778": "0x8007b778",
+        "FUN_800972a4": "0x800972a4",
+        "FUN_8003bbe8": "0x8003bbe8",
+        "OpenEvent": "0x8003bb58",
+        "EnableEvent": "0x8003bb98",
+        "SetRCnt": "0x8003bca8",
+        "StartRCnt": "0x8003bd7c",
+        "FUN_8003bbf8": "0x8003bbf8",
+        "FUN_8002216c": "0x8002216c",
+        "ResetRCnt": "0x8003bde0",
+        "GetRCnt": "0x8003bd44",
+        "FUN_800973e8": "0x800973e8",
+        "FUN_8002112c": "0x8002112c",
+        "FUN_8002d630": "0x8002d630",
+        "FUN_80028034": "0x80028034",
+        "FUN_80022cf8": "0x80022cf8"
+      }
     },
     {
       "name": "FUN_80075258",

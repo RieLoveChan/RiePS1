@@ -57,6 +57,19 @@ reading, given the table is scanned specifically up to its
 (jump-to-screen targets for a service menu) rather than the engine's own
 live state variable — itself still a hypothesis, not confirmed.
 
+**Correction 2026-07-24**: `FUN_80049dec` does not actually scan or search
+for `"TEST_MODE"` at all — re-reading its full disassembly shows an
+unconditional, unrolled copy of the *complete* 42-entry array to a local
+stack buffer, whose loop bound merely happens to fall exactly at the
+`TEST_MODE` slot's compile-time address (entries 0-39 copied four at a time,
+then entries 40-41 handled directly afterward — `40 = 4 × 10`). The
+"debug/test-mode menu" hypothesis above was reasoned from a scan that
+does not exist in the code; it remains unconfirmed and now has weaker
+support than previously stated. See "Open/Resolved structural questions"
+below for the full exhaustive-search result: no function other than
+`FUN_80049dec` references any entry of the array, and the copy it makes is
+never used again.
+
 **Directly confirms the repository owner's domain-knowledge account**
 (see "Known screen sequence" below) regardless, with a literal string
 reference — the schema's own bar for `confidence: manual`/`verified`,
@@ -867,32 +880,59 @@ separate rows since it isn't mode-specific.
   2026-07-14**: the exhaustive field-xref review found only `SetMode`
   (clear), `NextSubmode` (increment), and `SetSubmode` (direct assignment).
   It is a general phase/substate field shared by multiple modes.
+- ~~What consumes the complete 42-entry screen-name pointer array?~~
+  **Resolved 2026-07-24**: re-reading `FUN_80049dec` (`DumpFunctionDetail.java`)
+  plus a per-entry `DumpDataXrefs.java` sweep of all 42 individual pointer
+  slots shows this is not a conditional scan that stops at `TEST_MODE` — it
+  is an unconditional copy of the *complete* 42-entry array into a local
+  168-byte stack buffer (unrolled 4-at-a-time for entries 0-39, then entries
+  40-41 handled directly); the loop's termination test just compares against
+  the compile-time-constant address of the `TEST_MODE` slot, an artifact of
+  unrolling a fixed-size copy. `FUN_80049dec` remains the *only* function
+  referencing any entry of the array — no other consumer exists. The copied
+  buffer itself is never read again in this function, and its only remaining
+  call (`FUN_80042e1c`) overwrites its own first argument register before
+  use, so it does not consume the copy either. See the symbol map's
+  "`FUN_80049dec` does not scan for `TEST_MODE`" update for the full
+  disassembly evidence.
+- ~~What are `PTR_DAT_800ac8e8+0x2c` and `+0x2e`?~~ **Resolved 2026-07-24**:
+  `+0x2c` is `FUN_80022b30`'s (mode `0x10`/default submode `0x01`'s menu
+  handler) own current-selection index for its 3-item menu — read back and
+  incremented/decremented on d-pad input, wrapped `% 3`, then used both to
+  index the `DAT_800ac8e0` destination-mode table on confirm and to compute
+  the highlighted item's on-screen draw position. `SetMode`/`SetSubmode`
+  clearing it on every transition is exactly what a fresh menu cursor needs.
+  `+0x2e` was re-checked the same way (a fresh `DumpFieldXrefs.java` pass,
+  62 functions) and remains a genuine, exhaustive negative result: only
+  `SetMode`/`SetSubmode`/`NextSubmode` ever touch it, and no reader exists
+  anywhere in the executable.
+- ~~What is `PTR_DAT_800ac8e8+0x17`?~~ **Resolved 2026-07-24**: it is a
+  shared glyph/menu-item draw-color scratch byte. The shared draw routine
+  `FUN_80021470` reads it as the color/brightness passed to `FUN_80023e9c`
+  whenever its own draw-flags argument has bit `0x8000` set (otherwise it
+  substitutes a fixed `0x80`). Two more writers beyond mode `0x00`/submode
+  `0x02` were found the same pass: `FUN_800ab408` (unconditionally sets
+  `0x80`) and `FUN_8009e4cc` (computes a value from `counter_090` and its own
+  parameter, likely a pulsing/flashing highlight effect). It is unrelated to
+  mode transitions, as already established, and not itself a mode constant —
+  `0x80` and `0x10` simply both happen to be plausible brightness/mode values.
+- ~~`PTR_DAT_800ac8e8[9]` is written from deep inside the mode-0xff/
+  submode-4 handler~~ **Resolved 2026-07-24**: `main` is its own same-frame
+  consumer. Its two nested `do`/`while` loop conditions
+  (`PTR_DAT_800ac8e8[9] != 0` for the outer reset loop,
+  `PTR_DAT_800ac8e8[9] == 0` for the inner per-frame loop) read this byte
+  directly through bracket indexing, which a textual `+ 0x9)`-style search
+  had missed — the decompiler renders single-byte accesses through this
+  `undefined *` pointer as array indexing, not pointer arithmetic. Byte `9`
+  is `main`'s own loop-restart flag: `FUN_8002216c` zeroes it every outer
+  pass; `FUN_8002358c` (mode `0xff`/submode `4`) is the only writer that ever
+  sets it to `1`, forcing the inner per-frame loop to exit early back through
+  a full state/GPU reset. `main` is now reconstructed (semantic MIPS
+  assembly, `src/ddr5thmix/RuntimeCore.s`) and matches all 408 reference
+  bytes; the `runtime-core` module now covers six functions/2,232 bytes.
 
 # Open structural questions
 
-- **What consumes the complete 42-entry screen-name pointer array?** Direct
-  callback writes prove many indices label live screens, while the scan up to
-  `TEST_MODE` also supports a debug-menu use. The array is not a 42-state
-  `DAT_80105120` dispatcher table; other consumers and the exact role of the
-  pointer array remain to be mapped.
-- **What are `PTR_DAT_800ac8e8+0x2c` and `+0x2e`?** `FUN_80023210`
-  (`SetMode`) zeroes both of them alongside `submode` (`+0x2a`) on every
-  mode transition, but nothing reviewed so far reads or writes either field
-  outside of that. Possibly a second/third dispatch layer below submode
-  (a "sub-submode"), not yet exercised by any handler reviewed to date.
-- **What is `PTR_DAT_800ac8e8+0x17`?** Written to `0x80` by mode
-  `0x00`/submode `0x02` (`FUN_80022f04`) alongside a confirmed transition to
-  mode `0x10` (see "Resolved structural questions" above) — so it isn't the
-  mode-transition mechanism, but it's still being deliberately set to a
-  value matching a real mode constant. Unclear what reads it.
-- **`PTR_DAT_800ac8e8[9]` is written from deep inside the mode-0xff/
-  submode-4 handler** (`FUN_8002358c`), even though `main`'s own per-outer-
-  loop-pass reset (`FUN_8002216c`) unconditionally zeroes that same byte
-  right before the one place it's actually tested. The write can't be dead
-  code — something else must read offset `9` within the same frame, before
-  the next outer pass's reset runs. `FUN_8002112c` has since been reviewed as
-  the PAD adapter and does not resolve this; the same-frame consumer, if any,
-  remains unidentified.
 - Modes `0x20` and `0x32` (`FUN_800219b8`/`FUN_80021a30`) have byte-for-byte
   identical handler bodies, and mode `0x10` and the unmatched-mode default
   reach the exact same submode dispatch (see bullet below) — two independent

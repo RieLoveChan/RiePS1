@@ -6,6 +6,6 @@ FUN_80023230(u16 newSubmode)
     DdrModeState *state = PTR_DAT_800ac8e8;
 
     state->submode = newSubmode;
-    state->unknown_02c = 0;
+    state->menu_selection_index = 0;
     state->unknown_02e = 0;
 }

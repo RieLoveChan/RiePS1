@@ -14,10 +14,10 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,124 total: 161 verified, 103 manually reviewed, 977 library signatures, 883 unverified |
-| Exact reconstruction | 231 functions / 25,172 selected bytes: 161/15,800 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Main-executable function inventory | 2,124 total: 163 verified, 102 manually reviewed, 977 library signatures, 882 unverified |
+| Exact reconstruction | 233 functions / 26,036 selected bytes: 163/16,664 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 30 BIOS/kernel trampolines and 33 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 19/1,204; `runtime-core`: 5/1,824; `screen-selector`: 22/2,344; session router/opening/gameplay/endgame: 51/8,736 |
+| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,344; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; 668 of 748 tail data bytes structurally resolved, 80 bytes unresolved after two static passes plus a dynamic (write-only) BizHawk pass; 1,910-tick script verified |

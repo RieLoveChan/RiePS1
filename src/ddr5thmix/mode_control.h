@@ -13,7 +13,7 @@ typedef struct DdrModeState {
     u8 unknown_000[0x06];
     u8 unknown_006;
     u8 unknown_007[0x02];
-    u8 unknown_009;
+    u8 loop_restart_flag;
     u8 unknown_00a;
     u8 unknown_00b;
     u16 unknown_00c;
@@ -21,7 +21,7 @@ typedef struct DdrModeState {
     u16 unknown_010;
     u16 unknown_012;
     u8 unknown_014[0x03];
-    u8 unknown_017;
+    u8 glyph_color;
     u8 unknown_018[0x04];
     u8 counter_01c;
     u8 counter_01d;
@@ -32,7 +32,7 @@ typedef struct DdrModeState {
     u8 unknown_024[0x04];
     u16 mode;
     u16 submode;
-    u16 unknown_02c;
+    u16 menu_selection_index;
     u16 unknown_02e;
     u8 unknown_030[0x0f];
     u8 unknown_03f;
@@ -112,7 +112,9 @@ DDR_STATIC_ASSERT(ddr_countdown_022_offset, __builtin_offsetof(DdrModeState, cou
 DDR_STATIC_ASSERT(ddr_counter_01c_offset, __builtin_offsetof(DdrModeState, counter_01c) == 0x1c);
 DDR_STATIC_ASSERT(ddr_unknown_020_offset, __builtin_offsetof(DdrModeState, unknown_020) == 0x20);
 DDR_STATIC_ASSERT(ddr_submode_offset, __builtin_offsetof(DdrModeState, submode) == 0x2a);
-DDR_STATIC_ASSERT(ddr_unknown_02c_offset, __builtin_offsetof(DdrModeState, unknown_02c) == 0x2c);
+DDR_STATIC_ASSERT(ddr_loop_restart_flag_offset, __builtin_offsetof(DdrModeState, loop_restart_flag) == 0x09);
+DDR_STATIC_ASSERT(ddr_glyph_color_offset, __builtin_offsetof(DdrModeState, glyph_color) == 0x17);
+DDR_STATIC_ASSERT(ddr_menu_selection_index_offset, __builtin_offsetof(DdrModeState, menu_selection_index) == 0x2c);
 DDR_STATIC_ASSERT(ddr_unknown_02e_offset, __builtin_offsetof(DdrModeState, unknown_02e) == 0x2e);
 DDR_STATIC_ASSERT(ddr_mode_0ac_offset, __builtin_offsetof(DdrModeState, unknown_0ac) == 0xac);
 DDR_STATIC_ASSERT(ddr_pad_valid_mask_offset, __builtin_offsetof(DdrModeState, pad_valid_mask) == 0x45);

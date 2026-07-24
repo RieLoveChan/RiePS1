@@ -20,17 +20,17 @@ are not given fabricated absolute addresses.
 | Offset | Width | Conservative field | Evidence |
 |---:|---:|---|---|
 | `0x06` | 1 | `unknown_006` | Cleared by mode-`0x10`/default initialization. |
-| `0x09` | 1 | `unknown_009` | Reset/test ordering is documented, but the same-frame consumer remains unknown. |
+| `0x09` | 1 | `loop_restart_flag` | Read by `main` itself in both nested per-frame `do`/`while` conditions. `FUN_8002216c` zeroes it every outer-loop pass; `FUN_8002358c` (mode `0xff`/submode `4`) is the only writer that sets it to `1`, forcing the inner per-frame loop to exit early back through a full state/GPU reset. Resolved 2026-07-24. |
 | `0x0b` | 1 | `unknown_00b` | Cleared by the mode-`0xff` GPU-reset handler. |
 | `0x0c`–`0x12` | 4 × 2 | `unknown_00c`…`unknown_012` | Set to 320, 240, 4, and 1 before GPU initialization. |
-| `0x17` | 1 | `unknown_017` | Written as `0x80` during a confirmed transition to mode `0x10`; it is not the next-mode field. |
+| `0x17` | 1 | `glyph_color` | Read by the shared draw routine `FUN_80021470` as a glyph/menu-item color-brightness byte when its draw-flags argument has bit `0x8000` set. Written `0x80` (full brightness) by mode `0x00`/submode `0x02` and by `FUN_800ab408`; computed from a per-character value and `counter_090` by `FUN_8009e4cc`. Not a next-mode field. Resolved 2026-07-24. |
 | `0x1c`–`0x1f` | 4 × 1 | `counter_01c`, `counter_01d`, `direction_01e`, `direction_01f` | `FUN_80023744` advances two wrapping counters by 2/4 and flips their direction flags at the observed signed/unsigned thresholds. |
 | `0x20` | 2 | `unknown_020` | Its low nibble and bit `0x10` produce the signed two-bit-derived value at `+0xc1`; broader meaning remains unknown. |
 | `0x22` | 2 | `countdown_022` | Armed to 2/4 by mode-0 handlers and decremented by the following phase. |
 | `0x28` | 2 | `mode` | Dispatched by `FUN_80022cf8`; `FUN_80023210` is the only known writer. |
 | `0x2a` | 2 | `submode` | Written by `SetMode`, `SetSubmode`, and `NextSubmode`. |
-| `0x2c` | 2 | `unknown_02c` | Cleared on mode/submode changes; no other established meaning. |
-| `0x2e` | 2 | `unknown_02e` | Cleared by `SetMode` and `SetSubmode`; no other established meaning. |
+| `0x2c` | 2 | `menu_selection_index` | The mode-`0x10`/default-submode-`0x01` menu handler `FUN_80022b30`'s own current-selection index (0-2, wrapped `% 3`); read back and rewritten by that function on d-pad input, and cleared to 0 on every mode/submode change (`SetMode`/`SetSubmode`) so a freshly entered menu starts at item 0. Resolved 2026-07-24. |
+| `0x2e` | 2 | `unknown_02e` | Cleared by `SetMode` and `SetSubmode`; exhaustively re-checked 2026-07-24 across all 62 functions referencing `PTR_DAT_800ac8e8` — no reader found. Durable negative result. |
 | `0x3f`–`0x42` | 4 × 1 | `unknown_03f`…`unknown_042` | Set to one by the runtime state-reset routine after its 0x140-byte clear. |
 | `0x45` | 1 | `pad_valid_mask` | Cleared each frame, then ORed with one table byte for each accepted PAD packet. |
 | `0x4c`–`0x68` | 8 × 4 | `pad1_*`, `pad2_*` | Previous held, current held, newly pressed, and newly released words for two PsyQ PAD receive buffers. |

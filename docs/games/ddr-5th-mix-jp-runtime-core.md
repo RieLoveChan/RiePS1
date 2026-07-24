@@ -8,10 +8,11 @@ timestamp: 2026-07-19T00:00:00-04:00
 
 # Boundary
 
-`runtime-core` connects the reviewed `main` loop to the completed
+`runtime-core` connects `main`'s own loop to the completed
 [mode-control module](/docs/games/ddr-5th-mix-jp-mode-control.md). It contains
-the per-frame input adapter, runtime-state reset, top-level mode dispatcher,
-and both functions in the dispatcher's unconditional shared epilogue.
+`main` itself, the per-frame input adapter, runtime-state reset, top-level
+mode dispatcher, and both functions in the dispatcher's unconditional shared
+epilogue.
 
 | Function | Bytes | Role | Built/reference SHA-256 |
 |---|---:|---|---|
@@ -20,8 +21,9 @@ and both functions in the dispatcher's unconditional shared epilogue.
 | `FUN_80022cf8` | 524 | Dispatch the mode/submode handlers and run the shared per-frame epilogue. | `4057cd0604a3d2ef794d691ab19859e5a41507bcde9705c9eef3944d85fc5dae` |
 | `FUN_80023744` | 476 | Advance three wrapping counter/direction pairs and derive state byte `+0xc1`. | `1b640a8f4f92bedb9f77b8187577a3555ac4f1d5257a43b070c4b5c80db88aa9` |
 | `FUN_8009971c` | 84 | Derive state byte `+0xf4` from screen index 4 or inclusive range `0x2a..0x2c`. | `9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6` |
+| `main` | 408 | The crt0-to-game-code boundary: one-time subsystem init, RCNT2 vsync/timer IRQ install, then the outer reset / inner per-frame loop pair. | `275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303` |
 
-Total: five functions and 1,824 selected bytes.
+Total: six functions and 2,232 selected bytes.
 
 # Reconstruction
 
@@ -46,6 +48,28 @@ instruction mismatches:
 
 After those harness corrections, all five functions matched without changing
 an instruction's semantics.
+
+# `main` and `loop_restart_flag` (`PTR_DAT_800ac8e8+0x09`)
+
+Added 2026-07-24. A fresh `DumpFieldXrefs.java` pass against
+`PTR_DAT_800ac8e8` (62 referencing functions, up from 58) surfaces `main`
+itself, because its own two nested `do`/`while` conditions read byte `9`
+directly through bracket indexing (`PTR_DAT_800ac8e8[9]`) rather than the
+pointer-arithmetic form (`+ 0x9)`) every prior textual search looked for.
+This resolves the open question recorded in the globals and screen-flow
+docs: `main` is its own same-frame consumer of `loop_restart_flag`.
+`FUN_8002216c` unconditionally zeroes it (among the rest of its 0x140-byte
+reset) at the top of every outer-loop pass, so the outer reset loop normally
+executes exactly once per pass. `FUN_8002358c` (mode `0xff`/submode `4`, the
+GPU-reset/service-state handler) is the only writer that ever sets it to `1`;
+doing so makes the inner per-frame loop's condition false at the end of the
+current frame, forcing an early return to the outer loop and a full
+state/GPU reset before normal per-frame dispatch resumes.
+
+`main` is reconstructed as semantic MIPS assembly for the same reason as
+`FUN_80022cf8` — absolute `j`/`jal` targets, not local-label section-relative
+jumps, and no attempt to express the two-level loop in C. All 408 bytes match
+under GNU binutils 2.43.
 
 # Shared layouts and globals
 
@@ -77,9 +101,11 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
 On 2026-07-19, GNU binutils 2.43 matched all 1,824 bytes against executable
 SHA-256
 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`.
+On 2026-07-24, after adding `main` (`src/ddr5thmix/RuntimeCore.s`), the same
+command matched all 2,232 bytes against the same executable SHA-256.
 The aggregate report remains ignored under `/build/`.
 
-This proves five independently placed function bodies. It does not prove an
+This proves six independently placed function bodies. It does not prove an
 original PsyQ object boundary, inter-function layout, original source spelling,
 or a whole-executable match.
 

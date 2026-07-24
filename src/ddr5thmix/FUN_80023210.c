@@ -7,6 +7,6 @@ FUN_80023210(u16 newMode)
 
     state->mode = newMode;
     state->submode = 0;
-    state->unknown_02c = 0;
+    state->menu_selection_index = 0;
     state->unknown_02e = 0;
 }

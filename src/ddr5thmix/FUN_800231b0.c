@@ -7,6 +7,6 @@ FUN_800231b0(void)
     /* Preserve the original v1-pointer/v0-counter allocation without code. */
     __asm__("" : : : "$2");
 
-    state->unknown_02c = 0;
+    state->menu_selection_index = 0;
     state->submode++;
 }

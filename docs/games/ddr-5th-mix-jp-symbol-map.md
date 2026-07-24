@@ -132,6 +132,40 @@ order, loop position) is a structural fact, not an identity claim, per
 `AGENTS.md`'s "do not silently turn guesses into names." They are listed, in
 call order, in `main`'s symbol-map row `notes` as the next review targets.
 
+## Update 2026-07-24: `main` reconstructed; resolves `PTR_DAT_800ac8e8+0x09`
+
+Re-running `tools/ghidra/scripts/DumpFieldXrefs.java` against
+`PTR_DAT_800ac8e8` (62 functions now reference it, up from the 58 catalogued
+on 2026-07-14) surfaces `main` itself among them, because its own two
+nested `do`/`while` conditions read byte `9` directly:
+`PTR_DAT_800ac8e8[9] != 0` (outer reset loop) and
+`PTR_DAT_800ac8e8[9] == 0` (inner per-frame loop). This had been missed by
+every prior review because a bracket-indexed byte access
+(`PTR_DAT_800ac8e8[9]`) does not match a `+ 0x9)`-style textual search — the
+decompiler renders single-byte accesses through an `undefined *` pointer as
+array indexing, not pointer arithmetic.
+
+This closes the open question recorded in the globals and screen-flow docs
+("something else must read offset 9 within the same frame"): **`main` is its
+own same-frame consumer.** `FUN_8002216c` unconditionally zeroes the byte
+(among the rest of its 0x140-byte reset) at the top of every outer-loop pass,
+so the outer reset loop normally executes exactly once per pass, as already
+established 2026-07-13. `FUN_8002358c` (mode `0xff`/submode `4`, the
+GPU-reset/service-state handler) is the only writer that ever sets it to `1`;
+doing so makes the *inner* per-frame loop's condition false at the end of the
+current frame, which exits back to the outer loop and re-runs
+`FUN_8002216c`'s full state/GPU reset before resuming normal per-frame
+dispatch. In other words, byte `9` is `main`'s own **loop-restart / hard-reset
+flag**: normally `0`, and momentarily `1` only to force a full runtime restart
+from the mode-`0xff` service state.
+
+`main` is reconstructed as semantic MIPS assembly in
+`src/ddr5thmix/RuntimeCore.s` (added to the `runtime-core` module, now six
+functions/2,232 bytes) and matches all 408 reference bytes under GNU
+binutils 2.43; built/reference SHA-256
+`275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303`. Promoted
+to `confidence = verified`, `source_status = hand_written_source`.
+
 # Manual review: PsyQ PAD initialization and the per-frame input adapter
 
 Reviewed by hand on 2026-07-15 with Ghidra 12.1.2,
@@ -487,6 +521,35 @@ arguments). `SetDispMask` is an already-known PsyQ kernel function, not
 new application code — its use here is further corroboration of the
 PsyQ 4.4.0 toolchain, alongside `ResetGraph` found earlier the same day.
 
+## Update 2026-07-24: `FUN_80022b30` reconstructed; resolves `PTR_DAT_800ac8e8+0x2c`
+
+`+0x2c` is read back, not merely cleared, exactly where this section already
+said it was: the `% 3` selection cycle above *is* the field. A fresh
+`DumpFieldXrefs.java` pass against `PTR_DAT_800ac8e8` (62 referencing
+functions) confirms `FUN_80022b30` is the sole reader — every occurrence of
+`+0x2c` outside `SetMode`/`SetSubmode`'s clears is inside this one function's
+body (the increment/decrement, the `% 3` wrap via a magic-number
+division-by-3 sequence, the `DAT_800ac8e0` table index, and the on-screen
+cursor's vertical draw offset, `(+0x2c) * 0xe - 0x40`, passed to
+`FUN_80021470`). This closes the globals/screen-flow docs' open question
+about `+0x2c`: it is `FUN_80022b30`'s own current-selection index for the
+mode-`0x10` 3-item menu, not a persistent field read anywhere else — fully
+consistent with `SetMode` clearing it on every transition (a fresh menu
+should start at item 0).
+
+`+0x2e` was searched with the same fresh dump and remains a genuine, durable
+negative result: no function among the 62 reads it. The only other match for
+`+ 0x2e` outside `SetMode`/`SetSubmode` belongs to an unrelated per-player
+structure based at `DAT_800f2908` (inside `FUN_8007fdec`), not
+`PTR_DAT_800ac8e8`.
+
+`FUN_80022b30` is reconstructed as semantic MIPS assembly in
+`src/ddr5thmix/FUN_80022b30.s` (added to the `mode-control` module, now
+twenty functions/1,660 bytes) and matches all 456 reference bytes under GNU
+binutils 2.43; built/reference SHA-256
+`8fcfaea11d4c06cb6a3415a4b7bc3ed2dd9b0b81563f096fbd3a8602d03f1893`. Promoted
+to `confidence = verified`, `source_status = hand_written_source`.
+
 # Manual review: `SetMode` has siblings — `NextSubmode`/`SetSubmode` — plus a service/reset-combo watcher
 
 Reviewed by hand on 2026-07-14 while chasing a repository-owner hypothesis
@@ -683,7 +746,40 @@ and the `PTR_LAB_800d9ac0`/`PTR_LAB_800d9ac4`/`PTR_FUN_800d9abc`
 function-pointer arrays `DAT_80105120` indexes into — none of their
 contents beyond the one `"TEST_MODE"` string have been read.
 
-# Data discovery: a 42-entry screen-name string table at `0x8001bb24`
+## Update 2026-07-24: `FUN_80049dec` does not scan for `"TEST_MODE"` — it unconditionally copies the whole array
+
+Re-reading `FUN_80049dec` with `DumpFunctionDetail.java` (both raw
+disassembly and decompiled C) shows the earlier "copies a table of records
+ending at an entry containing `TEST_MODE`" description, while byte-accurate
+about where the copy stops, implied a *conditional* scan/search. The actual
+code contains no string or pointer comparison at all: it is a straight-line,
+unrolled `memcpy`-style copy of the **complete 42-entry pointer array**
+(`local_c0[42]`, exactly 168 bytes) from `PTR_DAT_8001bcd4`, four entries per
+iteration for entries `0`–`39`, then entries `40` (`TEST_MODE`) and `41`
+(`OTHER`) handled by two extra straight-line instructions after the loop. The
+loop's termination test compares the source pointer against the
+compile-time-constant address `&PTR_s_TEST_MODE_8001bd74` purely because that
+is where the last group-of-4 boundary falls (`40 = 4 × 10`) — an artifact of
+unrolling a fixed-size copy, not special-case code for that entry.
+
+A per-entry `DumpDataXrefs.java` sweep (all 42 individual pointer-slot
+addresses, `0x8001bcd4`–`0x8001bd78`, plus the base address itself) found
+`FUN_80049dec` as the *only* function referencing any entry of the array —
+entries `0`–`9` via direct loads (the only iterations Ghidra's static
+constant-propagation resolved concretely) and entry `40` via the address
+computation used as the loop bound. No other function touches any slot. This
+is now the exhaustive answer to the screen-flow doc's "what consumes the
+complete 42-entry screen-name pointer array?" question: **only
+`FUN_80049dec` does, and it copies the entire thing** — but the copy appears
+to go unused. `local_c0` is never read again after the loop, and the
+function's one remaining call, `FUN_80042e1c` (dumped separately), overwrites
+its own `a0` with a literal `8` as its very first instruction, so it cannot
+be consuming the copy as an implicit argument either. `FUN_80042e1c` itself
+is a generic PsyQ sprite/TIM-object setup routine (fixed RGB `0x80/0x80/0x80`,
+a handle `8`, and a `DAT_800e75a8` busy-flag clear) with no textual or
+structural connection to the screen-name table. The copy is therefore best
+recorded as present but functionally dead within this function, rather than
+guessing a further consumer that the evidence does not show.
 
 While chasing `FUN_80049dec`'s `"TEST_MODE"` string and its
 `DAT_80105120`-keyed state machine (see the mode `0x02` review above),

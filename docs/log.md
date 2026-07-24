@@ -1,6 +1,50 @@
 # Knowledge Bundle Update Log
 
 ## 2026-07-24
+* **Four long-standing `DdrModeState`/screen-flow open questions resolved**:
+  Re-ran `tools/ghidra/scripts/DumpFieldXrefs.java` against
+  `PTR_DAT_800ac8e8` (now 62 referencing functions, up from the 58 catalogued
+  2026-07-14) specifically searching for **reads**, not just the
+  already-known clears, of offsets `+0x09`, `+0x17`, `+0x2c`, and `+0x2e` —
+  discovered that bracket-indexed byte accesses (`PTR_DAT_800ac8e8[N]`) don't
+  match a `+ 0xN)`-style textual search, which is why prior sweeps missed
+  them. (1) **`+0x09`**: `main` itself is the same-frame consumer —
+  its own two nested `do`/`while` loop conditions test this byte directly;
+  it is `main`'s loop-restart flag, set to `1` only by the mode-`0xff`
+  service-state handler to force a full state/GPU reset. (2) **`+0x17`**:
+  the shared draw routine `FUN_80021470` reads it as a glyph/menu-item
+  color-brightness byte; two more writers (`FUN_800ab408`, `FUN_8009e4cc`)
+  were found beyond the already-known one. (3) **`+0x2c`**: `FUN_80022b30`
+  (mode `0x10`/default submode `0x01`'s menu) reads it back as its own
+  0-2 current-selection index for a 3-item menu — already described in this
+  document's own mode table from 2026-07-14 but never connected to the
+  "what reads `+0x2c`" open question until now. **`+0x2e`** remains a
+  genuine, now-exhaustive negative result: no reader exists anywhere.
+  (4) **The 42-entry screen-name pointer array**: a per-entry
+  `DumpDataXrefs.java` sweep of all 42 individual slot addresses (not just
+  the base) found `FUN_80049dec` is the *only* function touching any entry,
+  and re-reading its full disassembly shows it unconditionally copies the
+  *complete* array to a local stack buffer (not a conditional scan stopping
+  at `TEST_MODE`, as previously described) — the buffer is then never read
+  again and its one remaining call (`FUN_80042e1c`) doesn't consume it
+  either, so the copy appears functionally dead. Reconstructed the two
+  newly-implicated small/bounded functions: `main` (408 bytes, semantic MIPS
+  assembly, added to `runtime-core` — now six functions/2,232 bytes) and
+  `FUN_80022b30` (456 bytes, semantic MIPS assembly, added to `mode-control`
+  — now twenty functions/1,660 bytes), both byte-matching on the first
+  attempt with GNU binutils 2.43. Renamed the corresponding
+  `mode_control.h` fields (`unknown_009`→`loop_restart_flag`,
+  `unknown_017`→`glyph_color`, `unknown_02c`→`menu_selection_index`) with
+  new compile-time offset assertions; `unknown_02e` is left named as-is
+  since it remains unresolved. Did not reconstruct `FUN_80021470`,
+  `FUN_800ab408`, or `FUN_8009e4cc` — all three are large text/HUD-rendering
+  routines outside every currently tracked module's scope; their access
+  patterns are recorded as evidence without a byte-match claim, per this
+  project's standard for out-of-scope consumers. Updated
+  `docs/games/ddr-5th-mix-jp-globals.md`/`.csv`,
+  `ddr-5th-mix-jp-screen-flow.md` (moved all four items from "Open" to
+  "Resolved structural questions"), `ddr-5th-mix-jp-symbol-map.md`/`.csv`,
+  `ddr-5th-mix-jp-mode-control.md`, and `ddr-5th-mix-jp-runtime-core.md`.
 * **First linked-object-boundary evidence pass**: Added
   `docs/foundations/linked-object-evidence.md`, this project's first pass at
   evidence toward original PsyQ object boundaries, not just independently
