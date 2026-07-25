@@ -24,11 +24,12 @@ The complete `0x2e58`-byte range (`0x801e4000`–`0x801e6e57`) is fully accounte
 | `0x801e64e4`–`0x801e65eb` | 264 B | Data Table | Scripted tick and interpolation parameter tables |
 | `0x801e65ec`–`0x801e664b` | 96 B | Data Table | Scripted parameter pointer arrays |
 | `0x801e664c`–`0x801e66c3` | 120 B | Data Table | Callback command structure parameter arrays |
-| `0x801e66c4`–`0x801e6b6b` | 1,192 B | Command List | 97-step command script (96 callbacks, 1 jump, 1,910 total ticks); its tail (after the null terminator) also holds a 13-entry pointer/default-value table for the draw-record array below |
-| `0x801e6b6c`–`0x801e6b83` | 24 B | Unresolved Data | All-zero run; no reference found (reconfirmed byte-granular after full Ghidra auto-analysis) |
+| `0x801e66c4`–`0x801e69d3` | 784 B | Command List | 97-step command script (96 callbacks, 1 jump, 1,910 total ticks) and null callback terminator |
+| `0x801e69d4`–`0x801e69d7` | 4 B | Data Record | Runtime counter used by `FUN_801e6408` |
+| `0x801e69d8`–`0x801e69fb` | 36 B | Data Table | Nine-word initialization/default table copied by `FUN_801e5040` |
+| `0x801e69fc`–`0x801e6b83` | 392 B | Data Table | 14×28-byte initialization records: 13 populated records plus one all-zero sentinel |
 | `0x801e6b84`–`0x801e6ba3` | 32 B | Data Table | Two 16-byte banks of low-nibble bitmask selectors; reachable initialization consumes first-bank indices 1–15 |
-| `0x801e6ba4`–`0x801e6c4b` | 168 B | Data Table | 14-entry array of 3×int32 (12-byte-stride) timing/threshold records, consumed by two overlay functions reached from the Init/Update entry points |
-| `0x801e6c4c`–`0x801e6c63` | 24 B | Unresolved Data | All-zero run; no reference found (reconfirmed byte-granular after full Ghidra auto-analysis) |
+| `0x801e6ba4`–`0x801e6c63` | 192 B | Data Table | 16-slot array of 3×int32 timing/threshold records: 14 populated and 2 zero/dormant slots |
 | `0x801e6c64`–`0x801e6c8b` | 40 B | Data Table | Two adjacent 20-byte 0/1 draw-enable flag arrays, consumed by two overlay functions reached from the Init/Update entry points |
 | `0x801e6c8c`–`0x801e6e2b` | 416 B | Data Table | 13×32-byte GPU FT4 (textured-quad) sprite/tile draw-parameter records |
 | `0x801e6e2c`–`0x801e6e4b` | 32 B | Data Table | 14th draw-parameter record, populated via `FUN_801e601c` instead of the pointer table |
@@ -36,9 +37,9 @@ The complete `0x2e58`-byte range (`0x801e4000`–`0x801e6e57`) is fully accounte
 
 # 748-Byte Tail Range Resolution (0x801e6b6c–0x801e6e57)
 
-The final data range was reimported into the shared headless Ghidra project (`runtime/ghidra/projects/ddr5thmix`, program `/inst-demo.bin`) and traced with `DumpDataXrefs.java`/`DumpFunctionDetail.java` plus a direct raw-byte scan of the whole overlay for literal little-endian pointer values. The first pass resolved 460 of 748 bytes and left 288 unresolved; later passes below raise structurally resolved coverage to 700 bytes and leave 48 unresolved.
+The final data range was reimported into the shared headless Ghidra project (`runtime/ghidra/projects/ddr5thmix`, program `/inst-demo.bin`) and traced with `DumpDataXrefs.java`/`DumpFunctionDetail.java` plus direct raw-byte and raw-MIPS checks. The first pass resolved 460 of 748 bytes and left 288 unresolved; the later passes below structurally resolve all 748 bytes.
 
-**Resolved (verified): 0x801e6c8c–0x801e6e57, 460 bytes.** This entire span reads as literal zero in the static ROM image — it is not compiled-in data, it is a runtime-populated scratch/record area. The command-list block's tail (inside the already-verified `0x801e66c4`–`0x801e6b6b` command-list range, after its null terminator at `0x801e69cc`) holds a literal 13-entry pointer table, 28 bytes apart starting at `0x801e69fc`, whose 13 stored addresses are exactly `0x801e6c8c + i*0x20` for `i` in `0..12` — i.e. 13 evenly-spaced 32-byte record slots. `FUN_801e5040` walks this table at init time and copies default field values into each slot from an adjacent template embedded in the same command-list tail. Eight overlay functions then populate or read specific record fields and pass the record's address as the third argument to `FUN_801e4978`:
+**Resolved (verified): 0x801e6c8c–0x801e6e57, 460 bytes.** This entire span reads as literal zero in the static ROM image — it is not compiled-in data, it is a runtime-populated scratch/record area. The data following the command script holds a literal 13-entry pointer table, 28 bytes apart starting at `0x801e69fc`, whose 13 stored addresses are exactly `0x801e6c8c + i*0x20` for `i` in `0..12` — i.e. 13 evenly-spaced 32-byte record slots. `FUN_801e5040` walks this table at init time and copies default field values into each slot from the adjacent template data. Eight overlay functions then populate or read specific record fields and pass the record's address as the third argument to `FUN_801e4978`:
 - `FUN_801e6270` (record 0, `0x801e6c8c`), `FUN_801e6320` (record 1, `0x801e6cac`), `FUN_801e634c` (record 2, `0x801e6ccc`) — one record apiece, animating y/h fields off a per-instance frame counter.
 - `FUN_801e4e70` (records 3 and 4, `0x801e6cec`/`0x801e6d0c`) and `FUN_801e4f68` (records 5 and 6, `0x801e6d2c`/`0x801e6d4c`) — two records apiece.
 - `FUN_801e6408` (records 7, 8, and 10, `0x801e6d6c`/`0x801e6d8c`/`0x801e6dcc`) — three records, one of which (10) has its y field driven by a toggling counter (`DAT_801e69d4`) that produces a small oscillating vertical offset.
@@ -58,11 +59,11 @@ Re-running `DumpDataXrefs.java` byte-granular (every address, not just 4-byte-al
 - **`0x801e6ba4`–`0x801e6c4b` (168 bytes) resolves as a 14-entry array of 3×`int32` (12-byte-stride) records.** `FUN_801e5758` (`jal FUN_801e5758` at the already-verified Init Entry `FUN_801e413c`'s own body, `a0 = $s1+1280`) computes `&DAT_801e6ba4 + index*0xc` from a `sll`/`addu`-scaled index argument and copies record field `+0x00` verbatim and field `+0x08` verbatim into its caller struct, while adding field `+0x04` to a base value selected by another argument (`-10000` or `-2000`). `FUN_801e5d74` (`jal FUN_801e5d74` at the already-verified Update Entry `FUN_801e41e8`'s own body, same `+1280` offset) re-reads field `+0x04` with the identical indexing arithmetic to seed a per-frame counter that feeds the already-documented external GTE helper `0x80056148`. A sibling struct instance at caller-struct offset `+1320` (populated by `FUN_801e5f08`/`FUN_801e58dc`, see next) sets the identical two struct fields (`+0xdc`/`+0xe4` in the caller struct) to fixed literals `400`/`0x334` instead of reading the table — direct cross-validation that those two fields form a fixed 3-field group regardless of data source.
 - **`0x801e6c64`–`0x801e6c8b` (40 bytes) resolves as two adjacent 20-byte 0/1 draw-enable flag arrays** (`0x801e6c64`–`0x801e6c77` and `0x801e6c78`–`0x801e6c8b`). `FUN_801e5f08` (`jal FUN_801e5f08` at Init Entry `FUN_801e413c`, `a0 = $s1+1320`) unconditionally byte-copies the first 20-byte half into its caller struct. `FUN_801e58dc` (`jal FUN_801e58dc` at Update Entry `FUN_801e41e8`, same `+1320` offset) copies per-index from either half — selected by a bit test (`param_1[1] & 0x10`) on a caller-struct flag — into the same struct offsets, then reads the copied bytes back as a 0/1 gate on up to ~19 per-slot calls to the already-documented external GPU helper `0x80056a08`. This **retracts** this document's earlier claim (in the External Callees section) that `FUN_801e58dc` has "no reference to any address" in `0x801e6b6c`–`0x801e6e57`; `FUN_801e5d74` is retracted the same way. The external callees `0x80056148`/`0x80056a08` themselves still never receive an address literally inside this range — only pointers into the separate caller-supplied struct — so that part of the original claim stands.
 - **`0x801e6b84`–`0x801e6ba3` (32 bytes) received one partial reference in this pass.** `FUN_801e5178` reads through the address expression `0x801e6b84 + row + selector*0x10` and AND-tests the selected byte against eight fixed bitmask constants, expanding it into eight boolean outputs in an external main-executable table (`DAT_800f3bac`). This second pass did not yet bound the row branches or trace the selector's caller feed, so it conservatively retained `data_unresolved`. **Superseded 2026-07-25**: the fourth pass below proves rows 0 and 16 bypass the load, the selector is a word forced to zero on the sole verified route, and the complete span is a two-bank bitmask table. The earlier one-past-end and runtime-variable-selector concerns are retracted rather than preserved as historical facts.
-- **The two 24-byte all-zero runs (`0x801e6b6c`–`0x801e6b83`, `0x801e6c4c`–`0x801e6c63`) remain genuinely unreferenced.** A byte-granular `DumpDataXrefs.java` sweep of both ranges after full auto-analysis still returned zero hits at every address. This is a durable negative result, not an artifact of under-analysis.
+- **The two 24-byte all-zero runs (`0x801e6b6c`–`0x801e6b83`, `0x801e6c4c`–`0x801e6c63`) had no direct xrefs.** A byte-granular `DumpDataXrefs.java` sweep of both ranges after full auto-analysis returned zero hits at every address. The fifth pass supersedes their unresolved classification by proving that each completes an adjacent fixed-stride structure.
 
 **Now unresolved: 0x801e6b84–0x801e6ba3 (32 B, partial reference) plus two 24-byte all-zero runs, 80 bytes total** (down from 288). No literal byte content from any of these spans is recorded in any tracked file; see the range map CSV for exact boundaries.
 
-**Checker**: `tools/build/Test-InstDemoRecordArray.ps1` reproduces the SHA-256 gate, the two all-zero-run assertions, the 460-byte zero-at-rest assertion for the resolved GPU record tail, not-all-zero assertions for the two newly-resolved data tables (structural presence only, no literal content), and the 13-entry pointer-table-to-record-address arithmetic against the hash-gated overlay bytes.
+**Checker**: `tools/build/Test-InstDemoRecordArray.ps1` reproduces the overlay and main-executable SHA-256 gates, the complete sentinel/timing-row assertions, the 460-byte zero-at-rest assertion for the GPU record tail, fixed-stride MIPS arithmetic, caller-side modulo-12 bound, and the 13 active pointer targets without embedding literal table content.
 
 ## Third pass: dynamic verification attempt (BizHawk, 2026-07-23)
 
@@ -121,15 +122,15 @@ its own zero-change result was expected, not a validity check on the
 polling mechanism (which the working screen-index poll already validates
 independently).
 
-**No classification changes as a result of this pass.** All three
-sub-ranges remain `data_unresolved`/`unverified` in the range map CSV: a
+**No classification changes resulted from this pass at the time.** All three
+sub-ranges remained `data_unresolved`/`unverified` in that revision of the range map CSV: a
 write-side dynamic negative, on top of two independent static
 zero-reference sweeps, still is not a consumer, and per this project's
 evidentiary standard a negative result records evidence without asserting
 resolution. This pass's value is a third, independent, dynamic line of
 evidence agreeing with the two static passes for the two all-zero runs,
 and an honest scope limit (write-only) for the partially-referenced
-32-byte table.
+32-byte table. The fourth and fifth passes supersede those classifications.
 
 **Reproduction**: `tools/bizhawk/probe-inst-demo-watch.lua`, run via
 `tools/bizhawk/run-probe.ps1 -Frames 13000 -LuaPath tools/bizhawk/probe-inst-demo-watch.lua`.
@@ -170,13 +171,44 @@ note, or other domain semantic is asserted. The hash-gated
 two JAL sites, verifies the selector feed and bounds, and checks these
 non-literal table properties. Unresolved data drops from 80 to 48 bytes.
 
-The two 24-byte all-zero runs remain unresolved. This pass expanded their
+The two 24-byte all-zero runs remained unresolved at this stage. This pass expanded their
 negative scope to the main executable: a byte-granular Ghidra 12.1.2 xref
 sweep of all 48 runtime addresses in `SLPM_868.97_1` returned zero references,
 and an unaligned raw scan of the hash-gated executable found zero literal
 32-bit pointers into either run. Together with the overlay-local sweeps and
 the BizHawk write-negative pass, this makes padding/reservation plausible but
-does not distinguish them. They remain `data_unresolved`, not guessed padding.
+does not distinguish them. They remained `data_unresolved` at this stage, not
+guessed padding. The fifth pass below supersedes this classification with
+positive fixed-stride evidence.
+
+## Fifth pass: adjacent fixed-stride structures resolve the final 48 bytes (2026-07-25)
+
+The final two spans are not independent padding runs. The apparent first gap,
+`0x801e6b6c`–`0x801e6b83`, begins four bytes into an all-zero 28-byte record
+at `0x801e6b68`. Starting at `0x801e69fc`, the preceding 13 records have an
+exact 28-byte stride and non-zero first words pointing to
+`0x801e6c8c + i*0x20`. `FUN_801e5040` advances both record pointers by 28,
+loads the next record's first word, and branches while that word is non-zero.
+The all-zero record at index 13 is therefore a complete sentinel, and its
+last 24 bytes are the former gap. This also corrects the range map's overly
+broad command-list row: the script ends at `0x801e69d3`; it is followed by a
+4-byte runtime counter, a nine-word default table, and the 14×28-byte table.
+
+The second span, `0x801e6c4c`–`0x801e6c63`, is exactly two more 12-byte rows
+of the table beginning at `0x801e6ba4`. `FUN_801e5758` computes
+`base + signed_index*12` through shift/add instructions and reads the record;
+the complete structure is 16 slots ending exactly where the flag arrays begin.
+Slots 0–13 are non-zero and slots 14–15 are all zero. The hash-gated main
+executable's only runtime caller computes unsigned RNG modulo 12 before
+passing the selector, proving reachable indices 0–11 on that route. Slots
+12–15 are structurally present but dormant there; because the consumer does
+not test for termination, no sentinel or domain meaning is claimed for the
+two zero slots.
+
+These positive stride, boundary, and control-flow proofs supersede the earlier
+negative-xref classification. Structurally resolved tail coverage is now
+748/748 bytes with zero `data_unresolved` bytes. This is a structural map
+claim, not a whole-overlay reconstruction or byte-match claim.
 
 # Entry Points
 
@@ -203,9 +235,9 @@ Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptT
 
 - **Full Structural Inventory**: 11,864 bytes (`0x801e4000`–`0x801e6e57`)
 - **Code Surface Reconstructed**: 70 functions / 9,372 bytes (100% byte match on code surface)
-- **Data Structurally Resolved**: 700 bytes — a runtime-populated 13(+1)-record GPU sprite/tile draw-parameter array plus a 12-byte selector record (460 bytes, first pass), a 14-entry 3×int32 timing/threshold record table and two 20-byte draw-enable arrays (208 bytes, second pass), and the two-bank 32-byte bitmask-selector table (fourth pass); see the resolution-pass sections above.
-- **Unresolved Data Remaining**: 48 bytes — two disjoint 24-byte all-zero runs (`0x801e6b6c`–`0x801e6b83` and `0x801e6c4c`–`0x801e6c63`) with no overlay/main-executable static consumer and no writes observed dynamically.
-- **Whole-Overlay Byte Match**: Not claimed; whole-overlay match requires semantic reconstruction of all data tables, including the remaining 48 unresolved bytes.
+- **Data Structurally Resolved**: 748 bytes — 460 bytes of runtime draw records/preset state, the 192-byte 16-slot timing table, two 20-byte draw-enable arrays, the 32-byte bitmask table, and the final sentinel/default structure proven in the fifth pass.
+- **Unresolved Data Remaining**: 0 bytes.
+- **Whole-Overlay Byte Match**: Not claimed; structural classification of data tables is distinct from reconstructing, linking, and byte-comparing the complete overlay.
 - **Executable SHA-256**: `3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`
 - **Toolchain Required & Verified**:
   - `mipsel-none-elf-as` (GNU binutils 2.43)
@@ -229,7 +261,7 @@ Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptT
    ```powershell
    pwsh -File tools/build/Test-InstDemoScriptTrace.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
    ```
-4. **748-Byte Tail Range Structural Verification** (pointer-table arithmetic, zero-run assertions):
+4. **748-Byte Tail Range Structural Verification** (fixed-stride tables, sentinel, reachable bounds):
    ```powershell
    pwsh -File tools/build/Test-InstDemoRecordArray.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
    ```

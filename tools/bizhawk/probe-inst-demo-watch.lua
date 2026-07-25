@@ -1,5 +1,6 @@
 -- Dynamic memory-access probe for the DDR 5th Mix (Japan) HOW TO PLAY overlay's
--- three genuinely-unresolved data sub-ranges (see
+-- three data sub-ranges that were unresolved when this historical dynamic
+-- pass was written (the later static fourth/fifth passes resolve them; see
 -- docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv). Runs the attract loop
 -- with no controller input (aside from a documented one-time boot setup, see
 -- below), detects the HOW TO PLAY ("inst demo") overlay's active window by

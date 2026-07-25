@@ -20,7 +20,7 @@ and validate its recorded hashes before comparison.
 | Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,344; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
-| HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; 700 of 748 tail data bytes structurally resolved, 48 zero-filled bytes unresolved after four static passes plus a dynamic (write-only) BizHawk pass; 1,910-tick script verified |
+| HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; all 748 tail data bytes structurally resolved; 1,910-tick script verified |
 | Music metadata | 47 statically linked music-info records mapped |
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
@@ -74,11 +74,11 @@ currently covers 163 of 2,124 main-executable functions (about 7.7%), plus all
    is confirmed yet.
 
 The HOW TO PLAY overlay's former 80-byte limit was explicitly reopened on
-2026-07-25. A raw-MIPS call-chain and bounds proof resolved the 32-byte
-bitmask table and disproved the suspected one-past-end read. The remaining
-two 24-byte all-zero runs have no overlay or main-executable consumer after
-four static scopes and a dynamic write-only pass; keep them unresolved rather
-than guessing padding. See "Fourth pass" in
+2026-07-25. Raw-MIPS call-chain, stride, and bounds proofs resolved the
+32-byte bitmask table and both 24-byte zero-filled spans. The spans complete
+an all-zero sentinel in a 14-slot initialization table and two dormant rows
+in a 16-slot timing table; they are not independent padding runs. See the
+fourth and fifth passes in
 [the overlay concept](docs/games/ddr-5th-mix-jp-inst-demo-overlay.md).
 
 ## Documentation
