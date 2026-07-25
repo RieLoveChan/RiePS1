@@ -1,5 +1,8 @@
 # Knowledge Bundle Update Log
 
+## 2026-07-25
+* **Current-status consistency repair**: Synchronized README, symbol-map concept, and function-byte-match workflow with the authoritative 2,124-row CSV and HEAD: 163 verified, 102 manual, 977 library-signature, and 882 unverified functions; 233 exact functions/26,036 selected bytes overall. Updated `mode-control` to 20/1,660 and `runtime-core` to 6/2,232, replaced stale `+0x2c` descriptions with `menu_selection_index`, and removed already-resolved `+0x09`/`+0x17`/`+0x2c`/42-entry-array work from the recommended targets while retaining `+0x2e` as an exhaustive negative result.
+
 ## 2026-07-24
 * **Four long-standing `DdrModeState`/screen-flow open questions resolved**:
   Re-ran `tools/ghidra/scripts/DumpFieldXrefs.java` against

@@ -43,7 +43,7 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module mode-control
 ```
 
-The module contains nineteen accepted C functions and 1,204 compared bytes. Its
+The module contains twenty accepted functions and 1,660 compared bytes. Its
 shared `/src/ddr5thmix/mode_control.h` records the two partial state layouts
 used by the functions; compile-time offset assertions prevent a field-map edit
 from silently moving an observed access.
@@ -56,7 +56,7 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module runtime-core
 ```
 
-`runtime-core` contains five accepted functions and 1,824 compared bytes.
+`runtime-core` contains six accepted functions and 2,232 compared bytes.
 Validate the game-owned nested six-state screen selector with:
 
 ```powershell
@@ -103,10 +103,10 @@ for callback structure, router logic, and evidence.
 
 ## Runtime-core
 
-The five-function unit connects the per-frame `main` loop to
-`mode-control`: the PAD/auxiliary input adapter, 0x140-byte state-prefix
-reset, mode/submode dispatcher, counter/derived-state updater, and screen-index
-range flag. GNU binutils 2.43 matches all 1,824 selected bytes:
+The six-function unit connects the per-frame `main` loop to `mode-control`:
+`main` itself, the PAD/auxiliary input adapter, 0x140-byte state-prefix reset,
+mode/submode dispatcher, counter/derived-state updater, and screen-index range
+flag. GNU binutils 2.43 matches all 2,232 selected bytes:
 
 | Function | Bytes | Built/reference SHA-256 |
 |---|---:|---|
@@ -115,6 +115,7 @@ range flag. GNU binutils 2.43 matches all 1,824 selected bytes:
 | `FUN_80022cf8` | 524 | `4057cd0604a3d2ef794d691ab19859e5a41507bcde9705c9eef3944d85fc5dae` |
 | `FUN_80023744` | 476 | `1b640a8f4f92bedb9f77b8187577a3555ac4f1d5257a43b070c4b5c80db88aa9` |
 | `FUN_8009971c` | 84 | `9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6` |
+| `main` | 408 | `275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303` |
 
 See the [runtime-core concept](/docs/games/ddr-5th-mix-jp-runtime-core.md)
 for boundary, negative attempts, global-layout evidence, and limitations.
@@ -138,9 +139,12 @@ reload, register, and delay-slot layout.
 
 Together with the earlier eleven in-range matches, all 18 inventoried
 functions and 1,168 attributed bytes now reproduce exactly. The module also
-contains the 36-byte external dependency `FUN_80022148`, for 19 functions and
-1,204 bytes total. This closes the logical range, not the still-unproven
-original PsyQ object boundary.
+contains the 36-byte external dependency `FUN_80022148` and the 456-byte
+mode-`0x10` menu handler `FUN_80022b30`, for 20 functions and 1,660 bytes
+total. `FUN_80022b30` matches built/reference SHA-256
+`8fcfaea11d4c06cb6a3415a4b7bc3ed2dd9b0b81563f096fbd3a8602d03f1893`.
+This closes the logical range, not the still-unproven original PsyQ object
+boundary.
 
 ## Mode-4 handler pair and external snapshot dependency
 
@@ -183,10 +187,10 @@ The generated JSON report records both slice hashes and `byte_match: true`.
 
 `FUN_80023230` is a 28-byte `SetSubmode` primitive at `0x80023230`. It loads
 the state pointer stored at `PTR_DAT_800ac8e8`, writes its `u16` argument to
-offset `0x2a`, and clears the still-unknown `u16` fields at `0x2c` and `0x2e`.
-The manifest supplies the external symbol address, while the generated linker
-script places the function at its runtime address and resolves the MIPS
-`HI16`/`LO16` pair.
+offset `0x2a`, and clears the `menu_selection_index` at `0x2c` and the
+still-unread `unknown_02e` field at `0x2e`. The manifest supplies the external
+symbol address, while the generated linker script places the function at its
+runtime address and resolves the MIPS `HI16`/`LO16` pair.
 
 The reconstruction required three controlled attempts:
 
@@ -207,11 +211,12 @@ recorded flags. It does not establish general equivalence with PsyQ 4.4.0.
 
 `FUN_80023210` is the 32-byte `SetMode` primitive immediately preceding
 `FUN_80023230` at `0x80023210`. It writes its `u16` argument to offset `0x28`,
-then clears submode and the two unknown fields at offsets `0x2a`, `0x2c`, and
-`0x2e`. With the same non-volatile external `PTR_DAT_800ac8e8` declaration,
-structure layout, compiler flags, and generated linker placement established
-for `FUN_80023230`, the first reconstruction attempt matches all 32 reference
-bytes. The built function bytes and reference slice share SHA-256
+then clears submode at `0x2a`, `menu_selection_index` at `0x2c`, and the
+still-unread `unknown_02e` field at `0x2e`. With the same non-volatile external
+`PTR_DAT_800ac8e8` declaration, structure layout, compiler flags, and generated
+linker placement established for `FUN_80023230`, the first reconstruction
+attempt matches all 32 reference bytes. The built function bytes and reference
+slice share SHA-256
 `29be0968527e9aad066ece450b275c22b0de70865a1e09cc4e5ef26db63b2e53`.
 
 The generated sequence is `lui`/`lw` for the linked pointer, one load-delay
@@ -226,7 +231,7 @@ pair, not a general compiler-equivalence claim.
 ## `FUN_800231b0` — register-allocation constraint without emitted code
 
 `FUN_800231b0` is the 32-byte `NextSubmode` primitive at `0x800231b0`. It
-clears the unknown `u16` field at offset `0x2c`, reads and increments the
+clears the `menu_selection_index` at offset `0x2c`, reads and increments the
 `u16` submode at `0x2a`, and writes the incremented value back in the return
 delay slot. The accepted build and reference slice share SHA-256
 `32cf79c2477fc88366732c01727b9c5b965bcced84a4c66612a29a7b546103d4`.

@@ -4,7 +4,7 @@ title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
 resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
-timestamp: 2026-07-23T00:00:00-04:00
+timestamp: 2026-07-25T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
@@ -29,15 +29,15 @@ decompiler_output_only`.
 | Metric | Value |
 |---|---|
 | Total functions | 2,124 (2,026 original + 92 added 2026-07-15 + 6 added 2026-07-19) |
-| `confidence = manual` (hand-reviewed 2026-07-13–19) | 103 |
-| `confidence = verified` | 161 |
+| `confidence = manual` (hand-reviewed 2026-07-13–24) | 102 |
+| `confidence = verified` | 163 |
 | `confidence = library_signature` | 977 |
-| `confidence = unverified` (default `FUN_########` names) | 883 |
+| `confidence = unverified` (default `FUN_########` names) | 882 |
 | Combined function-body coverage | 510,344 of 1,050,624 `t_size` bytes (~49%) — the remainder is inline data, unanalyzed gaps, or bodies Ghidra didn't attribute to a function; not yet characterized. |
 
 `symbol_source_type` does **not** line up with `confidence` the way its name
-suggests: 591 of the 1,045 `library_signature` rows carry Ghidra's
-`USER_DEFINED` source type, and 454 carry `IMPORTED`. Both are ghidra_psx_ldr
+suggests: 556 of the 977 `library_signature` rows carry Ghidra's
+`USER_DEFINED` source type, and 421 carry `IMPORTED`. Both are ghidra_psx_ldr
 applying names during auto-analysis (likely to protect them from being
 overwritten by later re-analysis passes) — **not** evidence of human review.
 Treat `symbol_source_type` as raw tool metadata only; `confidence` is what
@@ -51,7 +51,7 @@ this project actually asserts.
   GTE coprocessor macro instructions (`gte_ldv0`, `gte_ldrgb3`, …), each 1
   byte "long" — not real disassembled code. Useful for cross-referencing GTE
   usage, but do not expect these to look like ordinary functions.
-- **892 rows** inside the real code segment (`0x8001a800`–`0x8011afff`)
+- **824 rows** inside the real code segment (`0x8001a800`–`0x8011afff`)
   matched against the PsyQ `4.4.0` signature database. The first several are
   a strong sanity check that the PsyQ 4.4.0 identification in
   `/docs/games/ddr-5th-mix-jp.md` is correct: `start` (`0x80020700`, the
@@ -1202,7 +1202,7 @@ returns complete at the null callback at `0x801e69cc`; `FUN_801e4284` is the
 cleanup entry. State 2 has no HOW TO substate and enters this overlay directly,
 while states 3/4 begin the later DEMONSTRATION, so runtime order now confirms
 state 5 as HOW TO PLAY. The overlay functions live in a separate raw program
-and are not included in this main-executable CSV's 2,118-function count.
+and are not included in this main-executable CSV's 2,124-function count.
 
 Literal gameplay reuse is now proven elsewhere: states 3 and 4, both index
 `0x23/CATCH DEMO`, implement the visible gameplay DEMONSTRATION after state
@@ -1216,8 +1216,8 @@ the following CATCH DEMO path demonstrably reuses gameplay internals.
 
 `DumpFunctionDetail.java`, `DumpBytes.java 0x8001bdf4 56`, and targeted
 xref dumps provide the reproducible evidence. Seven existing helpers were
-promoted after this deeper review; the map remains at 2,118 functions, with
-190 manual rows and 509,608 function-body bytes. The exact hierarchy, timers,
+promoted after this deeper review. The current map has 2,124 functions, with
+102 manual rows and 510,344 function-body bytes. The exact hierarchy, timers,
 and runtime correlation are recorded in
 `/docs/games/ddr-5th-mix-jp-screen-flow.md`.
 
@@ -1226,8 +1226,8 @@ and runtime correlation are recorded in
 - No `namespace` values are populated — PsyQ signature matches landed in the
   global namespace rather than grouped per library object file. Worth fixing
   once someone maps which PsyQ `.gdt`/object each match came from.
-- Only 256 rows currently have `source_status` above
-  `decompiler_output_only`, out of 2,118. Before trusting any other
+- Only 265 rows currently have `source_status` above
+  `decompiler_output_only`, out of 2,124. Before trusting any other
   function's *behavior* (not just its name), read its disassembly/
   decompilation and, ideally, compare it against a known-good PsyQ 4.4.0
   object per the "Function accepted" gate in

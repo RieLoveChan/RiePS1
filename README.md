@@ -25,7 +25,7 @@ and validate its recorded hashes before comparison.
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress. Exact accepted reconstruction
-currently covers 161 of 2,124 main-executable functions (about 7.6%), plus all
+currently covers 163 of 2,124 main-executable functions (about 7.7%), plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
 ## Completed foundations
@@ -35,10 +35,10 @@ currently covers 161 of 2,124 main-executable functions (about 7.6%), plus all
 - Pinned GCC 14.2.0/binutils 2.43 function and module byte comparison.
 - Documented startup, `main`, controller input, mode dispatch, nested state
   machines, and attract-loop order.
-- All 18 functions in `0x800230cc–0x800236cc`, plus one external dependency,
+- All 18 functions in `0x800230cc–0x800236cc`, plus two external dependencies,
   reconstructed as the first coherent game-owned module.
 - Per-frame input, reset, mode dispatch, and shared epilogue reconstructed as
-  the five-function `runtime-core` module.
+  the six-function `runtime-core` module.
 - All 18 selector-table entries, three MUSIC SEL helpers, and the central
   router reconstructed as the 22-function `screen-selector` module.
 - Outer session wrappers, the 15-state child lifecycle router, and terminal
@@ -59,8 +59,11 @@ currently covers 161 of 2,124 main-executable functions (about 7.6%), plus all
 
 ## Recommended next targets
 
-1. **Expand verified global layouts:** resolve consumers of offsets `0x09`,
-   `0x17`, `0x2c`, and `0x2e`, and the 42-entry screen-name pointer array.
+1. **Expand verified global layouts:** assign semantics to remaining observed
+   fields that have concrete readers or writers. Offsets `0x09`, `0x17`, and
+   `0x2c` and the sole consumer of the 42-entry screen-name pointer array are
+   resolved; retain `0x2e` as an exhaustive negative result unless new
+   reproducible evidence reveals a reader.
 2. **Advance to linked-object validation:** infer PsyQ object boundaries and
    reproduce inter-function layout instead of placing functions independently.
    A first evidence pass is underway — see
