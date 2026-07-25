@@ -20,7 +20,7 @@ and validate its recorded hashes before comparison.
 | Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,344; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
-| HOW TO PLAY overlay | Full 11,864-byte structural map; all 70 functions/9,372 code bytes exact; all 748 tail data bytes structurally resolved; 1,910-tick script verified |
+| HOW TO PLAY overlay | Full 11,864-byte structural map; 70 functions/9,372 code bytes plus 5 semantic data sections/1,676 bytes exact (11,048 selected bytes, 93.1%); all 748 tail bytes structurally resolved; 1,910-tick script verified |
 | Music metadata | 47 statically linked music-info records mapped |
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis

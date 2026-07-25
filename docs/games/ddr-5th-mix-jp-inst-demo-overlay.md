@@ -235,21 +235,23 @@ Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptT
 
 - **Full Structural Inventory**: 11,864 bytes (`0x801e4000`–`0x801e6e57`)
 - **Code Surface Reconstructed**: 70 functions / 9,372 bytes (100% byte match on code surface)
+- **Selected Data Reconstructed**: 5 semantic sections / 1,676 bytes exact — the 784-byte command list, 4-byte runtime counter, 36-byte handler table, 392-byte typed initializer table, and 460-byte zero-at-rest runtime records.
+- **Selected Aggregate Match**: 11,048 / 11,864 bytes (93.1%). The remaining 816 bytes are the 72-byte header plus 744 bytes of numeric/boolean tables whose structure is known but whose source representation is not yet complete.
 - **Data Structurally Resolved**: 748 bytes — 460 bytes of runtime draw records/preset state, the 192-byte 16-slot timing table, two 20-byte draw-enable arrays, the 32-byte bitmask table, and the final sentinel/default structure proven in the fifth pass.
 - **Unresolved Data Remaining**: 0 bytes.
-- **Whole-Overlay Byte Match**: Not claimed; structural classification of data tables is distinct from reconstructing, linking, and byte-comparing the complete overlay.
+- **Whole-Overlay Byte Match**: Not claimed. `Invoke-OverlayMatch.ps1` reports `whole_overlay_match: false` until all 11,864 bytes have independently authored semantic source.
 - **Executable SHA-256**: `3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`
 - **Toolchain Required & Verified**:
   - `mipsel-none-elf-as` (GNU binutils 2.43)
   - `mipsel-none-elf-ld` (GNU binutils 2.43)
   - `mipsel-none-elf-objcopy` (GNU binutils 2.43)
-- **Source Files**: `/src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s` and `/src/ddr5thmix/overlays/inst_demo/inst_demo_overlay.h`
+- **Source Files**: `/src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s`, `/src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s`, and `/src/ddr5thmix/overlays/inst_demo/inst_demo_overlay.h`
 - **Manifest**: `/config/ddr5thmix/inst-demo-overlay.json`
 - **Range Map CSV**: [/docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv](/docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv)
 
 ## Reproduction Commands
 
-1. **Per-Function SHA-256 and Code Surface Match**:
+1. **Per-Function and Selected Semantic-Data SHA-256 Match**:
    ```powershell
    pwsh -File tools/build/Invoke-OverlayMatch.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
    ```

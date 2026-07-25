@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "game": "ddr5thmix",
   "target": "SLPM_868.97",
   "module": "inst-demo-overlay",
@@ -92,6 +92,48 @@
         "FUN_801e64d4",
         "FUN_801e64dc"
       ]
+    }
+  ],
+  "data_sections": [
+    {
+      "name": "command_list",
+      "address": "0x801e66c4",
+      "size": 784,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_commands",
+      "reference_sha256": "9248eeca1d8d494c54b20da7bd8ff43a6dcbb9fdc05dbeb9da8644d804cdf559"
+    },
+    {
+      "name": "runtime_counter",
+      "address": "0x801e69d4",
+      "size": 4,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_counter",
+      "reference_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+    },
+    {
+      "name": "handler_table",
+      "address": "0x801e69d8",
+      "size": 36,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_handlers",
+      "reference_sha256": "34aab1d16b2b2c784ab05d67462383a936d44c5c53a1588be7e59db96b10f713"
+    },
+    {
+      "name": "draw_record_initializers",
+      "address": "0x801e69fc",
+      "size": 392,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_initializers",
+      "reference_sha256": "31c209c223ef07af5023e5c83a3b5f073212518b21278d6e063a6bb9efd2de93"
+    },
+    {
+      "name": "runtime_draw_records",
+      "address": "0x801e6c8c",
+      "size": 460,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_runtime_records",
+      "reference_sha256": "7479649f4176c2a256e12d26259cba094d654d57dc58cf51fbe25c14e67c7fd9"
     }
   ],
   "functions": [
