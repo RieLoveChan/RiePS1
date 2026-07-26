@@ -96,6 +96,39 @@
   ],
   "data_sections": [
     {
+      "name": "header",
+      "address": "0x801e4000",
+      "size": 72,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".rodata.inst_demo_header",
+      "reference_sha256": "81c405a4ad99048d3b5543e0824916c69b3a052b836c195c9093a88d23d8e2d7"
+    },
+    {
+      "name": "script_tables",
+      "address": "0x801e64e4",
+      "size": 264,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_script_tables",
+      "reference_sha256": "d58a5fa3a9a7efba56f242a451703b724f6bfe4bcfd9d112e1773ca0a15a6c1e"
+    },
+    {
+      "name": "interpolation_pointers",
+      "address": "0x801e65ec",
+      "size": 96,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_interpolation_ptrs",
+      "reference_sha256": "23472f3975dfa511e37258f5e2269f172ccabec13e6db770a173bea185dd45d4"
+    },
+    {
+      "name": "callback_parameters",
+      "address": "0x801e664c",
+      "size": 120,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_callback_params",
+      "reference_sha256": "1220659b3df33f2509a905e469aba5d14c89af7769f72849493cffa7db6a93ce"
+    },
+
+    {
       "name": "command_list",
       "address": "0x801e66c4",
       "size": 784,

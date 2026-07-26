@@ -62,6 +62,72 @@
     .2byte 0
 .endm
 
+
+.section .rodata.inst_demo_header, "a", @progbits
+.globl INST_DEMO_HEADER
+INST_DEMO_HEADER:
+    .ascii "inst demo\0"
+    .byte 0x60, 0x11
+    .ascii "btile\0"
+    .2byte 0
+    .4byte 1
+    .4byte 8
+    .4byte 4
+    .4byte 2
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0x02020100
+    .4byte 0x02020202
+    .4byte 0x04030202
+    .4byte 0x04040404
+    .4byte 0x04040404
+
+.section .data.inst_demo_script_tables, "aw", @progbits
+.globl INST_DEMO_SCRIPT_TABLES
+INST_DEMO_SCRIPT_TABLES:
+    .4byte 0x00000050, 0x0000003c, 0x00000190, 0xffffe818
+    .4byte 0x00001734, 0x00000000, 0x00000190, 0xffffef02
+    .4byte 0x00002328, 0x00000000, 0x00001324, 0xffffef02
+    .4byte 0x00002002, 0x00000000, 0x00002052, 0xffffef02
+    .4byte 0x00001324, 0x00000000, 0x00002558, 0xffffef02
+    .4byte 0x00000000, 0x00000000, 0x000020f2, 0xffffef02
+    .4byte 0xffffecdc, 0x00000000, 0x00001464, 0xffffef02
+    .4byte 0xffffdffe, 0x00000000, 0x00000320, 0xffffef02
+    .4byte 0xffffdcd8, 0x00000000, 0x00000190, 0xfffffc68
+    .4byte 0x000001a4, 0x00000000, 0x00000190, 0xfffffc9a
+    .4byte 0xfffffee8, 0x00000000, 0x00000190, 0xfffffc9a
+    .4byte 0xfffffee8, 0x00000000, 0x000001e0, 0xfffffc9a
+    .4byte 0xffffff58, 0x00000000, 0x00000230, 0xfffffc9a
+    .4byte 0xffffffc8, 0x00000000, 0x00000280, 0xfffffc9a
+    .4byte 0x00000038, 0x00000000, 0x000002d0, 0xfffffc9a
+    .4byte 0x000000a8, 0x00000000, 0x00000320, 0xfffffc9a
+    .4byte 0x00000118, 0x00000000
+
+.section .data.inst_demo_interpolation_ptrs, "aw", @progbits
+.globl INST_DEMO_INTERPOLATION_PTRS
+INST_DEMO_INTERPOLATION_PTRS:
+    .4byte 0x801e64ec, 0x801e656c, 0x00000014
+    .4byte 0x801e64fc, 0x801e657c, 0x00000014
+    .4byte 0x801e650c, 0x801e658c, 0x00000005
+    .4byte 0x801e651c, 0x801e659c, 0x00000005
+    .4byte 0x801e652c, 0x801e65ac, 0x00000005
+    .4byte 0x801e653c, 0x801e65bc, 0x00000005
+    .4byte 0x801e654c, 0x801e65cc, 0x00000005
+    .4byte 0x801e655c, 0x801e65dc, 0x00000005
+
+.section .data.inst_demo_callback_params, "aw", @progbits
+.globl INST_DEMO_CALLBACK_PARAMS
+INST_DEMO_CALLBACK_PARAMS:
+    .4byte 0, 1, 2, 3, 4
+    .4byte 0, 0x10, 0
+    .4byte 0, 0x10, 0xc0
+    .4byte 0, 0x0e, 0x54
+    .4byte 0, 0x10, 0x60
+    .4byte 0, 0x0c, 0x48
+    .4byte 0, 0x0e, 0x54
+    .4byte 0, 1, 2, 3, 4, 5, 6
 .section .data.inst_demo_commands, "aw", @progbits
 .globl INST_DEMO_COMMAND_LIST
 INST_DEMO_COMMAND_LIST:

@@ -235,10 +235,10 @@ Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptT
 
 - **Full Structural Inventory**: 11,864 bytes (`0x801e4000`–`0x801e6e57`)
 - **Code Surface Reconstructed**: 70 functions / 9,372 bytes (100% byte match on code surface)
-- **Selected Data Reconstructed**: 5 semantic sections / 1,676 bytes exact — the 784-byte command list, 4-byte runtime counter, 36-byte handler table, 392-byte typed initializer table, and 460-byte zero-at-rest runtime records.
-- **Selected Aggregate Match**: 11,048 / 11,864 bytes (93.1%). The remaining 816 bytes are the 72-byte header plus 744 bytes of numeric/boolean tables whose structure is known but whose source representation is not yet complete.
+- **Selected Data Reconstructed**: 9 semantic sections / 2,228 bytes exact — including the 72-byte header, 264-byte script tables, 96-byte interpolation-pointer table, and 120-byte callback-parameter table added in the first data-source pass.
+- **Selected Aggregate Match**: 11,600 / 11,864 bytes (97.8%). The remaining 264 bytes are the tail bitmask, timing, and draw-enable tables; their structures are verified but their semantic source is not yet authored.
 - **Data Structurally Resolved**: 748 bytes — 460 bytes of runtime draw records/preset state, the 192-byte 16-slot timing table, two 20-byte draw-enable arrays, the 32-byte bitmask table, and the final sentinel/default structure proven in the fifth pass.
-- **Unresolved Data Remaining**: 0 bytes.
+- **Unresolved Data Remaining**: 0 bytes structurally; 264 bytes remain without semantic source.
 - **Whole-Overlay Byte Match**: Not claimed. `Invoke-OverlayMatch.ps1` reports `whole_overlay_match: false` until all 11,864 bytes have independently authored semantic source.
 - **Executable SHA-256**: `3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`
 - **Toolchain Required & Verified**:

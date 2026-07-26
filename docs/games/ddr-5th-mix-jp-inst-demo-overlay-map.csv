@@ -1,5 +1,5 @@
 start_address,end_address,size,type,confidence,source_status,description
-0x801e4000,0x801e4047,72,header,verified,reference_structure,Overlay ASCII header ('inst demo')
+0x801e4000,0x801e4047,72,header,verified,hand_written_source,Semantic ASCII header and typed overlay metadata
 0x801e4048,0x801e413b,244,code,verified,hand_written_source,Overlay function FUN_801e4048
 0x801e413c,0x801e41e7,172,code,verified,hand_written_source,Overlay Init Entry Point
 0x801e41e8,0x801e4283,156,code,verified,hand_written_source,Overlay Update Entry Point
@@ -70,9 +70,9 @@ start_address,end_address,size,type,confidence,source_status,description
 0x801e6408,0x801e64d3,204,code,verified,hand_written_source,Overlay function FUN_801e6408
 0x801e64d4,0x801e64db,8,code,verified,hand_written_source,Overlay function FUN_801e64d4
 0x801e64dc,0x801e64e3,8,code,verified,hand_written_source,Overlay function FUN_801e64dc
-0x801e64e4,0x801e65eb,264,data_table,verified,reference_structure,Scripted tick & interpolation parameter tables
-0x801e65ec,0x801e664b,96,data_table,verified,reference_structure,Scripted parameter pointer arrays
-0x801e664c,0x801e66c3,120,data_table,verified,reference_structure,Callback command structure parameter arrays
+0x801e64e4,0x801e65eb,264,data_table,verified,hand_written_source,Semantic scripted tick and interpolation parameter tables
+0x801e65ec,0x801e664b,96,data_table,verified,hand_written_source,Semantic scripted parameter pointer arrays
+0x801e664c,0x801e66c3,120,data_table,verified,hand_written_source,Semantic callback command parameter arrays
 0x801e66c4,0x801e69d3,784,command_list,verified,reference_structure,"97-step command script (96 callbacks, 1 jump, 1,910 total ticks) followed by its null callback terminator"
 0x801e69d4,0x801e69d7,4,data_record,verified,reference_structure,"Runtime counter used by FUN_801e6408 to generate a small oscillating vertical offset"
 0x801e69d8,0x801e69fb,36,data_table,verified,reference_structure,"Nine-word initialization/default table copied by FUN_801e5040 before it walks the adjacent 28-byte records"
