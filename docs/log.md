@@ -1,6 +1,9 @@
 # Knowledge Bundle Update Log
 
 ## 2026-07-26
+* **Contiguous overlay link validation**: Extended `Invoke-OverlayMatch.ps1` with a generated linker script that places every manifest function/data section at its original address, links both reconstructed objects together, emits one contiguous binary, and checks its exact 11,864-byte length and overlay SHA-256. The global link passes with `contiguous_image_length_match: true`, SHA-256 `3dbf4b...`, and `whole_overlay_match: true`; per-section hash gates and the independent tail checker remain enabled.
+
+## 2026-07-26
 * **Inst-demo overlay completo byte a byte**: Añadidas representaciones semánticas para la tabla de bitmasks de 32 bytes, los 16 registros de timing de 12 bytes (incluidos los dos slots cero) y las dos matrices de flags de dibujo de 20 bytes. El manifiesto schema 2 alcanza 12 secciones de datos; `Invoke-OverlayMatch.ps1` reproduce los 70 cuerpos y 2.492 bytes de datos, cubriendo 11.864/11.864 bytes (100%) y reportando `whole_overlay_match: true` contra el overlay legal SHA-256 `3dbf4b...`. `Test-InstDemoRecordArray.ps1` continúa pasando; no se incluyen blobs ni binarios de referencia.
 
 ## 2026-07-26

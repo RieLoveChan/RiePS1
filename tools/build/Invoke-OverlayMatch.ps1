@@ -269,6 +269,45 @@ foreach ($d in $manifest.data_sections) {
     })
 }
 
+
+$fullLdScript = Join-Path $scratchDir "inst-demo-overlay-full.ld"
+$fullLinkedElf = Join-Path $scratchDir "inst-demo-overlay-full.elf"
+$fullBinPath = Join-Path $scratchDir "inst-demo-overlay-full.bin"
+$placements = @($manifest.functions + $manifest.data_sections | Sort-Object { [int64]"$($_.address)" })
+$fullLdLines = [System.Collections.Generic.List[string]]::new()
+$fullLdLines.Add("OUTPUT_ARCH(mips)")
+$fullLdLines.Add("SECTIONS")
+$fullLdLines.Add("{")
+foreach ($p in $placements) {
+    $fullLdLines.Add("    . = $($p.address);")
+    $fullLdLines.Add("    $($p.section) : { KEEP(*($($p.section))) }")
+}
+$fullLdLines.Add("    /DISCARD/ : { *(*) }")
+$fullLdLines.Add("}")
+foreach ($line in $symDefs) {
+    $fullLdLines.Add($line)
+}
+$fullLdLines | Set-Content -LiteralPath $fullLdScript -Encoding ascii
+
+& $ld -EL -T $fullLdScript -o $fullLinkedElf $objPath $dataObjPath
+if ($LASTEXITCODE -ne 0) {
+    throw "Linker failed for contiguous inst-demo overlay image"
+}
+& $objcopy -O binary $fullLinkedElf $fullBinPath
+if ($LASTEXITCODE -ne 0) {
+    throw "Objcopy failed for contiguous inst-demo overlay image"
+}
+$fullBuiltBytes = [System.IO.File]::ReadAllBytes($fullBinPath)
+$fullExpectedLength = [int]$manifest.overlay.length
+$fullBuiltSha256 = [System.BitConverter]::ToString($hasher.ComputeHash($fullBuiltBytes)).Replace('-', '').ToLowerInvariant()
+$fullLengthMatch = ($fullBuiltBytes.Length -eq $fullExpectedLength)
+$fullHashMatch = ($fullBuiltSha256 -eq $hash)
+if (-not $fullLengthMatch) {
+    throw "Contiguous overlay length mismatch. Expected $fullExpectedLength; got $($fullBuiltBytes.Length)."
+}
+if (-not $fullHashMatch) {
+    throw "Contiguous overlay SHA256 mismatch. Expected $hash; got $fullBuiltSha256."
+}
 $report = [ordered]@{
     schema_version    = 2
     module            = "inst-demo-overlay"
@@ -282,7 +321,10 @@ $report = [ordered]@{
     selected_data_bytes    = $dataBytes
     selected_total_bytes   = ($totalBytes + $dataBytes)
     overlay_total_bytes    = [int]$manifest.overlay.length
-    whole_overlay_match    = (($totalBytes + $dataBytes) -eq [int]$manifest.overlay.length)
+    whole_overlay_match    = $fullHashMatch
+    contiguous_image_length = $fullBuiltBytes.Length
+    contiguous_image_sha256 = $fullBuiltSha256
+    contiguous_image_length_match = $fullLengthMatch
     toolchain         = [ordered]@{
         as      = "GNU binutils 2.43"
         ld      = "GNU binutils 2.43"

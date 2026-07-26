@@ -239,7 +239,7 @@ Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptT
 - **Selected Aggregate Match**: 11,864 / 11,864 bytes (100%). The 32-byte bitmask table, 192-byte timing-record table, and 40-byte draw-enable table now match independently by SHA-256.
 - **Data Structurally Resolved**: 748 bytes — 460 bytes of runtime draw records/preset state, the 192-byte 16-slot timing table, two 20-byte draw-enable arrays, the 32-byte bitmask table, and the final sentinel/default structure proven in the fifth pass.
 - **Unresolved Data Remaining**: 0 bytes.
-- **Whole-Overlay Byte Match**: `Invoke-OverlayMatch.ps1` reports `whole_overlay_match: true`; all 11,864 bytes are covered by independently assembled, hash-matched code/data sections.
+- **Whole-Overlay Byte Match**: `Invoke-OverlayMatch.ps1` now links all code/data sections into one contiguous 11,864-byte image and reports `whole_overlay_match: true`; the linked image length and SHA-256 both match the lawful overlay.
 - **Executable SHA-256**: `3dbf4bfa55caf2eb9e8e2db8cef4286441fc9e36850b1dca72515ef89060b0bb`
 - **Toolchain Required & Verified**:
   - `mipsel-none-elf-as` (GNU binutils 2.43)
