@@ -383,3 +383,37 @@ INST_DEMO_INITIALIZER_SENTINEL:
 INST_DEMO_RUNTIME_RECORDS:
     # Fourteen 32-byte draw records plus the 12-byte preset record, all zero at rest.
     .space 460
+
+.section .data.inst_demo_bitmask_table, "aw", @progbits
+.globl INST_DEMO_BITMASK_TABLE
+INST_DEMO_BITMASK_TABLE:
+    .4byte 0x08040100, 0x04010103, 0x01010308, 0x01030804
+    .4byte 0x02030100, 0x01020301, 0x03010203, 0x02030102
+
+.section .data.inst_demo_timing_records, "aw", @progbits
+.globl INST_DEMO_TIMING_RECORDS
+INST_DEMO_TIMING_RECORDS:
+    .4byte 0xffffff9f, 0xffffff56, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff2e, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff4c, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff38, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff24, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff06, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff2e, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff1a, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff4c, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff38, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff42, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff4c, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff24, 0x000000dc
+    .4byte 0xffffff9f, 0xffffff4c, 0x000000dc
+    .4byte 0, 0, 0
+    .4byte 0, 0, 0
+
+.section .data.inst_demo_draw_enable_flags, "aw", @progbits
+.globl INST_DEMO_DRAW_ENABLE_FLAGS
+INST_DEMO_DRAW_ENABLE_FLAGS:
+    .4byte 0x01010101, 0x00000101, 0x01010000, 0x00010101
+    .4byte 0x01000000, 0x00000101, 0x01010000, 0x00010101
+    .4byte 0x01000000
+    .4byte 0x01010101

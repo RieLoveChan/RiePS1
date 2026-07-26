@@ -129,6 +129,30 @@
     },
 
     {
+      "name": "bitmask_table",
+      "address": "0x801e6b84",
+      "size": 32,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_bitmask_table",
+      "reference_sha256": "d15ec61b3684c999092aa13017990ed9f8037eb73acdd52ca4ce28873dfcdf59"
+    },
+    {
+      "name": "timing_records",
+      "address": "0x801e6ba4",
+      "size": 192,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_timing_records",
+      "reference_sha256": "2fdf2c4e834fda2bdb167d8a5ace3866081a4ef8d5b314bebb69671a12cf4343"
+    },
+    {
+      "name": "draw_enable_flags",
+      "address": "0x801e6c64",
+      "size": 40,
+      "source": "src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s",
+      "section": ".data.inst_demo_draw_enable_flags",
+      "reference_sha256": "68911b89033ef35abf0c4d235c343bd62c218e137832a1e3bdd98b841e97907c"
+    },
+    {
       "name": "command_list",
       "address": "0x801e66c4",
       "size": 784,

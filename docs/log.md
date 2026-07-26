@@ -1,6 +1,9 @@
 # Knowledge Bundle Update Log
 
 ## 2026-07-26
+* **Inst-demo overlay completo byte a byte**: Añadidas representaciones semánticas para la tabla de bitmasks de 32 bytes, los 16 registros de timing de 12 bytes (incluidos los dos slots cero) y las dos matrices de flags de dibujo de 20 bytes. El manifiesto schema 2 alcanza 12 secciones de datos; `Invoke-OverlayMatch.ps1` reproduce los 70 cuerpos y 2.492 bytes de datos, cubriendo 11.864/11.864 bytes (100%) y reportando `whole_overlay_match: true` contra el overlay legal SHA-256 `3dbf4b...`. `Test-InstDemoRecordArray.ps1` continúa pasando; no se incluyen blobs ni binarios de referencia.
+
+## 2026-07-26
 * **Inst-demo first semantic data-source pass**: Added source-authored representations for the 72-byte overlay header and the three pre-command tables (264-byte tick/interpolation records, 96-byte interpolation pointer records, and 120-byte callback parameter records). Extended the schema-2 manifest with four hash-gated sections. `Invoke-OverlayMatch.ps1` now reproduces 9 data sections / 2,228 bytes plus all 70 functions: 11,600/11,864 selected bytes (97.8%); the remaining 264 bytes are the already structurally resolved tail tables. Verified with GNU binutils 2.43 and the lawful overlay SHA-256 gate; `whole_overlay_match` remains false pending semantic tail source and contiguous-image linking.
 
 ## 2026-07-25
