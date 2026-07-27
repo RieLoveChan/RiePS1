@@ -189,15 +189,21 @@ batch multiple units into one delivery.
 
 Target object: `0x800381e8`–`0x8003b114` (12,076 bytes), prefix `SYS`.
 
-1. Build or extend a mechanical checker (reusable script under
-   `tools/build/`) that: loads the symbol-map CSV, selects every row whose
-   address falls in range, merges intervals, and reports covered bytes, gap
-   count/bytes, and each gap's exact address range — the same
-   merge-and-gap-check method the existing document used by hand. Make it
-   read the tracked CSV/`build.json` only; it must not require or embed any
-   copyrighted byte content, and must fail closed (non-zero exit / explicit
-   `false` field) if the input files are missing or the requested range has
-   zero rows.
+1. `tools/build/Invoke-PsyqObjectBoundaryCheck.ps1` already exists in the
+   repository as a starting draft for exactly this check: it reads the
+   symbol-map CSV, derives implied per-run object bases from `<prefix>_OBJ_*`
+   rows, checks base consistency and offset monotonicity, merges every row
+   (named or `_OBJ_*`) inside the requested address range, and reports
+   covered/gap bytes and each gap's exact address range as JSON
+   (`schema_version`, `evidence_level: candidate_only`, `boundary_claim:
+   false`). Read it fully, verify its logic against the manual figures
+   already published in `linked-object-evidence.md` (12,076-byte span, 97.7%/
+   11,804 bytes covered, three gaps of 116/36/120 bytes), and only then decide
+   whether to reuse, fix, or rewrite it — do not trust it just because it is
+   already tracked. It must keep reading the tracked CSV/`build.json` only,
+   never require or embed copyrighted byte content, and fail closed
+   (non-zero exit / explicit `false` field) if inputs are missing or the
+   requested range has zero rows.
 2. For the three known residual gaps (116, 36, 120 bytes), use
    `DumpFunctionDetail.java`/`DumpBytes.java`/xref tooling to determine
    whether each is a nameable, un-inventoried function (matching the pattern
