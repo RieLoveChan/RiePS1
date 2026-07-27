@@ -71,7 +71,8 @@ currently covers 163 of 2,124 main-executable functions (about 7.7%), plus all
    current findings (an alignment/padding survey, a corroborated PsyQ
    library-object cross-check, and a duplicate-body check) and the
    falsifiable bar for a future object-boundary-confirmed claim; no boundary
-   is confirmed yet.
+   is confirmed yet. A bounded, ordered backlog toward that bar is defined in
+   the [external linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md).
 
 The HOW TO PLAY overlay's former 80-byte limit was explicitly reopened on
 2026-07-25. Raw-MIPS call-chain, stride, and bounds proofs resolved the
@@ -99,6 +100,7 @@ fourth and fifth passes in
 - [Linked-object evidence](docs/foundations/linked-object-evidence.md)
 - [External screen-selector work package](docs/workflows/external-agent-screen-selector.md)
 - [External HOW TO PLAY overlay work package](docs/workflows/external-agent-inst-demo-overlay.md)
+- [External linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md)
 - [Legal provenance policy](docs/foundations/legal-provenance.md)
 
 See [AGENTS.md](AGENTS.md) before making changes. Correctness and byte-match

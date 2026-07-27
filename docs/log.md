@@ -1,5 +1,20 @@
 # Knowledge Bundle Update Log
 
+## 2026-07-27
+* **External linked-object-boundary work package**: Added
+  `docs/workflows/external-agent-linked-object-boundary.md`, a bounded
+  delegation package that extends `docs/foundations/linked-object-evidence.md`
+  toward its own falsifiable "object boundary confirmed" bar (closing the
+  `SYS`/`ResetGraph` object's byte account and true-edge padding check, a
+  second independent corroborating instance, the two uncatalogued BIOS-stub
+  prefixes, the unexamined `Lzc`→`SetVertex0` gap, remaining global-field
+  semantics, and object-name identity as a low-priority last item), each unit
+  gated by its own reproducible verification, committed/pushed independently
+  to a dedicated `agent/linked-object-boundary` branch, and left at
+  `candidate_for_audit` per `docs/workflows/external-agent-acceptance.md` —
+  no unit may be self-promoted to `completed` or merged into `master`. Linked
+  from `docs/workflows/index.md` and README.
+
 ## 2026-07-26
 * **Contiguous overlay link validation**: Extended `Invoke-OverlayMatch.ps1` with a generated linker script that places every manifest function/data section at its original address, links both reconstructed objects together, emits one contiguous binary, and checks its exact 11,864-byte length and overlay SHA-256. The global link passes with `contiguous_image_length_match: true`, SHA-256 `3dbf4b...`, and `whole_overlay_match: true`; per-section hash gates and the independent tail checker remain enabled.
 
