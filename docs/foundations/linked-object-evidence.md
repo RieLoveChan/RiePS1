@@ -325,6 +325,38 @@ else checked) and several explicitly flagged open items (the two new BIOS
 stubs' unexplained 8-byte prefix, the unexamined `Lzc`→`SetVertex0` gap, and
 the un-cross-referenced object names' semantic identity).
 
+# Object-Name Semantic Identity and Claim Boundaries (Unit F)
+
+## 1. Contiguous Byte Coverage vs. Semantic Name Provenance
+
+A complete byte account (`gap_bytes: 0` for a run of `<name>_OBJ_<offset>` symbols) proves **contiguous byte coverage produced by a single translation unit** in linked memory. However, a zero-gap byte account alone does **not** prove that `<name>` is the original PsyQ SDK library object's exact source filename or object name.
+
+In decompilation research, object prefix names derived from Ghidra PSX loader auto-analysis or decompiler heuristics are synthetic convenience labels. Assigning semantic identity to an object name (e.g. claiming an object is PsyQ's official `LIBSYS.OBJ` or `CARD.OBJ`) requires independent primary corroboration beyond address arithmetic.
+
+## 2. Audit of `SYS` and `FORMAT` Object Boundaries
+
+### `SYS` Object (`0x800381e8`–`0x8003b114`, 12,076 bytes)
+- **Supported evidence**: 100.0% byte account (12,076 / 12,076 covered bytes, `gap_bytes: 0`, `merged_intervals: 1`), corroborated by Ghidra disassembly of 3 missing rows (`SYS_OBJ_F80`, `SYS_OBJ_22F4`, `SYS_OBJ_2828`) all resolving to base `0x800381e8`. Bounded by 8-byte zero-alignment padding at both start (`0x800381dc`–`0x800381e7`) and end (`0x8003b114`–`0x8003b11b`).
+- **Missing evidence**: Direct PsyQ SDK library object filename or symbol table entry proving `SYS` corresponds to a specific SDK object file (e.g. `LIBSYS.OBJ`).
+- **Status**: `candidate_for_audit` (object-boundary proven, semantic object name unconfirmed).
+
+### `FORMAT` Object (`0x8003b6e8`–`0x8003ba38`, 848 bytes)
+- **Supported evidence**: 100.0% byte account (848 / 848 covered bytes, `gap_bytes: 0`, `merged_intervals: 1`), all 3 `FORMAT_OBJ_*` rows resolving to base `0x8003b6e8`. Bounded by 8-byte zero-alignment padding at start (`0x8003b6e0`–`0x8003b6e7`) and landing directly on verified BIOS stub `_card_read` (`0x8003ba38`).
+- **Missing evidence**: Direct PsyQ SDK library object filename or symbol table entry proving `FORMAT` corresponds to `CARD.OBJ` or `FORMAT.OBJ`.
+- **Status**: `candidate_for_audit` (object-boundary proven, semantic object name unconfirmed).
+
+## 3. Falsifiable Standard for Object Boundary Claims
+
+To maintain evidentiary rigor across all future agent work, object boundary claims must adhere to the following two-tier classification standard:
+
+1. **`candidate_for_audit`**:
+   - Requires: 100.0% complete byte coverage (`gap_bytes: 0`), exactly 1 merged interval across all constituent symbols, 0 interior unaccounted bytes, and verified outer-edge zero alignment padding.
+   - Meaning: Confirms a contiguous translation unit boundary in the binary image.
+
+2. **`boundary_confirmed`**:
+   - Requires: All `candidate_for_audit` criteria PLUS at least one primary direct provenance link (e.g. exact byte match against a standalone object built from lawful PsyQ 4.4.0 `.OBJ`/`.LIB` sources, embedded path/string literals within the object, or explicit PsyQ linker map symbol table references).
+   - Meaning: Confirms both contiguous translation unit layout and exact SDK/source object identity.
+
 # Reproduction
 
 - Address/offset/gap arithmetic: read `/config/ddr5thmix/build.json` and
