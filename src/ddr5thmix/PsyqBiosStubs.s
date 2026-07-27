@@ -47,3 +47,28 @@
     BIOS_STUB FUN_8003ba70,         0xb0, 0x3f
     BIOS_STUB FUN_8003bb30,         0xa0, 0x72
     BIOS_STUB ReturnFromException,  0xb0, 0x17
+    BIOS_STUB ResetEntryInt,        0xb0, 0x18
+    BIOS_STUB HookEntryInt,         0xb0, 0x19
+    BIOS_STUB open,                 0xb0, 0x32
+    BIOS_STUB lseek,                0xb0, 0x33
+    BIOS_STUB read,                 0xb0, 0x34
+    BIOS_STUB write,                0xb0, 0x35
+    BIOS_STUB nextfile,             0xb0, 0x43
+    BIOS_STUB rename,               0xb0, 0x44
+    BIOS_STUB erase,                0xb0, 0x45
+    BIOS_STUB Krom2RawAdd,          0xb0, 0x51
+    BIOS_STUB ChangeClearPAD,       0xb0, 0x5b
+    BIOS_STUB strcmp,               0xa0, 0x17
+    BIOS_STUB firstfile2,           0xb0, 0x42
+    BIOS_STUB InitPAD2,             0xb0, 0x12
+    BIOS_STUB StartPAD2,            0xb0, 0x13
+    BIOS_STUB StopPAD2,             0xb0, 0x14
+    BIOS_STUB PAD_init2,            0xb0, 0x15
+    BIOS_STUB rand,                 0xa0, 0x2f
+    BIOS_STUB srand,                0xa0, 0x30
+    BIOS_STUB memset,               0xa0, 0x2b
+    BIOS_STUB memchr,               0xa0, 0x2e
+    BIOS_STUB strncmp,              0xa0, 0x18
+    BIOS_STUB bcopy,                0xa0, 0x27
+    BIOS_STUB close,                0xb0, 0x36
+    BIOS_STUB strncpy,              0xa0, 0x1a

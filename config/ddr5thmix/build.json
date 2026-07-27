@@ -97,32 +97,60 @@
       "name": "game-session-opening",
       "description": "Gameplay-session states 0-3: PLAY START, selector ownership, NON STOP I, and NON STOP C callbacks.",
       "functions": [
-        "FUN_80070664", "FUN_8006ede8", "FUN_800706dc",
-        "FUN_80070730", "FUN_80070788", "FUN_8006eefc",
-        "FUN_80070260", "FUN_80070850", "FUN_80070958",
-        "FUN_80070980", "FUN_800709e0", "FUN_80070a84"
+        "FUN_80070664",
+        "FUN_8006ede8",
+        "FUN_800706dc",
+        "FUN_80070730",
+        "FUN_80070788",
+        "FUN_8006eefc",
+        "FUN_80070260",
+        "FUN_80070850",
+        "FUN_80070958",
+        "FUN_80070980",
+        "FUN_800709e0",
+        "FUN_80070a84"
       ]
     },
     {
       "name": "game-session-gameplay",
       "description": "Gameplay-session states 4-7: PREPARE, INTRO, DANCING, and STAGE END callbacks.",
       "functions": [
-        "FUN_8006efd4", "FUN_80070ab4", "FUN_8006f0a0",
-        "FUN_8006f1fc", "FUN_8006f380", "FUN_80070aac",
-        "FUN_80070bc4", "FUN_8006f49c", "FUN_8006f6cc",
-        "FUN_8006f784", "FUN_8006f888", "FUN_8006fa30"
+        "FUN_8006efd4",
+        "FUN_80070ab4",
+        "FUN_8006f0a0",
+        "FUN_8006f1fc",
+        "FUN_8006f380",
+        "FUN_80070aac",
+        "FUN_80070bc4",
+        "FUN_8006f49c",
+        "FUN_8006f6cc",
+        "FUN_8006f784",
+        "FUN_8006f888",
+        "FUN_8006fa30"
       ]
     },
     {
       "name": "game-session-endgame",
       "description": "Gameplay-session states 8-13: RESULT, GAME_OVER, ENDING, PRE_END, LINK END, and NAME ENTRY callbacks.",
       "functions": [
-        "FUN_80070bf8", "FUN_80070c70", "FUN_80070d04",
-        "FUN_80070d3c", "FUN_8006fba4", "FUN_80070d6c",
-        "FUN_80070d9c", "FUN_80070e2c", "FUN_80070ebc",
-        "FUN_80070f04", "FUN_80070f54", "FUN_80071004",
-        "FUN_8007102c", "FUN_80071084", "FUN_800710f8",
-        "FUN_80071118", "FUN_80071168", "FUN_80071214"
+        "FUN_80070bf8",
+        "FUN_80070c70",
+        "FUN_80070d04",
+        "FUN_80070d3c",
+        "FUN_8006fba4",
+        "FUN_80070d6c",
+        "FUN_80070d9c",
+        "FUN_80070e2c",
+        "FUN_80070ebc",
+        "FUN_80070f04",
+        "FUN_80070f54",
+        "FUN_80071004",
+        "FUN_8007102c",
+        "FUN_80071084",
+        "FUN_800710f8",
+        "FUN_80071118",
+        "FUN_80071168",
+        "FUN_80071214"
       ]
     }
   ],
@@ -1613,250 +1641,793 @@
       "section": ".text.FUN_80071250"
     },
     {
-      "name": "FUN_80070664", "address": "0x80070664", "size": 120,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070664",
-      "symbols": { "FUN_80023170": "0x80023170", "FUN_8004d080": "0x8004d080", "FUN_8006cbd4": "0x8006cbd4", "FUN_8007b778": "0x8007b778", "FUN_8007f07c": "0x8007f07c" }
-    },
-    {
-      "name": "FUN_8006ede8", "address": "0x8006ede8", "size": 276,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_8006ede8",
-      "symbols": { "FUN_800358f8": "0x800358f8", "FUN_8004d0a0": "0x8004d0a0", "FUN_8006e43c": "0x8006e43c", "FUN_8007638c": "0x8007638c" }
-    },
-    {
-      "name": "FUN_800706dc", "address": "0x800706dc", "size": 84,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_800706dc",
-      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_80049b84": "0x80049b84", "FUN_8004d158": "0x8004d158" }
-    },
-    {
-      "name": "FUN_80070730", "address": "0x80070730", "size": 88,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070730",
-      "symbols": { "FUN_80023170": "0x80023170", "FUN_800236bc": "0x800236bc", "FUN_8002a8b0": "0x8002a8b0", "FUN_80075580": "0x80075580" }
-    },
-    {
-      "name": "FUN_80070788", "address": "0x80070788", "size": 200,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070788",
-      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_8006e43c": "0x8006e43c", "FUN_80075604": "0x80075604", "FUN_80085c54": "0x80085c54" }
-    },
-    {
-      "name": "FUN_8006eefc", "address": "0x8006eefc", "size": 216,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_8006eefc",
-      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_800756ac": "0x800756ac" }
-    },
-    {
-      "name": "FUN_80070260", "address": "0x80070260", "size": 148,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070260",
-      "symbols": { "FUN_8007fab0": "0x8007fab0", "FUN_800991e0": "0x800991e0" }
-    },
-    {
-      "name": "FUN_80070850", "address": "0x80070850", "size": 264,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070850",
-      "symbols": { "FUN_80028358": "0x80028358", "FUN_8007fdec": "0x8007fdec", "FUN_80098f8c": "0x80098f8c" }
-    },
-    {
-      "name": "FUN_80070958", "address": "0x80070958", "size": 40,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070958"
-    },
-    {
-      "name": "FUN_80070980", "address": "0x80070980", "size": 96,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070980",
-      "symbols": { "FUN_80028358": "0x80028358", "FUN_800703e0": "0x800703e0", "FUN_800aadac": "0x800aadac" }
-    },
-    {
-      "name": "FUN_800709e0", "address": "0x800709e0", "size": 164,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_800709e0",
-      "symbols": { "FUN_800358f8": "0x800358f8", "FUN_8007638c": "0x8007638c", "FUN_8007b778": "0x8007b778", "FUN_8007fdec": "0x8007fdec" }
-    },
-    {
-      "name": "FUN_80070a84", "address": "0x80070a84", "size": 40,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionOpening.s", "section": ".text.FUN_80070a84",
-      "symbols": { "FUN_80028358": "0x80028358", "FUN_8007f07c": "0x8007f07c" }
-    },
-    {
-      "name": "FUN_8006efd4", "address": "0x8006efd4", "size": 204,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006efd4",
-      "symbols": { "FUN_8007b778": "0x8007b778" }
-    },
-    {
-      "name": "FUN_80070ab4", "address": "0x80070ab4", "size": 272,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070ab4",
+      "name": "FUN_80070664",
+      "address": "0x80070664",
+      "size": 120,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070664",
       "symbols": {
-        "FUN_8007638c": "0x8007638c", "FUN_80028358": "0x80028358",
-        "FUN_8007f66c": "0x8007f66c", "FUN_8002a8b0": "0x8002a8b0",
-        "FUN_8005e6a8": "0x8005e6a8", "FUN_8007f06c": "0x8007f06c",
-        "FUN_8007f64c": "0x8007f64c", "FUN_8007f598": "0x8007f598"
+        "FUN_80023170": "0x80023170",
+        "FUN_8004d080": "0x8004d080",
+        "FUN_8006cbd4": "0x8006cbd4",
+        "FUN_8007b778": "0x8007b778",
+        "FUN_8007f07c": "0x8007f07c"
       }
     },
     {
-      "name": "FUN_8006f0a0", "address": "0x8006f0a0", "size": 348,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f0a0",
-      "symbols": { "FUN_8007638c": "0x8007638c", "FUN_800358f8": "0x800358f8" }
-    },
-    {
-      "name": "FUN_80070bc4", "address": "0x80070bc4", "size": 52,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070bc4",
-      "symbols": { "FUN_8002a8b0": "0x8002a8b0" }
-    },
-    {
-      "name": "FUN_8006f1fc", "address": "0x8006f1fc", "size": 388,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f1fc",
+      "name": "FUN_8006ede8",
+      "address": "0x8006ede8",
+      "size": 276,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_8006ede8",
       "symbols": {
-        "FUN_800a36f4": "0x800a36f4", "FUN_800a3724": "0x800a3724",
-        "FUN_8007fc8c": "0x8007fc8c", "FUN_800991e0": "0x800991e0",
+        "FUN_800358f8": "0x800358f8",
+        "FUN_8004d0a0": "0x8004d0a0",
+        "FUN_8006e43c": "0x8006e43c",
+        "FUN_8007638c": "0x8007638c"
+      }
+    },
+    {
+      "name": "FUN_800706dc",
+      "address": "0x800706dc",
+      "size": 84,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_800706dc",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_80049b84": "0x80049b84",
+        "FUN_8004d158": "0x8004d158"
+      }
+    },
+    {
+      "name": "FUN_80070730",
+      "address": "0x80070730",
+      "size": 88,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070730",
+      "symbols": {
+        "FUN_80023170": "0x80023170",
+        "FUN_800236bc": "0x800236bc",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_80075580": "0x80075580"
+      }
+    },
+    {
+      "name": "FUN_80070788",
+      "address": "0x80070788",
+      "size": 200,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070788",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8006e43c": "0x8006e43c",
+        "FUN_80075604": "0x80075604",
+        "FUN_80085c54": "0x80085c54"
+      }
+    },
+    {
+      "name": "FUN_8006eefc",
+      "address": "0x8006eefc",
+      "size": 216,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_8006eefc",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_800756ac": "0x800756ac"
+      }
+    },
+    {
+      "name": "FUN_80070260",
+      "address": "0x80070260",
+      "size": 148,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070260",
+      "symbols": {
+        "FUN_8007fab0": "0x8007fab0",
+        "FUN_800991e0": "0x800991e0"
+      }
+    },
+    {
+      "name": "FUN_80070850",
+      "address": "0x80070850",
+      "size": 264,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070850",
+      "symbols": {
+        "FUN_80028358": "0x80028358",
+        "FUN_8007fdec": "0x8007fdec",
+        "FUN_80098f8c": "0x80098f8c"
+      }
+    },
+    {
+      "name": "FUN_80070958",
+      "address": "0x80070958",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070958"
+    },
+    {
+      "name": "FUN_80070980",
+      "address": "0x80070980",
+      "size": 96,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070980",
+      "symbols": {
+        "FUN_80028358": "0x80028358",
+        "FUN_800703e0": "0x800703e0",
+        "FUN_800aadac": "0x800aadac"
+      }
+    },
+    {
+      "name": "FUN_800709e0",
+      "address": "0x800709e0",
+      "size": 164,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_800709e0",
+      "symbols": {
+        "FUN_800358f8": "0x800358f8",
+        "FUN_8007638c": "0x8007638c",
+        "FUN_8007b778": "0x8007b778",
+        "FUN_8007fdec": "0x8007fdec"
+      }
+    },
+    {
+      "name": "FUN_80070a84",
+      "address": "0x80070a84",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionOpening.s",
+      "section": ".text.FUN_80070a84",
+      "symbols": {
+        "FUN_80028358": "0x80028358",
+        "FUN_8007f07c": "0x8007f07c"
+      }
+    },
+    {
+      "name": "FUN_8006efd4",
+      "address": "0x8006efd4",
+      "size": 204,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006efd4",
+      "symbols": {
+        "FUN_8007b778": "0x8007b778"
+      }
+    },
+    {
+      "name": "FUN_80070ab4",
+      "address": "0x80070ab4",
+      "size": 272,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_80070ab4",
+      "symbols": {
+        "FUN_8007638c": "0x8007638c",
+        "FUN_80028358": "0x80028358",
+        "FUN_8007f66c": "0x8007f66c",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8005e6a8": "0x8005e6a8",
+        "FUN_8007f06c": "0x8007f06c",
+        "FUN_8007f64c": "0x8007f64c",
+        "FUN_8007f598": "0x8007f598"
+      }
+    },
+    {
+      "name": "FUN_8006f0a0",
+      "address": "0x8006f0a0",
+      "size": 348,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006f0a0",
+      "symbols": {
+        "FUN_8007638c": "0x8007638c",
+        "FUN_800358f8": "0x800358f8"
+      }
+    },
+    {
+      "name": "FUN_80070bc4",
+      "address": "0x80070bc4",
+      "size": 52,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_80070bc4",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0"
+      }
+    },
+    {
+      "name": "FUN_8006f1fc",
+      "address": "0x8006f1fc",
+      "size": 388,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006f1fc",
+      "symbols": {
+        "FUN_800a36f4": "0x800a36f4",
+        "FUN_800a3724": "0x800a3724",
+        "FUN_8007fc8c": "0x8007fc8c",
+        "FUN_800991e0": "0x800991e0",
         "FUN_80028358": "0x80028358"
       }
     },
     {
-      "name": "FUN_8006f380", "address": "0x8006f380", "size": 284,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f380",
+      "name": "FUN_8006f380",
+      "address": "0x8006f380",
+      "size": 284,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006f380",
       "symbols": {
-        "FUN_80098f8c": "0x80098f8c", "FUN_80028358": "0x80028358",
-        "FUN_8007fdec": "0x8007fdec", "FUN_8006e5d4": "0x8006e5d4"
+        "FUN_80098f8c": "0x80098f8c",
+        "FUN_80028358": "0x80028358",
+        "FUN_8007fdec": "0x8007fdec",
+        "FUN_8006e5d4": "0x8006e5d4"
       }
     },
     {
-      "name": "FUN_8006f49c", "address": "0x8006f49c", "size": 560,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f49c",
+      "name": "FUN_8006f49c",
+      "address": "0x8006f49c",
+      "size": 560,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006f49c",
       "symbols": {
-        "FUN_8002a8b0": "0x8002a8b0", "FUN_80028358": "0x80028358",
-        "FUN_8007fdec": "0x8007fdec", "FUN_8006e5d4": "0x8006e5d4",
-        "FUN_8009ff74": "0x8009ff74", "FUN_8007f07c": "0x8007f07c",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_80028358": "0x80028358",
+        "FUN_8007fdec": "0x8007fdec",
+        "FUN_8006e5d4": "0x8006e5d4",
+        "FUN_8009ff74": "0x8009ff74",
+        "FUN_8007f07c": "0x8007f07c",
         "FUN_800705a4": "0x800705a4"
       }
     },
     {
-      "name": "FUN_8006f6cc", "address": "0x8006f6cc", "size": 184,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f6cc",
+      "name": "FUN_8006f6cc",
+      "address": "0x8006f6cc",
+      "size": 184,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006f6cc",
       "symbols": {
-        "FUN_8002a8b0": "0x8002a8b0", "FUN_800a37f8": "0x800a37f8",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_800a37f8": "0x800a37f8",
         "FUN_80099628": "0x80099628"
       }
     },
     {
-      "name": "FUN_8006f784", "address": "0x8006f784", "size": 260,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f784",
-      "symbols": { "FUN_80028358": "0x80028358" }
-    },
-    {
-      "name": "FUN_8006f888", "address": "0x8006f888", "size": 424,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006f888",
+      "name": "FUN_8006f784",
+      "address": "0x8006f784",
+      "size": 260,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006f784",
       "symbols": {
-        "FUN_8007b778": "0x8007b778", "FUN_8007638c": "0x8007638c",
-        "FUN_800358f8": "0x800358f8", "FUN_80027ed4": "0x80027ed4",
-        "FUN_8007fdec": "0x8007fdec", "FUN_8007b960": "0x8007b960"
+        "FUN_80028358": "0x80028358"
       }
     },
     {
-      "name": "FUN_8006fa30", "address": "0x8006fa30", "size": 372,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_8006fa30",
+      "name": "FUN_8006f888",
+      "address": "0x8006f888",
+      "size": 424,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006f888",
       "symbols": {
-        "FUN_80081e90": "0x80081e90", "FUN_8006e9ec": "0x8006e9ec",
+        "FUN_8007b778": "0x8007b778",
+        "FUN_8007638c": "0x8007638c",
+        "FUN_800358f8": "0x800358f8",
+        "FUN_80027ed4": "0x80027ed4",
+        "FUN_8007fdec": "0x8007fdec",
+        "FUN_8007b960": "0x8007b960"
+      }
+    },
+    {
+      "name": "FUN_8006fa30",
+      "address": "0x8006fa30",
+      "size": 372,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8006fa30",
+      "symbols": {
+        "FUN_80081e90": "0x80081e90",
+        "FUN_8006e9ec": "0x8006e9ec",
         "FUN_8006e750": "0x8006e750"
       }
     },
     {
-      "name": "FUN_80070aac", "address": "0x80070aac", "size": 8,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionGameplay.s", "section": ".text.FUN_80070aac"
+      "name": "FUN_80070aac",
+      "address": "0x80070aac",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_80070aac"
     },
     {
-      "name": "FUN_80070bf8", "address": "0x80070bf8", "size": 120,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070bf8",
-      "symbols": { "FUN_800a1724": "0x800a1724", "FUN_80073d60": "0x80073d60" }
-    },
-    {
-      "name": "FUN_80070c70", "address": "0x80070c70", "size": 148,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070c70",
-      "symbols": { "FUN_800a0094": "0x800a0094", "FUN_80073554": "0x80073554", "FUN_8006e43c": "0x8006e43c" }
-    },
-    {
-      "name": "FUN_80070d04", "address": "0x80070d04", "size": 56,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d04",
-      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_80073df4": "0x80073df4" }
-    },
-    {
-      "name": "FUN_80070d3c", "address": "0x80070d3c", "size": 48,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d3c",
-      "symbols": { "FUN_8005f16c": "0x8005f16c" }
-    },
-    {
-      "name": "FUN_8006fba4", "address": "0x8006fba4", "size": 352,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_8006fba4",
+      "name": "FUN_80070bf8",
+      "address": "0x80070bf8",
+      "size": 120,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070bf8",
       "symbols": {
-        "FUN_8007f07c": "0x8007f07c", "FUN_8002a8b0": "0x8002a8b0",
-        "FUN_8005e6a8": "0x8005e6a8", "FUN_8005f18c": "0x8005f18c",
+        "FUN_800a1724": "0x800a1724",
+        "FUN_80073d60": "0x80073d60"
+      }
+    },
+    {
+      "name": "FUN_80070c70",
+      "address": "0x80070c70",
+      "size": 148,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070c70",
+      "symbols": {
+        "FUN_800a0094": "0x800a0094",
+        "FUN_80073554": "0x80073554",
+        "FUN_8006e43c": "0x8006e43c"
+      }
+    },
+    {
+      "name": "FUN_80070d04",
+      "address": "0x80070d04",
+      "size": 56,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070d04",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_80073df4": "0x80073df4"
+      }
+    },
+    {
+      "name": "FUN_80070d3c",
+      "address": "0x80070d3c",
+      "size": 48,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070d3c",
+      "symbols": {
+        "FUN_8005f16c": "0x8005f16c"
+      }
+    },
+    {
+      "name": "FUN_8006fba4",
+      "address": "0x8006fba4",
+      "size": 352,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_8006fba4",
+      "symbols": {
+        "FUN_8007f07c": "0x8007f07c",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8005e6a8": "0x8005e6a8",
+        "FUN_8005f18c": "0x8005f18c",
         "FUN_8006e698": "0x8006e698"
       }
     },
     {
-      "name": "FUN_80070d6c", "address": "0x80070d6c", "size": 48,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d6c",
-      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_8005f230": "0x8005f230", "FUN_8002313c": "0x8002313c" }
-    },
-    {
-      "name": "FUN_80070d9c", "address": "0x80070d9c", "size": 144,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070d9c",
+      "name": "FUN_80070d6c",
+      "address": "0x80070d6c",
+      "size": 48,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070d6c",
       "symbols": {
-        "FUN_8002a8b0": "0x8002a8b0", "FUN_80073e34": "0x80073e34",
-        "FUN_800a0f7c": "0x800a0f7c", "FUN_80075094": "0x80075094"
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8005f230": "0x8005f230",
+        "FUN_8002313c": "0x8002313c"
       }
     },
     {
-      "name": "FUN_80070e2c", "address": "0x80070e2c", "size": 144,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070e2c",
+      "name": "FUN_80070d9c",
+      "address": "0x80070d9c",
+      "size": 144,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070d9c",
       "symbols": {
-        "FUN_800a0fb0": "0x800a0fb0", "FUN_80073e34": "0x80073e34",
-        "FUN_8007f218": "0x8007f218", "FUN_80075184": "0x80075184",
-        "FUN_8002a8b0": "0x8002a8b0", "FUN_8007f07c": "0x8007f07c"
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_80073e34": "0x80073e34",
+        "FUN_800a0f7c": "0x800a0f7c",
+        "FUN_80075094": "0x80075094"
       }
     },
     {
-      "name": "FUN_80070ebc", "address": "0x80070ebc", "size": 72,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070ebc",
-      "symbols": { "FUN_8007f07c": "0x8007f07c", "FUN_800751c8": "0x800751c8", "FUN_8002313c": "0x8002313c" }
+      "name": "FUN_80070e2c",
+      "address": "0x80070e2c",
+      "size": 144,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070e2c",
+      "symbols": {
+        "FUN_800a0fb0": "0x800a0fb0",
+        "FUN_80073e34": "0x80073e34",
+        "FUN_8007f218": "0x8007f218",
+        "FUN_80075184": "0x80075184",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8007f07c": "0x8007f07c"
+      }
     },
     {
-      "name": "FUN_80070f04", "address": "0x80070f04", "size": 80,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070f04",
-      "symbols": { "FUN_8005f10c": "0x8005f10c", "FUN_8002a8b0": "0x8002a8b0", "FUN_8007f218": "0x8007f218" }
+      "name": "FUN_80070ebc",
+      "address": "0x80070ebc",
+      "size": 72,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070ebc",
+      "symbols": {
+        "FUN_8007f07c": "0x8007f07c",
+        "FUN_800751c8": "0x800751c8",
+        "FUN_8002313c": "0x8002313c"
+      }
     },
     {
-      "name": "FUN_80070f54", "address": "0x80070f54", "size": 176,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80070f54",
-      "symbols": { "FUN_80061e80": "0x80061e80", "FUN_800702f4": "0x800702f4" }
+      "name": "FUN_80070f04",
+      "address": "0x80070f04",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070f04",
+      "symbols": {
+        "FUN_8005f10c": "0x8005f10c",
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8007f218": "0x8007f218"
+      }
     },
     {
-      "name": "FUN_80071004", "address": "0x80071004", "size": 40,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071004",
-      "symbols": { "FUN_8005f14c": "0x8005f14c", "FUN_8002a8b0": "0x8002a8b0" }
+      "name": "FUN_80070f54",
+      "address": "0x80070f54",
+      "size": 176,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80070f54",
+      "symbols": {
+        "FUN_80061e80": "0x80061e80",
+        "FUN_800702f4": "0x800702f4"
+      }
     },
     {
-      "name": "FUN_8007102c", "address": "0x8007102c", "size": 88,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_8007102c",
-      "symbols": { "FUN_8005f10c": "0x8005f10c", "FUN_8007b778": "0x8007b778" }
+      "name": "FUN_80071004",
+      "address": "0x80071004",
+      "size": 40,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80071004",
+      "symbols": {
+        "FUN_8005f14c": "0x8005f14c",
+        "FUN_8002a8b0": "0x8002a8b0"
+      }
     },
     {
-      "name": "FUN_80071084", "address": "0x80071084", "size": 116,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071084",
-      "symbols": { "FUN_8002a8b0": "0x8002a8b0", "FUN_8005f12c": "0x8005f12c", "FUN_80093e44": "0x80093e44" }
+      "name": "FUN_8007102c",
+      "address": "0x8007102c",
+      "size": 88,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_8007102c",
+      "symbols": {
+        "FUN_8005f10c": "0x8005f10c",
+        "FUN_8007b778": "0x8007b778"
+      }
     },
     {
-      "name": "FUN_800710f8", "address": "0x800710f8", "size": 32,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_800710f8",
-      "symbols": { "FUN_8005f14c": "0x8005f14c" }
+      "name": "FUN_80071084",
+      "address": "0x80071084",
+      "size": 116,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80071084",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_8005f12c": "0x8005f12c",
+        "FUN_80093e44": "0x80093e44"
+      }
     },
     {
-      "name": "FUN_80071118", "address": "0x80071118", "size": 80,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071118",
-      "symbols": { "FUN_80093f20": "0x80093f20" }
+      "name": "FUN_800710f8",
+      "address": "0x800710f8",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_800710f8",
+      "symbols": {
+        "FUN_8005f14c": "0x8005f14c"
+      }
     },
     {
-      "name": "FUN_80071168", "address": "0x80071168", "size": 172,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071168",
-      "symbols": { "FUN_8007f218": "0x8007f218", "FUN_800a0094": "0x800a0094", "FUN_80094620": "0x80094620" }
+      "name": "FUN_80071118",
+      "address": "0x80071118",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80071118",
+      "symbols": {
+        "FUN_80093f20": "0x80093f20"
+      }
     },
     {
-      "name": "FUN_80071214", "address": "0x80071214", "size": 44,
-      "language": "asm", "source": "src/ddr5thmix/GameSessionEndgame.s", "section": ".text.FUN_80071214",
-      "symbols": { "FUN_8007f07c": "0x8007f07c", "FUN_80095590": "0x80095590" }
+      "name": "FUN_80071168",
+      "address": "0x80071168",
+      "size": 172,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80071168",
+      "symbols": {
+        "FUN_8007f218": "0x8007f218",
+        "FUN_800a0094": "0x800a0094",
+        "FUN_80094620": "0x80094620"
+      }
+    },
+    {
+      "name": "FUN_80071214",
+      "address": "0x80071214",
+      "size": 44,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionEndgame.s",
+      "section": ".text.FUN_80071214",
+      "symbols": {
+        "FUN_8007f07c": "0x8007f07c",
+        "FUN_80095590": "0x80095590"
+      }
+    },
+    {
+      "name": "ResetEntryInt",
+      "address": "0x8003bbc8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.ResetEntryInt"
+    },
+    {
+      "name": "HookEntryInt",
+      "address": "0x8003bbd8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.HookEntryInt"
+    },
+    {
+      "name": "open",
+      "address": "0x8003bc08",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.open"
+    },
+    {
+      "name": "lseek",
+      "address": "0x8003bc18",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.lseek"
+    },
+    {
+      "name": "read",
+      "address": "0x8003bc28",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.read"
+    },
+    {
+      "name": "write",
+      "address": "0x8003bc38",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.write"
+    },
+    {
+      "name": "nextfile",
+      "address": "0x8003bc48",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.nextfile"
+    },
+    {
+      "name": "rename",
+      "address": "0x8003bc58",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.rename"
+    },
+    {
+      "name": "erase",
+      "address": "0x8003bc68",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.erase"
+    },
+    {
+      "name": "Krom2RawAdd",
+      "address": "0x8003bc78",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.Krom2RawAdd"
+    },
+    {
+      "name": "ChangeClearPAD",
+      "address": "0x8003bc88",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.ChangeClearPAD"
+    },
+    {
+      "name": "strcmp",
+      "address": "0x8003c0b8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.strcmp"
+    },
+    {
+      "name": "firstfile2",
+      "address": "0x8003c0c8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.firstfile2"
+    },
+    {
+      "name": "InitPAD2",
+      "address": "0x8003c3d8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.InitPAD2"
+    },
+    {
+      "name": "StartPAD2",
+      "address": "0x8003c3e8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.StartPAD2"
+    },
+    {
+      "name": "StopPAD2",
+      "address": "0x8003c3f8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.StopPAD2"
+    },
+    {
+      "name": "PAD_init2",
+      "address": "0x8003c408",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.PAD_init2"
+    },
+    {
+      "name": "rand",
+      "address": "0x8004d628",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.rand"
+    },
+    {
+      "name": "srand",
+      "address": "0x8004d638",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.srand"
+    },
+    {
+      "name": "memset",
+      "address": "0x8005b2a4",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.memset"
+    },
+    {
+      "name": "memchr",
+      "address": "0x80061c80",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.memchr"
+    },
+    {
+      "name": "strncmp",
+      "address": "0x80095cd8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.strncmp"
+    },
+    {
+      "name": "bcopy",
+      "address": "0x80095ce8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.bcopy"
+    },
+    {
+      "name": "close",
+      "address": "0x8009b93c",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.close"
+    },
+    {
+      "name": "strncpy",
+      "address": "0x8009df58",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.strncpy"
+    },
+    {
+      "name": "CdStatus",
+      "address": "0x8003f738",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdStatus"
+    },
+    {
+      "name": "CdMode",
+      "address": "0x8003f748",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdMode"
+    },
+    {
+      "name": "CdLastCom",
+      "address": "0x8003f758",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdLastCom"
+    },
+    {
+      "name": "CdLastPos",
+      "address": "0x8003f768",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdLastPos"
+    },
+    {
+      "name": "GetClut",
+      "address": "0x8007636c",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibgsStubs.s",
+      "section": ".text.GetClut"
+    },
+    {
+      "name": "GsLinkObject5",
+      "address": "0x8007c4e0",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibgsStubs.s",
+      "section": ".text.GsLinkObject5"
     }
   ]
 }
