@@ -1057,6 +1057,22 @@
       "section": ".text.ReturnFromException"
     },
     {
+      "name": "FUN_8003ba70",
+      "address": "0x8003ba70",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.FUN_8003ba70"
+    },
+    {
+      "name": "FUN_8003bb30",
+      "address": "0x8003bb30",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.FUN_8003bb30"
+    },
+    {
       "name": "SetTransMatrix_8002b210",
       "address": "0x8002b210",
       "size": 32,

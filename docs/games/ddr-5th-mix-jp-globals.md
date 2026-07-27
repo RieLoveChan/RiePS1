@@ -22,7 +22,10 @@ are not given fabricated absolute addresses.
 | `0x06` | 1 | `unknown_006` | Cleared by mode-`0x10`/default initialization. |
 | `0x09` | 1 | `loop_restart_flag` | Read by `main` itself in both nested per-frame `do`/`while` conditions. `FUN_8002216c` zeroes it every outer-loop pass; `FUN_8002358c` (mode `0xff`/submode `4`) is the only writer that sets it to `1`, forcing the inner per-frame loop to exit early back through a full state/GPU reset. Resolved 2026-07-24. |
 | `0x0b` | 1 | `unknown_00b` | Cleared by the mode-`0xff` GPU-reset handler. |
-| `0x0c`–`0x12` | 4 × 2 | `unknown_00c`…`unknown_012` | Set to 320, 240, 4, and 1 before GPU initialization. |
+| `0x0c` | 2 | `display_width` | Set to 320 (`0x140`) by mode `0x10`/submode `0x00` (`FUN_800232cc`); read as param 1 by `GsInitGraph2` in `FUN_800222fc`. Resolved 2026-07-27. |
+| `0x0e` | 2 | `display_height` | Set to 240 (`0xf0`) by mode `0x10`/submode `0x00` (`FUN_800232cc`); read as param 2 by `GsInitGraph2` in `FUN_800222fc`. Resolved 2026-07-27. |
+| `0x10` | 2 | `display_mode` | Set to 4 by mode `0x10`/submode `0x00` (`FUN_800232cc`); read as param 3 by `GsInitGraph2` in `FUN_800222fc`. Resolved 2026-07-27. |
+| `0x12` | 2 | `display_dither` | Set to 1 by mode `0x10`/submode `0x00` (`FUN_800232cc`); read as param 4 by `GsInitGraph2` in `FUN_800222fc`. Resolved 2026-07-27. |
 | `0x17` | 1 | `glyph_color` | Read by the shared draw routine `FUN_80021470` as a glyph/menu-item color-brightness byte when its draw-flags argument has bit `0x8000` set. Written `0x80` (full brightness) by mode `0x00`/submode `0x02` and by `FUN_800ab408`; computed from a per-character value and `counter_090` by `FUN_8009e4cc`. Not a next-mode field. Resolved 2026-07-24. |
 | `0x1c`–`0x1f` | 4 × 1 | `counter_01c`, `counter_01d`, `direction_01e`, `direction_01f` | `FUN_80023744` advances two wrapping counters by 2/4 and flips their direction flags at the observed signed/unsigned thresholds. |
 | `0x20` | 2 | `unknown_020` | Its low nibble and bit `0x10` produce the signed two-bit-derived value at `+0xc1`; broader meaning remains unknown. |

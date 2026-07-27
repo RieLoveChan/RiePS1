@@ -134,11 +134,18 @@ placement and no per-function alignment directive.
 The 33 already-matched real GTE/COP2 functions (`SetVertex*`, the color/
 vector block, the register-setter block, and `GteRemaining.s`'s matrix/color/
 Z/Lzc set) show the same density pattern as the application code: from
-`LightColor` (`0x800551b8`) through `SetDQA` (`0x80055a7c`), 21 of the 22
-adjacent pairs are zero-gap, with a single 1,472-byte gap between `Lzc` and
-`SetVertex0` left unexamined in this pass (not yet byte-dumped — an explicit
-open item, not assumed to be padding or code). The scattered `GteRemaining`
-functions outside that run (`SetTransMatrix_8002b210`, `MulMatrix0`,
+`LightColor` (`0x800551b8`) through `SetDQA` (`0x80055a7c`), adjacent function
+pairs are predominantly zero-gap.
+
+### Update 2026-07-27: Characterization of the `Lzc`→`SetVertex0` gap (Unit D)
+
+Dumping bytes across the 1,472-byte span between `Lzc` (`0x800553ac`) and `SetVertex0` (`0x80055984`) classifies the range completely:
+- **Function coverage**: 10 distinct functions (`TransposeMatrix`, `gte_rotate_z_matrix`, `GsGetLw`, `GS_133_OBJ_30`, `GS_133_OBJ_21C`, `FUN_80055788`, `FUN_80055870`, `FUN_8005589c`, `FUN_800558e4`, `GsSetFogParam`) account for **1,444 of 1,472 bytes (98.1%)** as dense, valid MIPS code.
+- **Inter-function zero padding**: 6 of the 11 adjacent transitions are 0-byte (dense back-to-back code). The remaining 4 gaps (4 bytes at `0x800553c4`, 12 bytes at `0x800554bc`, 8 bytes at `0x80055780`, and 4 bytes at `0x80055980` — 28 bytes total, 1.9%) were dumped directly from `SLPM_868.97_1` and confirmed to be **100% zero-alignment padding** (`00` bytes only) rounding function entry points to 8-byte or 16-byte boundaries (e.g., `GsGetLw` at `0x800554c8`, `FUN_80055788` at `0x80055788`, `SetVertex0` at `0x80055984`).
+- **Reproduction**: `pwsh -Command '$b=[System.IO.File]::ReadAllBytes("work/ddr5thmix-extract/exe/SLPM_868.97_1"); 0x800553c0,0x800554b8,0x8005577c,0x8005597c | % { $o=$_ - 0x8001a800 + 2048; ($b[$o..($o+15)] | % { "{0:x2}" -f $_ }) -join " " }'`
+- **Conclusion**: The formerly unexamined `Lzc`→`SetVertex0` gap is 98.1% dense library code and 1.9% inter-function zero alignment padding, with zero unexplained or unclassified bytes.
+
+The scattered `GteRemaining` functions outside that run (`SetTransMatrix_8002b210`, `MulMatrix0`,
 `SetRotMatrix`/`SetLightMatrix`/`SetTransMatrix`/`SetColorMatrix`/
 `SetFarColor`, `SetBackColor`) sit at widely separated addresses with large
 gaps (1,236 to 117,104 bytes) that were not characterized in this pass.
@@ -212,6 +219,14 @@ address this project had already independently confirmed by hand as a real
 function's entry point, and the object's coherent 12KB span holds a cluster
 of other already-confirmed real library functions consistent with a single
 PsyQ graphics-kernel object.
+
+### Update 2026-07-27: Second independent object-boundary corroboration (Unit B)
+
+- **Second independent corroboration**: Auditing all 60 multi-row `<name>_OBJ_<offset>` runs across the symbol map identified a second independently corroborated instance: the **`FORMAT`** run (`0x8003b6e8`–`0x8003ba38`, 848 bytes).
+- **Implied base & byte account**: All 3 `FORMAT_OBJ_*` rows (`FORMAT_OBJ_0` @ `0x8003b6e8`, `FORMAT_OBJ_F0` @ `0x8003b7d8`, `FORMAT_OBJ_320` @ `0x8003ba08`) resolve to a single consistent base `0x8003b6e8`. Merging these with the interleaved named PsyQ function `_card_format` (`0x8003b82c`, 476 bytes) yields **848 of 848 bytes covered (100.0%)**, `gap_bytes: 0`, `merged_intervals: 1`, `complete_byte_account: true`.
+- **Independently confirmed boundary**: The measured end address of the `FORMAT` object, **`0x8003ba38`**, lands **exactly on `0x8003ba38`**, the entry point of **`_card_read`** — an independently hand-reviewed, exact-byte-matched PsyQ BIOS trampoline function (`confidence = verified`, `source_status = hand_written_source`, built/reference SHA-256 `875fa8774175cad7c553fa1bcaa28639e989aa4933dedc1475a3e5eb84d9b6c5`) in `src/ddr5thmix/PsyqBiosStubs.s`.
+- **Reproduction**: `pwsh -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix FORMAT -ObjectStart ([Convert]::ToInt64("8003b6e8", 16)) -ObjectEnd ([Convert]::ToInt64("8003ba38", 16))`
+- **Evidentiary bar status**: Satisfies criterion 2 (second independently derived boundary that agrees with the tool-derived one) for the project as a whole. Along with Unit A's `SYS` results, both criteria 1 and 2 are now satisfied for their respective objects.
 
 ## What remains unconfirmed here
 
@@ -309,6 +324,38 @@ extraction, alongside a clean negative result (no alignment padding anywhere
 else checked) and several explicitly flagged open items (the two new BIOS
 stubs' unexplained 8-byte prefix, the unexamined `Lzc`→`SetVertex0` gap, and
 the un-cross-referenced object names' semantic identity).
+
+# Object-Name Semantic Identity and Claim Boundaries (Unit F)
+
+## 1. Contiguous Byte Coverage vs. Semantic Name Provenance
+
+A complete byte account (`gap_bytes: 0` for a run of `<name>_OBJ_<offset>` symbols) proves **contiguous byte coverage produced by a single translation unit** in linked memory. However, a zero-gap byte account alone does **not** prove that `<name>` is the original PsyQ SDK library object's exact source filename or object name.
+
+In decompilation research, object prefix names derived from Ghidra PSX loader auto-analysis or decompiler heuristics are synthetic convenience labels. Assigning semantic identity to an object name (e.g. claiming an object is PsyQ's official `LIBSYS.OBJ` or `CARD.OBJ`) requires independent primary corroboration beyond address arithmetic.
+
+## 2. Audit of `SYS` and `FORMAT` Object Boundaries
+
+### `SYS` Object (`0x800381e8`–`0x8003b114`, 12,076 bytes)
+- **Supported evidence**: 100.0% byte account (12,076 / 12,076 covered bytes, `gap_bytes: 0`, `merged_intervals: 1`), corroborated by Ghidra disassembly of 3 missing rows (`SYS_OBJ_F80`, `SYS_OBJ_22F4`, `SYS_OBJ_2828`) all resolving to base `0x800381e8`. Bounded by 8-byte zero-alignment padding at both start (`0x800381dc`–`0x800381e7`) and end (`0x8003b114`–`0x8003b11b`).
+- **Missing evidence**: Direct PsyQ SDK library object filename or symbol table entry proving `SYS` corresponds to a specific SDK object file (e.g. `LIBSYS.OBJ`).
+- **Status**: `candidate_for_audit` (object-boundary proven, semantic object name unconfirmed).
+
+### `FORMAT` Object (`0x8003b6e8`–`0x8003ba38`, 848 bytes)
+- **Supported evidence**: 100.0% byte account (848 / 848 covered bytes, `gap_bytes: 0`, `merged_intervals: 1`), all 3 `FORMAT_OBJ_*` rows resolving to base `0x8003b6e8`. Bounded by 8-byte zero-alignment padding at start (`0x8003b6e0`–`0x8003b6e7`) and landing directly on verified BIOS stub `_card_read` (`0x8003ba38`).
+- **Missing evidence**: Direct PsyQ SDK library object filename or symbol table entry proving `FORMAT` corresponds to `CARD.OBJ` or `FORMAT.OBJ`.
+- **Status**: `candidate_for_audit` (object-boundary proven, semantic object name unconfirmed).
+
+## 3. Falsifiable Standard for Object Boundary Claims
+
+To maintain evidentiary rigor across all future agent work, object boundary claims must adhere to the following two-tier classification standard:
+
+1. **`candidate_for_audit`**:
+   - Requires: 100.0% complete byte coverage (`gap_bytes: 0`), exactly 1 merged interval across all constituent symbols, 0 interior unaccounted bytes, and verified outer-edge zero alignment padding.
+   - Meaning: Confirms a contiguous translation unit boundary in the binary image.
+
+2. **`boundary_confirmed`**:
+   - Requires: All `candidate_for_audit` criteria PLUS at least one primary direct provenance link (e.g. exact byte match against a standalone object built from lawful PsyQ 4.4.0 `.OBJ`/`.LIB` sources, embedded path/string literals within the object, or explicit PsyQ linker map symbol table references).
+   - Meaning: Confirms both contiguous translation unit layout and exact SDK/source object identity.
 
 # Reproduction
 
