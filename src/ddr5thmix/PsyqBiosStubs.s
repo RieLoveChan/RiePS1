@@ -44,4 +44,6 @@
     BIOS_STUB TestEvent,            0xb0, 0x0b
     BIOS_STUB EnableEvent,          0xb0, 0x0c
     BIOS_STUB DisableEvent,         0xb0, 0x0d
+    BIOS_STUB FUN_8003ba70,         0xb0, 0x3f
+    BIOS_STUB FUN_8003bb30,         0xa0, 0x72
     BIOS_STUB ReturnFromException,  0xb0, 0x17

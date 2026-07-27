@@ -496,11 +496,11 @@ original source.
 
 ## PsyQ BIOS/kernel trampoline block
 
-Thirty 12-byte PsyQ wrappers are reconstructed through the project-authored
+Thirty-two 12-byte PsyQ wrappers are reconstructed through the project-authored
 `BIOS_STUB` macro in `src/ddr5thmix/PsyqBiosStubs.s`. Each independently
 extracted section loads `t2` with BIOS vector `0xa0` or `0xb0`, jumps through
 `t2`, and loads the service number into `t1` in the `jr` delay slot. GNU
-binutils 2.43 reproduces all 360 selected bytes from the pinned executable.
+binutils 2.43 reproduces all 384 selected bytes from the pinned executable.
 
 | Function | BIOS vector | Service | Built/reference SHA-256 |
 |---|---:|---:|---|
@@ -533,6 +533,8 @@ binutils 2.43 reproduces all 360 selected bytes from the pinned executable.
 | TestEvent | 0xb0 | 0x0b | 5d756c5ef10f08bb8b4ef9304c79b2a3924ce3bea546c70a70a457bd6de497aa |
 | EnableEvent | 0xb0 | 0x0c | bb630b11b300ca136ec849b32f013e682b1df95abbe8a39ee561b3751d68c1d1 |
 | DisableEvent | 0xb0 | 0x0d | 8d198f2effdd0548cb262bb2893dc24159833d354326cbd2afde9140a0b858a4 |
+| FUN_8003ba70 | 0xb0 | 0x3f | 859ccf6879a1def400ddcd0fab5063a5b8ee05bd985e429028e3322b6e149fd9 |
+| FUN_8003bb30 | 0xa0 | 0x72 | d3eefd259eb1b5f648ec00610d2defbf4c6e5873f47895dd3d23a322bb0cfd7f |
 | ReturnFromException | 0xb0 | 0x17 | 6403f02e44574f9166b7e8b8d3cb89a7a05b124c57f6427b05647750b30f0d1f |
 
 These matches establish the linked trampoline encodings and service selectors;
