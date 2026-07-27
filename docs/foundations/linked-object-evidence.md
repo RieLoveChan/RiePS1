@@ -134,11 +134,18 @@ placement and no per-function alignment directive.
 The 33 already-matched real GTE/COP2 functions (`SetVertex*`, the color/
 vector block, the register-setter block, and `GteRemaining.s`'s matrix/color/
 Z/Lzc set) show the same density pattern as the application code: from
-`LightColor` (`0x800551b8`) through `SetDQA` (`0x80055a7c`), 21 of the 22
-adjacent pairs are zero-gap, with a single 1,472-byte gap between `Lzc` and
-`SetVertex0` left unexamined in this pass (not yet byte-dumped — an explicit
-open item, not assumed to be padding or code). The scattered `GteRemaining`
-functions outside that run (`SetTransMatrix_8002b210`, `MulMatrix0`,
+`LightColor` (`0x800551b8`) through `SetDQA` (`0x80055a7c`), adjacent function
+pairs are predominantly zero-gap.
+
+### Update 2026-07-27: Characterization of the `Lzc`→`SetVertex0` gap (Unit D)
+
+Dumping bytes across the 1,472-byte span between `Lzc` (`0x800553ac`) and `SetVertex0` (`0x80055984`) classifies the range completely:
+- **Function coverage**: 10 distinct functions (`TransposeMatrix`, `gte_rotate_z_matrix`, `GsGetLw`, `GS_133_OBJ_30`, `GS_133_OBJ_21C`, `FUN_80055788`, `FUN_80055870`, `FUN_8005589c`, `FUN_800558e4`, `GsSetFogParam`) account for **1,444 of 1,472 bytes (98.1%)** as dense, valid MIPS code.
+- **Inter-function zero padding**: 6 of the 11 adjacent transitions are 0-byte (dense back-to-back code). The remaining 4 gaps (4 bytes at `0x800553c4`, 12 bytes at `0x800554bc`, 8 bytes at `0x80055780`, and 4 bytes at `0x80055980` — 28 bytes total, 1.9%) were dumped directly from `SLPM_868.97_1` and confirmed to be **100% zero-alignment padding** (`00` bytes only) rounding function entry points to 8-byte or 16-byte boundaries (e.g., `GsGetLw` at `0x800554c8`, `FUN_80055788` at `0x80055788`, `SetVertex0` at `0x80055984`).
+- **Reproduction**: `pwsh -Command '$b=[System.IO.File]::ReadAllBytes("work/ddr5thmix-extract/exe/SLPM_868.97_1"); 0x800553c0,0x800554b8,0x8005577c,0x8005597c | % { $o=$_ - 0x8001a800 + 2048; ($b[$o..($o+15)] | % { "{0:x2}" -f $_ }) -join " " }'`
+- **Conclusion**: The formerly unexamined `Lzc`→`SetVertex0` gap is 98.1% dense library code and 1.9% inter-function zero alignment padding, with zero unexplained or unclassified bytes.
+
+The scattered `GteRemaining` functions outside that run (`SetTransMatrix_8002b210`, `MulMatrix0`,
 `SetRotMatrix`/`SetLightMatrix`/`SetTransMatrix`/`SetColorMatrix`/
 `SetFarColor`, `SetBackColor`) sit at widely separated addresses with large
 gaps (1,236 to 117,104 bytes) that were not characterized in this pass.
