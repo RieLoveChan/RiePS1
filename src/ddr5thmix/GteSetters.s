@@ -126,3 +126,14 @@ SetDQA:
     nop
     .end SetDQA
     .size SetDQA, . - SetDQA
+
+    .section .text.SetDQB,"ax",@progbits
+    .globl SetDQB
+    .type SetDQB, @function
+    .ent SetDQB
+SetDQB:
+    ctc2    $a0, $28
+    jr      $ra
+    nop
+    .end SetDQB
+    .size SetDQB, . - SetDQB

@@ -2428,6 +2428,284 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibgsStubs.s",
       "section": ".text.GsLinkObject5"
+    },
+    {
+      "name": "SysEnqIntRP",
+      "address": "0x8003c418",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.SysEnqIntRP"
+    },
+    {
+      "name": "SysDeqIntRP",
+      "address": "0x8003c428",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.SysDeqIntRP"
+    },
+    {
+      "name": "ChangeClearRCnt",
+      "address": "0x8003bc98",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqBiosStubs.s",
+      "section": ".text.ChangeClearRCnt"
+    },
+    {
+      "name": "SetDQB",
+      "address": "0x80055a88",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/GteSetters.s",
+      "section": ".text.SetDQB"
+    },
+    {
+      "name": "CdFlush",
+      "address": "0x8003f7e0",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdFlush",
+      "symbols": {
+        "CD_flush": "0x80040e00"
+      }
+    },
+    {
+      "name": "CdSetDebug",
+      "address": "0x8003f800",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdSetDebug"
+    },
+    {
+      "name": "CdSync",
+      "address": "0x8003f87c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdSync",
+      "symbols": {
+        "CD_sync": "0x80040424"
+      }
+    },
+    {
+      "name": "CdReady",
+      "address": "0x8003f89c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdReady",
+      "symbols": {
+        "CD_ready": "0x800406a4"
+      }
+    },
+    {
+      "name": "CdSyncCallback",
+      "address": "0x8003f8bc",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdSyncCallback"
+    },
+    {
+      "name": "CdReadyCallback",
+      "address": "0x8003f8d0",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdReadyCallback"
+    },
+    {
+      "name": "CdMix",
+      "address": "0x8003fca0",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdMix",
+      "symbols": {
+        "CD_vol": "0x80040d78"
+      }
+    },
+    {
+      "name": "CdGetSector",
+      "address": "0x8003fcc0",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdGetSector",
+      "symbols": {
+        "CD_getsector": "0x80041358"
+      }
+    },
+    {
+      "name": "CdGetSector2",
+      "address": "0x8003fce0",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdGetSector2",
+      "symbols": {
+        "CD_getsector2": "0x80041458"
+      }
+    },
+    {
+      "name": "CdDataSync",
+      "address": "0x8003fd24",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CdDataSync",
+      "symbols": {
+        "CD_datasync": "0x800411f0"
+      }
+    },
+    {
+      "name": "CD_set_test_parmnum",
+      "address": "0x80041544",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibcdStubs.s",
+      "section": ".text.CD_set_test_parmnum"
+    },
+    {
+      "name": "EnablePAD",
+      "address": "0x8003c438",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text.EnablePAD"
+    },
+    {
+      "name": "DisablePAD",
+      "address": "0x8003c44c",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text.DisablePAD"
+    },
+    {
+      "name": "SetInitPadFlag",
+      "address": "0x8003c0d8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text.SetInitPadFlag"
+    },
+    {
+      "name": "ReadInitPadFlag",
+      "address": "0x8003c0e4",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text.ReadInitPadFlag"
+    },
+    {
+      "name": "PadChkVsync",
+      "address": "0x8003c548",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text.PadChkVsync",
+      "symbols": {
+        "_padChkVsync": "0x8003cd44"
+      }
+    },
+    {
+      "name": "PadStartCom",
+      "address": "0x8003c568",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text.PadStartCom",
+      "symbols": {
+        "_padStartCom": "0x8003cd58"
+      }
+    },
+    {
+      "name": "PadStopCom",
+      "address": "0x8003c588",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text.PadStopCom",
+      "symbols": {
+        "_padStopCom": "0x8003ce24"
+      }
+    },
+    {
+      "name": "_padChkVsync",
+      "address": "0x8003cd44",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text._padChkVsync"
+    },
+    {
+      "name": "_padSetAct",
+      "address": "0x8003d7d8",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text._padSetAct"
+    },
+    {
+      "name": "_padSetCmd",
+      "address": "0x8003d7e4",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text._padSetCmd"
+    },
+    {
+      "name": "_padCmdParaMode",
+      "address": "0x8003e32c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqLibpadStubs.s",
+      "section": ".text._padCmdParaMode"
+    },
+    {
+      "name": "GetIntrMask",
+      "address": "0x80035c6c",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqMiscStubs.s",
+      "section": ".text.GetIntrMask"
+    },
+    {
+      "name": "SetIntrMask",
+      "address": "0x80035c84",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqMiscStubs.s",
+      "section": ".text.SetIntrMask"
+    },
+    {
+      "name": "GsGetActiveBuff",
+      "address": "0x80036ca8",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqMiscStubs.s",
+      "section": ".text.GsGetActiveBuff"
+    },
+    {
+      "name": "GetGraphDebug",
+      "address": "0x8003845c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqMiscStubs.s",
+      "section": ".text.GetGraphDebug"
+    },
+    {
+      "name": "SpuGetVoiceEnvelope",
+      "address": "0x8003326c",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqMiscStubs.s",
+      "section": ".text.SpuGetVoiceEnvelope"
     }
   ]
 }

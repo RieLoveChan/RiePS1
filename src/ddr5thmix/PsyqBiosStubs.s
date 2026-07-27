@@ -72,3 +72,6 @@
     BIOS_STUB bcopy,                0xa0, 0x27
     BIOS_STUB close,                0xb0, 0x36
     BIOS_STUB strncpy,              0xa0, 0x1a
+    BIOS_STUB SysEnqIntRP,          0xc0, 0x02
+    BIOS_STUB SysDeqIntRP,          0xc0, 0x03
+    BIOS_STUB ChangeClearRCnt,      0xc0, 0x0a
