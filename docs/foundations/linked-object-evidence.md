@@ -213,6 +213,12 @@ function's entry point, and the object's coherent 12KB span holds a cluster
 of other already-confirmed real library functions consistent with a single
 PsyQ graphics-kernel object.
 
+### Update 2026-07-27: Byte-account closure and edge-convention check (Unit A)
+
+- **Byte account closure**: Running `tools/build/Invoke-PsyqObjectBoundaryCheck.ps1` after adding the three un-inventoried `SYS_OBJ_*` rows identified by Ghidra (`SYS_OBJ_F80` @ `0x80039168`, 116 bytes; `SYS_OBJ_22F4` @ `0x8003a4dc`, 36 bytes; `SYS_OBJ_2828` @ `0x8003aa10`, 120 bytes — each having implied base `address − offset = 0x800381e8`) yields **12,076 of 12,076 bytes covered (100.0%)**, `gap_bytes: 0`, `merged_intervals: 1`, `complete_byte_account: true`.
+- **True edge convention check**: Dumping raw bytes immediately before start (`0x800381dc`–`0x800381e7`) and immediately after end (`0x8003b114`–`0x8003b11b`) with `DumpBytes.java` reveals **exactly 8 zero bytes (`00 00 00 00 00 00 00 00`) at both outer edges**. This confirms an 8-byte (2-word) zero-alignment padding convention at the outer boundaries of the `SYS` object file.
+- **Evidentiary bar status**: Satisfies criterion 1 (complete contiguous byte account) and criterion 3 (checked edge alignment convention) for the `SYS` object (`0x800381e8`–`0x8003b114`). Criterion 2 (second independent corroboration) remains open until Unit B.
+
 ## What remains unconfirmed here
 
 The specific object names recovered this way (`SPU`, `S_SAV`, `S_SCA`,

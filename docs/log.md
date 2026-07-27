@@ -1,6 +1,7 @@
 # Knowledge Bundle Update Log
 
 ## 2026-07-27
+* **External linked-object-boundary work package — Unit A complete**: Added the three missing `SYS_OBJ_*` rows identified by Ghidra auto-analysis (`SYS_OBJ_F80` @ `0x80039168`, 116 bytes; `SYS_OBJ_22F4` @ `0x8003a4dc`, 36 bytes; `SYS_OBJ_2828` @ `0x8003aa10`, 120 bytes — each having implied base `address − offset = 0x800381e8`) to `docs/games/ddr-5th-mix-jp-symbol-map.csv`. Verified `tools/build/Invoke-PsyqObjectBoundaryCheck.ps1` runs from clean against the tracked CSV and yields 100.0% byte account closure (12,076 of 12,076 bytes, `gap_bytes: 0`, `merged_intervals: 1`, `complete_byte_account: true`). Checked outer edges with `DumpBytes.java` (`0x800381dc`–`0x800381e7` and `0x8003b114`–`0x8003b11b`) and confirmed an 8-byte zero-alignment padding convention at both outer boundaries. Updated `docs/foundations/linked-object-evidence.md` with quoted check output and edge evidence.
 * **External linked-object-boundary work package**: Added
   `docs/workflows/external-agent-linked-object-boundary.md`, a bounded
   delegation package that extends `docs/foundations/linked-object-evidence.md`
