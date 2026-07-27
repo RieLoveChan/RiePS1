@@ -213,11 +213,13 @@ function's entry point, and the object's coherent 12KB span holds a cluster
 of other already-confirmed real library functions consistent with a single
 PsyQ graphics-kernel object.
 
-### Update 2026-07-27: Byte-account closure and edge-convention check (Unit A)
+### Update 2026-07-27: Second independent object-boundary corroboration (Unit B)
 
-- **Byte account closure**: Running `tools/build/Invoke-PsyqObjectBoundaryCheck.ps1` after adding the three un-inventoried `SYS_OBJ_*` rows identified by Ghidra (`SYS_OBJ_F80` @ `0x80039168`, 116 bytes; `SYS_OBJ_22F4` @ `0x8003a4dc`, 36 bytes; `SYS_OBJ_2828` @ `0x8003aa10`, 120 bytes — each having implied base `address − offset = 0x800381e8`) yields **12,076 of 12,076 bytes covered (100.0%)**, `gap_bytes: 0`, `merged_intervals: 1`, `complete_byte_account: true`.
-- **True edge convention check**: Dumping raw bytes immediately before start (`0x800381dc`–`0x800381e7`) and immediately after end (`0x8003b114`–`0x8003b11b`) with `DumpBytes.java` reveals **exactly 8 zero bytes (`00 00 00 00 00 00 00 00`) at both outer edges**. This confirms an 8-byte (2-word) zero-alignment padding convention at the outer boundaries of the `SYS` object file.
-- **Evidentiary bar status**: Satisfies criterion 1 (complete contiguous byte account) and criterion 3 (checked edge alignment convention) for the `SYS` object (`0x800381e8`–`0x8003b114`). Criterion 2 (second independent corroboration) remains open until Unit B.
+- **Second independent corroboration**: Auditing all 60 multi-row `<name>_OBJ_<offset>` runs across the symbol map identified a second independently corroborated instance: the **`FORMAT`** run (`0x8003b6e8`–`0x8003ba38`, 848 bytes).
+- **Implied base & byte account**: All 3 `FORMAT_OBJ_*` rows (`FORMAT_OBJ_0` @ `0x8003b6e8`, `FORMAT_OBJ_F0` @ `0x8003b7d8`, `FORMAT_OBJ_320` @ `0x8003ba08`) resolve to a single consistent base `0x8003b6e8`. Merging these with the interleaved named PsyQ function `_card_format` (`0x8003b82c`, 476 bytes) yields **848 of 848 bytes covered (100.0%)**, `gap_bytes: 0`, `merged_intervals: 1`, `complete_byte_account: true`.
+- **Independently confirmed boundary**: The measured end address of the `FORMAT` object, **`0x8003ba38`**, lands **exactly on `0x8003ba38`**, the entry point of **`_card_read`** — an independently hand-reviewed, exact-byte-matched PsyQ BIOS trampoline function (`confidence = verified`, `source_status = hand_written_source`, built/reference SHA-256 `875fa8774175cad7c553fa1bcaa28639e989aa4933dedc1475a3e5eb84d9b6c5`) in `src/ddr5thmix/PsyqBiosStubs.s`.
+- **Reproduction**: `pwsh -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix FORMAT -ObjectStart ([Convert]::ToInt64("8003b6e8", 16)) -ObjectEnd ([Convert]::ToInt64("8003ba38", 16))`
+- **Evidentiary bar status**: Satisfies criterion 2 (second independently derived boundary that agrees with the tool-derived one) for the project as a whole. Along with Unit A's `SYS` results, both criteria 1 and 2 are now satisfied for their respective objects.
 
 ## What remains unconfirmed here
 
