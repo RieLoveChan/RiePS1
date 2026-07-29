@@ -14,8 +14,8 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,127 total: 652 verified, 102 manually reviewed, 493 library signatures, 880 unverified |
-| Exact reconstruction | 722 functions / 42,672 selected bytes: 652/33,300 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Main-executable function inventory | 2,127 total: 737 verified, 102 manually reviewed, 408 library signatures, 880 unverified |
+| Exact reconstruction | 807 functions / 52,284 selected bytes: 737/42,912 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
 | Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
@@ -25,7 +25,7 @@ and validate its recorded hashes before comparison.
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress. Exact accepted reconstruction
-currently covers 652 of 2,127 main-executable functions (about 30.7%), plus all
+currently covers 737 of 2,127 main-executable functions (about 34.6%), plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
 ## Completed foundations
