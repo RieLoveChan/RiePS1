@@ -2706,6 +2706,1287 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqMiscStubs.s",
       "section": ".text.SpuGetVoiceEnvelope"
+    },
+    {
+      "name": "S_M_INIT_OBJ_4C",
+      "address": "0x8002d9a8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_M_INIT_OBJ_4C"
+    },
+    {
+      "name": "SPU_OBJ_4EC",
+      "address": "0x8002dea8",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPU_OBJ_4EC"
+    },
+    {
+      "name": "SPU_OBJ_814",
+      "address": "0x8002e1d0",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPU_OBJ_814"
+    },
+    {
+      "name": "SPU_OBJ_948",
+      "address": "0x8002e304",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPU_OBJ_948"
+    },
+    {
+      "name": "SPU_OBJ_9EC",
+      "address": "0x8002e3a8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPU_OBJ_9EC"
+    },
+    {
+      "name": "SPU_OBJ_A28",
+      "address": "0x8002e3e4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPU_OBJ_A28"
+    },
+    {
+      "name": "SPU_OBJ_A7C",
+      "address": "0x8002e438",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPU_OBJ_A7C"
+    },
+    {
+      "name": "S_M_UTIL_OBJ_78",
+      "address": "0x8002e7d4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_M_UTIL_OBJ_78"
+    },
+    {
+      "name": "S_M_UTIL_OBJ_104",
+      "address": "0x8002e860",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_M_UTIL_OBJ_104"
+    },
+    {
+      "name": "S_RRWA_OBJ_3C",
+      "address": "0x8002e8a8",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_RRWA_OBJ_3C"
+    },
+    {
+      "name": "S_SAV_OBJ_130",
+      "address": "0x8002ea1c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SAV_OBJ_130",
+      "symbols": {
+        "sym_8002eb98": "0x8002eb98"
+      }
+    },
+    {
+      "name": "S_SAV_OBJ_2A4",
+      "address": "0x8002eb90",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SAV_OBJ_2A4"
+    },
+    {
+      "name": "S_SAV_OBJ_2AC",
+      "address": "0x8002eb98",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SAV_OBJ_2AC"
+    },
+    {
+      "name": "S_SAV_OBJ_2B4",
+      "address": "0x8002eba0",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SAV_OBJ_2B4"
+    },
+    {
+      "name": "S_SI_OBJ_F4",
+      "address": "0x8002ee40",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SI_OBJ_F4",
+      "symbols": {
+        "sym_8003bae8": "0x8003bae8",
+        "sym_8002ee78": "0x8002ee78"
+      }
+    },
+    {
+      "name": "S_SI_OBJ_12C",
+      "address": "0x8002ee78",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SI_OBJ_12C"
+    },
+    {
+      "name": "S_SIA_OBJ_30",
+      "address": "0x8002eedc",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SIA_OBJ_30"
+    },
+    {
+      "name": "S_SK_OBJ_1AC",
+      "address": "0x8002f108",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SK_OBJ_1AC"
+    },
+    {
+      "name": "S_SK_OBJ_1B4",
+      "address": "0x8002f110",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SK_OBJ_1B4"
+    },
+    {
+      "name": "S_GKS_OBJ_88",
+      "address": "0x8002f1a4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_GKS_OBJ_88"
+    },
+    {
+      "name": "S_STSA_OBJ_4C",
+      "address": "0x8002f258",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_STSA_OBJ_4C"
+    },
+    {
+      "name": "SR_GAKS_OBJ_CC",
+      "address": "0x8002f398",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SR_GAKS_OBJ_CC"
+    },
+    {
+      "name": "S_SVA_OBJ_13C",
+      "address": "0x8002f568",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_13C",
+      "symbols": {
+        "sym_8002f59c": "0x8002f59c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_144",
+      "address": "0x8002f570",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_144",
+      "symbols": {
+        "sym_8002f59c": "0x8002f59c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_14C",
+      "address": "0x8002f578",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_14C",
+      "symbols": {
+        "sym_8002f59c": "0x8002f59c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_154",
+      "address": "0x8002f580",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_154",
+      "symbols": {
+        "sym_8002f59c": "0x8002f59c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_15C",
+      "address": "0x8002f588",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_15C",
+      "symbols": {
+        "sym_8002f59c": "0x8002f59c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_164",
+      "address": "0x8002f590",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_164",
+      "symbols": {
+        "sym_8002f59c": "0x8002f59c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_21C",
+      "address": "0x8002f648",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_21C",
+      "symbols": {
+        "sym_8002f67c": "0x8002f67c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_224",
+      "address": "0x8002f650",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_224",
+      "symbols": {
+        "sym_8002f67c": "0x8002f67c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_22C",
+      "address": "0x8002f658",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_22C",
+      "symbols": {
+        "sym_8002f67c": "0x8002f67c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_234",
+      "address": "0x8002f660",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_234",
+      "symbols": {
+        "sym_8002f67c": "0x8002f67c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_23C",
+      "address": "0x8002f668",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_23C",
+      "symbols": {
+        "sym_8002f67c": "0x8002f67c"
+      }
+    },
+    {
+      "name": "S_SVA_OBJ_244",
+      "address": "0x8002f670",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SVA_OBJ_244",
+      "symbols": {
+        "sym_8002f67c": "0x8002f67c"
+      }
+    },
+    {
+      "name": "S_N2P_OBJ_C8",
+      "address": "0x8002faf4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_N2P_OBJ_C8"
+    },
+    {
+      "name": "S_SCA_OBJ_58",
+      "address": "0x8002ff94",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_58",
+      "symbols": {
+        "sym_8002ffd4": "0x8002ffd4"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_60",
+      "address": "0x8002ff9c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_60",
+      "symbols": {
+        "sym_8002ffd4": "0x8002ffd4"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_68",
+      "address": "0x8002ffa4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_68",
+      "symbols": {
+        "sym_8002ffd4": "0x8002ffd4"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_70",
+      "address": "0x8002ffac",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_70",
+      "symbols": {
+        "sym_8002ffd4": "0x8002ffd4"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_78",
+      "address": "0x8002ffb4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_78",
+      "symbols": {
+        "sym_8002ffd4": "0x8002ffd4"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_80",
+      "address": "0x8002ffbc",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_80",
+      "symbols": {
+        "sym_8002ffd4": "0x8002ffd4"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_88",
+      "address": "0x8002ffc4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_88",
+      "symbols": {
+        "sym_8002ffd4": "0x8002ffd4"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_90",
+      "address": "0x8002ffcc",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_90"
+    },
+    {
+      "name": "S_SCA_OBJ_118",
+      "address": "0x80030054",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_118",
+      "symbols": {
+        "sym_80030094": "0x80030094"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_120",
+      "address": "0x8003005c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_120",
+      "symbols": {
+        "sym_80030094": "0x80030094"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_128",
+      "address": "0x80030064",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_128",
+      "symbols": {
+        "sym_80030094": "0x80030094"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_130",
+      "address": "0x8003006c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_130",
+      "symbols": {
+        "sym_80030094": "0x80030094"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_138",
+      "address": "0x80030074",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_138",
+      "symbols": {
+        "sym_80030094": "0x80030094"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_140",
+      "address": "0x8003007c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_140",
+      "symbols": {
+        "sym_80030094": "0x80030094"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_148",
+      "address": "0x80030084",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_148",
+      "symbols": {
+        "sym_80030094": "0x80030094"
+      }
+    },
+    {
+      "name": "S_SCA_OBJ_150",
+      "address": "0x8003008c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_150"
+    },
+    {
+      "name": "S_SCA_OBJ_370",
+      "address": "0x800302ac",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SCA_OBJ_370"
+    },
+    {
+      "name": "SSSTART_OBJ_208",
+      "address": "0x80030514",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SSSTART_OBJ_208",
+      "symbols": {
+        "sym_80035b38": "0x80035b38"
+      }
+    },
+    {
+      "name": "SSSTART_OBJ_210",
+      "address": "0x8003051c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SSSTART_OBJ_210",
+      "symbols": {
+        "sym_8003bbf8": "0x8003bbf8"
+      }
+    },
+    {
+      "name": "SSSTART_OBJ_2F4",
+      "address": "0x80030600",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SSSTART_OBJ_2F4"
+    },
+    {
+      "name": "MIDIREAD_OBJ_204",
+      "address": "0x80030d70",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.MIDIREAD_OBJ_204",
+      "symbols": {
+        "sym_80030e94": "0x80030e94"
+      }
+    },
+    {
+      "name": "MIDIREAD_OBJ_5F8",
+      "address": "0x80031164",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.MIDIREAD_OBJ_5F8",
+      "symbols": {
+        "sym_80031234": "0x80031234"
+      }
+    },
+    {
+      "name": "MIDIREAD_OBJ_6BC",
+      "address": "0x80031228",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.MIDIREAD_OBJ_6BC"
+    },
+    {
+      "name": "SSTICK_OBJ_C8",
+      "address": "0x80031a44",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SSTICK_OBJ_C8",
+      "symbols": {
+        "sym_80031ab4": "0x80031ab4"
+      }
+    },
+    {
+      "name": "SSTICK_OBJ_D8",
+      "address": "0x80031a54",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SSTICK_OBJ_D8",
+      "symbols": {
+        "sym_80031ab4": "0x80031ab4"
+      }
+    },
+    {
+      "name": "SSTICK_OBJ_124",
+      "address": "0x80031aa0",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SSTICK_OBJ_124",
+      "symbols": {
+        "sym_80031ab4": "0x80031ab4"
+      }
+    },
+    {
+      "name": "SSTICK_OBJ_138",
+      "address": "0x80031ab4",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SSTICK_OBJ_138"
+    },
+    {
+      "name": "TEMPO_OBJ_124",
+      "address": "0x80031bf0",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.TEMPO_OBJ_124"
+    },
+    {
+      "name": "UT_KEYV_OBJ_31C",
+      "address": "0x80032008",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.UT_KEYV_OBJ_31C"
+    },
+    {
+      "name": "UT_KEYV_OBJ_3C0",
+      "address": "0x800320ac",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.UT_KEYV_OBJ_3C0"
+    },
+    {
+      "name": "S_SRMP_OBJ_158",
+      "address": "0x800322a4",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_SRMP_OBJ_158"
+    },
+    {
+      "name": "UT_REV_OBJ_8C",
+      "address": "0x80032b88",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.UT_REV_OBJ_8C"
+    },
+    {
+      "name": "SsUtGetReverbType",
+      "address": "0x80032b98",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SsUtGetReverbType"
+    },
+    {
+      "name": "VM_N2P_OBJ_1CC",
+      "address": "0x800337e8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.VM_N2P_OBJ_1CC"
+    },
+    {
+      "name": "VM_VSU_OBJ_B8",
+      "address": "0x80034b14",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.VM_VSU_OBJ_B8"
+    },
+    {
+      "name": "VS_SRV_OBJ_28",
+      "address": "0x80034b74",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.VS_SRV_OBJ_28"
+    },
+    {
+      "name": "VS_VH_OBJ_68",
+      "address": "0x80035014",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.VS_VH_OBJ_68"
+    },
+    {
+      "name": "VS_VTBP_OBJ_DC",
+      "address": "0x800355a8",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.VS_VTBP_OBJ_DC",
+      "symbols": {
+        "sym_800335dc": "0x800335dc",
+        "sym_80035630": "0x80035630"
+      }
+    },
+    {
+      "name": "S_ITC_OBJ_88",
+      "address": "0x800357a4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.S_ITC_OBJ_88"
+    },
+    {
+      "name": "VSYNC_OBJ_200",
+      "address": "0x80035af8",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.VSYNC_OBJ_200"
+    },
+    {
+      "name": "CheckCallback",
+      "address": "0x80035c5c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.CheckCallback"
+    },
+    {
+      "name": "INTR_OBJ_68C",
+      "address": "0x80036194",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.INTR_OBJ_68C"
+    },
+    {
+      "name": "INTR_DMA_OBJ_270",
+      "address": "0x80036558",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.INTR_DMA_OBJ_270"
+    },
+    {
+      "name": "GS_122_OBJ_DC",
+      "address": "0x80038104",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.GS_122_OBJ_DC"
+    },
+    {
+      "name": "GS_123_OBJ_C0",
+      "address": "0x800381d8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.GS_123_OBJ_C0"
+    },
+    {
+      "name": "SYS_OBJ_4F0",
+      "address": "0x800386d8",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_4F0"
+    },
+    {
+      "name": "SYS_OBJ_1814",
+      "address": "0x800399fc",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_1814"
+    },
+    {
+      "name": "SYS_OBJ_28A0",
+      "address": "0x8003aa88",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_28A0"
+    },
+    {
+      "name": "SYS_OBJ_2A18",
+      "address": "0x8003ac00",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_2A18"
+    },
+    {
+      "name": "SYS_OBJ_2AC0",
+      "address": "0x8003aca8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_2AC0"
+    },
+    {
+      "name": "P41_OBJ_8C",
+      "address": "0x8003b2e4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.P41_OBJ_8C"
+    },
+    {
+      "name": "COUNTER_OBJ_94",
+      "address": "0x8003bd3c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.COUNTER_OBJ_94"
+    },
+    {
+      "name": "COUNTER_OBJ_CC",
+      "address": "0x8003bd74",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.COUNTER_OBJ_CC"
+    },
+    {
+      "name": "COUNTER_OBJ_164",
+      "address": "0x8003be0c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.COUNTER_OBJ_164"
+    },
+    {
+      "name": "FIRST_OBJ_174",
+      "address": "0x8003bf8c",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.FIRST_OBJ_174",
+      "symbols": {
+        "sym_8003c0c8": "0x8003c0c8"
+      }
+    },
+    {
+      "name": "PADENTRY_OBJ_A4",
+      "address": "0x8003c5ec",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADENTRY_OBJ_A4"
+    },
+    {
+      "name": "PADENTRY_OBJ_168",
+      "address": "0x8003c6b0",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADENTRY_OBJ_168"
+    },
+    {
+      "name": "PADENTRY_OBJ_2F0",
+      "address": "0x8003c838",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADENTRY_OBJ_2F0",
+      "symbols": {
+        "sym_8003c878": "0x8003c878"
+      }
+    },
+    {
+      "name": "PADENTRY_OBJ_2FC",
+      "address": "0x8003c844",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADENTRY_OBJ_2FC",
+      "symbols": {
+        "sym_8003c878": "0x8003c878"
+      }
+    },
+    {
+      "name": "PADENTRY_OBJ_308",
+      "address": "0x8003c850",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADENTRY_OBJ_308",
+      "symbols": {
+        "sym_8003c878": "0x8003c878"
+      }
+    },
+    {
+      "name": "PADENTRY_OBJ_314",
+      "address": "0x8003c85c",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADENTRY_OBJ_314",
+      "symbols": {
+        "sym_8003c878": "0x8003c878"
+      }
+    },
+    {
+      "name": "PADENTRY_OBJ_320",
+      "address": "0x8003c868",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADENTRY_OBJ_320",
+      "symbols": {
+        "sym_8003c878": "0x8003c878"
+      }
+    },
+    {
+      "name": "PADMAIN_OBJ_32C",
+      "address": "0x8003cd34",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADMAIN_OBJ_32C"
+    },
+    {
+      "name": "PADMAIN_OBJ_874",
+      "address": "0x8003d27c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADMAIN_OBJ_874"
+    },
+    {
+      "name": "PADCMD_OBJ_90",
+      "address": "0x8003d868",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_90"
+    },
+    {
+      "name": "PADCMD_OBJ_1F8",
+      "address": "0x8003d9d0",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_1F8",
+      "symbols": {
+        "sym_8003dad8": "0x8003dad8"
+      }
+    },
+    {
+      "name": "PADCMD_OBJ_300",
+      "address": "0x8003dad8",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_300"
+    },
+    {
+      "name": "PADCMD_OBJ_4B4",
+      "address": "0x8003dc8c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_4B4"
+    },
+    {
+      "name": "PADCMD_OBJ_578",
+      "address": "0x8003dd50",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_578",
+      "symbols": {
+        "sym_8003e08c": "0x8003e08c"
+      }
+    },
+    {
+      "name": "PADCMD_OBJ_8B4",
+      "address": "0x8003e08c",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_8B4"
+    },
+    {
+      "name": "PADCMD_OBJ_AEC",
+      "address": "0x8003e2c4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_AEC"
+    },
+    {
+      "name": "PADCMD_OBJ_B44",
+      "address": "0x8003e31c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADCMD_OBJ_B44"
+    },
+    {
+      "name": "PADIF_OBJ_4A8",
+      "address": "0x8003e880",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADIF_OBJ_4A8"
+    },
+    {
+      "name": "PADPORTD_OBJ_2BC",
+      "address": "0x8003ecc4",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADPORTD_OBJ_2BC"
+    },
+    {
+      "name": "PADPORTD_OBJ_330",
+      "address": "0x8003ed38",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADPORTD_OBJ_330",
+      "symbols": {
+        "sym_8003ed88": "0x8003ed88"
+      }
+    },
+    {
+      "name": "PADPORTD_OBJ_380",
+      "address": "0x8003ed88",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADPORTD_OBJ_380"
+    },
+    {
+      "name": "PADPORTD_OBJ_5F4",
+      "address": "0x8003effc",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADPORTD_OBJ_5F4"
+    },
+    {
+      "name": "PADSEQD_OBJ_134",
+      "address": "0x8003f19c",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADSEQD_OBJ_134"
+    },
+    {
+      "name": "PADSEQD_OBJ_34C",
+      "address": "0x8003f3b4",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADSEQD_OBJ_34C",
+      "symbols": {
+        "sym_8003f400": "0x8003f400"
+      }
+    },
+    {
+      "name": "PADSEQD_OBJ_388",
+      "address": "0x8003f3f0",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADSEQD_OBJ_388"
+    },
+    {
+      "name": "PADSEQD_OBJ_398",
+      "address": "0x8003f400",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADSEQD_OBJ_398"
+    },
+    {
+      "name": "PADSEQD_OBJ_478",
+      "address": "0x8003f4e0",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PADSEQD_OBJ_478"
+    },
+    {
+      "name": "WAITRC2_OBJ_B4",
+      "address": "0x8003f5dc",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.WAITRC2_OBJ_B4"
+    },
+    {
+      "name": "EVENT_OBJ_80",
+      "address": "0x8003f668",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.EVENT_OBJ_80"
+    },
+    {
+      "name": "EVENT_OBJ_BC",
+      "address": "0x8003f6a4",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.EVENT_OBJ_BC"
+    },
+    {
+      "name": "SYS_OBJ_98",
+      "address": "0x8003f7d0",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_98"
+    },
+    {
+      "name": "SYS_OBJ_108",
+      "address": "0x8003f840",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_108"
+    },
+    {
+      "name": "SYS_OBJ_13C",
+      "address": "0x8003f874",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SYS_OBJ_13C"
+    },
+    {
+      "name": "BIOS_OBJ_1318",
+      "address": "0x800411e0",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.BIOS_OBJ_1318"
+    },
+    {
+      "name": "GEO_00_OBJ_2C",
+      "address": "0x80049678",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.GEO_00_OBJ_2C"
+    },
+    {
+      "name": "GEO_00_OBJ_C4",
+      "address": "0x80049710",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.GEO_00_OBJ_C4"
+    },
+    {
+      "name": "GEO_01_OBJ_98",
+      "address": "0x800497b4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.GEO_01_OBJ_98"
+    },
+    {
+      "name": "P36_OBJ_30",
+      "address": "0x8004b544",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.P36_OBJ_30"
+    },
+    {
+      "name": "GS_108_OBJ_60",
+      "address": "0x80054948",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.GS_108_OBJ_60",
+      "symbols": {
+        "sym_8003bae8": "0x8003bae8"
+      }
+    },
+    {
+      "name": "GS_108_OBJ_6C",
+      "address": "0x80054954",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.GS_108_OBJ_6C"
+    },
+    {
+      "name": "VectorNormalSS",
+      "address": "0x80060f80",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.VectorNormalSS"
+    },
+    {
+      "name": "SPRINTF_OBJ_2C4",
+      "address": "0x800616b4",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPRINTF_OBJ_2C4",
+      "symbols": {
+        "sym_800616d8": "0x800616d8"
+      }
+    },
+    {
+      "name": "SPRINTF_OBJ_2D0",
+      "address": "0x800616c0",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPRINTF_OBJ_2D0",
+      "symbols": {
+        "sym_800616d8": "0x800616d8"
+      }
+    },
+    {
+      "name": "SPRINTF_OBJ_2DC",
+      "address": "0x800616cc",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPRINTF_OBJ_2DC"
+    },
+    {
+      "name": "SPRINTF_OBJ_594",
+      "address": "0x80061984",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPRINTF_OBJ_594",
+      "symbols": {
+        "sym_80061998": "0x80061998"
+      }
+    },
+    {
+      "name": "SPRINTF_OBJ_5A0",
+      "address": "0x80061990",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.SPRINTF_OBJ_5A0"
+    },
+    {
+      "name": "MEMMOVE_OBJ_64",
+      "address": "0x80061cf4",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.MEMMOVE_OBJ_64"
+    },
+    {
+      "name": "PRESET_OBJ_3B4",
+      "address": "0x8007c894",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PRESET_OBJ_3B4",
+      "symbols": {
+        "sym_8007cddc": "0x8007cddc"
+      }
+    },
+    {
+      "name": "PRESET_OBJ_748",
+      "address": "0x8007cc28",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PRESET_OBJ_748",
+      "symbols": {
+        "sym_8007cddc": "0x8007cddc"
+      }
+    },
+    {
+      "name": "PRESET_OBJ_8C0",
+      "address": "0x8007cda0",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
+      "section": ".text.PRESET_OBJ_8C0",
+      "symbols": {
+        "sym_8007cddc": "0x8007cddc"
+      }
     }
   ]
 }
