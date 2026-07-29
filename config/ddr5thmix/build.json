@@ -4267,6 +4267,919 @@
       },
       "reference_sha256": "5f5079885e83f70ac8f8f9a4fd26c803c231e116eea9a4ef8b6ec4d2cab90e07",
       "built_sha256": "5f5079885e83f70ac8f8f9a4fd26c803c231e116eea9a4ef8b6ec4d2cab90e07"
+    },
+    {
+      "name": "SPU_OBJ_424",
+      "address": "0x8002dde0",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SPU_OBJ_424",
+      "reference_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209",
+      "built_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209"
+    },
+    {
+      "name": "SPU_OBJ_894",
+      "address": "0x8002e250",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SPU_OBJ_894",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "SPU_OBJ_B18",
+      "address": "0x8002e4d4",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SPU_OBJ_B18",
+      "symbols": {
+        "sym_8002e4a8": "0x8002e4a8"
+      },
+      "reference_sha256": "40860706f8a947b6530fec0c213e5de5b21d1adec8294c92f642603c8d164983",
+      "built_sha256": "40860706f8a947b6530fec0c213e5de5b21d1adec8294c92f642603c8d164983"
+    },
+    {
+      "name": "S_SR_OBJ_B4",
+      "address": "0x8002e5b0",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.S_SR_OBJ_B4",
+      "reference_sha256": "4684b019096b674be81607f2ce5c4ec684e25979a976e4b5c1e83fa283ec3c44",
+      "built_sha256": "4684b019096b674be81607f2ce5c4ec684e25979a976e4b5c1e83fa283ec3c44"
+    },
+    {
+      "name": "S_SAV_OBJ_200",
+      "address": "0x8002eaec",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.S_SAV_OBJ_200",
+      "symbols": {
+        "sym_8002eb98": "0x8002eb98"
+      },
+      "reference_sha256": "f76d513769f3e01d7e67ffb4ba37337bc5a493251cc263c7dc0a8681d29668e7",
+      "built_sha256": "f76d513769f3e01d7e67ffb4ba37337bc5a493251cc263c7dc0a8681d29668e7"
+    },
+    {
+      "name": "SpuSetTransferMode",
+      "address": "0x8002f26c",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SpuSetTransferMode",
+      "symbols": {
+        "S_STM_OBJ_1C": "0x8002f288"
+      },
+      "reference_sha256": "f7084d60c6e8a12d055056b7100de67ba185386d4f57ef92f7fea71d9e147cb6",
+      "built_sha256": "f7084d60c6e8a12d055056b7100de67ba185386d4f57ef92f7fea71d9e147cb6"
+    },
+    {
+      "name": "S_STM_OBJ_1C",
+      "address": "0x8002f288",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.S_STM_OBJ_1C",
+      "reference_sha256": "a64778b0cfa543f8c21481a6de04da1d8cbd18b60574cc1647746fe47c4d01c0",
+      "built_sha256": "a64778b0cfa543f8c21481a6de04da1d8cbd18b60574cc1647746fe47c4d01c0"
+    },
+    {
+      "name": "SR_GAKS_OBJ_B8",
+      "address": "0x8002f384",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SR_GAKS_OBJ_B8",
+      "symbols": {
+        "sym_8002f32c": "0x8002f32c"
+      },
+      "reference_sha256": "fda72156850d776af97b419c11a123b1badf0c9e2fef1f60b6eba9dd164200c8",
+      "built_sha256": "fda72156850d776af97b419c11a123b1badf0c9e2fef1f60b6eba9dd164200c8"
+    },
+    {
+      "name": "SR_GAKS_OBJ_144",
+      "address": "0x8002f410",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SR_GAKS_OBJ_144",
+      "symbols": {
+        "sym_8002f3b8": "0x8002f3b8"
+      },
+      "reference_sha256": "246dbf62a7b22ae45f4ef772033f315278da5d06b2fb7c517e583c6bd0c8fb4e",
+      "built_sha256": "246dbf62a7b22ae45f4ef772033f315278da5d06b2fb7c517e583c6bd0c8fb4e"
+    },
+    {
+      "name": "SsUtReverbOff",
+      "address": "0x8002fd1c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SsUtReverbOff",
+      "symbols": {
+        "sym_8002e5cc": "0x8002e5cc"
+      },
+      "reference_sha256": "1657124132614b59f88175b55316c989b0533ea1887bb8d14cda610db9f68754",
+      "built_sha256": "1657124132614b59f88175b55316c989b0533ea1887bb8d14cda610db9f68754"
+    },
+    {
+      "name": "SSSTART_OBJ_218",
+      "address": "0x80030524",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SSSTART_OBJ_218",
+      "reference_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c",
+      "built_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c"
+    },
+    {
+      "name": "SsStart",
+      "address": "0x8003053c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SsStart",
+      "symbols": {
+        "sym_8003030c": "0x8003030c"
+      },
+      "reference_sha256": "201a0be02f68aa983146e0c50deb50279207e10782d8bed68ce08266ace978be",
+      "built_sha256": "201a0be02f68aa983146e0c50deb50279207e10782d8bed68ce08266ace978be"
+    },
+    {
+      "name": "SsStart2",
+      "address": "0x8003055c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SsStart2",
+      "symbols": {
+        "sym_8003030c": "0x8003030c"
+      },
+      "reference_sha256": "9ed99b65e78c617b06702853e68edc6eebb3d2e2ecf8a12e2c10ad2a99c5f1ee",
+      "built_sha256": "9ed99b65e78c617b06702853e68edc6eebb3d2e2ecf8a12e2c10ad2a99c5f1ee"
+    },
+    {
+      "name": "MIDIREAD_OBJ_E0",
+      "address": "0x80030c4c",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.MIDIREAD_OBJ_E0",
+      "reference_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209",
+      "built_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209"
+    },
+    {
+      "name": "MIDIREAD_OBJ_328",
+      "address": "0x80030e94",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.MIDIREAD_OBJ_328",
+      "reference_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c",
+      "built_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c"
+    },
+    {
+      "name": "MIDIREAD_OBJ_654",
+      "address": "0x800311c0",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.MIDIREAD_OBJ_654",
+      "symbols": {
+        "sym_80031234": "0x80031234"
+      },
+      "reference_sha256": "657efce5bcf2925b20672622bd5af220493adf7bfbc9e1acc811cadc078fbb95",
+      "built_sha256": "657efce5bcf2925b20672622bd5af220493adf7bfbc9e1acc811cadc078fbb95"
+    },
+    {
+      "name": "MIDIREAD_OBJ_6A8",
+      "address": "0x80031214",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.MIDIREAD_OBJ_6A8",
+      "reference_sha256": "8450bfac9ec99327a65b340400b57361f7caa73151490a476eca675999e6c314",
+      "built_sha256": "8450bfac9ec99327a65b340400b57361f7caa73151490a476eca675999e6c314"
+    },
+    {
+      "name": "SSTICK_OBJ_A8",
+      "address": "0x80031a24",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SSTICK_OBJ_A8",
+      "symbols": {
+        "sym_80031ab4": "0x80031ab4"
+      },
+      "reference_sha256": "989088a9eb18971a61a290fd10dc0d3ad496d125a1825d9868d9628b8fa40f8d",
+      "built_sha256": "989088a9eb18971a61a290fd10dc0d3ad496d125a1825d9868d9628b8fa40f8d"
+    },
+    {
+      "name": "SSTICK_OBJ_E8",
+      "address": "0x80031a64",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SSTICK_OBJ_E8",
+      "symbols": {
+        "sym_80031a9c": "0x80031a9c",
+        "sym_80031a8c": "0x80031a8c",
+        "sym_80031aa0": "0x80031aa0"
+      },
+      "reference_sha256": "36050667ec2b318a1d55935ad8217d204c59866bda963960540450d32ab2dbda",
+      "built_sha256": "36050667ec2b318a1d55935ad8217d204c59866bda963960540450d32ab2dbda"
+    },
+    {
+      "name": "TEMPO_OBJ_204",
+      "address": "0x80031cd0",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.TEMPO_OBJ_204",
+      "reference_sha256": "32e7a85696f31b1258594739167a6e72d44643497037f4b45b0d3ed5a8e080bc",
+      "built_sha256": "32e7a85696f31b1258594739167a6e72d44643497037f4b45b0d3ed5a8e080bc"
+    },
+    {
+      "name": "S_M_F_OBJ_64",
+      "address": "0x80034c90",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.S_M_F_OBJ_64",
+      "symbols": {
+        "sym_80034cac": "0x80034cac"
+      },
+      "reference_sha256": "94d90b6217cfc9e44d41dd255403a5c84d06e80e6ef7ee4a4b203ea714105fbb",
+      "built_sha256": "94d90b6217cfc9e44d41dd255403a5c84d06e80e6ef7ee4a4b203ea714105fbb"
+    },
+    {
+      "name": "VS_VH_OBJ_158",
+      "address": "0x80035104",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.VS_VH_OBJ_158",
+      "reference_sha256": "bc949f7bb42d1fc127bccf4bda0ffb5a251ac717a2881c615b83143da94ca015",
+      "built_sha256": "bc949f7bb42d1fc127bccf4bda0ffb5a251ac717a2881c615b83143da94ca015"
+    },
+    {
+      "name": "VS_VTB_OBJ_A4",
+      "address": "0x800354b0",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.VS_VTB_OBJ_A4",
+      "reference_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209",
+      "built_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209"
+    },
+    {
+      "name": "VS_VTBP_OBJ_164",
+      "address": "0x80035630",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.VS_VTBP_OBJ_164",
+      "reference_sha256": "901fc2dc4e04e4f0ccb45fc17da6157f732b1823cda54b51fe37fb8c14eb8873",
+      "built_sha256": "901fc2dc4e04e4f0ccb45fc17da6157f732b1823cda54b51fe37fb8c14eb8873"
+    },
+    {
+      "name": "S_ITC_OBJ_90",
+      "address": "0x800357ac",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.S_ITC_OBJ_90",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "PCopen",
+      "address": "0x800357cc",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PCopen",
+      "reference_sha256": "c4de1a4a2d9ac47f80eeb4a6a7ce9a2830f704fe2da12d3d0b7a4c5b40d9e36a",
+      "built_sha256": "c4de1a4a2d9ac47f80eeb4a6a7ce9a2830f704fe2da12d3d0b7a4c5b40d9e36a"
+    },
+    {
+      "name": "_SN_read",
+      "address": "0x800358e0",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text._SN_read",
+      "reference_sha256": "a421cfcd82da08770475c765a2635f8bc1aead60ce5820f2309698b1974d0bd8",
+      "built_sha256": "a421cfcd82da08770475c765a2635f8bc1aead60ce5820f2309698b1974d0bd8"
+    },
+    {
+      "name": "VSYNC_OBJ_164",
+      "address": "0x80035a5c",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.VSYNC_OBJ_164",
+      "reference_sha256": "9b76130ec12fcd3506de97cd23174006d9665e83da551641b60bf7c1b6bc6617",
+      "built_sha256": "9b76130ec12fcd3506de97cd23174006d9665e83da551641b60bf7c1b6bc6617"
+    },
+    {
+      "name": "GS_002_OBJ_104",
+      "address": "0x80036dac",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_002_OBJ_104",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "GS_103_OBJ_78",
+      "address": "0x800378e0",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_103_OBJ_78",
+      "symbols": {
+        "sym_80036dc8": "0x80036dc8",
+        "sym_80036cb8": "0x80036cb8"
+      },
+      "reference_sha256": "8ab59b1eff39cb35aa6bf3549921a349ff1c5c893e84513cd286df245b60747d",
+      "built_sha256": "8ab59b1eff39cb35aa6bf3549921a349ff1c5c893e84513cd286df245b60747d"
+    },
+    {
+      "name": "GS_123_OBJ_7C",
+      "address": "0x80038194",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_123_OBJ_7C",
+      "symbols": {
+        "sym_800381d8": "0x800381d8"
+      },
+      "reference_sha256": "cba87d0a2f83bc227834f9b28e989bfd8e4b3a7116eaf4c46b08a84da77d1a9c",
+      "built_sha256": "cba87d0a2f83bc227834f9b28e989bfd8e4b3a7116eaf4c46b08a84da77d1a9c"
+    },
+    {
+      "name": "GS_123_OBJ_94",
+      "address": "0x800381ac",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_123_OBJ_94",
+      "symbols": {
+        "sym_800381d8": "0x800381d8"
+      },
+      "reference_sha256": "d2dd330897aa6c04af2ff11da7f3e5d26dcd79a32b11b5f24564bbd7bcdbf202",
+      "built_sha256": "d2dd330897aa6c04af2ff11da7f3e5d26dcd79a32b11b5f24564bbd7bcdbf202"
+    },
+    {
+      "name": "GS_123_OBJ_AC",
+      "address": "0x800381c4",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_123_OBJ_AC",
+      "reference_sha256": "d9d328af560ae580facc5fedf52a3e0b95d77d5b3535368e45e21f432956f2e4",
+      "built_sha256": "d9d328af560ae580facc5fedf52a3e0b95d77d5b3535368e45e21f432956f2e4"
+    },
+    {
+      "name": "SYS_OBJ_160",
+      "address": "0x80038348",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_160",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "SYS_OBJ_788",
+      "address": "0x80038970",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_788",
+      "reference_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c",
+      "built_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c"
+    },
+    {
+      "name": "SYS_OBJ_F64",
+      "address": "0x8003914c",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_F64",
+      "symbols": {
+        "sym_80039200": "0x80039200",
+        "sym_800391f4": "0x800391f4"
+      },
+      "reference_sha256": "764dfbff88aba230e622141347ecf0ae21c9314a99c48e408b5a4a746403d790",
+      "built_sha256": "764dfbff88aba230e622141347ecf0ae21c9314a99c48e408b5a4a746403d790"
+    },
+    {
+      "name": "SYS_OBJ_FF4",
+      "address": "0x800391dc",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_FF4",
+      "symbols": {
+        "sym_80039200": "0x80039200"
+      },
+      "reference_sha256": "8d1fd9a5bccdad98261ebf0306ad7880f214a5b1541f6e7cab7154b25151a73b",
+      "built_sha256": "8d1fd9a5bccdad98261ebf0306ad7880f214a5b1541f6e7cab7154b25151a73b"
+    },
+    {
+      "name": "SYS_OBJ_1614",
+      "address": "0x800397fc",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_1614",
+      "reference_sha256": "3037f99d77a7cf74a5f3056ad66d9d6dbc404bbfbc513c7a57a32b51c530fab8",
+      "built_sha256": "3037f99d77a7cf74a5f3056ad66d9d6dbc404bbfbc513c7a57a32b51c530fab8"
+    },
+    {
+      "name": "SYS_OBJ_1630",
+      "address": "0x80039818",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_1630",
+      "reference_sha256": "febbab6112746f492517305b3037eabfc5433b73b2744735f16052d15a05fe58",
+      "built_sha256": "febbab6112746f492517305b3037eabfc5433b73b2744735f16052d15a05fe58"
+    },
+    {
+      "name": "SYS_OBJ_16CC",
+      "address": "0x800398b4",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_16CC",
+      "reference_sha256": "0f2115497a944f3143e3e794704aeaecb5edec257f345bcf861f536c5d346a9a",
+      "built_sha256": "0f2115497a944f3143e3e794704aeaecb5edec257f345bcf861f536c5d346a9a"
+    },
+    {
+      "name": "SYS_OBJ_1764",
+      "address": "0x8003994c",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_1764",
+      "reference_sha256": "25e6b3b4ed64aad7c8677205428d3b247eba1ad10d9d7d15d5e637eb32614c23",
+      "built_sha256": "25e6b3b4ed64aad7c8677205428d3b247eba1ad10d9d7d15d5e637eb32614c23"
+    },
+    {
+      "name": "SYS_OBJ_1780",
+      "address": "0x80039968",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_1780",
+      "reference_sha256": "48bf0df9730184c1caef57f03cc222de0eb7833983f95d1b2476e65274c9f4e7",
+      "built_sha256": "48bf0df9730184c1caef57f03cc222de0eb7833983f95d1b2476e65274c9f4e7"
+    },
+    {
+      "name": "SYS_OBJ_181C",
+      "address": "0x80039a04",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_181C",
+      "reference_sha256": "7e8dfe016484f498e9cc6a6485512c310e1c1761471d8562a71f7569c973ce6d",
+      "built_sha256": "7e8dfe016484f498e9cc6a6485512c310e1c1761471d8562a71f7569c973ce6d"
+    },
+    {
+      "name": "SYS_OBJ_1FE0",
+      "address": "0x8003a1c8",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_1FE0",
+      "reference_sha256": "901fc2dc4e04e4f0ccb45fc17da6157f732b1823cda54b51fe37fb8c14eb8873",
+      "built_sha256": "901fc2dc4e04e4f0ccb45fc17da6157f732b1823cda54b51fe37fb8c14eb8873"
+    },
+    {
+      "name": "SYS_OBJ_2024",
+      "address": "0x8003a20c",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_2024",
+      "reference_sha256": "aaf50c757f451f7ff959ba3fbc75b794043e85baea4e7692368cbd89ec20ef50",
+      "built_sha256": "aaf50c757f451f7ff959ba3fbc75b794043e85baea4e7692368cbd89ec20ef50"
+    },
+    {
+      "name": "SYS_OBJ_23A8",
+      "address": "0x8003a590",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_23A8",
+      "reference_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209",
+      "built_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209"
+    },
+    {
+      "name": "SYS_OBJ_2774",
+      "address": "0x8003a95c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_2774",
+      "symbols": {
+        "sym_8003aa10": "0x8003aa10",
+        "sym_8003aa98": "0x8003aa98",
+        "sym_8003a994": "0x8003a994"
+      },
+      "reference_sha256": "235f8ff1d1c68a8e3670bfb2a15fdbb9bdeaaa72e328576b8cd27f905d285c9c",
+      "built_sha256": "235f8ff1d1c68a8e3670bfb2a15fdbb9bdeaaa72e328576b8cd27f905d285c9c"
+    },
+    {
+      "name": "SYS_OBJ_2794",
+      "address": "0x8003a97c",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_2794",
+      "symbols": {
+        "sym_8003a5ac": "0x8003a5ac",
+        "sym_8003aacc": "0x8003aacc",
+        "sym_8003aa88": "0x8003aa88"
+      },
+      "reference_sha256": "e00e013c3a1034499d425a1bdcdd09ff90ad1c2efe57e0f1e8fe08b2747febca",
+      "built_sha256": "e00e013c3a1034499d425a1bdcdd09ff90ad1c2efe57e0f1e8fe08b2747febca"
+    },
+    {
+      "name": "SYS_OBJ_2DCC",
+      "address": "0x8003afb4",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SYS_OBJ_2DCC",
+      "reference_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c",
+      "built_sha256": "da1dd5d1e08fb0d8c835e4dcfc10c329af8beb48999b3e349dc9b2e65f13524c"
+    },
+    {
+      "name": "COUNTER_OBJ_74",
+      "address": "0x8003bd1c",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.COUNTER_OBJ_74",
+      "reference_sha256": "2b2a8b19e926c5c2d96de3bbda96e12a41b2555cb3c8319746f879d31dc17ef9",
+      "built_sha256": "2b2a8b19e926c5c2d96de3bbda96e12a41b2555cb3c8319746f879d31dc17ef9"
+    },
+    {
+      "name": "FIRST_OBJ_180",
+      "address": "0x8003bf98",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.FIRST_OBJ_180",
+      "reference_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209",
+      "built_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209"
+    },
+    {
+      "name": "PADENTRY_OBJ_25C",
+      "address": "0x8003c7a4",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADENTRY_OBJ_25C",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "PADENTRY_OBJ_330",
+      "address": "0x8003c878",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADENTRY_OBJ_330",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "PADENTRY_OBJ_3D8",
+      "address": "0x8003c920",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADENTRY_OBJ_3D8",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "PADMAIN_OBJ_780",
+      "address": "0x8003d188",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADMAIN_OBJ_780",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "PADMAIN_OBJ_A78",
+      "address": "0x8003d480",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADMAIN_OBJ_A78",
+      "reference_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209",
+      "built_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209"
+    },
+    {
+      "name": "PADMAIN_OBJ_CF0",
+      "address": "0x8003d6f8",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADMAIN_OBJ_CF0",
+      "reference_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209",
+      "built_sha256": "64f84fcb2ffd1134620a725da69a74eb76273fd16eeb2c46de04c85e8f03a209"
+    },
+    {
+      "name": "PADCMD_OBJ_408",
+      "address": "0x8003dbe0",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_408",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "PADCMD_OBJ_784",
+      "address": "0x8003df5c",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_784",
+      "symbols": {
+        "sym_8003df80": "0x8003df80"
+      },
+      "reference_sha256": "5338e8ccd749bd2a62623676e251458b8eab8bf8d791e718993d0ec542629024",
+      "built_sha256": "5338e8ccd749bd2a62623676e251458b8eab8bf8d791e718993d0ec542629024"
+    },
+    {
+      "name": "PADCMD_OBJ_924",
+      "address": "0x8003e0fc",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_924",
+      "reference_sha256": "0c19f6344e2fa0ccb16ba7588c76839fc758f7673fddf14c18a2fd2ea83ede19",
+      "built_sha256": "0c19f6344e2fa0ccb16ba7588c76839fc758f7673fddf14c18a2fd2ea83ede19"
+    },
+    {
+      "name": "PADCMD_OBJ_B74",
+      "address": "0x8003e34c",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_B74",
+      "reference_sha256": "4bdc9b073f021fa0534ea569bf7b9af8976b4702828a3114607eaa3b390a88e4",
+      "built_sha256": "4bdc9b073f021fa0534ea569bf7b9af8976b4702828a3114607eaa3b390a88e4"
+    },
+    {
+      "name": "PADCMD_OBJ_B88",
+      "address": "0x8003e360",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_B88",
+      "reference_sha256": "2258ca0b3a77c47e7068c32d78190856eec06f4129e53b955b0ea99e325e7cb9",
+      "built_sha256": "2258ca0b3a77c47e7068c32d78190856eec06f4129e53b955b0ea99e325e7cb9"
+    },
+    {
+      "name": "PADCMD_OBJ_BA8",
+      "address": "0x8003e380",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_BA8",
+      "reference_sha256": "c99f766c77e8e1d4a1ffa915aec8c2c0e9761fdcdebea925f248be7f8380e626",
+      "built_sha256": "c99f766c77e8e1d4a1ffa915aec8c2c0e9761fdcdebea925f248be7f8380e626"
+    },
+    {
+      "name": "PADCMD_OBJ_BC8",
+      "address": "0x8003e3a0",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_BC8",
+      "reference_sha256": "e37458f9a19fcc77b37f61d273deffe12f293d1dfc840a22960d7ce618c9c4f5",
+      "built_sha256": "e37458f9a19fcc77b37f61d273deffe12f293d1dfc840a22960d7ce618c9c4f5"
+    },
+    {
+      "name": "PADCMD_OBJ_BE8",
+      "address": "0x8003e3c0",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADCMD_OBJ_BE8",
+      "reference_sha256": "4569e12a2de5015b0f6d5e3aeace4c09889aa5325551d2784a41d84714888fe2",
+      "built_sha256": "4569e12a2de5015b0f6d5e3aeace4c09889aa5325551d2784a41d84714888fe2"
+    },
+    {
+      "name": "PADIF_OBJ_108",
+      "address": "0x8003e4e0",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADIF_OBJ_108",
+      "symbols": {
+        "sym_8003d49c": "0x8003d49c"
+      },
+      "reference_sha256": "e1def83b6093334f2d17ea730abdf59372be559e85aab249b5a47c4fcadf9d3c",
+      "built_sha256": "e1def83b6093334f2d17ea730abdf59372be559e85aab249b5a47c4fcadf9d3c"
+    },
+    {
+      "name": "PADPORTD_OBJ_63C",
+      "address": "0x8003f044",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PADPORTD_OBJ_63C",
+      "reference_sha256": "1272b8d5c2bb5f31a608831911ed38b0978a6a79aa67e6e2286cca59977b6504",
+      "built_sha256": "1272b8d5c2bb5f31a608831911ed38b0978a6a79aa67e6e2286cca59977b6504"
+    },
+    {
+      "name": "setRC2wait",
+      "address": "0x8003f528",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.setRC2wait",
+      "reference_sha256": "359cd2728b98576d443aa51cd35313657b878ec85f27e5143c5001eb4b202eda",
+      "built_sha256": "359cd2728b98576d443aa51cd35313657b878ec85f27e5143c5001eb4b202eda"
+    },
+    {
+      "name": "BIOS_OBJ_548",
+      "address": "0x80040410",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.BIOS_OBJ_548",
+      "reference_sha256": "5271f3908d3af9770e7881d48dc83cc28448de271d85e0c9b7492c4a04006fb6",
+      "built_sha256": "5271f3908d3af9770e7881d48dc83cc28448de271d85e0c9b7492c4a04006fb6"
+    },
+    {
+      "name": "COR_05_OBJ_134",
+      "address": "0x800550fc",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.COR_05_OBJ_134",
+      "symbols": {
+        "sym_80054ff8": "0x80054ff8"
+      },
+      "reference_sha256": "dd3d0a22b202705cd901588081e35ab4776b2cbed89d60fc149582413c726501",
+      "built_sha256": "dd3d0a22b202705cd901588081e35ab4776b2cbed89d60fc149582413c726501"
+    },
+    {
+      "name": "COR_05_OBJ_1D8",
+      "address": "0x800551a0",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.COR_05_OBJ_1D8",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "GS_131_OBJ_4A4",
+      "address": "0x80055f38",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_131_OBJ_4A4",
+      "reference_sha256": "b8f08cab12b33e20e700689bd66583d59b7001989be42e3efedd18061b9b4f95",
+      "built_sha256": "b8f08cab12b33e20e700689bd66583d59b7001989be42e3efedd18061b9b4f95"
+    },
+    {
+      "name": "GS_131_OBJ_584",
+      "address": "0x80056018",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_131_OBJ_584",
+      "reference_sha256": "6112de18f2d0e9c2a0dc06fdbbcb175a1c9e6e1edd5fd1e8764e21b8d7f8ec5c",
+      "built_sha256": "6112de18f2d0e9c2a0dc06fdbbcb175a1c9e6e1edd5fd1e8764e21b8d7f8ec5c"
+    },
+    {
+      "name": "VectorNormalS",
+      "address": "0x80060f3c",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.VectorNormalS",
+      "symbols": {
+        "sym_80060f8c": "0x80060f8c"
+      },
+      "reference_sha256": "8c3b85a363c357f76a24a57169c9d2c61cf7c99c15b876e821213e4a7fc3c3c3",
+      "built_sha256": "8c3b85a363c357f76a24a57169c9d2c61cf7c99c15b876e821213e4a7fc3c3c3"
+    },
+    {
+      "name": "SPRINTF_OBJ_2E8",
+      "address": "0x800616d8",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SPRINTF_OBJ_2E8",
+      "symbols": {
+        "sym_80061690": "0x80061690"
+      },
+      "reference_sha256": "c643247ab8273f2ffe6ba2290db93cb36784e60edee8f8bd0a439b855f62397b",
+      "built_sha256": "c643247ab8273f2ffe6ba2290db93cb36784e60edee8f8bd0a439b855f62397b"
+    },
+    {
+      "name": "SPRINTF_OBJ_580",
+      "address": "0x80061970",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SPRINTF_OBJ_580",
+      "reference_sha256": "7b0492a0f26a9a2c97a07995260a63398cde2a53ae85c85bd7b8830ab04d025f",
+      "built_sha256": "7b0492a0f26a9a2c97a07995260a63398cde2a53ae85c85bd7b8830ab04d025f"
+    },
+    {
+      "name": "SPRINTF_OBJ_6A8",
+      "address": "0x80061a98",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SPRINTF_OBJ_6A8",
+      "symbols": {
+        "sym_80061b90": "0x80061b90"
+      },
+      "reference_sha256": "3298e267f151f90b889b29925f96ad9b4549ead91f15f0247768f33aedbea4d9",
+      "built_sha256": "3298e267f151f90b889b29925f96ad9b4549ead91f15f0247768f33aedbea4d9"
+    },
+    {
+      "name": "SPRINTF_OBJ_788",
+      "address": "0x80061b78",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SPRINTF_OBJ_788",
+      "symbols": {
+        "sym_80061c3c": "0x80061c3c",
+        "sym_80061c1c": "0x80061c1c"
+      },
+      "reference_sha256": "d61159716004c2f144e728cde9ffddcdc2ca79d5c3c2ae7712c076d6d6647790",
+      "built_sha256": "d61159716004c2f144e728cde9ffddcdc2ca79d5c3c2ae7712c076d6d6647790"
+    },
+    {
+      "name": "PRESET_OBJ_380",
+      "address": "0x8007c860",
+      "size": 28,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PRESET_OBJ_380",
+      "symbols": {
+        "sym_8007c894": "0x8007c894"
+      },
+      "reference_sha256": "830200091e82c4b7d236dc71ead767b27beea82f7add6519bb9c1429260ef800",
+      "built_sha256": "830200091e82c4b7d236dc71ead767b27beea82f7add6519bb9c1429260ef800"
+    },
+    {
+      "name": "PRESET_OBJ_39C",
+      "address": "0x8007c87c",
+      "size": 24,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.PRESET_OBJ_39C",
+      "reference_sha256": "e1174a8175ff7029da16879303c4ef21885b70c7f94d4572a934e175dd40700a",
+      "built_sha256": "e1174a8175ff7029da16879303c4ef21885b70c7f94d4572a934e175dd40700a"
+    },
+    {
+      "name": "GS_004_OBJ_D4",
+      "address": "0x80097acc",
+      "size": 20,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.GS_004_OBJ_D4",
+      "reference_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb",
+      "built_sha256": "9eea6a55211cb9994fc8e531c47edaa58cca825ddd6d96d2f067d323f9f8ceeb"
+    },
+    {
+      "name": "SsGetMute",
+      "address": "0x800a2364",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch4.s",
+      "section": ".text.SsGetMute",
+      "symbols": {
+        "sym_8002829c": "0x8002829c"
+      },
+      "reference_sha256": "78a470c54fd3ef72d3328c3de6f60f4848ccd404f8d6172f37ff00aa0cec0623",
+      "built_sha256": "78a470c54fd3ef72d3328c3de6f60f4848ccd404f8d6172f37ff00aa0cec0623"
     }
   ]
 }
