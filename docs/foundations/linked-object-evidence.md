@@ -286,6 +286,119 @@ README) is the documented mechanism behind that marker. No other
 `.comment`/debug-info remnants, or an unstripped local symbol table fragment
 was searched for or found in this pass; that remains open, not ruled out.
 
+# 5. Whole-executable gap sweep: what the unattributed 51% actually contains
+
+The symbol map's own summary statistics (2,127 main-executable rows) imply a
+large unattributed remainder: the CSV rows only account for 510,616 of the
+1,050,624 code-region bytes (`t_addr` `0x8001a800` through `t_addr+t_size`
+`0x8011b000`), leaving 540,259 bytes with no row at all. Before this pass,
+that number had no further breakdown and was easy to misread as "540KB of
+undiscovered functions." It is not. Reproduced with the new
+`tools/build/Invoke-MainExecutableGapSweep.ps1` (merges every `overlay==main`
+row into covered intervals within `[0x8001a800, 0x8011b000)`, computes the
+gap complement, and classifies each gap's zero/non-zero byte split directly
+from the hash-gated executable):
+
+```powershell
+pwsh -File tools/build/Invoke-MainExecutableGapSweep.ps1 `
+    -ExePath work/ddr5thmix-extract/exe/SLPM_868.97_1
+```
+
+Result at the current inventory: 384 gaps / 540,259 bytes total, but **one**
+gap accounts for 452,472 of them (83.8%), and a second accounts for another
+24,312 (4.5%). Together two gaps explain 476,784 bytes — 88.2% of the
+"unattributed" total — leaving 383 gaps / 87,787 bytes, of which only 135
+gaps (60,391 bytes, excluding the second giant below) are 65 bytes or larger
+and therefore plausible function-shaped candidates; the rest (248 gaps,
+27,396 bytes) are small enough to be ordinary alignment padding.
+
+## 5.1 The trailing gap (`0x800ac888`–`0x8011b000`, 452,472 bytes)
+
+This gap starts exactly where the last currently-catalogued row
+(`FUN_800ac764`, unverified, ends at `0x800ac888`) leaves off and runs to the
+exact end of the code region — the entire final 43.1% of the file. A
+byte-level scan (not sampling) found:
+
+- **199,284 non-zero bytes**, concentrated in the first roughly two-thirds of
+  the range, in short zero/non-zero runs (14,411 zero runs under 256 bytes,
+  totaling 23,164 bytes, interleaved throughout) rather than one uniform
+  block. A 24-byte sample at `0x800ac888+~0x2860` decodes as the ASCII
+  string `MENU` preceded by a short non-zero header-shaped run
+  (`00 1f 00 01 c0 1f 00 00`); most other sampled 24-byte windows in this
+  span are high-entropy byte patterns with no recognizable MIPS instruction
+  shape or readable text. **Suspected, not confirmed**: this reads as
+  embedded resource/asset data (e.g. a UI resource table plus packed
+  graphics or audio payload), not code — no attempt was made here to
+  identify the container format, and this is a sampling-based impression,
+  not the byte-by-byte instruction-decode check §1 and §2 used for
+  code/padding classification.
+- **One dominant zero run of 222,455 bytes at `0x800e2931`–`0x8011acc8`.**
+  This closely matches — but does not exactly reproduce — the BSS-clear
+  range already documented in this project's manual review of `start`
+  (`docs/games/ddr-5th-mix-jp-symbol-map.csv`, row `0x80020700`): "zeroes
+  `DAT_800e2938`..`UNK_80118e28`", i.e. `0x800e2938`–`0x80118e28`
+  (221,936 bytes). The scanned run's start is 7 bytes earlier and its end is
+  7,840 bytes later than that documented range. The two figures agree to
+  within 0.4% and the start addresses agree to within a word, which is
+  strong circumstantial corroboration that this is the same BSS region (the
+  small discrepancy is unexplained — worth resolving before treating the
+  boundary as exact — but this is on-disk zero content either way, not
+  asset data). If corroborated, this reclassifies roughly half of this
+  giant gap as **already-understood, zero-initialized static storage**, not
+  an unknown-content blob: nothing to reverse-engineer, only a `.bss`-style
+  declaration to add to a future linker script.
+- The remaining 30,733 bytes are smaller zero runs (up to 4,203 bytes each)
+  interspersed within the non-zero span, plus an 840-byte all-zero tail
+  immediately before `0x8011b000`.
+
+## 5.2 The leading gap (`0x8001a800`–`0x800206f8`, 24,312 bytes)
+
+This is everything before `start` (`0x80020700`) — the very front of the
+loaded image. A sample at the gap's start reads as readable ASCII text
+mixed with what is very likely a `printf`-style format string:
+`%s\t--- %08x %08x %08x\n`, followed by short null-terminated strings
+including `NOW LOADING.` and `PLEASE WAIT...`. A sample near the gap's end
+shows a repeating 4-byte little-endian pattern whose low 16 bits step by a
+small constant and whose high 16 bits are consistently `0x800a` (e.g. bytes
+`98 af 0a 80`, `a0 af 0a 80`, `a8 af 0a 80`, ... decoding to the pointer
+sequence `0x800aaf98`, `0x800aaf a0`, `0x800aafa8`, ...) — consistent with a
+pointer/jump table into the `0x800aXXXX` region, not instructions. Both
+observations point the same direction: this is a debug string table plus a
+data table, not un-inventoried code. This has **not** been checked with the
+same rigor as §1/§2 (no exhaustive byte-by-byte classification, no
+cross-reference of the pointer table's targets against the symbol map); it
+is reported as a strong but unverified lead, in keeping with this document's
+practice of separating what was checked from what remains open.
+
+## 5.3 What remains open
+
+- The 135 gaps of 65+ bytes outside the two giants (60,391 bytes) are the
+  actual candidate pool for un-inventoried code, directly comparable in
+  scale to the already-completed `library_signature` batches (Batches 3–8
+  covered 510 functions / 25,112 bytes together, spanning the 8–128-byte
+  range). A handful were spot-checked in prior sessions and did decode as
+  plausible MIPS (recognizable `lui $v1,0x800e`-style loads matching
+  patterns already seen across multiple reconstructed batches); this has
+  not yet been done exhaustively or per-gap.
+- Three CSV rows have declared sizes that overrun a since-verified neighbor:
+  `VS_VH_OBJ_3FC` (`library_signature`, claims 140 bytes from `0x800353a8`
+  but the byte-matched `VS_VH_OBJ_434` starts 56 bytes in, at `0x800353e0`)
+  and `PadInfoAct` (`library_signature`, claims 132 bytes from `0x8003c7b8`
+  but the byte-matched `PADENTRY_OBJ_2F0` starts 128 bytes in, at
+  `0x8003c838`). Both are pre-existing `ghidra_psx_ldr` auto-analysis size
+  guesses, not yet independently reviewed; their true sizes are at most 56
+  and 128 bytes respectively. `Invoke-MainExecutableGapSweep.ps1` reports
+  these as `overlaps` (3 raw entries, one root cause each) so a future pass
+  does not need to rediscover them by hand.
+- The suspected asset-data classification in §5.1 and the suspected
+  string/pointer-table classification in §5.2 are both sampling-based
+  impressions, not the exhaustive per-byte instruction-decode evidence this
+  document otherwise requires (§1, §2). Neither should be cited as more
+  than "suspected" until confirmed by a systematic check (e.g. attempting
+  MIPS disassembly across the full span and confirming it fails to decode
+  as valid instructions throughout, or identifying the asset container
+  format).
+
 # What would constitute sufficient evidence for "object boundary confirmed"
 
 Matching this project's evidentiary style elsewhere, a future claim that a
