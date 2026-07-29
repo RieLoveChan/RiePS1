@@ -3,17 +3,19 @@ type: Workflow
 title: External library-signature reconstruction — batch 3
 description: A fixed 140-function package of short PsyQ-signature functions for isolated reconstruction and independent audit.
 tags: [delegation, psyq, mips, reconstruction, byte-match, audit]
-timestamp: 2026-07-29T00:00:00-04:00
+timestamp: 2026-07-29T03:20:13-04:00
 ---
 
 # Status
 
-`ready`
+`completed`
 
-This package delegates a large but mechanically simple third pass over short
-main-executable functions. Delivery by the external agent remains
-`candidate_for_audit`; only a separate clean-checkout audit may accept and
-merge it under
+The external-agent candidate commit `55d4127` was independently reproduced and
+audited from a clean checkout. Audit correction commit `0df249c` added the 140
+required reference/built hash pairs and restored the omitted return delay-slot
+instruction in `FUN_80075af8`. All 140 owned functions match exactly (1,564
+bytes), the corrected manifest totals 367 main-executable functions / 19,364
+bytes, and the accepted result was merged into `master` by `ca28d4e` under
 [/docs/workflows/external-agent-acceptance.md](/docs/workflows/external-agent-acceptance.md).
 
 # Fixed base and branch
