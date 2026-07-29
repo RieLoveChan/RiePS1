@@ -17,7 +17,7 @@ and validate its recorded hashes before comparison.
 | Main-executable function inventory | 2,127 total: 367 verified, 102 manually reviewed, 778 library signatures, 880 unverified |
 | Exact reconstruction | 437 functions / 28,736 selected bytes: 367/19,364 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,344; session router/opening/gameplay/endgame: 51/8,736 |
+| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | Full 11,864-byte structural map; 70 functions/9,372 code bytes plus 12 semantic data sections/2,492 bytes exact (11,864 selected bytes, 100% whole-overlay match); all 748 tail bytes resolved; 1,910-tick script verified |
