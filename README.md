@@ -14,9 +14,9 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,424 total: 737 verified, 102 manually reviewed, 408 library signatures, 297 tool-heuristic (newly discovered, see below), 880 unverified |
+| Main-executable function inventory | 2,424 total: 1,034 verified, 102 manually reviewed, 408 library signatures, 880 unverified |
 | Main-executable code-region byte accounting | 569,317 of 1,050,624 code-region bytes (54.2%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 481,307 bytes are not 481KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), leaving 4,523 bytes still fully unaccounted for. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
-| Exact reconstruction | 807 functions / 52,284 selected bytes: 737/42,912 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Exact reconstruction | 1,104 functions / 111,236 selected bytes: 1,034/101,864 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
 | Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
@@ -27,8 +27,8 @@ and validate its recorded hashes before comparison.
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress; so is the 54.2% code-region
 byte accounting above (a catalogued boundary is not a byte-exact match).
-Exact accepted reconstruction currently covers 737 of 2,424 main-executable
-functions (about 30.4%; 42,912 of 1,050,624 code-region bytes, about 4.1%),
+Exact accepted reconstruction currently covers 1,034 of 2,424 main-executable
+functions (about 42.7%; 101,864 of 1,050,624 code-region bytes, about 9.7%),
 plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
