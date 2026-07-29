@@ -4,7 +4,7 @@ title: Portable Ghidra + ghidra_psx_ldr Setup
 description: A self-contained, git-ignored Ghidra 12.1.2 install with the ghidra_psx_ldr extension, plus headless import/report scripts.
 resource: https://github.com/NationalSecurityAgency/ghidra
 tags: [ps1, ghidra, tooling, static-analysis, psyq]
-timestamp: 2026-07-16T00:00:00-04:00
+timestamp: 2026-07-29T18:00:00-04:00
 ---
 
 # Layout
@@ -72,6 +72,16 @@ each of the three pieces; do not guess download URLs.
   that `FUN_8002112c` is the sole writer of the two per-port
   newly-pressed globals before reviewing it as the game's per-frame PAD
   adapter.
+- `/tools/ghidra/scripts/DumpFunctionCallers.java` — lists direct call sites
+  for one or more target functions and decompiles every unique caller
+  (headless: `-postScript DumpFunctionCallers.java 0xADDR [0xADDR ...]`).
+  Added to trace how callers interpret pointers returned by the DDR 5th Mix
+  music-database accessors.
+- `/tools/ghidra/scripts/DumpScalarOperands.java` — lists instructions whose
+  explicit operands contain one or more requested scalar values (headless:
+  `-postScript DumpScalarOperands.java 0xVALUE [0xVALUE ...]`). This closes
+  indirect structure-field sweeps when only a byte displacement is known;
+  for example, `0x73c` found every read/write of a music-select state field.
 - `/tools/ghidra/scripts/DumpShorts.java` — reads N consecutive signed
   16-bit values starting at an address and prints each in decimal and hex;
   for small data tables (e.g. a menu's list of destination values) that
