@@ -399,6 +399,61 @@ practice of separating what was checked from what remains open.
   as valid instructions throughout, or identifying the asset container
   format).
 
+## 5.4 Cataloguing pass: 297 new `tool_heuristic` rows
+
+Following up the same day, the 135 candidate gaps from §5.3 were
+disassembled (`-M no-aliases`) and scored against the mnemonic set already
+established as normal for this executable across Batches 3–8. 133 of 135
+scored 90%+ recognized-mnemonic density on the first pass; both exceptions
+were manually confirmed as false negatives from the scoring heuristic, not
+evidence of non-code content — one gap sits at an odd address immediately
+after the existing one-byte `2MBYTE_OBJ_B4` marker (§4) and is genuinely
+misaligned for MIPS decoding, the other is a large (598-instruction)
+function using COP2/GTE instructions outside the scoring whitelist, visually
+confirmed as a textbook `addiu sp,sp,-72` / callee-save prologue on
+inspection.
+
+Function boundaries within each gap were then segmented on every `jr`
+instruction (any target register, to also catch the `lui`/`addiu`/`jr`
+BIOS-vector-call trampoline idiom already established in Batches 1–2 — a
+plain PsyQ syscall-call pattern, not a return, but one that still marks a
+clean function boundary) plus its delay slot, skipping zero-only alignment
+padding before the next segment. An unconditional `j` was deliberately
+*not* treated as a boundary after testing showed it over-splits by roughly
+2x (592 vs. 285 segments on the same input) — most `j` instructions in this
+codebase are internal control flow (loop continuation, shared local exit
+stubs), not function boundaries, unlike `jr`.
+
+This produced 297 new rows (58,952 bytes) covering 134 of the 135 candidate
+gaps, added to the symbol map at `confidence = tool_heuristic` /
+`source_status = decompiler_output_only`, named `FUN_<address>` per this
+project's existing convention for un-signature-matched discoveries, with
+`verification_evidence` recording the sweep+segmentation method and date.
+`tool_heuristic` (not `library_signature` or `manual`) is the correct tier
+per `/docs/foundations/symbol-map-schema.md`: these boundaries come from a
+calling-convention heuristic over raw disassembly, not a signature-database
+match or a human per-function review. 12 of the 297 rows are the entire
+remainder of a gap after its last detected `jr`, with no further `jr` found
+before the gap's own end (i.e. the row's *lower* bound is a real boundary,
+but its *upper* bound is only the enclosing gap's edge, not a confirmed
+local return); each such row's `notes` field says so explicitly and flags
+it as less certain than the rest of this pass.
+
+Verified before insertion: no duplicate addresses among the 297 rows, no
+address collision with any pre-existing row, and the per-gap byte sums
+account for every byte of all 134 processed gaps (the small residual in 5 of
+them is trailing zero-alignment padding correctly left uncatalogued, not a
+gap in the accounting).
+
+Left open: the misaligned `0x800207ad` gap (1,399 bytes, needs its true
+4-byte-aligned start determined before segmentation) and the 4,523 bytes
+still fully unaccounted for after this pass (the 1,399-byte gap above plus
+the small sub-65-byte gaps this pass did not attempt). None of these 297
+rows have been individually reviewed or byte-matched; they are a boundary
+proposal, at the same evidentiary weight as any other `tool_heuristic` row,
+ready for the same kind of batch reconstruction already used for
+`library_signature` rows in Batches 3–8.
+
 # What would constitute sufficient evidence for "object boundary confirmed"
 
 Matching this project's evidentiary style elsewhere, a future claim that a
