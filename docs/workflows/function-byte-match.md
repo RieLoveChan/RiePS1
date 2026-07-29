@@ -3,7 +3,7 @@ type: Playbook
 title: Per-function byte-match loop
 description: Hash-gated assembly and comparison loop for reconstructed DDR 5th Mix functions.
 tags: [ps1, workflow, matching, build, ddr5thmix]
-timestamp: 2026-07-19T00:00:00-04:00
+timestamp: 2026-07-29T00:00:00-04:00
 ---
 
 # Contract
@@ -65,13 +65,13 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module screen-selector
 ```
 
-`screen-selector` contains twenty-two accepted functions and 2,344 compared bytes.
+`screen-selector` contains twenty-two accepted functions and 2,348 compared bytes.
 
 # Accepted functions
 
 ## Screen-selector
 
-The twenty-two-function unit implements the enter/update/exit callback hierarchy and next-state router for the 6-substate gameplay session selector. GNU binutils 2.43 matches all 2,344 selected bytes:
+The twenty-two-function unit implements the enter/update/exit callback hierarchy and next-state router for the 6-substate gameplay session selector. GNU binutils 2.43 matches all 2,348 selected bytes:
 
 | Function | Bytes | Built/reference SHA-256 |
 |---|---:|---|
@@ -96,7 +96,7 @@ The twenty-two-function unit implements the enter/update/exit callback hierarchy
 | `FUN_80075ae0` | 8 | `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1` |
 | `FUN_80075ae8` | 8 | `e7363c7ea5cd57a5cadba4dee6094510a4203175e28f46f49f81257af95fed0d` |
 | `FUN_80075af0` | 8 | `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1` |
-| `FUN_80075af8` | 136 | `ac2fbd081cfb29759c55b11894d0392336fd576a8d6faed17b8dfa6e7df88e5d` |
+| `FUN_80075af8` | 140 | `51814c35d43b112da91fe0ffd09e73e92b2bd793d7fa297da2915d1220a1d36b` |
 
 See the [screen-selector concept](/docs/games/ddr-5th-mix-jp-screen-selector.md)
 for callback structure, router logic, and evidence.

@@ -3,7 +3,7 @@ type: Concept
 title: Linked-Object Evidence — Methodology, Findings, and Open Bar
 description: What this project has checked toward proving original PsyQ object-file boundaries and internal layout, what the evidence actually shows, and the falsifiable bar for a future object-boundary-confirmed claim.
 tags: [ps1, ddr5thmix, linking, psyq, object-boundaries, ghidra, evidence]
-timestamp: 2026-07-24T00:00:00-04:00
+timestamp: 2026-07-29T00:00:00-04:00
 ---
 
 # Scope and honesty boundary
@@ -34,7 +34,7 @@ whether the gap bytes are zero padding or further real code.
 
 ## Application-code modules: no alignment padding found anywhere checked
 
-- **`screen-selector`** (22 functions): the sum of all function sizes (2,344
+- **`screen-selector`** (22 functions): the sum of all function sizes (2,348
   bytes) exactly equals the address span from the first function's start to
   the last function's end. Zero gap between every one of the 21 adjacent
   pairs. This was already implied by the existing per-function table but had

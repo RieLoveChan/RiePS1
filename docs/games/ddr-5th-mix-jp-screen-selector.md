@@ -3,7 +3,7 @@ type: Reconstructed Module
 title: Dance Dance Revolution 5th Mix (Japan) — Screen Selector Module
 description: Technical reconstruction and byte-matching evidence for the nested six-state screen selector hierarchy and next-state router.
 tags: [ps1, ddr5thmix, decompilation, screen-selector, state-machine]
-timestamp: 2026-07-19T00:00:00-04:00
+timestamp: 2026-07-29T00:00:00-04:00
 ---
 
 # Overview
@@ -15,7 +15,7 @@ It is governed by three flat six-entry callback arrays:
 - **Update table**: `0x800df000`
 - **Exit table**: `0x800df018`
 
-Together with three substate 3 helper routines and the central next-state router (`FUN_80075af8`), the module comprises **22 functions** and **2,344 bytes**, all verified byte-for-byte against the lawfully supplied `SLPM_868.97` executable.
+Together with three substate 3 helper routines and the central next-state router (`FUN_80075af8`), the module comprises **22 functions** and **2,348 bytes**, all verified byte-for-byte against the lawfully supplied `SLPM_868.97` executable. The router's final `li $v0, 5` is the return delay-slot instruction at `0x80075b80`; omitting it produces a misleading 136-byte prefix match rather than the complete 140-byte function.
 
 # Table Inventory & Callback Structure
 
@@ -43,7 +43,7 @@ Substate 3 (`MUSIC SEL`) additionally owns three helper subroutines: `FUN_800755
 - **Executable SHA-256**: `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`
 - **Toolchain**: GCC 14.2.0 / GNU Binutils 2.43 (`mipsel-none-elf`)
 - **Source file**: `/src/ddr5thmix/ScreenSelector.s` and `/src/ddr5thmix/screen_selector.h`
-- **Module Match Result**: `byte_match: true` (22 functions, 2,344 compared bytes)
+- **Module Match Result**: `byte_match: true` (22 functions, 2,348 compared bytes)
 - **Reproduction Command**:
   ```powershell
   pwsh -File tools/build/Invoke-ModuleMatch.ps1 -ExePath work/ddr5thmix-extract/exe/SLPM_868.97_1 -Module screen-selector
