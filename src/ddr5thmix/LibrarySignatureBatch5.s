@@ -1916,4 +1916,3 @@ rsin:
     negu    $v0,$v0
     .end rsin
     .size rsin, . - rsin
-
