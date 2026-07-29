@@ -8,3 +8,4 @@
 * [External linked-object-boundary work package](external-agent-linked-object-boundary.md) - Bounded evidence/tooling package to extend PsyQ linked-object-boundary evidence toward its falsifiable confirmation bar, then continue an ordered backlog.
 * [External library-signature reconstruction batch 3](external-agent-library-signature-batch3.md) - Fixed 140-function package of 8–16-byte main-executable signatures for a large mechanical reconstruction pass.
 * [External library-signature reconstruction batch 4](external-agent-library-signature-batch4.md) - Fixed 82-function package of 20–32-byte main-executable signatures for the next mechanical reconstruction pass.
+* [External library-signature reconstruction batch 5](external-agent-library-signature-batch5.md) - Fixed 92-function package of 33–48-byte main-executable signatures for the next mechanical reconstruction pass.
