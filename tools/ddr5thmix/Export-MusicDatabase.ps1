@@ -21,6 +21,8 @@ $RecordCount = 47
 $RecordSize = 0x1c
 $ValidIdAddress = [uint32][Convert]::ToUInt32('800DF900', 16)
 $ValidIdCount = 50
+$ResourcePointerAddress = [uint32][Convert]::ToUInt32('800DF14C', 16)
+$ResourceSlotCount = 50
 
 function Convert-AddressToFileOffset {
     param([uint32]$Address)
@@ -72,6 +74,7 @@ $records = @(
         [pscustomobject][ordered]@{
             record_index = $index
             menu_code = $script:Bytes[$offset + 0x03]
+            resource_slot = $script:Bytes[$offset + 0x03] - 1
             music_id = ('0x{0:X4}' -f [BitConverter]::ToUInt16($script:Bytes, $offset + 0x00))
             title = Read-CStringAtAddress -Address $titleAddress
             bpm_primary = [BitConverter]::ToUInt16($script:Bytes, $offset + 0x14)
@@ -83,10 +86,11 @@ $records = @(
             double_trick = Get-DifficultyNibble -Packed $double -Index 1
             double_maniac = Get-DifficultyNibble -Packed $double -Index 2
             unlock_bit = [BitConverter]::ToUInt16($script:Bytes, $offset + 0x12)
-            field_02 = ('0x{0:X2}' -f $script:Bytes[$offset + 0x02])
+            artwork_selector = ('0x{0:X2}' -f $script:Bytes[$offset + 0x02])
             field_04 = [BitConverter]::ToUInt16($script:Bytes, $offset + 0x04)
             field_06 = [BitConverter]::ToUInt16($script:Bytes, $offset + 0x06)
             flags_0c = ('0x{0:X4}' -f [BitConverter]::ToUInt16($script:Bytes, $offset + 0x0c))
+            is_long_song = ([BitConverter]::ToUInt16($script:Bytes, $offset + 0x0c) -band 0x0100) -ne 0
             field_0e = [BitConverter]::ToUInt16($script:Bytes, $offset + 0x0e)
             field_10 = [BitConverter]::ToUInt16($script:Bytes, $offset + 0x10)
             title_address = ('0x{0:X8}' -f $titleAddress)
@@ -101,11 +105,65 @@ $validIds = @(
     }
 )
 
+$resourcePointerOffset = Convert-AddressToFileOffset -Address $ResourcePointerAddress
+$resourceSlots = @(
+    for ($index = 0; $index -lt $ResourceSlotCount; $index++) {
+        $id = $validIds[$index]
+        $descriptorAddress = [BitConverter]::ToUInt32(
+            $script:Bytes, $resourcePointerOffset + $index * 4)
+        $record = @($records | Where-Object music_id -eq $id)
+        if ($record.Count -gt 1) {
+            throw "Music ID $id maps to multiple music_info records"
+        }
+
+        $descriptorWord00 = $null
+        $descriptorWord04 = $null
+        if ($descriptorAddress -ne 0) {
+            $descriptorOffset = Convert-AddressToFileOffset -Address $descriptorAddress
+            $descriptorWord00 = '0x{0:X8}' -f [BitConverter]::ToUInt32(
+                $script:Bytes, $descriptorOffset)
+            $descriptorWord04 = '0x{0:X8}' -f [BitConverter]::ToUInt32(
+                $script:Bytes, $descriptorOffset + 4)
+        }
+
+        [pscustomobject][ordered]@{
+            slot = $index
+            music_id = $id
+            record_menu_code = if ($record.Count -eq 1) { $record[0].menu_code } else { $null }
+            record_title = if ($record.Count -eq 1) { $record[0].title } else { $null }
+            descriptor_address = ('0x{0:X8}' -f $descriptorAddress)
+            descriptor_word_00 = $descriptorWord00
+            descriptor_word_04 = $descriptorWord04
+        }
+    }
+)
+
 if (($records.menu_code | Sort-Object -Unique).Count -ne $RecordCount) {
     throw 'menu_code is not unique across all 47 records'
 }
 if (($records.title | Where-Object { -not $_ }).Count -ne 0) {
     throw 'One or more title pointers resolved to an empty string'
+}
+if (($records.music_id | Sort-Object -Unique).Count -ne $RecordCount) {
+    throw 'music_id is not unique across all 47 records'
+}
+
+$recordsByMenu = @($records | Sort-Object menu_code)
+for ($index = 0; $index -lt $RecordCount; $index++) {
+    if ($recordsByMenu[$index].menu_code -ne $index + 1) {
+        throw "menu_code sequence is not contiguous at resource slot $index"
+    }
+    if ($recordsByMenu[$index].music_id -ne $validIds[$index]) {
+        throw "music_info/resource-slot ID mismatch at slot $index"
+    }
+}
+if (@($resourceSlots | Where-Object { $_.record_menu_code -ne $null }).Count -ne $RecordCount) {
+    throw 'The 50 resource slots do not map to exactly 47 music_info records'
+}
+if (($resourceSlots[47].descriptor_address -eq '0x00000000') -or
+    ($resourceSlots[48].descriptor_address -eq '0x00000000') -or
+    ($resourceSlots[49].descriptor_address -ne '0x00000000')) {
+    throw 'Unexpected descriptor presence pattern in the three non-record resource slots'
 }
 
 if ($OutCsv) {
@@ -122,10 +180,11 @@ $report = [ordered]@{
         count = $RecordCount
         recordSize = $RecordSize
     }
-    validIdTable = [ordered]@{
+    resourceSlotTable = [ordered]@{
         address = ('0x{0:X8}' -f $ValidIdAddress)
+        descriptorPointerAddress = ('0x{0:X8}' -f $ResourcePointerAddress)
         count = $ValidIdCount
-        ids = $validIds
+        slots = $resourceSlots
     }
     records = $records | Sort-Object menu_code
 }
