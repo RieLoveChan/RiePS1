@@ -11,3 +11,4 @@
 * [External library-signature reconstruction batch 5](external-agent-library-signature-batch5.md) - Fixed 92-function package of 33–48-byte main-executable signatures for the next mechanical reconstruction pass.
 * [External library-signature reconstruction batch 6](external-agent-library-signature-batch6.md) - Fixed 46-function package of 49–64-byte main-executable signatures for the next mechanical reconstruction pass.
 * [External library-signature reconstruction batch 7](external-agent-library-signature-batch7.md) - Fixed 65-function package of 65–96-byte main-executable signatures, the first sliced sub-range of the 65-byte-and-larger backlog.
+* [External library-signature reconstruction batch 8](external-agent-library-signature-batch8.md) - Fixed 85-function package of 97–128-byte main-executable signatures, the second sliced sub-range of the 65-byte-and-larger backlog.
