@@ -65,7 +65,9 @@ typedef struct DdrModeState {
     u16 unknown_0ac;
     u8 unknown_0ae[0x13];
     u8 derived_0c1;
-    u8 unknown_0c2[0x32];
+    u8 unknown_0c2[0x30];
+    u8 alternate_input_mapping_flag;
+    u8 input_mapping_enabled;
     u8 screen_range_flag;
     u8 unknown_0f5;
     u8 unknown_0f6;
@@ -74,7 +76,9 @@ typedef struct DdrModeState {
     u8 termination_latch;
     u8 unknown_100;
     u8 unknown_101;
-    u8 unknown_102[0x3e];
+    u8 input_mapping_variant_flag;
+    u8 input_button_layout_variant;
+    u8 unknown_104[0x3c];
 } DdrModeState;
 
 typedef struct DdrSecondaryState {
@@ -126,7 +130,11 @@ DDR_STATIC_ASSERT(ddr_aux2_released_offset, __builtin_offsetof(DdrModeState, aux
 DDR_STATIC_ASSERT(ddr_counter_090_offset, __builtin_offsetof(DdrModeState, counter_090) == 0x90);
 DDR_STATIC_ASSERT(ddr_derived_0c1_offset, __builtin_offsetof(DdrModeState, derived_0c1) == 0xc1);
 DDR_STATIC_ASSERT(ddr_screen_range_flag_offset, __builtin_offsetof(DdrModeState, screen_range_flag) == 0xf4);
+DDR_STATIC_ASSERT(ddr_alternate_input_mapping_flag_offset, __builtin_offsetof(DdrModeState, alternate_input_mapping_flag) == 0xf2);
+DDR_STATIC_ASSERT(ddr_input_mapping_enabled_offset, __builtin_offsetof(DdrModeState, input_mapping_enabled) == 0xf3);
 DDR_STATIC_ASSERT(ddr_termination_latch_offset, __builtin_offsetof(DdrModeState, termination_latch) == 0xff);
+DDR_STATIC_ASSERT(ddr_input_mapping_variant_flag_offset, __builtin_offsetof(DdrModeState, input_mapping_variant_flag) == 0x102);
+DDR_STATIC_ASSERT(ddr_input_button_layout_variant_offset, __builtin_offsetof(DdrModeState, input_button_layout_variant) == 0x103);
 DDR_STATIC_ASSERT(ddr_mode_state_size, sizeof(DdrModeState) == 0x140);
 DDR_STATIC_ASSERT(ddr_secondary_052_offset, __builtin_offsetof(DdrSecondaryState, unknown_052) == 0x52);
 DDR_STATIC_ASSERT(ddr_secondary_006_offset, __builtin_offsetof(DdrSecondaryState, unknown_006) == 0x06);

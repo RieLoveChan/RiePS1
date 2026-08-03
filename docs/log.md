@@ -1,6 +1,9 @@
 # Knowledge Bundle Update Log
 
 ## 2026-08-03
+* **Unit E — remaining global-layout audit**: A reproducible Ghidra 12.1.2 headless DumpFieldXrefs.java pass over PTR_DAT_800ac8e8 found 62 referencing functions. Promoted four behaviorally evidenced fields in src/ddr5thmix/mode_control.h: +0xf2 alternate input mapping flag, +0xf3 input mapping enabled, +0x102 mapping variant flag, and +0x103 button-layout variant. No further stable semantics were justified; remaining unknowns stay conservative. See [/docs/games/ddr-5th-mix-jp-globals.md](/docs/games/ddr-5th-mix-jp-globals.md).
+
+
 * **Unit C audit**: Re-ran the two existing BIOS stub matches (`FUN_8003ba70` and `FUN_8003bb30`): both remain `byte_match: True` at 12 bytes, and a lawful-executable scan found the repeated `50 73 <tag> 00 00 00 44 00` marker form at both prefixes and multiple independent addresses. The former unexplained-prefix wording is superseded; the exact object-file semantics remain unproven. See [linked-object evidence](/docs/foundations/linked-object-evidence.md).
 * **Unit A**: Re-ran the SYS/ResetGraph object checker at current HEAD: 68 `SYS_OBJ_*` rows and 98 total intervals cover all 12,076 bytes with one implied base and zero gaps. The historical 116/36/120-byte gaps are now `SYS_OBJ_F80`/`SYS_OBJ_22F4`/`SYS_OBJ_2828`, each reproduced with `byte_match: True`; edge bytes show 8 zero bytes before the object and 4 after it, correcting the prior symmetric-edge wording. See [linked-object evidence](/docs/foundations/linked-object-evidence.md).
 * **Audit**: Classified the 14 remaining real-address `library_signature` rows: one `2MBYTE_OBJ_B4` data/object marker, twelve contiguous internal object fragments containing instruction words, and one zero-word alignment fragment; none is an independent reconstruction target. See [short library fragment audit](/docs/foundations/short-library-fragment-audit.md).

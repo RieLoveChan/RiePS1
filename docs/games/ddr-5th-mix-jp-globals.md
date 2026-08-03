@@ -98,6 +98,13 @@ the wider screen-flow review establishes that callbacks write screen-name
 indices there, while the reconstructed leaf verifies only its range test and
 the resulting `screen_range_flag`.
 
+## Unidad E — auditoría de layout global (2026-08-03)
+
+Se repitió el barrido reproducible con Ghidra 12.1.2 headless sobre `SLPM_868.97_1`, usando `DumpFieldXrefs.java` para `PTR_DAT_800ac8e8`. El comando fue `analyzeHeadless runtime/ghidra/projects ddr5thmix -process SLPM_868.97_1 -noanalysis -scriptPath tools/ghidra/scripts -postScript DumpFieldXrefs.java 0x800ac8e8`; reportó 62 funciones con referencias.
+
+La revisión separó accesos fijos de expresiones indexadas. `+0xf2` se comporta como `alternate_input_mapping_flag`: selecciona una ruta alternativa basada en tablas; `+0xf3` como `input_mapping_enabled`: habilita la capa de traducción de entradas. `+0x102` se conserva como `input_mapping_variant_flag`, pues selecciona el mapeo extendido/directo; `+0x103` como `input_button_layout_variant`, pues cambia la conversión de bits de botones. Son nombres conductuales, no nombres de dominio definitivos.
+
+No apareció otro offset con evidencia suficiente para asignar semántica estable más allá de `+0x09`, `+0x17`, `+0x2c` y del negativo exhaustivo de `+0x2e`. Los restantes accesos corresponden a reset, contadores, estado de entrada o índices dinámicos por jugador/subsistema. Se conserva `unknown_*` donde no hay evidencia discriminante.
 # Reproduction
 
 The address and access evidence comes from the Ghidra 12.1.2 field/xref dumps
