@@ -1,6 +1,7 @@
 # Knowledge Bundle Update Log
 
 ## 2026-08-03
+* **Unattributed-byte pass — startup gap catalogued**: Reproduced the hash-gated gap sweep and classified `0x800207ad`–`0x80020d24` (1,399 bytes) as 15 bytes of marker/data followed by three complete MIPS functions: `FUN_800207bc` (648), `FUN_80020a44` (692), and `FUN_80020cf8` (44). Added the three boundaries as `manual`/`disassembly_reviewed`; no exact byte match is claimed. Remaining whole-region gap decreases from 4,523 to 3,139 bytes. See [/docs/foundations/linked-object-evidence.md](/docs/foundations/linked-object-evidence.md).
 * **Unit E — remaining global-layout audit**: A reproducible Ghidra 12.1.2 headless DumpFieldXrefs.java pass over PTR_DAT_800ac8e8 found 62 referencing functions. Promoted four behaviorally evidenced fields in src/ddr5thmix/mode_control.h: +0xf2 alternate input mapping flag, +0xf3 input mapping enabled, +0x102 mapping variant flag, and +0x103 button-layout variant. No further stable semantics were justified; remaining unknowns stay conservative. See [/docs/games/ddr-5th-mix-jp-globals.md](/docs/games/ddr-5th-mix-jp-globals.md).
 
 

@@ -523,6 +523,11 @@ proposal, at the same evidentiary weight as any other `tool_heuristic` row,
 ready for the same kind of batch reconstruction already used for
 `library_signature` rows in Batches 3–8.
 
+### Update 2026-08-03: Catalogued the misaligned startup gap
+
+The hash-gated gap sweep reported the open gap `0x800207ad`–`0x80020d24` (1,399 bytes; 320 zero bytes and 1,079 non-zero bytes). Correctly mapping the PS-X EXE load address and disassembling a temporary byte slice with `mipsel-none-elf-objdump -D -b binary -m mips:3000 -EL -M no-aliases --adjust-vma=0x800207a0` showed 15 bytes of non-code marker/data at `0x800207ad`–`0x800207bb`, followed by three complete MIPS functions: `FUN_800207bc` (648 bytes), `FUN_80020a44` (692 bytes), and `FUN_80020cf8` (44 bytes). Ghidra 12.1.2 `DumpFunctionDetail.java` independently produced the same starts and sizes; the functions end at `0x80020a40`, `0x80020cf4`, and `0x80020d20`, respectively, with the existing `FUN_80020d24` beginning immediately afterward.
+
+The three functions are now catalogued at `confidence=manual` / `source_status=disassembly_reviewed`; this is boundary and semantic review evidence, not an exact byte-match claim. The 15-byte marker/data prefix remains explicitly non-code and unresolved in semantic identity. The remaining whole-code-region gap is therefore 3,139 bytes after this cataloguing pass; exact reconstruction remains a separate next step.
 # What would constitute sufficient evidence for "object boundary confirmed"
 
 Matching this project's evidentiary style elsewhere, a future claim that a

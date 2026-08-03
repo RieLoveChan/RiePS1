@@ -14,8 +14,8 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,424 total: 1,275 verified, 102 manually reviewed, 167 library signatures, 880 unverified |
-| Main-executable code-region byte accounting | 569,317 of 1,050,624 code-region bytes (54.2%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 481,307 bytes are not 481KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), leaving 4,523 bytes still fully unaccounted for. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
+| Main-executable function inventory | 2,427 total: 1,275 verified, 105 manually reviewed, 167 library signatures, 880 unverified |
+| Main-executable code-region byte accounting | 570,701 of 1,050,624 code-region bytes (54.3%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 479,923 bytes are not 480KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), leaving 3,139 bytes still fully unaccounted for. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
 | Exact reconstruction | 1,345 functions / 175,264 selected bytes: 1,275/165,892 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
 | Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736 |
