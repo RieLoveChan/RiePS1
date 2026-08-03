@@ -61,11 +61,12 @@ plus all
   exact code bytes, with a contiguous 11,864-byte structural map and verified
   97-step/1,910-tick command trace.
 - Library-signature reconstruction batches 1-12 (1,110 functions total)
-  closed every named main-executable signature from 8 to 511 bytes, plus
-  every gap-sweep-discovered `tool_heuristic` function of any size. 182
-  named signatures remain: 15 at 512+ bytes and 167 anomalous 1-/4-byte
-  synthetic GTE-macro entries at `0x2000...` pseudo-addresses, not real
-  executable-code addresses) excluded from every batch so far.
+  closed every named main-executable signature from 8 through 511 bytes and
+  the final 15 signatures of 512+ bytes, plus every gap-sweep-discovered
+  `tool_heuristic` function of any size. The remaining 167 `library_signature`
+  rows are 153 synthetic GTE macros at `0x2000...` pseudo-addresses plus
+  14 short real-address rows requiring separate object-boundary/data
+  classification; none are ordinary reconstruction targets.
 
 ## Recommended next targets
 
