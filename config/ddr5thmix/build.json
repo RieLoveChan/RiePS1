@@ -14738,6 +14738,1111 @@
       },
       "reference_sha256": "1a07cb6582b4d243e8b759485347b94cec70b31d2e5babb51bc530617d9c8bdc",
       "built_sha256": "1a07cb6582b4d243e8b759485347b94cec70b31d2e5babb51bc530617d9c8bdc"
+    },
+    {
+      "name": "SPU_OBJ_D4",
+      "address": "0x8002da90",
+      "size": 428,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SPU_OBJ_D4",
+      "symbols": {
+        "_spu_Fw1ts": "0x8002e494",
+        "SPU_OBJ_280": "0x8002dc3c"
+      },
+      "reference_sha256": "a5c2c5cfa72c4096fab483923ac0de41c72eef4296edf5cf43706011fefcc0d5",
+      "built_sha256": "a5c2c5cfa72c4096fab483923ac0de41c72eef4296edf5cf43706011fefcc0d5"
+    },
+    {
+      "name": "SPU_OBJ_280",
+      "address": "0x8002dc3c",
+      "size": 272,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SPU_OBJ_280",
+      "symbols": {
+        "_spu_Fw1ts": "0x8002e494",
+        "printf": "0x8003bae8",
+        "SPU_OBJ_390": "0x8002dd4c",
+        "sym_8002dd64": "0x8002dd64"
+      },
+      "reference_sha256": "72de3a42db01964159f391ff8b3de9edc20938ef76d58902c7cbd41f4fec6717",
+      "built_sha256": "72de3a42db01964159f391ff8b3de9edc20938ef76d58902c7cbd41f4fec6717"
+    },
+    {
+      "name": "_spu_t",
+      "address": "0x8002df60",
+      "size": 488,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._spu_t",
+      "symbols": {
+        "SPU_OBJ_78C": "0x8002e148",
+        "SPU_OBJ_814": "0x8002e1d0",
+        "SPU_OBJ_A88": "0x8002e444",
+        "SPU_OBJ_AB0": "0x8002e46c"
+      },
+      "reference_sha256": "6544a4c33028f04f0925d6729ad293d7f06384989a591be0fa97cc0c07d31bd0",
+      "built_sha256": "6544a4c33028f04f0925d6729ad293d7f06384989a591be0fa97cc0c07d31bd0"
+    },
+    {
+      "name": "_SpuSetAnyVoice",
+      "address": "0x8002e8ec",
+      "size": 304,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._SpuSetAnyVoice",
+      "symbols": {
+        "FUN_8002ea2c": "0x8002ea2c",
+        "FUN_8002eb00": "0x8002eb00",
+        "S_SAV_OBJ_130": "0x8002ea1c",
+        "S_SAV_OBJ_2B4": "0x8002eba0"
+      },
+      "reference_sha256": "691b8a23ec8458a232e5629d971e74abcc9bd6fb9a390d0a2859fbcefa650504",
+      "built_sha256": "691b8a23ec8458a232e5629d971e74abcc9bd6fb9a390d0a2859fbcefa650504"
+    },
+    {
+      "name": "SpuSetKey",
+      "address": "0x8002ef5c",
+      "size": 428,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SpuSetKey",
+      "symbols": {
+        "S_SK_OBJ_1AC": "0x8002f108",
+        "S_SK_OBJ_1B4": "0x8002f110"
+      },
+      "reference_sha256": "a4d7db0962b6383139b96f47a3a252a7ae9eea737bbdc67d2733f15f284c5260",
+      "built_sha256": "a4d7db0962b6383139b96f47a3a252a7ae9eea737bbdc67d2733f15f284c5260"
+    },
+    {
+      "name": "SpuSetVoiceAttr",
+      "address": "0x8002f42c",
+      "size": 316,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SpuSetVoiceAttr",
+      "symbols": {
+        "_spu_note2pitch": "0x8002fa2c",
+        "S_SVA_OBJ_170": "0x8002f59c",
+        "sym_8002f5e4": "0x8002f5e4",
+        "sym_8002f9a0": "0x8002f9a0"
+      },
+      "reference_sha256": "2ad05277a7dc5714a094714037f83ebe2f4c2e32f256655ff08f9f7b1e142beb",
+      "built_sha256": "2ad05277a7dc5714a094714037f83ebe2f4c2e32f256655ff08f9f7b1e142beb"
+    },
+    {
+      "name": "S_SVA_OBJ_480",
+      "address": "0x8002f8ac",
+      "size": 320,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.S_SVA_OBJ_480",
+      "symbols": {
+        "S_SVA_OBJ_5C0": "0x8002f9ec",
+        "sym_8002f464": "0x8002f464"
+      },
+      "reference_sha256": "5bbb08d27c1857688d1d80331a91c6900d2455823afccaa29455e3717a0fd6eb",
+      "built_sha256": "5bbb08d27c1857688d1d80331a91c6900d2455823afccaa29455e3717a0fd6eb"
+    },
+    {
+      "name": "S_SCA_OBJ_158",
+      "address": "0x80030094",
+      "size": 284,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.S_SCA_OBJ_158",
+      "symbols": {
+        "S_SCA_OBJ_274": "0x800301b0",
+        "sym_800301b4": "0x800301b4"
+      },
+      "reference_sha256": "6338192ac0cfa8c1d0e1ad30f581a68c1b8c9d93eff33d64e65f0cec81d4fa58",
+      "built_sha256": "6338192ac0cfa8c1d0e1ad30f581a68c1b8c9d93eff33d64e65f0cec81d4fa58"
+    },
+    {
+      "name": "_SsSndCrescendo",
+      "address": "0x8003088c",
+      "size": 440,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._SsSndCrescendo",
+      "symbols": {
+        "_SsVmGetSeqVol": "0x800348b8",
+        "CRES_OBJ_1B8": "0x80030a44",
+        "sym_80030a54": "0x80030a54",
+        "sym_80030a58": "0x80030a58",
+        "sym_80030a5c": "0x80030a5c",
+        "sym_8003434c": "0x8003434c"
+      },
+      "reference_sha256": "59da7a80c7cff1b6a3a70d57543b5b090ddd8c55e57bdad4bd8864c8550a6b15",
+      "built_sha256": "59da7a80c7cff1b6a3a70d57543b5b090ddd8c55e57bdad4bd8864c8550a6b15"
+    },
+    {
+      "name": "_SsSeqGetEof",
+      "address": "0x80030c68",
+      "size": 264,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._SsSeqGetEof",
+      "symbols": {
+        "FUN_80030d78": "0x80030d78",
+        "MIDIREAD_OBJ_204": "0x80030d70",
+        "MIDIREAD_OBJ_328": "0x80030e94"
+      },
+      "reference_sha256": "8b4c9199b99e37e09c8094ea52b540b79899cf82cc607300c537d13ffd4dc9b2",
+      "built_sha256": "8b4c9199b99e37e09c8094ea52b540b79899cf82cc607300c537d13ffd4dc9b2"
+    },
+    {
+      "name": "_SsSndStop",
+      "address": "0x8003146c",
+      "size": 384,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._SsSndStop",
+      "symbols": {
+        "_SsVmSeqKeyOff": "0x800349ac",
+        "sym_80032d9c": "0x80032d9c"
+      },
+      "reference_sha256": "ebede6e5b4ab937e08f00f3f69c2fa1ae895de68b9fea3555f134b1058190121",
+      "built_sha256": "ebede6e5b4ab937e08f00f3f69c2fa1ae895de68b9fea3555f134b1058190121"
+    },
+    {
+      "name": "SsSetSerialVol",
+      "address": "0x8003164c",
+      "size": 260,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SsSetSerialVol",
+      "symbols": {
+        "SpuSetCommonAttr": "0x8002ff3c"
+      },
+      "reference_sha256": "6de423edc4e0c7d213c3458416cd84f350a0614e24da57502433fd16450bc458",
+      "built_sha256": "6de423edc4e0c7d213c3458416cd84f350a0614e24da57502433fd16450bc458"
+    },
+    {
+      "name": "_SsSndTempo",
+      "address": "0x80031acc",
+      "size": 292,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._SsSndTempo",
+      "symbols": {
+        "sym_80031ce0": "0x80031ce0",
+        "TEMPO_OBJ_124": "0x80031bf0",
+        "TEMPO_OBJ_130": "0x80031bfc",
+        "TEMPO_OBJ_204": "0x80031cd0"
+      },
+      "reference_sha256": "1062bf747bfa4dac2abbe46244ca3f9ff6c120aec9e35f61bd94cd150c04a885",
+      "built_sha256": "1062bf747bfa4dac2abbe46244ca3f9ff6c120aec9e35f61bd94cd150c04a885"
+    },
+    {
+      "name": "SsUtKeyOnV",
+      "address": "0x80031cec",
+      "size": 340,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SsUtKeyOnV",
+      "symbols": {
+        "_SsVmVSetUp": "0x80034a5c",
+        "sym_80031e40": "0x80031e40",
+        "sym_80031ef8": "0x80031ef8",
+        "UT_KEYV_OBJ_158": "0x80031e44",
+        "UT_KEYV_OBJ_32C": "0x80032018"
+      },
+      "reference_sha256": "18a63551f176737240c80b4bf4491d7181d0bc2d7a5e113e09bf10961db006c1",
+      "built_sha256": "18a63551f176737240c80b4bf4491d7181d0bc2d7a5e113e09bf10961db006c1"
+    },
+    {
+      "name": "UT_KEYV_OBJ_158",
+      "address": "0x80031e44",
+      "size": 452,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.UT_KEYV_OBJ_158",
+      "symbols": {
+        "_SsVmDoAllocate": "0x80032bcc",
+        "_SsVmKeyOnNow": "0x80033e7c",
+        "note2pitch2": "0x80033668",
+        "UT_KEYV_OBJ_31C": "0x80032008",
+        "UT_KEYV_OBJ_32C": "0x80032018",
+        "vmNoiseOn": "0x800337fc"
+      },
+      "reference_sha256": "3c9e4c3465f73f8af95a06a1dc9ed75cd10ce10f152d49cb6adb116b99f4cc9e",
+      "built_sha256": "3c9e4c3465f73f8af95a06a1dc9ed75cd10ce10f152d49cb6adb116b99f4cc9e"
+    },
+    {
+      "name": "SpuSetReverbModeParam",
+      "address": "0x8003214c",
+      "size": 344,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SpuSetReverbModeParam",
+      "symbols": {
+        "_SpuIsInAllocateArea_": "0x8002e7dc",
+        "S_SRMP_OBJ_158": "0x800322a4",
+        "S_SRMP_OBJ_168": "0x800322b4",
+        "S_SRMP_OBJ_4A4": "0x800325f0"
+      },
+      "reference_sha256": "fce4e5df4d51c3fe629f200774412963b04857dec9a59f7b48289508cc3f675b",
+      "built_sha256": "fce4e5df4d51c3fe629f200774412963b04857dec9a59f7b48289508cc3f675b"
+    },
+    {
+      "name": "S_SRMP_OBJ_168",
+      "address": "0x800322b4",
+      "size": 436,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.S_SRMP_OBJ_168",
+      "symbols": {
+        "S_SRMP_OBJ_31C": "0x80032468",
+        "sym_8003246c": "0x8003246c",
+        "sym_800324a8": "0x800324a8"
+      },
+      "reference_sha256": "f09dae113e91deeec5ad4f8170119284637a1abccdb028f98e3d1cc49bf34fce",
+      "built_sha256": "f09dae113e91deeec5ad4f8170119284637a1abccdb028f98e3d1cc49bf34fce"
+    },
+    {
+      "name": "SsPitchFromNote",
+      "address": "0x800336d0",
+      "size": 280,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SsPitchFromNote",
+      "symbols": {
+        "VM_N2P_OBJ_1CC": "0x800337e8"
+      },
+      "reference_sha256": "b75325ca7cbbb8f3d47ef86ff65139fc6063c04b41cddd568d3977a58dfba6bb",
+      "built_sha256": "b75325ca7cbbb8f3d47ef86ff65139fc6063c04b41cddd568d3977a58dfba6bb"
+    },
+    {
+      "name": "vmNoiseOn",
+      "address": "0x800337fc",
+      "size": 452,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.vmNoiseOn",
+      "symbols": {
+        "VM_NO1_OBJ_1C4": "0x800339c0"
+      },
+      "reference_sha256": "b7d9ecfcf2e7e34a5bbb53b733fc54fcfb9fd03df4d98133391ff66059cac620",
+      "built_sha256": "b7d9ecfcf2e7e34a5bbb53b733fc54fcfb9fd03df4d98133391ff66059cac620"
+    },
+    {
+      "name": "VM_NO1_OBJ_3B0",
+      "address": "0x80033bac",
+      "size": 396,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.VM_NO1_OBJ_3B0",
+      "symbols": {
+        "VM_NO1_OBJ_53C": "0x80033d38"
+      },
+      "reference_sha256": "0e5ef5c2bb554b1425246f7cdce1dc3acf31d9e7c946420ab88a7ee78529f1c6",
+      "built_sha256": "0e5ef5c2bb554b1425246f7cdce1dc3acf31d9e7c946420ab88a7ee78529f1c6"
+    },
+    {
+      "name": "_SsVmKeyOnNow",
+      "address": "0x80033e7c",
+      "size": 436,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._SsVmKeyOnNow",
+      "symbols": {
+        "VM_NOWON_OBJ_1B4": "0x80034030"
+      },
+      "reference_sha256": "976e7798ed1432d93199983e565799a75e67190f4e4d94270ac8217d46f0669c",
+      "built_sha256": "976e7798ed1432d93199983e565799a75e67190f4e4d94270ac8217d46f0669c"
+    },
+    {
+      "name": "VM_NOWON_OBJ_2BC",
+      "address": "0x80034138",
+      "size": 264,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.VM_NOWON_OBJ_2BC",
+      "symbols": {
+        "VM_NOWON_OBJ_3C4": "0x80034240"
+      },
+      "reference_sha256": "91d31e051cab8c166a93bff53a789ea507a10259294c30a9b7817368fc468e2b",
+      "built_sha256": "91d31e051cab8c166a93bff53a789ea507a10259294c30a9b7817368fc468e2b"
+    },
+    {
+      "name": "S_M_INT_OBJ_C4",
+      "address": "0x80034d70",
+      "size": 428,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.S_M_INT_OBJ_C4",
+      "symbols": {
+        "S_M_INT_OBJ_270": "0x80034f1c",
+        "sym_80034ce4": "0x80034ce4"
+      },
+      "reference_sha256": "9fe2e75adcaec7b8bb49cdc025e6e8b9c5f6c42127cfee9a51f343784dbf9bc7",
+      "built_sha256": "9fe2e75adcaec7b8bb49cdc025e6e8b9c5f6c42127cfee9a51f343784dbf9bc7"
+    },
+    {
+      "name": "VS_VH_OBJ_16C",
+      "address": "0x80035118",
+      "size": 492,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.VS_VH_OBJ_16C",
+      "symbols": {
+        "FUN_8003532c": "0x8003532c",
+        "sym_800335dc": "0x800335dc",
+        "VS_VH_OBJ_358": "0x80035304",
+        "VS_VH_OBJ_434": "0x800353e0"
+      },
+      "reference_sha256": "1aa94728e7f0c9abc311e3307a3e7f955d6819d9a116367f39143696e475d6d3",
+      "built_sha256": "1aa94728e7f0c9abc311e3307a3e7f955d6819d9a116367f39143696e475d6d3"
+    },
+    {
+      "name": "INTR_OBJ_26C",
+      "address": "0x80035d74",
+      "size": 420,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.INTR_OBJ_26C",
+      "symbols": {
+        "INTR_OBJ_410": "0x80035f18",
+        "printf": "0x8003bae8",
+        "ReturnFromException": "0x8003bbb8"
+      },
+      "reference_sha256": "3cca912a3a3e8689f0646f064544b0462a79308cdfa32766ba474ff1f99f8433",
+      "built_sha256": "3cca912a3a3e8689f0646f064544b0462a79308cdfa32766ba474ff1f99f8433"
+    },
+    {
+      "name": "INTR_DMA_OBJ_4C",
+      "address": "0x80036334",
+      "size": 384,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.INTR_DMA_OBJ_4C",
+      "symbols": {
+        "printf": "0x8003bae8"
+      },
+      "reference_sha256": "4f4573a3632fbfe4bc3048af86094b7c22c2d488116aa7cee7435f2104a89600",
+      "built_sha256": "4f4573a3632fbfe4bc3048af86094b7c22c2d488116aa7cee7435f2104a89600"
+    },
+    {
+      "name": "GS_001_OBJ_74",
+      "address": "0x800367cc",
+      "size": 284,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.GS_001_OBJ_74",
+      "symbols": {
+        "PutDispEnv": "0x80038d94",
+        "PutDrawEnv": "0x80038bc8",
+        "ResetGraph": "0x800381e8",
+        "sym_8003659c": "0x8003659c"
+      },
+      "reference_sha256": "86ed7537d8087db897b0ace0449afca252fe61940d2f74c10e91eecae5442152",
+      "built_sha256": "86ed7537d8087db897b0ace0449afca252fe61940d2f74c10e91eecae5442152"
+    },
+    {
+      "name": "GsSortClear",
+      "address": "0x80036b70",
+      "size": 264,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.GsSortClear",
+      "symbols": {
+        "GS_001_OBJ_520": "0x80036c78"
+      },
+      "reference_sha256": "9a1c5b958d3de1fa33b5d53d7737c442822b1cf31535a67ced0b1429a99648f6",
+      "built_sha256": "9a1c5b958d3de1fa33b5d53d7737c442822b1cf31535a67ced0b1429a99648f6"
+    },
+    {
+      "name": "ApplyMatrixLV",
+      "address": "0x80037318",
+      "size": 352,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.ApplyMatrixLV",
+      "symbols": {},
+      "reference_sha256": "704b7d8ebd6995ceb4134b7c68371678756cff1becec9850d930302d8aeabd02",
+      "built_sha256": "704b7d8ebd6995ceb4134b7c68371678756cff1becec9850d930302d8aeabd02"
+    },
+    {
+      "name": "MulMatrix",
+      "address": "0x800375c8",
+      "size": 268,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.MulMatrix",
+      "symbols": {},
+      "reference_sha256": "e03fec4cdb4fe80746af26e1a0331924167eed842a8334f9d6555c63232d016e",
+      "built_sha256": "e03fec4cdb4fe80746af26e1a0331924167eed842a8334f9d6555c63232d016e"
+    },
+    {
+      "name": "MulMatrix2",
+      "address": "0x800376d8",
+      "size": 268,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.MulMatrix2",
+      "symbols": {},
+      "reference_sha256": "a734ee02e6512418b26dc635985184e8f31a57dbcaefcd38aaac2440d3847485",
+      "built_sha256": "a734ee02e6512418b26dc635985184e8f31a57dbcaefcd38aaac2440d3847485"
+    },
+    {
+      "name": "ResetGraph",
+      "address": "0x800381e8",
+      "size": 272,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.ResetGraph",
+      "symbols": {
+        "GPU_cw": "0x8003bb18",
+        "printf": "0x8003bae8",
+        "ResetCallback": "0x80035b08",
+        "SYS_OBJ_110": "0x800382f8",
+        "SYS_OBJ_160": "0x80038348",
+        "SYS_OBJ_2624": "0x8003a80c",
+        "SYS_OBJ_2F08": "0x8003b0f0"
+      },
+      "reference_sha256": "16cc89c41a335e5c9c0d7409fffe3f66935ae0ead4e090b9c5a7b7a485893edd",
+      "built_sha256": "16cc89c41a335e5c9c0d7409fffe3f66935ae0ead4e090b9c5a7b7a485893edd"
+    },
+    {
+      "name": "PutDispEnv",
+      "address": "0x80038d94",
+      "size": 416,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PutDispEnv",
+      "symbols": {
+        "sym_8003659c": "0x8003659c",
+        "sym_80038f34": "0x80038f34",
+        "sym_80038f78": "0x80038f78"
+      },
+      "reference_sha256": "ddd81d50d0c214972ab82a55612336d6e33fb39900aa3dc3e5151c8d1f1ea730",
+      "built_sha256": "ddd81d50d0c214972ab82a55612336d6e33fb39900aa3dc3e5151c8d1f1ea730"
+    },
+    {
+      "name": "SetDrawEnv",
+      "address": "0x800393b0",
+      "size": 348,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SetDrawEnv",
+      "symbols": {
+        "sym_8003958c": "0x8003958c",
+        "SYS_OBJ_1324": "0x8003950c",
+        "SYS_OBJ_1630": "0x80039818",
+        "SYS_OBJ_1650": "0x80039838",
+        "SYS_OBJ_16E8": "0x800398d0",
+        "SYS_OBJ_1780": "0x80039968",
+        "SYS_OBJ_179C": "0x80039984"
+      },
+      "reference_sha256": "57bfda747773b08cb2862401acbc1383ec55850dc926817a514b0816e56c8daf",
+      "built_sha256": "57bfda747773b08cb2862401acbc1383ec55850dc926817a514b0816e56c8daf"
+    },
+    {
+      "name": "SYS_OBJ_13C0",
+      "address": "0x800395a8",
+      "size": 348,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SYS_OBJ_13C0",
+      "symbols": {
+        "SYS_OBJ_151C": "0x80039704",
+        "SYS_OBJ_1614": "0x800397fc",
+        "SYS_OBJ_1630": "0x80039818",
+        "SYS_OBJ_1650": "0x80039838",
+        "SYS_OBJ_16E8": "0x800398d0",
+        "SYS_OBJ_1780": "0x80039968",
+        "SYS_OBJ_179C": "0x80039984"
+      },
+      "reference_sha256": "c54786aad26393946c24a3313a981a7ffe08f1f8962716be98d60a2c0ba1b677",
+      "built_sha256": "c54786aad26393946c24a3313a981a7ffe08f1f8962716be98d60a2c0ba1b677"
+    },
+    {
+      "name": "SYS_OBJ_19AC",
+      "address": "0x80039b94",
+      "size": 368,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SYS_OBJ_19AC",
+      "symbols": {
+        "SYS_OBJ_1B1C": "0x80039d04",
+        "SYS_OBJ_20C0": "0x8003a2a8"
+      },
+      "reference_sha256": "2d5e7a094de3a2f0141c2e2a9e5bf5cf57e55d331884e69e9e34eb06f6bb7a6a",
+      "built_sha256": "2d5e7a094de3a2f0141c2e2a9e5bf5cf57e55d331884e69e9e34eb06f6bb7a6a"
+    },
+    {
+      "name": "SYS_OBJ_1BE8",
+      "address": "0x80039dd0",
+      "size": 372,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SYS_OBJ_1BE8",
+      "symbols": {
+        "SYS_OBJ_1D5C": "0x80039f44",
+        "SYS_OBJ_28E4": "0x8003aacc"
+      },
+      "reference_sha256": "9091dd6f29575b237576c45c72017b240d0de2fd688d530fc1f005485f95862c",
+      "built_sha256": "9091dd6f29575b237576c45c72017b240d0de2fd688d530fc1f005485f95862c"
+    },
+    {
+      "name": "SYS_OBJ_1E1C",
+      "address": "0x8003a004",
+      "size": 452,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SYS_OBJ_1E1C",
+      "symbols": {
+        "SYS_OBJ_1FE0": "0x8003a1c8",
+        "SYS_OBJ_28E4": "0x8003aacc"
+      },
+      "reference_sha256": "a683e855b2eec0293d6f8d2a097da82dbcc17768dff36dc34db11e55ebd2bf4b",
+      "built_sha256": "a683e855b2eec0293d6f8d2a097da82dbcc17768dff36dc34db11e55ebd2bf4b"
+    },
+    {
+      "name": "SYS_OBJ_2160",
+      "address": "0x8003a348",
+      "size": 256,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SYS_OBJ_2160",
+      "symbols": {
+        "DMACallback": "0x80035b68",
+        "SetIntrMask": "0x80035c84",
+        "sym_8003a330": "0x8003a330",
+        "SYS_OBJ_22F4": "0x8003a4dc",
+        "SYS_OBJ_23A8": "0x8003a590"
+      },
+      "reference_sha256": "4a2c254d6a4fb7abca1b9fce7ed3a2a19a4726c0d80d55ab3080dcf68cb56b72",
+      "built_sha256": "4a2c254d6a4fb7abca1b9fce7ed3a2a19a4726c0d80d55ab3080dcf68cb56b72"
+    },
+    {
+      "name": "SYS_OBJ_2624",
+      "address": "0x8003a80c",
+      "size": 284,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SYS_OBJ_2624",
+      "symbols": {
+        "SetIntrMask": "0x80035c84",
+        "SYS_OBJ_2740": "0x8003a928",
+        "SYS_OBJ_2F08": "0x8003b0f0"
+      },
+      "reference_sha256": "bfe98e91f5fe17e75016f42157c5a2707ec9a28a47c4066b3846a78fc396ecb6",
+      "built_sha256": "bfe98e91f5fe17e75016f42157c5a2707ec9a28a47c4066b3846a78fc396ecb6"
+    },
+    {
+      "name": "SYS_OBJ_28E4",
+      "address": "0x8003aacc",
+      "size": 308,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SYS_OBJ_28E4",
+      "symbols": {
+        "printf": "0x8003bae8",
+        "SetIntrMask": "0x80035c84",
+        "SYS_OBJ_2A18": "0x8003ac00",
+        "VSync": "0x800358f8"
+      },
+      "reference_sha256": "0f1b761301e6f27fef3ab2af8ffd26f7e0408ca77819877869ce24b04cc35e68",
+      "built_sha256": "0f1b761301e6f27fef3ab2af8ffd26f7e0408ca77819877869ce24b04cc35e68"
+    },
+    {
+      "name": "_card_format",
+      "address": "0x8003b82c",
+      "size": 476,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._card_format",
+      "symbols": {
+        "bzero": "0x8003bac8",
+        "FORMAT_OBJ_0": "0x8003b6e8",
+        "FORMAT_OBJ_320": "0x8003ba08"
+      },
+      "reference_sha256": "7d85ad4c3e16f6c0d98fceaad5e94af7c4e653f5c061071009f37b7c999704c3",
+      "built_sha256": "7d85ad4c3e16f6c0d98fceaad5e94af7c4e653f5c061071009f37b7c999704c3"
+    },
+    {
+      "name": "PADMAIN_OBJ_1AC",
+      "address": "0x8003cbb4",
+      "size": 384,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PADMAIN_OBJ_1AC",
+      "symbols": {
+        "PADMAIN_OBJ_32C": "0x8003cd34",
+        "PADMAIN_OBJ_794": "0x8003d19c",
+        "sym_8003ce68": "0x8003ce68"
+      },
+      "reference_sha256": "8777414cc546d2c216dcb3f39c3f54e1336eccf81c5a7d129baa539fb533cba2",
+      "built_sha256": "8777414cc546d2c216dcb3f39c3f54e1336eccf81c5a7d129baa539fb533cba2"
+    },
+    {
+      "name": "_padSioRW",
+      "address": "0x8003d28c",
+      "size": 500,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text._padSioRW",
+      "symbols": {
+        "chkRC2wait": "0x8003f548",
+        "PADMAIN_OBJ_A78": "0x8003d480"
+      },
+      "reference_sha256": "e1caf7092130d0ff23540b974a7689e496bd24d3cb58ac85ae1176202b536f1b",
+      "built_sha256": "e1caf7092130d0ff23540b974a7689e496bd24d3cb58ac85ae1176202b536f1b"
+    },
+    {
+      "name": "PADMAIN_OBJ_BD8",
+      "address": "0x8003d5e0",
+      "size": 280,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PADMAIN_OBJ_BD8",
+      "symbols": {
+        "chkRC2wait": "0x8003f548",
+        "PADMAIN_OBJ_CF0": "0x8003d6f8",
+        "setRC2wait": "0x8003f528",
+        "sym_8003d5a8": "0x8003d5a8"
+      },
+      "reference_sha256": "986fb4f828965b55e8600bb7da2a10ca93708fdc7bcf7dc06785692aec7f6298",
+      "built_sha256": "986fb4f828965b55e8600bb7da2a10ca93708fdc7bcf7dc06785692aec7f6298"
+    },
+    {
+      "name": "PADCMD_OBJ_7A8",
+      "address": "0x8003df80",
+      "size": 264,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PADCMD_OBJ_7A8",
+      "symbols": {
+        "PADCMD_OBJ_8B4": "0x8003e08c"
+      },
+      "reference_sha256": "af76db15edd36113d66ce173f16eaea8952b733e395ccf785e601e10363312de",
+      "built_sha256": "af76db15edd36113d66ce173f16eaea8952b733e395ccf785e601e10363312de"
+    },
+    {
+      "name": "PADIF_OBJ_290",
+      "address": "0x8003e668",
+      "size": 476,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PADIF_OBJ_290",
+      "symbols": {
+        "_padClrIntSio0": "0x8003d714",
+        "_padSioRW2": "0x8003d49c",
+        "PADIF_OBJ_46C": "0x8003e844",
+        "PADIF_OBJ_4A8": "0x8003e880",
+        "PADIF_OBJ_4B0": "0x8003e888",
+        "PADIF_OBJ_600": "0x8003e9d8",
+        "setRC2wait": "0x8003f528",
+        "sym_8003e8c8": "0x8003e8c8",
+        "sym_8003e8f4": "0x8003e8f4"
+      },
+      "reference_sha256": "c1abae94e26312ef4e87648ec870628ecc8680ed17f83b49cf84a2d9b82cd021",
+      "built_sha256": "c1abae94e26312ef4e87648ec870628ecc8680ed17f83b49cf84a2d9b82cd021"
+    },
+    {
+      "name": "PADIF_OBJ_4B0",
+      "address": "0x8003e888",
+      "size": 336,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PADIF_OBJ_4B0",
+      "symbols": {
+        "_padClrIntSio0": "0x8003d714",
+        "_padSioRW": "0x8003d28c",
+        "_padWaitRXready": "0x8003d7a4",
+        "PADIF_OBJ_600": "0x8003e9d8",
+        "setRC2wait": "0x8003f528",
+        "sym_8003e794": "0x8003e794"
+      },
+      "reference_sha256": "7f18aece34c5a910d9d643eae62ea86c99f4ef75dea7f3ca15bb406deea0a05e",
+      "built_sha256": "7f18aece34c5a910d9d643eae62ea86c99f4ef75dea7f3ca15bb406deea0a05e"
+    },
+    {
+      "name": "PadInitDirect",
+      "address": "0x8003ea08",
+      "size": 352,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PadInitDirect",
+      "symbols": {
+        "_padInitDirSeq": "0x8003f068",
+        "_padSetVsyncParam": "0x8003cb20",
+        "bzero": "0x8003bac8"
+      },
+      "reference_sha256": "43f51e439af3394d48d828037977896cd292ae80f4c29e4cf9e14aad74c400cc",
+      "built_sha256": "43f51e439af3394d48d828037977896cd292ae80f4c29e4cf9e14aad74c400cc"
+    },
+    {
+      "name": "PADSEQD_OBJ_224",
+      "address": "0x8003f28c",
+      "size": 296,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.PADSEQD_OBJ_224",
+      "symbols": {
+        "PADSEQD_OBJ_34C": "0x8003f3b4",
+        "PADSEQD_OBJ_360": "0x8003f3c8",
+        "PADSEQD_OBJ_398": "0x8003f400",
+        "sym_8003f3c0": "0x8003f3c0"
+      },
+      "reference_sha256": "87a862313bec4c6b9027fe4ef20f29eb1da720d8081b0d2928c0edcd1a1c2622",
+      "built_sha256": "87a862313bec4c6b9027fe4ef20f29eb1da720d8081b0d2928c0edcd1a1c2622"
+    },
+    {
+      "name": "CdControl",
+      "address": "0x8003f8e4",
+      "size": 316,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CdControl",
+      "symbols": {
+        "sym_8004096c": "0x8004096c"
+      },
+      "reference_sha256": "e49e50650937a7e1a97df774363bccdcf1a31613e6c2dbea6aac6f5ee3a6af48",
+      "built_sha256": "e49e50650937a7e1a97df774363bccdcf1a31613e6c2dbea6aac6f5ee3a6af48"
+    },
+    {
+      "name": "CdControlF",
+      "address": "0x8003fa20",
+      "size": 308,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CdControlF",
+      "symbols": {
+        "sym_8004096c": "0x8004096c"
+      },
+      "reference_sha256": "9ed209313d4d446e411465ca4be6cf79000b9174bb7ae093aec0497726d15ab5",
+      "built_sha256": "9ed209313d4d446e411465ca4be6cf79000b9174bb7ae093aec0497726d15ab5"
+    },
+    {
+      "name": "CdControlB",
+      "address": "0x8003fb54",
+      "size": 284,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CdControlB",
+      "symbols": {
+        "CD_sync": "0x80040424",
+        "sym_8004096c": "0x8004096c",
+        "SYS_OBJ_538": "0x8003fc70"
+      },
+      "reference_sha256": "f83d8be8828de29559f8709463b9e0d4ab8c208a0388b9c44ed2bef6bbf16cbb",
+      "built_sha256": "f83d8be8828de29559f8709463b9e0d4ab8c208a0388b9c44ed2bef6bbf16cbb"
+    },
+    {
+      "name": "CdIntToPos",
+      "address": "0x8003fd44",
+      "size": 260,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CdIntToPos",
+      "symbols": {},
+      "reference_sha256": "0a1c7f9f7ebeb18dbab609cb4fd849c837d080e6c69147c0b0ae91235a9d8c9b",
+      "built_sha256": "0a1c7f9f7ebeb18dbab609cb4fd849c837d080e6c69147c0b0ae91235a9d8c9b"
+    },
+    {
+      "name": "BIOS_OBJ_64",
+      "address": "0x8003ff2c",
+      "size": 504,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.BIOS_OBJ_64",
+      "symbols": {
+        "printf": "0x8003bae8",
+        "sym_8003ff1c": "0x8003ff1c",
+        "sym_800403f0": "0x800403f0"
+      },
+      "reference_sha256": "bec005cd8206ecf78e73db416d08330490587444c4a5c59dd813ade2f09be215",
+      "built_sha256": "bec005cd8206ecf78e73db416d08330490587444c4a5c59dd813ade2f09be215"
+    },
+    {
+      "name": "BIOS_OBJ_25C",
+      "address": "0x80040124",
+      "size": 256,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.BIOS_OBJ_25C",
+      "symbols": {
+        "BIOS_OBJ_548": "0x80040410",
+        "sym_80040268": "0x80040268"
+      },
+      "reference_sha256": "1d403d1d09b6c38bdd3d14bff61652dd40ab125afad896a344ad3c6cce16a795",
+      "built_sha256": "1d403d1d09b6c38bdd3d14bff61652dd40ab125afad896a344ad3c6cce16a795"
+    },
+    {
+      "name": "CD_sync",
+      "address": "0x80040424",
+      "size": 312,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CD_sync",
+      "symbols": {
+        "BIOS_OBJ_694": "0x8004055c",
+        "CD_flush": "0x80040e00",
+        "FUN_8003ba70": "0x8003ba70",
+        "printf": "0x8003bae8",
+        "VSync": "0x800358f8"
+      },
+      "reference_sha256": "4e018aad2569508d79dcb20a678d70352e62025f95671a6167d97d2c339ddb86",
+      "built_sha256": "4e018aad2569508d79dcb20a678d70352e62025f95671a6167d97d2c339ddb86"
+    },
+    {
+      "name": "CD_ready",
+      "address": "0x800406a4",
+      "size": 312,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CD_ready",
+      "symbols": {
+        "BIOS_OBJ_914": "0x800407dc",
+        "CD_flush": "0x80040e00",
+        "FUN_8003ba70": "0x8003ba70",
+        "printf": "0x8003bae8",
+        "VSync": "0x800358f8"
+      },
+      "reference_sha256": "f72a32c49243e3719ed49284dc1decfd454d976eac25612032fb6b7f4aece6c6",
+      "built_sha256": "f72a32c49243e3719ed49284dc1decfd454d976eac25612032fb6b7f4aece6c6"
+    },
+    {
+      "name": "BIOS_OBJ_944",
+      "address": "0x8004080c",
+      "size": 304,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.BIOS_OBJ_944",
+      "symbols": {
+        "BIOS_OBJ_0": "0x8003fec8",
+        "BIOS_OBJ_A74": "0x8004093c",
+        "sym_80040724": "0x80040724"
+      },
+      "reference_sha256": "03dfbf024bd8b45c94240eab7025771dfcc787a5a1ce6264e977b80a02f32b54",
+      "built_sha256": "03dfbf024bd8b45c94240eab7025771dfcc787a5a1ce6264e977b80a02f32b54"
+    },
+    {
+      "name": "CD_init",
+      "address": "0x80041010",
+      "size": 464,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CD_init",
+      "symbols": {
+        "BIOS_OBJ_1318": "0x800411e0",
+        "CD_sync": "0x80040424",
+        "FUN_8003ba70": "0x8003ba70",
+        "InterruptCallback": "0x80035b38",
+        "printf": "0x8003bae8",
+        "ResetCallback": "0x80035b08",
+        "sym_8004096c": "0x8004096c"
+      },
+      "reference_sha256": "cadd17ef1a356ae04772a982649510246ed10fb71bde2657e2145adcd767f3d1",
+      "built_sha256": "cadd17ef1a356ae04772a982649510246ed10fb71bde2657e2145adcd767f3d1"
+    },
+    {
+      "name": "CD_datasync",
+      "address": "0x800411f0",
+      "size": 280,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CD_datasync",
+      "symbols": {
+        "BIOS_OBJ_1440": "0x80041308",
+        "CD_flush": "0x80040e00",
+        "FUN_8003ba70": "0x8003ba70",
+        "printf": "0x8003bae8",
+        "VSync": "0x800358f8"
+      },
+      "reference_sha256": "48912b9930963ed5480a2b12f7e6444dec3c75f3b23a008235013e96696fe764",
+      "built_sha256": "48912b9930963ed5480a2b12f7e6444dec3c75f3b23a008235013e96696fe764"
+    },
+    {
+      "name": "CD_getsector",
+      "address": "0x80041358",
+      "size": 256,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.CD_getsector",
+      "symbols": {},
+      "reference_sha256": "9a11d9a90bb0c48b9088f28721edf60e4310c0c3c990df2c73235b0dd867b256",
+      "built_sha256": "9a11d9a90bb0c48b9088f28721edf60e4310c0c3c990df2c73235b0dd867b256"
+    },
+    {
+      "name": "FGO_01_OBJ_160",
+      "address": "0x80053a7c",
+      "size": 300,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.FGO_01_OBJ_160",
+      "symbols": {},
+      "reference_sha256": "43b5a46d983ac848132546bc2f853d1beda94aa6fd70281adc996d200dd03c34",
+      "built_sha256": "43b5a46d983ac848132546bc2f853d1beda94aa6fd70281adc996d200dd03c34"
+    },
+    {
+      "name": "GsSetRefView2L",
+      "address": "0x800549b8",
+      "size": 436,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.GsSetRefView2L",
+      "symbols": {
+        "csqrt": "0x8005511c",
+        "GS_137_OBJ_1B4": "0x80054b6c",
+        "gte_rotate_z_matrix": "0x80055408",
+        "Lzc": "0x800553ac",
+        "SquareRoot0": "0x80037ef8",
+        "sym_80054fa0": "0x80054fa0"
+      },
+      "reference_sha256": "2f04a0125607395a314d3c0e80666bf7c627c16b0eacfbf88a6bdb18c4587f10",
+      "built_sha256": "2f04a0125607395a314d3c0e80666bf7c627c16b0eacfbf88a6bdb18c4587f10"
+    },
+    {
+      "name": "GS_137_OBJ_270",
+      "address": "0x80054c28",
+      "size": 296,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.GS_137_OBJ_270",
+      "symbols": {
+        "csqrt": "0x8005511c",
+        "GS_137_OBJ_398": "0x80054d50",
+        "Gssub_make_matrix": "0x80038118",
+        "Lzc": "0x800553ac",
+        "MulMatrix": "0x800375c8",
+        "SquareRoot0": "0x80037ef8",
+        "sym_80054e6c": "0x80054e6c"
+      },
+      "reference_sha256": "853a8a8112277b35cf7fb4f1598c385335e3e8aaaf78a04a6f0c1f5b9b79e421",
+      "built_sha256": "853a8a8112277b35cf7fb4f1598c385335e3e8aaaf78a04a6f0c1f5b9b79e421"
+    },
+    {
+      "name": "GS_137_OBJ_488",
+      "address": "0x80054e40",
+      "size": 380,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.GS_137_OBJ_488",
+      "symbols": {
+        "ApplyMatrixLV": "0x80037318",
+        "GsGetLw": "0x800554c8",
+        "GsMulCoord2": "0x80037064",
+        "Gssub_make_matrix": "0x80038118",
+        "MulMatrix": "0x800375c8",
+        "TransposeMatrix": "0x800553c8"
+      },
+      "reference_sha256": "566deddcecff9f2977d47750968831cf1142eeb793113f2291958134f18082af",
+      "built_sha256": "566deddcecff9f2977d47750968831cf1142eeb793113f2291958134f18082af"
+    },
+    {
+      "name": "csqrt_1",
+      "address": "0x80054fc8",
+      "size": 304,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.csqrt_1",
+      "symbols": {
+        "COR_05_OBJ_134": "0x800550fc",
+        "sym_800550f8": "0x800550f8"
+      },
+      "reference_sha256": "052dfdd833c6b0575153ea5f374b671f33039285e412bb21a3b20731aa0063a5",
+      "built_sha256": "052dfdd833c6b0575153ea5f374b671f33039285e412bb21a3b20731aa0063a5"
+    },
+    {
+      "name": "GS_133_OBJ_30",
+      "address": "0x800554f8",
+      "size": 492,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.GS_133_OBJ_30",
+      "symbols": {
+        "GS_133_OBJ_21C": "0x800556e4"
+      },
+      "reference_sha256": "b4516d75daac5eaee86c6e75ecf0355eb3e138cad9e9086a3581b2b416560020",
+      "built_sha256": "b4516d75daac5eaee86c6e75ecf0355eb3e138cad9e9086a3581b2b416560020"
+    },
+    {
+      "name": "FGO_02_OBJ_160",
+      "address": "0x800612c0",
+      "size": 300,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.FGO_02_OBJ_160",
+      "symbols": {},
+      "reference_sha256": "a563acb738c40786dabe11f7e4897df7ebe65248d29cc3f96b9c089d5055d8b2",
+      "built_sha256": "a563acb738c40786dabe11f7e4897df7ebe65248d29cc3f96b9c089d5055d8b2"
+    },
+    {
+      "name": "SPRINTF_OBJ_94",
+      "address": "0x80061484",
+      "size": 300,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SPRINTF_OBJ_94",
+      "symbols": {
+        "SPRINTF_OBJ_1C0": "0x800615b0"
+      },
+      "reference_sha256": "c2375bd1c0a4d0a63f741364ed656fb5cf3e531caf9a75a36d2e2b7770512592",
+      "built_sha256": "c2375bd1c0a4d0a63f741364ed656fb5cf3e531caf9a75a36d2e2b7770512592"
+    },
+    {
+      "name": "SPRINTF_OBJ_480",
+      "address": "0x80061870",
+      "size": 256,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SPRINTF_OBJ_480",
+      "symbols": {
+        "SPRINTF_OBJ_7A0": "0x80061b90"
+      },
+      "reference_sha256": "3d6b5c3fec793f649a8dca3ea4d7bbc97b073777f3f8ae7a97eb10f5e276293f",
+      "built_sha256": "3d6b5c3fec793f649a8dca3ea4d7bbc97b073777f3f8ae7a97eb10f5e276293f"
+    },
+    {
+      "name": "SPRINTF_OBJ_5A8",
+      "address": "0x80061998",
+      "size": 256,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.SPRINTF_OBJ_5A8",
+      "symbols": {
+        "SPRINTF_OBJ_7A0": "0x80061b90"
+      },
+      "reference_sha256": "00cd4a449b218be6143f38bf21bd4c5e712a67c2b0aada309b10b05d1b13b304",
+      "built_sha256": "00cd4a449b218be6143f38bf21bd4c5e712a67c2b0aada309b10b05d1b13b304"
+    },
+    {
+      "name": "FGO_03_OBJ_160",
+      "address": "0x8007e348",
+      "size": 300,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.FGO_03_OBJ_160",
+      "symbols": {},
+      "reference_sha256": "1a0a1dba7c5ed0fcc9f4bdd40c45727ea3b125c1592d77810a6c70b72fa30539",
+      "built_sha256": "1a0a1dba7c5ed0fcc9f4bdd40c45727ea3b125c1592d77810a6c70b72fa30539"
+    },
+    {
+      "name": "FGO_04_OBJ_64",
+      "address": "0x8007e4dc",
+      "size": 308,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.FGO_04_OBJ_64",
+      "symbols": {},
+      "reference_sha256": "ea47c04371b9a1dbb5e0d1ecbbebcf45330160a88948c1ecf320eaf88c0409aa",
+      "built_sha256": "ea47c04371b9a1dbb5e0d1ecbbebcf45330160a88948c1ecf320eaf88c0409aa"
+    },
+    {
+      "name": "FGO_05_OBJ_64",
+      "address": "0x8007e67c",
+      "size": 308,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch11.s",
+      "section": ".text.FGO_05_OBJ_64",
+      "symbols": {},
+      "reference_sha256": "928b6db2a2379c8434b48ab0f3f4b25cb96e9dd68deda197402f001ba8eeb3e5",
+      "built_sha256": "928b6db2a2379c8434b48ab0f3f4b25cb96e9dd68deda197402f001ba8eeb3e5"
     }
   ]
 }
