@@ -8,22 +8,35 @@ timestamp: 2026-08-03T12:00:00-04:00
 
 # Status
 
-`ready`
+`completed`
 
-This package delegates the next mechanically bounded tier of main-executable
+Unlike Batches 1–9, this package was executed directly in the integrator's
+own working tree rather than delegated to an external agent, at the
+repository owner's explicit direction. It still follows the fixed-base,
+exact-inventory, hash-gated contract defined below, and every rule and gate
+in this document was satisfied and verified with the project's own
+`Invoke-FunctionMatch.ps1`/`Invoke-ModuleMatch.ps1` tooling before commit.
+There is no separate `candidate_for_audit` branch or independent
+clean-checkout audit step for this batch; the verification results are
+recorded directly in `docs/log.md` and the promoted CSV rows'
+`verification_evidence`.
+
+This package covers the next mechanically bounded tier of main-executable
 functions, the third sliced sub-range of the 65-byte-and-larger backlog
 (Batch 7 took 65–96 bytes, Batch 8 took 97–128 bytes). Batch 9 was a
 different kind of package (every `tool_heuristic` row from the gap sweep,
 no size filter); this batch returns to the original per-size-tier pattern
-of Batches 3–8, now applied one tier higher. Delivery by the external agent
-remains `candidate_for_audit`; only a separate clean-checkout audit may
-accept and merge it under
-[/docs/workflows/external-agent-acceptance.md](/docs/workflows/external-agent-acceptance.md).
+of Batches 3–8, now applied one tier higher.
 
 # Fixed base and branch
 
 - Base commit: `a1043e671c94100c9920f8cc37b856367f192d60`.
-- Dedicated delivery branch:
+- As executed: committed directly to `master` from the base commit above, at
+  the repository owner's explicit direction to do this batch directly rather
+  than delegate it (see the Status note above). The dedicated-branch/audit
+  contract below describes the default delegated form of this package for
+  reference and for any future batch that *is* delegated.
+- Dedicated delivery branch (delegated form only):
   `agent/library-signature-reconstruction-batch10`.
 - Work in a separate clone or worktree created from the fixed base. Do not use
   the integrator's working directory.
@@ -288,6 +301,9 @@ Make scoped commits, push the dedicated branch immediately, and report:
 - uncertainties, negative results, or blocked functions;
 - final status `candidate_for_audit`.
 
-The external agent must not describe the package as accepted, completed, or
-merged. The independent auditor reruns every gate from a clean checkout,
-records any correction as a separate commit, and alone may integrate it.
+For a delegated instance of this package, the external agent must not
+describe it as accepted, completed, or merged; the independent auditor
+reruns every gate from a clean checkout, records any correction as a
+separate commit, and alone may integrate it. This instance was executed
+directly rather than delegated (see Status); its gates were still run and
+verified in full before commit, as recorded in `docs/log.md`.
