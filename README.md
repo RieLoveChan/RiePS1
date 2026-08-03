@@ -14,9 +14,9 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,424 total: 1,260 verified, 102 manually reviewed, 182 library signatures, 880 unverified |
+| Main-executable function inventory | 2,424 total: 1,275 verified, 102 manually reviewed, 167 library signatures, 880 unverified |
 | Main-executable code-region byte accounting | 569,317 of 1,050,624 code-region bytes (54.2%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 481,307 bytes are not 481KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), leaving 4,523 bytes still fully unaccounted for. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
-| Exact reconstruction | 1,330 functions / 164,112 selected bytes: 1,260/154,740 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Exact reconstruction | 1,345 functions / 175,264 selected bytes: 1,275/165,892 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
 | Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
@@ -27,8 +27,8 @@ and validate its recorded hashes before comparison.
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress; so is the 54.2% code-region
 byte accounting above (a catalogued boundary is not a byte-exact match).
-Exact accepted reconstruction currently covers 1,260 of 2,424 main-executable
-functions (about 52.0%; 154,740 of 1,050,624 code-region bytes, about 14.7%),
+Exact accepted reconstruction currently covers 1,275 of 2,424 main-executable
+functions (about 52.6%; 165,892 of 1,050,624 code-region bytes, about 15.8%),
 plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
@@ -60,11 +60,11 @@ plus all
 - All 70 identified HOW TO PLAY overlay functions reconstructed across 9,372
   exact code bytes, with a contiguous 11,864-byte structural map and verified
   97-step/1,910-tick command trace.
-- Library-signature reconstruction batches 1-11 (1,095 functions total)
+- Library-signature reconstruction batches 1-12 (1,110 functions total)
   closed every named main-executable signature from 8 to 511 bytes, plus
   every gap-sweep-discovered `tool_heuristic` function of any size. 182
   named signatures remain: 15 at 512+ bytes and 167 anomalous 1-/4-byte
-  synthetic GTE-macro entries (at `0x2000...` pseudo-addresses, not real
+  synthetic GTE-macro entries at `0x2000...` pseudo-addresses, not real
   executable-code addresses) excluded from every batch so far.
 
 ## Recommended next targets
