@@ -118,6 +118,31 @@ adjacent gap:
   inventory or manifest; that requires the full hash-gated match pipeline
   and is left as follow-up work, not asserted here.
 
+### Update 2026-08-03: Current audit of the two BIOS stubs (Unit C)
+
+The two candidates are already integrated in the current source, manifest, and
+symbol map as `FUN_8003ba70` (`0xb0`/`0x3f`) and `FUN_8003bb30`
+(`0xa0`/`0x72`). Re-running `Invoke-FunctionMatch.ps1` against the lawful
+executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee` produced
+`byte_match: True` for both 12-byte stubs with GCC 14.2.0/binutils 2.43. The
+built/reference hashes are `859ccf6879a1def400ddcd0fab5063a5b8ee05bd985e429028e3322b6e149fd9`
+and `d3eefd259eb1b5f648ec00610d2defbf4c6e5873f47895dd3d23a322bb0cfd7f`.
+
+The preceding 8-byte sequences are not unexplained isolated pairs. The lawful
+executable contains the repeated marker form
+`50 73 <tag> 00 00 00 44 00`; the two candidate prefixes are
+`50 73 01 00 00 00 44 00` at `0x8003ba68` and
+`50 73 00 00 00 00 44 00` at `0x8003bb28`. A scan for the `50 73` signature
+found the same structured form at multiple other executable/data addresses,
+including `0x800365b8`, `0x800d6bd4`, `0x800d71a8`, `0x800d75dc`,
+`0x800d877c`, `0x800d8c2c`, `0x800d8dcc`, `0x800d8e0c`, and `0x800d8f5c`.
+This corroborates a PsyQ object/header marker interpretation for the two
+prefixes, while not proving the original object-file format or complete section
+semantics. The old open-item wording is superseded by this reproducible
+classification.
+
+
 **Conclusion for the BIOS block**: this is a real, consistent, and
 falsifiable positive finding — a 4-byte zero-padding convention rounding
 each 12-byte trampoline to 16 bytes, with 100% consistency across every
