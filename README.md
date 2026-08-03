@@ -79,8 +79,7 @@ plus all
    reproduce inter-function layout instead of placing functions independently.
    A first evidence pass is underway — see
    [linked-object evidence](docs/foundations/linked-object-evidence.md) for
-   current findings (an alignment/padding survey, a corroborated PsyQ
-   library-object cross-check, and a duplicate-body check) and the
+   current findings (including the now-complete candidate-level SYS/ResetGraph byte account, the asymmetric edge-padding result, a corroborated PsyQ library-object cross-check, and a duplicate-body check) and the
    falsifiable bar for a future object-boundary-confirmed claim; no boundary
    is confirmed yet. A bounded, ordered backlog toward that bar is defined in
    the [external linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md).

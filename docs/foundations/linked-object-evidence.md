@@ -219,6 +219,50 @@ address this project had already independently confirmed by hand as a real
 function's entry point, and the object's coherent 12KB span holds a cluster
 of other already-confirmed real library functions consistent with a single
 PsyQ graphics-kernel object.
+### Update 2026-08-03: Current SYS/ResetGraph byte-account and true-edge audit (Unit A)
+
+The earlier three residual gaps are now closed by independently reconstructed
+and byte-matched rows already present in the current inventory:
+`SYS_OBJ_F80` at `0x80039168` (116 bytes), `SYS_OBJ_22F4` at `0x8003a4dc`
+(36 bytes), and `SYS_OBJ_2828` at `0x8003aa10` (120 bytes). They are therefore
+nameable, full-size internal object fragments, not padding. Their current
+`Invoke-FunctionMatch.ps1` results are `byte_match: True` for all three
+against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`, using
+GCC 14.2.0/binutils 2.43. The recorded reference/built SHA-256 pairs are,
+respectively, `502be280c00d0b1348da587d428d84b44187df8de0ffd33b28a1596c0bace070`,
+`d8e7f8f6a83ea268523360ee59dcf50e8ad145f9ed654c1b0b8bd820483747b8`, and
+`832b737782d5700df540d3762a460170d5bdfe00990e19b587f59f907a30098d`.
+
+Re-running the tracked checker:
+
+```powershell
+pwsh -NoProfile -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -CsvPath docs/games/ddr-5th-mix-jp-symbol-map.csv -Prefix SYS -ObjectStart ([Convert]::ToInt64('800381e8',16)) -ObjectEnd ([Convert]::ToInt64('8003b114',16))
+```
+
+produces `span_bytes: 12076`, `obj_rows: 68`,
+`implied_bases: [0x800381e8]`, `base_consistent: true`,
+`offsets_monotonic: true`, `interval_rows: 98`, `merged_intervals: 1`,
+`covered_bytes: 12076`, `gap_bytes: 0`, `complete_byte_account: true`,
+`boundary_claim: false`, and `valid: true`. Thus the current byte account is
+complete at the candidate-evidence level; it is not a claim that the original
+PsyQ object boundary is independently proven.
+
+The true-edge dump used the same lawful executable and address mapping
+`file_offset = address - 0x8001a800 + 2048`:
+
+```text
+0x800381d8: 08 00 e0 03 00 00 00 00 00 00 00 00 00 00 00 00
+0x8003b110: 00 00 00 00 00 00 00 00 d8 ff bd 27 18 00 b2 af
+```
+
+The eight bytes immediately before `0x800381e8` are zero. Immediately after
+exclusive end `0x8003b114`, only the four bytes at `0x8003b114`–`0x8003b117`
+are zero; `0x8003b118` begins `addiu sp,sp,-0x28` (`d8 ff bd 27`). The edge
+result is therefore asymmetric 8-byte leading padding and 4-byte trailing
+padding, not the previously stated 8-byte padding at both edges. This checks
+criterion 3's edge evidence for this candidate range, but the object-boundary
+claim remains `candidate_only`; criterion 4's scope limitations still apply.
 
 ### Update 2026-07-27: Second independent object-boundary corroboration (Unit B)
 
