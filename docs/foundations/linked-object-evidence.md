@@ -14,14 +14,15 @@ blocks) already carries the same caveat: exact per-function byte matches
 prove independently placed function bodies, not an original PsyQ object
 boundary, inter-function layout, or whole-executable match. This document is
 the first pass at building real evidence toward that separate, larger claim.
-As of 2026-08-04, three specific objects (`SYS`, `FORMAT`, and `SSSTART`,
-see their respective sections below) have met the falsifiable four-criterion
-bar defined later in this document and are recorded as
-`object_boundary_confirmed` — the first such results in this project. A
-fourth candidate, `BIOS`, was checked and found to satisfy two of the four
-criteria with an explicit, checked negative result on the third (no edge
-padding found), and is recorded as such rather than confirmed. Every other
-named `<name>_OBJ_*` run remains unconfirmed; this is not a claim that
+As of 2026-08-04, four specific objects (`SYS`, `FORMAT`, `SSSTART`, and
+`S_SCA`, see their respective sections below) have met the falsifiable
+four-criterion bar defined later in this document and are recorded as
+`object_boundary_confirmed` — the first such results in this project. Two
+further candidates, `BIOS_OBJ_*` and `UT_REV`, were checked and found to
+satisfy two of the four criteria each with an explicit, checked negative
+result on the third (no edge padding found at either boundary), and are
+recorded as such rather than confirmed. Every other named `<name>_OBJ_*` run
+remains unconfirmed; this is not a claim that
 object boundaries are confirmed project-wide, or that PSYLINK's
 whole-executable layout or PsyQ's own object file format has been
 reproduced. It records what was checked,
@@ -377,6 +378,44 @@ The leading edge is dense (`SsSetMVol`'s `jr ra` epilogue runs directly into `SS
 
 **`SSSTART` therefore independently satisfies all four criteria and is recorded as a third `object_boundary_confirmed` result**, alongside `SYS` and `FORMAT`. The same criterion-4 scope limits apply: this does not establish `SSSTART`'s name as PsyQ's own object/source filename, PSYLINK's section ordering, or a whole-image match. With three unrelated confirmed instances now on record (plus one honest near-miss in `BIOS`), the method itself — mechanical merge-and-gap accounting cross-checked against an adjacent independently-verified function, then a direct true-edge byte dump — is well corroborated as reliable; each *new* candidate object still requires its own independent check, not an assumption that it will also pass.
 
+### Update 2026-08-04 (continued, second pass): Broadened candidate scan — a fourth confirmed boundary (`S_SCA`) and a second negative result (`UT_REV`)
+
+The first scan (above) only counted a candidate if the row *immediately adjacent* to its start/end was itself `verified`, regardless of whether that neighbor had a real name or was another anonymous `<name>_OBJ_*` fragment. That undercounts: `SYS`'s own original corroboration (`ResetGraph`) works because a **real, independently identified function** occupies the object's own first offset, not because of mere adjacency to *any* verified row — two mechanically-placed anonymous fragments abutting each other with zero gap is unremarkable and proves nothing extra. Re-ran the scan requiring the corroborating row (whether it sits exactly at the implied base, ends exactly at the base, or starts exactly at the measured end) to have a **real, non-`_OBJ_*` name** — the same standard `FORMAT`/`SSSTART`/`BIOS_OBJ_*` were already held to. This raised the candidate pool from the original 2 to 57 of the 59 base-consistent multi-row runs (most objects, unsurprisingly, contain at least one real named PsyQ function). Two more were checked end-to-end.
+
+**`UT_REV` (`0x80032afc`–`0x80032b98`, 156 bytes, 4 rows) — criteria 1 and 2 met, criterion 3 fails:**
+
+```powershell
+./tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix UT_REV -ObjectStart ([Convert]::ToInt64('80032afc',16)) -ObjectEnd ([Convert]::ToInt64('80032b98',16))
+# span_bytes: 156, covered_bytes: 156, gap_bytes: 0, complete_byte_account: true, interval_rows: 4
+```
+
+Interior: `SsUtSetReverbType` (at the implied base itself), `UT_REV_OBJ_54`, the previously gap-sweep-reconstructed `FUN_80032b84` (4 bytes — filling what had been an internal gap before the 2026-08-04 gap-sweep closure), and `UT_REV_OBJ_8C`. Criterion 1 holds. Criterion 2 holds on both sides: the base lands exactly on the end of the independently byte-matched `_spu_setReverbAttr` (`0x8003262c` + 1232 = `0x80032afc`), and the measured end lands exactly on the start of the independently byte-matched `SsUtGetReverbType`. But the true edges:
+
+```text
+0x80032af0: fe 01 62 a4 08 00 e0 03 00 00 00 00 e8 ff bd 27
+0x80032b90: 08 00 e0 03 18 00 bd 27 0e 80 02 3c 24 51 42 84
+```
+
+are dense on **both** sides — `_spu_setReverbAttr`'s `jr ra` epilogue runs directly into `SsUtSetReverbType`'s first instruction, and the object's own last `jr ra` epilogue runs directly into `SsUtGetReverbType`'s first instruction, no padding bytes anywhere. Same outcome as `BIOS_OBJ_*`: real progress on two criteria, an explicit, checked negative on the third, not confirmed.
+
+**`S_SCA` (`0x8002ff3c`–`0x800302b8`, 892 bytes, 23 rows: `SpuSetCommonAttr` plus 22 `S_SCA_OBJ_*` fragments) — all four criteria met, a fourth confirmed boundary:**
+
+```powershell
+./tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix S_SCA -ObjectStart ([Convert]::ToInt64('8002ff3c',16)) -ObjectEnd ([Convert]::ToInt64('800302b8',16))
+# span_bytes: 892, covered_bytes: 892, gap_bytes: 0, complete_byte_account: true, interval_rows: 23
+```
+
+Criterion 1 holds. The base lands exactly on the end of the independently byte-matched `SsSetSerialAttr` (`0x8002fe7c` + 192 = `0x8002ff3c`) — criterion 2. The true edges:
+
+```text
+0x8002ff30: 40 00 bd 27 08 00 e0 03 00 00 00 00 21 30 00 00
+0x800302a8: 02 00 42 34 aa 01 62 a4 08 00 e0 03 00 00 00 00 00 00 00 00 c0 ff bd 27
+```
+
+The leading edge is dense (`SsSetSerialAttr`'s epilogue runs directly into the object's first instruction). The trailing edge is **not** dense: the object's own last function's `jr ra` epilogue ends exactly at the measured `0x800302b8`, followed by **4 zero-padding bytes**, then `SsSetMVol`'s first instruction at `0x800302bc` (`0x800302b8` + 4 = `0x800302bc`, confirmed by arithmetic; `SsSetMVol` is independently byte-matched and is the same function whose *other* edge already corroborates `SSSTART`, above — an incidental but welcome cross-check between two independently confirmed objects). This dense-leading/padded-trailing shape matches `SYS`'s own trailing-edge pattern (object end, then zero padding, then the next independently known function) rather than `FORMAT`'s reversed one — criterion 3 is satisfied.
+
+**`S_SCA` therefore independently satisfies all four criteria and is recorded as a fourth `object_boundary_confirmed` result**, alongside `SYS`, `FORMAT`, and `SSSTART`. Four unrelated confirmed instances and two honest negative results (`BIOS_OBJ_*`, `UT_REV`) are now on record from a systematic, reproducible scan of the full 59-run candidate pool — not a cherry-picked handful.
+
 ## What remains unconfirmed here
 
 The specific object names recovered this way (`SPU`, `S_SAV`, `S_SCA`,
@@ -657,29 +696,31 @@ should require all of the following, together, for that specific object:
    PsyQ's own object format, and not a whole-image match.
 
 **Update 2026-08-04**: this bar has now been met, all four criteria together,
-for three specific objects — `SYS` (`0x800381e8`–`0x8003b114`), `FORMAT`
-(`0x8003b6e8`–`0x8003ba38`), and `SSSTART` (`0x8003030c`–`0x80030610`) — see
-the "Update 2026-08-04: `FORMAT`'s true edges checked" and "Update 2026-08-04
-(continued): Systematic scan..." sections under §2/Unit B above for the full
-per-criterion walkthroughs and reproduction commands. A fourth candidate
-(`BIOS_OBJ_*`) met criteria 1 and 2 but failed criterion 3 with a checked,
-real negative result (dense boundaries, no padding at either edge) — recorded
-as such, not confirmed. This bar definition remains the standard any *other*
-candidate object must independently meet; absent all four for a given object,
-"object boundary confirmed" is not warranted for that object, regardless of
-how `SYS`/`FORMAT`/`SSSTART` resolved. What this document establishes
+for four specific objects — `SYS` (`0x800381e8`–`0x8003b114`), `FORMAT`
+(`0x8003b6e8`–`0x8003ba38`), `SSSTART` (`0x8003030c`–`0x80030610`), and
+`S_SCA` (`0x8002ff3c`–`0x800302b8`) — see the "Update 2026-08-04: `FORMAT`'s
+true edges checked" and both "Update 2026-08-04 (continued)..." sections
+under §2/Unit B above for the full per-criterion walkthroughs and
+reproduction commands. Two further candidates (`BIOS_OBJ_*`, `UT_REV`) each
+met criteria 1 and 2 but failed criterion 3 with a checked, real negative
+result (dense boundaries, no padding at either edge) — recorded as such, not
+confirmed. This bar definition remains the standard any *other* candidate
+object must independently meet; absent all four for a given object, "object
+boundary confirmed" is not warranted for that object, regardless of how
+`SYS`/`FORMAT`/`SSSTART`/`S_SCA` resolved. What this document establishes
 overall: a reproducible method (address/offset arithmetic over the existing
 symbol-map CSV, plus targeted `DumpBytes.java`/direct-executable spot checks)
-that produced three internally-consistent, independently-corroborated,
+that produced four internally-consistent, independently-corroborated,
 edge-checked, confirmed object boundaries (`SYS`/`ResetGraph`,
-`FORMAT`/`_card_read`, and `SSSTART`/`SsSetMVol`+`SsSeqCalledTbyT`) without
-requiring any new extraction, alongside one honest near-miss (`BIOS_OBJ_*`),
-a clean negative result (no alignment padding anywhere else checked outside
-these objects) and several explicitly flagged open items (the two new BIOS
-stubs' unexplained 8-byte prefix, the unexamined `Lzc`→`SetVertex0` gap, and
+`FORMAT`/`_card_read`, `SSSTART`/`SsSetMVol`+`SsSeqCalledTbyT`, and
+`S_SCA`/`SsSetSerialAttr`+`SsSetMVol`) without requiring any new extraction,
+alongside two honest near-misses (`BIOS_OBJ_*`, `UT_REV`), a clean negative
+result (no alignment padding anywhere else checked outside these objects),
+and several explicitly flagged open items (the two new BIOS stubs'
+unexplained 8-byte prefix, the unexamined `Lzc`→`SetVertex0` gap, and
 the un-cross-referenced object names' semantic identity — see Unit F
-immediately below, which remains open even for the now-confirmed `SYS` and
-`FORMAT` boundaries per criterion 4's scope limits).
+immediately below, which remains open even for the now-confirmed
+boundaries per criterion 4's scope limits).
 
 # Object-Name Semantic Identity and Claim Boundaries (Unit F)
 
