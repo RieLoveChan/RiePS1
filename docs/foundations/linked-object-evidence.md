@@ -14,15 +14,15 @@ blocks) already carries the same caveat: exact per-function byte matches
 prove independently placed function bodies, not an original PsyQ object
 boundary, inter-function layout, or whole-executable match. This document is
 the first pass at building real evidence toward that separate, larger claim.
-As of 2026-08-04, six specific objects (`SYS`, `FORMAT`, `SSSTART`, `S_SCA`,
-`PRESET`, and `PADENTRY`, see their respective sections below) have met the
-falsifiable four-criterion bar defined later in this document and are
-recorded as `object_boundary_confirmed` — the first such results in this
-project. Three further candidates, `BIOS_OBJ_*`, `UT_REV`, and `VSYNC`, were
-checked and found to satisfy two of the four criteria each with an explicit,
-checked negative result on the third (no edge padding found at either
-boundary), and are recorded as such rather than confirmed. Every other named
-`<name>_OBJ_*` run remains unconfirmed; this is not a claim that
+As of 2026-08-04, seven specific objects (`SYS`, `FORMAT`, `SSSTART`, `S_SCA`,
+`PRESET`, `PADENTRY`, and `PADMAIN`, see their respective sections below)
+have met the falsifiable four-criterion bar defined later in this document
+and are recorded as `object_boundary_confirmed` — the first such results in
+this project. Three further candidates, `BIOS_OBJ_*`, `UT_REV`, and `VSYNC`,
+were checked and found to satisfy two of the four criteria each with an
+explicit, checked negative result on the third (no edge padding found at
+either boundary), and are recorded as such rather than confirmed. Every
+other named `<name>_OBJ_*` run remains unconfirmed; this is not a claim that
 object boundaries are confirmed project-wide, or that PSYLINK's
 whole-executable layout or PsyQ's own object file format has been
 reproduced. It records what was checked,
@@ -468,6 +468,26 @@ The leading edge is **not** dense: `_remove_ChgclrPAD` (104 bytes, `0x8003c4d8`�
 
 **`PADENTRY` independently satisfies all four criteria and is recorded as a sixth `object_boundary_confirmed` result**, with the `PADENTRY_OBJ_164` caveat noted above carried forward rather than glossed over. Six confirmed objects across three distinct library regions (SPU/sequencer, `GS_*` graphics, PAD driver) and three dense-edge negative results are now on record.
 
+### Update 2026-08-04 (continued, fifth pass): A seventh confirmed boundary (`PADMAIN`), immediately adjacent to `PADENTRY`
+
+`PADMAIN` (`0x8003ca08`–`0x8003d714`, 3,340 bytes, 23 rows) sits in the same PAD-driver cluster as `PADENTRY`, immediately after it — a useful adjacency check, since the two objects' shared seam can be examined from both sides at once:
+
+```powershell
+./tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix PADMAIN -ObjectStart ([Convert]::ToInt64('8003ca08',16)) -ObjectEnd ([Convert]::ToInt64('8003d714',16))
+# span_bytes: 3340, covered_bytes: 3340, gap_bytes: 0, complete_byte_account: true, interval_rows: 23
+```
+
+All 23 interior rows (`PadEnableCom`, `_padSetVsyncParam`, `_padChkVsync`, `_padStartCom`, `_padStopCom`, `_padInitSioMode`, `_padSioRW`, `_padSioRW2`, the gap-sweep-reconstructed `FUN_8003d154`, and fourteen `PADMAIN_OBJ_*` fragments) are `confidence: verified` — no caveat this time. The base is occupied directly by the independently byte-matched `PadEnableCom` — criterion 2. True edges:
+
+```text
+0x8003c9f0: 10 00 b0 8f 08 00 e0 03 20 00 bd 27 00 00 00 00 00 00 00 00 00 00 00 00
+0x8003d708: 10 00 b0 8f 08 00 e0 03 28 00 bd 27 e8 ff bd 27
+```
+
+The leading edge is **not** dense: `PadSetAct` (72 bytes, `0x8003c9b4`–`0x8003c9fc`) ends its own epilogue at `0x8003c9fc`, followed by a real **12-byte zero-padding run** up to the base `0x8003ca08`. This is the *same* padding run whose far side already bounds `PADENTRY`'s own trailing edge (`PadSetActAlign` at `0x8003c934`) two objects earlier — `PadSetAct` sits between `PadSetActAlign` and `PADMAIN`'s base, so this is a distinct 12-byte gap, not a duplicate of `PADENTRY`'s finding. The trailing edge is dense (the object's own last function's epilogue runs directly into `_padClrIntSio0`'s first instruction). Padded-leading/dense-trailing — the same shape as `PADENTRY` and `FORMAT`. Criterion 3 is satisfied.
+
+**`PADMAIN` independently satisfies all four criteria and is recorded as a seventh `object_boundary_confirmed` result.** Seven confirmed objects (two of them adjacent, `PADENTRY` then `PADMAIN`, both independently passing all four criteria on their own terms) and three dense-edge negative results are now on record.
+
 ## What remains unconfirmed here
 
 The specific object names recovered this way (`SPU`, `S_SAV`, `S_SCA`,
@@ -748,33 +768,34 @@ should require all of the following, together, for that specific object:
    PsyQ's own object format, and not a whole-image match.
 
 **Update 2026-08-04**: this bar has now been met, all four criteria together,
-for six specific objects — `SYS` (`0x800381e8`–`0x8003b114`), `FORMAT`
+for seven specific objects — `SYS` (`0x800381e8`–`0x8003b114`), `FORMAT`
 (`0x8003b6e8`–`0x8003ba38`), `SSSTART` (`0x8003030c`–`0x80030610`), `S_SCA`
-(`0x8002ff3c`–`0x800302b8`), `PRESET` (`0x8007c4e0`–`0x8007ce44`), and
-`PADENTRY` (`0x8003c548`–`0x8003c934`) — see the "Update 2026-08-04:
-`FORMAT`'s true edges checked" and all four "Update 2026-08-04
-(continued)..." sections under §2/Unit B above for the full per-criterion
-walkthroughs and reproduction commands. Three further candidates
-(`BIOS_OBJ_*`, `UT_REV`, `VSYNC`) each met criteria 1 and 2 but failed
-criterion 3 with a checked, real negative result (dense boundaries, no
-padding at either edge) — recorded as such, not confirmed. This bar
+(`0x8002ff3c`–`0x800302b8`), `PRESET` (`0x8007c4e0`–`0x8007ce44`), `PADENTRY`
+(`0x8003c548`–`0x8003c934`), and `PADMAIN` (`0x8003ca08`–`0x8003d714`) — see
+the "Update 2026-08-04: `FORMAT`'s true edges checked" and all five "Update
+2026-08-04 (continued)..." sections under §2/Unit B above for the full
+per-criterion walkthroughs and reproduction commands. Three further
+candidates (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`) each met criteria 1 and 2 but
+failed criterion 3 with a checked, real negative result (dense boundaries,
+no padding at either edge) — recorded as such, not confirmed. This bar
 definition remains the standard any *other* candidate object must
 independently meet; absent all four for a given object, "object boundary
 confirmed" is not warranted for that object, regardless of how
-`SYS`/`FORMAT`/`SSSTART`/`S_SCA`/`PRESET`/`PADENTRY` resolved. What this
-document establishes overall: a reproducible method (address/offset
+`SYS`/`FORMAT`/`SSSTART`/`S_SCA`/`PRESET`/`PADENTRY`/`PADMAIN` resolved. What
+this document establishes overall: a reproducible method (address/offset
 arithmetic over the existing symbol-map CSV, plus targeted
-`DumpBytes.java`/direct-executable spot checks) that produced six
+`DumpBytes.java`/direct-executable spot checks) that produced seven
 internally-consistent, independently-corroborated, edge-checked, confirmed
 object boundaries (`SYS`/`ResetGraph`, `FORMAT`/`_card_read`,
 `SSSTART`/`SsSetMVol`+`SsSeqCalledTbyT`, `S_SCA`/`SsSetSerialAttr`+`SsSetMVol`,
-`PRESET`/`GsMapModelingData`, and `PADENTRY`/`PadChkVsync`+`PadSetActAlign`)
-without requiring any new extraction, alongside three honest near-misses
-(`BIOS_OBJ_*`, `UT_REV`, `VSYNC`, all three sitting inside the same tightly
-packed SPU-library region — see the third continuation update above for the
-tentative "one dense object, not many small ones" explanation), a clean
-negative result (no alignment padding anywhere else checked outside these
-objects), and several explicitly flagged open items (the two new BIOS stubs'
+`PRESET`/`GsMapModelingData`, `PADENTRY`/`PadChkVsync`+`PadSetActAlign`, and
+`PADMAIN`/`PadEnableCom`+`_padClrIntSio0`) without requiring any new
+extraction, alongside three honest near-misses (`BIOS_OBJ_*`, `UT_REV`,
+`VSYNC`, all three sitting inside the same tightly packed SPU-library region
+— see the third continuation update above for the tentative "one dense
+object, not many small ones" explanation), a clean negative result (no
+alignment padding anywhere else checked outside these objects), and several
+explicitly flagged open items (the two new BIOS stubs'
 unexplained 8-byte prefix, the unexamined `Lzc`→`SetVertex0` gap, and
 the un-cross-referenced object names' semantic identity — see Unit F
 immediately below, which remains open even for the now-confirmed

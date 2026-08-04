@@ -85,13 +85,13 @@ plus all
   corrected the struct's asserted size from `0xbc` to the `bzero`-evidenced
   `0xd0`. See [`DdrSecondaryState` partial layout](docs/games/ddr-5th-mix-jp-globals.md).
 - **First confirmed PsyQ object boundaries:** `SYS`, `FORMAT`, `SSSTART`,
-  `S_SCA`, `PRESET`, and `PADENTRY` each independently satisfy this project's
-  own four-criterion `object_boundary_confirmed` bar — complete byte account,
-  an independently-derived boundary agreeing with a hand-reviewed function
-  entry point, and a checked edge-padding convention. Three further
-  candidates (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`) each met two of the four
-  criteria with a checked negative result (no edge padding at all) on the
-  third, recorded honestly rather than as confirmed. See
+  `S_SCA`, `PRESET`, `PADENTRY`, and `PADMAIN` each independently satisfy this
+  project's own four-criterion `object_boundary_confirmed` bar — complete
+  byte account, an independently-derived boundary agreeing with a
+  hand-reviewed function entry point, and a checked edge-padding convention.
+  Three further candidates (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`) each met two of
+  the four criteria with a checked negative result (no edge padding at all)
+  on the third, recorded honestly rather than as confirmed. See
   [linked-object evidence](docs/foundations/linked-object-evidence.md).
 
 ## Recommended next targets
@@ -108,30 +108,23 @@ plus all
    reproduce inter-function layout instead of placing functions independently.
    **The falsifiable four-criterion bar defined in
    [linked-object evidence](docs/foundations/linked-object-evidence.md) is now
-   met for six objects** — `SYS` (`0x800381e8`–`0x8003b114`, 12,076 bytes,
-   boundary confirmed against `ResetGraph`), `FORMAT`
-   (`0x8003b6e8`–`0x8003ba38`, 848 bytes, boundary confirmed against
-   `_card_read`), `SSSTART` (`0x8003030c`–`0x80030610`, 772 bytes, boundary
-   confirmed against `SsSetMVol`/`SsSeqCalledTbyT`), `S_SCA`
-   (`0x8002ff3c`–`0x800302b8`, 892 bytes, boundary confirmed against
-   `SsSetSerialAttr`/`SsSetMVol`), `PRESET` (`0x8007c4e0`–`0x8007ce44`,
-   2,404 bytes, boundary confirmed against `GsMapModelingData`), and
-   `PADENTRY` (`0x8003c548`–`0x8003c934`, 1,004 bytes, boundary confirmed
-   against `PadChkVsync`/`PadSetActAlign`) — each with a complete zero-gap
-   byte account, an independently-derived boundary agreeing with a
+   met for seven objects** — `SYS`, `FORMAT`, `SSSTART`, `S_SCA`, `PRESET`,
+   `PADENTRY`, and `PADMAIN`, spanning three distinct library regions
+   (SPU/sequencer, `GS_*` graphics, PAD driver) — each with a complete
+   zero-gap byte account, an independently-derived boundary agreeing with a
    hand-reviewed/byte-matched function entry point, and a checked
    (non-uniform, honestly reported) edge-padding convention. A systematic scan
-   of all 59 multi-row `<name>_OBJ_*` runs found three further candidates,
-   `BIOS_OBJ_*` (`0x8003fec8`–`0x80041628`), `UT_REV`
-   (`0x80032afc`–`0x80032b98`), and `VSYNC` (`0x800358f8`–`0x80035b08`), that
-   meet criteria 1 and 2 but fail criterion 3 outright (both edges dense, zero
-   padding bytes anywhere) — recorded as real negative results, not
-   confirmed; all three sit inside the same tightly packed SPU-library region,
-   suggestively (not yet proven) one dense object rather than several small
-   ones. Every other `<name>_OBJ_*` run remains `candidate_only` until it
-   independently passes the same checks. A bounded, ordered backlog toward
-   object-name semantic identity (lowest priority; still open even for the
-   confirmed objects) is defined in the
+   of the 59 multi-row `<name>_OBJ_*` runs also found three real negative
+   results (`BIOS_OBJ_*`, `UT_REV`, `VSYNC` — complete byte account and a
+   corroborated boundary, but dense edges with no padding anywhere; all three
+   sit in the same tightly packed SPU-library region, suggestively one dense
+   object rather than several small ones). Full per-object detail, addresses,
+   and reproduction commands are in
+   [linked-object evidence](docs/foundations/linked-object-evidence.md). Every
+   other `<name>_OBJ_*` run remains `candidate_only` until it independently
+   passes the same checks. A bounded, ordered backlog toward object-name
+   semantic identity (lowest priority; still open even for the confirmed
+   objects) is defined in the
    [external linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md).
 
 The HOW TO PLAY overlay's former 80-byte limit was explicitly reopened on
