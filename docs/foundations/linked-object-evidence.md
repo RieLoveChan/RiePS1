@@ -14,11 +14,18 @@ blocks) already carries the same caveat: exact per-function byte matches
 prove independently placed function bodies, not an original PsyQ object
 boundary, inter-function layout, or whole-executable match. This document is
 the first pass at building real evidence toward that separate, larger claim.
-It is **not** a claim that any object boundary is confirmed. It records what
-was checked, what the checked evidence actually shows (including where that
-is a clean negative result), and — per this project's evidentiary style — a
-falsifiable bar for what would justify a future "object boundary confirmed"
-claim. All addresses/sizes below come from `/config/ddr5thmix/build.json` and
+As of 2026-08-04, two specific objects (`SYS` and `FORMAT`, see their
+respective sections below) have met the falsifiable four-criterion bar
+defined later in this document and are recorded as `object_boundary_confirmed`
+— the first such results in this project. Every other named `<name>_OBJ_*`
+run remains unconfirmed; this is not a claim that object boundaries are
+confirmed project-wide, or that PSYLINK's whole-executable layout or PsyQ's
+own object file format has been reproduced. It records what was checked,
+what the checked evidence actually shows (including where that is a clean
+negative result), and — per this project's evidentiary style — the
+falsifiable bar itself, so any future claim for another object can be
+checked against the same four criteria rather than a looser standard.
+All addresses/sizes below come from `/config/ddr5thmix/build.json` and
 the existing Ghidra 12.1.2 project at `runtime/ghidra/projects/ddr5thmix`
 (program `SLPM_868.97_1`); no copyrighted byte content is reproduced, only
 addresses, sizes, counts, and instruction-shape descriptions already implied
@@ -296,6 +303,35 @@ claim remains `candidate_only`; criterion 4's scope limitations still apply.
 - **Independently confirmed boundary**: The measured end address of the `FORMAT` object, **`0x8003ba38`**, lands **exactly on `0x8003ba38`**, the entry point of **`_card_read`** — an independently hand-reviewed, exact-byte-matched PsyQ BIOS trampoline function (`confidence = verified`, `source_status = hand_written_source`, built/reference SHA-256 `875fa8774175cad7c553fa1bcaa28639e989aa4933dedc1475a3e5eb84d9b6c5`) in `src/ddr5thmix/PsyqBiosStubs.s`.
 - **Reproduction**: `pwsh -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix FORMAT -ObjectStart ([Convert]::ToInt64("8003b6e8", 16)) -ObjectEnd ([Convert]::ToInt64("8003ba38", 16))`
 - **Evidentiary bar status**: Satisfies criterion 2 (second independently derived boundary that agrees with the tool-derived one) for the project as a whole. Along with Unit A's `SYS` results, both criteria 1 and 2 are now satisfied for their respective objects.
+
+### Update 2026-08-04: `FORMAT`'s true edges checked — both criterion-1/2/3 objects now confirmed
+
+Re-ran both existing byte-account checks fresh, after all reconstruction work through the 2026-08-04 gap-sweep closure (see the update above) and `DdrSecondaryState` field sweep, to confirm neither result had silently regressed:
+
+```powershell
+./tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix SYS -ObjectStart ([Convert]::ToInt64('800381e8',16)) -ObjectEnd ([Convert]::ToInt64('8003b114',16))
+# span_bytes: 12076, covered_bytes: 12076, gap_bytes: 0, complete_byte_account: true
+./tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix FORMAT -ObjectStart ([Convert]::ToInt64('8003b6e8',16)) -ObjectEnd ([Convert]::ToInt64('8003ba38',16))
+# span_bytes: 848, covered_bytes: 848, gap_bytes: 0, complete_byte_account: true
+```
+
+Both still hold. `FORMAT` had not yet had its true edges checked (only its interior byte account and its end-boundary corroboration against `_card_read`, per Unit B above) — Unit A's edge check was SYS-only. Dumping the lawful executable directly (`file_offset = address - 0x8001a000`, the same mapping used throughout this document):
+
+```text
+0x8003b6d8: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x8003ba38: b0 00 0a 24 08 00 40 01 4f 00 09 24 00 00 00 00
+```
+
+The 16 bytes immediately before `0x8003b6e8` are zero, exactly bounded by `FUN_8003b668`'s own measured end (`0x8003b668 + 112 = 0x8003b6d8`, confirmed by arithmetic, not assumed) — `FUN_8003b668` is `confidence = verified`/`source_status = hand_written_source`. Immediately after the exclusive end `0x8003ba38`, there is **no zero padding at all** — those bytes are `_card_read`'s own first instruction (`li t2,0xb0`, matching its documented "loads BIOS vector 0xb0 into t2" description). `FORMAT`'s edges are therefore 16-byte leading zero padding and a 0-byte (dense, no-gap) trailing boundary — a different shape than `SYS`'s 8-byte-leading/4-byte-trailing result, but a real, checked, evidenced convention at both edges, not an assumption.
+
+**This completes criterion 3 for `FORMAT`.** Re-checking the full bar for both objects against the four criteria stated above:
+
+1. **Complete, contiguous byte account, zero unattributed bytes** — `SYS`: 12,076/12,076 bytes, `gap_bytes: 0`. `FORMAT`: 848/848 bytes, `gap_bytes: 0`. Both satisfied, reproduced fresh above.
+2. **An independently-derived boundary agreeing with the tool-derived one, in at least two unrelated instances** — `SYS`'s implied base (`0x800381e8`) lands exactly on the independently hand-reviewed `ResetGraph` entry point; `FORMAT`'s implied base (`0x8003b6e8`, from its own three `FORMAT_OBJ_*` rows) is a second, unrelated object 12KB away with its *end* boundary (`0x8003ba38`) landing exactly on the independently byte-matched `_card_read` entry point. Two unrelated objects, two unrelated independent corroborations — this is the "second, unrelated instance" the bar requires, validating the method rather than one lucky coincidence. Satisfied for both objects.
+3. **A checked alignment/padding convention at the object's actual start and end edges** — `SYS`: 8-byte leading / 4-byte trailing zero padding (Unit A, 2026-08-03). `FORMAT`: 16-byte leading zero padding / 0-byte trailing (dense boundary), checked above. Both edges checked and reported for both objects; the two conventions differ in exact byte counts, which is reported honestly rather than smoothed over.
+4. **Explicit acknowledgment of what this does not establish** — see immediately below.
+
+**All four criteria are now met, together, for both the `SYS` (`0x800381e8`–`0x8003b114`, 12,076 bytes) and `FORMAT` (`0x8003b6e8`–`0x8003ba38`, 848 bytes) objects.** This is the first `object_boundary_confirmed` result in this project. It specifically establishes: each object's full byte range is completely and correctly accounted for by the current symbol-map inventory; each object's boundary, independently derived two different ways (mechanical merge-and-gap accounting vs. hand-reviewed/byte-matched function identity), agrees; and each object's true edges show a real, checked zero-padding convention (not assumed, not uniform between the two objects). It does **not** establish PSYLINK's whole-executable section ordering, that GNU binutils reproduces PsyQ's own object file format, that either object's *name* (`SYS`, `FORMAT`) is the original PsyQ source/object filename (see Unit F/`## 1. Contiguous Byte Coverage vs. Semantic Name Provenance` below — name identity is a separate, still-open question), or a whole-image match. Any other `<name>_OBJ_*` run in the symbol map remains `candidate_only` until it independently passes the same three checks.
 
 ## What remains unconfirmed here
 
@@ -576,17 +612,25 @@ should require all of the following, together, for that specific object:
    whole-executable section ordering, not that GNU binutils reproduces
    PsyQ's own object format, and not a whole-image match.
 
-Absent all four, "object boundary confirmed" is not warranted, and this
-document does not make that claim. What it does establish: a reproducible
-method (address/offset arithmetic over the existing symbol-map CSV, plus
-targeted `DumpBytes.java` spot checks against the existing Ghidra project)
-that already produced one internally-consistent, independently-corroborated
-object-scale result (`SYS`/`ResetGraph`, §2) and one consistent padding-
-convention result (the BIOS stub block, §1) without requiring any new
-extraction, alongside a clean negative result (no alignment padding anywhere
-else checked) and several explicitly flagged open items (the two new BIOS
+**Update 2026-08-04**: this bar has now been met, all four criteria together,
+for two specific objects — `SYS` (`0x800381e8`–`0x8003b114`) and `FORMAT`
+(`0x8003b6e8`–`0x8003ba38`) — see the "Update 2026-08-04: `FORMAT`'s true
+edges checked" section under §2/Unit B above for the full per-criterion
+walkthrough and reproduction commands. This bar definition remains the
+standard any *other* candidate object must independently meet; absent all
+four for a given object, "object boundary confirmed" is not warranted for
+that object, regardless of how `SYS`/`FORMAT` resolved. What this document
+establishes overall: a reproducible method (address/offset arithmetic over
+the existing symbol-map CSV, plus targeted `DumpBytes.java`/direct-executable
+spot checks) that produced two internally-consistent, independently-
+corroborated, edge-checked, confirmed object boundaries (`SYS`/`ResetGraph`
+and `FORMAT`/`_card_read`) without requiring any new extraction, alongside a
+clean negative result (no alignment padding anywhere else checked outside
+these objects) and several explicitly flagged open items (the two new BIOS
 stubs' unexplained 8-byte prefix, the unexamined `Lzc`→`SetVertex0` gap, and
-the un-cross-referenced object names' semantic identity).
+the un-cross-referenced object names' semantic identity — see Unit F
+immediately below, which remains open even for the now-confirmed `SYS` and
+`FORMAT` boundaries per criterion 4's scope limits).
 
 # Object-Name Semantic Identity and Claim Boundaries (Unit F)
 

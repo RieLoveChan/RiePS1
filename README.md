@@ -84,6 +84,12 @@ plus all
   a graphics-init-once latch, a shared termination flag, and more — and
   corrected the struct's asserted size from `0xbc` to the `bzero`-evidenced
   `0xd0`. See [`DdrSecondaryState` partial layout](docs/games/ddr-5th-mix-jp-globals.md).
+- **First confirmed PsyQ object boundaries:** the `SYS` and `FORMAT` objects
+  each independently satisfy this project's own four-criterion
+  `object_boundary_confirmed` bar — complete byte account, an
+  independently-derived boundary agreeing with a hand-reviewed function entry
+  point, and a checked edge-padding convention. See
+  [linked-object evidence](docs/foundations/linked-object-evidence.md).
 
 ## Recommended next targets
 
@@ -97,12 +103,21 @@ plus all
    is largely exhausted for the two structs currently in scope.
 2. **Advance to linked-object validation:** infer PsyQ object boundaries and
    reproduce inter-function layout instead of placing functions independently.
-   A first evidence pass is underway — see
-   [linked-object evidence](docs/foundations/linked-object-evidence.md) for
-   current findings (including the now-complete candidate-level SYS/ResetGraph byte account, the asymmetric edge-padding result, a corroborated PsyQ library-object cross-check, and a duplicate-body check) and the
-   falsifiable bar for a future object-boundary-confirmed claim; no boundary
-   is confirmed yet. A bounded, ordered backlog toward that bar is defined in
-   the [external linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md).
+   **The falsifiable four-criterion bar defined in
+   [linked-object evidence](docs/foundations/linked-object-evidence.md) is now
+   met for two objects** — `SYS` (`0x800381e8`–`0x8003b114`, 12,076 bytes,
+   boundary confirmed against `ResetGraph`) and `FORMAT`
+   (`0x8003b6e8`–`0x8003ba38`, 848 bytes, boundary confirmed against
+   `_card_read`) — each with a complete zero-gap byte account, an
+   independently-derived boundary agreeing with a hand-reviewed/byte-matched
+   function entry point, and a checked (non-uniform, honestly reported)
+   edge-padding convention. This is the project's first `object_boundary_confirmed`
+   result; every other `<name>_OBJ_*` run remains `candidate_only` until it
+   independently passes the same three checks. Next: apply the same method to
+   more of the 60 multi-row runs, or pursue object-name semantic identity
+   (lowest priority; still open even for the two confirmed objects). A
+   bounded, ordered backlog is defined in the
+   [external linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md).
 
 The HOW TO PLAY overlay's former 80-byte limit was explicitly reopened on
 2026-07-25. Raw-MIPS call-chain, stride, and bounds proofs resolved the
