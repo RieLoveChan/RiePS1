@@ -82,17 +82,47 @@ typedef struct DdrModeState {
 } DdrModeState;
 
 typedef struct DdrSecondaryState {
-    u8 unknown_000[0x04];
-    u8 unknown_004;
-    u8 unknown_005;
-    u8 unknown_006;
-    u8 unknown_007[0x4b];
+    u8 unknown_000;
+    u8 graphics_init_once_flag;
+    u8 unknown_002[0x02];
+    u8 termination_flag;
+    u8 cd_sync_status;
+    u8 mode4_ready_flag;
+    u8 idle_transition_flag;
+    u16 glyph_blink_timer;
+    u8 unknown_00a[0x14];
+    u8 boot_debug_flag;
+    u8 unknown_01f[0x21];
+    u8 load_step_index;
+    u8 unknown_041;
+    u8 unknown_042;
+    u8 unknown_043;
+    u8 unknown_044;
+    u8 unknown_045;
+    u8 unknown_046;
+    u8 unknown_047;
+    u8 unknown_048;
+    u8 unknown_049;
+    u8 unknown_04a;
+    u8 unknown_04b[0x05];
+    u8 unknown_050;
+    u8 load_queue_index;
     u8 unknown_052;
     u8 unknown_053[0x11];
     u8 unknown_064;
     u8 unknown_065;
     u8 unknown_066;
-    u8 unknown_067[0x35];
+    u8 unknown_067[0x0d];
+    u8 unknown_074;
+    u8 unknown_075[0x02];
+    u8 cd_read_status_flags;
+    u8 unknown_078[0x04];
+    u32 cd_read_dest_end;
+    u8 unknown_080[0x08];
+    u32 cd_read_dest_start;
+    u32 cd_read_request_size;
+    u32 cd_read_padded_size;
+    u8 unknown_094[0x08];
     u8 unknown_09c;
     u8 unknown_09d;
     u8 unknown_09e;
@@ -104,6 +134,9 @@ typedef struct DdrSecondaryState {
     u8 unknown_0af;
     u8 unknown_0b0[0x0b];
     u8 unknown_0bb;
+    u8 unknown_0bc[0x04];
+    u32 boot_check_value;
+    u8 unknown_0c4[0x0c];
 } DdrSecondaryState;
 
 #define DDR_STATIC_ASSERT(name, condition) typedef char name[(condition) ? 1 : -1]
@@ -137,13 +170,27 @@ DDR_STATIC_ASSERT(ddr_input_mapping_variant_flag_offset, __builtin_offsetof(DdrM
 DDR_STATIC_ASSERT(ddr_input_button_layout_variant_offset, __builtin_offsetof(DdrModeState, input_button_layout_variant) == 0x103);
 DDR_STATIC_ASSERT(ddr_mode_state_size, sizeof(DdrModeState) == 0x140);
 DDR_STATIC_ASSERT(ddr_secondary_052_offset, __builtin_offsetof(DdrSecondaryState, unknown_052) == 0x52);
-DDR_STATIC_ASSERT(ddr_secondary_006_offset, __builtin_offsetof(DdrSecondaryState, unknown_006) == 0x06);
 DDR_STATIC_ASSERT(ddr_secondary_064_offset, __builtin_offsetof(DdrSecondaryState, unknown_064) == 0x64);
 DDR_STATIC_ASSERT(ddr_secondary_09c_offset, __builtin_offsetof(DdrSecondaryState, unknown_09c) == 0x9c);
 DDR_STATIC_ASSERT(ddr_secondary_0ac_offset, __builtin_offsetof(DdrSecondaryState, unknown_0ac) == 0xac);
 DDR_STATIC_ASSERT(ddr_secondary_066_offset, __builtin_offsetof(DdrSecondaryState, unknown_066) == 0x66);
 DDR_STATIC_ASSERT(ddr_secondary_0bb_offset, __builtin_offsetof(DdrSecondaryState, unknown_0bb) == 0xbb);
-DDR_STATIC_ASSERT(ddr_secondary_state_size, sizeof(DdrSecondaryState) == 0xbc);
+DDR_STATIC_ASSERT(ddr_secondary_graphics_init_once_flag_offset, __builtin_offsetof(DdrSecondaryState, graphics_init_once_flag) == 0x01);
+DDR_STATIC_ASSERT(ddr_secondary_termination_flag_offset, __builtin_offsetof(DdrSecondaryState, termination_flag) == 0x04);
+DDR_STATIC_ASSERT(ddr_secondary_cd_sync_status_offset, __builtin_offsetof(DdrSecondaryState, cd_sync_status) == 0x05);
+DDR_STATIC_ASSERT(ddr_secondary_mode4_ready_flag_offset, __builtin_offsetof(DdrSecondaryState, mode4_ready_flag) == 0x06);
+DDR_STATIC_ASSERT(ddr_secondary_idle_transition_flag_offset, __builtin_offsetof(DdrSecondaryState, idle_transition_flag) == 0x07);
+DDR_STATIC_ASSERT(ddr_secondary_glyph_blink_timer_offset, __builtin_offsetof(DdrSecondaryState, glyph_blink_timer) == 0x08);
+DDR_STATIC_ASSERT(ddr_secondary_boot_debug_flag_offset, __builtin_offsetof(DdrSecondaryState, boot_debug_flag) == 0x1e);
+DDR_STATIC_ASSERT(ddr_secondary_load_step_index_offset, __builtin_offsetof(DdrSecondaryState, load_step_index) == 0x40);
+DDR_STATIC_ASSERT(ddr_secondary_load_queue_index_offset, __builtin_offsetof(DdrSecondaryState, load_queue_index) == 0x51);
+DDR_STATIC_ASSERT(ddr_secondary_cd_read_status_flags_offset, __builtin_offsetof(DdrSecondaryState, cd_read_status_flags) == 0x77);
+DDR_STATIC_ASSERT(ddr_secondary_cd_read_dest_end_offset, __builtin_offsetof(DdrSecondaryState, cd_read_dest_end) == 0x7c);
+DDR_STATIC_ASSERT(ddr_secondary_cd_read_dest_start_offset, __builtin_offsetof(DdrSecondaryState, cd_read_dest_start) == 0x88);
+DDR_STATIC_ASSERT(ddr_secondary_cd_read_request_size_offset, __builtin_offsetof(DdrSecondaryState, cd_read_request_size) == 0x8c);
+DDR_STATIC_ASSERT(ddr_secondary_cd_read_padded_size_offset, __builtin_offsetof(DdrSecondaryState, cd_read_padded_size) == 0x90);
+DDR_STATIC_ASSERT(ddr_secondary_boot_check_value_offset, __builtin_offsetof(DdrSecondaryState, boot_check_value) == 0xc0);
+DDR_STATIC_ASSERT(ddr_secondary_state_size, sizeof(DdrSecondaryState) == 0xd0);
 #undef DDR_STATIC_ASSERT
 
 extern DdrModeState *PTR_DAT_800ac8e8;

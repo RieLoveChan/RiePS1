@@ -16,7 +16,7 @@ FUN_8002313c(void)
 
         /* Keep the pointer in v0; GCC places li v1,1 in its load delay slot. */
         __asm__("" : : "r"(nextState));
-        nextState->unknown_004 = 1;
+        nextState->termination_flag = 1;
     }
     /* Keep the termination-latch load after the secondary-state store. */
     __asm__ volatile("" ::: "memory");

@@ -76,14 +76,25 @@ plus all
   PsyQ object-header marker. Outside the two large already-identified
   non-code regions, the main-executable code region now has zero
   unclassified bytes. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md).
+- **`DdrSecondaryState` full field-xref sweep:** a Ghidra 12.1.2 headless
+  field/xref sweep over all 79 functions referencing `PTR_DAT_800ac8ec`
+  named 20 fields with concrete reader/writer evidence — a mode-4
+  asset-loading queue (`load_step_index`/`load_queue_index`), a 5-field
+  CD-read request record consumed by the 2026-08-03 startup-gap functions,
+  a graphics-init-once latch, a shared termination flag, and more — and
+  corrected the struct's asserted size from `0xbc` to the `bzero`-evidenced
+  `0xd0`. See [`DdrSecondaryState` partial layout](docs/games/ddr-5th-mix-jp-globals.md).
 
 ## Recommended next targets
 
-1. **Expand verified global layouts:** assign semantics to remaining observed
-   fields that have concrete readers or writers. Offsets `0x09`, `0x17`, and
-   `0x2c` and the sole consumer of the 42-entry screen-name pointer array are
-   resolved; retain `0x2e` as an exhaustive negative result unless new
-   reproducible evidence reveals a reader.
+1. **Expand verified global layouts:** `DdrModeState` and `DdrSecondaryState`
+   have both now had a full field-xref sweep; remaining unnamed fields in
+   each (`DdrModeState.0x2e` durable negative result; `DdrSecondaryState`'s
+   `0x00`, `0x45`, `0x50`, `0x52`, `0x66`, `0x74`, `0xbb`, and the seven
+   item-scratch bytes at `0x41`–`0x4a`) have a confirmed writer or reader but
+   not both, or evidence too generic/single-consumer for a domain name.
+   Revisit only if new reproducible evidence appears; otherwise this target
+   is largely exhausted for the two structs currently in scope.
 2. **Advance to linked-object validation:** infer PsyQ object boundaries and
    reproduce inter-function layout instead of placing functions independently.
    A first evidence pass is underway — see
