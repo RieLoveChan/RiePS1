@@ -2452,7 +2452,6 @@ _SsVabOpenHeadWithMode:
     .section .text.VS_VH_OBJ_3FC,"ax",@progbits
     .globl VS_VH_OBJ_3FC
     .globl sym_80035354
-    .globl sym_800354a4
     .type VS_VH_OBJ_3FC, @function
     .ent VS_VH_OBJ_3FC
 VS_VH_OBJ_3FC:
@@ -2470,27 +2469,6 @@ VS_VH_OBJ_3FC:
     lui     $at,0x800e
     addu    $at,$at,$v0
     sb      $v1,21056($at)
-    lw      $ra,1068($sp)
-    lw      $s6,1064($sp)
-    lw      $s5,1060($sp)
-    lw      $s4,1056($sp)
-    lw      $s3,1052($sp)
-    lw      $s2,1048($sp)
-    lw      $s1,1044($sp)
-    lw      $s0,1040($sp)
-    jr      $ra
-    addiu   $sp,$sp,1072
-    sll     $zero,$zero,0x0
-    addiu   $sp,$sp,-40
-    sw      $s3,28($sp)
-    addu    $s3,$a0,$zero
-    andi    $v0,$a1,0xffff
-    sltiu   $v0,$v0,17
-    sw      $ra,32($sp)
-    sw      $s2,24($sp)
-    sw      $s1,20($sp)
-    beq     $v0,$zero,sym_800354a4
-    sw      $s0,16($sp)
     .end VS_VH_OBJ_3FC
     .size VS_VH_OBJ_3FC, . - VS_VH_OBJ_3FC
 
@@ -5362,7 +5340,6 @@ PadInfoAct:
     sll     $zero,$zero,0x0
     jr      $v0
     sll     $zero,$zero,0x0
-    lbu     $v0,0($v1)
     .end PadInfoAct
     .size PadInfoAct, . - PadInfoAct
 

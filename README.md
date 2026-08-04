@@ -14,9 +14,9 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,427 total: 1,278 verified, 102 manually reviewed, 167 library signatures, 880 unverified |
-| Main-executable code-region byte accounting | 570,701 of 1,050,624 code-region bytes (54.3%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 479,923 bytes are not 480KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), leaving 3,139 bytes still fully unaccounted for. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
-| Exact reconstruction | 1,348 functions / 176,648 selected bytes: 1,278/167,276 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Main-executable function inventory | 2,507 total: 1,358 verified, 102 manually reviewed, 167 library signatures, 880 unverified |
+| Main-executable code-region byte accounting | 572,577 of 1,050,624 code-region bytes (54.5%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 478,047 bytes are not 478KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), and the true residue is now fully classified: 1,204 bytes of zero-alignment padding and 59 bytes of already-evidenced PsyQ object-header markers. No unclassified bytes remain in the code region. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
+| Exact reconstruction | 1,428 functions / 178,440 selected bytes: 1,358/169,068 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
 | Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
@@ -25,10 +25,10 @@ and validate its recorded hashes before comparison.
 | Music metadata | 47 statically linked music-info records mapped |
 
 Ghidra's approximately 49% attributed function-body coverage is an analysis
-inventory figure, not reconstruction progress; so is the 54.2% code-region
+inventory figure, not reconstruction progress; so is the 54.5% code-region
 byte accounting above (a catalogued boundary is not a byte-exact match).
-Exact accepted reconstruction currently covers 1,278 of 2,427 main-executable
-functions (about 52.7%; 167,276 of 1,050,624 code-region bytes, about 15.9%),
+Exact accepted reconstruction currently covers 1,358 of 2,507 main-executable
+functions (about 54.2%; 169,068 of 1,050,624 code-region bytes, about 16.1%),
 plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
@@ -67,6 +67,15 @@ plus all
   rows are 153 synthetic GTE macros at `0x2000...` pseudo-addresses plus
   14 short real-address rows requiring separate object-boundary/data
   classification; none are ordinary reconstruction targets.
+- **Whole-executable gap sweep closed to marker/padding bytes only:**
+  reconstructed the 44-byte startup-gap functions plus 80 further functions
+  (1,880 bytes) found across 254 small gaps between already-catalogued rows,
+  corrected two pre-existing rows (`VS_VH_OBJ_3FC`, `PadInfoAct`) whose
+  declared sizes overran a verified neighbor, and classified every remaining
+  non-zero byte as either zero-alignment padding or an already-evidenced
+  PsyQ object-header marker. Outside the two large already-identified
+  non-code regions, the main-executable code region now has zero
+  unclassified bytes. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md).
 
 ## Recommended next targets
 
