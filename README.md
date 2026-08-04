@@ -85,9 +85,9 @@ plus all
   corrected the struct's asserted size from `0xbc` to the `bzero`-evidenced
   `0xd0`. See [`DdrSecondaryState` partial layout](docs/games/ddr-5th-mix-jp-globals.md).
 - **First confirmed PsyQ object boundaries:** `SYS`, `FORMAT`, `SSSTART`,
-  `S_SCA`, `PRESET`, `PADENTRY`, and `PADMAIN` each independently satisfy this
-  project's own four-criterion `object_boundary_confirmed` bar — complete
-  byte account, an independently-derived boundary agreeing with a
+  `S_SCA`, `PRESET`, `PADENTRY`, `PADMAIN`, and `PADCMD` each independently
+  satisfy this project's own four-criterion `object_boundary_confirmed` bar —
+  complete byte account, an independently-derived boundary agreeing with a
   hand-reviewed function entry point, and a checked edge-padding convention.
   Three further candidates (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`) each met two of
   the four criteria with a checked negative result (no edge padding at all)
@@ -108,8 +108,9 @@ plus all
    reproduce inter-function layout instead of placing functions independently.
    **The falsifiable four-criterion bar defined in
    [linked-object evidence](docs/foundations/linked-object-evidence.md) is now
-   met for seven objects** — `SYS`, `FORMAT`, `SSSTART`, `S_SCA`, `PRESET`,
-   `PADENTRY`, and `PADMAIN`, spanning three distinct library regions
+   met for eight objects** — `SYS`, `FORMAT`, `SSSTART`, `S_SCA`, `PRESET`,
+   `PADENTRY`, `PADMAIN`, and `PADCMD` (the latter three consecutive/adjacent
+   in the same PAD cluster), spanning three distinct library regions
    (SPU/sequencer, `GS_*` graphics, PAD driver) — each with a complete
    zero-gap byte account, an independently-derived boundary agreeing with a
    hand-reviewed/byte-matched function entry point, and a checked
