@@ -9302,6 +9302,14 @@
       "section": ".text.FUN_80023dbc"
     },
     {
+      "name": "FUN_80023e9c",
+      "address": "0x80023e9c",
+      "size": 204,
+      "language": "asm",
+      "source": "src/ddr5thmix/GraphicsPrimitiveBuilder.s",
+      "section": ".text.FUN_80023e9c"
+    },
+    {
       "name": "FUN_80023fdc",
       "address": "0x80023fdc",
       "size": 120,
