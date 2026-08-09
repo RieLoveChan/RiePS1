@@ -9754,6 +9754,15 @@
       "symbols": {}
     },
     {
+      "name": "FUN_800299dc",
+      "address": "0x800299dc",
+      "size": 112,
+      "language": "asm",
+      "source": "src/ddr5thmix/StateTransition.s",
+      "section": ".text.FUN_800299dc",
+      "symbols": {}
+    },
+    {
       "name": "FUN_80025850",
       "address": "0x80025850",
       "size": 220,
