@@ -3640,6 +3640,82 @@ FUN_8002b1e8:
     .end FUN_8002b1e8
     .size FUN_8002b1e8, . - FUN_8002b1e8
 
+/* FUN_8002b634 (0x8002b634, 256 bytes) */
+    .section .text.FUN_8002b634,"ax",@progbits
+    .globl FUN_8002b634
+    .type FUN_8002b634, @function
+    .ent FUN_8002b634
+FUN_8002b634:
+    addiu   $sp,$sp,-64
+    sw      $s6,48($sp)
+    addu    $s6,$a1,$zero
+    sw      $s7,52($sp)
+    addu    $s7,$a2,$zero
+    sw      $s8,56($sp)
+    addu    $s8,$a3,$zero
+    sw      $s3,36($sp)
+    sw      $ra,60($sp)
+    sw      $s5,44($sp)
+    sw      $s4,40($sp)
+    sw      $s2,32($sp)
+    sw      $s1,28($sp)
+    sw      $s0,24($sp)
+    lw      $s5,8($a0)
+    lw      $s0,12($a0)
+    lw      $v0,4($s5)
+    lw      $s1,0($s5)
+    beq     $v0,$zero,.LFUN_8002b634_d0
+    addu    $s3,$zero,$zero
+    addiu   $s2,$s1,44
+.LFUN_8002b634_54:
+    lui     $v0,0x00ff
+    ori     $v0,$v0,0xffff
+    lw      $v1,0($s0)
+    sll     $zero,$zero,0x0
+    and     $v1,$v1,$v0
+    lui     $v0,0x8000
+    or      $s4,$v1,$v0
+    lbu     $v1,0($s1)
+    addiu   $v0,$zero,52
+    bne     $v1,$v0,.LFUN_8002b634_b0
+    addiu   $s0,$s0,8
+    addu    $a0,$s6,$zero
+    jal     0x8002b734
+    addu    $a1,$s1,$zero
+    lui     $v0,0x800e
+    lh      $a1,21692($v0)
+    addu    $a3,$s8,$zero
+    sw      $s7,16($sp)
+    lw      $a0,-8($s2)
+    lw      $a2,0($s2)
+    sll     $a1,$a1,5
+    jal     0x8002b8d0
+    addu    $a1,$s0,$a1
+.LFUN_8002b634_b0:
+    addu    $s0,$s4,$zero
+    addiu   $s3,$s3,1
+    addiu   $s2,$s2,48
+    lw      $v0,4($s5)
+    sll     $zero,$zero,0x0
+    sltu    $v0,$s3,$v0
+    bne     $v0,$zero,.LFUN_8002b634_54
+    addiu   $s1,$s1,48
+.LFUN_8002b634_d0:
+    lw      $ra,60($sp)
+    lw      $s8,56($sp)
+    lw      $s7,52($sp)
+    lw      $s6,48($sp)
+    lw      $s5,44($sp)
+    lw      $s4,40($sp)
+    lw      $s3,36($sp)
+    lw      $s2,32($sp)
+    lw      $s1,28($sp)
+    lw      $s0,24($sp)
+    jr      $ra
+    addiu   $sp,$sp,64
+    .end FUN_8002b634
+    .size FUN_8002b634, . - FUN_8002b634
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
