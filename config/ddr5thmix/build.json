@@ -9354,6 +9354,18 @@
       }
     },
     {
+      "name": "FUN_80024e00",
+      "address": "0x80024e00",
+      "size": 352,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeGraphicsInit.s",
+      "section": ".text.FUN_80024e00",
+      "symbols": {
+        "FUN_80029ccc": "0x80029ccc",
+        "FUN_8002f42c": "0x8002f42c"
+      }
+    },
+    {
       "name": "FUN_80024054",
       "address": "0x80024054",
       "size": 160,
