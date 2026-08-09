@@ -813,3 +813,75 @@ FUN_80020d24:
     addiu   $sp,$sp,32
 .end FUN_80020d24
 .size FUN_80020d24, . - FUN_80020d24
+
+.section .text.FUN_80020e68,"ax",@progbits
+.globl FUN_80020e68
+.type FUN_80020e68, @function
+.ent FUN_80020e68
+FUN_80020e68:
+.L80020e68:
+    addiu   $sp,$sp,-24
+.L80020e6c:
+    addiu   $a0,$zero,1
+.L80020e70:
+    addu    $a1,$zero,$zero
+.L80020e74:
+    sw      $ra,20($sp)
+.L80020e78:
+    jal     CdSync
+.L80020e7c:
+    sw      $s0,16($sp)
+.L80020e80:
+    addiu   $v1,$zero,2
+.L80020e84:
+    bne     $v0,$v1,.L80020ec8
+.L80020e88:
+    addiu   $v0,$zero,1
+.L80020e8c:
+    addiu   $a0,$zero,1
+.L80020e90:
+    addu    $a1,$zero,$zero
+.L80020e94:
+    lui     $s0,0x800e
+.L80020e98:
+    jal     CdControl
+.L80020e9c:
+    addiu   $a2,$s0,10992
+.L80020ea0:
+    lbu     $v0,10992($s0)
+.L80020ea4:
+    nop
+.L80020ea8:
+    andi    $v0,$v0,0x40
+.L80020eac:
+    bne     $v0,$zero,.L80020ec8
+.L80020eb0:
+    addiu   $v0,$zero,1
+.L80020eb4:
+    lui     $v0,0x800b
+.L80020eb8:
+    lw      $v1,-14100($v0)
+.L80020ebc:
+    addu    $v0,$zero,$zero
+.L80020ec0:
+    j       0x80020ed8
+.L80020ec4:
+    sb      $zero,5($v1)
+.L80020ec8:
+    lui     $v1,0x800b
+.L80020ecc:
+    lw      $a0,-14100($v1)
+.L80020ed0:
+    addu    $v1,$v0,$zero
+.L80020ed4:
+    sb      $v1,5($a0)
+.L80020ed8:
+    lw      $ra,20($sp)
+.L80020edc:
+    lw      $s0,16($sp)
+.L80020ee0:
+    jr      $ra
+.L80020ee4:
+    addiu   $sp,$sp,24
+.end FUN_80020e68
+.size FUN_80020e68, . - FUN_80020e68
