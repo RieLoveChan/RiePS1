@@ -3613,3 +3613,47 @@ FUN_80029238:
     addiu   $sp,$sp,24
 .end FUN_80029238
 .size FUN_80029238, . - FUN_80029238
+.section .text.FUN_80029268,"ax",@progbits
+.globl FUN_80029268
+.globl sym_8003f738
+.globl sym_80025c1c
+.type FUN_80029268, @function
+.ent FUN_80029268
+FUN_80029268:
+    addiu   $sp,$sp,-32
+    sw      $s0,16($sp)
+    lui     $s0,0x800b
+    lw      $v0,-7060($s0)
+    sw      $ra,24($sp)
+    beq     $v0,$zero,.L800292d4
+    sw      $s1,20($sp)
+    jal     sym_8003f738
+    sll     $zero,$zero,0
+    andi    $v0,$v0,0x10
+    beq     $v0,$zero,.L800292a4
+    lui     $v1,0x800b
+    addiu   $v0,$zero,1
+    j       .L800292d4
+    sw      $v0,-7052($v1)
+.L800292a4:
+    lui     $s1,0x800b
+    lw      $v1,-7052($s1)
+    addiu   $v0,$zero,1
+    bne     $v1,$v0,.L800292c8
+    addiu   $a0,$zero,3
+    jal     sym_80025c1c
+    sw      $zero,-7060($s0)
+    j       .L800292d4
+    sw      $zero,-7052($s1)
+.L800292c8:
+    sw      $zero,-7060($s0)
+    jal     sym_80025c1c
+    addiu   $a0,$zero,3
+.L800292d4:
+    lw      $ra,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,32
+.end FUN_80029268
+.size FUN_80029268, . - FUN_80029268
