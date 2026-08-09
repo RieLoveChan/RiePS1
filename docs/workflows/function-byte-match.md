@@ -960,6 +960,18 @@ reference/built SHA-256 is `6053fe59fcdb5a7efb26f909b653e846df6c6d9e8bb7b69952ba
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing mode color setup
+
+`FUN_80029c40` adds a 140-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It selects one of two RGB triplets
+based on the mode, uploads it through `FUN_8003fca0`, updates
+`0x800e38c8`, and calls `FUN_80024e00`. The verifier matched 140/140 bytes
+with GCC 14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `537fe283f4706b5702359feb249edca33d643e8b44d20348e1ce038a0d813b50`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
