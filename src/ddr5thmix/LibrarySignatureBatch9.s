@@ -3472,6 +3472,99 @@ FUN_8002a8b0:
     .end FUN_8002a8b0
     .size FUN_8002a8b0, . - FUN_8002a8b0
 
+/* FUN_8002a8b8 (0x8002a8b8, 292 bytes) */
+    .section .text.FUN_8002a8b8,"ax",@progbits
+    .globl FUN_8002a8b8
+    .type FUN_8002a8b8, @function
+    .ent FUN_8002a8b8
+FUN_8002a8b8:
+    addu    $t2,$a1,$zero
+.LFUN_8002a8b8_04:
+    lbu     $t1,0($a0)
+    addiu   $a0,$a0,1
+    addu    $t0,$zero,$zero
+    andi    $v0,$t1,0x1
+.LFUN_8002a8b8_14:
+    bne     $v0,$zero,.LFUN_8002a8b8_30
+    sll     $zero,$zero,0x0
+    lbu     $v0,0($a0)
+    addiu   $a0,$a0,1
+    sb      $v0,0($a1)
+    j       0x8002a9b8
+    addiu   $a1,$a1,1
+.LFUN_8002a8b8_30:
+    lbu     $a3,0($a0)
+    sll     $zero,$zero,0x0
+    andi    $v0,$a3,0x80
+    bne     $v0,$zero,.LFUN_8002a8b8_88
+    addiu   $a0,$a0,1
+    lbu     $v1,0($a0)
+    addiu   $a0,$a0,1
+    srl     $v0,$a3,2
+    addiu   $a2,$v0,3
+    andi    $v0,$a3,0x3
+    sll     $v0,$v0,8
+    or      $v0,$v0,$v1
+    beq     $a2,$zero,.LFUN_8002a8b8_100
+    subu    $v1,$a1,$v0
+.LFUN_8002a8b8_68:
+    lbu     $v0,0($v1)
+    addiu   $v1,$v1,1
+    addiu   $a2,$a2,-1
+    sb      $v0,0($a1)
+    bne     $a2,$zero,.LFUN_8002a8b8_68
+    addiu   $a1,$a1,1
+    j       0x8002a9bc
+    srl     $t1,$t1,1
+.LFUN_8002a8b8_88:
+    andi    $v0,$a3,0x40
+    bne     $v0,$zero,.LFUN_8002a8b8_d4
+    addiu   $v0,$zero,255
+    andi    $v0,$a3,0xf
+    addiu   $v0,$v0,1
+    subu    $v1,$a1,$v0
+    srl     $v0,$a3,4
+    andi    $v0,$v0,0x3
+    addiu   $a2,$v0,2
+    beq     $a2,$zero,.LFUN_8002a8b8_100
+    sll     $zero,$zero,0x0
+.LFUN_8002a8b8_b4:
+    lbu     $v0,0($v1)
+    addiu   $v1,$v1,1
+    addiu   $a2,$a2,-1
+    sb      $v0,0($a1)
+    bne     $a2,$zero,.LFUN_8002a8b8_b4
+    addiu   $a1,$a1,1
+    j       0x8002a9bc
+    srl     $t1,$t1,1
+.LFUN_8002a8b8_d4:
+    beq     $a3,$v0,.LFUN_8002a8b8_11c
+    andi    $v0,$a3,0x3f
+    addiu   $a2,$v0,8
+    beq     $a2,$zero,.LFUN_8002a8b8_100
+    sll     $zero,$zero,0x0
+.LFUN_8002a8b8_e8:
+    lbu     $v0,0($a0)
+    addiu   $a0,$a0,1
+    addiu   $a2,$a2,-1
+    sb      $v0,0($a1)
+    bne     $a2,$zero,.LFUN_8002a8b8_e8
+    addiu   $a1,$a1,1
+.LFUN_8002a8b8_100:
+    srl     $t1,$t1,1
+.LFUN_8002a8b8_104:
+    addiu   $t0,$t0,1
+    sltiu   $v0,$t0,8
+    bne     $v0,$zero,.LFUN_8002a8b8_14
+    andi    $v0,$t1,0x1
+    j       0x8002a8bc
+    sll     $zero,$zero,0x0
+.LFUN_8002a8b8_11c:
+    jr      $ra
+    subu    $v0,$a1,$t2
+    .end FUN_8002a8b8
+    .size FUN_8002a8b8, . - FUN_8002a8b8
+
 /* FUN_8002ac38 (0x8002ac38, 80 bytes) */
     .section .text.FUN_8002ac38,"ax",@progbits
     .globl FUN_8002ac38
