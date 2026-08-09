@@ -9590,6 +9590,15 @@
       }
     },
     {
+      "name": "FUN_800292e8",
+      "address": "0x800292e8",
+      "size": 60,
+      "language": "asm",
+      "source": "src/ddr5thmix/StateTransition.s",
+      "section": ".text.FUN_800292e8",
+      "symbols": {}
+    },
+    {
       "name": "FUN_80025850",
       "address": "0x80025850",
       "size": 220,

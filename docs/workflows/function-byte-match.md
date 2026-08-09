@@ -1000,6 +1000,19 @@ the reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing scale calculation
+
+`FUN_800292e8` adds a 60-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It evaluates the observed polynomial in
+the input and scales it with `0x51eb851f`, returning the HI product shifted
+right by 5 bits. `Invoke-FunctionMatch.ps1` matched 60/60 bytes with GCC
+14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`601b8d5baa37d5339c844c85236e97eb34a151d56ea82852ad79304bcd40aea6`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
