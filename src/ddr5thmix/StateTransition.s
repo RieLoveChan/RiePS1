@@ -5081,3 +5081,62 @@ FUN_8002a4c8:
     addiu   $sp,$sp,24
 .end FUN_8002a4c8
 .size FUN_8002a4c8, . - FUN_8002a4c8
+.section .text.FUN_8002a5a8,"ax",@progbits
+.globl FUN_8002a5a8
+.type FUN_8002a5a8, @function
+.ent FUN_8002a5a8
+FUN_8002a5a8:
+    lui     $a2,0x204
+    ori     $a2,$a2,0x811
+    andi    $a0,$a0,0xffff
+    multu   $a0,$a2
+    addiu   $sp,$sp,-24
+    lui     $v0,0x800e
+    sw      $ra,16($sp)
+    sw      $a0,11244($v0)
+    mfhi    $v1
+    subu    $a0,$a0,$v1
+    srl     $a0,$a0,0x1
+    addu    $v1,$v1,$a0
+    srl     $a1,$v1,0x6
+    andi    $v0,$a1,0xffff
+    bne     $v0,$zero,.L8002a5ec
+    lui     $a0,0x800b
+    addu    $a1,$zero,$zero
+.L8002a5ec:
+    lui     $v0,0x800e
+    lhu     $v1,14326($v0)
+    addiu   $a0,$a0,-8872
+    addiu   $v1,$v1,-52
+    sll     $v0,$v1,0x1
+    addu    $v0,$v0,$v1
+    sll     $v0,$v0,0x2
+    addu    $v0,$v0,$a0
+    lbu     $v1,8($v0)
+    andi    $v0,$a1,0xffff
+    mult    $v0,$v1
+    mflo    $a1
+    sll     $zero,$zero,0
+    sll     $zero,$zero,0
+    multu   $a1,$a2
+    mfhi    $v1
+    subu    $v0,$a1,$v1
+    srl     $v0,$v0,0x1
+    addu    $v1,$v1,$v0
+    srl     $a1,$v1,0x6
+    sltiu   $v0,$a1,128
+    bne     $v0,$zero,.L8002a650
+    sll     $a1,$a1,0x10
+    addiu   $a1,$zero,127
+    sll     $a1,$a1,0x10
+.L8002a650:
+    sra     $a1,$a1,0x10
+    addu    $a0,$zero,$zero
+    jal     0x8003164c
+    addu    $a2,$a1,$zero
+    lw      $ra,16($sp)
+    sll     $zero,$zero,0
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_8002a5a8
+.size FUN_8002a5a8, . - FUN_8002a5a8
