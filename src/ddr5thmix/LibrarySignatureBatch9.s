@@ -5070,6 +5070,245 @@ FUN_800a00ac:
     .end FUN_800a00ac
     .size FUN_800a00ac, . - FUN_800a00ac
 
+/* FUN_80097cb8 (0x80097cb8, 28 bytes) */
+    .section .text.FUN_80097cb8,"ax",@progbits
+    .globl FUN_80097cb8
+    .type FUN_80097cb8, @function
+    .ent FUN_80097cb8
+FUN_80097cb8:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x800
+    .end FUN_80097cb8
+    .size FUN_80097cb8, . - FUN_80097cb8
+
+/* FUN_80097cd4 (0x80097cd4, 28 bytes) */
+    .section .text.FUN_80097cd4,"ax",@progbits
+    .globl FUN_80097cd4
+    .type FUN_80097cd4, @function
+    .ent FUN_80097cd4
+FUN_80097cd4:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x20
+    .end FUN_80097cd4
+    .size FUN_80097cd4, . - FUN_80097cd4
+
+/* FUN_80097cf0 (0x80097cf0, 28 bytes) */
+    .section .text.FUN_80097cf0,"ax",@progbits
+    .globl FUN_80097cf0
+    .type FUN_80097cf0, @function
+    .ent FUN_80097cf0
+FUN_80097cf0:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x8000
+    .end FUN_80097cf0
+    .size FUN_80097cf0, . - FUN_80097cf0
+
+/* FUN_80097d0c (0x80097d0c, 28 bytes) */
+    .section .text.FUN_80097d0c,"ax",@progbits
+    .globl FUN_80097d0c
+    .type FUN_80097d0c, @function
+    .ent FUN_80097d0c
+FUN_80097d0c:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x2000
+    .end FUN_80097d0c
+    .size FUN_80097d0c, . - FUN_80097d0c
+
+/* FUN_80097d28 (0x80097d28, 28 bytes) */
+    .section .text.FUN_80097d28,"ax",@progbits
+    .globl FUN_80097d28
+    .type FUN_80097d28, @function
+    .ent FUN_80097d28
+FUN_80097d28:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,4($a0)
+    jr      $ra
+    andi    $v0,$v0,0x820
+    .end FUN_80097d28
+    .size FUN_80097d28, . - FUN_80097d28
+
+/* FUN_80097d60 (0x80097d60, 28 bytes) */
+    .section .text.FUN_80097d60,"ax",@progbits
+    .globl FUN_80097d60
+    .type FUN_80097d60, @function
+    .ent FUN_80097d60
+FUN_80097d60:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,4($a0)
+    jr      $ra
+    andi    $v0,$v0,0x8000
+    .end FUN_80097d60
+    .size FUN_80097d60, . - FUN_80097d60
+
+/* FUN_80097d7c (0x80097d7c, 28 bytes) */
+    .section .text.FUN_80097d7c,"ax",@progbits
+    .globl FUN_80097d7c
+    .type FUN_80097d7c, @function
+    .ent FUN_80097d7c
+FUN_80097d7c:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,4($a0)
+    jr      $ra
+    andi    $v0,$v0,0x2000
+    .end FUN_80097d7c
+    .size FUN_80097d7c, . - FUN_80097d7c
+
+/* FUN_80097d98 (0x80097d98, 28 bytes) */
+    .section .text.FUN_80097d98,"ax",@progbits
+    .globl FUN_80097d98
+    .type FUN_80097d98, @function
+    .ent FUN_80097d98
+FUN_80097d98:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x8000
+    .end FUN_80097d98
+    .size FUN_80097d98, . - FUN_80097d98
+
+/* FUN_80097db4 (0x80097db4, 28 bytes) */
+    .section .text.FUN_80097db4,"ax",@progbits
+    .globl FUN_80097db4
+    .type FUN_80097db4, @function
+    .ent FUN_80097db4
+FUN_80097db4:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x2000
+    .end FUN_80097db4
+    .size FUN_80097db4, . - FUN_80097db4
+
+/* FUN_80097dd0 (0x80097dd0, 28 bytes) */
+    .section .text.FUN_80097dd0,"ax",@progbits
+    .globl FUN_80097dd0
+    .type FUN_80097dd0, @function
+    .ent FUN_80097dd0
+FUN_80097dd0:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x1000
+    .end FUN_80097dd0
+    .size FUN_80097dd0, . - FUN_80097dd0
+
+/* FUN_80097dec (0x80097dec, 28 bytes) */
+    .section .text.FUN_80097dec,"ax",@progbits
+    .globl FUN_80097dec
+    .type FUN_80097dec, @function
+    .ent FUN_80097dec
+FUN_80097dec:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,8($a0)
+    jr      $ra
+    andi    $v0,$v0,0x4000
+    .end FUN_80097dec
+    .size FUN_80097dec, . - FUN_80097dec
+
+/* FUN_80097e28 (0x80097e28, 28 bytes) */
+    .section .text.FUN_80097e28,"ax",@progbits
+    .globl FUN_80097e28
+    .type FUN_80097e28, @function
+    .ent FUN_80097e28
+FUN_80097e28:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,4($a0)
+    jr      $ra
+    andi    $v0,$v0,0x80
+    .end FUN_80097e28
+    .size FUN_80097e28, . - FUN_80097e28
+
+/* FUN_80097e44 (0x80097e44, 28 bytes) */
+    .section .text.FUN_80097e44,"ax",@progbits
+    .globl FUN_80097e44
+    .type FUN_80097e44, @function
+    .ent FUN_80097e44
+FUN_80097e44:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,4($a0)
+    jr      $ra
+    andi    $v0,$v0,0x20
+    .end FUN_80097e44
+    .size FUN_80097e44, . - FUN_80097e44
+
+/* FUN_80097e60 (0x80097e60, 28 bytes) */
+    .section .text.FUN_80097e60,"ax",@progbits
+    .globl FUN_80097e60
+    .type FUN_80097e60, @function
+    .ent FUN_80097e60
+FUN_80097e60:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,4($a0)
+    jr      $ra
+    andi    $v0,$v0,0x10
+    .end FUN_80097e60
+    .size FUN_80097e60, . - FUN_80097e60
+
+/* FUN_80097e7c (0x80097e7c, 28 bytes) */
+    .section .text.FUN_80097e7c,"ax",@progbits
+    .globl FUN_80097e7c
+    .type FUN_80097e7c, @function
+    .ent FUN_80097e7c
+FUN_80097e7c:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,0x3b58
+    sll     $a0,$a0,4
+    addu    $a0,$a0,$v0
+    lw      $v0,4($a0)
+    jr      $ra
+    andi    $v0,$v0,0x40
+    .end FUN_80097e7c
+    .size FUN_80097e7c, . - FUN_80097e7c
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
