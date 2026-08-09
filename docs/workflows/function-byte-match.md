@@ -753,6 +753,19 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing scale helper
+
+`FUN_80028ce4` adds an 88-byte exact match in
+`src/ddr5thmix/RuntimeGraphicsInit.s`. It multiplies the fields at
+`0x800e37a0` and `0x800e37d8`, applies the unsigned factor `0xbe37c63b`,
+and evaluates the observed shift/add scale. `Invoke-FunctionMatch.ps1`
+matched 88/88 bytes with GCC 14.2.0/binutils 2.43 against lawful executable
+SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`;
+the reference/built SHA-256 is
+`6636878d5d3ca33c35dd84a9b0f4feb82237f9a56d0b49bfeb4d1c27c6238008`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
