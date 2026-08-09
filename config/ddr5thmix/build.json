@@ -9286,6 +9286,14 @@
       "built_sha256": "f3b4596aa1ba27ff54d2319b1337da5ad765bb656110b0194508d285a03be97c"
     },
     {
+      "name": "FUN_80023c00",
+      "address": "0x80023c00",
+      "size": 444,
+      "language": "asm",
+      "source": "src/ddr5thmix/GraphicsPrimitiveBuilder.s",
+      "section": ".text.FUN_80023c00"
+    },
+    {
       "name": "FUN_80023fdc",
       "address": "0x80023fdc",
       "size": 120,
