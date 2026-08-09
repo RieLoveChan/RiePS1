@@ -806,6 +806,18 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing accumulator reset
+
+`FUN_80028de0` adds a 12-byte exact match in
+`src/ddr5thmix/RuntimeGraphicsInit.s`. It clears `0x800e37d8` in the return
+delay slot. `Invoke-FunctionMatch.ps1` matched 12/12 bytes with GCC
+14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`58961e84a23056aa7ed32541a69843510a57c9f5bafd34575091e84a67066014`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the

@@ -306,3 +306,13 @@ FUN_80028d90:
     sw      $v0,16($a1)
 .end FUN_80028d90
 .size FUN_80028d90, . - FUN_80028d90
+.section .text.FUN_80028de0,"ax",@progbits
+.globl FUN_80028de0
+.type FUN_80028de0, @function
+.ent FUN_80028de0
+FUN_80028de0:
+    lui     $v0,0x800e
+    jr      $ra
+    sw      $zero,14296($v0)
+.end FUN_80028de0
+.size FUN_80028de0, . - FUN_80028de0
