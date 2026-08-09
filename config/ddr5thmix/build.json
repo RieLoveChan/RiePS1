@@ -45,6 +45,8 @@
         "FUN_8002112c",
         "FUN_80021dfc",
         "FUN_80021f00",
+        "FUN_8002200c",
+        "FUN_80022208",
         "FUN_8002216c",
         "FUN_80022cf8",
         "FUN_80023744",
@@ -1273,6 +1275,33 @@
         "FUN_8002200c": "0x8002200c",
         "FUN_80022208": "0x80022208",
         "FUN_8002abf0": "0x8002abf0"
+      }
+    },
+    {
+      "name": "FUN_8002200c",
+      "address": "0x8002200c",
+      "size": 300,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_8002200c",
+      "symbols": {
+        "FUN_80037868": "0x80037868",
+        "FUN_8003b118": "0x8003b118",
+        "FUN_8003b1d8": "0x8003b1d8"
+      }
+    },
+    {
+      "name": "FUN_80022208",
+      "address": "0x80022208",
+      "size": 60,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_80022208",
+      "symbols": {
+        "FUN_80037908": "0x80037908",
+        "FUN_800365c0": "0x800365c0",
+        "FUN_80036648": "0x80036648",
+        "FUN_80036668": "0x80036668"
       }
     },
     {

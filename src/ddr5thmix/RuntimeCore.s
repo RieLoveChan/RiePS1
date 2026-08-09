@@ -152,6 +152,110 @@ FUN_80021f00:
     addiu $sp,$sp,32
     .end FUN_80021f00
 
+    .section .text.FUN_8002200c,"ax",@progbits
+    .globl FUN_8002200c
+    .type FUN_8002200c, @function
+    .ent FUN_8002200c
+FUN_8002200c:
+    addiu $sp,$sp,-56
+    addu $a0,$zero,$zero
+    addu $a1,$a0,$zero
+    addu $a2,$a0,$zero
+    sw $s5,44($sp)
+    lui $s5,0x800b
+    lw $v0,-0x3718($s5)
+    sw $ra,48($sp)
+    sw $s4,40($sp)
+    sw $s3,36($sp)
+    sw $s2,32($sp)
+    sw $s1,28($sp)
+    sw $s0,24($sp)
+    lhu $s3,0xc($v0)
+    jal FUN_80037868
+    li $a3,0xf0
+    lui $s0,0x800e
+    addiu $s0,$s0,0x2980
+    addu $a0,$s0,$zero
+    addu $a1,$zero,$zero
+    addu $a2,$a1,$zero
+    li $s2,0xf0
+    sw $s2,16($sp)
+    jal FUN_8003b118
+    addu $a3,$s3,$zero
+    addiu $s4,$s0,0x5c
+    addu $a0,$s4,$zero
+    addu $a1,$zero,$zero
+    addu $a2,$s2,$zero
+    addu $a3,$s3,$zero
+    jal FUN_8003b118
+    sw $s2,16($sp)
+    lui $s1,0x800e
+    addiu $s1,$s1,0x2a38
+    addu $a0,$s1,$zero
+    addu $a1,$zero,$zero
+    addu $a2,$s2,$zero
+    addu $a3,$s3,$zero
+    jal FUN_8003b1d8
+    sw $s2,16($sp)
+    addiu $a0,$s1,20
+    addu $a1,$zero,$zero
+    addu $a2,$a1,$zero
+    addu $a3,$s3,$zero
+    jal FUN_8003b1d8
+    sw $s2,16($sp)
+    lw $v1,-0x3718($s5)
+    li $v0,120
+    sh $v0,10($s0)
+    li $v0,360
+    sh $v0,102($s0)
+    li $v0,1
+    sb $v0,116($s0)
+    sb $v0,24($s0)
+    sb $zero,27($s0)
+    sb $zero,26($s0)
+    sb $zero,25($s0)
+    sb $zero,27($s4)
+    sb $zero,26($s4)
+    sb $zero,25($s4)
+    lhu $v0,0xc($v1)
+    sb $zero,115($s0)
+    sb $zero,23($s0)
+    srl $v0,$v0,1
+    sh $v0,100($s0)
+    sh $v0,8($s0)
+    lw $ra,48($sp)
+    lw $s5,44($sp)
+    lw $s4,40($sp)
+    lw $s3,36($sp)
+    lw $s2,32($sp)
+    lw $s1,28($sp)
+    lw $s0,24($sp)
+    jr $ra
+    addiu $sp,$sp,56
+    .end FUN_8002200c
+
+    .section .text.FUN_80022208,"ax",@progbits
+    .globl FUN_80022208
+    .type FUN_80022208, @function
+    .ent FUN_80022208
+FUN_80022208:
+    addiu $sp,$sp,-24
+    sw $ra,16($sp)
+    jal FUN_80037908
+    nop
+    jal FUN_800365c0
+    nop
+    addu $a0,$zero,$zero
+    jal FUN_80036648
+    addu $a1,$a0,$zero
+    jal FUN_80036668
+    li $a0,0x1000
+    lw $ra,16($sp)
+    nop
+    jr $ra
+    addiu $sp,$sp,24
+    .end FUN_80022208
+
     .section .text.FUN_8002112c,"ax",@progbits
     .globl FUN_8002112c
     .type FUN_8002112c, @function
