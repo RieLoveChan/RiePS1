@@ -818,6 +818,20 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing mode dispatcher
+
+`FUN_80028dec` adds a 108-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It stores the mode at `0x800e37d8`,
+dispatches modes below 12 through `0x8002aab4`, and invokes `FUN_8002a174`
+with arguments `0`–`3` for the four active table entries.
+`Invoke-FunctionMatch.ps1` matched 108/108 bytes with GCC 14.2.0/binutils
+2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`c957f5cd867f1914c50799727c9860837bdf3655f2fd312d96f7a642652dff61`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
