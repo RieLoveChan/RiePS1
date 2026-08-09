@@ -9310,6 +9310,14 @@
       "section": ".text.FUN_80023e9c"
     },
     {
+      "name": "FUN_80023f68",
+      "address": "0x80023f68",
+      "size": 116,
+      "language": "asm",
+      "source": "src/ddr5thmix/GraphicsPrimitiveBuilder.s",
+      "section": ".text.FUN_80023f68"
+    },
+    {
       "name": "FUN_80023fdc",
       "address": "0x80023fdc",
       "size": 120,
