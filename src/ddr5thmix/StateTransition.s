@@ -3592,3 +3592,24 @@ FUN_80029228:
     sw      $v0,14528($v1)
 .end FUN_80029228
 .size FUN_80029228, . - FUN_80029228
+.section .text.FUN_80029238,"ax",@progbits
+.globl FUN_80029238
+.globl sym_80024e00
+.type FUN_80029238, @function
+.ent FUN_80029238
+FUN_80029238:
+    addiu   $sp,$sp,-24
+    sltiu   $v0,$a0,255
+    bne     $v0,$zero,.L8002924c
+    sw      $ra,16($sp)
+    addiu   $a0,$zero,255
+.L8002924c:
+    lui     $v0,0x800e
+    jal     sym_80024e00
+    sw      $a0,14528($v0)
+    lw      $ra,16($sp)
+    sll     $zero,$zero,0
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80029238
+.size FUN_80029238, . - FUN_80029238
