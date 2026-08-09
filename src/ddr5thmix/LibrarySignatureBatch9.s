@@ -3984,6 +3984,20 @@ FUN_8002b9e0:
     .end FUN_8002b9e0
     .size FUN_8002b9e0, . - FUN_8002b9e0
 
+/* FUN_8002d518 (0x8002d518, 20 bytes) */
+    .section .text.FUN_8002d518,"ax",@progbits
+    .globl FUN_8002d518
+    .type FUN_8002d518, @function
+    .ent FUN_8002d518
+FUN_8002d518:
+    lui     $v0,0x800e
+    sb      $a0,16476($v0)
+    lui     $v0,0x800e
+    jr      $ra
+    sb      $zero,16500($v0)
+    .end FUN_8002d518
+    .size FUN_8002d518, . - FUN_8002d518
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
