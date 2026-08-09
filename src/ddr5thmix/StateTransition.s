@@ -3337,3 +3337,18 @@ FUN_80028ef0:
     addiu   $v0,$zero,-1
 .end FUN_80028ef0
 .size FUN_80028ef0, . - FUN_80028ef0
+.section .text.FUN_80028f74,"ax",@progbits
+.globl FUN_80028f74
+.type FUN_80028f74, @function
+.ent FUN_80028f74
+FUN_80028f74:
+    lui     $v1,0x800e
+    addiu   $v1,$v1,14888
+    lbu     $v0,272($v1)
+    lbu     $v1,273($v1)
+    sll     $zero,$zero,0
+    xor     $v0,$v0,$v1
+    jr      $ra
+    sltu    $v0,$zero,$v0
+.end FUN_80028f74
+.size FUN_80028f74, . - FUN_80028f74
