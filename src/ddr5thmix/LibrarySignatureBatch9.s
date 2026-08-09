@@ -4002,6 +4002,53 @@ FUN_8002bacc:
     .end FUN_8002bacc
     .size FUN_8002bacc, . - FUN_8002bacc
 
+/* FUN_8002bbac (0x8002bbac, 140 bytes) */
+    .section .text.FUN_8002bbac,"ax",@progbits
+    .globl FUN_8002bbac
+    .type FUN_8002bbac, @function
+    .ent FUN_8002bbac
+FUN_8002bbac:
+    addu    $t2,$a2,$zero
+    lui     $v0,0x00ff
+    ori     $v0,$v0,0xffff
+    addu    $t1,$zero,$zero
+    and     $a3,$a3,$v0
+    lui     $v0,0x2500
+    beq     $a1,$zero,.LFUN_8002bbac_84
+    or      $a3,$a3,$v0
+    addiu   $t3,$zero,37
+    addiu   $a2,$a2,8
+.LFUN_8002bbac_28:
+    addu    $t0,$zero,$zero
+    addiu   $v1,$a0,28
+.LFUN_8002bbac_30:
+    sw      $t3,0($a0)
+    sw      $a3,-24($v1)
+    sw      $zero,-20($v1)
+    lw      $v0,0($t2)
+    sw      $zero,-12($v1)
+    sw      $v0,-16($v1)
+    lw      $v0,-4($a2)
+    addiu   $t0,$t0,1
+    sw      $zero,-4($v1)
+    sw      $v0,-8($v1)
+    lw      $v0,0($a2)
+    addiu   $a0,$a0,32
+    sw      $v0,0($v1)
+    slti    $v0,$t0,2
+    bne     $v0,$zero,.LFUN_8002bbac_30
+    addiu   $v1,$v1,32
+    addiu   $t1,$t1,1
+    addiu   $a2,$a2,12
+    sltu    $v0,$t1,$a1
+    bne     $v0,$zero,.LFUN_8002bbac_28
+    addiu   $t2,$t2,12
+.LFUN_8002bbac_84:
+    jr      $ra
+    addu    $v0,$a0,$zero
+    .end FUN_8002bbac
+    .size FUN_8002bbac, . - FUN_8002bbac
+
 /* FUN_8002bc38 (0x8002bc38, 384 bytes) */
     .section .text.FUN_8002bc38,"ax",@progbits
     .globl FUN_8002bc38
