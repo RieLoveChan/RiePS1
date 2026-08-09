@@ -577,6 +577,19 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# State-transition dispatch predicate
+
+`FUN_80028740` adds a 72-byte exact match in `src/ddr5thmix/StateTransition.s`.
+It reads `0x800e3768`, dispatches values below `9` through the table at
+`0x8002aa8c`, and calls `FUN_8002422c` for out-of-range values.
+`Invoke-FunctionMatch.ps1` matched 72/72 bytes with GCC 14.2.0/binutils 2.43
+against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`02495eb1cb7fee57b830ea0c68247e592c208f9eb03039a0ee3f23fdbdcfb32d`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the

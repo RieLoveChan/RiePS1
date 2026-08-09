@@ -2853,3 +2853,30 @@ FUN_800286e4:
     nop
 .end FUN_800286e4
 .size FUN_800286e4, . - FUN_800286e4
+.section .text.FUN_80028740,"ax",@progbits
+.globl FUN_80028740
+.globl sym_8002422c
+.globl sym_800287d0
+.type FUN_80028740, @function
+.ent FUN_80028740
+FUN_80028740:
+    lui     $v0,0x800e
+    lw      $v1,14184($v0)
+    addiu   $sp,$sp,-24
+    sltiu   $v0,$v1,9
+    beq     $v0,$zero,sym_800287d0
+    sw      $ra,16($sp)
+    lui     $v0,0x8002
+    addiu   $v0,$v0,-21876
+    sll     $v1,$v1,2
+    addu    $v1,$v1,$v0
+    lw      $v0,0($v1)
+    nop
+    jr      $v0
+    nop
+    jal     sym_8002422c
+    nop
+    j       sym_800287d0
+    nop
+.end FUN_80028740
+.size FUN_80028740, . - FUN_80028740
