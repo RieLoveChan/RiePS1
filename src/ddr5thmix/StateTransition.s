@@ -4811,3 +4811,13 @@ FUN_8002a1f0:
     sh      $v0,14534($v1)
 .end FUN_8002a1f0
 .size FUN_8002a1f0, . - FUN_8002a1f0
+.section .text.FUN_8002a200,"ax",@progbits
+.globl FUN_8002a200
+.type FUN_8002a200, @function
+.ent FUN_8002a200
+FUN_8002a200:
+    lui     $v0,0x800e
+    jr      $ra
+    sh      $a0,14534($v0)
+.end FUN_8002a200
+.size FUN_8002a200, . - FUN_8002a200
