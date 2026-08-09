@@ -56,7 +56,7 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module runtime-core
 ```
 
-`runtime-core` contains ten accepted functions and 3,120 compared bytes.
+`runtime-core` contains thirteen accepted functions and 3,324 compared bytes.
 Validate the game-owned nested six-state screen selector with:
 
 ```powershell

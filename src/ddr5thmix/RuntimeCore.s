@@ -256,6 +256,79 @@ FUN_80022208:
     addiu $sp,$sp,24
     .end FUN_80022208
 
+    .section .text.FUN_80022570,"ax",@progbits
+    .globl FUN_80022570
+    .type FUN_80022570, @function
+    .ent FUN_80022570
+FUN_80022570:
+    addiu $sp,$sp,-32
+    sw $s0,24($sp)
+    addu $s0,$zero,$zero
+    li $v0,0x200
+    sh $v0,20($sp)
+    li $v0,0x100
+    sw $ra,28($sp)
+    sh $v0,22($sp)
+    addiu $a0,$sp,16
+.L80022594:
+    andi $v0,$s0,1
+    sll $v0,$v0,9
+    sh $v0,16($sp)
+    sra $v0,$s0,1
+    sll $v0,$v0,8
+    addu $a1,$zero,$zero
+    addu $a2,$a1,$zero
+    addu $a3,$a1,$zero
+    jal SetDefDispEnv
+    sh $v0,18($sp)
+    addiu $s0,$s0,1
+    slti $v0,$s0,4
+    bne $v0,$zero,.L80022594
+    addiu $a0,$sp,16
+    jal PutDispEnv
+    addu $a0,$zero,$zero
+    lw $ra,28($sp)
+    lw $s0,24($sp)
+    jr $ra
+    addiu $sp,$sp,32
+    .end FUN_80022570
+
+    .section .text.FUN_800225e4,"ax",@progbits
+    .globl FUN_800225e4
+    .type FUN_800225e4, @function
+    .ent FUN_800225e4
+FUN_800225e4:
+    lui $v0,0x800b
+    lw $v0,-0x375c($v0)
+    nop
+    lw $v0,0($v0)
+    nop
+    nor $v0,$zero,$v0
+    jr $ra
+    sltu $v0,$zero,$v0
+    .end FUN_800225e4
+
+    .section .text.FUN_80022604,"ax",@progbits
+    .globl FUN_80022604
+    .type FUN_80022604, @function
+    .ent FUN_80022604
+FUN_80022604:
+    lui $v0,0x800b
+    lui $v1,0x800b
+    lw $a0,-0x3758($v0)
+    lw $v1,-0x3714($v1)
+    lw $v0,0($a0)
+    nop
+    sw $v0,0xc0($v1)
+    lw $v0,0($a0)
+    lui $v1,0xffff
+    and $v0,$v0,$v1
+    lui $v1,0x2000
+    xor $v0,$v0,$v1
+    jr $ra
+    sltiu $v0,$v0,1
+    .end FUN_80022604
+
     .section .text.FUN_8002112c,"ax",@progbits
     .globl FUN_8002112c
     .type FUN_8002112c, @function
