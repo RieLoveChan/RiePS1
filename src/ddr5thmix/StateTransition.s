@@ -2420,3 +2420,47 @@ FUN_80027f7c:
     addiu   $sp,$sp,24
 .end FUN_80027f7c
 .size FUN_80027f7c, . - FUN_80027f7c
+.section .text.FUN_80028034,"ax",@progbits
+.globl FUN_80028034
+.type FUN_80028034, @function
+.ent FUN_80028034
+FUN_80028034:
+    addiu   $sp,$sp,-24
+    sw      $ra,20($sp)
+    jal     FUN_800275b4
+    sw      $s0,16($sp)
+    jal     FUN_80028c74
+    lui     $s0,0x800e
+    jal     FUN_800259e8
+    addiu   $s0,$s0,14184
+    jal     FUN_8002916c
+    nop
+    jal     FUN_80028740
+    nop
+    jal     FUN_80025850
+    nop
+    jal     FUN_80024f60
+    nop
+    jal     FUN_800358f8
+    addiu   $a0,$zero,-1
+    lw      $v1,60($s0)
+    addiu   $a0,$zero,-1
+    subu    $v0,$v0,$v1
+    jal     FUN_800358f8
+    sw      $v0,64($s0)
+    jal     FUN_80029268
+    sw      $v0,60($s0)
+    jal     FUN_80029324
+    nop
+    jal     FUN_8002616c
+    nop
+    jal     FUN_80026538
+    nop
+    jal     FUN_8002a4c8
+    nop
+    lw      $ra,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80028034
+.size FUN_80028034, . - FUN_80028034
