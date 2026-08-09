@@ -972,6 +972,17 @@ reference/built SHA-256 is `537fe283f4706b5702359feb249edca33d643e8b44d20348e1ce
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing mode getter
+
+`FUN_80029ccc` adds a 16-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It returns the mode/state word stored at
+`0x800e38c8`. The verifier matched 16/16 bytes with GCC 14.2.0/binutils 2.43
+against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `8cfabba7e7a2cfd8991dad1fa4648430a0b02360ff0d625f876d305dbbcd04ae`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
