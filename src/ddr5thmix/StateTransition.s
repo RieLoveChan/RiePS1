@@ -2880,3 +2880,65 @@ FUN_80028740:
     nop
 .end FUN_80028740
 .size FUN_80028740, . - FUN_80028740
+.section .text.FUN_800287e0,"ax",@progbits
+.globl FUN_800287e0
+.globl sym_800294d4
+.globl sym_80028b6c
+.globl sym_800289d0
+.globl sym_8002ed4c
+.globl sym_8002eeec
+.type FUN_800287e0, @function
+.ent FUN_800287e0
+FUN_800287e0:
+    addiu   $sp,$sp,-24
+    lui     $a0,0x800e
+    sw      $s0,16($sp)
+    addiu   $s0,$a0,14184
+    sw      $ra,20($sp)
+    lw      $v1,4($s0)
+    addiu   $v0,$zero,1
+    beq     $v1,$v0,.L80028830
+    nop
+    beq     $v1,$zero,.L80028824
+    addiu   $v0,$zero,2
+    beq     $v1,$v0,.L80028874
+    addiu   $v0,$zero,3
+    beq     $v1,$v0,.L8002887c
+    nop
+    j       .L80028884
+    nop
+.L80028824:
+    addiu   $v0,$v1,1
+    j       .L80028884
+    sw      $v0,4($s0)
+.L80028830:
+    jal     sym_800294d4
+    nop
+    jal     sym_80028b6c
+    nop
+    beq     $v0,$zero,.L80028884
+    nop
+    jal     sym_800289d0
+    nop
+    lw      $v0,4($s0)
+    addu    $a0,$zero,$zero
+    addiu   $v0,$v0,1
+    jal     sym_8002ed4c
+    sw      $v0,4($s0)
+    jal     sym_8002eeec
+    addu    $a0,$zero,$zero
+    j       .L80028884
+    nop
+.L80028874:
+    j       .L80028884
+    sw      $v0,4($s0)
+.L8002887c:
+    sw      $zero,14184($a0)
+    sw      $zero,4($s0)
+.L80028884:
+    lw      $ra,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_800287e0
+.size FUN_800287e0, . - FUN_800287e0

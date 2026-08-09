@@ -590,6 +590,19 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# State-transition progression handler
+
+`FUN_800287e0` adds a 180-byte exact match in `src/ddr5thmix/StateTransition.s`.
+It advances the state word at `0x800e376c` through states 0–3, runs the
+initialization/check sequence for state 1, increments after success, and clears
+state 3 back to zero. `Invoke-FunctionMatch.ps1` matched 180/180 bytes with
+GCC 14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`b9c2660b518431709bfdf7392f790cf236b7f6738e4623d659318ac5591af2df`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
