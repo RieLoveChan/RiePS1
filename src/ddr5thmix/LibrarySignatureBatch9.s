@@ -3934,6 +3934,74 @@ FUN_8002bab4:
     .end FUN_8002bab4
     .size FUN_8002bab4, . - FUN_8002bab4
 
+/* FUN_8002bacc (0x8002bacc, 224 bytes) */
+    .section .text.FUN_8002bacc,"ax",@progbits
+    .globl FUN_8002bacc
+    .type FUN_8002bacc, @function
+    .ent FUN_8002bacc
+FUN_8002bacc:
+    addiu   $sp,$sp,-48
+    sw      $s6,40($sp)
+    addu    $s6,$a2,$zero
+    sw      $ra,44($sp)
+    sw      $s5,36($sp)
+    sw      $s4,32($sp)
+    sw      $s3,28($sp)
+    sw      $s2,24($sp)
+    sw      $s1,20($sp)
+    sw      $s0,16($sp)
+    lw      $s4,8($a0)
+    addu    $s3,$zero,$zero
+.LFUN_8002bacc_30:
+    lw      $s1,0($s4)
+    addiu   $s5,$zero,52
+    sw      $a1,12($a0)
+    addiu   $s0,$s1,40
+    addu    $s2,$a1,$zero
+    lbu     $a0,0($s1)
+    lw      $v0,4($s0)
+    addiu   $a1,$a1,4
+    sw      $v0,0($a1)
+    bne     $a0,$s5,.LFUN_8002bacc_78
+    addiu   $a1,$a1,4
+    addu    $a0,$a1,$zero
+    lw      $a1,4($s0)
+    lw      $a2,0($s0)
+    jal     0x8002bbac
+    addu    $a3,$s6,$zero
+    addu    $a1,$v0,$zero
+    addiu   $a0,$zero,37
+.LFUN_8002bacc_78:
+    lw      $v0,4($s4)
+    addiu   $s3,$s3,1
+    sltu    $v0,$s3,$v0
+    beq     $v0,$zero,.LFUN_8002bacc_ac
+    lui     $v1,0x00ff
+    ori     $v1,$v1,0xffff
+    and     $v1,$a1,$v1
+    sll     $v0,$a0,24
+    or      $v1,$v1,$v0
+    sw      $v1,0($s2)
+    addiu   $s0,$s0,48
+    j       0x8002bb0c
+    addiu   $s1,$s1,48
+.LFUN_8002bacc_ac:
+    sll     $v0,$a0,24
+    sw      $v0,0($s2)
+    addu    $v0,$a1,$zero
+    lw      $ra,44($sp)
+    lw      $s6,40($sp)
+    lw      $s5,36($sp)
+    lw      $s4,32($sp)
+    lw      $s3,28($sp)
+    lw      $s2,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,48
+    .end FUN_8002bacc
+    .size FUN_8002bacc, . - FUN_8002bacc
+
 /* FUN_8002bc38 (0x8002bc38, 384 bytes) */
     .section .text.FUN_8002bc38,"ax",@progbits
     .globl FUN_8002bc38
