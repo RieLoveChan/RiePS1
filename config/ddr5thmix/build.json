@@ -12052,6 +12052,36 @@
       "built_sha256": "9f5022b0967621002042c9049470608c44d20de0b6be40834cde4a26c5860a06"
     },
     {
+      "name": "FUN_8009ff54",
+      "address": "0x8009ff54",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8009ff54",
+      "reference_sha256": "67f074c0ee9017fe753564a5adbe1d0f66e8a08514699c7c21a819d0fc2ee0dc",
+      "built_sha256": "67f074c0ee9017fe753564a5adbe1d0f66e8a08514699c7c21a819d0fc2ee0dc"
+    },
+    {
+      "name": "FUN_8009ff8c",
+      "address": "0x8009ff8c",
+      "size": 36,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8009ff8c",
+      "reference_sha256": "fe5918ecb8b783ec573d863dff3d5578a555c9ab0b897731c61d69592be22154",
+      "built_sha256": "fe5918ecb8b783ec573d863dff3d5578a555c9ab0b897731c61d69592be22154"
+    },
+    {
+      "name": "FUN_800a0008",
+      "address": "0x800a0008",
+      "size": 32,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800a0008",
+      "reference_sha256": "c5a4041a479d1adee262c32cad2b163f1b3a085a02c0f524f96fab76c51469f3",
+      "built_sha256": "c5a4041a479d1adee262c32cad2b163f1b3a085a02c0f524f96fab76c51469f3"
+    },
+    {
       "name": "FUN_80097cb8",
       "address": "0x80097cb8",
       "size": 28,
