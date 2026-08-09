@@ -1263,6 +1263,22 @@ reference/built SHA-256 is `7621ac1d907157927e2820aeef301387c8aed480d98e9c9b9546
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing helper cluster
+
+`FUN_8002a670`, `FUN_8002a680`, `FUN_8002a698`, and `FUN_8002a6c8` add
+four independently cataloged exact matches in
+`src/ddr5thmix/StateTransition.s`. Together they expose the baseline, reset
+and update the accumulator, and convert it through reciprocal division. The
+four verifier records use GCC 14.2.0/binutils 2.43 against lawful executable
+SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`;
+their individual reference/built SHA-256 values are, respectively,
+`e822bca9818d6039440113614e4705827abc1328004886439d947d96bd4b1ebe`,
+`3e2cc97d6f59bb5a6fae6fa461fa57121977e65c16c7b21aaa4aaeb3d3598319`,
+`47eea3688d720577bfdbcd826e26ba01dffbbbf5c098fceed00def185149354f`, and
+`69c11fff7f57a905a7decddabe4fd8c73d5ddc54f4f695d81ac6ef2fd202111f`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
