@@ -2838,3 +2838,18 @@ FUN_800286bc:
     addiu   $sp,$sp,24
 .end FUN_800286bc
 .size FUN_800286bc, . - FUN_800286bc
+.section .text.FUN_800286e4,"ax",@progbits
+.globl FUN_800286e4
+.type FUN_800286e4, @function
+.ent FUN_800286e4
+FUN_800286e4:
+    andi    $a0,$a0,0xffff
+    sltiu   $a0,$a0,53
+    bnez    $a0,.L800286f8
+    addiu   $v0,$zero,2
+    addiu   $v0,$zero,1
+.L800286f8:
+    jr      $ra
+    nop
+.end FUN_800286e4
+.size FUN_800286e4, . - FUN_800286e4
