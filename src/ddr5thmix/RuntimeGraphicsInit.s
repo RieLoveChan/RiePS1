@@ -194,3 +194,24 @@ FUN_80024e00:
     addiu   $sp,$sp,40
 .end FUN_80024e00
 .size FUN_80024e00, . - FUN_80024e00
+.section .text.FUN_80028c14,"ax",@progbits
+.globl FUN_80028c14
+.type FUN_80028c14, @function
+.ent FUN_80028c14
+FUN_80028c14:
+    lui     $a0,0x800e
+    addiu   $a0,$a0,14184
+    lw      $v0,20($a0)
+    lui     $v1,0xbe37
+    ori     $v1,$v1,0xc63b
+    sll     $v0,$v0,0xc
+    multu   $v0,$v1
+    mfhi    $a2
+    lw      $v1,56($a0)
+    srl     $v0,$a2,0xf
+    mult    $v0,$v1
+    mflo    $v1
+    jr      $ra
+    srl     $v0,$v1,0xc
+.end FUN_80028c14
+.size FUN_80028c14, . - FUN_80028c14
