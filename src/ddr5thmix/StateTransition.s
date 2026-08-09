@@ -1097,3 +1097,149 @@ FUN_80026d00:
     addiu   $sp,$sp,40
 .end FUN_80026d00
 .size FUN_80026d00, . - FUN_80026d00
+
+.section .text.FUN_80026e70,"ax",@progbits
+.globl FUN_80026e70
+.type FUN_80026e70, @function
+.ent FUN_80026e70
+FUN_80026e70:
+    addiu   $sp,$sp,-32
+    sw      $s0,16($sp)
+    addu    $s0,$zero,$zero
+    addu    $a0,$s0,$zero
+    sw      $ra,24($sp)
+    jal     FUN_800356ec
+    sw      $s1,20($sp)
+    sll     $v0,$v0,16
+    bne     $v0,$zero,.L80026ea0
+    lui     $v0,0x800e
+    j       .L80027060
+    addiu   $v0,$zero,-1
+.L80026ea0:
+    lbu     $v0,14164($v0)
+    nop
+    bne     $v0,$zero,.L80026ec4
+    lui     $v0,0x800e
+    jal     FUN_80026d00
+    nop
+    bne     $v0,$zero,.L80027060
+    addiu   $v0,$zero,-3
+.L80026ec0:
+    lui     $v0,0x800e
+.L80026ec4:
+    addiu   $s1,$v0,14128
+    lbu     $v1,36($s1)
+    addiu   $v0,$zero,1
+    bne     $v1,$v0,.L80026ee4
+    lui     $a0,0x7
+    lw      $s0,16($s1)
+    addiu   $v0,$zero,3
+    sb      $v0,36($s1)
+.L80026ee4:
+    lw      $a1,24($s1)
+    ori     $a0,$a0,0xffff
+    sltu    $v0,$a0,$a1
+    bne     $v0,$zero,.L80026f3c
+    nop
+    lw      $a0,4($s1)
+    lh      $a1,28($s1)
+    jal     FUN_8003540c
+    addu    $a0,$a0,$s0
+    sll     $v0,$v0,16
+    sra     $v0,$v0,16
+    addiu   $v1,$zero,-1
+    beq     $v0,$v1,.L80027060
+    addiu   $v0,$zero,-2
+    lw      $v0,32($s1)
+    lw      $a0,20($s1)
+    lw      $v1,40($s1)
+    addu    $v0,$v0,$a0
+    addu    $v1,$v1,$a0
+    sw      $v0,32($s1)
+    j       .L8002705c
+    sw      $v1,40($s1)
+.L80026f3c:
+    lw      $v1,40($s1)
+    lw      $v0,16($s1)
+    nop
+    bne     $v1,$v0,.L80026fb0
+    subu    $a1,$a1,$v1
+    lui     $s0,0x8
+    subu    $a1,$s0,$v1
+    lw      $a0,4($s1)
+    lh      $a2,28($s1)
+    jal     FUN_800354cc
+    addu    $a0,$a0,$v1
+    sll     $v0,$v0,16
+    lw      $v1,32($s1)
+    lw      $a1,16($s1)
+    lw      $a0,40($s1)
+    addu    $v1,$v1,$s0
+    subu    $v1,$v1,$a1
+    addu    $a0,$a0,$s0
+    subu    $a0,$a0,$a1
+    sw      $v1,32($s1)
+    sra     $v1,$v0,16
+    addiu   $v0,$zero,-2
+    beq     $v1,$v0,.L8002705c
+    sw      $a0,40($s1)
+    addiu   $v0,$zero,-1
+    bne     $v1,$v0,.L80027060
+    addu    $v0,$zero,$zero
+    j       .L80027060
+    addiu   $v0,$zero,-4
+.L80026fb0:
+    sltu    $v0,$a0,$a1
+    bne     $v0,$zero,.L80027010
+    nop
+    lw      $a0,4($s1)
+    lh      $a2,28($s1)
+    jal     FUN_800354cc
+    addu    $a0,$a0,$s0
+    sll     $v0,$v0,16
+    lw      $a0,24($s1)
+    lw      $a1,40($s1)
+    lw      $v1,32($s1)
+    subu    $a0,$a0,$a1
+    addu    $v1,$v1,$a0
+    addu    $a1,$a1,$a0
+    sw      $v1,32($s1)
+    sra     $v1,$v0,16
+    addiu   $v0,$zero,-2
+    beq     $v1,$v0,.L8002705c
+    sw      $a1,40($s1)
+    addiu   $v0,$zero,-1
+    bne     $v1,$v0,.L80027060
+    addu    $v0,$zero,$zero
+    j       .L80027060
+    addiu   $v0,$zero,-5
+.L80027010:
+    lui     $a1,0x8
+    lw      $a0,4($s1)
+    lh      $a2,28($s1)
+    jal     FUN_800354cc
+    addu    $a0,$a0,$s0
+    lui     $a1,0x8
+    sll     $v0,$v0,16
+    lw      $v1,32($s1)
+    lw      $a0,40($s1)
+    addu    $v1,$v1,$a1
+    addu    $a0,$a0,$a1
+    sw      $a0,40($s1)
+    sra     $a0,$v0,16
+    addiu   $v0,$zero,-2
+    beq     $a0,$v0,.L8002705c
+    sw      $v1,32($s1)
+    addiu   $v1,$zero,-1
+    beq     $a0,$v1,.L80027060
+    addiu   $v0,$zero,-6
+.L8002705c:
+    addu    $v0,$zero,$zero
+.L80027060:
+    lw      $ra,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,32
+.end FUN_80026e70
+.size FUN_80026e70, . - FUN_80026e70
