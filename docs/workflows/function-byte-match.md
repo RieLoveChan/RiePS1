@@ -1000,6 +1000,21 @@ the reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing state initializer
+
+`FUN_80029390` adds a 128-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It clears the completion word at
+`0x800e39c0`, sets the active flag at `0x800ae478`, mirrors the cleared
+value into `0x800ac890` and `0x800ac88c`, runs reset calls, invokes
+`CdControlF(9, 0)`, and stores mode `5` at `0x800e39bc`. The verifier
+matched 128/128 bytes with GCC 14.2.0/binutils 2.43 against lawful
+executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`b4371577fe84a2c724ec00f79b96d0ade665551d13bd4864aa51672f53c102f7`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing mode-4 watchdog
 
 `FUN_80029324` adds a 108-byte exact match in
