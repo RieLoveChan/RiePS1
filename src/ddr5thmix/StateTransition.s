@@ -3352,3 +3352,24 @@ FUN_80028f74:
     sltu    $v0,$zero,$v0
 .end FUN_80028f74
 .size FUN_80028f74, . - FUN_80028f74
+.section .text.FUN_80028f94,"ax",@progbits
+.globl FUN_80028f94
+.globl sym_8003bac8
+.type FUN_80028f94, @function
+.ent FUN_80028f94
+FUN_80028f94:
+    addiu   $sp,$sp,-24
+    sw      $s0,16($sp)
+    lui     $s0,0x800e
+    addiu   $s0,$s0,14252
+    addu    $a0,$s0,$zero
+    sw      $ra,20($sp)
+    jal     sym_8003bac8
+    addiu   $a1,$zero,20
+    sw      $zero,16($s0)
+    lw      $ra,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80028f94
+.size FUN_80028f94, . - FUN_80028f94

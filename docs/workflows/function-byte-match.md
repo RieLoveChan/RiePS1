@@ -884,6 +884,19 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing request wrapper
+
+`FUN_80028f94` adds a 52-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It submits the 20-byte record at
+`0x800e37ac` through `FUN_8003bac8` and clears its `+0x10` counter.
+`Invoke-FunctionMatch.ps1` matched 52/52 bytes with GCC 14.2.0/binutils
+2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`c1b607fa297a2fce08827a83bf36de01d90db844af99ffce0f49fc74f08f1bdc`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
