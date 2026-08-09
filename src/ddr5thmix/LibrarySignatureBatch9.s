@@ -3716,6 +3716,126 @@ FUN_8002b634:
     .end FUN_8002b634
     .size FUN_8002b634, . - FUN_8002b634
 
+/* FUN_8002b734 (0x8002b734, 412 bytes) */
+    .section .text.FUN_8002b734,"ax",@progbits
+    .globl FUN_8002b734
+    .type FUN_8002b734, @function
+    .ent FUN_8002b734
+FUN_8002b734:
+    addiu   $sp,$sp,-16
+    addu    $v1,$zero,$zero
+    lui     $t8,0x1f80
+    sw      $s2,8($sp)
+    sw      $s1,4($sp)
+    sw      $s0,0($sp)
+    lw      $t7,4($a1)
+    lw      $t0,12($a1)
+    lwc2    $0,0($t7)
+    lwc2    $1,4($t7)
+    lwc2    $2,8($t7)
+    lwc2    $3,12($t7)
+    lwc2    $4,16($t7)
+    lwc2    $5,20($t7)
+.LFUN_8002b734_3c:
+    sltu    $v0,$v1,$t0
+    beq     $v0,$zero,.LFUN_8002b734_14c
+    addiu   $a2,$zero,24
+    addu    $a3,$t8,$zero
+.LFUN_8002b734_48:
+    .word   0x4a280030
+    addu    $v0,$t7,$a2
+    lw      $t1,0($v0)
+    lw      $t4,4($v0)
+    lw      $t2,8($v0)
+    lw      $t5,12($v0)
+    lw      $t3,16($v0)
+    lw      $t6,20($v0)
+    mtc2    $t1,$0
+    mtc2    $t4,$1
+    mtc2    $t2,$2
+    mtc2    $t5,$3
+    mtc2    $t3,$4
+    mtc2    $t6,$5
+    swc2    $12,0($a3)
+    swc2    $13,8($a3)
+    swc2    $14,16($a3)
+    swc2    $17,4($a3)
+    swc2    $18,12($a3)
+    swc2    $19,20($a3)
+    addiu   $a3,$a3,24
+    addiu   $v1,$v1,3
+    sltu    $v0,$v1,$t0
+    bne     $v0,$zero,.LFUN_8002b734_48
+    addiu   $a2,$a2,24
+.LFUN_8002b734_14c:
+    lw      $a2,8($a1)
+    lw      $v0,12($a1)
+    sll     $zero,$zero,0x0
+    beq     $a2,$v0,.LFUN_8002b734_120
+    sll     $zero,$zero,0x0
+    addu    $v1,$v0,$zero
+    lw      $t1,24($a0)
+    addu    $t0,$a2,$zero
+    sltu    $v0,$v1,$a2
+    beq     $v0,$zero,.LFUN_8002b734_120
+    sll     $v0,$v1,3
+    addu    $a3,$v0,$t8
+    addu    $a2,$v0,$t7
+.LFUN_8002b734_0e0:
+    lh      $v0,6($a2)
+    addiu   $a2,$a2,8
+    addiu   $v1,$v1,1
+    sll     $v0,$v0,3
+    addu    $v0,$v0,$t1
+    lwl     $s0,3($v0)
+    lwr     $s0,0($v0)
+    lwl     $s1,7($v0)
+    lwr     $s1,4($v0)
+    swl     $s0,3($a3)
+    swr     $s0,0($a3)
+    swl     $s1,7($a3)
+    swr     $s1,4($a3)
+    sltu    $v0,$v1,$t0
+    bne     $v0,$zero,.LFUN_8002b734_0e0
+    addiu   $a3,$a3,8
+.LFUN_8002b734_120:
+    lw      $a1,16($a1)
+    sll     $zero,$zero,0x0
+    beq     $a1,$zero,.LFUN_8002b734_188
+    sll     $zero,$zero,0x0
+    lw      $t0,16($a0)
+    lw      $v1,24($a0)
+    beq     $a1,$zero,.LFUN_8002b734_184
+    addu    $a2,$zero,$zero
+    sll     $v0,$t0,3
+    addu    $a3,$v0,$v1
+    addu    $v1,$t8,$zero
+.LFUN_8002b734_140:
+    lwl     $s0,3($v1)
+    lwr     $s0,0($v1)
+    lwl     $s1,7($v1)
+    lwr     $s1,4($v1)
+    swl     $s0,3($a3)
+    swr     $s0,0($a3)
+    swl     $s1,7($a3)
+    swr     $s1,4($a3)
+    addiu   $v1,$v1,8
+    addiu   $a2,$a2,1
+    addiu   $a3,$a3,8
+    sltu    $v0,$a2,$a1
+    bne     $v0,$zero,.LFUN_8002b734_140
+    addiu   $t0,$t0,1
+.LFUN_8002b734_184:
+    sw      $t0,16($a0)
+.LFUN_8002b734_188:
+    lw      $s2,8($sp)
+    lw      $s1,4($sp)
+    lw      $s0,0($sp)
+    jr      $ra
+    addiu   $sp,$sp,16
+    .end FUN_8002b734
+    .size FUN_8002b734, . - FUN_8002b734
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
