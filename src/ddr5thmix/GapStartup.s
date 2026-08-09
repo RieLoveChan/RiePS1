@@ -885,3 +885,119 @@ FUN_80020e68:
     addiu   $sp,$sp,24
 .end FUN_80020e68
 .size FUN_80020e68, . - FUN_80020e68
+
+.section .text.FUN_80020efc,"ax",@progbits
+.globl FUN_80020efc
+.type FUN_80020efc, @function
+.ent FUN_80020efc
+FUN_80020efc:
+.L80020efc:
+    addiu   $sp,$sp,-40
+.L80020f00:
+    sw      $s0,24($sp)
+.L80020f04:
+    addu    $s0,$a0,$zero
+.L80020f08:
+    sw      $s1,28($sp)
+.L80020f0c:
+    addu    $s1,$a1,$zero
+.L80020f10:
+    lui     $v0,0x800b
+.L80020f14:
+    addiu   $v1,$zero,1
+.L80020f18:
+    sw      $v1,-14200($v0)
+.L80020f1c:
+    lui     $v0,0x800b
+.L80020f20:
+    sw      $ra,32($sp)
+.L80020f24:
+    sw      $v1,-14196($v0)
+.L80020f28:
+    lw      $v0,0($s0)
+.L80020f2c:
+    lui     $v1,0x800b
+.L80020f30:
+    addiu   $v0,$v0,2047
+.L80020f34:
+    srl     $v0,$v0,0xb
+.L80020f38:
+    sw      $v0,-14192($v1)
+.L80020f3c:
+    lw      $v1,-14192($v1)
+.L80020f40:
+    lui     $v0,0x800e
+.L80020f44:
+    beq     $v1,$zero,.L80020fa4
+.L80020f48:
+    sw      $s1,10572($v0)
+.L80020f4c:
+    lui     $a0,0x8002
+.L80020f50:
+    jal     CdSyncCallback
+.L80020f54:
+    addiu   $a0,$a0,1980
+.L80020f58:
+    lw      $a0,4($s0)
+.L80020f5c:
+    jal     CdIntToPos
+.L80020f60:
+    addiu   $a1,$sp,16
+.L80020f64:
+    addiu   $a0,$zero,2
+.L80020f68:
+    addiu   $a1,$sp,16
+.L80020f6c:
+    lw      $v1,4($s0)
+.L80020f70:
+    lui     $v0,0x800e
+.L80020f74:
+    jal     CdControlF
+.L80020f78:
+    sw      $v1,10584($v0)
+.L80020f7c:
+    addu    $v0,$zero,$zero
+.L80020f80:
+    lui     $a1,0x800e
+.L80020f84:
+    lw      $a0,4($s0)
+.L80020f88:
+    addiu   $v1,$a1,10560
+.L80020f8c:
+    sw      $a0,4($v1)
+.L80020f90:
+    lw      $a0,0($s0)
+.L80020f94:
+    lui     $v1,0x800b
+.L80020f98:
+    sw      $s1,-14184($v1)
+.L80020f9c:
+    j       0x80020fc0
+.L80020fa0:
+    sw      $a0,10560($a1)
+.L80020fa4:
+    lui     $v0,0x800b
+.L80020fa8:
+    lw      $a0,-14100($v0)
+.L80020fac:
+    nop
+.L80020fb0:
+    lbu     $v1,119($a0)
+.L80020fb4:
+    addiu   $v0,$zero,-1
+.L80020fb8:
+    ori     $v1,$v1,1
+.L80020fbc:
+    sb      $v1,119($a0)
+.L80020fc0:
+    lw      $ra,32($sp)
+.L80020fc4:
+    lw      $s1,28($sp)
+.L80020fc8:
+    lw      $s0,24($sp)
+.L80020fcc:
+    jr      $ra
+.L80020fd0:
+    addiu   $sp,$sp,40
+.end FUN_80020efc
+.size FUN_80020efc, . - FUN_80020efc

@@ -44,6 +44,7 @@
       "functions": [
         "FUN_80020d24",
         "FUN_80020e68",
+        "FUN_80020efc",
         "FUN_8002112c",
         "FUN_80021dfc",
         "FUN_80021f00",
@@ -8991,6 +8992,19 @@
       "symbols": {
         "CdSync": "0x8003f87c",
         "CdControl": "0x8003f8e4"
+      }
+    },
+    {
+      "name": "FUN_80020efc",
+      "address": "0x80020efc",
+      "size": 216,
+      "language": "asm",
+      "source": "src/ddr5thmix/GapStartup.s",
+      "section": ".text.FUN_80020efc",
+      "symbols": {
+        "CdSyncCallback": "0x8003f8bc",
+        "CdIntToPos": "0x8003fd44",
+        "CdControlF": "0x8003fa20"
       }
     },
     {
