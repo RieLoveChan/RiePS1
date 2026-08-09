@@ -45,6 +45,7 @@
         "FUN_80020d24",
         "FUN_80020e68",
         "FUN_80020efc",
+        "FUN_80021010",
         "FUN_8002112c",
         "FUN_80021dfc",
         "FUN_80021f00",
@@ -9006,6 +9007,14 @@
         "CdIntToPos": "0x8003fd44",
         "CdControlF": "0x8003fa20"
       }
+    },
+    {
+      "name": "FUN_80021010",
+      "address": "0x80021010",
+      "size": 16,
+      "language": "asm",
+      "source": "src/ddr5thmix/GapStartup.s",
+      "section": ".text.FUN_80021010"
     },
     {
       "name": "FUN_80020dd4",

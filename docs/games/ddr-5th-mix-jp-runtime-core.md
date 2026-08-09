@@ -19,6 +19,7 @@ that feeds the resource-loading path.
 | `FUN_80020d24` | 176 | Start a CD read request, record its destination window, and compute the sector-rounded transfer end. | `11eb9ed7721d033da41c1ea7eb13a10b65c0602e385c2fe357c56af2e0b66cd7` |
 | `FUN_80020e68` | 128 | Poll CD synchronization, query the status buffer when needed, and store the shared sync flag. | `d3265c4afeb209052ae5d4ebd70d83021d824350e0422f2b73e19298268dcb07` |
 | `FUN_80020efc` | 216 | Start the CD read worker, install its callback, convert the sector position, and mark zero-length requests failed. | `12b92b492a2160df4972a85bb0d656cefe9b47283e38645f79f3919967eb3de4` |
+| `FUN_80021010` | 16 | Return the active CD request flag. | `caa052e9a7e5599b2b64c5fb3286e0813f5b485217b2550f26ceacc17b7f24fe` |
 | `FUN_80021dfc` | 260 | Initialize game-owned state, PAD buffers, CD/PAD services, and startup callbacks. | `4c32b3e6f85067a54bb9a8295ee12890e3b40b9a03890128fbe13695e374f097` |
 | `FUN_80021f00` | 268 | Initialize the 320x240 graphics mode once, prepare two display records, and run the final startup callback. | `47ebd47eb0d02349a11bab9ea0c802812e0df4d3c4dc5c34c8943cba0b9eeb19` |
 | `FUN_8002200c` | 300 | Prepare display records, dimensions, flags, and half-height fields for the graphics subsystem. | `b40e25a0829aa386e0788fd11f5712f6a5834f7d6f9cd6b972fe06d3bd0ab9f2` |
@@ -35,7 +36,7 @@ that feeds the resource-loading path.
 | `FUN_8009971c` | 84 | Derive state byte `+0xf4` from screen index 4 or inclusive range `0x2a..0x2c`. | `9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6` |
 | `main` | 408 | The crt0-to-game-code boundary: one-time subsystem init, RCNT2 vsync/timer IRQ install, then the outer reset / inner per-frame loop pair. | `275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303` |
 
-Total: eighteen functions and 4,404 selected bytes.
+Total: nineteen functions and 4,420 selected bytes.
 
 # Reconstruction
 
@@ -58,7 +59,7 @@ instruction mismatches:
    entries that declare symbols and discards unrelated sections from a shared
    source object. Existing unlinked GTE and BIOS assembly paths are unchanged.
 
-After those harness corrections, all eighteen functions matched without changing
+After those harness corrections, all nineteen functions matched without changing
 an instruction's semantics.
 
 # `main` and `loop_restart_flag` (`PTR_DAT_800ac8e8+0x09`)
@@ -116,11 +117,11 @@ SHA-256
 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`.
 On 2026-08-09, after adding `FUN_80021dfc`, `FUN_80021f00`, `FUN_8002200c`,
 `FUN_80022208`, `FUN_800223a8`, `FUN_80022570`, `FUN_800225e4`, `FUN_80022604`,
-`FUN_8002263c`, `FUN_80020d24`, `FUN_80020e68`, and `FUN_80020efc`, the same command matched all 4,404 bytes against the same
+`FUN_8002263c`, `FUN_80020d24`, `FUN_80020e68`, `FUN_80020efc`, and `FUN_80021010`, the same command matched all 4,420 bytes against the same
 executable SHA-256.
 The aggregate report remains ignored under `/build/`.
 
-This proves eighteen independently placed function bodies. It does not prove an
+This proves nineteen independently placed function bodies. It does not prove an
 original PsyQ object boundary, inter-function layout, original source spelling,
 or a whole-executable match.
 

@@ -1001,3 +1001,19 @@ FUN_80020efc:
     addiu   $sp,$sp,40
 .end FUN_80020efc
 .size FUN_80020efc, . - FUN_80020efc
+
+.section .text.FUN_80021010,"ax",@progbits
+.globl FUN_80021010
+.type FUN_80021010, @function
+.ent FUN_80021010
+FUN_80021010:
+.L80021010:
+    lui     $v0,0x800b
+.L80021014:
+    lw      $v0,-14196($v0)
+.L80021018:
+    jr      $ra
+.L8002101c:
+    nop
+.end FUN_80021010
+.size FUN_80021010, . - FUN_80021010
