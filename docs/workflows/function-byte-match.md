@@ -1098,6 +1098,18 @@ reference/built SHA-256 is `70015ddb5c1643ee4b96bae57e322cfc4bceee9fb4321360de6f
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing slot writer
+
+`FUN_8002a0b8` adds a 56-byte exact match in
+`src/ddr5thmix/StateTransition.s`. For slot indices below `21`, it stores
+three halfword fields and one stack-supplied byte into the record at
+`0x800e3818`. The verifier matched 56/56 bytes with GCC 14.2.0/binutils
+2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `b30b9dfec3420dcfa209eb3960ea6f6bad88b3ca8092cd72244a9b8d2c4d763a`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
