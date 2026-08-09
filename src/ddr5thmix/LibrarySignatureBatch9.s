@@ -4158,6 +4158,24 @@ FUN_80036668:
     .end FUN_80036668
     .size FUN_80036668, . - FUN_80036668
 
+/* FUN_8002e72c (0x8002e72c, 36 bytes) */
+    .section .text.FUN_8002e72c,"ax",@progbits
+    .globl FUN_8002e72c
+    .type FUN_8002e72c, @function
+    .ent FUN_8002e72c
+FUN_8002e72c:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    addu    $a1,$a0,$zero
+    jal     DMACallback
+    addiu   $a0,$zero,4
+    lw      $ra,16($sp)
+    addiu   $sp,$sp,24
+    jr      $ra
+    nop
+    .end FUN_8002e72c
+    .size FUN_8002e72c, . - FUN_8002e72c
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
