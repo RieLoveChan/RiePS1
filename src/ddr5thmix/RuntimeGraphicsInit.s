@@ -1,0 +1,98 @@
+.set noreorder
+.set noat
+.set nomacro
+
+.section .text.FUN_80024ca4,"ax",@progbits
+.globl FUN_80024ca4
+.type FUN_80024ca4, @function
+.ent FUN_80024ca4
+FUN_80024ca4:
+    addiu   $sp,$sp,-48
+    addiu   $a0,$zero,-1
+    sw      $ra,44($sp)
+    sw      $s6,40($sp)
+    sw      $s5,36($sp)
+    sw      $s4,32($sp)
+    sw      $s3,28($sp)
+    sw      $s2,24($sp)
+    sw      $s1,20($sp)
+    jal     FUN_800358f8
+    sw      $s0,16($sp)
+    lui     $v1,0x800e
+    addiu   $v1,$v1,14184
+    sw      $v0,40($v1)
+    jal     FUN_80028c14
+    sw      $zero,44($v1)
+    lui     $s6,0x1
+    ori     $s6,$s6,0xff9f
+    lui     $s4,0x800e
+    addiu   $s0,$s4,11008
+    addu    $a0,$s0,$zero
+    lui     $v1,0x40
+    addiu   $s3,$zero,8191
+    addiu   $s2,$zero,7936
+    sw      $s6,4($s0)
+    sw      $v1,11008($s4)
+    sh      $v0,20($s0)
+    addiu   $v0,$zero,4112
+    addiu   $s1,$zero,1
+    addiu   $s5,$zero,3
+    sh      $zero,12($s0)
+    sh      $zero,14($s0)
+    sh      $s3,8($s0)
+    sh      $s3,10($s0)
+    sh      $s2,8($s0)
+    sh      $s2,10($s0)
+    sw      $v0,28($s0)
+    sw      $v0,32($s0)
+    sw      $s1,36($s0)
+    sw      $s1,40($s0)
+    sw      $s5,44($s0)
+    sh      $zero,48($s0)
+    sh      $zero,50($s0)
+    sh      $zero,52($s0)
+    sh      $zero,54($s0)
+    jal     FUN_8002f42c
+    sh      $zero,56($s0)
+    jal     FUN_80028c14
+    nop
+    addu    $a0,$s0,$zero
+    lui     $v1,0x80
+    sw      $s6,4($a0)
+    sw      $v1,11008($s4)
+    sh      $v0,20($a0)
+    ori     $v0,$zero,0x9010
+    sh      $zero,12($a0)
+    sh      $zero,14($a0)
+    sh      $s3,8($a0)
+    sh      $s3,10($a0)
+    sh      $s2,8($a0)
+    sh      $s2,10($a0)
+    sw      $v0,28($a0)
+    sw      $v0,32($a0)
+    sw      $s1,36($a0)
+    sw      $s1,40($a0)
+    sw      $s5,44($a0)
+    sh      $zero,48($a0)
+    sh      $zero,50($a0)
+    sh      $zero,52($a0)
+    sh      $zero,54($a0)
+    jal     FUN_8002f42c
+    sh      $zero,56($a0)
+    addu    $a0,$s1,$zero
+    jal     FUN_8002ef5c
+    lui     $a1,0xc0
+    jal     FUN_80024e00
+    nop
+    lw      $ra,44($sp)
+    lw      $s6,40($sp)
+    lw      $s5,36($sp)
+    lw      $s4,32($sp)
+    lw      $s3,28($sp)
+    lw      $s2,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,48
+.end FUN_80024ca4
+.size FUN_80024ca4, . - FUN_80024ca4
