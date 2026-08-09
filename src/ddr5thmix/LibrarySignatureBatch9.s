@@ -4615,6 +4615,39 @@ FUN_800aba94:
     .end FUN_800aba94
     .size FUN_800aba94, . - FUN_800aba94
 
+/* FUN_800497bc (0x800497bc, 8 bytes) */
+    .section .text.FUN_800497bc,"ax",@progbits
+    .globl FUN_800497bc
+    .type FUN_800497bc, @function
+    .ent FUN_800497bc
+FUN_800497bc:
+    jr      $ra
+    .word   0x00001021
+    .end FUN_800497bc
+    .size FUN_800497bc, . - FUN_800497bc
+
+/* FUN_8007f09c (0x8007f09c, 8 bytes) */
+    .section .text.FUN_8007f09c,"ax",@progbits
+    .globl FUN_8007f09c
+    .type FUN_8007f09c, @function
+    .ent FUN_8007f09c
+FUN_8007f09c:
+    jr      $ra
+    addiu   $v0,$zero,47
+    .end FUN_8007f09c
+    .size FUN_8007f09c, . - FUN_8007f09c
+
+/* FUN_800998c8 (0x800998c8, 8 bytes) */
+    .section .text.FUN_800998c8,"ax",@progbits
+    .globl FUN_800998c8
+    .type FUN_800998c8, @function
+    .ent FUN_800998c8
+FUN_800998c8:
+    jr      $ra
+    .word   0x3402f0ff
+    .end FUN_800998c8
+    .size FUN_800998c8, . - FUN_800998c8
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230

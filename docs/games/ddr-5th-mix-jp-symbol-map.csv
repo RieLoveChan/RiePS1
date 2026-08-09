@@ -1288,7 +1288,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x80049710,8,GEO_00_OBJ_C4,,USER_DEFINED,verified,hand_written_source,"Batch-3 independent audit 2026-07-29: Invoke-FunctionMatch.ps1 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 8/8 bytes match; reference/built SHA-256 6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1.",1,0,main,
 0x8004971c,152,rcos,,IMPORTED,verified,hand_written_source,Batch-10 reconstruction 2026-08-03: Invoke-FunctionMatch.ps1 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 152/152 bytes match; reference/built SHA-256 4e45733ecf5bdd48c865a373769ad1d44fb474e07133be22d9727b5d3c3cd6c8.,23,1,main,
 0x800497b4,8,GEO_01_OBJ_98,,USER_DEFINED,verified,hand_written_source,"Batch-3 independent audit 2026-07-29: Invoke-FunctionMatch.ps1 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 8/8 bytes match; reference/built SHA-256 6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1.",1,0,main,
-0x800497bc,8,FUN_800497bc,,DEFAULT,unverified,decompiler_output_only,,18,0,main,
+0x800497bc,8,FUN_800497bc,,DEFAULT,verified,hand_written_source,"Batch-10 reconstruction 2026-08-09: Return stub preserves `jr $ra` with reference delay-slot opcode `0x00001021`; Invoke-FunctionMatch.ps1 at executable file offset 0x2f7bc against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 8/8 bytes match; reference/built SHA-256 207819bf4ebe30789debac4affc1a07c833e14f530eef04dc87a6cf369209b43.",0,0,main,
 0x800497c4,128,FUN_800497c4,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x80049844,152,FUN_80049844,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x800498dc,104,FUN_800498dc,,DEFAULT,verified,hand_written_source,"Batch-9 reconstruction 2026-07-29: Invoke-FunctionMatch.ps1 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 104/104 bytes match; reference/built SHA-256 5f275cdfc76c65ec02a61b76a4e776abafa0f6765aafb2acf0e435a3c21f0091.",0,0,main,
@@ -1913,7 +1913,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x8007f028,68,FUN_8007f028,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x8007f06c,16,FUN_8007f06c,,DEFAULT,unverified,decompiler_output_only,,2,0,main,
 0x8007f07c,32,FUN_8007f07c,,DEFAULT,unverified,decompiler_output_only,,6,1,main,
-0x8007f09c,8,FUN_8007f09c,,DEFAULT,unverified,decompiler_output_only,,2,0,main,
+0x8007f09c,8,FUN_8007f09c,,DEFAULT,verified,hand_written_source,"Batch-10 reconstruction 2026-08-09: Return stub preserves `jr $ra` and delay-slot `addiu $v0,$zero,47`; Invoke-FunctionMatch.ps1 at executable file offset 0x6509c against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 8/8 bytes match; reference/built SHA-256 81c749d35ce69d515e4c923360bef84efade1cd4b6164d19fc8454909178813b.",0,0,main,
 0x8007f0a4,56,FUN_8007f0a4,,DEFAULT,manual,disassembly_reviewed,Reviewed 2026-07-15: linear search of the 47-record table by the 16-bit field at +0; returns record pointer or null.,3,0,main,Confirms +0 as music_id.
 0x8007f0dc,52,FUN_8007f0dc,,DEFAULT,manual,disassembly_reviewed,Reviewed 2026-07-15: converts a pointer within DAT_800df3d8 back to a record index using the 0x1c stride and 47-record bound.,3,0,main,Inverse of the indexed accessor.
 0x8007f110,60,FUN_8007f110,,DEFAULT,manual,disassembly_reviewed,Reviewed 2026-07-15: searches all 47 records for the byte at +3 and returns its record index or -1.,2,0,main,Index-returning form of the menu_code lookup.
@@ -2141,7 +2141,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x80099808,24,FUN_80099808,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x80099820,28,FUN_80099820,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
 0x8009983c,140,FUN_8009983c,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
-0x800998c8,8,FUN_800998c8,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
+0x800998c8,8,FUN_800998c8,,DEFAULT,verified,hand_written_source,"Batch-10 reconstruction 2026-08-09: Return stub preserves `jr $ra` with reference delay-slot opcode `0x3402f0ff`; Invoke-FunctionMatch.ps1 at executable file offset 0x7f8c8 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 8/8 bytes match; reference/built SHA-256 48cea79ece98ba43f80590b4e3b1572ac2f4ce72fb96f09c2947a0f83f5598bf.",0,0,main,
 0x80099910,108,FUN_80099910,,DEFAULT,unverified,decompiler_output_only,,1,1,main,
 0x8009997c,104,FUN_8009997c,,DEFAULT,unverified,decompiler_output_only,,1,1,main,
 0x800999e4,116,FUN_800999e4,,DEFAULT,unverified,decompiler_output_only,,1,0,main,
