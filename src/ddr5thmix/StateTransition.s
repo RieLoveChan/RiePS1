@@ -4713,3 +4713,25 @@ FUN_8002a0b8:
     sll     $zero,$zero,0
 .end FUN_8002a0b8
 .size FUN_8002a0b8, . - FUN_8002a0b8
+.section .text.FUN_8002a108,"ax",@progbits
+.globl FUN_8002a108
+.type FUN_8002a108, @function
+.ent FUN_8002a108
+FUN_8002a108:
+    addiu   $sp,$sp,-24
+    sw      $s0,16($sp)
+    addu    $s0,$zero,$zero
+    sw      $ra,20($sp)
+.L8002a118:
+    jal     0x8002a140
+    andi    $a0,$s0,0xff
+    addiu   $s0,$s0,1
+    sltiu   $v0,$s0,5
+    bne     $v0,$zero,.L8002a118
+    sll     $zero,$zero,0
+    lw      $ra,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_8002a108
+.size FUN_8002a108, . - FUN_8002a108
