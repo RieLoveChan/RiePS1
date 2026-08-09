@@ -9666,9 +9666,36 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027ed4",
+   "symbols": {
+     "FUN_8002f42c": "0x8002f42c",
+     "FUN_8002ef5c": "0x8002ef5c"
+   }
+ },
+  {
+    "name": "FUN_80027f7c",
+    "address": "0x80027f7c",
+    "size": 184,
+    "language": "asm",
+    "source": "src/ddr5thmix/StateTransition.s",
+    "section": ".text.FUN_80027f7c",
     "symbols": {
-      "FUN_8002f42c": "0x8002f42c",
-      "FUN_8002ef5c": "0x8002ef5c"
+      "FUN_80028398": "0x80028398",
+      "FUN_8003bac8": "0x8003bac8",
+      "FUN_8002f29c": "0x8002f29c",
+      "FUN_80028ad0": "0x80028ad0",
+      "FUN_80029228": "0x80029228",
+      "FUN_8002906c": "0x8002906c",
+      "FUN_80028e58": "0x80028e58",
+      "FUN_80028c04": "0x80028c04",
+      "FUN_80028c4c": "0x80028c4c",
+      "FUN_80028f94": "0x80028f94",
+      "FUN_80028de0": "0x80028de0",
+      "FUN_800286bc": "0x800286bc",
+      "FUN_8002a108": "0x8002a108",
+      "FUN_80029440": "0x80029440",
+      "FUN_80029750": "0x80029750",
+      "FUN_8002a1f0": "0x8002a1f0",
+      "FUN_80029238": "0x80029238"
     }
   },
   {
