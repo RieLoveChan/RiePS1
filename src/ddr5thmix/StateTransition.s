@@ -798,3 +798,106 @@ FUN_80026940:
     addiu   $sp,$sp,40
 .end FUN_80026940
 .size FUN_80026940, . - FUN_80026940
+
+.section .text.FUN_80026a88,"ax",@progbits
+.globl FUN_80026a88
+.type FUN_80026a88, @function
+.ent FUN_80026a88
+FUN_80026a88:
+    addiu   $sp,$sp,-40
+    sw      $ra,32($sp)
+    sw      $s3,28($sp)
+    sw      $s2,24($sp)
+    sw      $s1,20($sp)
+    jal     FUN_80029e34
+    sw      $s0,16($sp)
+    addu    $s2,$v0,$zero
+    blez    $s2,.L80026bac
+    lui     $v0,0x8002
+    addiu   $s3,$v0,-22132
+.L80026ab4:
+    jal     FUN_80029da0
+    nop
+    addu    $s1,$v0,$zero
+    srl     $v0,$s1,8
+    andi    $v1,$v0,0xff
+    sltiu   $v0,$v1,35
+    beq     $v0,$zero,.L80026ba0
+    sll     $v0,$v1,2
+    addu    $v0,$v0,$s3
+    lw      $v0,0($v0)
+    nop
+    jr      $v0
+    nop
+.L80026ae8:
+    andi    $v1,$s1,0xffff
+    addiu   $v0,$zero,513
+    bne     $v1,$v0,.L80026b08
+    nop
+    jal     FUN_80027688
+    addiu   $s2,$s2,-1
+    j       .L80026ba4
+    nop
+.L80026b08:
+    jal     FUN_8002a2b0
+    addiu   $s2,$s2,-1
+    j       .L80026ba4
+    nop
+.L80026b18:
+    jal     FUN_800273cc
+    andi    $a0,$s1,0xffff
+    j       .L80026ba4
+    addiu   $s2,$s2,-1
+.L80026b28:
+    andi    $s0,$s1,0xffff
+    jal     FUN_8002a20c
+    addu    $a0,$s0,$zero
+    bne     $v0,$zero,.L80026bac
+    slti    $v0,$s0,775
+    beq     $v0,$zero,.L80026b4c
+    slti    $v0,$s0,769
+    beq     $v0,$zero,.L80026b54
+    nop
+.L80026b4c:
+    jal     FUN_800299dc
+    addu    $a0,$s0,$zero
+.L80026b54:
+    jal     FUN_80027074
+    andi    $a0,$s1,0xffff
+    j       .L80026ba4
+    addiu   $s2,$s2,-1
+.L80026b64:
+    j       .L80026b98
+    andi    $a0,$s1,0xffff
+.L80026b6c:
+    j       .L80026b98
+    andi    $a0,$s1,0xffff
+.L80026b74:
+    jal     FUN_800299dc
+    andi    $a0,$s1,0xffff
+    j       .L80026ba4
+    addiu   $s2,$s2,-1
+.L80026b84:
+    andi    $s0,$s1,0xffff
+    jal     FUN_8002a20c
+    addu    $a0,$s0,$zero
+    bne     $v0,$zero,.L80026bac
+    addu    $a0,$s0,$zero
+.L80026b98:
+    jal     FUN_800262ec
+    nop
+.L80026ba0:
+    addiu   $s2,$s2,-1
+.L80026ba4:
+    bgtz    $s2,.L80026ab4
+    nop
+.L80026bac:
+    lw      $ra,32($sp)
+    lw      $s3,28($sp)
+    lw      $s2,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,40
+.end FUN_80026a88
+.size FUN_80026a88, . - FUN_80026a88
