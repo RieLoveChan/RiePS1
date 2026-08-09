@@ -4270,6 +4270,20 @@ FUN_8002fcdc:
     .end FUN_8002fcdc
     .size FUN_8002fcdc, . - FUN_8002fcdc
 
+/* FUN_8002d5c0 (0x8002d5c0, 20 bytes) */
+    .section .text.FUN_8002d5c0,"ax",@progbits
+    .globl FUN_8002d5c0
+    .type FUN_8002d5c0, @function
+    .ent FUN_8002d5c0
+FUN_8002d5c0:
+    lui     $v0,0x800e
+    sb      $a0,16488($v0)
+    lui     $v0,0x800e
+    jr      $ra
+    sb      $zero,16484($v0)
+    .end FUN_8002d5c0
+    .size FUN_8002d5c0, . - FUN_8002d5c0
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
