@@ -3144,3 +3144,21 @@ FUN_80028c04:
     sw      $v0,14240($v1)
 .end FUN_80028c04
 .size FUN_80028c04, . - FUN_80028c04
+.section .text.FUN_80028c4c,"ax",@progbits
+.globl FUN_80028c4c
+.globl sym_8003bac8
+.type FUN_80028c4c, @function
+.ent FUN_80028c4c
+FUN_80028c4c:
+    addiu   $sp,$sp,-24
+    lui     $a0,0x800e
+    addiu   $a0,$a0,14520
+    sw      $ra,16($sp)
+    jal     sym_8003bac8
+    addiu   $a1,$zero,8
+    lw      $ra,16($sp)
+    sll     $zero,$zero,0
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80028c4c
+.size FUN_80028c4c, . - FUN_80028c4c

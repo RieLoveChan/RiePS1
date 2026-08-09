@@ -726,6 +726,19 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Transfer descriptor wrapper
+
+`FUN_80028c4c` adds a 40-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It passes the 8-byte buffer at
+`0x800e38b8` to `FUN_8003bac8`, preserving the observed stack frame and
+delay-slot epilogue. `Invoke-FunctionMatch.ps1` matched 40/40 bytes with GCC
+14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`361c5660e10433405b3eb7e16c4ff0701f9473c2ecc6638aad95b2038ffe2e3c`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
