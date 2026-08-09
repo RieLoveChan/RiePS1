@@ -677,6 +677,19 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# State-transition queued transfer setup
+
+`FUN_80028b00` adds a 108-byte exact match in `src/ddr5thmix/StateTransition.s`.
+It prepares `0x800e39b0`, increments its request counter, resolves resource
+`0x80025d44`, invokes the transfer/completion helpers, and returns zero.
+`Invoke-FunctionMatch.ps1` matched 108/108 bytes with GCC 14.2.0/binutils 2.43
+against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`f0a74b6fb541d2561bada1a7fb9668837ef622c9436fe3f00816c05873532a8a`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
