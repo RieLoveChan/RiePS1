@@ -9328,6 +9328,17 @@
       "built_sha256": "71e8409a14f67f3bb87955d15eee03a8d85105071ed94019a5a67cdc44661be7"
     },
     {
+      "name": "FUN_80024f60",
+      "address": "0x80024f60",
+      "size": 124,
+      "language": "asm",
+      "source": "src/ddr5thmix/StateDispatch.s",
+      "section": ".text.FUN_80024f60",
+      "symbols": {
+        "sym_8002582c": "0x8002582c"
+      }
+    },
+    {
       "name": "FUN_80024054",
       "address": "0x80024054",
       "size": 160,
