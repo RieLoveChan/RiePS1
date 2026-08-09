@@ -857,6 +857,20 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing event ring-buffer writer
+
+`FUN_80028ef0` adds a 132-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It advances the 16-entry index byte at
+`0x800e3b39`, writes four argument words into the selected 16-byte entry at
+`0x800e3a28`, and returns `-1` when the ring is full.
+`Invoke-FunctionMatch.ps1` matched 132/132 bytes with GCC 14.2.0/binutils
+2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`8628c444f148c3642516ed1daa5587c002ee2f6c419c33e8d4f0ef8e08d88faa`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the

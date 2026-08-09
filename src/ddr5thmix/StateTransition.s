@@ -3295,3 +3295,45 @@ FUN_80028e80:
     addiu   $sp,$sp,40
 .end FUN_80028e80
 .size FUN_80028e80, . - FUN_80028e80
+.section .text.FUN_80028ef0,"ax",@progbits
+.globl FUN_80028ef0
+.type FUN_80028ef0, @function
+.ent FUN_80028ef0
+FUN_80028ef0:
+    lui     $v0,0x800e
+    addiu   $t1,$v0,14888
+    lbu     $t0,273($t1)
+    sll     $zero,$zero,0
+    addu    $v1,$t0,$zero
+    addiu   $t0,$t0,1
+    sltiu   $v0,$t0,16
+    bne     $v0,$zero,.L80028f18
+    sll     $zero,$zero,0
+    addu    $t0,$zero,$zero
+.L80028f18:
+    beq     $t0,$v1,.L80028f6c
+    sll     $v0,$v1,0x4
+    addu    $v0,$v0,$t1
+    sw      $a0,0($v0)
+    lbu     $v0,273($t1)
+    sll     $zero,$zero,0
+    sll     $v0,$v0,0x4
+    addu    $v0,$v0,$t1
+    sw      $a1,4($v0)
+    lbu     $v0,273($t1)
+    sll     $zero,$zero,0
+    sll     $v0,$v0,0x4
+    addu    $v0,$v0,$t1
+    sw      $a2,8($v0)
+    lbu     $v1,273($t1)
+    addu    $v0,$zero,$zero
+    sll     $v1,$v1,0x4
+    addu    $v1,$v1,$t1
+    sw      $a3,12($v1)
+    jr      $ra
+    sb      $t0,273($t1)
+.L80028f6c:
+    jr      $ra
+    addiu   $v0,$zero,-1
+.end FUN_80028ef0
+.size FUN_80028ef0, . - FUN_80028ef0
