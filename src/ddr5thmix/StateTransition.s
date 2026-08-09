@@ -662,3 +662,42 @@ FUN_800262ec:
     sw      $v1,12($a2)
 .end FUN_800262ec
 .size FUN_800262ec, . - FUN_800262ec
+
+.section .text.FUN_80026538,"ax",@progbits
+.globl FUN_80026538
+.type FUN_80026538, @function
+.ent FUN_80026538
+FUN_80026538:
+    lui     $v0,0x800e
+    lbu     $v1,14328($v0)
+    addiu   $sp,$sp,-40
+    sw      $s3,28($sp)
+    addiu   $s3,$v0,14328
+    sw      $ra,32($sp)
+    sw      $s2,24($sp)
+    sw      $s1,20($sp)
+    beq     $v1,$zero,sym_80026924
+    sw      $s0,16($sp)
+    lbu     $v1,1($s3)
+    nop
+    sltiu   $v0,$v1,10
+    beq     $v0,$zero,sym_80026924
+    lui     $v0,0x8002
+    addiu   $v0,$v0,-22172
+    sll     $v1,$v1,2
+    addu    $v1,$v1,$v0
+    lw      $v0,0($v1)
+    nop
+    jr      $v0
+    nop
+.L80026590:
+    lbu     $v0,1($s3)
+    j       sym_80026920
+    addiu   $v0,$v0,1
+.L8002659c:
+    lui     $v0,0x800e
+    lw      $v1,14296($v0)
+    nop
+    bne     $v1,$zero,sym_800265bc
+.end FUN_80026538
+.size FUN_80026538, . - FUN_80026538
