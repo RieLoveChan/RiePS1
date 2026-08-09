@@ -3416,6 +3416,51 @@ FUN_8002a80c:
     .end FUN_8002a80c
     .size FUN_8002a80c, . - FUN_8002a80c
 
+/* FUN_8002a82c (0x8002a82c, 132 bytes) */
+    .section .text.FUN_8002a82c,"ax",@progbits
+    .globl FUN_8002a82c
+    .type FUN_8002a82c, @function
+    .ent FUN_8002a82c
+FUN_8002a82c:
+    lw      $t4,16($a0)
+    lw      $a0,4($a0)
+    lw      $a1,4($a1)
+    lui     $t2,0x8000
+    lui     $t5,0x00ff
+    ori     $t5,$t5,0xffff
+    addiu   $a1,$a1,32
+.L8002a82c_next:
+    lw      $v0,0($a0)
+    sw      $zero,0($a0)
+    beq     $v0,$zero,.L8002a82c_advance
+    or      $v0,$v0,$t2
+.L8002a82c_inner:
+    lw      $t6,0($v0)
+    lui     $t0,0xf000
+    lui     $t1,0x0fff
+    ori     $t1,$t1,0xffff
+    and     $t0,$t0,$t6
+    and     $t6,$t1,$t6
+    srl     $t3,$t0,26
+    addu    $t3,$a1,$t3
+    lw      $t0,0($t3)
+    and     $v0,$v0,$t5
+    srl     $t7,$t6,24
+    sll     $t7,$t7,24
+    or      $t0,$t0,$t7
+    sw      $t0,0($v0)
+    sw      $v0,0($t3)
+    and     $t0,$t6,$t5
+    bne     $t0,$zero,.L8002a82c_inner
+    or      $v0,$t0,$t2
+.L8002a82c_advance:
+    bne     $a0,$t4,.L8002a82c_next
+    addiu   $a0,$a0,4
+    jr      $ra
+    sll     $zero,$zero,0x0
+    .end FUN_8002a82c
+    .size FUN_8002a82c, . - FUN_8002a82c
+
 /* FUN_8002ac38 (0x8002ac38, 80 bytes) */
     .section .text.FUN_8002ac38,"ax",@progbits
     .globl FUN_8002ac38
