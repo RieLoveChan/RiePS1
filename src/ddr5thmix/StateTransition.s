@@ -4227,3 +4227,38 @@ FUN_800299dc:
     addiu   $sp,$sp,32
 .end FUN_800299dc
 .size FUN_800299dc, . - FUN_800299dc
+.section .text.FUN_80029a4c,"ax",@progbits
+.globl FUN_80029a4c
+.type FUN_80029a4c, @function
+.ent FUN_80029a4c
+FUN_80029a4c:
+    addiu   $sp,$sp,-32
+    sw      $s0,16($sp)
+    addu    $s0,$zero,$zero
+    lui     $v0,0x800e
+    sw      $s1,20($sp)
+    addiu   $s1,$v0,14360
+    sw      $ra,24($sp)
+.L80029a68:
+    andi    $v0,$s0,0xff
+    sll     $v0,$v0,0x3
+    addu    $v0,$v0,$s1
+    lhu     $v0,0($v0)
+    sll     $zero,$zero,0
+    sltiu   $v0,$v0,819
+    bne     $v0,$zero,.L80029a90
+    sll     $zero,$zero,0
+    jal     0x80029b94
+    andi    $a0,$s0,0xff
+.L80029a90:
+    addiu   $s0,$s0,1
+    sltiu   $v0,$s0,20
+    bne     $v0,$zero,.L80029a68
+    sll     $zero,$zero,0
+    lw      $ra,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,32
+.end FUN_80029a4c
+.size FUN_80029a4c, . - FUN_80029a4c
