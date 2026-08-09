@@ -3621,6 +3621,25 @@ FUN_8002ac38:
     .end FUN_8002ac38
     .size FUN_8002ac38, . - FUN_8002ac38
 
+/* FUN_8002b1e8 (0x8002b1e8, 40 bytes) */
+    .section .text.FUN_8002b1e8,"ax",@progbits
+    .globl FUN_8002b1e8
+    .type FUN_8002b1e8, @function
+    .ent FUN_8002b1e8
+FUN_8002b1e8:
+    lw      $t0,0($a0)
+    lw      $t1,4($a0)
+    lw      $t2,8($a0)
+    lw      $t3,12($a0)
+    lw      $t4,16($a0)
+    ctc2    $t0,$0
+    ctc2    $t1,$1
+    ctc2    $t2,$2
+    ctc2    $t3,$3
+    ctc2    $t4,$4
+    .end FUN_8002b1e8
+    .size FUN_8002b1e8, . - FUN_8002b1e8
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
