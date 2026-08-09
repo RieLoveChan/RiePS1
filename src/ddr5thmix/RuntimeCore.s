@@ -329,6 +329,43 @@ FUN_80022604:
     sltiu $v0,$v0,1
     .end FUN_80022604
 
+    .section .text.FUN_8002263c,"ax",@progbits
+    .globl FUN_8002263c
+    .type FUN_8002263c, @function
+    .ent FUN_8002263c
+FUN_8002263c:
+    lui $v0,0x800e
+    lw $v0,0xb18($v0)
+    addiu $sp,$sp,-24
+    sw $ra,16($sp)
+    lbu $v1,0x71($v0)
+    li $v0,1
+    beq $v1,$v0,.L80022688
+    slti $v0,$v1,2
+    beq $v0,$zero,.L80022674
+    nop
+    beq $v1,$zero,.L8002268c
+    li $a0,0x111
+    j 0x80022694
+    nop
+.L80022674:
+    li $v0,2
+    beq $v1,$v0,.L8002268c
+    li $a0,0x110
+    j 0x80022694
+    nop
+.L80022688:
+    li $a0,0x112
+.L8002268c:
+    jal FUN_80026940
+    nop
+.L80022694:
+    lw $ra,16($sp)
+    nop
+    jr $ra
+    addiu $sp,$sp,24
+    .end FUN_8002263c
+
     .section .text.FUN_8002112c,"ax",@progbits
     .globl FUN_8002112c
     .type FUN_8002112c, @function

@@ -50,6 +50,7 @@
         "FUN_80022570",
         "FUN_800225e4",
         "FUN_80022604",
+        "FUN_8002263c",
         "FUN_8002216c",
         "FUN_80022cf8",
         "FUN_80023744",
@@ -1334,6 +1335,17 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCore.s",
       "section": ".text.FUN_80022604"
+    },
+    {
+      "name": "FUN_8002263c",
+      "address": "0x8002263c",
+      "size": 104,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_8002263c",
+      "symbols": {
+        "FUN_80026940": "0x80026940"
+      }
     },
     {
       "name": "FUN_8002216c",
