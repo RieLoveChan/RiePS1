@@ -4349,6 +4349,34 @@ FUN_8002d848:
     .end FUN_8002d848
     .size FUN_8002d848, . - FUN_8002d848
 
+/* FUN_8002d884 (0x8002d884, 72 bytes) */
+    .section .text.FUN_8002d884,"ax",@progbits
+    .globl FUN_8002d884
+    .type FUN_8002d884, @function
+    .ent FUN_8002d884
+FUN_8002d884:
+    andi    $a0,$a0,0xff
+    sll     $a0,$a0,4
+    lui     $v0,0x800e
+    addiu   $v0,$v0,16504
+    addu    $a0,$a0,$v0
+    addu    $a1,$zero,$zero
+.L_FUN_8002d884_loop:
+    andi    $v1,$a1,0xff
+    addiu   $a1,$a1,1
+    addu    $v0,$a0,$v1
+    sll     $v1,$v1,1
+    addu    $v1,$a0,$v1
+    sb      $zero,10($v0)
+    andi    $v0,$a1,0xff
+    sltiu   $v0,$v0,2
+    .word   0x1440fff7
+    sh      $zero,4($v1)
+    jr      $ra
+    nop
+    .end FUN_8002d884
+    .size FUN_8002d884, . - FUN_8002d884
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
