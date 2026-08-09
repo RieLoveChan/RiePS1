@@ -126,3 +126,93 @@ FUN_8002592c:
     addu    $v0,$zero,$zero
 .end FUN_8002592c
 .size FUN_8002592c, . - FUN_8002592c
+
+.section .text.FUN_800259e8,"ax",@progbits
+.globl FUN_800259e8
+.type FUN_800259e8, @function
+.ent FUN_800259e8
+FUN_800259e8:
+    addiu   $sp,$sp,-96
+    lui     $a2,0x800e
+    addiu   $a1,$a2,14252
+    sw      $ra,88($sp)
+    sw      $s1,84($sp)
+    sw      $s0,80($sp)
+    lw      $v1,16($a1)
+    addiu   $v0,$zero,1
+    beq     $v1,$v0,.L80025a28
+    slti    $v0,$v1,2
+    bne     $v0,$zero,.L80025b04
+    addiu   $v0,$zero,2
+    beq     $v1,$v0,.L80025a64
+    addiu   $a0,$a1,-68
+    j       .L80025b04
+    nop
+.L80025a28:
+    addiu   $a0,$a1,-68
+    lw      $v1,14252($a2)
+    lw      $v0,64($a0)
+    nop
+    mult    $v1,$v0
+    lw      $v0,56($a0)
+    mflo    $a3
+    subu    $v0,$v0,$a3
+    bgtz    $v0,.L80025a54
+    nop
+    addu    $v0,$zero,$zero
+.L80025a54:
+    lw      $v1,12($a1)
+    sw      $v0,56($a0)
+    j       .L80025a8c
+    sltu    $v0,$v1,$v0
+.L80025a64:
+    lw      $v1,14252($a2)
+    lw      $v0,64($a0)
+    nop
+    mult    $v1,$v0
+    lw      $v0,56($a0)
+    lw      $v1,12($a1)
+    mflo    $a3
+    addu    $v0,$v0,$a3
+    sw      $v0,56($a0)
+    sltu    $v0,$v0,$v1
+.L80025a8c:
+    bne     $v0,$zero,.L80025a9c
+    nop
+    sw      $v1,56($a0)
+    sw      $zero,16($a1)
+.L80025a9c:
+    lui     $a0,0x800e
+    addiu   $a0,$a0,14184
+    lw      $v0,20($a0)
+    lui     $v1,0xbe37
+    ori     $v1,$v1,0xc63b
+    sll     $v0,$v0,12
+    multu   $v0,$v1
+    mfhi    $v0
+    lw      $v1,56($a0)
+    srl     $v0,$v0,15
+    mult    $v0,$v1
+    addiu   $s1,$zero,16
+    addiu   $a0,$sp,16
+    sw      $s1,20($sp)
+    lui     $v0,0x40
+    sw      $v0,16($sp)
+    mflo    $v1
+    srl     $s0,$v1,12
+    jal     FUN_8002f42c
+    sh      $s0,36($sp)
+    addu    $a0,$sp,$s1
+    lui     $v0,0x80
+    sw      $s1,20($sp)
+    sw      $v0,16($sp)
+    jal     FUN_8002f42c
+    sh      $s0,36($sp)
+.L80025b04:
+    lw      $ra,88($sp)
+    lw      $s1,84($sp)
+    lw      $s0,80($sp)
+    jr      $ra
+    addiu   $sp,$sp,96
+.end FUN_800259e8
+.size FUN_800259e8, . - FUN_800259e8
