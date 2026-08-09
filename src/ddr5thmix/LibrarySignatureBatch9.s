@@ -4446,6 +4446,43 @@ FUN_8003b404:
     .end FUN_8003b404
     .size FUN_8003b404, . - FUN_8003b404
 
+/* FUN_8003b398 (0x8003b398, 108 bytes) */
+    .section .text.FUN_8003b398,"ax",@progbits
+    .globl FUN_8003b398
+    .type FUN_8003b398, @function
+    .ent FUN_8003b398
+FUN_8003b398:
+    addiu   $sp,$sp,-24
+    sw      $s0,16($sp)
+    addu    $s0,$a0,$zero
+    sw      $ra,20($sp)
+    jal     ChangeClearPAD
+    addu    $a0,$zero,$zero
+    jal     FUN_8003bbe8
+    nop
+    jal     ReadInitPadFlag
+    nop
+    bnez    $v0,1f
+    nop
+    addu    $s0,$zero,$zero
+1:
+    jal     InitCARD2
+    addu    $a0,$s0,$zero
+    jal     _copy_memcard_patch
+    nop
+    jal     _patch_card
+    nop
+    jal     _patch_card2
+    nop
+    jal     FUN_8003bbf8
+    nop
+    lw      $ra,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,24
+    .end FUN_8003b398
+    .size FUN_8003b398, . - FUN_8003b398
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230

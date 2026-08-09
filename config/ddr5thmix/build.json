@@ -11582,6 +11582,26 @@
       "built_sha256": "c134eb244384e03edc96ccf8846f06404d4ca5e8bf9a24bc789b70d8925efd68"
     },
     {
+      "name": "FUN_8003b398",
+      "address": "0x8003b398",
+      "size": 108,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8003b398",
+      "symbols": {
+        "ChangeClearPAD": "0x8003bc88",
+        "FUN_8003bbe8": "0x8003bbe8",
+        "ReadInitPadFlag": "0x8003c0e4",
+        "InitCARD2": "0x8003b468",
+        "_copy_memcard_patch": "0x8003b634",
+        "_patch_card": "0x8003b530",
+        "_patch_card2": "0x8003b5c4",
+        "FUN_8003bbf8": "0x8003bbf8"
+      },
+      "reference_sha256": "571b6ec9796585be3b09c1c62250b83ba2e4dc6e454afb09f6d2ba3ec73a4fbb",
+      "built_sha256": "571b6ec9796585be3b09c1c62250b83ba2e4dc6e454afb09f6d2ba3ec73a4fbb"
+    },
+    {
       "name": "FUN_8002b230",
       "address": "0x8002b230",
       "size": 292,
