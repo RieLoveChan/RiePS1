@@ -279,3 +279,30 @@ FUN_80028d5c:
     srl     $v0,$v1,0xc
 .end FUN_80028d5c
 .size FUN_80028d5c, . - FUN_80028d5c
+.section .text.FUN_80028d90,"ax",@progbits
+.globl FUN_80028d90
+.type FUN_80028d90, @function
+.ent FUN_80028d90
+FUN_80028d90:
+    lui     $a1,0x800e
+    lui     $v0,0x800b
+    addiu   $v0,$v0,-10272
+    sw      $a0,14192($a1)
+    sll     $a0,$a0,0x4
+    addu    $a0,$a0,$v0
+    lw      $v1,0($a0)
+    addiu   $a1,$a1,14192
+    sw      $v1,4($a1)
+    lw      $v0,4($a0)
+    sll     $zero,$zero,0
+    srl     $v0,$v0,0xb
+    addu    $v1,$v1,$v0
+    sw      $v1,8($a1)
+    lw      $v0,8($a0)
+    sll     $zero,$zero,0
+    sw      $v0,12($a1)
+    lw      $v0,12($a0)
+    jr      $ra
+    sw      $v0,16($a1)
+.end FUN_80028d90
+.size FUN_80028d90, . - FUN_80028d90

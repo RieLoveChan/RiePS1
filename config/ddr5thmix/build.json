@@ -9426,6 +9426,15 @@
       "symbols": {}
     },
     {
+      "name": "FUN_80028d90",
+      "address": "0x80028d90",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeGraphicsInit.s",
+      "section": ".text.FUN_80028d90",
+      "symbols": {}
+    },
+    {
       "name": "FUN_80025850",
       "address": "0x80025850",
       "size": 220,

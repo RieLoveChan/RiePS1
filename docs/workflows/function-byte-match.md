@@ -792,6 +792,20 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing configuration loader
+
+`FUN_80028d90` adds an 80-byte exact match in
+`src/ddr5thmix/RuntimeGraphicsInit.s`. It stores the selected index and
+fields from the table at `0x800ad7e0` into the five-word record at
+`0x800e3770`, adding the source `+4` field shifted right by 11 to the `+8`
+field. `Invoke-FunctionMatch.ps1` matched 80/80 bytes with GCC
+14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`e7e275a832b44894ca8c69901ba3820c78b7d62af659e90224de046bf55cb9b5`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
