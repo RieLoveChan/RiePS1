@@ -76,6 +76,82 @@ FUN_80021dfc:
     addiu $sp,$sp,32
     .end FUN_80021dfc
 
+    .section .text.FUN_80021f00,"ax",@progbits
+    .globl FUN_80021f00
+    .type FUN_80021f00, @function
+    .ent FUN_80021f00
+FUN_80021f00:
+    addiu $sp,$sp,-32
+    sw $ra,24($sp)
+    jal GsInitGraph
+    addu $a0,$zero,$zero
+    lui $a2,0x800b
+    lw $v1,-0x3718($a2)
+    li $v0,0x140
+    sh $v0,0xc($v1)
+    li $v0,0xf0
+    sh $v0,0xe($v1)
+    li $v0,4
+    sh $v0,0x10($v1)
+    lui $v0,0x800b
+    lw $a0,-0x3714($v0)
+    li $a1,1
+    sh $a1,0x12($v1)
+    lbu $v0,1($a0)
+    nop
+    bne $v0,$zero,.L80021f74
+    nop
+    sb $a1,1($a0)
+    lw $v0,-0x3718($a2)
+    nop
+    lhu $a0,0xc($v0)
+    lhu $a1,0xe($v0)
+    lhu $a2,0x10($v0)
+    lhu $a3,0x12($v0)
+    jal GsInitGraph2
+    sw $zero,16($sp)
+.L80021f74:
+    jal FUN_8002200c
+    nop
+    jal FUN_80022208
+    nop
+    addu $a2,$zero,$zero
+    li $a3,8
+    lui $v0,0x800b
+    addiu $a0,$v0,-0x3708
+    lui $v0,0x800b
+    addiu $a1,$v0,-0x3700
+.L80021f9c:
+    lw $v0,0($a0)
+    nop
+    sw $a3,0($v0)
+    lw $v1,0($a0)
+    lw $v0,0($a1)
+    nop
+    sw $v0,4($v1)
+    lw $v0,0($a0)
+    nop
+    sw $zero,8($v0)
+    lw $v0,0($a0)
+    addiu $a2,$a2,1
+    sw $zero,12($v0)
+    lw $v1,0($a0)
+    addiu $a1,$a1,4
+    lw $v0,4($v1)
+    nop
+    addiu $v0,$v0,0x3fc
+    sw $v0,16($v1)
+    slti $v0,$a2,2
+    bne $v0,$zero,.L80021f9c
+    addiu $a0,$a0,4
+    jal FUN_8002abf0
+    nop
+    lw $ra,24($sp)
+    nop
+    jr $ra
+    addiu $sp,$sp,32
+    .end FUN_80021f00
+
     .section .text.FUN_8002112c,"ax",@progbits
     .globl FUN_8002112c
     .type FUN_8002112c, @function

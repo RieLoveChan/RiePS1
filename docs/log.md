@@ -1,6 +1,7 @@
 # Knowledge Bundle Update Log
 
 ## 2026-08-09
+* **Graphics startup reconstructed**: Added `FUN_80021f00` (268 bytes) to `src/ddr5thmix/RuntimeCore.s` and `runtime-core`. The function stores the 320x240 display configuration, guards the one-time `GsInitGraph` call with `DdrSecondaryState+0x01`, initializes both display records, and invokes the final startup callback. `Invoke-FunctionMatch.ps1` matched all 268 bytes with GCC 14.2.0/binutils 2.43 against lawful `SLPM_868.97_1` SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; built/reference SHA-256 `47ebd47eb0d02349a11bab9ea0c802812e0df4d3c4dc5c34c8943cba0b9eeb19`. Runtime-core now contains 8 functions and 2,760 selected bytes.
 * **Runtime initialization reconstructed**: Added `FUN_80021dfc` (260 bytes) to `src/ddr5thmix/RuntimeCore.s` and the `runtime-core` manifest module. The function initializes the game-owned primary/secondary state, clears the two startup regions, configures PAD buffers through the existing PsyQ entry points, copies the two-word startup snapshot, records the boot callback result, and runs the remaining startup callbacks. `Invoke-FunctionMatch.ps1` matched all 260 bytes with GCC 14.2.0/binutils 2.43 against lawful `SLPM_868.97_1` SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; built/reference SHA-256 `4c32b3e6f85067a54bb9a8295ee12890e3b40b9a03890128fbe13695e374f097`. Runtime-core now contains 7 functions and 2,492 selected bytes; `git diff --check` is clean.
 
 ## 2026-08-04 (9)
