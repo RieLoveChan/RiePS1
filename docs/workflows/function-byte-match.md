@@ -1238,6 +1238,19 @@ reference/built SHA-256 is `3ba1e2b6325a84d6c86680ca0fa1801fcaeb17820b73698c0988
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing feedback updater
+
+`FUN_8002a4c8` adds a 224-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It refreshes shared timing state,
+computes a signed difference against the current target, dispatches
+`FUN_8002a5a8` with an adjusted value, marks completion, and stores the
+refreshed baseline. The verifier matched 224/224 bytes with GCC
+14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `a15abab3059002268da1d4d55d9b126811ff66176936493728732736963d821d`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
