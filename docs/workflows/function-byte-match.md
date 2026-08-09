@@ -911,6 +911,20 @@ the reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing record subsystem reset
+
+`FUN_80029788` adds a 60-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It invokes `FUN_800297c4`, clears
+fields at `0x800e37fa` and `0x800e380e`, clears record flags at
+`0x800e37f8` and `0x800e3800`, and clears byte `0x800e39b9`. The
+verifier matched 60/60 bytes with GCC 14.2.0/binutils 2.43 against lawful
+executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`b30967594fc5518e465320cc8a51e941ef556b5cd9210092f56168fc1e5cfcd3`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing record submitter
 
 `FUN_80029750` adds a 40-byte exact match in
