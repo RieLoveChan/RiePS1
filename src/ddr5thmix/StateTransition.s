@@ -2506,3 +2506,48 @@ FUN_800280c8:
     addiu   $sp,$sp,32
 .end FUN_800280c8
 .size FUN_800280c8, . - FUN_800280c8
+.section .text.FUN_80028150,"ax",@progbits
+.globl FUN_80028150
+.type FUN_80028150, @function
+.ent FUN_80028150
+FUN_80028150:
+    addiu   $sp,$sp,-32
+    sw      $s2,24($sp)
+    addu    $s2,$a0,$zero
+    sw      $s0,16($sp)
+    addu    $s0,$a1,$zero
+    addu    $a0,$s0,$zero
+    lui     $v0,0x800b
+    sw      $s1,20($sp)
+    addu    $s1,$a2,$zero
+    sw      $ra,28($sp)
+    jal     FUN_80029410
+    sw      $a0,-7056($v0)
+    sll     $s0,$v0,4
+    lui     $v0,0x800e
+    addiu   $v0,$v0,14184
+    lw      $a0,112($v0)
+    addiu   $v1,$zero,1
+    beq     $a0,$zero,.L800281b8
+    sb      $v1,140($v0)
+    jal     FUN_80028e80
+    nop
+    addiu   $a0,$zero,2
+    addiu   $a1,$zero,6
+    addu    $a2,$zero,$zero
+    jal     FUN_80028ef0
+    addu    $a3,$a2,$zero
+.L800281b8:
+    addiu   $a0,$zero,1
+    addu    $a1,$s1,$zero
+    addu    $a2,$s2,$zero
+    jal     FUN_80028ef0
+    addu    $a3,$s0,$zero
+    lw      $ra,28($sp)
+    lw      $s2,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,32
+.end FUN_80028150
+.size FUN_80028150, . - FUN_80028150
