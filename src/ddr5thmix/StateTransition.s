@@ -4404,3 +4404,29 @@ FUN_80029ccc:
     sll     $zero,$zero,0
 .end FUN_80029ccc
 .size FUN_80029ccc, . - FUN_80029ccc
+.section .text.FUN_80029cdc,"ax",@progbits
+.globl FUN_80029cdc
+.type FUN_80029cdc, @function
+.ent FUN_80029cdc
+FUN_80029cdc:
+    addiu   $sp,$sp,-24
+    andi    $v0,$a0,0xffff
+    sltiu   $v0,$v0,31
+    bne     $v0,$zero,.L80029cf4
+    sw      $ra,16($sp)
+    addiu   $a0,$zero,30
+.L80029cf4:
+    lui     $v0,0x8002
+    addiu   $v0,$v0,-22444
+    andi    $v1,$a0,0xffff
+    sll     $v1,$v1,0x1
+    addu    $v1,$v1,$v0
+    lh      $a0,0($v1)
+    jal     0x800302bc
+    addu    $a1,$a0,$zero
+    lw      $ra,16($sp)
+    sll     $zero,$zero,0
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80029cdc
+.size FUN_80029cdc, . - FUN_80029cdc
