@@ -2672,3 +2672,78 @@ FUN_80028358:
     addiu   $sp,$sp,24
 .end FUN_80028358
 .size FUN_80028358, . - FUN_80028358
+.section .text.FUN_80028398,"ax",@progbits
+.globl FUN_80028398
+.type FUN_80028398, @function
+.ent FUN_80028398
+FUN_80028398:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    lui     $a0,0x800e
+    addiu   $a0,$a0,14536
+    jal     FUN_8003bac8
+    addiu   $a1,$zero,8
+    addu    $v1,$zero,$zero
+    lui     $v0,0x800e
+    addiu   $a0,$v0,14728
+    addu    $v0,$v1,$a0
+.L800283c0:
+    sb      $zero,0($v0)
+    addiu   $v1,$v1,1
+    sltiu   $v0,$v1,36
+    bne     $v0,$zero,.L800283c0
+    addu    $v0,$v1,$a0
+    jal     FUN_80029ed0
+    nop
+    jal     FUN_8002a004
+    nop
+    jal     FUN_80029ef8
+    nop
+    jal     FUN_8002fcdc
+    nop
+    addiu   $a0,$zero,16
+    lui     $a1,0x800e
+    jal     FUN_8002d95c
+    addiu   $a1,$a1,14544
+    lui     $a0,0x800e
+    addiu   $a0,$a0,11312
+    addiu   $a1,$zero,16
+    jal     FUN_8003175c
+    addiu   $a2,$zero,1
+    jal     FUN_8003197c
+    addiu   $a0,$zero,1
+    jal     FUN_80034b1c
+    addu    $a0,$zero,$zero
+    jal     FUN_8003053c
+    nop
+    addu    $a0,$zero,$zero
+    addu    $a1,$a0,$zero
+    jal     FUN_8002fe7c
+    addiu   $a2,$zero,1
+    jal     FUN_80034b4c
+    addiu   $a0,$zero,20
+    jal     FUN_80032afc
+    addiu   $a0,$zero,3
+    jal     FUN_8002ebac
+    addiu   $a0,$zero,3
+    jal     FUN_80032bac
+    nop
+    addiu   $a0,$zero,40
+    jal     FUN_800320bc
+    addu    $a1,$a0,$zero
+    jal     FUN_8002f26c
+    addu    $a0,$zero,$zero
+    jal     FUN_80029cdc
+    addiu   $a0,$zero,30
+    jal     FUN_80029c40
+    addu    $a0,$zero,$zero
+    jal     FUN_8002e86c
+    addiu   $a0,$zero,1
+    jal     FUN_8002e4fc
+    addiu   $a0,$zero,1
+    lw      $ra,16($sp)
+    nop
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80028398
+.size FUN_80028398, . - FUN_80028398
