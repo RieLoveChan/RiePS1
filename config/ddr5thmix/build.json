@@ -11441,6 +11441,19 @@
       "built_sha256": "d3ead6cb24b7ca21fa7e8ec29ea950464ee1080a6b2ac943991ae48b1d4ba19a"
     },
     {
+      "name": "FUN_8002ef2c",
+      "address": "0x8002ef2c",
+      "size": 36,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8002ef2c",
+      "symbols": {
+        "InterruptCallback": "0x80035b38"
+      },
+      "reference_sha256": "68015b4d11fc8699c6b77ac65034ab0925b07d35391b62afe1624e3648dfc6a3",
+      "built_sha256": "68015b4d11fc8699c6b77ac65034ab0925b07d35391b62afe1624e3648dfc6a3"
+    },
+    {
       "name": "FUN_8002b230",
       "address": "0x8002b230",
       "size": 292,

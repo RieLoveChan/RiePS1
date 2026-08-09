@@ -4211,6 +4211,24 @@ FUN_8002ee8c:
     .end FUN_8002ee8c
     .size FUN_8002ee8c, . - FUN_8002ee8c
 
+/* FUN_8002ef2c (0x8002ef2c, 36 bytes) */
+    .section .text.FUN_8002ef2c,"ax",@progbits
+    .globl FUN_8002ef2c
+    .type FUN_8002ef2c, @function
+    .ent FUN_8002ef2c
+FUN_8002ef2c:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    addu    $a1,$a0,$zero
+    jal     InterruptCallback
+    addiu   $a0,$zero,9
+    lw      $ra,16($sp)
+    addiu   $sp,$sp,24
+    jr      $ra
+    nop
+    .end FUN_8002ef2c
+    .size FUN_8002ef2c, . - FUN_8002ef2c
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
