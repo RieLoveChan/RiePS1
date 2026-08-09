@@ -4423,6 +4423,29 @@ FUN_8003bbf8:
     .end FUN_8003bbf8
     .size FUN_8003bbf8, . - FUN_8003bbf8
 
+/* FUN_8003b404 (0x8003b404, 56 bytes) */
+    .section .text.FUN_8003b404,"ax",@progbits
+    .globl FUN_8003b404
+    .type FUN_8003b404, @function
+    .ent FUN_8003b404
+FUN_8003b404:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    jal     FUN_8003bbe8
+    nop
+    jal     StartCARD2
+    nop
+    jal     ChangeClearPAD
+    addu    $a0,$zero,$zero
+    jal     FUN_8003bbf8
+    nop
+    lw      $ra,16($sp)
+    addiu   $sp,$sp,24
+    jr      $ra
+    nop
+    .end FUN_8003b404
+    .size FUN_8003b404, . - FUN_8003b404
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
