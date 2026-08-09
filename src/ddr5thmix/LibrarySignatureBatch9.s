@@ -4247,6 +4247,29 @@ FUN_8002f29c:
     .end FUN_8002f29c
     .size FUN_8002f29c, . - FUN_8002f29c
 
+/* FUN_8002fcdc (0x8002fcdc, 56 bytes) */
+    .section .text.FUN_8002fcdc,"ax",@progbits
+    .globl FUN_8002fcdc
+    .type FUN_8002fcdc, @function
+    .ent FUN_8002fcdc
+FUN_8002fcdc:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    jal     ResetCallback
+    nop
+    jal     SsUtReverbOff
+    nop
+    jal     SpuClearReverbWorkArea
+    addiu   $a0,$zero,7
+    jal     _SsInit
+    nop
+    lw      $ra,16($sp)
+    addiu   $sp,$sp,24
+    jr      $ra
+    nop
+    .end FUN_8002fcdc
+    .size FUN_8002fcdc, . - FUN_8002fcdc
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
