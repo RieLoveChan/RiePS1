@@ -1226,6 +1226,18 @@ reference/built SHA-256 is `8930326abac20f44564319b27834950f210f067ccdb00681c3e3
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing limit test
+
+`FUN_8002a438` adds a 52-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It adds `FUN_8002a6c8`'s result to the
+shared offset at `0x800e2bbc` and tests whether it exceeds the limit at
+`0x800e2bc0`. The verifier matched 52/52 bytes with GCC 14.2.0/binutils
+2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `3ba1e2b6325a84d6c86680ca0fa1801fcaeb17820b73698c0988d3ec098dcc43`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
