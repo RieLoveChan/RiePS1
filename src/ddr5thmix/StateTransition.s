@@ -2644,3 +2644,16 @@ FUN_8002829c:
     nop
 .end FUN_8002829c
 .size FUN_8002829c, . - FUN_8002829c
+.section .text.FUN_800282e4,"ax",@progbits
+.globl FUN_800282e4
+.type FUN_800282e4, @function
+.ent FUN_800282e4
+FUN_800282e4:
+    lui     $v0,0x800e
+    lbu     $v0,14300($v0)
+    nop
+    xori    $v0,$v0,1
+    jr      $ra
+    sltiu   $v0,$v0,1
+.end FUN_800282e4
+.size FUN_800282e4, . - FUN_800282e4
