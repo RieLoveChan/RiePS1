@@ -4875,3 +4875,20 @@ FUN_8002a20c:
     sll     $zero,$zero,0
 .end FUN_8002a20c
 .size FUN_8002a20c, . - FUN_8002a20c
+.section .text.FUN_8002a2b0,"ax",@progbits
+.globl FUN_8002a2b0
+.type FUN_8002a2b0, @function
+.ent FUN_8002a2b0
+FUN_8002a2b0:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    jal     0x80032048
+    addiu   $a0,$zero,18
+    jal     0x80032048
+    addiu   $a0,$zero,17
+    lw      $ra,16($sp)
+    sll     $zero,$zero,0
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_8002a2b0
+.size FUN_8002a2b0, . - FUN_8002a2b0

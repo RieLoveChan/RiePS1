@@ -1190,6 +1190,17 @@ reference/built SHA-256 is `56354d656666ae547184fbfd2e12178370fd3e768b0bdaafb04d
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing hook pair
+
+`FUN_8002a2b0` adds a 40-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It invokes `FUN_80032048` for event
+codes `18` and `17`. The verifier matched 40/40 bytes with GCC
+14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `5cb0d65a0e61efd45c82978b6c31c1b4c03fce4ceaa29c4064559a5522c7b4a3`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
