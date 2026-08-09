@@ -4672,6 +4672,110 @@ FUN_80097c28:
     .end FUN_80097c28
     .size FUN_80097c28, . - FUN_80097c28
 
+/* FUN_8007be94 (0x8007be94, 16 bytes) */
+    .section .text.FUN_8007be94,"ax",@progbits
+    .globl FUN_8007be94
+    .type FUN_8007be94, @function
+    .ent FUN_8007be94
+FUN_8007be94:
+    lui     $v0,0x800e
+    lbu     $v0,0x3bcc($v0)
+    jr      $ra
+    nop
+    .end FUN_8007be94
+    .size FUN_8007be94, . - FUN_8007be94
+
+/* FUN_8007f06c (0x8007f06c, 16 bytes) */
+    .section .text.FUN_8007f06c,"ax",@progbits
+    .globl FUN_8007f06c
+    .type FUN_8007f06c, @function
+    .ent FUN_8007f06c
+FUN_8007f06c:
+    lui     $v0,0x8011
+    lw      $v0,0x29cc($v0)
+    jr      $ra
+    nop
+    .end FUN_8007f06c
+    .size FUN_8007f06c, . - FUN_8007f06c
+
+/* FUN_8007f1a4 (0x8007f1a4, 16 bytes) */
+    .section .text.FUN_8007f1a4,"ax",@progbits
+    .globl FUN_8007f1a4
+    .type FUN_8007f1a4, @function
+    .ent FUN_8007f1a4
+FUN_8007f1a4:
+    lui     $v1,0x8011
+    addiu   $v0,$zero,-1
+    jr      $ra
+    sw      $v0,0x29cc($v1)
+    .end FUN_8007f1a4
+    .size FUN_8007f1a4, . - FUN_8007f1a4
+
+/* FUN_8007f64c (0x8007f64c, 16 bytes) */
+    .section .text.FUN_8007f64c,"ax",@progbits
+    .globl FUN_8007f64c
+    .type FUN_8007f64c, @function
+    .ent FUN_8007f64c
+FUN_8007f64c:
+    lui     $v0,0x800e
+    lw      $v0,-1688($v0)
+    jr      $ra
+    nop
+    .end FUN_8007f64c
+    .size FUN_8007f64c, . - FUN_8007f64c
+
+/* FUN_8007f66c (0x8007f66c, 16 bytes) */
+    .section .text.FUN_8007f66c,"ax",@progbits
+    .globl FUN_8007f66c
+    .type FUN_8007f66c, @function
+    .ent FUN_8007f66c
+FUN_8007f66c:
+    lui     $v1,0x800e
+    addiu   $v0,$zero,1
+    jr      $ra
+    sw      $v0,-1688($v1)
+    .end FUN_8007f66c
+    .size FUN_8007f66c, . - FUN_8007f66c
+
+/* FUN_80097e98 (0x80097e98, 16 bytes) */
+    .section .text.FUN_80097e98,"ax",@progbits
+    .globl FUN_80097e98
+    .type FUN_80097e98, @function
+    .ent FUN_80097e98
+FUN_80097e98:
+    lui     $v0,0x800e
+    lw      $v0,0x3b6c($v0)
+    jr      $ra
+    andi    $v0,$v0,0x80
+    .end FUN_80097e98
+    .size FUN_80097e98, . - FUN_80097e98
+
+/* FUN_80097ea8 (0x80097ea8, 16 bytes) */
+    .section .text.FUN_80097ea8,"ax",@progbits
+    .globl FUN_80097ea8
+    .type FUN_80097ea8, @function
+    .ent FUN_80097ea8
+FUN_80097ea8:
+    lui     $v0,0x800e
+    lw      $v0,0x3b6c($v0)
+    jr      $ra
+    andi    $v0,$v0,0x20
+    .end FUN_80097ea8
+    .size FUN_80097ea8, . - FUN_80097ea8
+
+/* FUN_800a242c (0x800a242c, 16 bytes) */
+    .section .text.FUN_800a242c,"ax",@progbits
+    .globl FUN_800a242c
+    .type FUN_800a242c, @function
+    .ent FUN_800a242c
+FUN_800a242c:
+    lui     $v1,0x8012
+    addiu   $v0,$zero,1
+    jr      $ra
+    sw      $v0,-30312($v1)
+    .end FUN_800a242c
+    .size FUN_800a242c, . - FUN_800a242c
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
