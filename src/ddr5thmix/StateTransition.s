@@ -2786,3 +2786,38 @@ FUN_80028588:
     addiu   $sp,$sp,24
 .end FUN_80028588
 .size FUN_80028588, . - FUN_80028588
+.section .text.FUN_80028600,"ax",@progbits
+.globl FUN_80028600
+.type FUN_80028600, @function
+.ent FUN_80028600
+FUN_80028600:
+    addu    $a1,$zero,$zero
+    lui     $v0,0x800e
+    addiu   $a2,$v0,14872
+    andi    $v1,$a1,0xffff
+.L80028610:
+    slti    $v0,$v1,3
+    beq     $v0,$zero,.L80028634
+    addu    $v0,$zero,$zero
+    bgez    $v1,.L8002862c
+    sll     $v0,$v1,2
+    j       .L80028634
+    addu    $v0,$zero,$zero
+.L8002862c:
+    addu    $v0,$v0,$a2
+    lhu     $v0,0($v0)
+.L80028634:
+    nop
+    andi    $v0,$v0,0xffff
+    bne     $v0,$a0,.L8002864c
+    addiu   $a1,$a1,1
+    jr      $ra
+    addu    $v0,$zero,$zero
+.L8002864c:
+    sltiu   $v0,$a1,3
+    bne     $v0,$zero,.L80028610
+    andi    $v1,$a1,0xffff
+    jr      $ra
+    addiu   $v0,$zero,-1
+.end FUN_80028600
+.size FUN_80028600, . - FUN_80028600

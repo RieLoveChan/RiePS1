@@ -540,6 +540,19 @@ binutils 2.43 reproduces all 384 selected bytes from the pinned executable.
 These matches establish the linked trampoline encodings and service selectors;
 they do not reconstruct the BIOS implementations reached through the vectors.
 
+# State-transition lookup
+
+`FUN_80028600` adds a 96-byte exact match in `src/ddr5thmix/StateTransition.s`.
+The routine masks its argument to 16 bits, scans the three halfword entries at
+`0x800e3a18`, returns the zero-based matching index, and returns `-1` after the
+three entries are exhausted. `Invoke-FunctionMatch.ps1` matched 96/96 bytes
+with GCC 14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`;
+reference/built SHA-256 is
+`8d302c9d83256f70af0515e918b4ed59215f3f1e4acc6c3e75afbb305aac2ebd`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
