@@ -4146,6 +4146,18 @@ FUN_80036648:
     .end FUN_80036648
     .size FUN_80036648, . - FUN_80036648
 
+/* FUN_80036668 (0x80036668, 12 bytes) */
+    .section .text.FUN_80036668,"ax",@progbits
+    .globl FUN_80036668
+    .type FUN_80036668, @function
+    .ent FUN_80036668
+FUN_80036668:
+    .word   0x48c4d000
+    jr      $ra
+    nop
+    .end FUN_80036668
+    .size FUN_80036668, . - FUN_80036668
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
