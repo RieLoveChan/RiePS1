@@ -3133,3 +3133,14 @@ FUN_80028b6c:
     nop
 .end FUN_80028b6c
 .size FUN_80028b6c, . - FUN_80028b6c
+.section .text.FUN_80028c04,"ax",@progbits
+.globl FUN_80028c04
+.type FUN_80028c04, @function
+.ent FUN_80028c04
+FUN_80028c04:
+    lui     $v1,0x800e
+    addiu   $v0,$zero,4096
+    jr      $ra
+    sw      $v0,14240($v1)
+.end FUN_80028c04
+.size FUN_80028c04, . - FUN_80028c04
