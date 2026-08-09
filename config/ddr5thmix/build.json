@@ -9294,6 +9294,14 @@
       "section": ".text.FUN_80023c00"
     },
     {
+      "name": "FUN_80023dbc",
+      "address": "0x80023dbc",
+      "size": 224,
+      "language": "asm",
+      "source": "src/ddr5thmix/GraphicsPrimitiveBuilder.s",
+      "section": ".text.FUN_80023dbc"
+    },
+    {
       "name": "FUN_80023fdc",
       "address": "0x80023fdc",
       "size": 120,
