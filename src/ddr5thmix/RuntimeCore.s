@@ -256,6 +256,140 @@ FUN_80022208:
     addiu $sp,$sp,24
     .end FUN_80022208
 
+    .section .text.FUN_800223a8,"ax",@progbits
+    .globl FUN_800223a8
+    .type FUN_800223a8, @function
+    .ent FUN_800223a8
+FUN_800223a8:
+    addiu $sp,$sp,-80
+    sw $s0,56($sp)
+    addu $s0,$a1,$zero
+    addiu $a0,$a0,4
+    addiu $a1,$sp,24
+    sw $s2,64($sp)
+    addu $s2,$a2,$zero
+    sw $s3,68($sp)
+    addu $s3,$a3,$zero
+    sll $v0,$s0,16
+    sw $s4,72($sp)
+    lhu $s4,96($sp)
+    slti $v0,$v0,0
+    sw $s1,60($sp)
+    sw $ra,76($sp)
+    jal FUN_80038028
+    negu $s1,$v0
+    bne $s1,$zero,.L80022400
+    andi $v0,$s0,0x3ff
+    lhu $v0,28($sp)
+    nop
+    addu $v0,$v0,$s0
+.L80022400:
+    bne $s1,$zero,.L8002241c
+    sh $v0,16($sp)
+    lhu $v0,30($sp)
+    nop
+    addu $v0,$v0,$s2
+    j 0x80022420
+    sh $v0,18($sp)
+.L8002241c:
+    sh $s2,18($sp)
+.L80022420:
+    lw $a1,36($sp)
+    lhu $v0,32($sp)
+    lhu $v1,34($sp)
+    addiu $a0,$sp,16
+    sh $v0,20($sp)
+    jal LoadImage
+    sh $v1,22($sp)
+    lw $v0,24($sp)
+    nop
+    srl $v0,$v0,3
+    andi $v0,$v0,1
+    beq $v0,$zero,.L80022550
+    nop
+    bne $s1,$zero,.L80022470
+    nop
+    lhu $v0,40($sp)
+    nop
+    addu $v0,$v0,$s3
+    j 0x80022474
+    sh $v0,16($sp)
+.L80022470:
+    sh $s3,16($sp)
+.L80022474:
+    bne $s1,$zero,.L80022490
+    nop
+    lhu $v0,42($sp)
+    nop
+    addu $v0,$v0,$s4
+    j 0x80022494
+    sh $v0,18($sp)
+.L80022490:
+    sh $s4,18($sp)
+.L80022494:
+    lhu $a1,44($sp)
+    lhu $a0,46($sp)
+    sll $v1,$a1,16
+    sra $v1,$v1,16
+    sll $v0,$a0,16
+    sra $v0,$v0,16
+    mult $v1,$v0
+    addu $a2,$zero,$zero
+    sh $a1,20($sp)
+    mflo $t0
+    blez $t0,.L80022524
+    sh $a0,22($sp)
+    li $a0,0x7c1f
+.L800224c8:
+    lw $v1,48($sp)
+    sll $v0,$a2,1
+    addu $v1,$v1,$v0
+    lhu $v0,0($v1)
+    nop
+    andi $v0,$v0,0x7fff
+    bne $v0,$a0,.L800224ec
+    nop
+    sh $zero,0($v1)
+.L800224ec:
+    lhu $v0,0($v1)
+    nop
+    beq $v0,$zero,.L80022500
+    ori $v0,$v0,0x8000
+    sh $v0,0($v1)
+.L80022500:
+    lh $v1,20($sp)
+    lh $v0,22($sp)
+    nop
+    mult $v1,$v0
+    addiu $a2,$a2,1
+    mflo $t0
+    slt $v0,$a2,$t0
+    bne $v0,$zero,.L800224c8
+    nop
+.L80022524:
+    lh $v0,16($sp)
+    nop
+    bne $v0,$zero,.L80022544
+    nop
+    lh $v0,18($sp)
+    nop
+    beq $v0,$zero,.L80022550
+    nop
+.L80022544:
+    lw $a1,48($sp)
+    jal LoadImage
+    addiu $a0,$sp,16
+.L80022550:
+    lw $ra,76($sp)
+    lw $s4,72($sp)
+    lw $s3,68($sp)
+    lw $s2,64($sp)
+    lw $s1,60($sp)
+    lw $s0,56($sp)
+    jr $ra
+    addiu $sp,$sp,80
+    .end FUN_800223a8
+
     .section .text.FUN_80022570,"ax",@progbits
     .globl FUN_80022570
     .type FUN_80022570, @function

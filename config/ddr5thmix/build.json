@@ -47,6 +47,7 @@
         "FUN_80021f00",
         "FUN_8002200c",
         "FUN_80022208",
+        "FUN_800223a8",
         "FUN_80022570",
         "FUN_800225e4",
         "FUN_80022604",
@@ -1306,6 +1307,18 @@
         "FUN_800365c0": "0x800365c0",
         "FUN_80036648": "0x80036648",
         "FUN_80036668": "0x80036668"
+      }
+    },
+    {
+      "name": "FUN_800223a8",
+      "address": "0x800223a8",
+      "size": 456,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCore.s",
+      "section": ".text.FUN_800223a8",
+      "symbols": {
+        "FUN_80038028": "0x80038028",
+        "LoadImage": "0x80038810"
       }
     },
     {

@@ -20,6 +20,7 @@ epilogue.
 | `FUN_80021f00` | 268 | Initialize the 320x240 graphics mode once, prepare two display records, and run the final startup callback. | `47ebd47eb0d02349a11bab9ea0c802812e0df4d3c4dc5c34c8943cba0b9eeb19` |
 | `FUN_8002200c` | 300 | Prepare display records, dimensions, flags, and half-height fields for the graphics subsystem. | `b40e25a0829aa386e0788fd11f5712f6a5834f7d6f9cd6b972fe06d3bd0ab9f2` |
 | `FUN_80022208` | 60 | Run the remaining geometry/display setup chain with the observed 0x1000 parameter. | `b617c2849eaabaeaee146e1a524f1e0db2c7c8662d010169e659e77adc08adc3` |
+| `FUN_800223a8` | 456 | Decode an image header, upload a RECT, and normalize 15-bit pixels around the 0x7c1f transparency key. | `af9b66e9a164f21292e523504f5ec606b639b65987ffaba86411a76545de8580` |
 | `FUN_80022570` | 116 | Build four display environments and submit the first one. | `aab0a8352a3b63ee70b56ec2420187bac62e4c0af36419f1d8a24f989549e664` |
 | `FUN_800225e4` | 32 | Return the inverted boolean state of the startup global word. | `2bd11e27955409b780ee5216dfa5978a851e90934c0c710c3172b00e58daa35a` |
 | `FUN_80022604` | 56 | Store the raw boot check value and derive its 0x20000000 high-halfword flag. | `f35b20e4d0dfd6a99b0a2c2687d2dd8fe3dadd0f7e46378416d53c21c7116c36` |
@@ -31,7 +32,7 @@ epilogue.
 | `FUN_8009971c` | 84 | Derive state byte `+0xf4` from screen index 4 or inclusive range `0x2a..0x2c`. | `9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6` |
 | `main` | 408 | The crt0-to-game-code boundary: one-time subsystem init, RCNT2 vsync/timer IRQ install, then the outer reset / inner per-frame loop pair. | `275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303` |
 
-Total: fourteen functions and 3,428 selected bytes.
+Total: fifteen functions and 3,884 selected bytes.
 
 # Reconstruction
 
@@ -54,7 +55,7 @@ instruction mismatches:
    entries that declare symbols and discards unrelated sections from a shared
    source object. Existing unlinked GTE and BIOS assembly paths are unchanged.
 
-After those harness corrections, all fourteen functions matched without changing
+After those harness corrections, all fifteen functions matched without changing
 an instruction's semantics.
 
 # `main` and `loop_restart_flag` (`PTR_DAT_800ac8e8+0x09`)
@@ -111,12 +112,12 @@ the executable. On 2026-07-19, the earlier six functions matched all 1,824 bytes
 SHA-256
 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`.
 On 2026-08-09, after adding `FUN_80021dfc`, `FUN_80021f00`, `FUN_8002200c`,
-`FUN_80022208`, `FUN_80022570`, `FUN_800225e4`, `FUN_80022604`, and
-`FUN_8002263c`, the same command matched all 3,428 bytes against the same
+`FUN_80022208`, `FUN_800223a8`, `FUN_80022570`, `FUN_800225e4`, `FUN_80022604`,
+and `FUN_8002263c`, the same command matched all 3,884 bytes against the same
 executable SHA-256.
 The aggregate report remains ignored under `/build/`.
 
-This proves fourteen independently placed function bodies. It does not prove an
+This proves fifteen independently placed function bodies. It does not prove an
 original PsyQ object boundary, inter-function layout, original source spelling,
 or a whole-executable match.
 
