@@ -244,3 +244,18 @@ FUN_80028ce4:
     srl     $v0,$v0,0xc
 .end FUN_80028ce4
 .size FUN_80028ce4, . - FUN_80028ce4
+.section .text.FUN_80028d3c,"ax",@progbits
+.globl FUN_80028d3c
+.type FUN_80028d3c, @function
+.ent FUN_80028d3c
+FUN_80028d3c:
+    lui     $v0,0x800e
+    lw      $v1,14520($v0)
+    lui     $v0,0xd1b7
+    ori     $v0,$v0,0x1759
+    multu   $v1,$v0
+    mfhi    $a0
+    jr      $ra
+    srl     $v0,$a0,0xd
+.end FUN_80028d3c
+.size FUN_80028d3c, . - FUN_80028d3c
