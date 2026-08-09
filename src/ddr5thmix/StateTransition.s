@@ -2657,3 +2657,18 @@ FUN_800282e4:
     sltiu   $v0,$v0,1
 .end FUN_800282e4
 .size FUN_800282e4, . - FUN_800282e4
+.section .text.FUN_80028358,"ax",@progbits
+.globl FUN_80028358
+.type FUN_80028358, @function
+.ent FUN_80028358
+FUN_80028358:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    jal     FUN_80026940
+    andi    $a0,$a0,0xffff
+    lw      $ra,16($sp)
+    nop
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80028358
+.size FUN_80028358, . - FUN_80028358
