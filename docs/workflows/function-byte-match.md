@@ -1144,6 +1144,18 @@ reference/built SHA-256 is `b810cca1e574521a14ad2dd60b4cfdf08c347d77a4197dace42b
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing subset delta
+
+`FUN_8002a1b0` adds a 64-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It initializes the selected four-byte
+entry through `FUN_800358f8(-1)` and returns the new result minus its prior
+value. The verifier matched 64/64 bytes with GCC 14.2.0/binutils 2.43
+against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `33f20c1be27c0ddf5376455433fc65e1fca4e871c99be142e3559aa72b7d51c3`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
