@@ -4131,3 +4131,62 @@ FUN_80029868:
     addiu   $sp,$sp,32
 .end FUN_80029868
 .size FUN_80029868, . - FUN_80029868
+.section .text.FUN_80029920,"ax",@progbits
+.globl FUN_80029920
+.type FUN_80029920, @function
+.ent FUN_80029920
+FUN_80029920:
+    addiu   $sp,$sp,-40
+    sw      $s1,28($sp)
+    addu    $s1,$a1,$zero
+    sw      $s0,24($sp)
+    addu    $s0,$a2,$zero
+    andi    $v0,$s0,0xff
+    sltiu   $v0,$v0,101
+    bne     $v0,$zero,.L80029948
+    sw      $ra,32($sp)
+    addiu   $s0,$zero,100
+.L80029948:
+    andi    $a0,$a0,0xffff
+    addiu   $a1,$sp,16
+    jal     0x80029f40
+    addiu   $a2,$sp,18
+    andi    $v0,$v0,0xff
+    bne     $v0,$zero,.L800299c8
+    addiu   $v0,$zero,-1
+    lhu     $a0,16($sp)
+    sll     $zero,$zero,0
+    slti    $v0,$a0,3
+    beq     $v0,$zero,.L80029980
+    sll     $zero,$zero,0
+    bgez    $a0,.L80029988
+    lui     $v1,0x800e
+.L80029980:
+    j       .L80029998
+    addu    $v0,$zero,$zero
+.L80029988:
+    addiu   $v1,$v1,14872
+    sll     $v0,$a0,0x2
+    addu    $v0,$v0,$v1
+    lhu     $v0,0($v0)
+.L80029998:
+    sll     $zero,$zero,0
+    addu    $a0,$v0,$zero
+    lhu     $a1,18($sp)
+    andi    $a2,$s1,0xff
+    jal     0x80029ab4
+    andi    $a3,$s0,0xff
+    sll     $v1,$v0,0x10
+    sra     $v1,$v1,0x10
+    addiu   $a0,$zero,-1
+    bne     $v1,$a0,.L800299c8
+    addu    $v0,$zero,$zero
+    addiu   $v0,$zero,-1
+.L800299c8:
+    lw      $ra,32($sp)
+    lw      $s1,28($sp)
+    lw      $s0,24($sp)
+    jr      $ra
+    addiu   $sp,$sp,40
+.end FUN_80029920
+.size FUN_80029920, . - FUN_80029920
