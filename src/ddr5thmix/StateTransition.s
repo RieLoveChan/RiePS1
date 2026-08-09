@@ -3508,3 +3508,14 @@ FUN_80029084:
     addiu   $sp,$sp,32
 .end FUN_80029084
 .size FUN_80029084, . - FUN_80029084
+.section .text.FUN_8002915c,"ax",@progbits
+.globl FUN_8002915c
+.type FUN_8002915c, @function
+.ent FUN_8002915c
+FUN_8002915c:
+    lui     $v0,0x800e
+    lw      $v0,14272($v0)
+    jr      $ra
+    sll     $zero,$zero,0
+.end FUN_8002915c
+.size FUN_8002915c, . - FUN_8002915c
