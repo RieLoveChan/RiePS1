@@ -4284,6 +4284,29 @@ FUN_8002d5c0:
     .end FUN_8002d5c0
     .size FUN_8002d5c0, . - FUN_8002d5c0
 
+/* FUN_8002d5d4 (0x8002d5d4, 56 bytes) */
+    .section .text.FUN_8002d5d4,"ax",@progbits
+    .globl FUN_8002d5d4
+    .type FUN_8002d5d4, @function
+    .ent FUN_8002d5d4
+FUN_8002d5d4:
+    lui     $v0,0x800e
+    lbu     $a0,16488($v0)
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    jal     _card_format
+    sll     $a0,$a0,4
+    addiu   $v1,$zero,1
+    .word   0x14430002
+    addiu   $a0,$zero,2
+    addu    $a0,$v1,$zero
+    lw      $ra,16($sp)
+    addu    $v0,$a0,$zero
+    jr      $ra
+    addiu   $sp,$sp,24
+    .end FUN_8002d5d4
+    .size FUN_8002d5d4, . - FUN_8002d5d4
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
