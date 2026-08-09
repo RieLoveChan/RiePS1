@@ -1201,6 +1201,19 @@ reference/built SHA-256 is `5cb0d65a0e61efd45c82978b6c31c1b4c03fce4ceaa29c406455
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing rate updater
+
+`FUN_8002a300` adds a 252-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It derives a scaled target from the
+input, optionally dispatches `FUN_8002a5a8`, refreshes the record through
+`FUN_800358f8`/`FUN_8002a670`, computes a divisor-based rate, and clamps the
+shared timing field. The verifier matched 252/252 bytes with GCC
+14.2.0/binutils 2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is `55bbd7cc87a65ec57e958aea372e01f1b589af6726527504c589a82ffcd5e673`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing resource resolver
 
 `FUN_80029920` adds a 188-byte exact match in
