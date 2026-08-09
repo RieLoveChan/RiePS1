@@ -4064,6 +4064,24 @@ FUN_80032bac:
     .end FUN_80032bac
     .size FUN_80032bac, . - FUN_80032bac
 
+/* FUN_8003323c (0x8003323c, 36 bytes) */
+    .section .text.FUN_8003323c,"ax",@progbits
+    .globl FUN_8003323c
+    .type FUN_8003323c, @function
+    .ent FUN_8003323c
+FUN_8003323c:
+    addiu   $sp,$sp,-24
+    sw      $ra,16($sp)
+    addiu   $a2,$zero,202
+    jal     _SpuSetAnyVoice
+    addiu   $a3,$zero,203
+    lw      $ra,16($sp)
+    addiu   $sp,$sp,24
+    jr      $ra
+    nop
+    .end FUN_8003323c
+    .size FUN_8003323c, . - FUN_8003323c
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
