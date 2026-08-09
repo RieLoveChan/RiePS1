@@ -490,3 +490,175 @@ FUN_8002616c:
     addiu   $sp,$sp,32
 .end FUN_8002616c
 .size FUN_8002616c, . - FUN_8002616c
+
+.section .text.FUN_800262ec,"ax",@progbits
+.globl FUN_800262ec
+.type FUN_800262ec, @function
+.ent FUN_800262ec
+FUN_800262ec:
+    addu    $t0,$zero,$zero
+    lui     $v0,0x800e
+    lui     $v1,0x800e
+    addiu   $a3,$v1,14192
+    lbu     $v1,132($a3)
+    nop
+    beq     $v1,$zero,.L80026314
+    addiu   $a2,$v0,14328
+    j       .L80026330
+    addu    $v1,$t0,$zero
+.L80026314:
+    lui     $v0,0x800e
+    lw      $v1,14520($v0)
+    lui     $v0,0xd1b7
+    ori     $v0,$v0,0x1759
+    multu   $v1,$v0
+    mfhi    $t1
+    srl     $v1,$t1,13
+.L80026330:
+    lui     $v0,0x1
+    ori     $v0,$v0,0xb000
+    sltu    $v0,$v0,$v1
+    beq     $v0,$zero,.L80026348
+    andi    $a1,$a0,0xffff
+    addiu   $t0,$zero,1
+.L80026348:
+    srl     $v1,$a1,8
+    addiu   $v0,$zero,6
+    beq     $v1,$v0,.L8002639c
+    slti    $v0,$v1,7
+    beq     $v0,$zero,.L80026370
+    addiu   $v0,$zero,5
+    beq     $v1,$v0,.L8002638c
+    sltiu   $v0,$a1,1329
+    j       .L800263ac
+    nop
+.L80026370:
+    addiu   $v0,$zero,16
+    beq     $v1,$v0,.L800263a4
+    addiu   $v0,$zero,34
+    beq     $v1,$v0,.L80026394
+    nop
+    j       .L800263ac
+    nop
+.L8002638c:
+    bne     $v0,$zero,.L800263ac
+    nop
+.L80026394:
+    jr      $ra
+    addiu   $v0,$zero,-1
+.L8002639c:
+    j       .L8002638c
+    sltiu   $v0,$a1,1550
+.L800263a4:
+    bne     $a1,$zero,.L80026394
+    nop
+.L800263ac:
+    lhu     $a1,0($a3)
+    lhu     $v0,22($a2)
+    andi    $v1,$a0,0xffff
+    bne     $v0,$v1,.L800263d8
+    sh      $a0,2($a2)
+    addu    $v0,$zero,$zero
+    addiu   $v1,$zero,1
+    sb      $v1,0($a2)
+    addiu   $v1,$zero,6
+    jr      $ra
+    sb      $v1,1($a2)
+.L800263d8:
+    sltiu   $v0,$a1,52
+    bne     $v0,$zero,.L800263e8
+    sh      $zero,22($a2)
+    addiu   $a1,$zero,51
+.L800263e8:
+    lbu     $v0,0($a2)
+    nop
+    beq     $v0,$zero,.L800263fc
+    lui     $v0,0x800e
+    sb      $zero,14713($v0)
+.L800263fc:
+    addiu   $v0,$zero,1
+    sb      $v0,0($a2)
+    srl     $v0,$v1,8
+    addiu   $v1,$v0,-5
+    sltiu   $v0,$v1,12
+    beq     $v0,$zero,.L80026394
+    andi    $a3,$a0,0xff
+    lui     $v0,0x8002
+    addiu   $v0,$v0,-22220
+    sll     $v1,$v1,2
+    addu    $v1,$v1,$v0
+    lw      $v0,0($v1)
+    nop
+    jr      $v0
+    nop
+.L80026438:
+    addiu   $v0,$zero,2
+    sb      $v0,0($a2)
+    addiu   $v0,$zero,8
+    lui     $a0,0x800b
+    addiu   $a0,$a0,-9440
+    sh      $v0,20($a2)
+    sll     $v0,$t0,2
+    sll     $v1,$a1,3
+    addu    $v0,$v0,$v1
+    addu    $v0,$v0,$a0
+    lw      $v0,0($v0)
+    sll     $v1,$a3,3
+    addu    $v0,$v0,$v1
+    j       .L80026508
+    sw      $v0,16($a2)
+.L80026474:
+    addiu   $v0,$zero,2
+    sb      $v0,0($a2)
+    addiu   $v0,$zero,16
+    lui     $a0,0x800b
+    addiu   $a0,$a0,-9440
+    sll     $v1,$t0,2
+    sh      $v0,20($a2)
+    sll     $v0,$a1,3
+    addu    $v1,$v1,$v0
+    addu    $v1,$v1,$a0
+    sll     $v0,$a3,4
+    lw      $v1,0($v1)
+    addiu   $v0,$v0,400
+    addu    $v1,$v1,$v0
+    j       .L80026508
+    sw      $v1,16($a2)
+.L800264b4:
+    andi    $a3,$a3,0xffff
+    sltiu   $v0,$a3,10
+    bne     $v0,$zero,.L800264cc
+    lui     $a1,0x801a
+    j       .L80026394
+    sh      $zero,2($a2)
+.L800264cc:
+    ori     $a1,$a1,0xc000
+    lui     $a0,0x1
+    ori     $a0,$a0,0x1040
+    addiu   $v0,$zero,4
+    lui     $v1,0x800b
+    addiu   $v1,$v1,-8200
+    sb      $v0,1($a2)
+    sll     $v0,$a3,2
+    addu    $v0,$v0,$v1
+    lw      $v1,0($v0)
+    addu    $v0,$zero,$zero
+    sw      $a0,8($a2)
+    addu    $v1,$v1,$a1
+    jr      $ra
+    sw      $v1,4($a2)
+.L80026508:
+    lui     $a1,0x801d
+    ori     $a1,$a1,0x4000
+    lui     $a0,0x1
+    ori     $a0,$a0,0x1040
+    addu    $v0,$zero,$zero
+    addiu   $v1,$zero,1
+    sb      $v1,1($a2)
+    addiu   $v1,$zero,18000
+    sw      $a1,4($a2)
+    sw      $a0,8($a2)
+    jr      $ra
+    sw      $v1,12($a2)
+.end FUN_800262ec
+.size FUN_800262ec, . - FUN_800262ec
