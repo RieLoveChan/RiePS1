@@ -9741,10 +9741,21 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028150",
+   "symbols": {
+     "FUN_80029410": "0x80029410",
+     "FUN_80028e80": "0x80028e80",
+     "FUN_80028ef0": "0x80028ef0"
+   }
+ },
+  {
+    "name": "FUN_800281f4",
+    "address": "0x800281f4",
+    "size": 40,
+    "language": "asm",
+    "source": "src/ddr5thmix/StateTransition.s",
+    "section": ".text.FUN_800281f4",
     "symbols": {
-      "FUN_80029410": "0x80029410",
-      "FUN_80028e80": "0x80028e80",
-      "FUN_80028ef0": "0x80028ef0"
+      "FUN_80028fc8": "0x80028fc8"
     }
   },
   {
