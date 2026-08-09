@@ -3962,3 +3962,39 @@ FUN_800295ac:
     addu    $v0,$zero,$zero
 .end FUN_800295ac
 .size FUN_800295ac, . - FUN_800295ac
+.section .text.FUN_80029644,"ax",@progbits
+.globl FUN_80029644
+.type FUN_80029644, @function
+.ent FUN_80029644
+FUN_80029644:
+    lui     $v0,0x800e
+    addiu   $a2,$v0,14680
+    lbu     $v0,34($a2)
+    sll     $zero,$zero,0
+    beq     $v0,$zero,.L800296a4
+    addu    $a1,$zero,$zero
+    addiu   $t0,$zero,3
+    addiu   $a3,$zero,4
+    addu    $v1,$a2,$zero
+.L80029668:
+    lbu     $v0,0($v1)
+    sll     $zero,$zero,0
+    bne     $v0,$t0,.L80029690
+    sll     $zero,$zero,0
+    lw      $v0,4($v1)
+    sll     $zero,$zero,0
+    bne     $v0,$a0,.L80029690
+    addu    $v0,$zero,$zero
+    jr      $ra
+    sb      $a3,0($v1)
+.L80029690:
+    lbu     $v0,34($a2)
+    addiu   $a1,$a1,1
+    sltu    $v0,$a1,$v0
+    bne     $v0,$zero,.L80029668
+    addiu   $v1,$v1,8
+.L800296a4:
+    jr      $ra
+    addu    $v0,$zero,$zero
+.end FUN_80029644
+.size FUN_80029644, . - FUN_80029644
