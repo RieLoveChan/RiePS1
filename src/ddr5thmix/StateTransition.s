@@ -4524,3 +4524,27 @@ FUN_80029e08:
     sra     $v0,$v0,0x10
 .end FUN_80029e08
 .size FUN_80029e08, . - FUN_80029e08
+.section .text.FUN_80029e34,"ax",@progbits
+.globl FUN_80029e34
+.type FUN_80029e34, @function
+.ent FUN_80029e34
+FUN_80029e34:
+    addu    $a1,$zero,$zero
+    addu    $a0,$a1,$zero
+    lui     $v0,0x800e
+    addiu   $v1,$v0,14728
+.L80029e44:
+    lhu     $v0,0($v1)
+    sll     $zero,$zero,0
+    beq     $v0,$zero,.L80029e58
+    sll     $zero,$zero,0
+    addiu   $a1,$a1,1
+.L80029e58:
+    addiu   $a0,$a0,1
+    sltiu   $v0,$a0,16
+    bne     $v0,$zero,.L80029e44
+    addiu   $v1,$v1,2
+    jr      $ra
+    addu    $v0,$a1,$zero
+.end FUN_80029e34
+.size FUN_80029e34, . - FUN_80029e34
