@@ -9649,14 +9649,26 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027d18",
+   "symbols": {
+     "FUN_800358f8": "0x800358f8",
+     "FUN_8002f42c": "0x8002f42c",
+     "FUN_8002ef5c": "0x8002ef5c",
+     "FUN_800297c4": "0x800297c4",
+     "FUN_8002f20c": "0x8002f20c",
+     "FUN_8002f29c": "0x8002f29c",
+     "FUN_8002f1ac": "0x8002f1ac"
+   }
+ },
+  {
+    "name": "FUN_80027ed4",
+    "address": "0x80027ed4",
+    "size": 168,
+    "language": "asm",
+    "source": "src/ddr5thmix/StateTransition.s",
+    "section": ".text.FUN_80027ed4",
     "symbols": {
-      "FUN_800358f8": "0x800358f8",
       "FUN_8002f42c": "0x8002f42c",
-      "FUN_8002ef5c": "0x8002ef5c",
-      "FUN_800297c4": "0x800297c4",
-      "FUN_8002f20c": "0x8002f20c",
-      "FUN_8002f29c": "0x8002f29c",
-      "FUN_8002f1ac": "0x8002f1ac"
+      "FUN_8002ef5c": "0x8002ef5c"
     }
   },
   {
