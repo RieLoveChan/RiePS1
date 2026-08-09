@@ -1000,6 +1000,20 @@ the reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing mode-4 watchdog
+
+`FUN_80029324` adds a 108-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It increments the record counter at
+`0x800e39d4` only when mode is `4` and the completion field at `+0x28` is
+zero; after `180` increments it calls `CdControlF(9, 0)`. The verifier
+matched 108/108 bytes with GCC 14.2.0/binutils 2.43 against lawful
+executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`cd8c94b7f2f738015a3ee3d612b58daaf7f0a601eaa77ba1dde4d7da721fdaa7`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Timing scale calculation
 
 `FUN_800292e8` adds a 60-byte exact match in

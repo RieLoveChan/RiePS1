@@ -9599,6 +9599,17 @@
       "symbols": {}
     },
     {
+      "name": "FUN_80029324",
+      "address": "0x80029324",
+      "size": 108,
+      "language": "asm",
+      "source": "src/ddr5thmix/StateTransition.s",
+      "section": ".text.FUN_80029324",
+      "symbols": {
+        "sym_8003fa20": "0x8003fa20"
+      }
+    },
+    {
       "name": "FUN_80025850",
       "address": "0x80025850",
       "size": 220,

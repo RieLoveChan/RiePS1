@@ -3679,3 +3679,39 @@ FUN_800292e8:
     srl     $v0,$a1,0x5
 .end FUN_800292e8
 .size FUN_800292e8, . - FUN_800292e8
+.section .text.FUN_80029324,"ax",@progbits
+.globl FUN_80029324
+.globl sym_8003fa20
+.type FUN_80029324, @function
+.ent FUN_80029324
+FUN_80029324:
+    addiu   $sp,$sp,-24
+    lui     $v0,0x800e
+    addiu   $a0,$v0,14768
+    sw      $ra,16($sp)
+    lw      $v1,12($a0)
+    addiu   $v0,$zero,4
+    bne     $v1,$v0,.L80029380
+    sll     $zero,$zero,0
+    lw      $v0,40($a0)
+    sll     $zero,$zero,0
+    bne     $v0,$zero,.L80029380
+    sll     $zero,$zero,0
+    lw      $v0,36($a0)
+    sll     $zero,$zero,0
+    addiu   $v0,$v0,1
+    sw      $v0,36($a0)
+    lw      $v0,36($a0)
+    sll     $zero,$zero,0
+    slti    $v0,$v0,181
+    bne     $v0,$zero,.L80029380
+    addiu   $a0,$zero,9
+    jal     sym_8003fa20
+    addu    $a1,$zero,$zero
+.L80029380:
+    lw      $ra,16($sp)
+    sll     $zero,$zero,0
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80029324
+.size FUN_80029324, . - FUN_80029324
