@@ -259,3 +259,23 @@ FUN_80028d3c:
     srl     $v0,$a0,0xd
 .end FUN_80028d3c
 .size FUN_80028d3c, . - FUN_80028d3c
+.section .text.FUN_80028d5c,"ax",@progbits
+.globl FUN_80028d5c
+.type FUN_80028d5c, @function
+.ent FUN_80028d5c
+FUN_80028d5c:
+    lui     $v0,0x800e
+    addiu   $v0,$v0,14184
+    lw      $a0,20($v0)
+    lui     $v1,0x8888
+    ori     $v1,$v1,0x8889
+    multu   $a0,$v1
+    mfhi    $a0
+    lw      $v1,56($v0)
+    srl     $v0,$a0,0x5
+    mult    $v0,$v1
+    mflo    $v1
+    jr      $ra
+    srl     $v0,$v1,0xc
+.end FUN_80028d5c
+.size FUN_80028d5c, . - FUN_80028d5c
