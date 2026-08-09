@@ -739,6 +739,20 @@ reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing accumulator
+
+`FUN_80028c74` adds a 112-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It derives a delta from
+`FUN_800358f8(-1)` and `0x800e37a4`, then updates both words of the 8-byte
+buffer at `0x800e38b8` using `FUN_80028ce4` and `FUN_80028d5c`.
+`Invoke-FunctionMatch.ps1` matched 112/112 bytes with GCC 14.2.0/binutils
+2.43 against lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`5edb698913e45eaea62425418175a4e8d1701d54e18d8f4c68785480c5589c0d`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Acceptance boundary
 
 This closes the workflow's smallest-build backlog item and satisfies the
