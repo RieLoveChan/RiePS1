@@ -3440,3 +3440,71 @@ FUN_8002906c:
     sb      $zero,108($v0)
 .end FUN_8002906c
 .size FUN_8002906c, . - FUN_8002906c
+.section .text.FUN_80029084,"ax",@progbits
+.globl FUN_80029084
+.globl sym_80024e00
+.globl sym_800358f8
+.type FUN_80029084, @function
+.ent FUN_80029084
+FUN_80029084:
+    addiu   $sp,$sp,-32
+    sw      $s0,16($sp)
+    addu    $s0,$a0,$zero
+    sw      $s2,24($sp)
+    addu    $s2,$a1,$zero
+    lui     $v0,0x800e
+    sw      $s1,20($sp)
+    addiu   $s1,$v0,14184
+    sltiu   $v0,$s0,127
+    bne     $v0,$zero,.L800290b4
+    sw      $ra,28($sp)
+    addiu   $s0,$zero,127
+.L800290b4:
+    sll     $v0,$s0,0x7
+    lw      $v1,88($s1)
+    subu    $s0,$v0,$s0
+    beq     $s0,$v1,.L80029144
+    sll     $zero,$zero,0
+    bne     $s2,$zero,.L800290e4
+    sll     $zero,$zero,0
+    sw      $s0,88($s1)
+    jal     sym_80024e00
+    sb      $zero,108($s1)
+    j       .L80029144
+    sll     $zero,$zero,0
+.L800290e4:
+    jal     sym_800358f8
+    addiu   $a0,$zero,-1
+    lw      $v1,88($s1)
+    sw      $v0,96($s1)
+    sw      $s0,104($s1)
+    sltu    $v0,$v1,$s0
+    beq     $v0,$zero,.L80029118
+    sw      $v1,100($s1)
+    subu    $v0,$s0,$v1
+    divu    $zero,$v0,$s2
+    mflo    $v0
+    j       .L80029128
+    addiu   $v1,$zero,1
+.L80029118:
+    subu    $v0,$v1,$s0
+    divu    $zero,$v0,$s2
+    mflo    $v0
+    addiu   $v1,$zero,2
+.L80029128:
+    sb      $v1,108($s1)
+    sw      $v0,92($s1)
+    lw      $v0,92($s1)
+    sll     $zero,$zero,0
+    bne     $v0,$zero,.L80029144
+    addiu   $v0,$zero,1
+    sw      $v0,92($s1)
+.L80029144:
+    lw      $ra,28($sp)
+    lw      $s2,24($sp)
+    lw      $s1,20($sp)
+    lw      $s0,16($sp)
+    jr      $ra
+    addiu   $sp,$sp,32
+.end FUN_80029084
+.size FUN_80029084, . - FUN_80029084
