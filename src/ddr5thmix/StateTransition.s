@@ -3773,3 +3773,23 @@ FUN_80029410:
     srl     $v0,$a1,0xb
 .end FUN_80029410
 .size FUN_80029410, . - FUN_80029410
+.section .text.FUN_80029440,"ax",@progbits
+.globl FUN_80029440
+.type FUN_80029440, @function
+.ent FUN_80029440
+FUN_80029440:
+    addiu   $sp,$sp,-24
+    lui     $a0,0x800e
+    addiu   $a0,$a0,14680
+    sw      $ra,16($sp)
+    jal     0x8003bac8
+    addiu   $a1,$zero,48
+    addiu   $a0,$zero,4
+    jal     0x80029474
+    addiu   $a1,$zero,16
+    lw      $ra,16($sp)
+    sll     $zero,$zero,0
+    jr      $ra
+    addiu   $sp,$sp,24
+.end FUN_80029440
+.size FUN_80029440, . - FUN_80029440

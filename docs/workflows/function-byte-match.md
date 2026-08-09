@@ -911,6 +911,19 @@ the reference/built SHA-256 is
 This is a bounded semantic assembly reconstruction, not a claim about the
 original source form.
 
+# Timing buffer coordinator
+
+`FUN_80029440` adds a 52-byte exact match in
+`src/ddr5thmix/StateTransition.s`. It submits the 48-byte record at
+`0x800e3958` through `FUN_8003bac8`, then invokes `FUN_80029474(4, 16)`.
+The verifier matched 52/52 bytes with GCC 14.2.0/binutils 2.43 against
+lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; the
+reference/built SHA-256 is
+`bebdf92175ffcd4c8ae52e97b16ed5a8e0e872aa1ce81e6f5d678a0488856099`.
+This is a bounded semantic assembly reconstruction, not a claim about the
+original source form.
+
 # Configuration index scaler
 
 `FUN_80029410` adds a 48-byte exact match in
