@@ -4010,6 +4010,19 @@ FUN_80034b1c:
     .end FUN_80034b1c
     .size FUN_80034b1c, . - FUN_80034b1c
 
+/* FUN_80034b2c (0x80034b2c, 16 bytes) */
+    .section .text.FUN_80034b2c,"ax",@progbits
+    .globl FUN_80034b2c
+    .type FUN_80034b2c, @function
+    .ent FUN_80034b2c
+FUN_80034b2c:
+    addiu   $v0,$zero,1
+    lui     $at,0x800e
+    jr      $ra
+    sh      $v0,20992($at)
+    .end FUN_80034b2c
+    .size FUN_80034b2c, . - FUN_80034b2c
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
