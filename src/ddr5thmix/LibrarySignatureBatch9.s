@@ -3836,6 +3836,87 @@ FUN_8002b734:
     .end FUN_8002b734
     .size FUN_8002b734, . - FUN_8002b734
 
+/* FUN_8002b8d0 (0x8002b8d0, 272 bytes) */
+    .section .text.FUN_8002b8d0,"ax",@progbits
+    .globl FUN_8002b8d0
+    .type FUN_8002b8d0, @function
+    .ent FUN_8002b8d0
+FUN_8002b8d0:
+    addiu   $t0,$a2,-1
+    lw      $v0,16($sp)
+    sll     $zero,$zero,0x0
+    lw      $t3,4($v0)
+    beq     $a2,$zero,.LFUN_8002b8d0_108
+    lui     $t2,0x1f80
+    lui     $t5,0x0700
+    lui     $t1,0x00ff
+    ori     $t1,$t1,0xffff
+    addiu   $t4,$zero,-1
+    addiu   $a2,$a0,10
+.LFUN_8002b8d0_2c_read:
+    lhu     $a0,-8($a2)
+    lhu     $v1,-4($a2)
+    lhu     $v0,0($a2)
+    sll     $a0,$a0,3
+    addu    $a0,$a0,$t2
+    sll     $v1,$v1,3
+    addu    $v1,$v1,$t2
+    sll     $v0,$v0,3
+    addu    $v0,$v0,$t2
+    lw      $t6,0($a0)
+    lw      $t7,0($v1)
+    lw      $t8,0($v0)
+    mtc2    $t6,$12
+    mtc2    $t8,$14
+    mtc2    $t7,$13
+    sll     $zero,$zero,0x0
+    sll     $zero,$zero,0x0
+    .word   0x4b400006
+    lhu     $a0,4($a0)
+    lhu     $v1,4($v1)
+    lhu     $v0,4($v0)
+    mtc2    $a0,$17
+    mtc2    $v1,$18
+    mtc2    $v0,$19
+    mfc2    $v1,$24
+    sll     $zero,$zero,0x0
+    bgtz    $v1,.LFUN_8002b8d0_a8
+    sll     $zero,$zero,0x0
+    addiu   $a2,$a2,12
+    j       0x8002b9cc
+    addiu   $a1,$a1,64
+.LFUN_8002b8d0_a8:
+    .word   0x4b58002d
+    swc2    $12,8($a1)
+    swc2    $13,16($a1)
+    swc2    $14,24($a1)
+    mfc2    $v1,$7
+    sll     $zero,$zero,0x0
+    srav    $v1,$v1,$a3
+    andi    $a0,$v1,0xf00
+    andi    $v1,$v1,0xff
+    sll     $v0,$a0,20
+    or      $a0,$v0,$t5
+    sll     $v1,$v1,2
+    addu    $v1,$t3,$v1
+    lw      $v0,0($v1)
+    addiu   $a2,$a2,12
+    and     $v0,$v0,$t1
+    or      $v0,$v0,$a0
+    sw      $v0,0($a1)
+    and     $v0,$a1,$t1
+    addiu   $a1,$a1,64
+    sw      $v0,0($v1)
+.LFUN_8002b8d0_a0:
+    addiu   $t0,$t0,-1
+    bne     $t0,$t4,.LFUN_8002b8d0_2c_read
+    sll     $zero,$zero,0x0
+.LFUN_8002b8d0_108:
+    jr      $ra
+    sll     $zero,$zero,0x0
+    .end FUN_8002b8d0
+    .size FUN_8002b8d0, . - FUN_8002b8d0
+
 /* FUN_8002b230 (0x8002b230, 292 bytes) */
     .section .text.FUN_8002b230,"ax",@progbits
     .globl FUN_8002b230
