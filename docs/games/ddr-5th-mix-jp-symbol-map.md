@@ -160,8 +160,8 @@ flag**: normally `0`, and momentarily `1` only to force a full runtime restart
 from the mode-`0xff` service state.
 
 `main` is reconstructed as semantic MIPS assembly in
-`src/ddr5thmix/RuntimeCore.s` (added to the `runtime-core` module, now six
-functions/2,232 bytes) and matches all 408 reference bytes under GNU
+`src/ddr5thmix/RuntimeCore.s` (now seven functions/2,492 bytes in the
+`runtime-core` module) and matches all 408 reference bytes under GNU
 binutils 2.43; built/reference SHA-256
 `275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303`. Promoted
 to `confidence = verified`, `source_status = hand_written_source`.

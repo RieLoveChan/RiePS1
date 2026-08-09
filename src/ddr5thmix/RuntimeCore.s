@@ -2,6 +2,80 @@
     .set noat
     .set nomacro
 
+    .section .text.FUN_80021dfc,"ax",@progbits
+    .globl FUN_80021dfc
+    .type FUN_80021dfc, @function
+    .ent FUN_80021dfc
+FUN_80021dfc:
+    addiu $sp,$sp,-32
+    sw $ra,24($sp)
+    sw $s1,20($sp)
+    jal FUN_80035b08
+    sw $s0,16($sp)
+    jal FUN_8003f5e8
+    lui $s0,0x800b
+    lw $a0,-0x3714($s0)
+    jal bzero
+    li $a1,0xd0
+    lui $a0,0x800e
+    addiu $a0,$a0,0x3b78
+    jal bzero
+    li $a1,0x9c
+    lw $v0,-0x3714($s0)
+    li $s1,1
+    jal FUN_8002c590
+    sb $s1,0x74($v0)
+    jal FUN_8009af28
+    nop
+    jal FUN_8002d848
+    nop
+    lui $a0,0x800e
+    addiu $a0,$a0,0x2a68
+    jal FUN_8003ea08
+    addiu $a1,$a0,0x34
+    jal FUN_8003c568
+    nop
+    lui $v0,0x800b
+    lui $v1,0x800e
+    lw $a0,-0x3710($v0)
+    addiu $v0,$v0,-0x3710
+    sw $a0,0x2ae0($v1)
+    lw $v0,4($v0)
+    addiu $v1,$v1,0x2ae0
+    jal FUN_800225e4
+    sw $v0,4($v1)
+    beq $v0,$zero,.L80021ea4
+    nop
+    lw $v0,-0x3714($s0)
+    j .L80021eb0
+    sb $s1,0x98($v0)
+.L80021ea4:
+    lw $v0,-0x3714($s0)
+    nop
+    sb $zero,0x98($v0)
+.L80021eb0:
+    jal FUN_80022604
+    nop
+    lui $v1,0x800b
+    lw $v1,-0x3714($v1)
+    addu $a0,$zero,$zero
+    jal ResetCallback
+    sb $v0,0x1e($v1)
+    jal FUN_80022570
+    nop
+    jal FUN_80021f00
+    nop
+    jal FUN_80042df8
+    nop
+    jal FUN_8002a8b0
+    nop
+    lw $ra,24($sp)
+    lw $s1,20($sp)
+    lw $s0,16($sp)
+    jr $ra
+    addiu $sp,$sp,32
+    .end FUN_80021dfc
+
     .section .text.FUN_8002112c,"ax",@progbits
     .globl FUN_8002112c
     .type FUN_8002112c, @function

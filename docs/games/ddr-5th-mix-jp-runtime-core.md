@@ -16,6 +16,7 @@ epilogue.
 
 | Function | Bytes | Role | Built/reference SHA-256 |
 |---|---:|---|---|
+| `FUN_80021dfc` | 260 | Initialize game-owned state, PAD buffers, CD/PAD services, and startup callbacks. | `4c32b3e6f85067a54bb9a8295ee12890e3b40b9a03890128fbe13695e374f097` |
 | `FUN_8002112c` | 584 | Read two PsyQ PAD buffers and two auxiliary input words; calculate and snapshot held/pressed/released edges. | `ec71afe8e5431d30698f04fd7a96f5961253072e99572749f9b40ba50512c1ba` |
 | `FUN_8002216c` | 156 | Clear the 0x140-byte runtime-state prefix, call two subsystem resets, and establish fixed flag bytes. | `83a471a336ab3136da9cfc59b654b8e4065339abcc288cac11b72a552358e202` |
 | `FUN_80022cf8` | 524 | Dispatch the mode/submode handlers and run the shared per-frame epilogue. | `4057cd0604a3d2ef794d691ab19859e5a41507bcde9705c9eef3944d85fc5dae` |
@@ -23,7 +24,7 @@ epilogue.
 | `FUN_8009971c` | 84 | Derive state byte `+0xf4` from screen index 4 or inclusive range `0x2a..0x2c`. | `9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6` |
 | `main` | 408 | The crt0-to-game-code boundary: one-time subsystem init, RCNT2 vsync/timer IRQ install, then the outer reset / inner per-frame loop pair. | `275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303` |
 
-Total: six functions and 2,232 selected bytes.
+Total: seven functions and 2,492 selected bytes.
 
 # Reconstruction
 
@@ -98,14 +99,15 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module runtime-core
 ```
 
-On 2026-07-19, GNU binutils 2.43 matched all 1,824 bytes against executable
+On 2026-08-09, GNU binutils 2.43 matched `FUN_80021dfc`'s 260 bytes against
+the executable. On 2026-07-19, the earlier six functions matched all 1,824 bytes against executable
 SHA-256
 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`.
-On 2026-07-24, after adding `main` (`src/ddr5thmix/RuntimeCore.s`), the same
-command matched all 2,232 bytes against the same executable SHA-256.
+On 2026-08-09, after adding `FUN_80021dfc`, the same command matched all
+2,492 bytes against the same executable SHA-256.
 The aggregate report remains ignored under `/build/`.
 
-This proves six independently placed function bodies. It does not prove an
+This proves seven independently placed function bodies. It does not prove an
 original PsyQ object boundary, inter-function layout, original source spelling,
 or a whole-executable match.
 
