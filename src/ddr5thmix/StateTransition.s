@@ -4505,3 +4505,22 @@ FUN_80029da0:
     addiu   $sp,$sp,32
 .end FUN_80029da0
 .size FUN_80029da0, . - FUN_80029da0
+.section .text.FUN_80029e08,"ax",@progbits
+.globl FUN_80029e08
+.type FUN_80029e08, @function
+.ent FUN_80029e08
+FUN_80029e08:
+    addiu   $a0,$a0,1
+    addu    $v0,$a0,$zero
+    sll     $a0,$a0,0x10
+    sra     $a0,$a0,0x10
+    slti    $a0,$a0,16
+    bne     $a0,$zero,.L80029e28
+    sll     $zero,$zero,0
+    addu    $v0,$zero,$zero
+.L80029e28:
+    sll     $v0,$v0,0x10
+    jr      $ra
+    sra     $v0,$v0,0x10
+.end FUN_80029e08
+.size FUN_80029e08, . - FUN_80029e08
