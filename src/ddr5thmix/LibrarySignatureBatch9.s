@@ -21929,3 +21929,55 @@ FUN_80096518:
     .word   0x0461fffd, 0x2442ffd6, 0x03e00008, 0x00000000
     .end FUN_80096518
     .size FUN_80096518, . - FUN_80096518
+
+/* FUN_80073df4 (0x80073df4, 64 bytes) */
+    .section .text.FUN_80073df4,"ax",@progbits
+    .globl FUN_80073df4
+    .type FUN_80073df4, @function
+    .ent FUN_80073df4
+FUN_80073df4:
+    .word   0x27bdffe8, 0x3c02800f, 0x24422908, 0x3c030001
+    .word   0x00431021, 0xafbf0010, 0x9042277b, 0x00000000
+    .word   0x10400003, 0x00000000, 0x0c029baa, 0x00000000
+    .word   0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+    .end FUN_80073df4
+    .size FUN_80073df4, . - FUN_80073df4
+
+/* FUN_80085f8c (0x80085f8c, 64 bytes) */
+    .section .text.FUN_80085f8c,"ax",@progbits
+    .globl FUN_80085f8c
+    .type FUN_80085f8c, @function
+    .ent FUN_80085f8c
+FUN_80085f8c:
+    .word   0x3c03800f, 0x24632908, 0x80620008, 0x80640009
+    .word   0x00000000, 0x00441021, 0x8064000a, 0x8063000b
+    .word   0x00441023, 0x00431023, 0x28420002, 0x10400002
+    .word   0x00002821, 0x2c650001, 0x03e00008, 0x00a01021
+    .end FUN_80085f8c
+    .size FUN_80085f8c, . - FUN_80085f8c
+
+/* FUN_80090820 (0x80090820, 64 bytes) */
+    .section .text.FUN_80090820,"ax",@progbits
+    .globl FUN_80090820
+    .type FUN_80090820, @function
+    .ent FUN_80090820
+FUN_80090820:
+    .word   0x27bdffe8, 0x3c02800f, 0x24422908, 0x3c030001
+    .word   0x00431021, 0xafbf0010, 0x9042277b, 0x00000000
+    .word   0x10400003, 0x00000000, 0x0c029884, 0x00000000
+    .word   0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+    .end FUN_80090820
+    .size FUN_80090820, . - FUN_80090820
+
+/* FUN_800a8bd0 (0x800a8bd0, 64 bytes) */
+    .section .text.FUN_800a8bd0,"ax",@progbits
+    .globl FUN_800a8bd0
+    .type FUN_800a8bd0, @function
+    .ent FUN_800a8bd0
+FUN_800a8bd0:
+    .word   0x90830000, 0x24020001, 0x14620008, 0x00000000
+    .word   0x8c820004, 0x00000000, 0x2842000c, 0x14400003
+    .word   0x24620001, 0xa0820000, 0xac800004, 0x8c820004
+    .word   0x00000000, 0x24420001, 0x03e00008, 0xac820004
+    .end FUN_800a8bd0
+    .size FUN_800a8bd0, . - FUN_800a8bd0
