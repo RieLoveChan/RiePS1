@@ -12822,6 +12822,56 @@
       "built_sha256": "41cfc364ec983011453c169e39e860797ea1e0bc3e8ec7a5a0441c1a559e9172"
     },
     {
+      "name": "FUN_800558e4",
+      "address": "0x800558e4",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800558e4",
+      "reference_sha256": "cd5f6538cd7c7f21bcce89ce69c00fbee99d2b9d8b67320ac8b9c924f76f351b",
+      "built_sha256": "cd5f6538cd7c7f21bcce89ce69c00fbee99d2b9d8b67320ac8b9c924f76f351b"
+    },
+    {
+      "name": "FUN_8005b0b0",
+      "address": "0x8005b0b0",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8005b0b0",
+      "reference_sha256": "be47caa8268e95490a9244842c81e9ac9e5484aa4674c1b1833a0c8008d9d761",
+      "built_sha256": "be47caa8268e95490a9244842c81e9ac9e5484aa4674c1b1833a0c8008d9d761"
+    },
+    {
+      "name": "FUN_8007f714",
+      "address": "0x8007f714",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8007f714",
+      "reference_sha256": "e6a0ab76cab3212259741563684937800d71558a1652fb092fd00aba38ad3f45",
+      "built_sha256": "e6a0ab76cab3212259741563684937800d71558a1652fb092fd00aba38ad3f45"
+    },
+    {
+      "name": "FUN_80084350",
+      "address": "0x80084350",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_80084350",
+      "reference_sha256": "7497a56396bc5d10d8245585fdc019cd7088b1b5a5cde55de9d90ce713b1ace9",
+      "built_sha256": "7497a56396bc5d10d8245585fdc019cd7088b1b5a5cde55de9d90ce713b1ace9"
+    },
+    {
+      "name": "FUN_800a2bcc",
+      "address": "0x800a2bcc",
+      "size": 80,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800a2bcc",
+      "reference_sha256": "82d89a86d362d45e88028e67cbaf8c29499f9f0b55285bd3b0604810bf79224d",
+      "built_sha256": "82d89a86d362d45e88028e67cbaf8c29499f9f0b55285bd3b0604810bf79224d"
+    },
+    {
       "name": "FUN_8009978c",
       "address": "0x8009978c",
       "size": 76,
