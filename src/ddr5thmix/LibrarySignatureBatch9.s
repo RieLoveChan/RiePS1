@@ -21877,3 +21877,55 @@ FUN_8009643c:
     .word   0x00000000, 0x03e00008, 0x00001021
     .end FUN_8009643c
     .size FUN_8009643c, . - FUN_8009643c
+
+/* FUN_800924fc (0x800924fc, 60 bytes) */
+    .section .text.FUN_800924fc,"ax",@progbits
+    .globl FUN_800924fc
+    .type FUN_800924fc, @function
+    .ent FUN_800924fc
+FUN_800924fc:
+    .word   0x27bdffe8, 0xafbf0010, 0x0c01fe5a, 0x00000000
+    .word   0x30420002, 0x14400004, 0x24020002, 0x0c01fe5a
+    .word   0x00000000, 0x30420001, 0x38420002, 0x8fbf0010
+    .word   0x2c420001, 0x03e00008, 0x27bd0018
+    .end FUN_800924fc
+    .size FUN_800924fc, . - FUN_800924fc
+
+/* FUN_8009312c (0x8009312c, 60 bytes) */
+    .section .text.FUN_8009312c,"ax",@progbits
+    .globl FUN_8009312c
+    .type FUN_8009312c, @function
+    .ent FUN_8009312c
+FUN_8009312c:
+    .word   0x27bdffe0, 0x24020080, 0x24040090, 0x24050340
+    .word   0x00403021, 0x24070380, 0xafbf0018, 0x0c01ef07
+    .word   0xafa20010, 0x3c038011, 0x8fbf0018, 0x24020001
+    .word   0xa0626c25, 0x03e00008, 0x27bd0020
+    .end FUN_8009312c
+    .size FUN_8009312c, . - FUN_8009312c
+
+/* FUN_800a3550 (0x800a3550, 60 bytes) */
+    .section .text.FUN_800a3550,"ax",@progbits
+    .globl FUN_800a3550
+    .type FUN_800a3550, @function
+    .ent FUN_800a3550
+FUN_800a3550:
+    .word   0x2402003b, 0x248403b0, 0x8c83fff0, 0x8c85fff4
+    .word   0x8c86fff8, 0x8c87fffc, 0xac830000, 0xac850004
+    .word   0xac860008, 0xac87000c, 0x2442ffff, 0x1c40fff6
+    .word   0x2484fff0, 0x03e00008, 0x00000000
+    .end FUN_800a3550
+    .size FUN_800a3550, . - FUN_800a3550
+
+/* FUN_80096518 (0x80096518, 64 bytes) */
+    .section .text.FUN_80096518,"ax",@progbits
+    .globl FUN_80096518
+    .type FUN_80096518, @function
+    .ent FUN_80096518
+FUN_80096518:
+    .word   0x3c02800f, 0x24422908, 0x3c030001, 0x00431021
+    .word   0xa0402783, 0x2404ffff, 0x2403000e, 0x3c028011
+    .word   0x244251f8, 0x2442024c, 0xa4440026, 0x2463ffff
+    .word   0x0461fffd, 0x2442ffd6, 0x03e00008, 0x00000000
+    .end FUN_80096518
+    .size FUN_80096518, . - FUN_80096518
