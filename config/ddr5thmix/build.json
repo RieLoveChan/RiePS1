@@ -21795,6 +21795,46 @@
       "section": ".text.FUN_8009b784",
       "reference_sha256": "2fa30342378a7051b7a1ee004be49b5845f4cc1bd209fb9b70eea707bf86a994",
       "built_sha256": "2fa30342378a7051b7a1ee004be49b5845f4cc1bd209fb9b70eea707bf86a994"
+    },
+    {
+      "name": "FUN_800a3294",
+      "address": "0x800a3294",
+      "size": 144,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800a3294",
+      "reference_sha256": "5bc9f5dee84c28dec9f531e118a93a4a663355771e75b9281aefc7092563de9b",
+      "built_sha256": "5bc9f5dee84c28dec9f531e118a93a4a663355771e75b9281aefc7092563de9b"
+    },
+    {
+      "name": "FUN_8002d52c",
+      "address": "0x8002d52c",
+      "size": 148,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8002d52c",
+      "reference_sha256": "31f0687b3d4e72309cd9194e0b3b3ca9ee2a439e92405151fe32c645f38754e8",
+      "built_sha256": "31f0687b3d4e72309cd9194e0b3b3ca9ee2a439e92405151fe32c645f38754e8"
+    },
+    {
+      "name": "FUN_80048dec",
+      "address": "0x80048dec",
+      "size": 148,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_80048dec",
+      "reference_sha256": "62814c40b3a19447576d4b927dc724aecda9647f4e85441e706dc76719ccfe6f",
+      "built_sha256": "62814c40b3a19447576d4b927dc724aecda9647f4e85441e706dc76719ccfe6f"
+    },
+    {
+      "name": "FUN_80049364",
+      "address": "0x80049364",
+      "size": 148,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_80049364",
+      "reference_sha256": "daf08397a0a395efa054555cd843505648510b7dc154c67ea2e4738cf646f890",
+      "built_sha256": "daf08397a0a395efa054555cd843505648510b7dc154c67ea2e4738cf646f890"
     }
   ]
 }

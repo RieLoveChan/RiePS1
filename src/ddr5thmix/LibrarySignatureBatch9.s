@@ -23685,3 +23685,78 @@ FUN_8009b784:
     .word   0x8fb10014, 0x8fb00010, 0x03e00008, 0x27bd0028
     .end FUN_8009b784
     .size FUN_8009b784, . - FUN_8009b784
+
+/* FUN_800a3294 (0x800a3294, 144 bytes) */
+    .section .text.FUN_800a3294,"ax",@progbits
+    .globl FUN_800a3294
+    .type FUN_800a3294, @function
+    .ent FUN_800a3294
+FUN_800a3294:
+    .word   0x3c05800e, 0x8ca40b18, 0x27bdffe8, 0xafbf0010
+    .word   0x908311d0, 0x00000000, 0x30620001, 0x14400002
+    .word   0x34620003, 0xa08211d0, 0x00002021, 0x8ca20b18
+    .word   0x00801821, 0x244511d0, 0x306200ff, 0x00a21021
+    .word   0x90420000, 0x00000000, 0x30420001, 0x14400002
+    .word   0x00000000, 0x24840001, 0x24630001, 0x306200ff
+    .word   0x2c4200e4, 0x1440fff5, 0x306200ff, 0x308200ff
+    .word   0x14400003, 0x24040003, 0x0c02749d, 0x3405ffff
+    .word   0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+    .end FUN_800a3294
+    .size FUN_800a3294, . - FUN_800a3294
+
+/* FUN_8002d52c (0x8002d52c, 148 bytes) */
+    .section .text.FUN_8002d52c,"ax",@progbits
+    .globl FUN_8002d52c
+    .type FUN_8002d52c, @function
+    .ent FUN_8002d52c
+FUN_8002d52c:
+    .word   0x27bdffe0, 0xafb00010, 0x3c10800e, 0x92034074
+    .word   0xafb10014, 0x00008821, 0x10600006, 0xafbf0018
+    .word   0x24020001, 0x1062000b, 0x02201021, 0x0800b56b
+    .word   0x00000000, 0x3c02800e, 0x9044405c, 0x0c00b583
+    .word   0x00000000, 0x92024074, 0x00000000, 0x24420001
+    .word   0xa2024074, 0x0c00b318, 0x00000000, 0x00401821
+    .word   0x10600006, 0x24020001, 0x14620003, 0x3c02800e
+    .word   0x0800b56a, 0xa0404074, 0x24110001, 0x02201021
+    .word   0x8fbf0018, 0x8fb10014, 0x8fb00010, 0x03e00008
+    .word   0x27bd0020
+    .end FUN_8002d52c
+    .size FUN_8002d52c, . - FUN_8002d52c
+
+/* FUN_80048dec (0x80048dec, 148 bytes) */
+    .section .text.FUN_80048dec,"ax",@progbits
+    .globl FUN_80048dec
+    .type FUN_80048dec, @function
+    .ent FUN_80048dec
+FUN_80048dec:
+    .word   0x27bdffe8, 0x00803821, 0x3c028011, 0x3c03800f
+    .word   0x8c426aa0, 0x246317f0, 0xafbf0010, 0x00022140
+    .word   0x00822021, 0x00042080, 0x00822021, 0x00042080
+    .word   0x00822023, 0x00042080, 0x00071100, 0x00471023
+    .word   0x00021080, 0x00471023, 0x00021080, 0x00431021
+    .word   0x00822021, 0x848200bc, 0x00000000, 0x14450005
+    .word   0x00000000, 0x848200be, 0x00000000, 0x10460005
+    .word   0x00000000, 0xa48500bc, 0xa48600be, 0x0c012003
+    .word   0x00e02021, 0x8fbf0010, 0x00000000, 0x03e00008
+    .word   0x27bd0018
+    .end FUN_80048dec
+    .size FUN_80048dec, . - FUN_80048dec
+
+/* FUN_80049364 (0x80049364, 148 bytes) */
+    .section .text.FUN_80049364,"ax",@progbits
+    .globl FUN_80049364
+    .type FUN_80049364, @function
+    .ent FUN_80049364
+FUN_80049364:
+    .word   0x3c09800f, 0x252917f0, 0x00041900, 0x00641823
+    .word   0x00031880, 0x3c028011, 0x8c486aa0, 0x00641823
+    .word   0x00081140, 0x00481021, 0x00021080, 0x00481021
+    .word   0x00021080, 0x00481023, 0x00431021, 0x00021080
+    .word   0x00491021, 0x00051840, 0x00651821, 0x00031880
+    .word   0x00651823, 0x8c4200a0, 0x00031880, 0x00621821
+    .word   0xa4660008, 0xa467000a, 0x8fa20010, 0x8fa40014
+    .word   0xa4670014, 0xa466001c, 0x00c21021, 0x00e43821
+    .word   0xa4620012, 0xa467001e, 0xa4620024, 0x03e00008
+    .word   0xa4670026
+    .end FUN_80049364
+    .size FUN_80049364, . - FUN_80049364
