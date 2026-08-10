@@ -22247,3 +22247,63 @@ FUN_800a2bcc:
     .word   0x1440fff5, 0x306200ff, 0x03e00008, 0x00801021
     .end FUN_800a2bcc
     .size FUN_800a2bcc, . - FUN_800a2bcc
+
+/* FUN_800a0040 (0x800a0040, 84 bytes) */
+    .section .text.FUN_800a0040,"ax",@progbits
+    .globl FUN_800a0040
+    .type FUN_800a0040, @function
+    .ent FUN_800a0040
+FUN_800a0040:
+    .word   0x3c02800e, 0x8c420b18, 0x00000000, 0x90430095
+    .word   0x00000000, 0x04600005, 0x00002021, 0x28620010
+    .word   0x10400002, 0x2404000f, 0x00602021, 0x3c0351eb
+    .word   0x3463851f, 0x00041280, 0x24421900, 0x00430018
+    .word   0x000217c3, 0x00002810, 0x00051943, 0x03e00008
+    .word   0x00621023
+    .end FUN_800a0040
+    .size FUN_800a0040, . - FUN_800a0040
+
+/* FUN_800a1fc8 (0x800a1fc8, 84 bytes) */
+    .section .text.FUN_800a1fc8,"ax",@progbits
+    .globl FUN_800a1fc8
+    .type FUN_800a1fc8, @function
+    .ent FUN_800a1fc8
+FUN_800a1fc8:
+    .word   0x93a30014, 0x97a90010, 0x10600010, 0x00004021
+    .word   0x30c600ff, 0x10c0000c, 0x0066102b, 0x1440000a
+    .word   0x00000000, 0x14660009, 0x0087102b, 0x14400006
+    .word   0x00000000, 0x14e40005, 0x30a2ffff, 0x0049102b
+    .word   0x10400002, 0x00000000, 0x24080001, 0x03e00008
+    .word   0x01001021
+    .end FUN_800a1fc8
+    .size FUN_800a1fc8, . - FUN_800a1fc8
+
+/* FUN_800a2618 (0x800a2618, 84 bytes) */
+    .section .text.FUN_800a2618,"ax",@progbits
+    .globl FUN_800a2618
+    .type FUN_800a2618, @function
+    .ent FUN_800a2618
+FUN_800a2618:
+    .word   0x27bdffe8, 0xafbf0010, 0x24020003, 0x10820008
+    .word   0x00001821, 0x2402000d, 0x1482000a, 0x00000000
+    .word   0x0c0274cc, 0x00000000, 0x08028997, 0x00401821
+    .word   0x0c028af3, 0x00000000, 0x38420001, 0x2c420001
+    .word   0x00401821, 0x8fbf0010, 0x306200ff, 0x03e00008
+    .word   0x27bd0018
+    .end FUN_800a2618
+    .size FUN_800a2618, . - FUN_800a2618
+
+/* FUN_800a37f8 (0x800a37f8, 84 bytes) */
+    .section .text.FUN_800a37f8,"ax",@progbits
+    .globl FUN_800a37f8
+    .type FUN_800a37f8, @function
+    .ent FUN_800a37f8
+FUN_800a37f8:
+    .word   0x3c053b9a, 0x34a5c9ff, 0x3c02800e, 0x8c420b18
+    .word   0x00042140, 0x00441021, 0x24441314, 0x94820002
+    .word   0x8c830010, 0x24420001, 0x00a3182b, 0x10600002
+    .word   0xa4820002, 0xac850010, 0x94830002, 0x8c820010
+    .word   0x00000000, 0x0043001b, 0x00001012, 0x03e00008
+    .word   0x00000000
+    .end FUN_800a37f8
+    .size FUN_800a37f8, . - FUN_800a37f8
