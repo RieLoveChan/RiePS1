@@ -21457,3 +21457,51 @@ FUN_800a907c:
     addiu   $sp,$sp,88
     .end FUN_800a907c
     .size FUN_800a907c, . - FUN_800a907c
+
+/* FUN_8009b588 (0x8009b588, 48 bytes) */
+    .section .text.FUN_8009b588,"ax",@progbits
+    .globl FUN_8009b588
+    .type FUN_8009b588, @function
+    .ent FUN_8009b588
+FUN_8009b588:
+    .word   0x3c03800e, 0x8c620b1c, 0x00000000, 0xa0400000
+    .word   0x8c620b1c, 0x00000000, 0xa0400001, 0x8c620b1c
+    .word   0x00000000, 0xac400088, 0x03e00008, 0xac44008c
+    .end FUN_8009b588
+    .size FUN_8009b588, . - FUN_8009b588
+
+/* FUN_8009b69c (0x8009b69c, 48 bytes) */
+    .section .text.FUN_8009b69c,"ax",@progbits
+    .globl FUN_8009b69c
+    .type FUN_8009b69c, @function
+    .ent FUN_8009b69c
+FUN_8009b69c:
+    .word   0x27bdffe8, 0xafbf0010, 0x0c02689a, 0x00002021
+    .word   0x3c02800e, 0x8c420b1c, 0x00000000, 0xa0400014
+    .word   0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+    .end FUN_8009b69c
+    .size FUN_8009b69c, . - FUN_8009b69c
+
+/* FUN_800a0d00 (0x800a0d00, 48 bytes) */
+    .section .text.FUN_800a0d00,"ax",@progbits
+    .globl FUN_800a0d00
+    .type FUN_800a0d00, @function
+    .ent FUN_800a0d00
+FUN_800a0d00:
+    .word   0x3c05800f, 0x3c03800b, 0x8c64c8ec, 0x24020001
+    .word   0xa0a22901, 0xa0820051, 0x8c62c8ec, 0x00000000
+    .word   0xa0400040, 0x8c62c8ec, 0x03e00008, 0xa0400042
+    .end FUN_800a0d00
+    .size FUN_800a0d00, . - FUN_800a0d00
+
+/* FUN_800aba64 (0x800aba64, 48 bytes) */
+    .section .text.FUN_800aba64,"ax",@progbits
+    .globl FUN_800aba64
+    .type FUN_800aba64, @function
+    .ent FUN_800aba64
+FUN_800aba64:
+    .word   0x27bdffe8, 0xafbf0010, 0x0c02ab6b, 0x00000000
+    .word   0x3c048012, 0x24848e18, 0x0c00eeb2, 0x24050010
+    .word   0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+    .end FUN_800aba64
+    .size FUN_800aba64, . - FUN_800aba64
