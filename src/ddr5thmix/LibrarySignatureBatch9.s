@@ -21825,3 +21825,55 @@ FUN_800abab0:
     .word   0x03e00008, 0x27bd0018
     .end FUN_800abab0
     .size FUN_800abab0, . - FUN_800abab0
+
+/* FUN_8004d468 (0x8004d468, 60 bytes) */
+    .section .text.FUN_8004d468,"ax",@progbits
+    .globl FUN_8004d468
+    .type FUN_8004d468, @function
+    .ent FUN_8004d468
+FUN_8004d468:
+    .word   0x27bdffe8, 0xafbf0010, 0x0c00aa2c, 0x00000000
+    .word   0x3c048002, 0x0c026172, 0x2484be6c, 0x00402021
+    .word   0x2405ffff, 0x0c00aa2c, 0x00a03021, 0x8fbf0010
+    .word   0x00000000, 0x03e00008, 0x27bd0018
+    .end FUN_8004d468
+    .size FUN_8004d468, . - FUN_8004d468
+
+/* FUN_80076144 (0x80076144, 60 bytes) */
+    .section .text.FUN_80076144,"ax",@progbits
+    .globl FUN_80076144
+    .type FUN_80076144, @function
+    .ent FUN_80076144
+FUN_80076144:
+    .word   0x3c03800f, 0x24632908, 0x000410c0, 0x00441021
+    .word   0x000210c0, 0x00441021, 0x00021080, 0x00441021
+    .word   0x00021140, 0x00441021, 0x00021080, 0x00431021
+    .word   0x80420025, 0x03e00008, 0x00000000
+    .end FUN_80076144
+    .size FUN_80076144, . - FUN_80076144
+
+/* FUN_8007f2f8 (0x8007f2f8, 60 bytes) */
+    .section .text.FUN_8007f2f8,"ax",@progbits
+    .globl FUN_8007f2f8
+    .type FUN_8007f2f8, @function
+    .ent FUN_8007f2f8
+FUN_8007f2f8:
+    .word   0x27bdffe8, 0xafbf0010, 0x0c00a0a7, 0x00000000
+    .word   0x14400006, 0x3c028011, 0x8c4429c8, 0x3c028011
+    .word   0x00002821, 0x0c00a032, 0xac4429cc, 0x8fbf0010
+    .word   0x00000000, 0x03e00008, 0x27bd0018
+    .end FUN_8007f2f8
+    .size FUN_8007f2f8, . - FUN_8007f2f8
+
+/* FUN_8009643c (0x8009643c, 60 bytes) */
+    .section .text.FUN_8009643c,"ax",@progbits
+    .globl FUN_8009643c
+    .type FUN_8009643c, @function
+    .ent FUN_8009643c
+FUN_8009643c:
+    .word   0x3c02800f, 0x24422908, 0x3c030001, 0x00431021
+    .word   0x9042277e, 0x00000000, 0x14400006, 0x3c02800e
+    .word   0x8c420b18, 0x00000000, 0x9042007d, 0x03e00008
+    .word   0x00000000, 0x03e00008, 0x00001021
+    .end FUN_8009643c
+    .size FUN_8009643c, . - FUN_8009643c
