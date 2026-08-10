@@ -2879,7 +2879,7 @@
       "source": "src/ddr5thmix/LibrarySignatureBatch3.s",
       "section": ".text.S_M_INIT_OBJ_4C",
       "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
-      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
     },
     {
       "name": "SPU_OBJ_4EC",
@@ -21035,6 +21035,46 @@
       "symbols": {},
       "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
       "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
+    },
+    {
+      "name": "FUN_800ac268",
+      "address": "0x800ac268",
+      "size": 84,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800ac268",
+      "reference_sha256": "2998c67464ac3ec3dedd54ab7e9bee8a7efdc554ab01775cf9e21f04cc2c8eb0",
+      "built_sha256": "2998c67464ac3ec3dedd54ab7e9bee8a7efdc554ab01775cf9e21f04cc2c8eb0"
+    },
+    {
+      "name": "FUN_800a87fc",
+      "address": "0x800a87fc",
+      "size": 76,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800a87fc",
+      "reference_sha256": "c48a9a81fa6a956154c74a6fcf453af6abfeed321ac13413a9f081d285b6881d",
+      "built_sha256": "c48a9a81fa6a956154c74a6fcf453af6abfeed321ac13413a9f081d285b6881d"
+    },
+    {
+      "name": "FUN_800a2ce8",
+      "address": "0x800a2ce8",
+      "size": 72,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800a2ce8",
+      "reference_sha256": "afb9e6e5958fc29900ddd0d40e8310e885e7e5fd3ee28d6caba8fe2af8969ea4",
+      "built_sha256": "afb9e6e5958fc29900ddd0d40e8310e885e7e5fd3ee28d6caba8fe2af8969ea4"
+    },
+    {
+      "name": "FUN_800a1208",
+      "address": "0x800a1208",
+      "size": 72,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800a1208",
+      "reference_sha256": "17b43c690564675a5bfc20fb849d755e2a84039d28f3c2ad86e1fd0b2b11895d",
+      "built_sha256": "17b43c690564675a5bfc20fb849d755e2a84039d28f3c2ad86e1fd0b2b11895d"
     }
   ]
 }
