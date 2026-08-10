@@ -51,6 +51,7 @@
 # Tool caches, logs, and temporary files
 .cache/
 .tmp/
+reasonix.toml
 tmp/
 temp/
 *.log
