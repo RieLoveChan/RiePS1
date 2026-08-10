@@ -22065,3 +22065,59 @@ FUN_800a25c4:
     .word   0x27bd0018
     .end FUN_800a25c4
     .size FUN_800a25c4, . - FUN_800a25c4
+
+/* FUN_8004ee28 (0x8004ee28, 72 bytes) */
+    .section .text.FUN_8004ee28,"ax",@progbits
+    .globl FUN_8004ee28
+    .type FUN_8004ee28, @function
+    .ent FUN_8004ee28
+FUN_8004ee28:
+    .word   0x27bdffd0, 0x240200d7, 0xafa20010, 0x240201c7
+    .word   0xafa2001c, 0x24020280, 0xafa20020, 0x2402000f
+    .word   0xafa70014, 0x2407fec0, 0xafbf0028, 0xafa00018
+    .word   0x0c0136ae, 0xafa20024, 0x8fbf0028, 0x00000000
+    .word   0x03e00008, 0x27bd0030
+    .end FUN_8004ee28
+    .size FUN_8004ee28, . - FUN_8004ee28
+
+/* FUN_8005589c (0x8005589c, 72 bytes) */
+    .section .text.FUN_8005589c,"ax",@progbits
+    .globl FUN_8005589c
+    .type FUN_8005589c, @function
+    .ent FUN_8005589c
+FUN_8005589c:
+    .word   0x27bdffe8, 0x3c048011, 0xac80d828, 0x2484d828
+    .word   0x24021388, 0xafbf0010, 0xac800004, 0xac820008
+    .word   0xac80000c, 0xac800010, 0xac800014, 0xac800018
+    .word   0x0c0156a5, 0xac80001c, 0x8fbf0010, 0x00000000
+    .word   0x03e00008, 0x27bd0018
+    .end FUN_8005589c
+    .size FUN_8005589c, . - FUN_8005589c
+
+/* FUN_8007b918 (0x8007b918, 72 bytes) */
+    .section .text.FUN_8007b918,"ax",@progbits
+    .globl FUN_8007b918
+    .type FUN_8007b918, @function
+    .ent FUN_8007b918
+FUN_8007b918:
+    .word   0x27bdffe8, 0x3c068017, 0x3c02800b, 0x3c03800e
+    .word   0x8c42c8ec, 0x90633bc9, 0x24040006, 0xafbf0010
+    .word   0x8c450090, 0x14640004, 0x34c64000, 0x8cc40010
+    .word   0x0c00aa77, 0x00862021, 0x8fbf0010, 0x00000000
+    .word   0x03e00008, 0x27bd0018
+    .end FUN_8007b918
+    .size FUN_8007b918, . - FUN_8007b918
+
+/* FUN_800924b4 (0x800924b4, 72 bytes) */
+    .section .text.FUN_800924b4,"ax",@progbits
+    .globl FUN_800924b4
+    .type FUN_800924b4, @function
+    .ent FUN_800924b4
+FUN_800924b4:
+    .word   0x00002821, 0x3c080001, 0x3c02800f, 0x24472908
+    .word   0x00e03021, 0x90820060, 0x24840004, 0x00a71821
+    .word   0x24a50001, 0x00681821, 0xa0c20024, 0x34029284
+    .word   0x00c23021, 0x28a20002, 0x1440fff6, 0xa0602780
+    .word   0x03e00008, 0x00000000
+    .end FUN_800924b4
+    .size FUN_800924b4, . - FUN_800924b4
