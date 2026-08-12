@@ -216,6 +216,13 @@
       ]
     },
     {
+      "name": "runtime-table-interpolate",
+      "description": "Indexed breakpoint-table lookup and signed interpolation helper.",
+      "functions": [
+        "FUN_8007ce50"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2350,6 +2357,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeInitLoop.s",
       "section": ".text.FUN_8007c384"
+    },
+    {
+      "name": "FUN_8007ce50",
+      "address": "0x8007ce50",
+      "size": 232,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeTableInterpolate.s",
+      "section": ".text.FUN_8007ce50"
     },
     {
       "name": "FUN_8007c074",
