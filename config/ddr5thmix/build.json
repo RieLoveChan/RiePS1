@@ -202,6 +202,13 @@
       ]
     },
     {
+      "name": "runtime-image-batch-init",
+      "description": "Twelve-image TIM batch initialization, CLUT normalization, and VRAM upload helper.",
+      "functions": [
+        "FUN_8007bee4"
+      ]
+    },
+    {
       "name": "runtime-image-dispatch",
       "description": "Indexed image-resource dispatch and descriptor submission helper.",
       "functions": [
@@ -2306,6 +2313,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeImageSelectUpdate.s",
       "section": ".text.FUN_8007b260"
+    },
+    {
+      "name": "FUN_8007bee4",
+      "address": "0x8007bee4",
+      "size": 400,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeImageBatchInit.s",
+      "section": ".text.FUN_8007bee4"
     },
     {
       "name": "FUN_8007bc1c",
