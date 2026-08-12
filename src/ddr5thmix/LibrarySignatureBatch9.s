@@ -28122,3 +28122,12 @@ FUN_80053778:
     .word 0x27bd0020
 .end FUN_80053778
 .size FUN_80053778, .-FUN_80053778
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x39830
+.section .text.FUN_80053830,"ax",@progbits
+.globl FUN_80053830
+.type FUN_80053830, @function
+.ent FUN_80053830
+FUN_80053830:
+    .word 0x3c028011, 0x03e00008, 0xa440d818
+.end FUN_80053830
+.size FUN_80053830, .-FUN_80053830
