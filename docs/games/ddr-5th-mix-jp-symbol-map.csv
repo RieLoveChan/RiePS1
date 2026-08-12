@@ -1254,7 +1254,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x80044cfc,272,FUN_80044cfc,,DEFAULT,unverified,decompiler_output_only,,2,1,main,
 0x80044e0c,4920,FUN_80044e0c,,DEFAULT,verified,hand_written_source,"Batch-9 reconstruction 2026-07-29: Invoke-FunctionMatch.ps1 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 4920/4920 bytes match; reference/built SHA-256 dbaba1605640ba4d340b6eb093aeb49a35229bf4e2fa2140a8c6068ba37a85c2.",0,0,main,
 0x80046144,240,FUN_80046144,,DEFAULT,unverified,decompiler_output_only,,2,0,main,
-0x80046234,176,FUN_80046234,,DEFAULT,unverified,decompiler_output_only,,3,0,main,
+0x80046234,176,FUN_80046234,,DEFAULT,verified,hand_written_source,"Batch-20 reconstruction 2026-08-11: Invoke-FunctionMatch.ps1 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 176/176 bytes match at file offset 0x2c234; reference/built SHA-256 e8af22db8a7aac2216def52c735175942c17a2de00f12ad9ab362a0d6f67f999.",3,0,main,
 0x800462e4,7464,FUN_800462e4,,DEFAULT,unverified,decompiler_output_only,,4,2,main,
 0x8004800c,312,FUN_8004800c,,DEFAULT,unverified,decompiler_output_only,,4,0,main,
 0x80048144,372,FUN_80048144,,DEFAULT,unverified,decompiler_output_only,,57,0,main,
