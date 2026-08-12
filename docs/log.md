@@ -1,6 +1,7 @@
 # Knowledge Bundle Update Log
 
 ## 2026-08-11
+* **Helper de preparacion de parametros graficos de 124 bytes reconstruido**: Anadido FUN_8009fe58 a src/ddr5thmix/LibrarySignatureBatch9.s. Lee los halfwords +0xc/+0xe de 0x800bc8e8, convierte sus coordenadas a formato firmado escalado, prepara cuatro argumentos de pila cero y un quinto igual a 255, y llama al helper grafico 0x80023dbc. La validacion byte-match contra el dump licito SLPM_868.97_1 coincidio 124/124 bytes en el offset 0x85e58, con SHA-256 de referencia y construido aa4f5283f47d691ca58d6e88831ea1b45b7054806f01473ac7af148020a73f24, usando GCC 14.2.0/binutils 2.43.
 * **Helper hoja de empaquetado de 124 bytes reconstruido**: Anadido FUN_8004aa4c a src/ddr5thmix/LibrarySignatureBatch9.s. Calcula los indices escalados por la entrada global 0x80116aa0 y por a0, forma la direccion base 0x80118130 y escribe cero, a1 y cero en los halfwords +0xab6/+0xab8/+0xab4. La validacion byte-match contra el dump licito SLPM_868.97_1 coincidio 124/124 bytes en el offset 0x30a4c, con SHA-256 de referencia y construido a1b07301c970895f1d633e9b8554271f97a0970f7fb6c385f3aff1ca20ead03a, usando GCC 14.2.0/binutils 2.43.
 
 ## 2026-08-10
