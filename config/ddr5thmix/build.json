@@ -202,6 +202,13 @@
       ]
     },
     {
+      "name": "runtime-image-dispatch",
+      "description": "Indexed image-resource dispatch and descriptor submission helper.",
+      "functions": [
+        "FUN_8007bc1c"
+      ]
+    },
+    {
       "name": "runtime-state-gate",
       "description": "Runtime state-record reset, flag update, and optional VSync gate.",
       "functions": [
@@ -2299,6 +2306,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeImageSelectUpdate.s",
       "section": ".text.FUN_8007b260"
+    },
+    {
+      "name": "FUN_8007bc1c",
+      "address": "0x8007bc1c",
+      "size": 356,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeImageDispatch.s",
+      "section": ".text.FUN_8007bc1c"
     },
     {
       "name": "FUN_8007b778",
