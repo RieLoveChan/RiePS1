@@ -39,6 +39,36 @@
       ]
     },
     {
+      "name": "state-transition",
+      "description": "Game-owned timing, input-event, resource-request, and state-transition helpers reconstructed in the 0x80025850–0x8002a698 range.",
+      "functions": [
+        "FUN_80025850", "FUN_8002592c", "FUN_800259e8", "FUN_80025b18", "FUN_80025c1c",
+        "FUN_8002616c", "FUN_800262ec", "FUN_80026538", "FUN_80026940", "FUN_80026a88",
+        "FUN_80026bc8", "FUN_80026d00", "FUN_80026e70", "FUN_80027074", "FUN_800272cc",
+        "FUN_800273cc", "FUN_800275b4", "FUN_80027688", "FUN_800277d8", "FUN_80027ac4",
+        "FUN_80027c20", "FUN_80027d18", "FUN_80027ed4", "FUN_80027f7c", "FUN_80028034",
+        "FUN_800280c8", "FUN_80028150", "FUN_800281f4", "FUN_8002821c", "FUN_80028254",
+        "FUN_8002829c", "FUN_800282e4", "FUN_80028358", "FUN_80028398", "FUN_80028588",
+        "FUN_80028600", "FUN_800286bc", "FUN_800286e4", "FUN_80028740", "FUN_800287e0",
+        "FUN_80028894", "FUN_800289d0", "FUN_800289f4", "FUN_80028a8c", "FUN_80028aac",
+        "FUN_80028ad0", "FUN_80028b00", "FUN_80028b6c", "FUN_80028c04", "FUN_80028c4c",
+        "FUN_80028c74", "FUN_80028dec", "FUN_80028e58", "FUN_80028e80", "FUN_80028ef0",
+        "FUN_80028f74", "FUN_80028f94", "FUN_80028fc8", "FUN_8002906c", "FUN_80029084",
+        "FUN_8002915c", "FUN_8002916c", "FUN_80029228", "FUN_80029238", "FUN_80029268",
+        "FUN_800292e8", "FUN_80029324", "FUN_80029390", "FUN_80029410", "FUN_80029440",
+        "FUN_80029474", "FUN_80029480", "FUN_800294d4", "FUN_800294f8", "FUN_80029520",
+        "FUN_800295ac", "FUN_80029644", "FUN_80029750", "FUN_80029788", "FUN_800297c4",
+        "FUN_80029850", "FUN_80029868", "FUN_80029920", "FUN_800299dc", "FUN_80029a4c",
+        "FUN_80029ab4", "FUN_80029b94", "FUN_80029c40", "FUN_80029ccc", "FUN_80029cdc",
+        "FUN_80029d24", "FUN_80029da0", "FUN_80029e08", "FUN_80029e34", "FUN_80029ed0",
+        "FUN_80029ef8", "FUN_80029f40", "FUN_8002a004", "FUN_8002a04c", "FUN_8002a0b8",
+        "FUN_8002a108", "FUN_8002a140", "FUN_8002a174", "FUN_8002a1b0", "FUN_8002a1f0",
+        "FUN_8002a200", "FUN_8002a20c", "FUN_8002a2b0", "FUN_8002a300", "FUN_8002a3fc",
+        "FUN_8002a438", "FUN_8002a4c8", "FUN_8002a5a8", "FUN_8002a670", "FUN_8002a680",
+        "FUN_8002a698", "FUN_8002a6c8"
+      ]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [

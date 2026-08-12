@@ -10,6 +10,7 @@
 * [DDR 5th Mix game-session opening module](ddr-5th-mix-jp-game-session-opening.md) - State 0-3 callback triples matching twelve functions across PLAY START, selector ownership, and NON STOP paths.
 * [DDR 5th Mix game-session gameplay module](ddr-5th-mix-jp-game-session-gameplay.md) - State 4-7 callback triples matching twelve functions across PREPARE, INTRO, DANCING, and STAGE END.
 * [DDR 5th Mix game-session endgame module](ddr-5th-mix-jp-game-session-endgame.md) - State 8-13 callback triples matching eighteen functions across RESULT, GAME_OVER, ENDING, PRE_END, LINK END, and NAME ENTRY, closing the 15-state gameplay session.
+* [DDR 5th Mix state-transition module](ddr-5th-mix-jp-state-transition.md) - 117 timing, input-event, resource-request, and state-transition helpers matching 16,132 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.
