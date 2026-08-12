@@ -89,6 +89,11 @@
       "functions": ["FUN_80024f60"]
     },
     {
+      "name": "runtime-screen-init",
+      "description": "Game-owned initialization of the screen image records and their 16-entry sentinel table.",
+      "functions": ["FUN_8009851c"]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [
@@ -24253,6 +24258,17 @@
       "section": ".text.FUN_80078a38",
       "reference_sha256": "1fee62e6255c90fd2a6ebf9a8fda9731fb8ed9a8a375dd7e39da82cfb5f32649",
       "built_sha256": "1fee62e6255c90fd2a6ebf9a8fda9731fb8ed9a8a375dd7e39da82cfb5f32649"
+    },
+    {
+      "name": "FUN_8009851c",
+      "address": "0x8009851c",
+      "size": 172,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeScreenInit.s",
+      "section": ".text.FUN_8009851c",
+      "symbols": {
+        "LoadImage": "0x80038810"
+      }
     },
     {
       "name": "FUN_80078ecc",
