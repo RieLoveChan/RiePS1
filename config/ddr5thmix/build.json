@@ -237,6 +237,13 @@
       ]
     },
     {
+      "name": "runtime-transform-interpolate",
+      "description": "Runtime transform interpolation and GTE matrix synthesis helper.",
+      "functions": [
+        "FUN_8007d8a8"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2395,6 +2402,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCurveSampler.s",
       "section": ".text.FUN_8007d454"
+    },
+    {
+      "name": "FUN_8007d8a8",
+      "address": "0x8007d8a8",
+      "size": 1156,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeTransformInterpolate.s",
+      "section": ".text.FUN_8007d8a8"
     },
     {
       "name": "FUN_8007c074",
