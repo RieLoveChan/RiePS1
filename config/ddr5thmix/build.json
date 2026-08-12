@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "music-state",
+      "description": "Music/resource state dispatcher and timing wait helper.",
+      "functions": [
+        "FUN_8007a8f4"
+      ]
+    },
+    {
       "name": "game-session-gameplay",
       "description": "Gameplay-session states 4-7: PREPARE, INTRO, DANCING, and STAGE END callbacks.",
       "functions": [
@@ -2199,6 +2206,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_8007a8f4",
+      "address": "0x8007a8f4",
+      "size": 2412,
+      "language": "asm",
+      "source": "src/ddr5thmix/MusicState.s",
+      "section": ".text.FUN_8007a8f4"
     },
     {
       "name": "FUN_80070bf8",
