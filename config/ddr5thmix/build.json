@@ -94,6 +94,11 @@
       "functions": ["FUN_8009851c"]
     },
     {
+      "name": "runtime-resource-init",
+      "description": "Game-owned resource-table initialization and per-entry setup loop.",
+      "functions": ["FUN_8007e9a8"]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [
@@ -24268,6 +24273,17 @@
       "section": ".text.FUN_8009851c",
       "symbols": {
         "LoadImage": "0x80038810"
+      }
+    },
+    {
+      "name": "FUN_8007e9a8",
+      "address": "0x8007e9a8",
+      "size": 180,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeResourceInit.s",
+      "section": ".text.FUN_8007e9a8",
+      "symbols": {
+        "FUN_8007e064": "0x8007e064"
       }
     },
     {
