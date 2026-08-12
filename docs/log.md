@@ -1,6 +1,7 @@
 # Knowledge Bundle Update Log
 
 ## 2026-08-12
+* **Helper de inicializacion de estado gameplay de 524 bytes reconstruido**: Anadido FUN_80056378 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset de archivo 0x3c378; la validacion byte-match coincidio 524/524 bytes en el offset 0x3c378, con SHA-256 de referencia y construido c42fd5ee52e38341e5ea7521d8e66516ec40a9303bd5a8b830ce552ae7743abf, usando GCC 14.2.0/binutils 2.43.
 * **Helper de estado de gameplay de 560 bytes reconstruido**: Anadido FUN_80056148 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset de archivo 0x3c148; la validacion byte-match coincidio 560/560 bytes en el offset 0x3c148, con SHA-256 de referencia y construido 753170337470d813178bad4e93e524823045f596eda6d633bde64cbed4452636, usando GCC 14.2.0/binutils 2.43.
 * **Helper de inicializacion de descriptores de 276 bytes reconstruido**: Anadido FUN_80056034 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset de archivo 0x3c034; la validacion byte-match coincidio 276/276 bytes, con SHA-256 de referencia y construido f1d701b20c58166495ea526a0f956d24be45ecae9115f3be040aebb4f66b2ee, usando GCC 14.2.0/binutils 2.43.
 
