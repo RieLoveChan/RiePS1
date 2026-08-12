@@ -1,5 +1,8 @@
 # Knowledge Bundle Update Log
 
+## 2026-08-12
+* **Helper de inicializacion de descriptores de 276 bytes reconstruido**: Anadido FUN_80056034 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset de archivo 0x3c034; la validacion byte-match coincidio 276/276 bytes, con SHA-256 de referencia y construido f1d701b20c58166495ea526a0f956d24be45ecae9115f3be040aebb4f66b2ee, usando GCC 14.2.0/binutils 2.43.
+
 ## 2026-08-11
 * **Helper de actualizacion de buffer circular de 224 bytes reconstruido**: Anadido FUN_80056af0 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset de archivo 0x3caf0; la validacion byte-match coincidio 224/224 bytes en el offset 0x3caf0, con SHA-256 de referencia y construido 280a1eabe266fe56394c791229f2a3971e395d8c4f0b99c1145beb5c93dc5f6b, usando GCC 14.2.0/binutils 2.43.
 * **Helper de inicializacion de estructura de 232 bytes reconstruido**: Anadido FUN_80055788 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset de archivo 0x3b788; la validacion byte-match coincidio 232/232 bytes en el offset 0x3b788, con SHA-256 de referencia y construido 1b31c6e60846f8910c1b9309fdfe49f131d964d855a81363ef787713f3b965d8, usando GCC 14.2.0/binutils 2.43.
