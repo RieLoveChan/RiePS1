@@ -1553,7 +1553,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x80056bd0,1564,FUN_80056bd0,,DEFAULT,verified,hand_written_source,"Batch-174 reconstruction 2026-08-12: exact MIPS reconstruction from lawful SLPM_868.97_1 bytes at executable file offset 0x3cbd0; byte-match 1564/1564 verified with SHA-256 215554179e432bb37fc51ad4d0fdad9315ededcb8436924b82c6f220bcac69db using GCC 14.2.0/binutils 2.43.",1,6,main,
 0x800571ec,560,FUN_800571ec,,DEFAULT,verified,hand_written_source,"Batch-37 reconstruction 2026-08-12: exact MIPS reconstruction of the 560-byte state dispatcher at file offset 0x3d1ec; byte-match 560/560 verified with SHA-256 46f0a206b8ae2426052e050c03bd2c3250290d41f22f0ad359002c894eb4d4c7.",1,3,main,
 0x8005741c,4100,FUN_8005741c,,DEFAULT,verified,hand_written_source,"Batch-175 reconstruction 2026-08-12: exact MIPS reconstruction from lawful SLPM_868.97_1 bytes at executable file offset 0x3d41c; byte-match 4100/4100 verified with SHA-256 135e81f0fa786e24c2aaf4f3974f7c681107c4aeb3182843cabeb33a6ea492ae using GCC 14.2.0/binutils 2.43.",1,3,main,
-0x80058420,764,FUN_80058420,,DEFAULT,unverified,decompiler_output_only,,2,11,main,
+0x80058420,764,FUN_80058420,,DEFAULT,verified,hand_written_source,"Batch-176 reconstruction 2026-08-12: exact MIPS reconstruction from lawful SLPM_868.97_1 bytes at executable file offset 0x3e420; byte-match 764/764 verified with SHA-256 ca662e6629db4feccf9c87406712b33db9939096485585e95a56cf9de28c616e using GCC 14.2.0/binutils 2.43.",2,11,main,
 0x8005871c,596,FUN_8005871c,,DEFAULT,unverified,decompiler_output_only,,1,14,main,
 0x80058970,1640,FUN_80058970,,DEFAULT,unverified,decompiler_output_only,,2,8,main,
 0x80058fd8,1144,FUN_80058fd8,,DEFAULT,unverified,decompiler_output_only,,1,6,main,
