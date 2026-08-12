@@ -14,11 +14,11 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,525 total: 1,510 verified, 102 manually reviewed, 167 library signatures, 727 unverified |
+| Main-executable function inventory | 2,526 total: 1,511 verified, 102 manually reviewed, 167 library signatures, 726 unverified |
 | Main-executable code-region byte accounting | 572,577 of 1,050,624 code-region bytes (54.5%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 478,047 bytes are not 478KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), and the true residue is now fully classified: 1,204 bytes of zero-alignment padding and 59 bytes of already-evidenced PsyQ object-header markers. No unclassified bytes remain in the code region. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
-| Exact reconstruction | 1,580 functions / 204,024 selected bytes: 1,510/194,652 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Exact reconstruction | 1,581 functions / 204,384 selected bytes: 1,511/195,012 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172; `runtime-player-init`: 1/176; `runtime-state-init`: 1/176; `runtime-sync-init`: 1/176; `runtime-record-init`: 1/180; `runtime-timing-table`: 1/184; `runtime-flag-selector`: 1/188; `runtime-image-update`: 1/192; `runtime-descriptor-build`: 1/192; `runtime-six-record-init`: 1/192; `runtime-image-region-update`: 1/200; `runtime-player-gate`: 1/200; `runtime-image-select-update`: 2/704; `runtime-state-gate`: 1/264; `runtime-image-dispatch`: 1/356; `runtime-image-batch-init`: 1/400; `runtime-object-init`: 1/424 |
+| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172; `runtime-player-init`: 1/176; `runtime-state-init`: 1/176; `runtime-sync-init`: 1/176; `runtime-record-init`: 1/180; `runtime-timing-table`: 1/184; `runtime-flag-selector`: 1/188; `runtime-image-update`: 1/192; `runtime-descriptor-build`: 1/192; `runtime-six-record-init`: 1/192; `runtime-image-region-update`: 1/200; `runtime-player-gate`: 1/200; `runtime-image-select-update`: 2/704; `runtime-state-gate`: 1/264; `runtime-image-dispatch`: 1/356; `runtime-image-batch-init`: 1/400; `runtime-object-init`: 1/424; `runtime-coordinate-init`: 1/360 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | Full 11,864-byte structural map; 70 functions/9,372 code bytes plus 12 semantic data sections/2,492 bytes exact (11,864 selected bytes, 100% whole-overlay match); all 748 tail bytes resolved; 1,910-tick script verified |
@@ -27,8 +27,8 @@ and validate its recorded hashes before comparison.
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress; so is the 54.5% code-region
 byte accounting above (a catalogued boundary is not a byte-exact match).
-Exact accepted reconstruction currently covers 1,510 of 2,525 main-executable
-functions (about 59.8%; 194,652 of 1,050,624 code-region bytes, about 18.5%),
+Exact accepted reconstruction currently covers 1,511 of 2,526 main-executable
+functions (about 59.8%; 195,012 of 1,050,624 code-region bytes, about 18.6%),
 plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
@@ -170,6 +170,7 @@ fourth and fifth passes in
 - [Runtime image dispatch module](docs/games/ddr-5th-mix-jp-runtime-image-dispatch.md)
 - [Runtime image batch initialization module](docs/games/ddr-5th-mix-jp-runtime-image-batch-init.md)
 - [Runtime object initialization module](docs/games/ddr-5th-mix-jp-runtime-object-init.md)
+- [Runtime coordinate initialization module](docs/games/ddr-5th-mix-jp-runtime-coordinate-init.md)
 - [Runtime player gate module](docs/games/ddr-5th-mix-jp-runtime-player-gate.md)
 - [Music/resource state module](docs/games/ddr-5th-mix-jp-music-state.md)
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)

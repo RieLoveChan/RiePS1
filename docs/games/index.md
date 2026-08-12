@@ -34,6 +34,7 @@
 * [DDR 5th Mix runtime image dispatch module](ddr-5th-mix-jp-runtime-image-dispatch.md) - Indexed resource-table dispatch and image submission matching 356 bytes.
 * [DDR 5th Mix runtime image batch initialization module](ddr-5th-mix-jp-runtime-image-batch-init.md) - Twelve-image TIM/CLUT initialization matching 400 bytes.
 * [DDR 5th Mix runtime object initialization module](ddr-5th-mix-jp-runtime-object-init.md) - Model/object mapping and texture-page setup matching 424 bytes.
+* [DDR 5th Mix runtime coordinate initialization module](ddr-5th-mix-jp-runtime-coordinate-init.md) - Coordinate hierarchy and object-state initialization matching 360 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.
