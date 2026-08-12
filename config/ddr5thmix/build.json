@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "runtime-image-region-update",
+      "description": "Indexed runtime-image region update and coordinate normalization helper.",
+      "functions": [
+        "FUN_8007ba94"
+      ]
+    },
+    {
       "name": "runtime-six-record-init",
       "description": "Six-entry runtime record initialization and state reset helper.",
       "functions": [
@@ -2262,6 +2269,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_8007ba94",
+      "address": "0x8007ba94",
+      "size": 200,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeImageRegionUpdate.s",
+      "section": ".text.FUN_8007ba94"
     },
     {
       "name": "FUN_800a62c0",
