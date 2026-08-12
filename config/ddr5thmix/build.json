@@ -99,6 +99,11 @@
       "functions": ["FUN_8007e9a8"]
     },
     {
+      "name": "runtime-graphics-clear",
+      "description": "Game-owned display-area clear helper using two conditional ClearImage2 rectangles.",
+      "functions": ["FUN_800a0c04"]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [
@@ -24284,6 +24289,17 @@
       "section": ".text.FUN_8007e9a8",
       "symbols": {
         "FUN_8007e064": "0x8007e064"
+      }
+    },
+    {
+      "name": "FUN_800a0c04",
+      "address": "0x800a0c04",
+      "size": 172,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeGraphicsClear.s",
+      "section": ".text.FUN_800a0c04",
+      "symbols": {
+        "ClearImage2": "0x80038778"
       }
     },
     {
