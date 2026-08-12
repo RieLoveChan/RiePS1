@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "runtime-timing-table",
+      "description": "Runtime timing-table reset, index update, and threshold adjustment helper.",
+      "functions": [
+        "FUN_8007f840"
+      ]
+    },
+    {
       "name": "runtime-record-init",
       "description": "Indexed runtime-record initializer and region registration helper.",
       "functions": [
@@ -2227,6 +2234,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_8007f840",
+      "address": "0x8007f840",
+      "size": 184,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeTimingTable.s",
+      "section": ".text.FUN_8007f840"
     },
     {
       "name": "FUN_8009ddcc",
