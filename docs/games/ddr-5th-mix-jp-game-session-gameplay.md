@@ -24,7 +24,12 @@ same-day structural inventory in
 | 6 | `DANCING` | `FUN_80070bc4` | `FUN_8006f49c` | `FUN_8006f6cc` | 796 |
 | 7 | `STAGE END` | `FUN_8006f784` | `FUN_8006f888` | `FUN_8006fa30` | 1,056 |
 
-Total: twelve functions and 3,356 selected bytes.
+The module also contains `FUN_8007f598`, a shared gameplay timing wait helper
+called by the state-7 update path. It takes an iteration count and an offset,
+captures `VSync(1)`, posts event `1` three times, then polls `VSync(1)` until
+the requested interval expires; every eighth iteration posts event `1` again.
+
+Total: thirteen functions and 3,536 selected bytes.
 
 # Exact evidence
 
@@ -42,6 +47,7 @@ Total: twelve functions and 3,356 selected bytes.
 | `FUN_8006f784` | 260 | `92fb6d207a2de6f46a9884c45b308b417bf80a817e5b17f0c206ba2775ae5486` |
 | `FUN_8006f888` | 424 | `4c01782ed81a4afb7945594531b38d8e6f0a3d731cf04ffd1f24d49b7f2069d2` |
 | `FUN_8006fa30` | 372 | `5b596a98d8a6a87276f38a9c8940a5951a8b6b4867fd2eab04135a92e8cec52f` |
+| `FUN_8007f598` | 180 | `152f0a4179866c0b39a8a069c5c30a0ba08b9f60c2da70681416c3aa2a1d05de` |
 
 `/src/ddr5thmix/GameSessionGameplay.s` uses semantic MIPS instructions,
 symbolic external calls, explicit registers, and preserved delay slots,

@@ -209,7 +209,8 @@
         "FUN_8006f6cc",
         "FUN_8006f784",
         "FUN_8006f888",
-        "FUN_8006fa30"
+        "FUN_8006fa30",
+        "FUN_8007f598"
       ]
     },
     {
@@ -2186,6 +2187,18 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_80070aac"
+    },
+    {
+      "name": "FUN_8007f598",
+      "address": "0x8007f598",
+      "size": 180,
+      "language": "asm",
+      "source": "src/ddr5thmix/GameSessionGameplay.s",
+      "section": ".text.FUN_8007f598",
+      "symbols": {
+        "FUN_8002a8b0": "0x8002a8b0",
+        "FUN_800358f8": "0x800358f8"
+      }
     },
     {
       "name": "FUN_80070bf8",
