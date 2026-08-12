@@ -14,11 +14,11 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,507 total: 1,491 verified, 102 manually reviewed, 167 library signatures, 747 unverified |
+| Main-executable function inventory | 2,507 total: 1,492 verified, 102 manually reviewed, 167 library signatures, 746 unverified |
 | Main-executable code-region byte accounting | 572,577 of 1,050,624 code-region bytes (54.5%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 478,047 bytes are not 478KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), and the true residue is now fully classified: 1,204 bytes of zero-alignment padding and 59 bytes of already-evidenced PsyQ object-header markers. No unclassified bytes remain in the code region. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
-| Exact reconstruction | 1,561 functions / 197,228 selected bytes: 1,491/187,856 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Exact reconstruction | 1,562 functions / 197,404 selected bytes: 1,492/188,032 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172 |
+| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172; `runtime-player-init`: 1/176 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | Full 11,864-byte structural map; 70 functions/9,372 code bytes plus 12 semantic data sections/2,492 bytes exact (11,864 selected bytes, 100% whole-overlay match); all 748 tail bytes resolved; 1,910-tick script verified |
@@ -27,8 +27,8 @@ and validate its recorded hashes before comparison.
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress; so is the 54.5% code-region
 byte accounting above (a catalogued boundary is not a byte-exact match).
-Exact accepted reconstruction currently covers 1,491 of 2,507 main-executable
-functions (about 59.5%; 187,856 of 1,050,624 code-region bytes, about 17.9%),
+Exact accepted reconstruction currently covers 1,492 of 2,507 main-executable
+functions (about 59.5%; 188,032 of 1,050,624 code-region bytes, about 17.9%),
 plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
@@ -155,6 +155,7 @@ fourth and fifth passes in
 - [Runtime screen initialization module](docs/games/ddr-5th-mix-jp-runtime-screen-init.md)
 - [Runtime resource initialization module](docs/games/ddr-5th-mix-jp-runtime-resource-init.md)
 - [Runtime graphics clear module](docs/games/ddr-5th-mix-jp-runtime-graphics-clear.md)
+- [Runtime player initialization module](docs/games/ddr-5th-mix-jp-runtime-player-init.md)
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)
 - [Screen flow](docs/games/ddr-5th-mix-jp-screen-flow.md)
 - [Byte-match workflow](docs/workflows/function-byte-match.md)

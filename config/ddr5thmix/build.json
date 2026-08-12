@@ -104,6 +104,11 @@
       "functions": ["FUN_800a0c04"]
     },
     {
+      "name": "runtime-player-init",
+      "description": "Game-owned initialization of the two player timing/control records.",
+      "functions": ["FUN_80097134"]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [
@@ -24300,6 +24305,17 @@
       "section": ".text.FUN_800a0c04",
       "symbols": {
         "ClearImage2": "0x80038778"
+      }
+    },
+    {
+      "name": "FUN_80097134",
+      "address": "0x80097134",
+      "size": 176,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimePlayerInit.s",
+      "section": ".text.FUN_80097134",
+      "symbols": {
+        "FUN_800a36d8": "0x800a36d8"
       }
     },
     {
