@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "runtime-state-init",
+      "description": "Runtime state initializer for the selected record and per-player flag.",
+      "functions": [
+        "FUN_800a6210"
+      ]
+    },
+    {
       "name": "music-state",
       "description": "Music/resource state dispatcher and timing wait helper.",
       "functions": [
@@ -2206,6 +2213,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_800a6210",
+      "address": "0x800a6210",
+      "size": 176,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeStateInit.s",
+      "section": ".text.FUN_800a6210"
     },
     {
       "name": "FUN_8007a8f4",

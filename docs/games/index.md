@@ -19,6 +19,7 @@
 * [DDR 5th Mix runtime resource initialization module](ddr-5th-mix-jp-runtime-resource-init.md) - Resource-table initializer matching 180 bytes.
 * [DDR 5th Mix runtime graphics clear module](ddr-5th-mix-jp-runtime-graphics-clear.md) - Conditional display-area clear helper matching 172 bytes.
 * [DDR 5th Mix runtime player initialization module](ddr-5th-mix-jp-runtime-player-init.md) - Two player-record initializer matching 176 bytes.
+* [DDR 5th Mix runtime state initialization module](ddr-5th-mix-jp-runtime-state-init.md) - Selected-record and per-player flag initializer matching 176 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.
