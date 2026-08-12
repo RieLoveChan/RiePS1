@@ -1558,7 +1558,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x80058970,1640,FUN_80058970,,DEFAULT,unverified,decompiler_output_only,,2,8,main,
 0x80058fd8,1144,FUN_80058fd8,,DEFAULT,unverified,decompiler_output_only,,1,6,main,
 0x80059450,1592,FUN_80059450,,DEFAULT,unverified,decompiler_output_only,,1,6,main,
-0x80059a88,416,FUN_80059a88,,DEFAULT,unverified,decompiler_output_only,,2,0,main,
+0x80059a88,416,FUN_80059a88,,DEFAULT,verified,hand_written_source,"Batch-38 reconstruction 2026-08-12: exact MIPS reconstruction of the 416-byte table normalization helper at file offset 0x3fa88; byte-match 416/416 verified with SHA-256 e594ba035f96b6ec7ba33dd731d4b549ea943bfd20622c767a1bb2dab8f3e9c3.",2,0,main,
 0x80059c28,2640,FUN_80059c28,,DEFAULT,unverified,decompiler_output_only,,2,2,main,
 0x8005a678,2080,FUN_8005a678,,DEFAULT,unverified,decompiler_output_only,,2,1,main,
 0x8005ae98,536,FUN_8005ae98,,DEFAULT,unverified,decompiler_output_only,,1,5,main,
