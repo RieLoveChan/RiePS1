@@ -44,6 +44,8 @@
 
 - Batch-92: reconstructed FUN_80071258 (1804 bytes) from lawful executable offset 0x57258; Invoke-FunctionMatch.ps1 verified 1804/1804 bytes with reference/built SHA-256 fd30b0fb5ec77e6537e39077f90f761318ba1a689cb2753d03221f391983a07a using GCC 14.2.0/binutils 2.43.
 
+- Batch-93: reconstructed FUN_80071964 (2232 bytes) from lawful executable offset 0x57964; Invoke-FunctionMatch.ps1 verified 2232/2232 bytes with reference/built SHA-256 8188692d5ec4cd703af92910631e51f8ed1d49010199935151a6ea402a1a3171 using GCC 14.2.0/binutils 2.43.
+
 ## 2026-08-12
 * **Helper de procesamiento de estado de 3832 bytes reconstruido**: Anadido FUN_80067cd0 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset ejecutable 0x4dcd0; la validacion byte-match coincidio 3832/3832 bytes en el offset ejecutable 0x4dcd0, con SHA-256 de referencia y construido d6d0635102b8776bf99f35ca207685b7a78e54d75b3ae4b624a46975c6c56eaa, usando GCC 14.2.0/binutils 2.43.
 * **Helper de procesamiento de estado de 1244 bytes reconstruido**: Anadido FUN_800677f4 a src/ddr5thmix/LibrarySignatureBatch9.s desde el dump licito en el offset de archivo 0x4d7f4; la validacion byte-match coincidio 1244/1244 bytes en el offset 0x4d7f4, con SHA-256 de referencia y construido 8b289620003cfca7406f2467c6e0425f8a1f595c745996a7018e0b3df4d1c37d, usando GCC 14.2.0/binutils 2.43.
