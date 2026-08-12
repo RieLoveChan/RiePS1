@@ -1551,7 +1551,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x80056a60,144,FUN_80056a60,,DEFAULT,verified,hand_written_source,"Batch-15 reconstruction 2026-08-10: Invoke-FunctionMatch.ps1 against lawful SLPM_868.97_1 SHA-256 4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee with GCC 14.2.0/binutils 2.43; 144/144 bytes match at file offset 0x3ca60; reference/built SHA-256 cd3a52064c3981e1b653963fee8133eb7510f9af8ab8af5113201d9391831ccd.",1,3,main,
 0x80056af0,224,FUN_80056af0,,DEFAULT,verified,hand_written_source,"Batch-32 reconstruction 2026-08-11: exact MIPS reconstruction of the 224-byte circular buffer update helper at file offset 0x3caf0; byte-match 224/224 verified with SHA-256 280a1eabe266fe56394c791229f2a3971e395d8c4f0b99c1145beb5c93dc5f6b.",1,0,main,
 0x80056bd0,1564,FUN_80056bd0,,DEFAULT,unverified,decompiler_output_only,,1,6,main,
-0x800571ec,560,FUN_800571ec,,DEFAULT,unverified,decompiler_output_only,,1,3,main,
+0x800571ec,560,FUN_800571ec,,DEFAULT,verified,hand_written_source,"Batch-37 reconstruction 2026-08-12: exact MIPS reconstruction of the 560-byte state dispatcher at file offset 0x3d1ec; byte-match 560/560 verified with SHA-256 46f0a206b8ae2426052e050c03bd2c3250290d41f22f0ad359002c894eb4d4c7.",1,3,main,
 0x8005741c,4100,FUN_8005741c,,DEFAULT,unverified,decompiler_output_only,,1,3,main,
 0x80058420,764,FUN_80058420,,DEFAULT,unverified,decompiler_output_only,,2,11,main,
 0x8005871c,596,FUN_8005871c,,DEFAULT,unverified,decompiler_output_only,,1,14,main,
