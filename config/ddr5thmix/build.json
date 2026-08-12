@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "runtime-descriptor-build",
+      "description": "Indexed runtime descriptor construction and image submission helper.",
+      "functions": [
+        "FUN_8007bb5c"
+      ]
+    },
+    {
       "name": "runtime-image-update",
       "description": "Indexed runtime-image update and coordinate normalization helper.",
       "functions": [
@@ -2248,6 +2255,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_8007bb5c",
+      "address": "0x8007bb5c",
+      "size": 192,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeDescriptorBuild.s",
+      "section": ".text.FUN_8007bb5c"
     },
     {
       "name": "FUN_8007b9d4",
