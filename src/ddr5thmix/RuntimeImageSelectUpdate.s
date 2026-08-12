@@ -138,3 +138,237 @@ FUN_8007b260:
     addiu   $sp,$sp,48
 .end FUN_8007b260
 .size FUN_8007b260, . - FUN_8007b260
+
+.section .text.FUN_8007b35c, "ax", @progbits
+.globl FUN_8007b35c
+.type FUN_8007b35c, @function
+.ent FUN_8007b35c
+FUN_8007b35c:
+.L8007b35c:
+    addiu   $sp,$sp,-88
+.L8007b360:
+    sw      $s0,56($sp)
+.L8007b364:
+    addu    $s0,$a0,$zero
+.L8007b368:
+    sw      $s2,64($sp)
+.L8007b36c:
+    addu    $s2,$a1,$zero
+.L8007b370:
+    lui     $v0,0x8013
+.L8007b374:
+    ori     $v0,$v0,4
+.L8007b378:
+    sll     $a0,$s2,2
+.L8007b37c:
+    addu    $a0,$a0,$s2
+.L8007b380:
+    sll     $a0,$a0,2
+.L8007b384:
+    subu    $a0,$a0,$s2
+.L8007b388:
+    sll     $a0,$a0,3
+.L8007b38c:
+    subu    $a0,$a0,$s2
+.L8007b390:
+    sll     $a0,$a0,4
+.L8007b394:
+    addu    $a0,$a0,$s2
+.L8007b398:
+    sll     $a0,$a0,5
+.L8007b39c:
+    addu    $a0,$a0,$v0
+.L8007b3a0:
+    addiu   $a1,$sp,24
+.L8007b3a4:
+    sw      $ra,80($sp)
+.L8007b3a8:
+    sw      $s5,76($sp)
+.L8007b3ac:
+    sw      $s4,72($sp)
+.L8007b3b0:
+    sw      $s3,68($sp)
+.L8007b3b4:
+    jal     0x80038028
+.L8007b3b8:
+    sw      $s1,60($sp)
+.L8007b3bc:
+    addiu   $v0,$zero,1
+.L8007b3c0:
+    beq     $s0,$v0,.L8007b404
+.L8007b3c4:
+    slti    $v0,$s0,2
+.L8007b3c8:
+    beq     $v0,$zero,.L8007b3e0
+.L8007b3cc:
+    addiu   $v0,$zero,2
+.L8007b3d0:
+    beq     $s0,$zero,.L8007b3f0
+.L8007b3d4:
+    lui     $v0,0x800e
+.L8007b3d8:
+    j       0x8007b430
+.L8007b3dc:
+    addiu   $v0,$v0,-0xd88
+.L8007b3e0:
+    beq     $s0,$v0,.L8007b418
+.L8007b3e4:
+    lui     $v0,0x800e
+.L8007b3e8:
+    j       0x8007b430
+.L8007b3ec:
+    addiu   $v0,$v0,-0xd88
+.L8007b3f0:
+    ori     $s1,$zero,0x8280
+.L8007b3f4:
+    addiu   $s3,$zero,0xf0
+.L8007b3f8:
+    addiu   $s5,$zero,0x280
+.L8007b3fc:
+    j       0x8007b428
+.L8007b400:
+    addiu   $s4,$zero,0x1e1
+.L8007b404:
+    ori     $s1,$zero,0x8320
+.L8007b408:
+    addu    $s3,$zero,$zero
+.L8007b40c:
+    addiu   $s5,$zero,0x280
+.L8007b410:
+    j       0x8007b428
+.L8007b414:
+    addiu   $s4,$zero,0x1e2
+.L8007b418:
+    ori     $s1,$zero,0x8320
+.L8007b41c:
+    addiu   $s3,$zero,0xf0
+.L8007b420:
+    addiu   $s5,$zero,0x280
+.L8007b424:
+    addiu   $s4,$zero,0x1e3
+.L8007b428:
+    lui     $v0,0x800e
+.L8007b42c:
+    addiu   $v0,$v0,-0xd88
+.L8007b430:
+    sll     $v1,$s0,1
+.L8007b434:
+    addu    $s0,$v1,$v0
+.L8007b438:
+    lhu     $v1,0($s0)
+.L8007b43c:
+    nop
+.L8007b440:
+    andi    $v0,$v1,0xff
+.L8007b444:
+    bne     $v0,$s2,.L8007b49c
+.L8007b448:
+    addiu   $a0,$sp,16
+.L8007b44c:
+    andi    $v0,$v1,0x8000
+.L8007b450:
+    bne     $v0,$zero,.L8007b494
+.L8007b454:
+    ori     $v0,$zero,0x9600
+.L8007b458:
+    lw      $a1,36($sp)
+.L8007b45c:
+    lhu     $v1,34($sp)
+.L8007b460:
+    lhu     $a2,32($sp)
+.L8007b464:
+    sh      $s1,16($sp)
+.L8007b468:
+    addu    $a1,$a1,$v0
+.L8007b46c:
+    srl     $v1,$v1,1
+.L8007b470:
+    addu    $v0,$s3,$v1
+.L8007b474:
+    sh      $v0,18($sp)
+.L8007b478:
+    sh      $a2,20($sp)
+.L8007b47c:
+    jal     0x80038810
+.L8007b480:
+    sh      $v1,22($sp)
+.L8007b484:
+    lhu     $v0,0($s0)
+.L8007b488:
+    nop
+.L8007b48c:
+    ori     $v0,$v0,0x8000
+.L8007b490:
+    sh      $v0,0($s0)
+.L8007b494:
+    j       0x8007b4fc
+.L8007b498:
+    addu    $v0,$zero,$zero
+.L8007b49c:
+    lw      $a1,36($sp)
+.L8007b4a0:
+    lhu     $v1,32($sp)
+.L8007b4a4:
+    lhu     $v0,34($sp)
+.L8007b4a8:
+    sh      $s1,16($sp)
+.L8007b4ac:
+    sh      $s3,18($sp)
+.L8007b4b0:
+    srl     $v0,$v0,1
+.L8007b4b4:
+    sh      $v1,20($sp)
+.L8007b4b8:
+    jal     0x80038810
+.L8007b4bc:
+    sh      $v0,22($sp)
+.L8007b4c0:
+    lw      $v0,24($sp)
+.L8007b4c4:
+    nop
+.L8007b4c8:
+    srl     $v0,$v0,3
+.L8007b4cc:
+    andi    $v0,$v0,1
+.L8007b4d0:
+    beq     $v0,$zero,.L8007b4f8
+.L8007b4d4:
+    addiu   $a0,$sp,16
+.L8007b4d8:
+    lw      $a1,48($sp)
+.L8007b4dc:
+    lhu     $v0,44($sp)
+.L8007b4e0:
+    lhu     $v1,46($sp)
+.L8007b4e4:
+    sh      $s5,16($sp)
+.L8007b4e8:
+    sh      $s4,18($sp)
+.L8007b4ec:
+    sh      $v0,20($sp)
+.L8007b4f0:
+    jal     0x80038810
+.L8007b4f4:
+    sh      $v1,22($sp)
+.L8007b4f8:
+    sh      $s2,0($s0)
+.L8007b4fc:
+    lw      $ra,80($sp)
+.L8007b500:
+    lw      $s5,76($sp)
+.L8007b504:
+    lw      $s4,72($sp)
+.L8007b508:
+    lw      $s3,68($sp)
+.L8007b50c:
+    lw      $s2,64($sp)
+.L8007b510:
+    lw      $s1,60($sp)
+.L8007b514:
+    lw      $s0,56($sp)
+.L8007b518:
+    jr      $ra
+.L8007b51c:
+    addiu   $sp,$sp,88
+.end FUN_8007b35c
+.size FUN_8007b35c, . - FUN_8007b35c
