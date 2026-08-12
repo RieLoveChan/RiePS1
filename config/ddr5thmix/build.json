@@ -202,6 +202,13 @@
       ]
     },
     {
+      "name": "runtime-state-gate",
+      "description": "Runtime state-record reset, flag update, and optional VSync gate.",
+      "functions": [
+        "FUN_8007b778"
+      ]
+    },
+    {
       "name": "runtime-image-select-update",
       "description": "Indexed image selection, coordinate calculation, and update helper.",
       "functions": [
@@ -2292,6 +2299,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeImageSelectUpdate.s",
       "section": ".text.FUN_8007b260"
+    },
+    {
+      "name": "FUN_8007b778",
+      "address": "0x8007b778",
+      "size": 264,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeStateGate.s",
+      "section": ".text.FUN_8007b778"
     },
     {
       "name": "FUN_8007b35c",
