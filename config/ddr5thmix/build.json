@@ -77,6 +77,13 @@
       ]
     },
     {
+      "name": "graphics-primitive-builder",
+      "description": "Game-owned GPU ordering-table primitive builders for textured and shaded 2D/3D records.",
+      "functions": [
+        "FUN_80023c00", "FUN_80023dbc", "FUN_80023e9c", "FUN_80023f68"
+      ]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [
