@@ -22796,6 +22796,16 @@
       "section": ".text.FUN_8006e698",
       "reference_sha256": "671745bd8535888b8f56259a489270f8897979b527afe29162476c9d3de94dc0",
       "built_sha256": "671745bd8535888b8f56259a489270f8897979b527afe29162476c9d3de94dc0"
+    },
+    {
+      "name": "FUN_8006e750",
+      "address": "0x8006e750",
+      "size": 668,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8006e750",
+      "reference_sha256": "a8f0944961985f003a8ef41a2281cbf3da1e2cb717d6c8eea75470aec50c44dc",
+      "built_sha256": "a8f0944961985f003a8ef41a2281cbf3da1e2cb717d6c8eea75470aec50c44dc"
     }
   ]
 }
