@@ -23318,5 +23318,16 @@
       "reference_sha256": "PLACEHOLDER",
       "built_sha256": "PLACEHOLDER"
     }
+,
+    {
+      "name": "FUN_8004a2e8",
+      "address": "0x8004a2e8",
+      "size": 460,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_8004a2e8",
+      "reference_sha256": "PLACEHOLDER",
+      "built_sha256": "PLACEHOLDER"
+    }
   ]
 }
