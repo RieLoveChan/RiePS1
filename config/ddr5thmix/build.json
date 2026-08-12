@@ -209,6 +209,13 @@
       ]
     },
     {
+      "name": "runtime-init-loop",
+      "description": "Runtime startup selector loop and completion state machine.",
+      "functions": [
+        "FUN_8007c384"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2335,6 +2342,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCoordinateInit.s",
       "section": ".text.FUN_8007c21c"
+    },
+    {
+      "name": "FUN_8007c384",
+      "address": "0x8007c384",
+      "size": 236,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeInitLoop.s",
+      "section": ".text.FUN_8007c384"
     },
     {
       "name": "FUN_8007c074",
