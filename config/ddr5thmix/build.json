@@ -84,6 +84,11 @@
       ]
     },
     {
+      "name": "state-dispatch",
+      "description": "Game-owned top-level state dispatch bridge for the runtime state machine.",
+      "functions": ["FUN_80024f60"]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [

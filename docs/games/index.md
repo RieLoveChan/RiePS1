@@ -13,6 +13,7 @@
 * [DDR 5th Mix state-transition module](ddr-5th-mix-jp-state-transition.md) - 117 timing, input-event, resource-request, and state-transition helpers matching 16,132 bytes.
 * [DDR 5th Mix runtime graphics initialization module](ddr-5th-mix-jp-runtime-graphics-init.md) - Eight graphics, timing, and runtime initialization helpers matching 1,020 bytes.
 * [DDR 5th Mix graphics primitive builder module](ddr-5th-mix-jp-graphics-primitive-builder.md) - Four GPU ordering-table primitive builders matching 988 bytes.
+* [DDR 5th Mix state-dispatch module](ddr-5th-mix-jp-state-dispatch.md) - Top-level state dispatch bridge matching 124 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.
