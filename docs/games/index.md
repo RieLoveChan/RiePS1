@@ -24,6 +24,7 @@
 * [DDR 5th Mix runtime record initialization module](ddr-5th-mix-jp-runtime-record-init.md) - Indexed record and region initializer matching 180 bytes.
 * [DDR 5th Mix runtime timing-table module](ddr-5th-mix-jp-runtime-timing-table.md) - 50-entry reset and threshold updater matching 184 bytes.
 * [DDR 5th Mix runtime flag selector module](ddr-5th-mix-jp-runtime-flag-selector.md) - State-dependent flag selection and event publication matching 188 bytes.
+* [DDR 5th Mix runtime image update module](ddr-5th-mix-jp-runtime-image-update.md) - Indexed image update and coordinate normalization matching 192 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.

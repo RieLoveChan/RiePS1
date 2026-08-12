@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "runtime-image-update",
+      "description": "Indexed runtime-image update and coordinate normalization helper.",
+      "functions": [
+        "FUN_8007b9d4"
+      ]
+    },
+    {
       "name": "runtime-flag-selector",
       "description": "Runtime state/flag selection and event publication helper.",
       "functions": [
@@ -2241,6 +2248,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_8007b9d4",
+      "address": "0x8007b9d4",
+      "size": 192,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeImageUpdate.s",
+      "section": ".text.FUN_8007b9d4"
     },
     {
       "name": "FUN_80086634",
