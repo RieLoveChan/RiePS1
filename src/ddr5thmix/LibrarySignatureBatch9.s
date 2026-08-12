@@ -24438,3 +24438,24 @@ FUN_8006fd04:
     .word   0xac430098
     .end FUN_8006fd04
     .size FUN_8006fd04, . - FUN_8006fd04
+
+/* FUN_8004d0a0 (0x8004d0a0, 184 bytes) */
+    .section .text.FUN_8004d0a0,"ax",@progbits
+    .globl FUN_8004d0a0
+    .type FUN_8004d0a0, @function
+    .ent FUN_8004d0a0
+FUN_8004d0a0:
+    .word   0x27bdffc0, 0xafb00030, 0x00808021, 0x3c048002
+    .word   0x2484be78, 0xafbf0038, 0x0c026172, 0xafb10034
+    .word   0x0c026220, 0x00402021, 0x3c03800f, 0x8c6328f8
+    .word   0x3c048888, 0x34848889, 0x00031b00, 0x00640019
+    .word   0x00408821, 0x00001810, 0x0c012593, 0x00032142
+    .word   0x00101fc2, 0x02031821, 0x00031843, 0x00620018
+    .word   0x00002021, 0x2402fec0, 0xafa20014, 0x2402ff10
+    .word   0xafa20018, 0x24020280, 0xafa20028, 0x240201e0
+    .word   0x240500ff, 0x02003021, 0x00c03821, 0xafb00010
+    .word   0xafb1001c, 0xafa00020, 0xafa00024, 0x0c013a24
+    .word   0xafa2002c, 0x8fbf0038, 0x8fb10034, 0x8fb00030
+    .word   0x03e00008, 0x27bd0040
+    .end FUN_8004d0a0
+    .size FUN_8004d0a0, . - FUN_8004d0a0
