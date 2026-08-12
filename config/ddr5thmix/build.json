@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "runtime-flag-selector",
+      "description": "Runtime state/flag selection and event publication helper.",
+      "functions": [
+        "FUN_80086634"
+      ]
+    },
+    {
       "name": "runtime-timing-table",
       "description": "Runtime timing-table reset, index update, and threshold adjustment helper.",
       "functions": [
@@ -2234,6 +2241,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_80086634",
+      "address": "0x80086634",
+      "size": 188,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeFlagSelector.s",
+      "section": ".text.FUN_80086634"
     },
     {
       "name": "FUN_8007f840",
