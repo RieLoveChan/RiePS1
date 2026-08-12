@@ -29,6 +29,7 @@
 * [DDR 5th Mix runtime six-record initialization module](ddr-5th-mix-jp-runtime-six-record-init.md) - Six-entry state reset and pointer initialization matching 192 bytes.
 * [DDR 5th Mix runtime image-region update module](ddr-5th-mix-jp-runtime-image-region-update.md) - Composite-index image region update matching 200 bytes.
 * [DDR 5th Mix runtime player gate module](ddr-5th-mix-jp-runtime-player-gate.md) - Per-player counter/flag gate matching 200 bytes.
+* [DDR 5th Mix runtime image selection/update module](ddr-5th-mix-jp-runtime-image-select-update.md) - Indexed image selection and update helper matching 252 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.

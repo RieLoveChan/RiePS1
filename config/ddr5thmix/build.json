@@ -202,6 +202,13 @@
       ]
     },
     {
+      "name": "runtime-image-select-update",
+      "description": "Indexed image selection, coordinate calculation, and update helper.",
+      "functions": [
+        "FUN_8007b260"
+      ]
+    },
+    {
       "name": "runtime-image-region-update",
       "description": "Indexed runtime-image region update and coordinate normalization helper.",
       "functions": [
@@ -2276,6 +2283,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_8007b260",
+      "address": "0x8007b260",
+      "size": 252,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeImageSelectUpdate.s",
+      "section": ".text.FUN_8007b260"
     },
     {
       "name": "FUN_80085dc4",
