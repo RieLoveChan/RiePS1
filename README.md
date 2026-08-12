@@ -14,11 +14,11 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,510 total: 1,495 verified, 102 manually reviewed, 167 library signatures, 743 unverified |
+| Main-executable function inventory | 2,511 total: 1,496 verified, 102 manually reviewed, 167 library signatures, 742 unverified |
 | Main-executable code-region byte accounting | 572,577 of 1,050,624 code-region bytes (54.5%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 478,047 bytes are not 478KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), and the true residue is now fully classified: 1,204 bytes of zero-alignment padding and 59 bytes of already-evidenced PsyQ object-header markers. No unclassified bytes remain in the code region. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
-| Exact reconstruction | 1,565 functions / 200,172 selected bytes: 1,495/190,800 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Exact reconstruction | 1,566 functions / 200,348 selected bytes: 1,496/190,976 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172; `runtime-player-init`: 1/176; `runtime-state-init`: 1/176 |
+| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172; `runtime-player-init`: 1/176; `runtime-state-init`: 1/176; `runtime-sync-init`: 1/176 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | Full 11,864-byte structural map; 70 functions/9,372 code bytes plus 12 semantic data sections/2,492 bytes exact (11,864 selected bytes, 100% whole-overlay match); all 748 tail bytes resolved; 1,910-tick script verified |
@@ -27,8 +27,8 @@ and validate its recorded hashes before comparison.
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress; so is the 54.5% code-region
 byte accounting above (a catalogued boundary is not a byte-exact match).
-Exact accepted reconstruction currently covers 1,495 of 2,510 main-executable
-functions (about 59.6%; 190,800 of 1,050,624 code-region bytes, about 18.2%),
+Exact accepted reconstruction currently covers 1,496 of 2,511 main-executable
+functions (about 59.6%; 190,976 of 1,050,624 code-region bytes, about 18.2%),
 plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
@@ -157,6 +157,7 @@ fourth and fifth passes in
 - [Runtime graphics clear module](docs/games/ddr-5th-mix-jp-runtime-graphics-clear.md)
 - [Runtime player initialization module](docs/games/ddr-5th-mix-jp-runtime-player-init.md)
 - [Runtime state initialization module](docs/games/ddr-5th-mix-jp-runtime-state-init.md)
+- [Runtime synchronization initialization module](docs/games/ddr-5th-mix-jp-runtime-sync-init.md)
 - [Music/resource state module](docs/games/ddr-5th-mix-jp-music-state.md)
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)
 - [Screen flow](docs/games/ddr-5th-mix-jp-screen-flow.md)
