@@ -28187,3 +28187,88 @@ FUN_80054010:
     .word 0x27bd0018
 .end FUN_80054010
 .size FUN_80054010, .-FUN_80054010
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a054
+.section .text.FUN_80054054,"ax",@progbits
+.globl FUN_80054054
+.type FUN_80054054, @function
+.ent FUN_80054054
+FUN_80054054:
+    .word 0x27bdffe8, 0x3c02800f, 0x3c03800f, 0xac4028fc, 0x2402001d, 0x3c058011, 0x24a56aa0, 0xafbf0010, 0xa4622908, 0x8ca20188, 0x2403ff0f, 0x00431024, 0x34420020, 0xaca20188, 0x8c820004, 0x00000000
+    .word 0x24420001, 0x0c01b905, 0xac820004, 0x24040003, 0x0c01edde, 0x00002821, 0x0c013458, 0x00000000, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_80054054
+.size FUN_80054054, .-FUN_80054054
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a0c4
+.section .text.FUN_800540c4,"ax",@progbits
+.globl FUN_800540c4
+.type FUN_800540c4, @function
+.ent FUN_800540c4
+FUN_800540c4:
+    .word 0x27bdffe8, 0xafbf0010, 0x0c01309f, 0x00000000, 0x38420004, 0x2c420001, 0x8fbf0010, 0x00021040, 0x03e00008, 0x27bd0018
+.end FUN_800540c4
+.size FUN_800540c4, .-FUN_800540c4
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a0ec
+.section .text.FUN_800540ec,"ax",@progbits
+.globl FUN_800540ec
+.type FUN_800540ec, @function
+.ent FUN_800540ec
+FUN_800540ec:
+    .word 0x27bdffe8, 0xafbf0010, 0x0c013466, 0x00000000, 0x0c00aa2c, 0x240400fe, 0x8fbf0010, 0x00000000
+.end FUN_800540ec
+.size FUN_800540ec, .-FUN_800540ec
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a114
+.section .text.FUN_80054114,"ax",@progbits
+.globl FUN_80054114
+.type FUN_80054114, @function
+.ent FUN_80054114
+FUN_80054114:
+    .word 0x27bdffe8, 0x3c02800f, 0x3c03800f, 0xac4028fc, 0x24020025, 0xafbf0010, 0x0c01351a, 0xa4622908, 0x3c048011, 0x24846aa0, 0x8c820188, 0x2403ff0f, 0x00431024, 0x34420020, 0xac820188, 0x8fbf0010
+    .word 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_80054114
+.size FUN_80054114, .-FUN_80054114
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a160
+.section .text.FUN_80054160,"ax",@progbits
+.globl FUN_80054160
+.type FUN_80054160, @function
+.ent FUN_80054160
+FUN_80054160:
+    .word 0x27bdffe8, 0xafbf0010, 0x0c013529, 0x00000000, 0x3c02800f, 0x8c4228fc, 0x8fbf0010, 0x284201e1, 0x03e00008, 0x27bd0018
+.end FUN_80054160
+.size FUN_80054160, .-FUN_80054160
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a188
+.section .text.FUN_80054188,"ax",@progbits
+.globl FUN_80054188
+.type FUN_80054188, @function
+.ent FUN_80054188
+FUN_80054188:
+    .word 0x27bdffe8, 0xafbf0010, 0x0c013557, 0x00000000, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_80054188
+.size FUN_80054188, .-FUN_80054188
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a1a8
+.section .text.FUN_800541a8,"ax",@progbits
+.globl FUN_800541a8
+.type FUN_800541a8, @function
+.ent FUN_800541a8
+FUN_800541a8:
+    .word 0x27bdffe8, 0x3c02800f, 0x3c03800f, 0xac4028fc, 0x24020022, 0x24040006, 0x00002821, 0xafbf0010, 0x0c01edde, 0xa4622908, 0x0c013404, 0x00000000, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_800541a8
+.size FUN_800541a8, .-FUN_800541a8
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a1e8
+.section .text.FUN_800541e8,"ax",@progbits
+.globl FUN_800541e8
+.type FUN_800541e8, @function
+.ent FUN_800541e8
+FUN_800541e8:
+    .word 0x27bdffe8, 0x3c02800f, 0xafb00010, 0x24502888, 0xafbf0014, 0x8e030074, 0x24020001, 0x1462000d, 0x286201c1, 0x0c00a0d6, 0x24040336, 0x3c028011, 0x24426aa0, 0x8c430188, 0x2404ff0f, 0x00641824
+    .word 0x34630020, 0xac430188, 0x8e030074, 0x00000000, 0x286201c1, 0x14400007, 0x24100080, 0x2462fe40, 0x00021840, 0x00621821, 0x00031840, 0x24020080, 0x00438023, 0x00002021, 0x0c0132eb, 0x02002821
+    .word 0x3c02800f, 0x8c4228fc, 0x00000000, 0x284201c1, 0x14400009, 0x00000000, 0x06010007, 0x2404ff0f, 0x3c028011, 0x24426aa0, 0x8c430188, 0x00000000, 0x00641824, 0xac430188, 0x3c02800f, 0x8c4328fc
+    .word 0x00000000, 0x286301e1, 0x10600002, 0x24020005, 0x24020002, 0x8fbf0014, 0x8fb00010, 0x03e00008, 0x27bd0018
+.end FUN_800541e8
+.size FUN_800541e8, .-FUN_800541e8
