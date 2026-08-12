@@ -195,6 +195,13 @@
       ]
     },
     {
+      "name": "runtime-record-init",
+      "description": "Indexed runtime-record initializer and region registration helper.",
+      "functions": [
+        "FUN_8009ddcc"
+      ]
+    },
+    {
       "name": "runtime-sync-init",
       "description": "Runtime synchronization loop and structure initializer.",
       "functions": [
@@ -2220,6 +2227,14 @@
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
       }
+    },
+    {
+      "name": "FUN_8009ddcc",
+      "address": "0x8009ddcc",
+      "size": 180,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeRecordInit.s",
+      "section": ".text.FUN_8009ddcc"
     },
     {
       "name": "FUN_800a8b0c",
