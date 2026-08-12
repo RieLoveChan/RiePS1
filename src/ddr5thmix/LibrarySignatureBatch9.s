@@ -28367,3 +28367,45 @@ FUN_800546d8:
     .word 0x00000000, 0x3c02800f, 0x8c4328fc, 0x00000000, 0x286308ac, 0x10600002, 0x24020003, 0x24020005, 0x8fbf0020, 0x8fb1001c, 0x8fb00018, 0x03e00008, 0x27bd0028
 .end FUN_800546d8
 .size FUN_800546d8, .-FUN_800546d8
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a7cc
+.section .text.FUN_800547cc,"ax",@progbits
+.globl FUN_800547cc
+.type FUN_800547cc, @function
+.ent FUN_800547cc
+FUN_800547cc:
+    .word 0x27bdffe8, 0xafbf0010, 0x0c0790a1, 0x24840008, 0x0c01fc1f, 0x00000000, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_800547cc
+.size FUN_800547cc, .-FUN_800547cc
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a7f4
+.section .text.FUN_800547f4,"ax",@progbits
+.globl FUN_800547f4
+.type FUN_800547f4, @function
+.ent FUN_800547f4
+FUN_800547f4:
+    .word 0x27bdffe8, 0x3c02800f, 0x3c03800f, 0xac4028fc, 0x24020025, 0xafbf0010, 0x0c01b8da, 0xa4622908, 0x3c048011, 0x24846aa0, 0x2403ff0f, 0x8c820188, 0x00002821, 0x00431024, 0x34420020, 0xac820188
+    .word 0x0c01edde, 0x2404000c, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_800547f4
+.size FUN_800547f4, .-FUN_800547f4
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a84c
+.section .text.FUN_8005484c,"ax",@progbits
+.globl FUN_8005484c
+.type FUN_8005484c, @function
+.ent FUN_8005484c
+FUN_8005484c:
+    .word 0x3c02800f, 0x8c4228fc, 0x27bdffe8, 0x28420438, 0x10400005, 0xafbf0010, 0x0c01b340, 0x00000000, 0x08015220, 0x3c02800f, 0x0c0179aa, 0x24040070, 0x3c02800f, 0x8c4328fc, 0x00000000, 0x28630456
+    .word 0x10600002, 0x00001021, 0x24020006, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_8005484c
+.size FUN_8005484c, .-FUN_8005484c
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x3a8a8
+.section .text.FUN_800548a8,"ax",@progbits
+.globl FUN_800548a8
+.type FUN_800548a8, @function
+.ent FUN_800548a8
+FUN_800548a8:
+    .word 0x27bdffe8, 0xafbf0010, 0x0c01b8e2, 0x00000000, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_800548a8
+.size FUN_800548a8, .-FUN_800548a8
