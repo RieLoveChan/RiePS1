@@ -1666,7 +1666,7 @@ address,size,proposed_name,namespace,symbol_source_type,confidence,source_status
 0x8006216c,444,FUN_8006216c,,DEFAULT,verified,hand_written_source,"Batch-59 reconstruction 2026-08-12: exact MIPS reconstruction from lawful SLPM_868.97_1 bytes at file offset 0x4816c; byte-match 444/444 verified with SHA-256 85def8892a5c182501c06a1b473bd705faee1d446d36550e031a2d72354f620e.",1,6,main,
 0x80062328,9264,FUN_80062328,,DEFAULT,verified,hand_written_source,"Batch-60 reconstruction 2026-08-12: exact MIPS reconstruction from lawful SLPM_868.97_1 bytes at file offset 0x48328; byte-match 9264/9264 verified with SHA-256 cab6d236032fc5898fae4ca8d1f188212c049f4a29214d2f7eb5843e1916c8bf.",1,1,main,
 0x80064758,440,FUN_80064758,,DEFAULT,verified,hand_written_source,"Batch-61 reconstruction 2026-08-12: exact MIPS reconstruction from lawful SLPM_868.97_1 bytes at file offset 0x4a758; byte-match 440/440 verified with SHA-256 cebf54249df2701f8a26c4202d7ee7c828ef25875123831415ef5f231c69002e.",1,1,main,
-0x80064910,548,FUN_80064910,,DEFAULT,unverified,decompiler_output_only,,16,0,main,
+0x80064910,548,FUN_80064910,,DEFAULT,verified,hand_written_source,"Batch-62 reconstruction 2026-08-12: exact MIPS reconstruction from lawful SLPM_868.97_1 bytes at file offset 0x4a910; byte-match 548/548 verified with SHA-256 d65c27bb5a01111ca617b3fe84974183608f2250be573beae2bb25d16b6d42ac.",16,0,main,
 0x80064b34,332,FUN_80064b34,,DEFAULT,unverified,decompiler_output_only,,1,1,main,
 0x80064c80,1344,FUN_80064c80,,DEFAULT,unverified,decompiler_output_only,,1,8,main,
 0x800651c0,2048,FUN_800651c0,,DEFAULT,unverified,decompiler_output_only,,1,10,main,
