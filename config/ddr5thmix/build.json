@@ -230,6 +230,13 @@
       ]
     },
     {
+      "name": "runtime-curve-sampler",
+      "description": "Two-format runtime curve sampler and frame-channel publisher.",
+      "functions": [
+        "FUN_8007d454"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2380,6 +2387,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeObjectTransform.s",
       "section": ".text.FUN_8007cf38"
+    },
+    {
+      "name": "FUN_8007d454",
+      "address": "0x8007d454",
+      "size": 1108,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCurveSampler.s",
+      "section": ".text.FUN_8007d454"
     },
     {
       "name": "FUN_8007c074",
