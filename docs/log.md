@@ -1,3 +1,5 @@
+- Batch-206: registered `runtime-graphics-init` and verified all eight functions in `src/ddr5thmix/RuntimeGraphicsInit.s` (1,020/1,020 bytes) against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`. `Invoke-ModuleMatch.ps1` with GCC 14.2.0/binutils 2.43 returned `byte_match: True`; added the module concept and updated exact-reconstruction totals to 1,553 functions / 195,592 selected bytes.
+
 - Batch-205: registered `state-transition` as a game-owned reconstruction module and verified all 117 functions in `src/ddr5thmix/StateTransition.s` (16,132/16,132 bytes) against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`. `Invoke-ModuleMatch.ps1` with GCC 14.2.0/binutils 2.43 returned `byte_match: True`; added the module concept and updated exact-reconstruction totals to 1,545 functions / 194,572 selected bytes.
 
 - Batch-204: reconstructed FUN_80078ecc (1164 bytes) from lawful executable offset 0x5eecc; Invoke-FunctionMatch.ps1 verified 1164/1164 bytes with reference/built SHA-256 b22434c5e8d658b89741bc1f49ef9041a56ce7c184efe25dc7b5474a49702dd6 using GCC 14.2.0/binutils 2.43.

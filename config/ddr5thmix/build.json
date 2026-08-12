@@ -69,6 +69,14 @@
       ]
     },
     {
+      "name": "runtime-graphics-init",
+      "description": "Game-owned graphics reset, timing, display primitive, and runtime initialization helpers.",
+      "functions": [
+        "FUN_80024ca4", "FUN_80024e00", "FUN_80028c14", "FUN_80028ce4",
+        "FUN_80028d3c", "FUN_80028d5c", "FUN_80028d90", "FUN_80028de0"
+      ]
+    },
+    {
       "name": "runtime-core",
       "description": "Game-owned per-frame input, state reset, mode dispatch, and shared frame-state updates.",
       "functions": [
