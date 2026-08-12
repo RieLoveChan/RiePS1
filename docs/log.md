@@ -1,5 +1,7 @@
 # Knowledge Bundle Update Log
 
+- Batch-149: reconstructed FUN_8004fa40 (404 bytes) from lawful executable offset 0x35a40; Invoke-FunctionMatch.ps1 verified 404/404 bytes with reference/built SHA-256 e47872b43b46c1a31c96cfad13a83cd45ae1d2e6f74faf9d48629622bf19f10e using GCC 14.2.0/binutils 2.43.
+
 - Batch-148: reconstructed FUN_8004f6fc (548 bytes) from lawful executable offset 0x356fc; Invoke-FunctionMatch.ps1 verified 548/548 bytes with reference/built SHA-256 505a2e85899c31762975ee216fef66f8a473c06ce3b19334a8788717eef928f8 using GCC 14.2.0/binutils 2.43.
 
 - Batch-147: reconstructed FUN_8004f4d0 (556 bytes) from lawful executable offset 0x354d0; Invoke-FunctionMatch.ps1 verified 556/556 bytes with reference/built SHA-256 2168bf26eb69064d8ea98c4d13b419a0553006eaf57841ac86a92cf81aea305c using GCC 14.2.0/binutils 2.43.
