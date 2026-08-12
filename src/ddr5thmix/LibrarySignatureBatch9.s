@@ -28092,3 +28092,33 @@ FUN_80053658:
     .word 0x02002821, 0x24020280, 0xa7a20050, 0x240201e3, 0xa7a20052, 0x24020020, 0xa7a20054, 0x24020001, 0x0c00e204, 0xa7a20056, 0x0c00e159, 0x00002021, 0x8fbf005c, 0x8fb00058, 0x03e00008, 0x27bd0060
 .end FUN_80053658
 .size FUN_80053658, .-FUN_80053658
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x39718
+.section .text.FUN_80053718,"ax",@progbits
+.globl FUN_80053718
+.type FUN_80053718, @function
+.ent FUN_80053718
+FUN_80053718:
+    .word 0x27bdffe8, 0xafbf0010, 0x0c0145c4, 0x00000000, 0x0c014527, 0x00000000, 0x0c01448b, 0x00000000, 0x8fbf0010, 0x00000000, 0x03e00008, 0x27bd0018
+.end FUN_80053718
+.size FUN_80053718, .-FUN_80053718
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x39750
+.section .text.FUN_80053750,"ax",@progbits
+.globl FUN_80053750
+.type FUN_80053750, @function
+.ent FUN_80053750
+FUN_80053750:
+    .word 0x03e00008, 0x00000000
+.end FUN_80053750
+.size FUN_80053750, .-FUN_80053750
+
+# exact bytes from lawful SLPM_868.97_1 executable offset 0x39778
+.section .text.FUN_80053778,"ax",@progbits
+.globl FUN_80053778
+.type FUN_80053778, @function
+.ent FUN_80053778
+FUN_80053778:
+    .word 0x27bdffe0, 0x24020280, 0xa7a20014, 0x240201e0, 0x27a40010, 0x00002821, 0x00a03021, 0x00a03821, 0xafbf0018, 0xa7a00010, 0xa7a00012, 0x0c00e1de, 0xa7a20016, 0x8fbf0018, 0x00000000, 0x03e00008
+    .word 0x27bd0020
+.end FUN_80053778
+.size FUN_80053778, .-FUN_80053778

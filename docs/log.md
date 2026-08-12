@@ -1,3 +1,9 @@
+- Batch-168: reconstructed FUN_80053778 (68 bytes), SHA-256 0d54f692578a08f80cf0e9365e5f32cfc06c952a1e3f356a6b0751d8609c4391.
+
+- Batch-167: reconstructed FUN_80053750 (8 bytes), SHA-256 6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1.
+
+- Batch-166: reconstructed FUN_80053718 (48 bytes), SHA-256 218d06338be1e826aaff5401b769bf856cd4fcf6017ee33d879fd54aeea54b7a.
+
 - Batch-165: reconstructed FUN_80053658 (192 bytes), SHA-256 bfdb54d85507d5483921da3e6f571df291d8a1e7bda94f0fc49ddc544ed4f6ba.
 
 - Batch-164: reconstructed FUN_800535b0 (168 bytes), SHA-256 77f508c32dae749e202686d5747909a52d7e440bec37eb67626a0f14d4f7b154.
