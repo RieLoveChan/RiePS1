@@ -8,3 +8,4 @@
 * [Antivirus heuristic alert](antivirus-heuristic-observation.md) - Reproducibility and safety notes for endpoint alerts caused by long local analysis commands and event logging.
 * [DDR 5th Mix main executable link skeleton](main-executable-skeleton.md) - Reproducible relocatable integration build for manifest-backed function sections.
 * [DDR 5th Mix ISO asset inventory](iso-asset-inventory.md) - Inventory, hashes, and local extraction of the disc's asset containers.
+* [DDR 5th Mix VAG sample inventory](vag-sample-inventory.md) - Metadata-only inventory proving that STR.BIN is a VAG ADPCM sample bank, not a standard video stream.
