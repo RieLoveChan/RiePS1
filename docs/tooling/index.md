@@ -11,3 +11,4 @@
 * [DDR 5th Mix VAG sample inventory](vag-sample-inventory.md) - Metadata-only inventory proving that STR.BIN is a VAG ADPCM sample bank, not a standard video stream.
 * [DDR 5th Mix XA audio demultiplexing](xa-audio-demux.md) - Reconstructs raw XA sectors and extracts each routed audio stream locally.
 * [DDR 5th Mix runtime CD-read asset mapping](cd-read-asset-mapping.md) - Maps replay-observed READ_DT requests to local, hashed slices.
+* [TIM image inventory](tim-image-inventory.md) - Bounds-validates embedded PlayStation TIM images and records metadata only.
