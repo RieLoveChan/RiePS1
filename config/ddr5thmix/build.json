@@ -482,6 +482,13 @@
       ]
     },
     {
+      "name": "runtime-helper-87050",
+      "description": "Runtime record reorder and counter update helper.",
+      "functions": [
+        "FUN_80087050"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2920,6 +2927,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper86878.s",
       "section": ".text.FUN_80086878"
+    },
+    {
+      "name": "FUN_80087050",
+      "address": "0x80087050",
+      "size": 312,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper87050.s",
+      "section": ".text.FUN_80087050"
     },
     {
       "name": "FUN_8007c074",
