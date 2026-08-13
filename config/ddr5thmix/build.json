@@ -3955,7 +3955,9 @@
       "size": 180,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeRecordInit.s",
-      "section": ".text.FUN_8009ddcc"
+      "section": ".text.FUN_8009ddcc",
+      "reference_sha256": "2757697ba5a5416e8923dd6bddb7525486f2a6c3b75b168033ff7592fc01c693",
+      "built_sha256": "2757697ba5a5416e8923dd6bddb7525486f2a6c3b75b168033ff7592fc01c693"
     },
     {
       "name": "FUN_800a8b0c",
