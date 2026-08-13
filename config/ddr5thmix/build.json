@@ -1780,7 +1780,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetRGBfifo"
+      "section": ".text.SetRGBfifo",
+      "reference_sha256": "ad199cbaca41bcea007b37230fbf5b5b4d7564f69951259361790ac0a5b136cb",
+      "built_sha256": "ad199cbaca41bcea007b37230fbf5b5b4d7564f69951259361790ac0a5b136cb"
     },
     {
       "name": "SetIR123",
@@ -1788,7 +1790,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetIR123"
+      "section": ".text.SetIR123",
+      "reference_sha256": "6da9cf831c0db5d80eb5999464d1f03a4f775f37cc586406f93adc036b942b79",
+      "built_sha256": "6da9cf831c0db5d80eb5999464d1f03a4f775f37cc586406f93adc036b942b79"
     },
     {
       "name": "SetIR0",
@@ -1796,7 +1800,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetIR0"
+      "section": ".text.SetIR0",
+      "reference_sha256": "96f7dcc76ee52f98f3c538025fe3d5df5f0a5e20df30714924f9f0fc134b2eb3",
+      "built_sha256": "96f7dcc76ee52f98f3c538025fe3d5df5f0a5e20df30714924f9f0fc134b2eb3"
     },
     {
       "name": "SetSZfifo3",
@@ -1804,7 +1810,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetSZfifo3"
+      "section": ".text.SetSZfifo3",
+      "reference_sha256": "8087d1ed7c27a56546edfc5eb90c889963430f3eeccaf702df663c181854fcbd",
+      "built_sha256": "8087d1ed7c27a56546edfc5eb90c889963430f3eeccaf702df663c181854fcbd"
     },
     {
       "name": "SetSZfifo4",
@@ -1812,7 +1820,9 @@
       "size": 24,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetSZfifo4"
+      "section": ".text.SetSZfifo4",
+      "reference_sha256": "72d848610c07f57d296c6b6b120efcfab9a91cee5d935a03dd4f2f11bde50ef6",
+      "built_sha256": "72d848610c07f57d296c6b6b120efcfab9a91cee5d935a03dd4f2f11bde50ef6"
     },
     {
       "name": "SetSXSYfifo",
@@ -1820,7 +1830,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetSXSYfifo"
+      "section": ".text.SetSXSYfifo",
+      "reference_sha256": "d1fe526732bfbe89e5afe1854f4b849aec907632f3461a18034aef3597b2a456",
+      "built_sha256": "d1fe526732bfbe89e5afe1854f4b849aec907632f3461a18034aef3597b2a456"
     },
     {
       "name": "SetRii",
@@ -1828,7 +1840,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetRii"
+      "section": ".text.SetRii",
+      "reference_sha256": "ebf2ab5b55d34164ce9d996740d82449e99f98e4a65da7dcd9ad6e2f3cae7f17",
+      "built_sha256": "ebf2ab5b55d34164ce9d996740d82449e99f98e4a65da7dcd9ad6e2f3cae7f17"
     },
     {
       "name": "SetMAC123",
@@ -1836,7 +1850,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetMAC123"
+      "section": ".text.SetMAC123",
+      "reference_sha256": "54b7eeb51ac9b243c2caf48a078814305b17ea82899ad749dc26ca4c547f5cbd",
+      "built_sha256": "54b7eeb51ac9b243c2caf48a078814305b17ea82899ad749dc26ca4c547f5cbd"
     },
     {
       "name": "SetData32",
@@ -1844,7 +1860,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetData32"
+      "section": ".text.SetData32",
+      "reference_sha256": "e9189e5454ae227c211de6f62fe1f2602ca0d3e8b81e2524c511ba5d4085ec02",
+      "built_sha256": "e9189e5454ae227c211de6f62fe1f2602ca0d3e8b81e2524c511ba5d4085ec02"
     },
     {
       "name": "SetDQA",
@@ -1852,7 +1870,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetDQA"
+      "section": ".text.SetDQA",
+      "reference_sha256": "137430d515cfca2b9014536398a80cdb7341660e9b7ae4b91b8ffbe4fe866406",
+      "built_sha256": "137430d515cfca2b9014536398a80cdb7341660e9b7ae4b91b8ffbe4fe866406"
     },
     {
       "name": "_bu_init",
@@ -1860,7 +1880,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._bu_init"
+      "section": ".text._bu_init",
+      "reference_sha256": "069d69bbe3437a869fba0234a94c0c3ccd061833fb108f2276c0fa79c2c30381",
+      "built_sha256": "069d69bbe3437a869fba0234a94c0c3ccd061833fb108f2276c0fa79c2c30381"
     },
     {
       "name": "_card_info",
@@ -1868,7 +1890,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._card_info"
+      "section": ".text._card_info",
+      "reference_sha256": "53c1d988b2c0c6536bf7b9c90ff04fee92d7d1eb00c3143d0ae1f8cb0572b82a",
+      "built_sha256": "53c1d988b2c0c6536bf7b9c90ff04fee92d7d1eb00c3143d0ae1f8cb0572b82a"
     },
     {
       "name": "_card_load",
@@ -1876,7 +1900,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._card_load"
+      "section": ".text._card_load",
+      "reference_sha256": "6887fde04e1564fea90ebfec8d01b67f3eebf9f9b209d7165f72afc050d26edd",
+      "built_sha256": "6887fde04e1564fea90ebfec8d01b67f3eebf9f9b209d7165f72afc050d26edd"
     },
     {
       "name": "_card_auto",
@@ -1884,7 +1910,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._card_auto"
+      "section": ".text._card_auto",
+      "reference_sha256": "9b3a16e2068172686806086b600ecabdaa16dca605601bda6fb3e3ecf911a0b5",
+      "built_sha256": "9b3a16e2068172686806086b600ecabdaa16dca605601bda6fb3e3ecf911a0b5"
     },
     {
       "name": "_card_write",
@@ -1892,7 +1920,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._card_write"
+      "section": ".text._card_write",
+      "reference_sha256": "75246fc473556dee52be69947e769e0e1f616e6b001e1ace3f220e5fb97711f7",
+      "built_sha256": "75246fc473556dee52be69947e769e0e1f616e6b001e1ace3f220e5fb97711f7"
     },
     {
       "name": "_new_card",
@@ -1900,7 +1930,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._new_card"
+      "section": ".text._new_card",
+      "reference_sha256": "b840e8f38866a987e914f45adad3da1f58faa57994fb49869a7cc31cbf332ade",
+      "built_sha256": "b840e8f38866a987e914f45adad3da1f58faa57994fb49869a7cc31cbf332ade"
     },
     {
       "name": "InitCARD2",
@@ -1908,7 +1940,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.InitCARD2"
+      "section": ".text.InitCARD2",
+      "reference_sha256": "3dc545cd2a7eb02a71f69bb11d63a30fd43904f26456beaeba03a0b293cb6e02",
+      "built_sha256": "3dc545cd2a7eb02a71f69bb11d63a30fd43904f26456beaeba03a0b293cb6e02"
     },
     {
       "name": "StartCARD2",
@@ -1916,7 +1950,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.StartCARD2"
+      "section": ".text.StartCARD2",
+      "reference_sha256": "3265341abe40d382a64b7dd8b9d7abddc9d3c04ec0787bdb61031d89c666d589",
+      "built_sha256": "3265341abe40d382a64b7dd8b9d7abddc9d3c04ec0787bdb61031d89c666d589"
     },
     {
       "name": "StopCARD2",
@@ -1924,7 +1960,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.StopCARD2"
+      "section": ".text.StopCARD2",
+      "reference_sha256": "0bbe6cf1439cc86c67d4825252e8eec60a5f1959bcecab6e9c206f41278de0f8",
+      "built_sha256": "0bbe6cf1439cc86c67d4825252e8eec60a5f1959bcecab6e9c206f41278de0f8"
     },
     {
       "name": "_card_read",
@@ -1932,7 +1970,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._card_read"
+      "section": ".text._card_read",
+      "reference_sha256": "875fa8774175cad7c553fa1bcaa28639e989aa4933dedc1475a3e5eb84d9b6c5",
+      "built_sha256": "875fa8774175cad7c553fa1bcaa28639e989aa4933dedc1475a3e5eb84d9b6c5"
     },
     {
       "name": "_card_status",
@@ -1940,7 +1980,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text._card_status"
+      "section": ".text._card_status",
+      "reference_sha256": "f5716bf2e897fa21b1032ae94d5237405b67c3f14e059d64af038ea91e431ad8",
+      "built_sha256": "f5716bf2e897fa21b1032ae94d5237405b67c3f14e059d64af038ea91e431ad8"
     },
     {
       "name": "exit",
@@ -1948,7 +1990,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.exit"
+      "section": ".text.exit",
+      "reference_sha256": "d8fcf49b3617b308d46baa593e6665d34fab35e9b2ebb5cee8494c93b2f3df7e",
+      "built_sha256": "d8fcf49b3617b308d46baa593e6665d34fab35e9b2ebb5cee8494c93b2f3df7e"
     },
     {
       "name": "setjmp",
@@ -1956,7 +2000,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.setjmp"
+      "section": ".text.setjmp",
+      "reference_sha256": "0428ca0065f41fa0156f03a0626338006565f78c83f051dd0bcea81252136e5e",
+      "built_sha256": "0428ca0065f41fa0156f03a0626338006565f78c83f051dd0bcea81252136e5e"
     },
     {
       "name": "strcat",
@@ -1964,7 +2010,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.strcat"
+      "section": ".text.strcat",
+      "reference_sha256": "67605f8a2752259efa7205a1130ded95d6b9c63f6cef61d4e17342c1d0095513",
+      "built_sha256": "67605f8a2752259efa7205a1130ded95d6b9c63f6cef61d4e17342c1d0095513"
     },
     {
       "name": "strcpy",
@@ -1972,7 +2020,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.strcpy"
+      "section": ".text.strcpy",
+      "reference_sha256": "e920b48b8ffc89dc112ed9402a2880876d4654cbf215e0ecc3e47a016560f197",
+      "built_sha256": "e920b48b8ffc89dc112ed9402a2880876d4654cbf215e0ecc3e47a016560f197"
     },
     {
       "name": "strlen",
@@ -1980,7 +2030,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.strlen"
+      "section": ".text.strlen",
+      "reference_sha256": "9b43b77c5973b779161d6023dd1eb3e629d2aa60aa1efeaf828361bb1cf3c862",
+      "built_sha256": "9b43b77c5973b779161d6023dd1eb3e629d2aa60aa1efeaf828361bb1cf3c862"
     },
     {
       "name": "bzero",
@@ -1988,7 +2040,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.bzero"
+      "section": ".text.bzero",
+      "reference_sha256": "2aa8646552ae17ada0051a3620196e0cf4b4608ee32803592285fec4a5e78320",
+      "built_sha256": "2aa8646552ae17ada0051a3620196e0cf4b4608ee32803592285fec4a5e78320"
     },
     {
       "name": "memcpy",
@@ -1996,7 +2050,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.memcpy"
+      "section": ".text.memcpy",
+      "reference_sha256": "ad7c5bc50bc07966feaaee9043cbb18cd00d1ff4ffbcfbe37fdad2b22ea2876d",
+      "built_sha256": "ad7c5bc50bc07966feaaee9043cbb18cd00d1ff4ffbcfbe37fdad2b22ea2876d"
     },
     {
       "name": "printf",
@@ -2004,7 +2060,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.printf"
+      "section": ".text.printf",
+      "reference_sha256": "698f6afd1bb5f561402d0aaf8212cde9ffe42f4e5d56589177383701bec561bd",
+      "built_sha256": "698f6afd1bb5f561402d0aaf8212cde9ffe42f4e5d56589177383701bec561bd"
     },
     {
       "name": "InitHeap",
@@ -2012,7 +2070,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.InitHeap"
+      "section": ".text.InitHeap",
+      "reference_sha256": "4487ee3019aae533a71d191483e6876aa40c2530923670ec0e012a78204fb863",
+      "built_sha256": "4487ee3019aae533a71d191483e6876aa40c2530923670ec0e012a78204fb863"
     },
     {
       "name": "FlushCache",
@@ -2020,7 +2080,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.FlushCache"
+      "section": ".text.FlushCache",
+      "reference_sha256": "86f1abc250b24950310dd74d53b0758baaa3393ae55aec766cc049a592b17cba",
+      "built_sha256": "86f1abc250b24950310dd74d53b0758baaa3393ae55aec766cc049a592b17cba"
     },
     {
       "name": "GPU_cw",
@@ -2028,7 +2090,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.GPU_cw"
+      "section": ".text.GPU_cw",
+      "reference_sha256": "0a2181041688617d14ca99a521daa4c6337a216c66ad027d9763d257157c7527",
+      "built_sha256": "0a2181041688617d14ca99a521daa4c6337a216c66ad027d9763d257157c7527"
     },
     {
       "name": "DeliverEvent",
@@ -2036,7 +2100,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.DeliverEvent"
+      "section": ".text.DeliverEvent",
+      "reference_sha256": "1f3d5e03478b103c777dcf81a6aac086a8fe5763577fc1b7f3f63c137763e95a",
+      "built_sha256": "1f3d5e03478b103c777dcf81a6aac086a8fe5763577fc1b7f3f63c137763e95a"
     },
     {
       "name": "OpenEvent",
@@ -2044,7 +2110,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.OpenEvent"
+      "section": ".text.OpenEvent",
+      "reference_sha256": "836f0e0a8413aabe596d01d3caa02911d25cb8381476610f35490ee31acee142",
+      "built_sha256": "836f0e0a8413aabe596d01d3caa02911d25cb8381476610f35490ee31acee142"
     },
     {
       "name": "CloseEvent",
@@ -2052,7 +2120,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.CloseEvent"
+      "section": ".text.CloseEvent",
+      "reference_sha256": "b1b43358d552fbe8bd76d587dafc7b610606ca264232d149ac50d9fa8de2a369",
+      "built_sha256": "b1b43358d552fbe8bd76d587dafc7b610606ca264232d149ac50d9fa8de2a369"
     },
     {
       "name": "WaitEvent",
@@ -2060,7 +2130,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.WaitEvent"
+      "section": ".text.WaitEvent",
+      "reference_sha256": "78085ffececd5ad12f53d0f8a6e5d760bb49f899bc77a8ce685911162424d647",
+      "built_sha256": "78085ffececd5ad12f53d0f8a6e5d760bb49f899bc77a8ce685911162424d647"
     },
     {
       "name": "TestEvent",
@@ -2068,7 +2140,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.TestEvent"
+      "section": ".text.TestEvent",
+      "reference_sha256": "5d756c5ef10f08bb8b4ef9304c79b2a3924ce3bea546c70a70a457bd6de497aa",
+      "built_sha256": "5d756c5ef10f08bb8b4ef9304c79b2a3924ce3bea546c70a70a457bd6de497aa"
     },
     {
       "name": "EnableEvent",
@@ -2076,7 +2150,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.EnableEvent"
+      "section": ".text.EnableEvent",
+      "reference_sha256": "bb630b11b300ca136ec849b32f013e682b1df95abbe8a39ee561b3751d68c1d1",
+      "built_sha256": "bb630b11b300ca136ec849b32f013e682b1df95abbe8a39ee561b3751d68c1d1"
     },
     {
       "name": "DisableEvent",
@@ -2084,7 +2160,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.DisableEvent"
+      "section": ".text.DisableEvent",
+      "reference_sha256": "8d198f2effdd0548cb262bb2893dc24159833d354326cbd2afde9140a0b858a4",
+      "built_sha256": "8d198f2effdd0548cb262bb2893dc24159833d354326cbd2afde9140a0b858a4"
     },
     {
       "name": "ReturnFromException",
@@ -2092,7 +2170,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.ReturnFromException"
+      "section": ".text.ReturnFromException",
+      "reference_sha256": "6403f02e44574f9166b7e8b8d3cb89a7a05b124c57f6427b05647750b30f0d1f",
+      "built_sha256": "6403f02e44574f9166b7e8b8d3cb89a7a05b124c57f6427b05647750b30f0d1f"
     },
     {
       "name": "FUN_8003ba70",
@@ -2100,7 +2180,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.FUN_8003ba70"
+      "section": ".text.FUN_8003ba70",
+      "reference_sha256": "859ccf6879a1def400ddcd0fab5063a5b8ee05bd985e429028e3322b6e149fd9",
+      "built_sha256": "859ccf6879a1def400ddcd0fab5063a5b8ee05bd985e429028e3322b6e149fd9"
     },
     {
       "name": "FUN_8003bb30",
@@ -2108,7 +2190,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.FUN_8003bb30"
+      "section": ".text.FUN_8003bb30",
+      "reference_sha256": "d3eefd259eb1b5f648ec00610d2defbf4c6e5873f47895dd3d23a322bb0cfd7f",
+      "built_sha256": "d3eefd259eb1b5f648ec00610d2defbf4c6e5873f47895dd3d23a322bb0cfd7f"
     },
     {
       "name": "SetTransMatrix_8002b210",
@@ -2116,7 +2200,9 @@
       "size": 32,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.SetTransMatrix_8002b210"
+      "section": ".text.SetTransMatrix_8002b210",
+      "reference_sha256": "2f228789930df0a6d6db76e145ba3301694d7c01b9df2dbf45d2f48ad7aaee1e",
+      "built_sha256": "2f228789930df0a6d6db76e145ba3301694d7c01b9df2dbf45d2f48ad7aaee1e"
     },
     {
       "name": "MulMatrix0",
@@ -2124,7 +2210,9 @@
       "size": 268,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.MulMatrix0"
+      "section": ".text.MulMatrix0",
+      "reference_sha256": "2cdd7a947dcf65933864dc985431b443aff64da08fe0b62b26cd8e2cdc3c9a30",
+      "built_sha256": "2cdd7a947dcf65933864dc985431b443aff64da08fe0b62b26cd8e2cdc3c9a30"
     },
     {
       "name": "SetRotMatrix",
@@ -2132,7 +2220,9 @@
       "size": 48,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.SetRotMatrix"
+      "section": ".text.SetRotMatrix",
+      "reference_sha256": "095799477a23b46afa40d99dc027e7ef467cd14b8e135234d7e5b5c9ebc07883",
+      "built_sha256": "095799477a23b46afa40d99dc027e7ef467cd14b8e135234d7e5b5c9ebc07883"
     },
     {
       "name": "SetLightMatrix",
@@ -2140,7 +2230,9 @@
       "size": 48,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.SetLightMatrix"
+      "section": ".text.SetLightMatrix",
+      "reference_sha256": "b9ce521ecd6cadeda48a0828b73f9b37d260c4f83e4d3b099334608f9e8fe598",
+      "built_sha256": "b9ce521ecd6cadeda48a0828b73f9b37d260c4f83e4d3b099334608f9e8fe598"
     },
     {
       "name": "SetTransMatrix",
@@ -2148,7 +2240,9 @@
       "size": 32,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.SetTransMatrix"
+      "section": ".text.SetTransMatrix",
+      "reference_sha256": "2f228789930df0a6d6db76e145ba3301694d7c01b9df2dbf45d2f48ad7aaee1e",
+      "built_sha256": "2f228789930df0a6d6db76e145ba3301694d7c01b9df2dbf45d2f48ad7aaee1e"
     },
     {
       "name": "SetColorMatrix",
@@ -2156,7 +2250,9 @@
       "size": 48,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.SetColorMatrix"
+      "section": ".text.SetColorMatrix",
+      "reference_sha256": "32169d0ce375b3a1a24a5beadfd11cd857ce0a89d610ddf3a1f3855fa6ed34f6",
+      "built_sha256": "32169d0ce375b3a1a24a5beadfd11cd857ce0a89d610ddf3a1f3855fa6ed34f6"
     },
     {
       "name": "SetFarColor",
@@ -2164,7 +2260,9 @@
       "size": 32,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.SetFarColor"
+      "section": ".text.SetFarColor",
+      "reference_sha256": "7c5febbc8fceb4e4b3065c8276416832651867316006f05c53e0a20b893d522d",
+      "built_sha256": "7c5febbc8fceb4e4b3065c8276416832651867316006f05c53e0a20b893d522d"
     },
     {
       "name": "SetBackColor",
@@ -2172,7 +2270,9 @@
       "size": 32,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.SetBackColor"
+      "section": ".text.SetBackColor",
+      "reference_sha256": "e4dc8b65f4b8d01e34793cfd9e1ecc838abd27d016ca1c2a4291a20b613ab61e",
+      "built_sha256": "e4dc8b65f4b8d01e34793cfd9e1ecc838abd27d016ca1c2a4291a20b613ab61e"
     },
     {
       "name": "AverageZ3",
@@ -2180,7 +2280,9 @@
       "size": 32,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.AverageZ3"
+      "section": ".text.AverageZ3",
+      "reference_sha256": "72234e789d3afcc248b054abf035921eb4c095bb91a156c0df29e023db02b263",
+      "built_sha256": "72234e789d3afcc248b054abf035921eb4c095bb91a156c0df29e023db02b263"
     },
     {
       "name": "AverageZ4",
@@ -2188,7 +2290,9 @@
       "size": 36,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.AverageZ4"
+      "section": ".text.AverageZ4",
+      "reference_sha256": "ca098524f15b22f4ea8ac38b7d348e2cdce3c58babac70b15baa82d7af5f4115",
+      "built_sha256": "ca098524f15b22f4ea8ac38b7d348e2cdce3c58babac70b15baa82d7af5f4115"
     },
     {
       "name": "Lzc",
@@ -2196,7 +2300,9 @@
       "size": 24,
       "language": "asm",
       "source": "src/ddr5thmix/GteRemaining.s",
-      "section": ".text.Lzc"
+      "section": ".text.Lzc",
+      "reference_sha256": "3ee60c6a11ec8f3821342fb5db4619b7c2f355e751f0614f0e77c2f32e7cd8df",
+      "built_sha256": "3ee60c6a11ec8f3821342fb5db4619b7c2f355e751f0614f0e77c2f32e7cd8df"
     },
     {
       "name": "FUN_8002112c",
@@ -4695,7 +4801,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.ResetEntryInt"
+      "section": ".text.ResetEntryInt",
+      "reference_sha256": "5356791d9e12b5cf5a1068ace59fc136ba8ad9474f2ad9fc51be80dfda037817",
+      "built_sha256": "5356791d9e12b5cf5a1068ace59fc136ba8ad9474f2ad9fc51be80dfda037817"
     },
     {
       "name": "HookEntryInt",
@@ -4703,7 +4811,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.HookEntryInt"
+      "section": ".text.HookEntryInt",
+      "reference_sha256": "38790d1aeb4d336da0f746d61d8da4152afc210c2c260c98ac350db6321e05cd",
+      "built_sha256": "38790d1aeb4d336da0f746d61d8da4152afc210c2c260c98ac350db6321e05cd"
     },
     {
       "name": "open",
@@ -4711,7 +4821,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.open"
+      "section": ".text.open",
+      "reference_sha256": "c80c9a66c77fcad0c3232b3684868acb86a59e8bf922439c75751758b790179b",
+      "built_sha256": "c80c9a66c77fcad0c3232b3684868acb86a59e8bf922439c75751758b790179b"
     },
     {
       "name": "lseek",
@@ -4719,7 +4831,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.lseek"
+      "section": ".text.lseek",
+      "reference_sha256": "26a588252d4ade6956e8db30bec98a8e356aac6cbbac0db2cdd639f24e46e78e",
+      "built_sha256": "26a588252d4ade6956e8db30bec98a8e356aac6cbbac0db2cdd639f24e46e78e"
     },
     {
       "name": "read",
@@ -4727,7 +4841,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.read"
+      "section": ".text.read",
+      "reference_sha256": "7addaf0f8cdb9c52041ba5ccfce5e57d162f399c092ed606c33f8b4c2dd1c412",
+      "built_sha256": "7addaf0f8cdb9c52041ba5ccfce5e57d162f399c092ed606c33f8b4c2dd1c412"
     },
     {
       "name": "write",
@@ -4735,7 +4851,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.write"
+      "section": ".text.write",
+      "reference_sha256": "47b66a3af6776c605fd2d505596f37a217dc08fd35788f7884bafaf8e4434dbd",
+      "built_sha256": "47b66a3af6776c605fd2d505596f37a217dc08fd35788f7884bafaf8e4434dbd"
     },
     {
       "name": "nextfile",
@@ -4743,7 +4861,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.nextfile"
+      "section": ".text.nextfile",
+      "reference_sha256": "043d3a386e39caf98e3a26233fd59f494b3d9afc4e26243f136e358d23650b9d",
+      "built_sha256": "043d3a386e39caf98e3a26233fd59f494b3d9afc4e26243f136e358d23650b9d"
     },
     {
       "name": "rename",
@@ -4751,7 +4871,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.rename"
+      "section": ".text.rename",
+      "reference_sha256": "b17812fff44f497763ec43a081d3ebb93266d3717ff0ad6b31efc523de724e4d",
+      "built_sha256": "b17812fff44f497763ec43a081d3ebb93266d3717ff0ad6b31efc523de724e4d"
     },
     {
       "name": "erase",
@@ -4759,7 +4881,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.erase"
+      "section": ".text.erase",
+      "reference_sha256": "0815d44feb3bcaaa760a56a1f27cd83d7e4809e981c428f8cf5c2c44859f92a2",
+      "built_sha256": "0815d44feb3bcaaa760a56a1f27cd83d7e4809e981c428f8cf5c2c44859f92a2"
     },
     {
       "name": "Krom2RawAdd",
@@ -4767,7 +4891,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.Krom2RawAdd"
+      "section": ".text.Krom2RawAdd",
+      "reference_sha256": "9eb66308016ae6f4bacd124ffd7a9f27846b35bd86ae41a927adc30442be97f1",
+      "built_sha256": "9eb66308016ae6f4bacd124ffd7a9f27846b35bd86ae41a927adc30442be97f1"
     },
     {
       "name": "ChangeClearPAD",
@@ -4775,7 +4901,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.ChangeClearPAD"
+      "section": ".text.ChangeClearPAD",
+      "reference_sha256": "00edef32236c975680bc303e138c5c4f0af7b8f4cc322f5bb4225de45f51726a",
+      "built_sha256": "00edef32236c975680bc303e138c5c4f0af7b8f4cc322f5bb4225de45f51726a"
     },
     {
       "name": "strcmp",
@@ -4783,7 +4911,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.strcmp"
+      "section": ".text.strcmp",
+      "reference_sha256": "06f1ee44ad98f3fdd7dba77c6b8d305cb0094517fb4c8c4b3553c75115f7fd6c",
+      "built_sha256": "06f1ee44ad98f3fdd7dba77c6b8d305cb0094517fb4c8c4b3553c75115f7fd6c"
     },
     {
       "name": "firstfile2",
@@ -4791,7 +4921,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.firstfile2"
+      "section": ".text.firstfile2",
+      "reference_sha256": "3529dcee0c07ef90205f4c7676c2872f869e36eff1dbb88c10cc5008c05f3fc8",
+      "built_sha256": "3529dcee0c07ef90205f4c7676c2872f869e36eff1dbb88c10cc5008c05f3fc8"
     },
     {
       "name": "InitPAD2",
@@ -4799,7 +4931,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.InitPAD2"
+      "section": ".text.InitPAD2",
+      "reference_sha256": "a1a21f88f48f5ea212bda8857e1ca8dfa7d5ef30ba8af9edd469d590c32c8274",
+      "built_sha256": "a1a21f88f48f5ea212bda8857e1ca8dfa7d5ef30ba8af9edd469d590c32c8274"
     },
     {
       "name": "StartPAD2",
@@ -4807,7 +4941,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.StartPAD2"
+      "section": ".text.StartPAD2",
+      "reference_sha256": "da8ddb890adf1555061b8b10bbdafbaf5d4ebcc55ae0ecee4c7f5f4bc1707ee3",
+      "built_sha256": "da8ddb890adf1555061b8b10bbdafbaf5d4ebcc55ae0ecee4c7f5f4bc1707ee3"
     },
     {
       "name": "StopPAD2",
@@ -4815,7 +4951,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.StopPAD2"
+      "section": ".text.StopPAD2",
+      "reference_sha256": "9d296c458b419268ff77639322a3878888bb85e9ebf8d75ade0dec74f1d06665",
+      "built_sha256": "9d296c458b419268ff77639322a3878888bb85e9ebf8d75ade0dec74f1d06665"
     },
     {
       "name": "PAD_init2",
@@ -4823,7 +4961,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.PAD_init2"
+      "section": ".text.PAD_init2",
+      "reference_sha256": "1b6597442a23270a9d0c8e6c8e5ee39a05ecd7eaa148d27389bd6e2bf8af6ed0",
+      "built_sha256": "1b6597442a23270a9d0c8e6c8e5ee39a05ecd7eaa148d27389bd6e2bf8af6ed0"
     },
     {
       "name": "rand",
@@ -4831,7 +4971,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.rand"
+      "section": ".text.rand",
+      "reference_sha256": "db6da1122438031261cce8eaabe41b8050249f6a6fe2133f8447ea15eba6cffa",
+      "built_sha256": "db6da1122438031261cce8eaabe41b8050249f6a6fe2133f8447ea15eba6cffa"
     },
     {
       "name": "srand",
@@ -4839,7 +4981,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.srand"
+      "section": ".text.srand",
+      "reference_sha256": "cc10814f3017ef65c652e0e81949c196ba54adb13691f218d354e144d8790747",
+      "built_sha256": "cc10814f3017ef65c652e0e81949c196ba54adb13691f218d354e144d8790747"
     },
     {
       "name": "memset",
@@ -4847,7 +4991,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.memset"
+      "section": ".text.memset",
+      "reference_sha256": "f04ff290d8053868357d3a75a3a8b859334ae5afe7b4d68d46515a313cd462da",
+      "built_sha256": "f04ff290d8053868357d3a75a3a8b859334ae5afe7b4d68d46515a313cd462da"
     },
     {
       "name": "memchr",
@@ -4855,7 +5001,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.memchr"
+      "section": ".text.memchr",
+      "reference_sha256": "8de89f69a5756fceec651d7a6db65049fcaaf8e3524f240fd1df74fcc032c06e",
+      "built_sha256": "8de89f69a5756fceec651d7a6db65049fcaaf8e3524f240fd1df74fcc032c06e"
     },
     {
       "name": "strncmp",
@@ -4863,7 +5011,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.strncmp"
+      "section": ".text.strncmp",
+      "reference_sha256": "5f8e2740bce1fc31af093633c11289f67ea4eca0926849a3a951612516d41efb",
+      "built_sha256": "5f8e2740bce1fc31af093633c11289f67ea4eca0926849a3a951612516d41efb"
     },
     {
       "name": "bcopy",
@@ -4871,7 +5021,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.bcopy"
+      "section": ".text.bcopy",
+      "reference_sha256": "cbce5cfa7780f88479255ed7cda631a783e8d0902d731f20d44d7915ece718b3",
+      "built_sha256": "cbce5cfa7780f88479255ed7cda631a783e8d0902d731f20d44d7915ece718b3"
     },
     {
       "name": "close",
@@ -4879,7 +5031,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.close"
+      "section": ".text.close",
+      "reference_sha256": "be6114370d5e767954ab043fd2f0caf03718a77d350086e9b8159084fb989d75",
+      "built_sha256": "be6114370d5e767954ab043fd2f0caf03718a77d350086e9b8159084fb989d75"
     },
     {
       "name": "strncpy",
@@ -4887,7 +5041,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.strncpy"
+      "section": ".text.strncpy",
+      "reference_sha256": "2782520226cfdb593bf24d3e3dcecbc6bee7d44319e35c55acba7602e60b4d09",
+      "built_sha256": "2782520226cfdb593bf24d3e3dcecbc6bee7d44319e35c55acba7602e60b4d09"
     },
     {
       "name": "CdStatus",
@@ -4895,7 +5051,9 @@
       "size": 16,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CdStatus"
+      "section": ".text.CdStatus",
+      "reference_sha256": "1fcc14690a59c7c6681612c1e1baba1e2d944be4ee329035076bfb807c25eacc",
+      "built_sha256": "1fcc14690a59c7c6681612c1e1baba1e2d944be4ee329035076bfb807c25eacc"
     },
     {
       "name": "CdMode",
@@ -4903,7 +5061,9 @@
       "size": 16,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CdMode"
+      "section": ".text.CdMode",
+      "reference_sha256": "b9c440c22434aa17b1956c46712bb085c84f8960c053c278f1fa3827cc81d19e",
+      "built_sha256": "b9c440c22434aa17b1956c46712bb085c84f8960c053c278f1fa3827cc81d19e"
     },
     {
       "name": "CdLastCom",
@@ -4911,7 +5071,9 @@
       "size": 16,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CdLastCom"
+      "section": ".text.CdLastCom",
+      "reference_sha256": "95c75fc7036996760fcda2abe1bf833f614f4c137b5c9e8b9a56f2a7cd1d4ebd",
+      "built_sha256": "95c75fc7036996760fcda2abe1bf833f614f4c137b5c9e8b9a56f2a7cd1d4ebd"
     },
     {
       "name": "CdLastPos",
@@ -4919,7 +5081,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CdLastPos"
+      "section": ".text.CdLastPos",
+      "reference_sha256": "45c2dff8064ba14b93090900408a8df6b15c79070d61dadbc61de7307f1aa0b2",
+      "built_sha256": "45c2dff8064ba14b93090900408a8df6b15c79070d61dadbc61de7307f1aa0b2"
     },
     {
       "name": "GetClut",
@@ -4927,7 +5091,9 @@
       "size": 24,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibgsStubs.s",
-      "section": ".text.GetClut"
+      "section": ".text.GetClut",
+      "reference_sha256": "879cc65128f4db04b58c281f0867c888d51875da3e7ff5bbb309a1595a4f2457",
+      "built_sha256": "879cc65128f4db04b58c281f0867c888d51875da3e7ff5bbb309a1595a4f2457"
     },
     {
       "name": "GsLinkObject5",
@@ -4935,7 +5101,9 @@
       "size": 28,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibgsStubs.s",
-      "section": ".text.GsLinkObject5"
+      "section": ".text.GsLinkObject5",
+      "reference_sha256": "4efab29514697a3dadeec2a285e803a6b2145c7803292c78119f856487a3184d",
+      "built_sha256": "4efab29514697a3dadeec2a285e803a6b2145c7803292c78119f856487a3184d"
     },
     {
       "name": "SysEnqIntRP",
@@ -4943,7 +5111,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.SysEnqIntRP"
+      "section": ".text.SysEnqIntRP",
+      "reference_sha256": "e70f0e562a5bbb1fa65ff5d2c4410ffda85f926a04aaa8e66e00399e5e36d9c3",
+      "built_sha256": "e70f0e562a5bbb1fa65ff5d2c4410ffda85f926a04aaa8e66e00399e5e36d9c3"
     },
     {
       "name": "SysDeqIntRP",
@@ -4951,7 +5121,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.SysDeqIntRP"
+      "section": ".text.SysDeqIntRP",
+      "reference_sha256": "3df174ca1d56aa46216f0085f6a701256eb5d97e4887a3b1eae83299e858910a",
+      "built_sha256": "3df174ca1d56aa46216f0085f6a701256eb5d97e4887a3b1eae83299e858910a"
     },
     {
       "name": "ChangeClearRCnt",
@@ -4959,7 +5131,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqBiosStubs.s",
-      "section": ".text.ChangeClearRCnt"
+      "section": ".text.ChangeClearRCnt",
+      "reference_sha256": "5679de6d872f74c1cf6e01a3593fcbf41172e1f626c0c21341d455839067f641",
+      "built_sha256": "5679de6d872f74c1cf6e01a3593fcbf41172e1f626c0c21341d455839067f641"
     },
     {
       "name": "SetDQB",
@@ -4967,7 +5141,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/GteSetters.s",
-      "section": ".text.SetDQB"
+      "section": ".text.SetDQB",
+      "reference_sha256": "82fe222ec657dc8d11063c998d2a78c33a8c451f20b4c3e8f96d693f9a091070",
+      "built_sha256": "82fe222ec657dc8d11063c998d2a78c33a8c451f20b4c3e8f96d693f9a091070"
     },
     {
       "name": "CdFlush",
@@ -4976,6 +5152,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
       "section": ".text.CdFlush",
+      "reference_sha256": "62f630d581ec3b70ebeb962433698d2236a73b11271203becc04a70848a100b9",
+      "built_sha256": "62f630d581ec3b70ebeb962433698d2236a73b11271203becc04a70848a100b9",
       "symbols": {
         "CD_flush": "0x80040e00"
       }
@@ -4986,7 +5164,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CdSetDebug"
+      "section": ".text.CdSetDebug",
+      "reference_sha256": "f44050de49788e1f96b2384c2db6af4d262e8f378040bb5d52c8f800fb5e33de",
+      "built_sha256": "f44050de49788e1f96b2384c2db6af4d262e8f378040bb5d52c8f800fb5e33de"
     },
     {
       "name": "CdSync",
@@ -4995,6 +5175,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
       "section": ".text.CdSync",
+      "reference_sha256": "51d25b6232232e8162fa19e9248235f1437f90162051421b2e2546cf09f49e27",
+      "built_sha256": "51d25b6232232e8162fa19e9248235f1437f90162051421b2e2546cf09f49e27",
       "symbols": {
         "CD_sync": "0x80040424"
       }
@@ -5006,6 +5188,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
       "section": ".text.CdReady",
+      "reference_sha256": "5d3698c4a6ff75edbb4a59aa6c9599c001192b3d66f7d72f50838a2d45c616bf",
+      "built_sha256": "5d3698c4a6ff75edbb4a59aa6c9599c001192b3d66f7d72f50838a2d45c616bf",
       "symbols": {
         "CD_ready": "0x800406a4"
       }
@@ -5016,7 +5200,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CdSyncCallback"
+      "section": ".text.CdSyncCallback",
+      "reference_sha256": "c7b033c3a2478b4fbb64acd80d66ae152de8b10913fc66e68467d63f723208c5",
+      "built_sha256": "c7b033c3a2478b4fbb64acd80d66ae152de8b10913fc66e68467d63f723208c5"
     },
     {
       "name": "CdReadyCallback",
@@ -5024,7 +5210,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CdReadyCallback"
+      "section": ".text.CdReadyCallback",
+      "reference_sha256": "d40d27ab0a39535ae588e8779f80679ae18d8bdbdf540f26af98a2d28927ae27",
+      "built_sha256": "d40d27ab0a39535ae588e8779f80679ae18d8bdbdf540f26af98a2d28927ae27"
     },
     {
       "name": "CdMix",
@@ -5033,6 +5221,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
       "section": ".text.CdMix",
+      "reference_sha256": "a10aadf7c2c7e1e9262ea1155ca40bd30fadda2eb5c664dcde3ee68153ca1f7c",
+      "built_sha256": "a10aadf7c2c7e1e9262ea1155ca40bd30fadda2eb5c664dcde3ee68153ca1f7c",
       "symbols": {
         "CD_vol": "0x80040d78"
       }
@@ -5044,6 +5234,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
       "section": ".text.CdGetSector",
+      "reference_sha256": "0baf7940209e59a4a03c1ab79e83d9234d2526225e682e0c7f189c9c42716f93",
+      "built_sha256": "0baf7940209e59a4a03c1ab79e83d9234d2526225e682e0c7f189c9c42716f93",
       "symbols": {
         "CD_getsector": "0x80041358"
       }
@@ -5055,6 +5247,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
       "section": ".text.CdGetSector2",
+      "reference_sha256": "7f798df6f8daac062b62f49bf06d295a8d9d1fb454e853ea5aea08f8bf9be52d",
+      "built_sha256": "7f798df6f8daac062b62f49bf06d295a8d9d1fb454e853ea5aea08f8bf9be52d",
       "symbols": {
         "CD_getsector2": "0x80041458"
       }
@@ -5066,6 +5260,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
       "section": ".text.CdDataSync",
+      "reference_sha256": "cc004ad95a129672972676ab5bb90e1c899cd1ae44bb7ae352a6c1c10ee2e566",
+      "built_sha256": "cc004ad95a129672972676ab5bb90e1c899cd1ae44bb7ae352a6c1c10ee2e566",
       "symbols": {
         "CD_datasync": "0x800411f0"
       }
@@ -5076,7 +5272,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibcdStubs.s",
-      "section": ".text.CD_set_test_parmnum"
+      "section": ".text.CD_set_test_parmnum",
+      "reference_sha256": "5005e173a695b069494b1f769aae38608582199fed9e307ba153796089023f4f",
+      "built_sha256": "5005e173a695b069494b1f769aae38608582199fed9e307ba153796089023f4f"
     },
     {
       "name": "EnablePAD",
@@ -5084,7 +5282,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text.EnablePAD"
+      "section": ".text.EnablePAD",
+      "reference_sha256": "f445e54573db23ac6cf862e7cd30f9daf383811fe7157c2b20b27d35a17cc3f4",
+      "built_sha256": "f445e54573db23ac6cf862e7cd30f9daf383811fe7157c2b20b27d35a17cc3f4"
     },
     {
       "name": "DisablePAD",
@@ -5092,7 +5292,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text.DisablePAD"
+      "section": ".text.DisablePAD",
+      "reference_sha256": "7e77d55d2ccd0dacb8635298cbee3ea57147fd40943d09bdaea415a09ebdc91a",
+      "built_sha256": "7e77d55d2ccd0dacb8635298cbee3ea57147fd40943d09bdaea415a09ebdc91a"
     },
     {
       "name": "SetInitPadFlag",
@@ -5100,7 +5302,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text.SetInitPadFlag"
+      "section": ".text.SetInitPadFlag",
+      "reference_sha256": "7c9d09af82f0b5043a63e11c354fe266f144d40275effc06652d9db141b14dd9",
+      "built_sha256": "7c9d09af82f0b5043a63e11c354fe266f144d40275effc06652d9db141b14dd9"
     },
     {
       "name": "ReadInitPadFlag",
@@ -5108,7 +5312,9 @@
       "size": 16,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text.ReadInitPadFlag"
+      "section": ".text.ReadInitPadFlag",
+      "reference_sha256": "390d33bf06d083514daa080399203ed70bb7dd4170dc0f62ae8a2112e132482d",
+      "built_sha256": "390d33bf06d083514daa080399203ed70bb7dd4170dc0f62ae8a2112e132482d"
     },
     {
       "name": "PadChkVsync",
@@ -5117,6 +5323,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
       "section": ".text.PadChkVsync",
+      "reference_sha256": "e235cfd8b71e7e00b4dab4ccc18e4c6c24277af4e60a954415960eb320d75d5b",
+      "built_sha256": "e235cfd8b71e7e00b4dab4ccc18e4c6c24277af4e60a954415960eb320d75d5b",
       "symbols": {
         "_padChkVsync": "0x8003cd44"
       }
@@ -5128,6 +5336,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
       "section": ".text.PadStartCom",
+      "reference_sha256": "591429aa8fb75b3b4c82547133cf650fab48d38c9a7859226cf4d11d723de939",
+      "built_sha256": "591429aa8fb75b3b4c82547133cf650fab48d38c9a7859226cf4d11d723de939",
       "symbols": {
         "_padStartCom": "0x8003cd58"
       }
@@ -5139,6 +5349,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
       "section": ".text.PadStopCom",
+      "reference_sha256": "2970fdbef14dbb6f1f1ed81ce9bda406ef5ffc8230e404f42b8fee57cd5808b2",
+      "built_sha256": "2970fdbef14dbb6f1f1ed81ce9bda406ef5ffc8230e404f42b8fee57cd5808b2",
       "symbols": {
         "_padStopCom": "0x8003ce24"
       }
@@ -5149,7 +5361,9 @@
       "size": 20,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text._padChkVsync"
+      "section": ".text._padChkVsync",
+      "reference_sha256": "986cc3c258ba7954a390055483c004f09d8214692268ad9447768563c2a0aa3e",
+      "built_sha256": "986cc3c258ba7954a390055483c004f09d8214692268ad9447768563c2a0aa3e"
     },
     {
       "name": "_padSetAct",
@@ -5157,7 +5371,9 @@
       "size": 12,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text._padSetAct"
+      "section": ".text._padSetAct",
+      "reference_sha256": "223c2878731da8ce91e18d2701c2c6e3b44145cc3a7958ca01a0cfaaaa03bf13",
+      "built_sha256": "223c2878731da8ce91e18d2701c2c6e3b44145cc3a7958ca01a0cfaaaa03bf13"
     },
     {
       "name": "_padSetCmd",
@@ -5165,7 +5381,9 @@
       "size": 16,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text._padSetCmd"
+      "section": ".text._padSetCmd",
+      "reference_sha256": "eb5acf7077a05305e551687dd21b67b6033726612c91f8107dc91c669712d227",
+      "built_sha256": "eb5acf7077a05305e551687dd21b67b6033726612c91f8107dc91c669712d227"
     },
     {
       "name": "_padCmdParaMode",
@@ -5173,7 +5391,9 @@
       "size": 32,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqLibpadStubs.s",
-      "section": ".text._padCmdParaMode"
+      "section": ".text._padCmdParaMode",
+      "reference_sha256": "3e46221373866b25732cc1dc61c51252a3c585c1a89666cc76732530bda971e7",
+      "built_sha256": "3e46221373866b25732cc1dc61c51252a3c585c1a89666cc76732530bda971e7"
     },
     {
       "name": "GetIntrMask",
@@ -5181,7 +5401,9 @@
       "size": 24,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqMiscStubs.s",
-      "section": ".text.GetIntrMask"
+      "section": ".text.GetIntrMask",
+      "reference_sha256": "ebe12b38282f66d8e9ae2588a4faee8318fa1d29a477f15a78bea58399a4d63c",
+      "built_sha256": "ebe12b38282f66d8e9ae2588a4faee8318fa1d29a477f15a78bea58399a4d63c"
     },
     {
       "name": "SetIntrMask",
@@ -5189,7 +5411,9 @@
       "size": 24,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqMiscStubs.s",
-      "section": ".text.SetIntrMask"
+      "section": ".text.SetIntrMask",
+      "reference_sha256": "90c6b1bd8bcde081acd1df5db010dad862007d643834cc9221166283a0972691",
+      "built_sha256": "90c6b1bd8bcde081acd1df5db010dad862007d643834cc9221166283a0972691"
     },
     {
       "name": "GsGetActiveBuff",
@@ -5197,7 +5421,9 @@
       "size": 16,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqMiscStubs.s",
-      "section": ".text.GsGetActiveBuff"
+      "section": ".text.GsGetActiveBuff",
+      "reference_sha256": "5c148f3cf5a6bd6e50e3d7cbb7ba6f1cbcadaca84f536127d9f383d085eb0808",
+      "built_sha256": "5c148f3cf5a6bd6e50e3d7cbb7ba6f1cbcadaca84f536127d9f383d085eb0808"
     },
     {
       "name": "GetGraphDebug",
@@ -5205,7 +5431,9 @@
       "size": 16,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqMiscStubs.s",
-      "section": ".text.GetGraphDebug"
+      "section": ".text.GetGraphDebug",
+      "reference_sha256": "7c7fd5d29f7a2958207caa2c51fb32f8aa5128f3b994eb1286bede18d843a793",
+      "built_sha256": "7c7fd5d29f7a2958207caa2c51fb32f8aa5128f3b994eb1286bede18d843a793"
     },
     {
       "name": "SpuGetVoiceEnvelope",
@@ -5213,7 +5441,9 @@
       "size": 28,
       "language": "asm",
       "source": "src/ddr5thmix/PsyqMiscStubs.s",
-      "section": ".text.SpuGetVoiceEnvelope"
+      "section": ".text.SpuGetVoiceEnvelope",
+      "reference_sha256": "3a8aaec134de56bfaf563886243f7294febe880464ebc6fca955e9135d3713b0",
+      "built_sha256": "3a8aaec134de56bfaf563886243f7294febe880464ebc6fca955e9135d3713b0"
     },
     {
       "name": "S_M_INIT_OBJ_4C",

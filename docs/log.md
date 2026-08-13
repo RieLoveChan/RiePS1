@@ -1,3 +1,5 @@
+- Manifest-evidence completion: verified the remaining 115 PsyQ/GTE support symbols individually with GCC 14.2.0/binutils 2.43. All 115/115 functions and 2,304/2,304 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added all reference/build hash pairs to the manifest.
+
 - Manifest-evidence completion: reverified the 12 GTE wrappers `LightColor`, `DpqColorLight`, `DpqColor3`, `Intpl`, `Square12`, `Square0`, `OuterProduct12`, `OuterProduct0`, `SetVertex0`, `SetVertex1`, `SetVertex2`, and `SetVertexTri`. All 12/12 functions and 512/512 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the reproducible reference/build hash pairs.
 
 - Manifest-evidence completion: independently reverified `FUN_8007eea8` with GCC 14.2.0/binutils 2.43 against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; 8/8 bytes match with reference/built SHA-256 `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1`.
