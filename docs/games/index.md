@@ -52,6 +52,7 @@
 * [DDR 5th Mix runtime callback 7f334 module](ddr-5th-mix-jp-runtime-callback-7f334.md) - Subordinate state update and callback dispatch matching 416 bytes.
 * [DDR 5th Mix runtime helper 7f9b8 module](ddr-5th-mix-jp-runtime-helper-7f9b8.md) - Indexed runtime table state publication matching 248 bytes.
 * [DDR 5th Mix runtime helper 7fab0 module](ddr-5th-mix-jp-runtime-helper-7fab0.md) - Runtime timeline and state update matching 476 bytes.
+* [DDR 5th Mix runtime helper 81f30 module](ddr-5th-mix-jp-runtime-helper-81f30.md) - Runtime cleanup and state classification matching 284 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.
