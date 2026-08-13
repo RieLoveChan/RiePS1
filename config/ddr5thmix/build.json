@@ -300,6 +300,13 @@
       ]
     },
     {
+      "name": "runtime-callback-7f218",
+      "description": "Runtime callback and indexed record update helper.",
+      "functions": [
+        "FUN_8007f218"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2530,6 +2537,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCallback7eb70.s",
       "section": ".text.FUN_8007eb70"
+    },
+    {
+      "name": "FUN_8007f218",
+      "address": "0x8007f218",
+      "size": 204,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCallback7f218.s",
+      "section": ".text.FUN_8007f218"
     },
     {
       "name": "FUN_8007c074",
