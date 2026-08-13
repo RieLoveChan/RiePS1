@@ -314,6 +314,13 @@
       ]
     },
     {
+      "name": "runtime-helper-7f9b8",
+      "description": "Runtime table helper for indexed state publication.",
+      "functions": [
+        "FUN_8007f9b8"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2560,6 +2567,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCallback7f334.s",
       "section": ".text.FUN_8007f334"
+    },
+    {
+      "name": "FUN_8007f9b8",
+      "address": "0x8007f9b8",
+      "size": 248,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper7f9b8.s",
+      "section": ".text.FUN_8007f9b8"
     },
     {
       "name": "FUN_8007c074",
