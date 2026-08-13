@@ -14,11 +14,11 @@ and validate its recorded hashes before comparison.
 |---|---|
 | Target provenance | CHD, track, `SYSTEM.CNF`, and boot executable identified and hashed |
 | Original toolchain | PsyQ SDK 4.4.0 identified |
-| Main-executable function inventory | 2,544 total: 1,529 verified, 102 manually reviewed, 167 library signatures, 708 unverified |
+| Main-executable function inventory | 2,545 total: 1,530 verified, 102 manually reviewed, 167 library signatures, 707 unverified |
 | Main-executable code-region byte accounting | 572,577 of 1,050,624 code-region bytes (54.5%) fall within a catalogued function boundary; a whole-executable gap sweep found the remaining 478,047 bytes are not 478KB of undiscovered functions -- 476,784 of them are two already-identified non-code regions (a leading debug-string/pointer table and a trailing asset-data-plus-BSS region), and the true residue is now fully classified: 1,204 bytes of zero-alignment padding and 59 bytes of already-evidenced PsyQ object-header markers. No unclassified bytes remain in the code region. See [linked-object evidence §5](docs/foundations/linked-object-evidence.md) |
-| Exact reconstruction | 1,599 functions / 217,164 selected bytes: 1,529/207,792 main executable plus 70/9,372 HOW TO PLAY overlay |
+| Exact reconstruction | 1,600 functions / 218,392 selected bytes: 1,530/209,020 main executable plus 70/9,372 HOW TO PLAY overlay |
 | PsyQ coverage | 60 BIOS/kernel trampolines and 34 real GTE/COP2 functions |
-| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172; `runtime-player-init`: 1/176; `runtime-state-init`: 1/176; `runtime-sync-init`: 1/176; `runtime-record-init`: 1/180; `runtime-timing-table`: 1/184; `runtime-flag-selector`: 1/188; `runtime-image-update`: 1/192; `runtime-descriptor-build`: 1/192; `runtime-six-record-init`: 1/192; `runtime-image-region-update`: 1/200; `runtime-player-gate`: 1/200; `runtime-image-select-update`: 2/704; `runtime-state-gate`: 1/264; `runtime-image-dispatch`: 1/356; `runtime-image-batch-init`: 1/400; `runtime-object-init`: 1/424; `runtime-coordinate-init`: 1/360; `runtime-init-loop`: 1/236; `runtime-table-interpolate`: 1/232; `runtime-object-transform`: 1/1,308; `runtime-curve-sampler`: 1/1,108; `runtime-transform-interpolate`: 1/1,156; `runtime-transform-coordinator`: 1/656; `runtime-object-frame-init`: 1/332; `runtime-table-dispatch`: 1/1,552; `runtime-table-dispatch-secondary`: 1/1,340; `runtime-table-dispatch-tertiary`: 1/1,388; `runtime-table-dispatch-quaternary`: 1/1,252; `runtime-callback-7ea5c`: 1/276; `runtime-callback-7eb70`: 1/316; `runtime-callback-7f218`: 1/204; `runtime-callback-7f334`: 1/416; `runtime-helper-7f9b8`: 1/248; `runtime-helper-7fab0`: 1/476; `runtime-helper-81f30`: 1/284 |
+| Game-owned modules | `mode-control`: 20/1,660; `runtime-core`: 6/2,232; `screen-selector`: 22/2,348; session router/opening/gameplay/endgame: 51/8,736; `state-transition`: 117/16,132; `runtime-graphics-init`: 8/1,020; `graphics-primitive-builder`: 4/988; `state-dispatch`: 1/124; `runtime-screen-init`: 1/172; `runtime-resource-init`: 1/180; `runtime-graphics-clear`: 1/172; `runtime-player-init`: 1/176; `runtime-state-init`: 1/176; `runtime-sync-init`: 1/176; `runtime-record-init`: 1/180; `runtime-timing-table`: 1/184; `runtime-flag-selector`: 1/188; `runtime-image-update`: 1/192; `runtime-descriptor-build`: 1/192; `runtime-six-record-init`: 1/192; `runtime-image-region-update`: 1/200; `runtime-player-gate`: 1/200; `runtime-image-select-update`: 2/704; `runtime-state-gate`: 1/264; `runtime-image-dispatch`: 1/356; `runtime-image-batch-init`: 1/400; `runtime-object-init`: 1/424; `runtime-coordinate-init`: 1/360; `runtime-init-loop`: 1/236; `runtime-table-interpolate`: 1/232; `runtime-object-transform`: 1/1,308; `runtime-curve-sampler`: 1/1,108; `runtime-transform-interpolate`: 1/1,156; `runtime-transform-coordinator`: 1/656; `runtime-object-frame-init`: 1/332; `runtime-table-dispatch`: 1/1,552; `runtime-table-dispatch-secondary`: 1/1,340; `runtime-table-dispatch-tertiary`: 1/1,388; `runtime-table-dispatch-quaternary`: 1/1,252; `runtime-callback-7ea5c`: 1/276; `runtime-callback-7eb70`: 1/316; `runtime-callback-7f218`: 1/204; `runtime-callback-7f334`: 1/416; `runtime-helper-7f9b8`: 1/248; `runtime-helper-7fab0`: 1/476; `runtime-helper-81f30`: 1/284; `runtime-helper-8204c`: 1/1,228 |
 | Global data map | 16 globals/ranges plus two asserted partial state layouts |
 | Screen flow | 1-state wrapper, 14-state child, 7-state attract loop, 15-state session, and 6-state selector mapped |
 | HOW TO PLAY overlay | Full 11,864-byte structural map; 70 functions/9,372 code bytes plus 12 semantic data sections/2,492 bytes exact (11,864 selected bytes, 100% whole-overlay match); all 748 tail bytes resolved; 1,910-tick script verified |
@@ -27,8 +27,8 @@ and validate its recorded hashes before comparison.
 Ghidra's approximately 49% attributed function-body coverage is an analysis
 inventory figure, not reconstruction progress; so is the 54.5% code-region
 byte accounting above (a catalogued boundary is not a byte-exact match).
-Exact accepted reconstruction currently covers 1,529 of 2,544 main-executable
-functions (about 60.0%; 207,792 of 1,050,624 code-region bytes, about 19.8%),
+Exact accepted reconstruction currently covers 1,530 of 2,545 main-executable
+functions (about 60.1%; 209,020 of 1,050,624 code-region bytes, about 19.9%),
 plus all
 70 identified functions in the separately loaded HOW TO PLAY overlay.
 
@@ -189,6 +189,7 @@ fourth and fifth passes in
 - [Runtime helper 7f9b8 module](docs/games/ddr-5th-mix-jp-runtime-helper-7f9b8.md)
 - [Runtime helper 7fab0 module](docs/games/ddr-5th-mix-jp-runtime-helper-7fab0.md)
 - [Runtime helper 81f30 module](docs/games/ddr-5th-mix-jp-runtime-helper-81f30.md)
+- [Runtime helper 8204c module](docs/games/ddr-5th-mix-jp-runtime-helper-8204c.md)
 - [Runtime player gate module](docs/games/ddr-5th-mix-jp-runtime-player-gate.md)
 - [Music/resource state module](docs/games/ddr-5th-mix-jp-music-state.md)
 - [Global map](docs/games/ddr-5th-mix-jp-globals.md)
