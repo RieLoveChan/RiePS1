@@ -1,3 +1,5 @@
+- Manifest-evidence completion: verified `mode-control` and `screen-selector`. All 42/42 functions and 4,008/4,008 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.
+
 - Manifest-evidence completion: verified `runtime-graphics-init`, `graphics-primitive-builder`, and `state-dispatch`. All 13/13 functions and 2,132/2,132 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.
 
 - Manifest-evidence completion: verified existing `game-session-endgame` (18 functions, 1,960 selected bytes). The aggregate verifier reports 18/18 byte matches against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.

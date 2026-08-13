@@ -1114,6 +1114,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800230cc.c",
       "section": ".text.FUN_800230cc",
+      "reference_sha256": "cb26535e271b9b4a3943fa914b8ce9d231ccef8c092f14964ec68d2865f1fe8a",
+      "built_sha256": "cb26535e271b9b4a3943fa914b8ce9d231ccef8c092f14964ec68d2865f1fe8a",
       "cflags": [
         "-O2",
         "-G0",
@@ -1141,6 +1143,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80022148.c",
       "section": ".text.FUN_80022148",
+      "reference_sha256": "85a280ea5b4c136a4d727cd996d7ede89b7e6e67d499c625282766cad1ffcb94",
+      "built_sha256": "85a280ea5b4c136a4d727cd996d7ede89b7e6e67d499c625282766cad1ffcb94",
       "cflags": [
         "-O2",
         "-G0",
@@ -1166,6 +1170,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_8002313c.c",
       "section": ".text.FUN_8002313c",
+      "reference_sha256": "849b35e29c1f8ffc60ea0b8d2e8fe8b7cd4d79ef6d70f85bd4fc9d230aea1346",
+      "built_sha256": "849b35e29c1f8ffc60ea0b8d2e8fe8b7cd4d79ef6d70f85bd4fc9d230aea1346",
       "cflags": [
         "-O2",
         "-G0",
@@ -1192,6 +1198,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023170.c",
       "section": ".text.FUN_80023170",
+      "reference_sha256": "101d8bf4ee4e498991ec6a61004b1e4dbf1c8d54133af6a9005f72b63f0c816e",
+      "built_sha256": "101d8bf4ee4e498991ec6a61004b1e4dbf1c8d54133af6a9005f72b63f0c816e",
       "cflags": [
         "-O2",
         "-G0",
@@ -1216,6 +1224,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800231b0.c",
       "section": ".text.FUN_800231b0",
+      "reference_sha256": "32cf79c2477fc88366732c01727b9c5b965bcced84a4c66612a29a7b546103d4",
+      "built_sha256": "32cf79c2477fc88366732c01727b9c5b965bcced84a4c66612a29a7b546103d4",
       "cflags": [
         "-O2",
         "-G0",
@@ -1240,6 +1250,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023210.c",
       "section": ".text.FUN_80023210",
+      "reference_sha256": "29be0968527e9aad066ece450b275c22b0de70865a1e09cc4e5ef26db63b2e53",
+      "built_sha256": "29be0968527e9aad066ece450b275c22b0de70865a1e09cc4e5ef26db63b2e53",
       "cflags": [
         "-O2",
         "-G0",
@@ -1264,6 +1276,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023230.c",
       "section": ".text.FUN_80023230",
+      "reference_sha256": "e5a72934d2e749864691d7b5e9a704e755dd6ed1fe89d1e6dbf95cba18a6390b",
+      "built_sha256": "e5a72934d2e749864691d7b5e9a704e755dd6ed1fe89d1e6dbf95cba18a6390b",
       "cflags": [
         "-O2",
         "-G0",
@@ -1288,6 +1302,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800234cc.c",
       "section": ".text.FUN_800234cc",
+      "reference_sha256": "f89d1b763810e38465070c5d387121ad700729c11fd2e3f7febbc0b0111a9a8d",
+      "built_sha256": "f89d1b763810e38465070c5d387121ad700729c11fd2e3f7febbc0b0111a9a8d",
       "cflags": [
         "-O2",
         "-G0",
@@ -1314,6 +1330,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800232cc.c",
       "section": ".text.FUN_800232cc",
+      "reference_sha256": "6e0877b0ce7b9c852edc2b4dcf2354c1eb3274d8211974edfc4d6fe35f56c866",
+      "built_sha256": "6e0877b0ce7b9c852edc2b4dcf2354c1eb3274d8211974edfc4d6fe35f56c866",
       "cflags": [
         "-O2",
         "-G0",
@@ -1346,6 +1364,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_8002340c.c",
       "section": ".text.FUN_8002340c",
+      "reference_sha256": "aae54597ee08056bba1debab97825d7afdb0eb84d1981c5dec7e26ed7c4f8387",
+      "built_sha256": "aae54597ee08056bba1debab97825d7afdb0eb84d1981c5dec7e26ed7c4f8387",
       "cflags": [
         "-O2",
         "-G0",
@@ -1375,6 +1395,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023474.c",
       "section": ".text.FUN_80023474",
+      "reference_sha256": "18e61d0289d4def33ce1ea53709b9149cc66d5376fb842f6e8619063d575994e",
+      "built_sha256": "18e61d0289d4def33ce1ea53709b9149cc66d5376fb842f6e8619063d575994e",
       "cflags": [
         "-O2",
         "-G0",
@@ -1405,6 +1427,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_8002356c.c",
       "section": ".text.FUN_8002356c",
+      "reference_sha256": "5b73884804fb5ff3d5b4e2742236b994d91ed57a487b99f89b8481a57da29882",
+      "built_sha256": "5b73884804fb5ff3d5b4e2742236b994d91ed57a487b99f89b8481a57da29882",
       "cflags": [
         "-O2",
         "-G0",
@@ -1429,6 +1453,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023500.c",
       "section": ".text.FUN_80023500",
+      "reference_sha256": "15d901088d507fdaaadfbe80921317cc15958fe16a8c7f8ec94845346101991e",
+      "built_sha256": "15d901088d507fdaaadfbe80921317cc15958fe16a8c7f8ec94845346101991e",
       "cflags": [
         "-O2",
         "-G0",
@@ -1457,6 +1483,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023544.c",
       "section": ".text.FUN_80023544",
+      "reference_sha256": "4afac96478e4b9b2151461d7521d31587518a8fea3f4aa7df6f3137bae30b37c",
+      "built_sha256": "4afac96478e4b9b2151461d7521d31587518a8fea3f4aa7df6f3137bae30b37c",
       "cflags": [
         "-O2",
         "-G0",
@@ -1482,6 +1510,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_8002358c.c",
       "section": ".text.FUN_8002358c",
+      "reference_sha256": "dbfe7b5c93180b8993cd9c910371ae43fd87b016921621b5d197f484b90e07c7",
+      "built_sha256": "dbfe7b5c93180b8993cd9c910371ae43fd87b016921621b5d197f484b90e07c7",
       "cflags": [
         "-O2",
         "-G0",
@@ -1510,6 +1540,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800235f8.c",
       "section": ".text.FUN_800235f8",
+      "reference_sha256": "3e40e705f0b079beae2ec7625ce7b301fbcbec9aef0f5cbbff915c3b67e464dc",
+      "built_sha256": "3e40e705f0b079beae2ec7625ce7b301fbcbec9aef0f5cbbff915c3b67e464dc",
       "cflags": [
         "-O2",
         "-G0",
@@ -1536,6 +1568,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_80023690.c",
       "section": ".text.FUN_80023690",
+      "reference_sha256": "db411f78d03c5e62b31287a760f49c485cd2de3a14e2ce0c1161f2d0615033b0",
+      "built_sha256": "db411f78d03c5e62b31287a760f49c485cd2de3a14e2ce0c1161f2d0615033b0",
       "cflags": [
         "-O2",
         "-G0",
@@ -1561,6 +1595,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800236bc.c",
       "section": ".text.FUN_800236bc",
+      "reference_sha256": "11999692c02c317443898e7615fb70350b448e716aeccdc9e5ecaa5b3bbee78a",
+      "built_sha256": "11999692c02c317443898e7615fb70350b448e716aeccdc9e5ecaa5b3bbee78a",
       "cflags": [
         "-O2",
         "-G0",
@@ -1585,6 +1621,8 @@
       "language": "c",
       "source": "src/ddr5thmix/FUN_800236cc.c",
       "section": ".text.FUN_800236cc",
+      "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
       "cflags": [
         "-O2",
         "-G0",
@@ -1606,6 +1644,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/FUN_80022b30.s",
       "section": ".text.FUN_80022b30",
+      "reference_sha256": "8fcfaea11d4c06cb6a3415a4b7bc3ed2dd9b0b81563f096fbd3a8602d03f1893",
+      "built_sha256": "8fcfaea11d4c06cb6a3415a4b7bc3ed2dd9b0b81563f096fbd3a8602d03f1893",
       "symbols": {
         "FUN_80049d3c": "0x80049d3c",
         "FUN_80023210": "0x80023210",
@@ -2381,6 +2421,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075258",
+      "reference_sha256": "47a145931e46d5b24cceb9698c3351ddd667b34cea8b3d98984d23321c3a06d8",
+      "built_sha256": "47a145931e46d5b24cceb9698c3351ddd667b34cea8b3d98984d23321c3a06d8",
       "symbols": {
         "FUN_80090820": "0x80090820"
       }
@@ -2392,6 +2434,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_800754b4",
+      "reference_sha256": "6ce2ceac4361085cfabcbda8cc859ed64541ddf321d1253eb1b0c54612efb99b",
+      "built_sha256": "6ce2ceac4361085cfabcbda8cc859ed64541ddf321d1253eb1b0c54612efb99b",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_8008c964": "0x8008c964",
@@ -2409,7 +2453,9 @@
       "size": 132,
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
-      "section": ".text.FUN_80075580"
+      "section": ".text.FUN_80075580",
+      "reference_sha256": "c3bb147d07a81700da471fcbd1d861892884903b9bdef6a32e82b96b59170008",
+      "built_sha256": "c3bb147d07a81700da471fcbd1d861892884903b9bdef6a32e82b96b59170008"
     },
     {
       "name": "FUN_80075604",
@@ -2417,7 +2463,9 @@
       "size": 168,
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
-      "section": ".text.FUN_80075604"
+      "section": ".text.FUN_80075604",
+      "reference_sha256": "f43dcc179f739d6be201e76f4dfa73914b56054ea0672b4d28147e5cd3f3eb75",
+      "built_sha256": "f43dcc179f739d6be201e76f4dfa73914b56054ea0672b4d28147e5cd3f3eb75"
     },
     {
       "name": "FUN_800756ac",
@@ -2426,6 +2474,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_800756ac",
+      "reference_sha256": "389ce3311a363277ae768c8bf0e3347afd58739a9784570c3b6c18bce9557faa",
+      "built_sha256": "389ce3311a363277ae768c8bf0e3347afd58739a9784570c3b6c18bce9557faa",
       "symbols": {
         "FUN_8007f07c": "0x8007f07c"
       }
@@ -2437,6 +2487,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_800756f0",
+      "reference_sha256": "d3fc1af16daa9b37fbde345bc19da22af2a7d9f5079c33cc939b013e931d7505",
+      "built_sha256": "d3fc1af16daa9b37fbde345bc19da22af2a7d9f5079c33cc939b013e931d7505",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_8008ff00": "0x8008ff00",
@@ -2450,6 +2502,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075738",
+      "reference_sha256": "8cc8025bc23292ff9c5f650d236c7c64a307ebee2caee516d2d01abd91bbbb44",
+      "built_sha256": "8cc8025bc23292ff9c5f650d236c7c64a307ebee2caee516d2d01abd91bbbb44",
       "symbols": {
         "FUN_8007f218": "0x8007f218",
         "FUN_800902cc": "0x800902cc",
@@ -2465,6 +2519,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_800757e0",
+      "reference_sha256": "70c01b68e2fd0eb7f970b46f2562db6148c19c5117668ee42711c564f46a21fc",
+      "built_sha256": "70c01b68e2fd0eb7f970b46f2562db6148c19c5117668ee42711c564f46a21fc",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_8007f1a4": "0x8007f1a4"
@@ -2477,6 +2533,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075818",
+      "reference_sha256": "c717e58611412277ba87db35dcfbcc069da44d0c43888b5b8166ef2f856c59f1",
+      "built_sha256": "c717e58611412277ba87db35dcfbcc069da44d0c43888b5b8166ef2f856c59f1",
       "symbols": {
         "FUN_8007f218": "0x8007f218"
       }
@@ -2487,7 +2545,9 @@
       "size": 8,
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
-      "section": ".text.FUN_80075838"
+      "section": ".text.FUN_80075838",
+      "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
     },
     {
       "name": "FUN_80075840",
@@ -2496,6 +2556,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075840",
+      "reference_sha256": "435c903c598e0ad720840169093748b8b1cace533f4f81091ce7d1e331a9627b",
+      "built_sha256": "435c903c598e0ad720840169093748b8b1cace533f4f81091ce7d1e331a9627b",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800919e4": "0x800919e4",
@@ -2510,6 +2572,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075894",
+      "reference_sha256": "66ae754eac3686257e69bf4f46ba4c7220a646285f681cb032243cb7644c1908",
+      "built_sha256": "66ae754eac3686257e69bf4f46ba4c7220a646285f681cb032243cb7644c1908",
       "symbols": {
         "FUN_8007f218": "0x8007f218",
         "FUN_80091e20": "0x80091e20",
@@ -2525,6 +2589,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_8007593c",
+      "reference_sha256": "cdce58f9f9262e1e21260af898fe3d261390f4267652331788ff7db482468905",
+      "built_sha256": "cdce58f9f9262e1e21260af898fe3d261390f4267652331788ff7db482468905",
       "symbols": {
         "FUN_80028358": "0x80028358",
         "FUN_800924b4": "0x800924b4"
@@ -2537,6 +2603,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_8007596c",
+      "reference_sha256": "6a6a5fea96091442e974d3d24676daec2c2d48cd8c65bdacf2bb8fd62fe747f2",
+      "built_sha256": "6a6a5fea96091442e974d3d24676daec2c2d48cd8c65bdacf2bb8fd62fe747f2",
       "symbols": {
         "FUN_8008cd3c": "0x8008cd3c",
         "FUN_800a0094": "0x800a0094",
@@ -2551,6 +2619,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075a04",
+      "reference_sha256": "f30cfbdc6cbcef54e887d4a1df15d5c81cea552ec77e5fa63c33ce496c898e2c",
+      "built_sha256": "f30cfbdc6cbcef54e887d4a1df15d5c81cea552ec77e5fa63c33ce496c898e2c",
       "symbols": {
         "FUN_8008e7bc": "0x8008e7bc",
         "FUN_8007ee38": "0x8007ee38"
@@ -2563,6 +2633,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075a40",
+      "reference_sha256": "540a509a97b11afb3fa17d4e925f29b5d210293a1612b3d9a0ba5e1efebbae68",
+      "built_sha256": "540a509a97b11afb3fa17d4e925f29b5d210293a1612b3d9a0ba5e1efebbae68",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_8005f10c": "0x8005f10c"
@@ -2575,6 +2647,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075a90",
+      "reference_sha256": "40a40519aae32fd0ad1bcfc1870e391bc79691d3ff75939fed515bcfa469f751",
+      "built_sha256": "40a40519aae32fd0ad1bcfc1870e391bc79691d3ff75939fed515bcfa469f751",
       "symbols": {
         "FUN_8005f12c": "0x8005f12c",
         "FUN_80075af8": "0x80075af8"
@@ -2587,6 +2661,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
       "section": ".text.FUN_80075ab8",
+      "reference_sha256": "0004e40e9b19dce28e39de1a1e3b3d52e1a1e717c609d6b9c2cd7245fe78d073",
+      "built_sha256": "0004e40e9b19dce28e39de1a1e3b3d52e1a1e717c609d6b9c2cd7245fe78d073",
       "symbols": {
         "FUN_8005f14c": "0x8005f14c",
         "FUN_8002a8b0": "0x8002a8b0"
@@ -2598,7 +2674,9 @@
       "size": 8,
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
-      "section": ".text.FUN_80075ae0"
+      "section": ".text.FUN_80075ae0",
+      "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
     },
     {
       "name": "FUN_80075ae8",
@@ -2606,7 +2684,9 @@
       "size": 8,
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
-      "section": ".text.FUN_80075ae8"
+      "section": ".text.FUN_80075ae8",
+      "reference_sha256": "e7363c7ea5cd57a5cadba4dee6094510a4203175e28f46f49f81257af95fed0d",
+      "built_sha256": "e7363c7ea5cd57a5cadba4dee6094510a4203175e28f46f49f81257af95fed0d"
     },
     {
       "name": "FUN_80075af0",
@@ -2614,7 +2694,9 @@
       "size": 8,
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
-      "section": ".text.FUN_80075af0"
+      "section": ".text.FUN_80075af0",
+      "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
     },
     {
       "name": "FUN_80075af8",
@@ -2622,7 +2704,9 @@
       "size": 140,
       "language": "asm",
       "source": "src/ddr5thmix/ScreenSelector.s",
-      "section": ".text.FUN_80075af8"
+      "section": ".text.FUN_80075af8",
+      "reference_sha256": "51814c35d43b112da91fe0ffd09e73e92b2bd793d7fa297da2915d1220a1d36b",
+      "built_sha256": "51814c35d43b112da91fe0ffd09e73e92b2bd793d7fa297da2915d1220a1d36b"
     },
     {
       "name": "FUN_8004b800",
