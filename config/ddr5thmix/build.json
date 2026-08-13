@@ -3935,7 +3935,9 @@
       "size": 200,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeImageRegionUpdate.s",
-      "section": ".text.FUN_8007ba94"
+      "section": ".text.FUN_8007ba94",
+      "reference_sha256": "013172bc4e4887dde99119a4b60c0818535acf2efab6db5f8e20ac819e68e00c",
+      "built_sha256": "013172bc4e4887dde99119a4b60c0818535acf2efab6db5f8e20ac819e68e00c"
     },
     {
       "name": "FUN_800a62c0",
@@ -3943,7 +3945,9 @@
       "size": 192,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeSixRecordInit.s",
-      "section": ".text.FUN_800a62c0"
+      "section": ".text.FUN_800a62c0",
+      "reference_sha256": "d9cda31b6cec3c2e42797396eda53ad5f58080f59cc5782b7907237459dfd3f8",
+      "built_sha256": "d9cda31b6cec3c2e42797396eda53ad5f58080f59cc5782b7907237459dfd3f8"
     },
     {
       "name": "FUN_8007bb5c",
@@ -3951,7 +3955,9 @@
       "size": 192,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeDescriptorBuild.s",
-      "section": ".text.FUN_8007bb5c"
+      "section": ".text.FUN_8007bb5c",
+      "reference_sha256": "3445e225c6fb6e6bb9cf9abc18c30e3f4428efd5be1a2b40c13256f6f217c586",
+      "built_sha256": "3445e225c6fb6e6bb9cf9abc18c30e3f4428efd5be1a2b40c13256f6f217c586"
     },
     {
       "name": "FUN_8007b9d4",
@@ -3959,7 +3965,9 @@
       "size": 192,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeImageUpdate.s",
-      "section": ".text.FUN_8007b9d4"
+      "section": ".text.FUN_8007b9d4",
+      "reference_sha256": "2309aba917cb274c03a8e57c4bea3570a60097fc68dddcc68e4347db36adc818",
+      "built_sha256": "2309aba917cb274c03a8e57c4bea3570a60097fc68dddcc68e4347db36adc818"
     },
     {
       "name": "FUN_80086634",
@@ -3993,7 +4001,9 @@
       "size": 176,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeSyncInit.s",
-      "section": ".text.FUN_800a8b0c"
+      "section": ".text.FUN_800a8b0c",
+      "reference_sha256": "4a41dfc6703fa5d7a74e73cf2c8a891ebeac6c5d610dec68f6f6cbd186f68234",
+      "built_sha256": "4a41dfc6703fa5d7a74e73cf2c8a891ebeac6c5d610dec68f6f6cbd186f68234"
     },
     {
       "name": "FUN_800a6210",
@@ -4001,7 +4011,9 @@
       "size": 176,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeStateInit.s",
-      "section": ".text.FUN_800a6210"
+      "section": ".text.FUN_800a6210",
+      "reference_sha256": "a82b5b9756b6858f74c001ce9e1b35b93632abd6929765f33e36532d4913af55",
+      "built_sha256": "a82b5b9756b6858f74c001ce9e1b35b93632abd6929765f33e36532d4913af55"
     },
     {
       "name": "FUN_8007a8f4",
@@ -26113,6 +26125,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeScreenInit.s",
       "section": ".text.FUN_8009851c",
+      "reference_sha256": "0693fdb62727bbbb9eaebe66f0018116bc1f29f8dcd7eb95580019bf523e4dca",
+      "built_sha256": "0693fdb62727bbbb9eaebe66f0018116bc1f29f8dcd7eb95580019bf523e4dca",
       "symbols": {
         "LoadImage": "0x80038810"
       }
@@ -26124,6 +26138,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeResourceInit.s",
       "section": ".text.FUN_8007e9a8",
+      "reference_sha256": "86aeac5f453c8f123f5bba1a76f349ef6942a14c661404c243caaefbd81ea500",
+      "built_sha256": "86aeac5f453c8f123f5bba1a76f349ef6942a14c661404c243caaefbd81ea500",
       "symbols": {
         "FUN_8007e064": "0x8007e064"
       }
@@ -26135,6 +26151,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeGraphicsClear.s",
       "section": ".text.FUN_800a0c04",
+      "reference_sha256": "9e61db38aaee3dc94cccdf2899f0f1735234b0c79e15b584a9d9582f37da12ae",
+      "built_sha256": "9e61db38aaee3dc94cccdf2899f0f1735234b0c79e15b584a9d9582f37da12ae",
       "symbols": {
         "ClearImage2": "0x80038778"
       }
@@ -26146,6 +26164,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimePlayerInit.s",
       "section": ".text.FUN_80097134",
+      "reference_sha256": "1a066ec1cc0c3df5b2054335e03097c765a7fb45979e7a699d0295096cb81b45",
+      "built_sha256": "1a066ec1cc0c3df5b2054335e03097c765a7fb45979e7a699d0295096cb81b45",
       "symbols": {
         "FUN_800a36d8": "0x800a36d8"
       }
