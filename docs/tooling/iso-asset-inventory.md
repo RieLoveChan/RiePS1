@@ -31,14 +31,15 @@ The supplied data track contains six ISO 9660 files and no subdirectories:
 | `SYSTEM.CNF` | 68 | `78826a4a81331c433b9628439415a48c03aedfbc2aafaaa3614c243e31c59c2b` | Boot configuration |
 | `READ_DT.BIN` | 32,768,000 | `004cbd9fa5c260b32f25319f5ae652208a7c80fbb056fa0e72127eb83d30453a` | Overlay/container; HOW TO PLAY overlay is at offset `0x1630000` |
 | `STR.BIN` | 299,431,936 | `ec6fe3090949faaffa88edd3f7808b02c37b6b1a28d46c20ce62410511f22294` | Sector-aligned VAG ADPCM sample bank; 1,764 headers; see [/docs/tooling/vag-sample-inventory.md](/docs/tooling/vag-sample-inventory.md) |
-| `XA.STR` | 33,456,128 | `28e9b8763b353c3bccc6861c5477fa5b27f23074e6219021c157ab51838aa1c8` | CD-XA ADPCM stream, interleaved by raw-sector channel; not recognized by FFmpeg directly |
+| `XA.STR` | 33,456,128 | `28e9b8763b353c3bccc6861c5477fa5b27f23074e6219021c157ab51838aa1c8` | CD-XA ADPCM stream; 61 raw-sector streams demultiplexed locally; see [/docs/tooling/xa-audio-demux.md](/docs/tooling/xa-audio-demux.md) |
 | `DUMMY.BIN` | 27,648,000 | `f4c77051ab98f1ac6105bc3d3f284bbb9369ddaa6a64e8a333ebc1d1e2b9c76c` | All-zero padding; no asset payload |
 
 # Limits and next decoder work
 
 `STR.BIN` and `XA.STR` are already unpacked from the ISO as complete
 containers, but they are not ordinary archive files. `STR.BIN` has now been
-identified as a VAG sample bank rather than a video stream. The next
-asset-specific work is optional lawful-local VAG decode/export and an XA audio
-sector parser. FFmpeg 8.1.2 does not recognize either container directly. The
-file-level hashes and sizes above are the stable inputs for those decoders.
+identified as a VAG sample bank rather than a video stream. Both root audio
+containers are now unpacked locally: VAG samples directly, and XA streams after
+reconstructing their raw CD sectors. The next asset-specific work is mapping
+these audio identifiers to gameplay/music records and inspecting `READ_DT.BIN`
+for further non-executable resources.
