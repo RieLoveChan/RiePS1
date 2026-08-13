@@ -2757,6 +2757,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_80070664",
+      "reference_sha256": "98bfb741e8f75788b07aea3472c24a627ad484ac5a4c049590c4be353ddb384d",
+      "built_sha256": "98bfb741e8f75788b07aea3472c24a627ad484ac5a4c049590c4be353ddb384d",
       "symbols": {
         "FUN_80023170": "0x80023170",
         "FUN_8004d080": "0x8004d080",
@@ -2772,6 +2774,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_8006ede8",
+      "reference_sha256": "2a522cfa0587f30a4258fa814c629fadb63843ba2a640d7740170958a846a9ac",
+      "built_sha256": "2a522cfa0587f30a4258fa814c629fadb63843ba2a640d7740170958a846a9ac",
       "symbols": {
         "FUN_800358f8": "0x800358f8",
         "FUN_8004d0a0": "0x8004d0a0",
@@ -2786,6 +2790,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_800706dc",
+      "reference_sha256": "fbe90684c340b6770214b01d7924198c65928087dc32ef64fe7be84bf3ae5950",
+      "built_sha256": "fbe90684c340b6770214b01d7924198c65928087dc32ef64fe7be84bf3ae5950",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_80049b84": "0x80049b84",
@@ -2799,6 +2805,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_80070730",
+      "reference_sha256": "aad7bffed348f16aef67e4fcc22f308dda1da0090434b00b650b2c837e5e2acc",
+      "built_sha256": "aad7bffed348f16aef67e4fcc22f308dda1da0090434b00b650b2c837e5e2acc",
       "symbols": {
         "FUN_80023170": "0x80023170",
         "FUN_800236bc": "0x800236bc",
@@ -2813,6 +2821,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_80070788",
+      "reference_sha256": "c84f14f0490d1657f714a3d20948775c2052c772b1f674454029ebf0d6cfa12e",
+      "built_sha256": "c84f14f0490d1657f714a3d20948775c2052c772b1f674454029ebf0d6cfa12e",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_8006e43c": "0x8006e43c",
@@ -2827,6 +2837,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_8006eefc",
+      "reference_sha256": "600ecf476c7a0d284a916b2a3e9afb600a7fe0bca9e87d228719d01a5649a814",
+      "built_sha256": "600ecf476c7a0d284a916b2a3e9afb600a7fe0bca9e87d228719d01a5649a814",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800756ac": "0x800756ac"
@@ -2839,6 +2851,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_80070260",
+      "reference_sha256": "12c129add5bcc124d39cb16dbc08d33b4905f00c0d91f3f197d2f59dcc258321",
+      "built_sha256": "12c129add5bcc124d39cb16dbc08d33b4905f00c0d91f3f197d2f59dcc258321",
       "symbols": {
         "FUN_8007fab0": "0x8007fab0",
         "FUN_800991e0": "0x800991e0"
@@ -2851,6 +2865,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_80070850",
+      "reference_sha256": "a25ab8d045f0fea99f96b0a8fbc8377acdae6e0b3a9eb5971b351937c8723c8a",
+      "built_sha256": "a25ab8d045f0fea99f96b0a8fbc8377acdae6e0b3a9eb5971b351937c8723c8a",
       "symbols": {
         "FUN_80028358": "0x80028358",
         "FUN_8007fdec": "0x8007fdec",
@@ -2863,7 +2879,9 @@
       "size": 40,
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
-      "section": ".text.FUN_80070958"
+      "section": ".text.FUN_80070958",
+      "reference_sha256": "2c1231f37e3c9a3a05054a5cd6fb1fa0036ac094becb815017aa55c9395d4341",
+      "built_sha256": "2c1231f37e3c9a3a05054a5cd6fb1fa0036ac094becb815017aa55c9395d4341"
     },
     {
       "name": "FUN_80070980",
@@ -2872,6 +2890,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_80070980",
+      "reference_sha256": "b03a30037ad46ba261b57fc891d806de86b89dc02f597f8944d3c341236e27c1",
+      "built_sha256": "b03a30037ad46ba261b57fc891d806de86b89dc02f597f8944d3c341236e27c1",
       "symbols": {
         "FUN_80028358": "0x80028358",
         "FUN_800703e0": "0x800703e0",
@@ -2885,6 +2905,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_800709e0",
+      "reference_sha256": "0f30040caa412ae24e92ffe0d0b89326ea0fbb4432a6108939a05ffa78d07197",
+      "built_sha256": "0f30040caa412ae24e92ffe0d0b89326ea0fbb4432a6108939a05ffa78d07197",
       "symbols": {
         "FUN_800358f8": "0x800358f8",
         "FUN_8007638c": "0x8007638c",
@@ -2899,6 +2921,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionOpening.s",
       "section": ".text.FUN_80070a84",
+      "reference_sha256": "a283639a56cf19a472ed43dbd2a7cf5340a3d8201c40d3915c6bf69816570fbf",
+      "built_sha256": "a283639a56cf19a472ed43dbd2a7cf5340a3d8201c40d3915c6bf69816570fbf",
       "symbols": {
         "FUN_80028358": "0x80028358",
         "FUN_8007f07c": "0x8007f07c"
@@ -2911,6 +2935,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006efd4",
+      "reference_sha256": "d8a28271cb8ed00c6e17e7c687579937da4f8a5c1c18744d74af6bb20cf3ded2",
+      "built_sha256": "d8a28271cb8ed00c6e17e7c687579937da4f8a5c1c18744d74af6bb20cf3ded2",
       "symbols": {
         "FUN_8007b778": "0x8007b778"
       }
@@ -2922,6 +2948,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_80070ab4",
+      "reference_sha256": "9f538e4f32ff34d001dbf8d5ad41869f151c249b691683d4bddaff49af85fe68",
+      "built_sha256": "9f538e4f32ff34d001dbf8d5ad41869f151c249b691683d4bddaff49af85fe68",
       "symbols": {
         "FUN_8007638c": "0x8007638c",
         "FUN_80028358": "0x80028358",
@@ -2940,6 +2968,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006f0a0",
+      "reference_sha256": "b5250f7c9baef32bce746bb1d5c9a97fcc7ceb57072f8dad398b3284b9550d94",
+      "built_sha256": "b5250f7c9baef32bce746bb1d5c9a97fcc7ceb57072f8dad398b3284b9550d94",
       "symbols": {
         "FUN_8007638c": "0x8007638c",
         "FUN_800358f8": "0x800358f8"
@@ -2952,6 +2982,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_80070bc4",
+      "reference_sha256": "012083c498feca3e867feb3c0571ef573538a4e08a77aebce5f687804d1dff25",
+      "built_sha256": "012083c498feca3e867feb3c0571ef573538a4e08a77aebce5f687804d1dff25",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0"
       }
@@ -2963,6 +2995,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006f1fc",
+      "reference_sha256": "597f262e63d48d82f6e9ededa74d2c543d5b8a864e431e13b144778b0660d1a0",
+      "built_sha256": "597f262e63d48d82f6e9ededa74d2c543d5b8a864e431e13b144778b0660d1a0",
       "symbols": {
         "FUN_800a36f4": "0x800a36f4",
         "FUN_800a3724": "0x800a3724",
@@ -2978,6 +3012,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006f380",
+      "reference_sha256": "49d6e681f062d709c120d1887e4b170b0016b51f009b9ca238c7f7b728cf2e29",
+      "built_sha256": "49d6e681f062d709c120d1887e4b170b0016b51f009b9ca238c7f7b728cf2e29",
       "symbols": {
         "FUN_80098f8c": "0x80098f8c",
         "FUN_80028358": "0x80028358",
@@ -2992,6 +3028,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006f49c",
+      "reference_sha256": "fa40dc7162d757807a1cd2c13b10be47b98f0ac11f175d86842393871e63196e",
+      "built_sha256": "fa40dc7162d757807a1cd2c13b10be47b98f0ac11f175d86842393871e63196e",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_80028358": "0x80028358",
@@ -3009,6 +3047,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006f6cc",
+      "reference_sha256": "93700f0864ba6b56d3b40a577b75407bad122b40531371e12c1efb7454a23a19",
+      "built_sha256": "93700f0864ba6b56d3b40a577b75407bad122b40531371e12c1efb7454a23a19",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800a37f8": "0x800a37f8",
@@ -3022,6 +3062,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006f784",
+      "reference_sha256": "92fb6d207a2de6f46a9884c45b308b417bf80a817e5b17f0c206ba2775ae5486",
+      "built_sha256": "92fb6d207a2de6f46a9884c45b308b417bf80a817e5b17f0c206ba2775ae5486",
       "symbols": {
         "FUN_80028358": "0x80028358"
       }
@@ -3033,6 +3075,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006f888",
+      "reference_sha256": "4c01782ed81a4afb7945594531b38d8e6f0a3d731cf04ffd1f24d49b7f2069d2",
+      "built_sha256": "4c01782ed81a4afb7945594531b38d8e6f0a3d731cf04ffd1f24d49b7f2069d2",
       "symbols": {
         "FUN_8007b778": "0x8007b778",
         "FUN_8007638c": "0x8007638c",
@@ -3049,6 +3093,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8006fa30",
+      "reference_sha256": "5b596a98d8a6a87276f38a9c8940a5951a8b6b4867fd2eab04135a92e8cec52f",
+      "built_sha256": "5b596a98d8a6a87276f38a9c8940a5951a8b6b4867fd2eab04135a92e8cec52f",
       "symbols": {
         "FUN_80081e90": "0x80081e90",
         "FUN_8006e9ec": "0x8006e9ec",
@@ -3061,7 +3107,9 @@
       "size": 8,
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
-      "section": ".text.FUN_80070aac"
+      "section": ".text.FUN_80070aac",
+      "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
     },
     {
       "name": "FUN_8007f598",
@@ -3070,6 +3118,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionGameplay.s",
       "section": ".text.FUN_8007f598",
+      "reference_sha256": "152f0a4179866c0b39a8a069c5c30a0ba08b9f60c2da70681416c3aa2a1d05de",
+      "built_sha256": "152f0a4179866c0b39a8a069c5c30a0ba08b9f60c2da70681416c3aa2a1d05de",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_800358f8": "0x800358f8"
