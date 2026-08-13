@@ -62,6 +62,26 @@ emulation process or modifying the user's primary BizHawk profile. The temporary
 profile also disables automatic loading and saving of the last quicksave slot,
 which otherwise carries frame and machine state across nominally fresh runs.
 
+# CD-read polling probe
+
+`tools/bizhawk/probe-cd-reads.lua` polls the two runtime fields written by the
+verified CD request path: current LBA at virtual `0x800e2958` and requested
+byte size at `0x800e2940` (both addressed as masked Main RAM offsets). It
+emits an event only when either value changes. It can be launched without a new
+disc copy by passing the retained canonical CUE explicitly:
+
+```powershell
+.\tools\bizhawk\run-probe.ps1 `
+  -GamePath .\runtime\bizhawk\runs\20260723-185640\disc\game.cue `
+  -LuaPath .\tools\bizhawk\probe-cd-reads.lua `
+  -Frames 3000
+```
+
+On 2026-08-13 this invocation exited before Lua created `probe-stage.log` or
+`report.json`; therefore it has not yet produced evidence and no resource LBA
+mapping is claimed from it. The failure did not modify or copy the canonical
+disc. Resolve the local BizHawk launch issue before using its output for asset
+classification.
 # Simulated input timing
 
 Empirically observed (2026-07-23), not a claim about the game itself: a
