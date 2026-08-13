@@ -342,6 +342,13 @@
       ]
     },
     {
+      "name": "runtime-helper-8253c",
+      "description": "Runtime gameplay initialization and state population helper.",
+      "functions": [
+        "FUN_8008253c"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2620,6 +2627,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper8204c.s",
       "section": ".text.FUN_8008204c"
+    },
+    {
+      "name": "FUN_8008253c",
+      "address": "0x8008253c",
+      "size": 1128,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper8253c.s",
+      "section": ".text.FUN_8008253c"
     },
     {
       "name": "FUN_8007c074",
