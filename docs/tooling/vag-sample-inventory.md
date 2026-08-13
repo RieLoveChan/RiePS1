@@ -38,6 +38,20 @@ audio submode `0x64` and interleave channels. It remains the next audio-decoder
 target. No root ISO file is currently evidenced as a standard STR/MDEC video
 container.
 
+# Optional lawful-local extraction
+
+To write the individual VAG files into an ignored local directory:
+
+```powershell
+& .\tools\iso9660\Extract-VagSamples.ps1 `
+  -InputPath .\work\ddr5thmix-extract\assets\STR.BIN `
+  -OutDir .\work\ddr5thmix-extract\vag
+```
+
+For the recorded input this writes 1,764 `.vag` files. FFprobe 8.1.2 validates
+the first output, `0000_demo_02.vag`, as mono `adpcm_psx` at 18,500 Hz with a
+duration of 1.449946 seconds. The output files are copyrighted game assets and
+remain ignored under `work/`.
 # Format references
 
 The standard PS1 STR video sector structure, including its `0x80010160` magic,
