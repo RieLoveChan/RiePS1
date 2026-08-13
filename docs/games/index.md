@@ -71,6 +71,7 @@
 * [DDR 5th Mix runtime helper 85ff8 module](ddr-5th-mix-jp-runtime-helper-85ff8.md) - Runtime gameplay and resource state helper matching 256 bytes.
 * [DDR 5th Mix runtime helper 860f8 module](ddr-5th-mix-jp-runtime-helper-860f8.md) - Runtime gameplay and resource state helper matching 452 bytes.
 * [DDR 5th Mix runtime helper 86334 module](ddr-5th-mix-jp-runtime-helper-86334.md) - Runtime gameplay and resource state helper matching 324 bytes.
+* [DDR 5th Mix runtime helper 86478 module](ddr-5th-mix-jp-runtime-helper-86478.md) - Runtime gameplay and resource state helper matching 444 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.
