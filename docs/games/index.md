@@ -42,6 +42,7 @@
 * [DDR 5th Mix runtime transform interpolation module](ddr-5th-mix-jp-runtime-transform-interpolate.md) - Transform interpolation and GTE matrix synthesis matching 1,156 bytes.
 * [DDR 5th Mix runtime transform coordinator module](ddr-5th-mix-jp-runtime-transform-coordinator.md) - Transform-state coordination and terminal selection matching 656 bytes.
 * [DDR 5th Mix runtime object frame initialization module](ddr-5th-mix-jp-runtime-object-frame-init.md) - Frame-record initialization and sixteen-channel publication matching 332 bytes.
+* [DDR 5th Mix runtime table dispatch module](ddr-5th-mix-jp-runtime-table-dispatch.md) - Table-driven callback dispatch and sixteen-entry counter maintenance matching 1,552 bytes.
 * [DDR 5th Mix HOW TO PLAY overlay module](ddr-5th-mix-jp-inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
 * [DDR 5th Mix (Japan) quirk log](ddr-5th-mix-jp-quirks.md) - Non-standard engineering practices found during review, tracked for byte-match reproduction.
 * [DDR 5th Mix (Japan) screen flow](ddr-5th-mix-jp-screen-flow.md) - Maps the mode dispatcher to hypothesized and confirmed screen identities.

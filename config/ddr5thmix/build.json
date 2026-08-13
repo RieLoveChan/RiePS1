@@ -258,6 +258,13 @@
       ]
     },
     {
+      "name": "runtime-table-dispatch",
+      "description": "Runtime table-driven callback dispatcher and sixteen-entry counter maintenance.",
+      "functions": [
+        "FUN_80079358"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2440,6 +2447,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeObjectFrameInit.s",
       "section": ".text.FUN_8007e7b8"
+    },
+    {
+      "name": "FUN_80079358",
+      "address": "0x80079358",
+      "size": 1552,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeDispatcher79358.s",
+      "section": ".text.FUN_80079358"
     },
     {
       "name": "FUN_8007c074",
