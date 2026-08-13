@@ -489,6 +489,13 @@
       ]
     },
     {
+      "name": "runtime-helper-87188",
+      "description": "Runtime record and counter update helper.",
+      "functions": [
+        "FUN_80087188"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2935,6 +2942,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper87050.s",
       "section": ".text.FUN_80087050"
+    },
+    {
+      "name": "FUN_80087188",
+      "address": "0x80087188",
+      "size": 776,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper87188.s",
+      "section": ".text.FUN_80087188"
     },
     {
       "name": "FUN_8007c074",
