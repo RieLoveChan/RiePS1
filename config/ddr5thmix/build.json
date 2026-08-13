@@ -4308,6 +4308,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070bf8",
+      "reference_sha256": "3b640586ac82467904687aa7df1407e9f29e39a9cfb2c5823aeeaa249a8b1432",
+      "built_sha256": "3b640586ac82467904687aa7df1407e9f29e39a9cfb2c5823aeeaa249a8b1432",
       "symbols": {
         "FUN_800a1724": "0x800a1724",
         "FUN_80073d60": "0x80073d60"
@@ -4320,6 +4322,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070c70",
+      "reference_sha256": "106848467c7098c6db3c689843022c260957d332753c56e34270d2a347b36fe9",
+      "built_sha256": "106848467c7098c6db3c689843022c260957d332753c56e34270d2a347b36fe9",
       "symbols": {
         "FUN_800a0094": "0x800a0094",
         "FUN_80073554": "0x80073554",
@@ -4333,6 +4337,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070d04",
+      "reference_sha256": "4f35676915ee9b5a1304afa092df286762798fa5d831f40f96db37f843e0787a",
+      "built_sha256": "4f35676915ee9b5a1304afa092df286762798fa5d831f40f96db37f843e0787a",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_80073df4": "0x80073df4"
@@ -4345,6 +4351,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070d3c",
+      "reference_sha256": "fc4fb88cbe7086459b109aa1d0ebcaf90d2f3e760b4f37c88fb70e4666fa8cab",
+      "built_sha256": "fc4fb88cbe7086459b109aa1d0ebcaf90d2f3e760b4f37c88fb70e4666fa8cab",
       "symbols": {
         "FUN_8005f16c": "0x8005f16c"
       }
@@ -4356,6 +4364,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_8006fba4",
+      "reference_sha256": "273c1ededaaced0746aef74becd50c96230781b4b3cd4bac5087cefa01d1e598",
+      "built_sha256": "273c1ededaaced0746aef74becd50c96230781b4b3cd4bac5087cefa01d1e598",
       "symbols": {
         "FUN_8007f07c": "0x8007f07c",
         "FUN_8002a8b0": "0x8002a8b0",
@@ -4371,6 +4381,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070d6c",
+      "reference_sha256": "4b4c5985921c479bef4e46de6093a322df388d79318de932cbd5586269dac26c",
+      "built_sha256": "4b4c5985921c479bef4e46de6093a322df388d79318de932cbd5586269dac26c",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_8005f230": "0x8005f230",
@@ -4384,6 +4396,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070d9c",
+      "reference_sha256": "825ba72ecbc852bb3e54210f493079d871c7152847c4f92dd8e5636727e44825",
+      "built_sha256": "825ba72ecbc852bb3e54210f493079d871c7152847c4f92dd8e5636727e44825",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_80073e34": "0x80073e34",
@@ -4398,6 +4412,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070e2c",
+      "reference_sha256": "199f81d1a6313e41314ef5d2bf5d1f734d92ac2e27dd34ba96df08a623a9e6a6",
+      "built_sha256": "199f81d1a6313e41314ef5d2bf5d1f734d92ac2e27dd34ba96df08a623a9e6a6",
       "symbols": {
         "FUN_800a0fb0": "0x800a0fb0",
         "FUN_80073e34": "0x80073e34",
@@ -4414,6 +4430,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070ebc",
+      "reference_sha256": "2aa29b989209023689ab362cd4aa192f29fa64b1eb55a1ccde7b3a0b6305ca56",
+      "built_sha256": "2aa29b989209023689ab362cd4aa192f29fa64b1eb55a1ccde7b3a0b6305ca56",
       "symbols": {
         "FUN_8007f07c": "0x8007f07c",
         "FUN_800751c8": "0x800751c8",
@@ -4427,6 +4445,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070f04",
+      "reference_sha256": "3e929df2cbfcc7aec12c75c930944a1ef3d5a5c71a11b5a37bccb3508faed958",
+      "built_sha256": "3e929df2cbfcc7aec12c75c930944a1ef3d5a5c71a11b5a37bccb3508faed958",
       "symbols": {
         "FUN_8005f10c": "0x8005f10c",
         "FUN_8002a8b0": "0x8002a8b0",
@@ -4440,6 +4460,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80070f54",
+      "reference_sha256": "d4b314dd3c10671cdc37e69ecda8192a55a6493d8d6012611ae37c60afb052a8",
+      "built_sha256": "d4b314dd3c10671cdc37e69ecda8192a55a6493d8d6012611ae37c60afb052a8",
       "symbols": {
         "FUN_80061e80": "0x80061e80",
         "FUN_800702f4": "0x800702f4"
@@ -4452,6 +4474,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80071004",
+      "reference_sha256": "0004e40e9b19dce28e39de1a1e3b3d52e1a1e717c609d6b9c2cd7245fe78d073",
+      "built_sha256": "0004e40e9b19dce28e39de1a1e3b3d52e1a1e717c609d6b9c2cd7245fe78d073",
       "symbols": {
         "FUN_8005f14c": "0x8005f14c",
         "FUN_8002a8b0": "0x8002a8b0"
@@ -4464,6 +4488,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_8007102c",
+      "reference_sha256": "0d47208d4583af8dc66eae57c752261867738c7b0387d130cb4b5b0b0cea6e76",
+      "built_sha256": "0d47208d4583af8dc66eae57c752261867738c7b0387d130cb4b5b0b0cea6e76",
       "symbols": {
         "FUN_8005f10c": "0x8005f10c",
         "FUN_8007b778": "0x8007b778"
@@ -4476,6 +4502,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80071084",
+      "reference_sha256": "43c97ea6332284f457bd4f5c452e64259679d3c2e61e9fb1bb8d914ead6e451c",
+      "built_sha256": "43c97ea6332284f457bd4f5c452e64259679d3c2e61e9fb1bb8d914ead6e451c",
       "symbols": {
         "FUN_8002a8b0": "0x8002a8b0",
         "FUN_8005f12c": "0x8005f12c",
@@ -4489,6 +4517,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_800710f8",
+      "reference_sha256": "0070a16e33bd2e8ffc6ff986dd1bd03a2a9a0897613a526891d2d16987aef3b7",
+      "built_sha256": "0070a16e33bd2e8ffc6ff986dd1bd03a2a9a0897613a526891d2d16987aef3b7",
       "symbols": {
         "FUN_8005f14c": "0x8005f14c"
       }
@@ -4500,6 +4530,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80071118",
+      "reference_sha256": "8a3d567b1f0d95957a71fb3830a919531b7eb789c939fd711a9c7300b0135846",
+      "built_sha256": "8a3d567b1f0d95957a71fb3830a919531b7eb789c939fd711a9c7300b0135846",
       "symbols": {
         "FUN_80093f20": "0x80093f20"
       }
@@ -4511,6 +4543,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80071168",
+      "reference_sha256": "dcfb9db2257042ab1d691f7db93d93802369f1b6adde17412634438a319539db",
+      "built_sha256": "dcfb9db2257042ab1d691f7db93d93802369f1b6adde17412634438a319539db",
       "symbols": {
         "FUN_8007f218": "0x8007f218",
         "FUN_800a0094": "0x800a0094",
@@ -4524,6 +4558,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/GameSessionEndgame.s",
       "section": ".text.FUN_80071214",
+      "reference_sha256": "de285634ab48fe9522c17bed52e84df7187ad4edd8e6d61587a39e45c844c989",
+      "built_sha256": "de285634ab48fe9522c17bed52e84df7187ad4edd8e6d61587a39e45c844c989",
       "symbols": {
         "FUN_8007f07c": "0x8007f07c",
         "FUN_80095590": "0x80095590"

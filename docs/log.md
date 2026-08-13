@@ -1,3 +1,5 @@
+- Manifest-evidence completion: verified existing `game-session-endgame` (18 functions, 1,960 selected bytes). The aggregate verifier reports 18/18 byte matches against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.
+
 - Manifest-evidence completion: verified existing `game-session-opening` and `game-session-gameplay` modules. All 25/25 functions and 5,272/5,272 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.
 
 - Manifest-evidence completion: verified existing `game-session-router` (9 functions, 1,684 selected bytes). The aggregate verifier reports 9/9 byte matches against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.
