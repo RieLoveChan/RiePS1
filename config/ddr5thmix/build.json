@@ -244,6 +244,13 @@
       ]
     },
     {
+      "name": "runtime-transform-coordinator",
+      "description": "Runtime transform-state coordinator and terminal-result selector.",
+      "functions": [
+        "FUN_8007dd2c"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2410,6 +2417,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeTransformInterpolate.s",
       "section": ".text.FUN_8007d8a8"
+    },
+    {
+      "name": "FUN_8007dd2c",
+      "address": "0x8007dd2c",
+      "size": 656,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeTransformCoordinator.s",
+      "section": ".text.FUN_8007dd2c"
     },
     {
       "name": "FUN_8007c074",
