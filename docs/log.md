@@ -1,3 +1,5 @@
+- Byte-match completion audit: verified the complete DDR5 5th Mix manifest: 2,177/2,177 functions and 492,164/492,164 selected bytes have valid reference/build SHA-256 pairs and matching individual reports against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; cross-audit reported `REPORT_MISSING=0`, `REPORT_BAD=0`, `MODULE_BAD=0`, and `JSON_PARSE_BAD=0`.
+
 - Manifest-evidence completion: replaced 27 historical `PLACEHOLDER` hash pairs in `LibrarySignatureBatch9.s` after fresh individual verification. All 27/27 functions and 21,380/21,380 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; recorded the actual reference/build SHA-256 values.
 
 - Manifest-evidence completion: verified the remaining 115 PsyQ/GTE support symbols individually with GCC 14.2.0/binutils 2.43. All 115/115 functions and 2,304/2,304 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added all reference/build hash pairs to the manifest.
