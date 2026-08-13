@@ -1,3 +1,5 @@
+- Manifest-evidence completion: independently reverified `FUN_8007eea8` with GCC 14.2.0/binutils 2.43 against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; 8/8 bytes match with reference/built SHA-256 `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1`.
+
 - Manifest-evidence completion: verified `state-transition`, `music-state`, `runtime-object-init`, `runtime-init-loop`, `runtime-table-interpolate`, `runtime-player-gate`, `runtime-flag-selector`, and `runtime-timing-table`. All 124/124 newly synchronized functions and 20,008/20,008 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.
 
 - Manifest-evidence completion: verified `mode-control` and `screen-selector`. All 42/42 functions and 4,008/4,008 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the missing manifest hash pairs without changing source or reconstruction totals.

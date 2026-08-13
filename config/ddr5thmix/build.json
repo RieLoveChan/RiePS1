@@ -1105,7 +1105,9 @@
       "size": 8,
       "language": "asm",
       "source": "src/ddr5thmix/FUN_8007eea8.s",
-      "section": ".text.FUN_8007eea8"
+      "section": ".text.FUN_8007eea8",
+      "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb3df5a2630993b7e2f1"
     },
     {
       "name": "FUN_800230cc",
