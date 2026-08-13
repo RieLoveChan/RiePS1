@@ -18,7 +18,13 @@ param(
     [int] $ReportTimeoutSeconds = 120,
 
     [Parameter()]
-    [string] $LuaPath
+    [string] $LuaPath,
+
+    [Parameter()]
+    [string] $MoviePath,
+
+    [Parameter()]
+    [string] $ConfigPath
 )
 
 $ErrorActionPreference = 'Stop'
@@ -61,7 +67,11 @@ if ([IO.Path]::GetExtension($resolvedGame) -ieq '.chd') {
     $launchGame = $cuePath
 }
 
-$sourceConfigPath = Join-Path (Split-Path -Parent $EmuHawkPath) 'config.ini'
+$sourceConfigPath = if ($ConfigPath) {
+    (Resolve-Path -LiteralPath $ConfigPath -ErrorAction Stop).Path
+} else {
+    Join-Path (Split-Path -Parent $EmuHawkPath) 'config.ini'
+}
 if (-not (Test-Path -LiteralPath $sourceConfigPath -PathType Leaf)) {
     throw "BizHawk config was not found beside EmuHawk: $sourceConfigPath"
 }
@@ -88,6 +98,13 @@ if (-not (Test-Path -LiteralPath $LuaPath -PathType Leaf)) {
     throw "Lua probe script was not found at: $LuaPath"
 }
 $luaPath = (Resolve-Path -LiteralPath $LuaPath).Path
+$moviePath = $null
+if ($MoviePath) {
+    if (-not (Test-Path -LiteralPath $MoviePath -PathType Leaf)) {
+        throw "Movie file was not found at: $MoviePath"
+    }
+    $moviePath = (Resolve-Path -LiteralPath $MoviePath).Path
+}
 $wrapperPath = Join-Path $outputDir 'run-probe.lua'
 $escapeLua = { param([string] $Value) $Value.Replace('\', '\\').Replace('"', '\"') }
 $wrapper = @(
@@ -97,7 +114,12 @@ $wrapper = @(
 ) -join "`n"
 [IO.File]::WriteAllText($wrapperPath, $wrapper + "`n", [Text.UTF8Encoding]::new($false))
 
-& $EmuHawkPath "--config=$runConfigPath" "--lua=$wrapperPath" $launchGame
+$arguments = @("--config=$runConfigPath", "--lua=$wrapperPath")
+if ($moviePath) {
+    $arguments += "--movie=$moviePath"
+}
+$arguments += $launchGame
+& $EmuHawkPath @arguments
 if ($LASTEXITCODE -ne 0) {
     throw "EmuHawk exited with code $LASTEXITCODE."
 }

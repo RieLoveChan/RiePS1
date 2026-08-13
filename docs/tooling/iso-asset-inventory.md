@@ -42,4 +42,4 @@ identified as a VAG sample bank rather than a video stream. Both root audio
 containers are now unpacked locally: VAG samples directly, and XA streams after
 reconstructing their raw CD sectors. The next asset-specific work is mapping
 these audio identifiers to gameplay/music records and inspecting `READ_DT.BIN`
-for further non-executable resources.
+for further non-executable resources. A replay-driven mapping has now extracted 15 observed READ_DT request slices locally; see [/docs/tooling/cd-read-asset-mapping.md](/docs/tooling/cd-read-asset-mapping.md).
