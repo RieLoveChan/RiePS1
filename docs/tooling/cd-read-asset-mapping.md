@@ -76,6 +76,8 @@ particular, no current replay-observed slice is proven to contain a PlayStation
 TMD 3D model. The image archives are strong evidence for 2D UI, sprites, or
 background material, but their exact screen/character assignment needs a
 runtime screenshot or loader-consumer correlation.
+The four TIM-containing slices were rendered locally to 251 PNGs under work/ddr5thmix-extract/tim-renders/; each slice has an ignored manifest.json. Rendered outputs require visual/runtime correlation before receiving screen or character names.
+
 # Commands
 
 ```powershell

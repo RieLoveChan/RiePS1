@@ -1,3 +1,5 @@
+- TIM local rendering: added a revalidating TIM-to-PNG renderer and used it under ignored `work/` on all replay-observed TIM archives. It produced 251 PNGs and four manifests; System.Drawing reopened the 640×134 output successfully. No image pixels, manifests, or other game assets were committed.
+
 - Replay asset classification: structurally validated two complete `pBAV` sound banks and four TIM resource slices from the partial Rage/song-17-sai/Maniac trace. The TIM slices contain 251 images in total, including several 640×134 4bpp images; no replay-observed slice is yet proven to contain a TMD model. Added metadata-only TIM inventory tooling and recorded the exact validated dimensions without committing assets.
 
 - Runtime CD-read asset mapping: replayed the supplied Rage/song-17-sai/Maniac input prefix in BizHawk 2.11 and recorded 15 bounds-valid non-zero READ_DT.BIN requests before movie termination at frame 5,160. Added a generic local-only slicer and a 15-entry SHA-256 manifest; one late request is a complete 22,848-byte VAG sample. The trace is explicitly marked partial, and no game assets or replay were committed.
