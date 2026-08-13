@@ -1,3 +1,5 @@
+- READ_DT asset unpacking: applied the bounds-validating VAG inventory/extractor to lawful `READ_DT.BIN` SHA-256 `004cbd9fa5c260b32f25319f5ae652208a7c80fbb056fa0e72127eb83d30453a`. It yielded 16 uniquely named local VAG assets, including `fail_01`–`fail_06` and `res_00`–`res_14`; FFprobe 8.1.2 validated `es_14` as mono `adpcm_psx`, 14,500 Hz, 3.543448 seconds. No extracted audio was committed.
+
 - XA asset unpacking: added `Demux-XaAudio.ps1` to retain raw Mode2/2352 sector headers and route the `XA.STR` LBA extent by CD-XA `(file_id, channel)`. All 16,336 audio sectors from raw track SHA-256 `c414a87c81b7a7a2104f18739a1dca7c256c84f8ff2202ee29f307e72967a935` yielded 61 local streams; FFmpeg 8.1.2 converted all 61 to WAV, with `file_01_channel_00.wav` validated stereo at 37,800 Hz for 93.760000 seconds. No audio assets were committed.
 
 - VAG asset unpacking: added `Extract-VagSamples.ps1` and used it only under ignored `work/` to split all 1,764 validated VAG entries from `STR.BIN`. FFprobe 8.1.2 identifies the first output as mono `adpcm_psx` at the header's 18,500 Hz, duration 1.449946 seconds. No extracted audio was committed.

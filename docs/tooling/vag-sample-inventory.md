@@ -38,6 +38,26 @@ audio submode `0x64` and interleave channels. It remains the next audio-decoder
 target. No root ISO file is currently evidenced as a standard STR/MDEC video
 container.
 
+# READ_DT.BIN sample bank
+
+The same inventory accepts the lawful local `READ_DT.BIN` extraction:
+
+```powershell
+& .\tools\iso9660\Inventory-VagSamples.ps1 `
+  -InputPath .\work\ddr5thmix-extract\read_dt.bin `
+  -OutJson .\work\ddr5thmix-extract\read-dt-vag-inventory.json
+& .\tools\iso9660\Extract-VagSamples.ps1 `
+  -InputPath .\work\ddr5thmix-extract\read_dt.bin `
+  -OutDir .\work\ddr5thmix-extract\read-dt-vag
+```
+
+For `READ_DT.BIN` SHA-256
+`004cbd9fa5c260b32f25319f5ae652208a7c80fbb056fa0e72127eb83d30453a`, it
+finds and bounds-validates 16 uniquely named VAG samples at 2,048-byte
+alignment. They include `fail_01` through `fail_06` and `res_00` through
+`res_14`; the first output, `0000_es_14.vag`, validates with FFprobe 8.1.2 as
+mono `adpcm_psx` at 14,500 Hz, duration 3.543448 seconds. The 16 outputs stay
+under ignored `work/`.
 # Optional lawful-local extraction
 
 To write the individual VAG files into an ignored local directory:
