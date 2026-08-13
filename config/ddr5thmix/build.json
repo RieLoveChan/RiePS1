@@ -3167,7 +3167,9 @@
       "size": 276,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCallback7ea5c.s",
-      "section": ".text.FUN_8007ea5c"
+      "section": ".text.FUN_8007ea5c",
+      "reference_sha256": "d48f6cac19dfcb3619cd9733e34580a7e38f51ad157efc5c7397a2a686856145",
+      "built_sha256": "d48f6cac19dfcb3619cd9733e34580a7e38f51ad157efc5c7397a2a686856145"
     },
     {
       "name": "FUN_8007eb70",
@@ -3175,7 +3177,9 @@
       "size": 316,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCallback7eb70.s",
-      "section": ".text.FUN_8007eb70"
+      "section": ".text.FUN_8007eb70",
+      "reference_sha256": "a1f4e30f0cad5e2909d1c54b9f6ca281ef24042cc8346fa420719b9a919e84e5",
+      "built_sha256": "a1f4e30f0cad5e2909d1c54b9f6ca281ef24042cc8346fa420719b9a919e84e5"
     },
     {
       "name": "FUN_8007f218",
@@ -3183,7 +3187,9 @@
       "size": 204,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCallback7f218.s",
-      "section": ".text.FUN_8007f218"
+      "section": ".text.FUN_8007f218",
+      "reference_sha256": "6248e3e7180cf94b782e835936e58192d89d8b3626ac4792b9bddd6aed7b2182",
+      "built_sha256": "6248e3e7180cf94b782e835936e58192d89d8b3626ac4792b9bddd6aed7b2182"
     },
     {
       "name": "FUN_8007f334",
@@ -3191,7 +3197,9 @@
       "size": 416,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCallback7f334.s",
-      "section": ".text.FUN_8007f334"
+      "section": ".text.FUN_8007f334",
+      "reference_sha256": "c26254f3dcdf1d4b334938f05805cdb5b1be4057cfd26887687b44dd1ff1f82e",
+      "built_sha256": "c26254f3dcdf1d4b334938f05805cdb5b1be4057cfd26887687b44dd1ff1f82e"
     },
     {
       "name": "FUN_8007f9b8",
@@ -3199,7 +3207,9 @@
       "size": 248,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper7f9b8.s",
-      "section": ".text.FUN_8007f9b8"
+      "section": ".text.FUN_8007f9b8",
+      "reference_sha256": "ac9049686849dd389e3f92d349c6adaeb374f950f9d8d19c0428082ab6cbc620",
+      "built_sha256": "ac9049686849dd389e3f92d349c6adaeb374f950f9d8d19c0428082ab6cbc620"
     },
     {
       "name": "FUN_8007fab0",
@@ -3207,7 +3217,9 @@
       "size": 476,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper7fab0.s",
-      "section": ".text.FUN_8007fab0"
+      "section": ".text.FUN_8007fab0",
+      "reference_sha256": "56a01e674e059f01b6675d9280b138f3089772a9b54d05d4aa30e6aec0cdf4b5",
+      "built_sha256": "56a01e674e059f01b6675d9280b138f3089772a9b54d05d4aa30e6aec0cdf4b5"
     },
     {
       "name": "FUN_80081f30",
@@ -3215,7 +3227,9 @@
       "size": 284,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper81f30.s",
-      "section": ".text.FUN_80081f30"
+      "section": ".text.FUN_80081f30",
+      "reference_sha256": "7e3e7eb792a9a5573171407034ebef7e11d4bf978f0fd7b5a756d0fabc0590cc",
+      "built_sha256": "7e3e7eb792a9a5573171407034ebef7e11d4bf978f0fd7b5a756d0fabc0590cc"
     },
     {
       "name": "FUN_8008204c",
@@ -3223,7 +3237,9 @@
       "size": 1228,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper8204c.s",
-      "section": ".text.FUN_8008204c"
+      "section": ".text.FUN_8008204c",
+      "reference_sha256": "49e21835c3dfd67a8cc01132ee8f809783fb7596ed322862354114a72b882666",
+      "built_sha256": "49e21835c3dfd67a8cc01132ee8f809783fb7596ed322862354114a72b882666"
     },
     {
       "name": "FUN_8008253c",
@@ -3231,7 +3247,9 @@
       "size": 1128,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper8253c.s",
-      "section": ".text.FUN_8008253c"
+      "section": ".text.FUN_8008253c",
+      "reference_sha256": "a15bcab57c276dc0a99e45d027655cf2af8eedfce9174381a914193ee1c21a4a",
+      "built_sha256": "a15bcab57c276dc0a99e45d027655cf2af8eedfce9174381a914193ee1c21a4a"
     },
     {
       "name": "FUN_800829a4",
@@ -3239,7 +3257,9 @@
       "size": 1068,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper829a4.s",
-      "section": ".text.FUN_800829a4"
+      "section": ".text.FUN_800829a4",
+      "reference_sha256": "6a41e47e567d47ef621511083f0c17b4c2bfd96c7504223f2c4080aef3899f63",
+      "built_sha256": "6a41e47e567d47ef621511083f0c17b4c2bfd96c7504223f2c4080aef3899f63"
     },
     {
       "name": "FUN_80082dd0",
@@ -3247,7 +3267,9 @@
       "size": 2980,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper82dd0.s",
-      "section": ".text.FUN_80082dd0"
+      "section": ".text.FUN_80082dd0",
+      "reference_sha256": "71020316ba272e2e302663a7d5fd123a23cb10d0ac2ee422c6fd4c5add900971",
+      "built_sha256": "71020316ba272e2e302663a7d5fd123a23cb10d0ac2ee422c6fd4c5add900971"
     },
     {
       "name": "FUN_80083974",
@@ -3255,7 +3277,9 @@
       "size": 632,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper83974.s",
-      "section": ".text.FUN_80083974"
+      "section": ".text.FUN_80083974",
+      "reference_sha256": "0871e5b4656af34540f9ee728b0898d85f6488c922f38139423dc21213d9af9e",
+      "built_sha256": "0871e5b4656af34540f9ee728b0898d85f6488c922f38139423dc21213d9af9e"
     },
     {
       "name": "FUN_80083bec",
@@ -3263,7 +3287,9 @@
       "size": 584,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper83bec.s",
-      "section": ".text.FUN_80083bec"
+      "section": ".text.FUN_80083bec",
+      "reference_sha256": "1f504c702fd015d722695ce2a3df23d25e30ef35c27579469ab250a8f1f99f6d",
+      "built_sha256": "1f504c702fd015d722695ce2a3df23d25e30ef35c27579469ab250a8f1f99f6d"
     },
     {
       "name": "FUN_80083f68",
@@ -3271,7 +3297,9 @@
       "size": 1000,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper83f68.s",
-      "section": ".text.FUN_80083f68"
+      "section": ".text.FUN_80083f68",
+      "reference_sha256": "f5c27181dd3633774bad1d2407f8db4d3712a6d0f97964453a22ec1088312ac7",
+      "built_sha256": "f5c27181dd3633774bad1d2407f8db4d3712a6d0f97964453a22ec1088312ac7"
     },
     {
       "name": "FUN_800843dc",
@@ -3279,7 +3307,9 @@
       "size": 1100,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper843dc.s",
-      "section": ".text.FUN_800843dc"
+      "section": ".text.FUN_800843dc",
+      "reference_sha256": "2d5ad06c0042857213e6f3253128522a9c294f169ac86ac6b8f4f06da9e78017",
+      "built_sha256": "2d5ad06c0042857213e6f3253128522a9c294f169ac86ac6b8f4f06da9e78017"
     },
     {
       "name": "FUN_800848cc",
@@ -3287,7 +3317,9 @@
       "size": 436,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper848cc.s",
-      "section": ".text.FUN_800848cc"
+      "section": ".text.FUN_800848cc",
+      "reference_sha256": "2f78bed75279ab0c796ef072de2288919b6dcd514f466fc9ab55b01de38585d7",
+      "built_sha256": "2f78bed75279ab0c796ef072de2288919b6dcd514f466fc9ab55b01de38585d7"
     },
     {
       "name": "FUN_80084a80",
@@ -3295,7 +3327,9 @@
       "size": 1384,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper84a80.s",
-      "section": ".text.FUN_80084a80"
+      "section": ".text.FUN_80084a80",
+      "reference_sha256": "17ff7aff17241f248ff5b2faab8d6bd16423af0e0de88b3fdb552976636cfe5f",
+      "built_sha256": "17ff7aff17241f248ff5b2faab8d6bd16423af0e0de88b3fdb552976636cfe5f"
     },
     {
       "name": "FUN_80084fe8",
@@ -3303,7 +3337,9 @@
       "size": 620,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper84fe8.s",
-      "section": ".text.FUN_80084fe8"
+      "section": ".text.FUN_80084fe8",
+      "reference_sha256": "082fab44ab79a3b4e5881ce21a069160c439d2240756972baa578a8e05c4c4cd",
+      "built_sha256": "082fab44ab79a3b4e5881ce21a069160c439d2240756972baa578a8e05c4c4cd"
     },
     {
       "name": "FUN_80085254",
@@ -3311,7 +3347,9 @@
       "size": 772,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper85254.s",
-      "section": ".text.FUN_80085254"
+      "section": ".text.FUN_80085254",
+      "reference_sha256": "0f8e316b5f785b927d04b5f616c36561908c0f9c0240467ee692a03938286a98",
+      "built_sha256": "0f8e316b5f785b927d04b5f616c36561908c0f9c0240467ee692a03938286a98"
     },
     {
       "name": "FUN_80085558",
@@ -3319,7 +3357,9 @@
       "size": 208,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper85558.s",
-      "section": ".text.FUN_80085558"
+      "section": ".text.FUN_80085558",
+      "reference_sha256": "37c21af000c272734cbd5029d3b952f11fe0b619be144eb9bad76778135054b3",
+      "built_sha256": "37c21af000c272734cbd5029d3b952f11fe0b619be144eb9bad76778135054b3"
     },
     {
       "name": "FUN_80085628",
