@@ -909,6 +909,13 @@
       ]
     },
     {
+      "name": "runtime-helper-973e8",
+      "description": "Runtime resource, image upload, display setup, and active-buffer helper.",
+      "functions": [
+        "FUN_800973e8"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -3835,6 +3842,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper972a4.s",
       "section": ".text.FUN_800972a4"
+    },
+    {
+      "name": "FUN_800973e8",
+      "address": "0x800973e8",
+      "size": 1420,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper973e8.s",
+      "section": ".text.FUN_800973e8"
     },
     {
       "name": "FUN_8007c074",

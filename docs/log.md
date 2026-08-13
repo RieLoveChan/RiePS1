@@ -1,3 +1,5 @@
+- Batch-332: reconstructed `FUN_800973e8` in `src/ddr5thmix/RuntimeHelper973e8.s`, a 1,420-byte runtime resource, image-upload, display-setup, and active-buffer helper. `Invoke-FunctionMatch.ps1` and `Invoke-ModuleMatch.ps1` with GCC 14.2.0/binutils 2.43 matched 1,420/1,420 bytes against lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; reference/built SHA-256 `94120382d17273977584411701e8910d94b6468e1a8c523c8a414aff8c12a38d`. Registered the one-function `runtime-helper-973e8` module, promoted the symbol-map row, and updated exact-reconstruction totals to 1,682 functions / 299,516 selected bytes.
+
 
 - 2026-08-13: Recorded the antivirus heuristic alert observed during local `FUN_800973e8` analysis. The alert involved command-line content and a `turn-ended` event payload; no malicious execution was established. Future analysis is split into short, auditable commands without disabling endpoint protection.
 
