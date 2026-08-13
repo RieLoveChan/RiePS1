@@ -3235,7 +3235,9 @@
       "size": 236,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeInitLoop.s",
-      "section": ".text.FUN_8007c384"
+      "section": ".text.FUN_8007c384",
+      "reference_sha256": "7d2ff85598f2bbb6938fd55bb4521b32f23335ea2f40583e852f8310b567d828",
+      "built_sha256": "7d2ff85598f2bbb6938fd55bb4521b32f23335ea2f40583e852f8310b567d828"
     },
     {
       "name": "FUN_8007ce50",
@@ -3243,7 +3245,9 @@
       "size": 232,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeTableInterpolate.s",
-      "section": ".text.FUN_8007ce50"
+      "section": ".text.FUN_8007ce50",
+      "reference_sha256": "eeee0f35604a3e64154a417b5fe4bcce301687d657d2d6e5e096ca4d26f49cc8",
+      "built_sha256": "eeee0f35604a3e64154a417b5fe4bcce301687d657d2d6e5e096ca4d26f49cc8"
     },
     {
       "name": "FUN_8007cf38",
@@ -4241,7 +4245,9 @@
       "size": 424,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeObjectInit.s",
-      "section": ".text.FUN_8007c074"
+      "section": ".text.FUN_8007c074",
+      "reference_sha256": "3846b2e50efc841e3649dfb2a2e53d6ca4fc415cbe1b5abdfe1279ecc3591f8b",
+      "built_sha256": "3846b2e50efc841e3649dfb2a2e53d6ca4fc415cbe1b5abdfe1279ecc3591f8b"
     },
     {
       "name": "FUN_8007bee4",
@@ -4289,7 +4295,9 @@
       "size": 200,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimePlayerGate.s",
-      "section": ".text.FUN_80085dc4"
+      "section": ".text.FUN_80085dc4",
+      "reference_sha256": "cc31119468a16b70dbf6b8618190790b40f43eac5d027aa0cfacd8c165375489",
+      "built_sha256": "cc31119468a16b70dbf6b8618190790b40f43eac5d027aa0cfacd8c165375489"
     },
     {
       "name": "FUN_8007ba94",
@@ -4337,7 +4345,9 @@
       "size": 188,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeFlagSelector.s",
-      "section": ".text.FUN_80086634"
+      "section": ".text.FUN_80086634",
+      "reference_sha256": "9bff3d0d0a956b9cced5350534c601b3358635def105df910e8366226ddc6b3b",
+      "built_sha256": "9bff3d0d0a956b9cced5350534c601b3358635def105df910e8366226ddc6b3b"
     },
     {
       "name": "FUN_8007f840",
@@ -4345,7 +4355,9 @@
       "size": 184,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeTimingTable.s",
-      "section": ".text.FUN_8007f840"
+      "section": ".text.FUN_8007f840",
+      "reference_sha256": "4f2c42c873ef6fe27d7b4f977d8655d0237908dcf713fe9539f20b06e5472893",
+      "built_sha256": "4f2c42c873ef6fe27d7b4f977d8655d0237908dcf713fe9539f20b06e5472893"
     },
     {
       "name": "FUN_8009ddcc",
@@ -4383,7 +4395,9 @@
       "size": 2412,
       "language": "asm",
       "source": "src/ddr5thmix/MusicState.s",
-      "section": ".text.FUN_8007a8f4"
+      "section": ".text.FUN_8007a8f4",
+      "reference_sha256": "670f60f9cf229288a0d5194d8a0f4a2283f443de048752a17ad75980b94646cc",
+      "built_sha256": "670f60f9cf229288a0d5194d8a0f4a2283f443de048752a17ad75980b94646cc"
     },
     {
       "name": "FUN_80070bf8",
@@ -11709,6 +11723,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028c4c",
+      "reference_sha256": "361c5660e10433405b3eb7e16c4ff0701f9473c2ecc6638aad95b2038ffe2e3c",
+      "built_sha256": "361c5660e10433405b3eb7e16c4ff0701f9473c2ecc6638aad95b2038ffe2e3c",
       "symbols": {
         "sym_8003bac8": "0x8003bac8"
       }
@@ -11720,6 +11736,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028c74",
+      "reference_sha256": "5edb698913e45eaea62425418175a4e8d1701d54e18d8f4c68785480c5589c0d",
+      "built_sha256": "5edb698913e45eaea62425418175a4e8d1701d54e18d8f4c68785480c5589c0d",
       "symbols": {
         "sym_800358f8": "0x800358f8",
         "sym_80028ce4": "0x80028ce4",
@@ -11788,6 +11806,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028dec",
+      "reference_sha256": "c957f5cd867f1914c50799727c9860837bdf3655f2fd312d96f7a642652dff61",
+      "built_sha256": "c957f5cd867f1914c50799727c9860837bdf3655f2fd312d96f7a642652dff61",
       "symbols": {
         "sym_8002a174": "0x8002a174"
       }
@@ -11799,6 +11819,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028e58",
+      "reference_sha256": "ce9886e3888e1b8cd87f57bcf0f0a0ca0ae5d1a38eab1549f8f862dcdd9b5f21",
+      "built_sha256": "ce9886e3888e1b8cd87f57bcf0f0a0ca0ae5d1a38eab1549f8f862dcdd9b5f21",
       "symbols": {
         "sym_8003bac8": "0x8003bac8"
       }
@@ -11810,6 +11832,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028e80",
+      "reference_sha256": "44d4410d92dcbfb173a2827067aa2dc3977c13d65ef6c8055bfbac333abf82f9",
+      "built_sha256": "44d4410d92dcbfb173a2827067aa2dc3977c13d65ef6c8055bfbac333abf82f9",
       "symbols": {
         "sym_8003bac8": "0x8003bac8"
       }
@@ -11821,6 +11845,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028ef0",
+      "reference_sha256": "8628c444f148c3642516ed1daa5587c002ee2f6c419c33e8d4f0ef8e08d88faa",
+      "built_sha256": "8628c444f148c3642516ed1daa5587c002ee2f6c419c33e8d4f0ef8e08d88faa",
       "symbols": {}
     },
     {
@@ -11830,6 +11856,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028f74",
+      "reference_sha256": "1c9cec157b26d45e643826bb549f2678984d42eb514ce58e288ee197ff612835",
+      "built_sha256": "1c9cec157b26d45e643826bb549f2678984d42eb514ce58e288ee197ff612835",
       "symbols": {}
     },
     {
@@ -11839,6 +11867,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028f94",
+      "reference_sha256": "c1b607fa297a2fce08827a83bf36de01d90db844af99ffce0f49fc74f08f1bdc",
+      "built_sha256": "c1b607fa297a2fce08827a83bf36de01d90db844af99ffce0f49fc74f08f1bdc",
       "symbols": {
         "sym_8003bac8": "0x8003bac8"
       }
@@ -11850,6 +11880,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80028fc8",
+      "reference_sha256": "29aff723848227c8b69f941cede2139255592642e043052bf32a14d8a01d1526",
+      "built_sha256": "29aff723848227c8b69f941cede2139255592642e043052bf32a14d8a01d1526",
       "symbols": {
         "sym_800358f8": "0x800358f8"
       }
@@ -11861,6 +11893,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002906c",
+      "reference_sha256": "818c1c16989be3017c052b902fa428d86d8249345240999e8c68f07e765c5ce1",
+      "built_sha256": "818c1c16989be3017c052b902fa428d86d8249345240999e8c68f07e765c5ce1",
       "symbols": {}
     },
     {
@@ -11870,6 +11904,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029084",
+      "reference_sha256": "275e63b146ba9ee52e11c8d5dd86d3fa4c85beb85b97ce1633928aef4c8b3093",
+      "built_sha256": "275e63b146ba9ee52e11c8d5dd86d3fa4c85beb85b97ce1633928aef4c8b3093",
       "symbols": {
         "sym_80024e00": "0x80024e00",
         "sym_800358f8": "0x800358f8"
@@ -11882,6 +11918,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002915c",
+      "reference_sha256": "f6df0c9dd59a3bbedf69aab774844b4de09efe7c5451122befe6ebebaf44ab3d",
+      "built_sha256": "f6df0c9dd59a3bbedf69aab774844b4de09efe7c5451122befe6ebebaf44ab3d",
       "symbols": {}
     },
     {
@@ -11891,6 +11929,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002916c",
+      "reference_sha256": "787cd75d330ae92b52f4dcb824e2c4116b06b04a33a6dcc9a294d1ca6cc94474",
+      "built_sha256": "787cd75d330ae92b52f4dcb824e2c4116b06b04a33a6dcc9a294d1ca6cc94474",
       "symbols": {
         "sym_80024e00": "0x80024e00"
       }
@@ -11902,6 +11942,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029228",
+      "reference_sha256": "f8a1807c87ea9c3b859c555c09e1f5cb3f8f0323a5b70deb30a23d5bd9ee1e9e",
+      "built_sha256": "f8a1807c87ea9c3b859c555c09e1f5cb3f8f0323a5b70deb30a23d5bd9ee1e9e",
       "symbols": {}
     },
     {
@@ -11911,6 +11953,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029238",
+      "reference_sha256": "ef9b051954a42684ab2aff56dc01c864faa29f48c16e28422ccbd2050335e986",
+      "built_sha256": "ef9b051954a42684ab2aff56dc01c864faa29f48c16e28422ccbd2050335e986",
       "symbols": {
         "sym_80024e00": "0x80024e00"
       }
@@ -11922,6 +11966,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029268",
+      "reference_sha256": "caa8cbf4e89051770eed77111d8d450c33defaf395d8ff67990b1bc4ef75c12d",
+      "built_sha256": "caa8cbf4e89051770eed77111d8d450c33defaf395d8ff67990b1bc4ef75c12d",
       "symbols": {
         "sym_8003f738": "0x8003f738",
         "sym_80025c1c": "0x80025c1c"
@@ -11934,6 +11980,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800292e8",
+      "reference_sha256": "601b8d5baa37d5339c844c85236e97eb34a151d56ea82852ad79304bcd40aea6",
+      "built_sha256": "601b8d5baa37d5339c844c85236e97eb34a151d56ea82852ad79304bcd40aea6",
       "symbols": {}
     },
     {
@@ -11943,6 +11991,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029324",
+      "reference_sha256": "cd8c94b7f2f738015a3ee3d612b58daaf7f0a601eaa77ba1dde4d7da721fdaa7",
+      "built_sha256": "cd8c94b7f2f738015a3ee3d612b58daaf7f0a601eaa77ba1dde4d7da721fdaa7",
       "symbols": {
         "sym_8003fa20": "0x8003fa20"
       }
@@ -11954,6 +12004,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029390",
+      "reference_sha256": "b4371577fe84a2c724ec00f79b96d0ade665551d13bd4864aa51672f53c102f7",
+      "built_sha256": "b4371577fe84a2c724ec00f79b96d0ade665551d13bd4864aa51672f53c102f7",
       "symbols": {}
     },
     {
@@ -11963,6 +12015,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029410",
+      "reference_sha256": "b834910c76dd480a6f55cb283ce9671db14d7aa7a86afc9feece88cda855fe58",
+      "built_sha256": "b834910c76dd480a6f55cb283ce9671db14d7aa7a86afc9feece88cda855fe58",
       "symbols": {}
     },
     {
@@ -11972,6 +12026,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029440",
+      "reference_sha256": "bebdf92175ffcd4c8ae52e97b16ed5a8e0e872aa1ce81e6f5d678a0488856099",
+      "built_sha256": "bebdf92175ffcd4c8ae52e97b16ed5a8e0e872aa1ce81e6f5d678a0488856099",
       "symbols": {}
     },
     {
@@ -11981,6 +12037,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029474",
+      "reference_sha256": "e5496676138733641df07bdaf8e90d8bfcd7f6b725151c55e42a326023680146",
+      "built_sha256": "e5496676138733641df07bdaf8e90d8bfcd7f6b725151c55e42a326023680146",
       "symbols": {}
     },
     {
@@ -11990,6 +12048,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029480",
+      "reference_sha256": "41b3232a5c7ccc0e4994613c1e6dcb35910a0bdcf584e91104ec944af8de16b9",
+      "built_sha256": "41b3232a5c7ccc0e4994613c1e6dcb35910a0bdcf584e91104ec944af8de16b9",
       "symbols": {}
     },
     {
@@ -11999,6 +12059,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800294d4",
+      "reference_sha256": "81564b537e36dabd9adad30dd3275fdcde1edc810b47526671fe369cda61624b",
+      "built_sha256": "81564b537e36dabd9adad30dd3275fdcde1edc810b47526671fe369cda61624b",
       "symbols": {}
     },
     {
@@ -12008,6 +12070,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800294f8",
+      "reference_sha256": "0320c5728b50b7d4d04e0e978c7f8132d4d538d351bc44e6836f6e7ac441029a",
+      "built_sha256": "0320c5728b50b7d4d04e0e978c7f8132d4d538d351bc44e6836f6e7ac441029a",
       "symbols": {}
     },
     {
@@ -12017,6 +12081,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029520",
+      "reference_sha256": "033f9b71e7a91f36c63bdf565b6a35fb66787d1e91be1dff8a4ce4259f887c9d",
+      "built_sha256": "033f9b71e7a91f36c63bdf565b6a35fb66787d1e91be1dff8a4ce4259f887c9d",
       "symbols": {}
     },
     {
@@ -12026,6 +12092,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800295ac",
+      "reference_sha256": "0d9e6085b92e7f0758f9d1cb2bffe24e0974e55444b01c15630fa283043472cb",
+      "built_sha256": "0d9e6085b92e7f0758f9d1cb2bffe24e0974e55444b01c15630fa283043472cb",
       "symbols": {}
     },
     {
@@ -12035,6 +12103,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029644",
+      "reference_sha256": "628935d92121f1c22d27f7332ab3f5c5614970819212f37a87fca8d1166575a6",
+      "built_sha256": "628935d92121f1c22d27f7332ab3f5c5614970819212f37a87fca8d1166575a6",
       "symbols": {}
     },
     {
@@ -12044,6 +12114,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029750",
+      "reference_sha256": "06befb48f91eb7c1e8dff16e2f5cf51ba637dfdab1de9f59e0b9fab6d5b16bf8",
+      "built_sha256": "06befb48f91eb7c1e8dff16e2f5cf51ba637dfdab1de9f59e0b9fab6d5b16bf8",
       "symbols": {}
     },
     {
@@ -12053,6 +12125,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029788",
+      "reference_sha256": "b30967594fc5518e465320cc8a51e941ef556b5cd9210092f56168fc1e5cfcd3",
+      "built_sha256": "b30967594fc5518e465320cc8a51e941ef556b5cd9210092f56168fc1e5cfcd3",
       "symbols": {}
     },
     {
@@ -12062,6 +12136,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800297c4",
+      "reference_sha256": "f0ab5a1d55b83a169523485c3e90b686b6bbe5ee05b9369c50df62a0e648ce34",
+      "built_sha256": "f0ab5a1d55b83a169523485c3e90b686b6bbe5ee05b9369c50df62a0e648ce34",
       "symbols": {}
     },
     {
@@ -12071,6 +12147,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029850",
+      "reference_sha256": "216ae4eb5f0418a1e8b9c8bf105f9e105444af8eceb87c7d6b202f599e9a2409",
+      "built_sha256": "216ae4eb5f0418a1e8b9c8bf105f9e105444af8eceb87c7d6b202f599e9a2409",
       "symbols": {}
     },
     {
@@ -12080,6 +12158,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029868",
+      "reference_sha256": "90a1108846ef2795bb5e4e60ef0dcc4ce6c80b9937901622772d3dce9493b482",
+      "built_sha256": "90a1108846ef2795bb5e4e60ef0dcc4ce6c80b9937901622772d3dce9493b482",
       "symbols": {}
     },
     {
@@ -12089,6 +12169,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029920",
+      "reference_sha256": "1409bdbcf5e0b75975ceb36ed7dbaa53544f3a1a850857953080c49208bb57e8",
+      "built_sha256": "1409bdbcf5e0b75975ceb36ed7dbaa53544f3a1a850857953080c49208bb57e8",
       "symbols": {}
     },
     {
@@ -12098,6 +12180,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800299dc",
+      "reference_sha256": "713798ca07914f9f5efc72bad05bb464ce77ca850bb64073a4759c5f823c8abb",
+      "built_sha256": "713798ca07914f9f5efc72bad05bb464ce77ca850bb64073a4759c5f823c8abb",
       "symbols": {}
     },
     {
@@ -12107,6 +12191,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029a4c",
+      "reference_sha256": "82629980646ab8362fa95fb412e80bd3c50885d4c9941413bc6f50bd94252430",
+      "built_sha256": "82629980646ab8362fa95fb412e80bd3c50885d4c9941413bc6f50bd94252430",
       "symbols": {}
     },
     {
@@ -12116,6 +12202,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029ab4",
+      "reference_sha256": "8dbc0bc153e55744252cdf2ab4fe48bc024b77b6d1d54ba4622c954cb48f6aee",
+      "built_sha256": "8dbc0bc153e55744252cdf2ab4fe48bc024b77b6d1d54ba4622c954cb48f6aee",
       "symbols": {}
     },
     {
@@ -12125,6 +12213,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029b94",
+      "reference_sha256": "6053fe59fcdb5a7efb26f909b653e846df6c6d9e8bb7b69952ba9442d9a3e87d",
+      "built_sha256": "6053fe59fcdb5a7efb26f909b653e846df6c6d9e8bb7b69952ba9442d9a3e87d",
       "symbols": {}
     },
     {
@@ -12134,6 +12224,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029c40",
+      "reference_sha256": "537fe283f4706b5702359feb249edca33d643e8b44d20348e1ce038a0d813b50",
+      "built_sha256": "537fe283f4706b5702359feb249edca33d643e8b44d20348e1ce038a0d813b50",
       "symbols": {}
     },
     {
@@ -12143,6 +12235,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029ccc",
+      "reference_sha256": "8cfabba7e7a2cfd8991dad1fa4648430a0b02360ff0d625f876d305dbbcd04ae",
+      "built_sha256": "8cfabba7e7a2cfd8991dad1fa4648430a0b02360ff0d625f876d305dbbcd04ae",
       "symbols": {}
     },
     {
@@ -12152,6 +12246,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029cdc",
+      "reference_sha256": "9dc151dfd4318d6985eeda941ebdfd2ca924576777014bde01f091d3ed3a3021",
+      "built_sha256": "9dc151dfd4318d6985eeda941ebdfd2ca924576777014bde01f091d3ed3a3021",
       "symbols": {}
     },
     {
@@ -12161,6 +12257,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029d24",
+      "reference_sha256": "52bd5e091989f75d3440f63d77ad709fe7329a53a9203444a4b1db10a0c0af6b",
+      "built_sha256": "52bd5e091989f75d3440f63d77ad709fe7329a53a9203444a4b1db10a0c0af6b",
       "symbols": {}
     },
     {
@@ -12170,6 +12268,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029da0",
+      "reference_sha256": "144f6a5c6a376365d8e571a80e0cf4b31bb60064cbfa82a75848934365829292",
+      "built_sha256": "144f6a5c6a376365d8e571a80e0cf4b31bb60064cbfa82a75848934365829292",
       "symbols": {}
     },
     {
@@ -12179,6 +12279,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029e08",
+      "reference_sha256": "4f0883e980876c6c517eb13370481d77595b53e6ba4b0ba0d27f292ca59f233f",
+      "built_sha256": "4f0883e980876c6c517eb13370481d77595b53e6ba4b0ba0d27f292ca59f233f",
       "symbols": {}
     },
     {
@@ -12188,6 +12290,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029e34",
+      "reference_sha256": "1b033a5b810863e7ae1bdd869467ee736464b244865f62e9b4dd3e83e0f384b1",
+      "built_sha256": "1b033a5b810863e7ae1bdd869467ee736464b244865f62e9b4dd3e83e0f384b1",
       "symbols": {}
     },
     {
@@ -12197,6 +12301,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029ed0",
+      "reference_sha256": "8ed56828bd499ad79570c7d0664d6f1754935431b69f830395763540d522583f",
+      "built_sha256": "8ed56828bd499ad79570c7d0664d6f1754935431b69f830395763540d522583f",
       "symbols": {}
     },
     {
@@ -12206,6 +12312,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029ef8",
+      "reference_sha256": "c3ac575f320b1c55109c7d8c23dd67cfcf96474ae6eb585d0371f5ffa22fa84e",
+      "built_sha256": "c3ac575f320b1c55109c7d8c23dd67cfcf96474ae6eb585d0371f5ffa22fa84e",
       "symbols": {}
     },
     {
@@ -12215,6 +12323,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80029f40",
+      "reference_sha256": "2eabee04f43a14f8b9eebbde9ad663e49dc0d0877af0dc282e6c52ef4ccc7708",
+      "built_sha256": "2eabee04f43a14f8b9eebbde9ad663e49dc0d0877af0dc282e6c52ef4ccc7708",
       "symbols": {}
     },
     {
@@ -12224,6 +12334,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a004",
+      "reference_sha256": "29b7bc9e653f3fc945aff347e70c137f183be258a8279457f03fe91457819fd9",
+      "built_sha256": "29b7bc9e653f3fc945aff347e70c137f183be258a8279457f03fe91457819fd9",
       "symbols": {}
     },
     {
@@ -12233,6 +12345,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a04c",
+      "reference_sha256": "70015ddb5c1643ee4b96bae57e322cfc4bceee9fb4321360de6ff2f6c6c1a596",
+      "built_sha256": "70015ddb5c1643ee4b96bae57e322cfc4bceee9fb4321360de6ff2f6c6c1a596",
       "symbols": {}
     },
     {
@@ -12242,6 +12356,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a0b8",
+      "reference_sha256": "b30b9dfec3420dcfa209eb3960ea6f6bad88b3ca8092cd72244a9b8d2c4d763a",
+      "built_sha256": "b30b9dfec3420dcfa209eb3960ea6f6bad88b3ca8092cd72244a9b8d2c4d763a",
       "symbols": {}
     },
     {
@@ -12251,6 +12367,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a108",
+      "reference_sha256": "7733b2e0d1720c65a74a0b4be675b6c4fd2a1d341825bb9851d1b3f1dd9539af",
+      "built_sha256": "7733b2e0d1720c65a74a0b4be675b6c4fd2a1d341825bb9851d1b3f1dd9539af",
       "symbols": {}
     },
     {
@@ -12260,6 +12378,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a140",
+      "reference_sha256": "97077c086c026ce219cea2441958547421abadc1a5af6e37cba90d2bea4392b2",
+      "built_sha256": "97077c086c026ce219cea2441958547421abadc1a5af6e37cba90d2bea4392b2",
       "symbols": {}
     },
     {
@@ -12269,6 +12389,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a174",
+      "reference_sha256": "b810cca1e574521a14ad2dd60b4cfdf08c347d77a4197dace42bb15a59323774",
+      "built_sha256": "b810cca1e574521a14ad2dd60b4cfdf08c347d77a4197dace42bb15a59323774",
       "symbols": {}
     },
     {
@@ -12278,6 +12400,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a1b0",
+      "reference_sha256": "33f20c1be27c0ddf5376455433fc65e1fca4e871c99be142e3559aa72b7d51c3",
+      "built_sha256": "33f20c1be27c0ddf5376455433fc65e1fca4e871c99be142e3559aa72b7d51c3",
       "symbols": {}
     },
     {
@@ -12287,6 +12411,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a1f0",
+      "reference_sha256": "c5b1bd1f4f295bdf6949e8b3b199ae002dc84a72643fd51a6af281752b3139c5",
+      "built_sha256": "c5b1bd1f4f295bdf6949e8b3b199ae002dc84a72643fd51a6af281752b3139c5",
       "symbols": {}
     },
     {
@@ -12296,6 +12422,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a200",
+      "reference_sha256": "9f37f6e83f03c04e6a30e8df8155cde2cd7d2342c806b5c1bc089daa51084ed5",
+      "built_sha256": "9f37f6e83f03c04e6a30e8df8155cde2cd7d2342c806b5c1bc089daa51084ed5",
       "symbols": {}
     },
     {
@@ -12305,6 +12433,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a20c",
+      "reference_sha256": "56354d656666ae547184fbfd2e12178370fd3e768b0bdaafb04d0862bf9f76b3",
+      "built_sha256": "56354d656666ae547184fbfd2e12178370fd3e768b0bdaafb04d0862bf9f76b3",
       "symbols": {}
     },
     {
@@ -12314,6 +12444,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a2b0",
+      "reference_sha256": "5cb0d65a0e61efd45c82978b6c31c1b4c03fce4ceaa29c4064559a5522c7b4a3",
+      "built_sha256": "5cb0d65a0e61efd45c82978b6c31c1b4c03fce4ceaa29c4064559a5522c7b4a3",
       "symbols": {}
     },
     {
@@ -12323,6 +12455,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a300",
+      "reference_sha256": "55bbd7cc87a65ec57e958aea372e01f1b589af6726527504c589a82ffcd5e673",
+      "built_sha256": "55bbd7cc87a65ec57e958aea372e01f1b589af6726527504c589a82ffcd5e673",
       "symbols": {}
     },
     {
@@ -12332,6 +12466,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a3fc",
+      "reference_sha256": "8930326abac20f44564319b27834950f210f067ccdb00681c3e3ebd53e3d1815",
+      "built_sha256": "8930326abac20f44564319b27834950f210f067ccdb00681c3e3ebd53e3d1815",
       "symbols": {}
     },
     {
@@ -12341,6 +12477,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a438",
+      "reference_sha256": "3ba1e2b6325a84d6c86680ca0fa1801fcaeb17820b73698c0988d3ec098dcc43",
+      "built_sha256": "3ba1e2b6325a84d6c86680ca0fa1801fcaeb17820b73698c0988d3ec098dcc43",
       "symbols": {}
     },
     {
@@ -12350,6 +12488,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a4c8",
+      "reference_sha256": "a15abab3059002268da1d4d55d9b126811ff66176936493728732736963d821d",
+      "built_sha256": "a15abab3059002268da1d4d55d9b126811ff66176936493728732736963d821d",
       "symbols": {}
     },
     {
@@ -12359,6 +12499,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a5a8",
+      "reference_sha256": "7621ac1d907157927e2820aeef301387c8aed480d98e9c9b95467b35cebd7605",
+      "built_sha256": "7621ac1d907157927e2820aeef301387c8aed480d98e9c9b95467b35cebd7605",
       "symbols": {}
     },
     {
@@ -12368,6 +12510,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a670",
+      "reference_sha256": "e822bca9818d6039440113614e4705827abc1328004886439d947d96bd4b1ebe",
+      "built_sha256": "e822bca9818d6039440113614e4705827abc1328004886439d947d96bd4b1ebe",
       "symbols": {}
     },
     {
@@ -12377,6 +12521,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a680",
+      "reference_sha256": "3e2cc97d6f59bb5a6fae6fa461fa57121977e65c16c7b21aaa4aaeb3d3598319",
+      "built_sha256": "3e2cc97d6f59bb5a6fae6fa461fa57121977e65c16c7b21aaa4aaeb3d3598319",
       "symbols": {}
     },
     {
@@ -12386,6 +12532,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a698",
+      "reference_sha256": "47eea3688d720577bfdbcd826e26ba01dffbbbf5c098fceed00def185149354f",
+      "built_sha256": "47eea3688d720577bfdbcd826e26ba01dffbbbf5c098fceed00def185149354f",
       "symbols": {}
     },
     {
@@ -12395,6 +12543,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002a6c8",
+      "reference_sha256": "69c11fff7f57a905a7decddabe4fd8c73d5ddc54f4f695d81ac6ef2fd202111f",
+      "built_sha256": "69c11fff7f57a905a7decddabe4fd8c73d5ddc54f4f695d81ac6ef2fd202111f",
       "symbols": {}
     },
     {
@@ -12404,6 +12554,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80025850",
+      "reference_sha256": "8a17bf0a0fe118603ba2e540a68cc7031cb867e780d86ade62df27de6df64349",
+      "built_sha256": "8a17bf0a0fe118603ba2e540a68cc7031cb867e780d86ade62df27de6df64349",
       "symbols": {
         "FUN_80028f74": "0x80028f74",
         "FUN_8002592c": "0x8002592c",
@@ -12416,7 +12568,9 @@
       "size": 188,
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
-      "section": ".text.FUN_8002592c"
+      "section": ".text.FUN_8002592c",
+      "reference_sha256": "9aed6551e2a0b629d8af95cd32479c701fa62bd7e7e41d727dcdf2a683c8867a",
+      "built_sha256": "9aed6551e2a0b629d8af95cd32479c701fa62bd7e7e41d727dcdf2a683c8867a"
     },
     {
       "name": "FUN_800259e8",
@@ -12425,6 +12579,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800259e8",
+      "reference_sha256": "d6333eb151ba188529a2013fbd301b0a353a15f5113405b94d2ebd40ce637ae8",
+      "built_sha256": "d6333eb151ba188529a2013fbd301b0a353a15f5113405b94d2ebd40ce637ae8",
       "symbols": {
         "FUN_8002f42c": "0x8002f42c"
       }
@@ -12436,6 +12592,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80025b18",
+      "reference_sha256": "76c9fb10eade9ea5f74d01d636ca935e179e2acebf2b6408e237aaa47e4fbd66",
+      "built_sha256": "76c9fb10eade9ea5f74d01d636ca935e179e2acebf2b6408e237aaa47e4fbd66",
       "symbols": {
         "FUN_80024e00": "0x80024e00",
         "FUN_800358f8": "0x800358f8",
@@ -12450,6 +12608,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80025c1c",
+      "reference_sha256": "2f48ee4d8a7b04f78956162b47e107409147ce3a77728be75ee703f2582daf12",
+      "built_sha256": "2f48ee4d8a7b04f78956162b47e107409147ce3a77728be75ee703f2582daf12",
       "symbols": {
         "FUN_8002a174": "0x8002a174"
       }
@@ -12461,6 +12621,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_8002616c",
+      "reference_sha256": "5bca4dcdcee879fa452b467c32676b6b307419cfcc06350b0f34f5c9d3b3cb61",
+      "built_sha256": "5bca4dcdcee879fa452b467c32676b6b307419cfcc06350b0f34f5c9d3b3cb61",
       "symbols": {
         "FUN_80028b00": "0x80028b00"
       }
@@ -12472,6 +12634,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800262ec",
+      "reference_sha256": "ae3816a8fb50dd538cc0e2088a7162d9831bd74438204d9136ca8890154ee90a",
+      "built_sha256": "ae3816a8fb50dd538cc0e2088a7162d9831bd74438204d9136ca8890154ee90a",
       "symbols": {}
     },
     {
@@ -12481,6 +12645,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80026538",
+      "reference_sha256": "714ebfb385bdc718e886387470a2ac42debe56f776b71eb4deec80cd0d11fc61",
+      "built_sha256": "714ebfb385bdc718e886387470a2ac42debe56f776b71eb4deec80cd0d11fc61",
       "symbols": {
         "sym_800265bc": "0x800265bc",
         "sym_80026920": "0x80026920",
@@ -12494,6 +12660,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80026940",
+      "reference_sha256": "9a23a3cf28dc9c10333f8c04ddec634ff7b2d1b4ce440fa296db4cb6e9af4e34",
+      "built_sha256": "9a23a3cf28dc9c10333f8c04ddec634ff7b2d1b4ce440fa296db4cb6e9af4e34",
       "symbols": {
         "FUN_8002a20c": "0x8002a20c",
         "FUN_80029868": "0x80029868",
@@ -12512,6 +12680,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80026a88",
+      "reference_sha256": "4023e24753e28c20e6a0c54684dd9dd3df9041f15619d2379e228ed1f1de27a7",
+      "built_sha256": "4023e24753e28c20e6a0c54684dd9dd3df9041f15619d2379e228ed1f1de27a7",
       "symbols": {
         "FUN_80029e34": "0x80029e34",
         "FUN_80029da0": "0x80029da0",
@@ -12531,6 +12701,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80026bc8",
+      "reference_sha256": "c4047517e56f5b44142a8edb980f8c8b90b1d540c6cf212da99c8e66ba9e2673",
+      "built_sha256": "c4047517e56f5b44142a8edb980f8c8b90b1d540c6cf212da99c8e66ba9e2673",
       "symbols": {
         "FUN_8003bac8": "0x8003bac8",
         "FUN_800272cc": "0x800272cc",
@@ -12544,6 +12716,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80026d00",
+      "reference_sha256": "aee498e8f4ceb197463547ce01c4e1c36a834acf2f055fc9e4ceadc211f428e3",
+      "built_sha256": "aee498e8f4ceb197463547ce01c4e1c36a834acf2f055fc9e4ceadc211f428e3",
       "symbols": {
         "FUN_80034b7c": "0x80034b7c",
         "FUN_80034fac": "0x80034fac"
@@ -12556,6 +12730,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80026e70",
+      "reference_sha256": "1e71d0c21fad06037573f94c95152d769c6b1efa8c8860cef5b751be5027d1f2",
+      "built_sha256": "1e71d0c21fad06037573f94c95152d769c6b1efa8c8860cef5b751be5027d1f2",
       "symbols": {
         "FUN_800356ec": "0x800356ec",
         "FUN_80026d00": "0x80026d00",
@@ -12570,6 +12746,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_80027074",
+      "reference_sha256": "c808d0e2e76b8acdefd572cad14a70bc4be26d377cd37ae9cac1f835f59ccdbf",
+      "built_sha256": "c808d0e2e76b8acdefd572cad14a70bc4be26d377cd37ae9cac1f835f59ccdbf",
       "symbols": {
         "FUN_80029a4c": "0x80029a4c",
         "FUN_80029f40": "0x80029f40",
@@ -12583,6 +12761,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800272cc",
+      "reference_sha256": "1b01fa54446c2b91fe58e7c1bad12d4156136132f46d1c174c313f796cb2f983",
+      "built_sha256": "1b01fa54446c2b91fe58e7c1bad12d4156136132f46d1c174c313f796cb2f983",
       "symbols": {
         "FUN_80029b94": "0x80029b94"
       }
@@ -12594,6 +12774,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800273cc",
+      "reference_sha256": "2c814e20355ac77bcf924eac33dfcb9ef26b92886dbfa6071cb6671e30c61f7a",
+      "built_sha256": "2c814e20355ac77bcf924eac33dfcb9ef26b92886dbfa6071cb6671e30c61f7a",
       "symbols": {
         "FUN_80034b3c": "0x80034b3c",
         "FUN_80034b2c": "0x80034b2c",
@@ -12614,6 +12796,8 @@
       "language": "asm",
       "source": "src/ddr5thmix/StateTransition.s",
       "section": ".text.FUN_800275b4",
+      "reference_sha256": "b2802121649fa1672e7ba3dfc0391f29e3ea7b13b8559e0c21ee8ecbb774506e",
+      "built_sha256": "b2802121649fa1672e7ba3dfc0391f29e3ea7b13b8559e0c21ee8ecbb774506e",
       "symbols": {
         "FUN_8002f3a0": "0x8002f3a0",
         "FUN_80032048": "0x80032048",
@@ -12629,6 +12813,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027688",
+      "reference_sha256": "1673853479084876814300f727c6ca7e66928b049d4094146090972c96bda6fa",
+      "built_sha256": "1673853479084876814300f727c6ca7e66928b049d4094146090972c96bda6fa",
    "symbols": {
      "FUN_80029f40": "0x80029f40",
      "FUN_80029ab4": "0x80029ab4"
@@ -12641,6 +12827,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800277d8",
+      "reference_sha256": "2513cefa732656f9deb04fae02289fb35a363d395648e3897f657337349147b9",
+      "built_sha256": "2513cefa732656f9deb04fae02289fb35a363d395648e3897f657337349147b9",
    "symbols": {
      "FUN_8003f87c": "0x8003f87c",
      "FUN_8003fa20": "0x8003fa20",
@@ -12654,6 +12842,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027ac4",
+      "reference_sha256": "01ccd5713498be8e377481fdb482cf451ea75a782e714ea8092cc799c80765e0",
+      "built_sha256": "01ccd5713498be8e377481fdb482cf451ea75a782e714ea8092cc799c80765e0",
    "symbols": {
      "FUN_8003f87c": "0x8003f87c",
      "FUN_8003fa20": "0x8003fa20",
@@ -12668,6 +12858,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027c20",
+      "reference_sha256": "509828b1f4c19cb1aa3d7acd401b8140361a65e63de819de4ea3b1fa5f6ef8d5",
+      "built_sha256": "509828b1f4c19cb1aa3d7acd401b8140361a65e63de819de4ea3b1fa5f6ef8d5",
    "symbols": {
      "FUN_8002fe7c": "0x8002fe7c",
      "FUN_8003f87c": "0x8003f87c",
@@ -12681,6 +12873,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027d18",
+      "reference_sha256": "0c074093e4f2208809c7528eab693a389c5489699287a6fde6100748e9c92265",
+      "built_sha256": "0c074093e4f2208809c7528eab693a389c5489699287a6fde6100748e9c92265",
    "symbols": {
      "FUN_800358f8": "0x800358f8",
      "FUN_8002f42c": "0x8002f42c",
@@ -12698,6 +12892,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027ed4",
+      "reference_sha256": "ed80113381a013e83c35458df767499d3b576f254b7c0cc0f2962552303c9e0e",
+      "built_sha256": "ed80113381a013e83c35458df767499d3b576f254b7c0cc0f2962552303c9e0e",
    "symbols": {
      "FUN_8002f42c": "0x8002f42c",
      "FUN_8002ef5c": "0x8002ef5c"
@@ -12710,6 +12906,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80027f7c",
+      "reference_sha256": "10d5e7ab32254eadd7673e9cc8b35f92e190f47fae004e004eb10794544e44f5",
+      "built_sha256": "10d5e7ab32254eadd7673e9cc8b35f92e190f47fae004e004eb10794544e44f5",
    "symbols": {
      "FUN_80028398": "0x80028398",
      "FUN_8003bac8": "0x8003bac8",
@@ -12737,6 +12935,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028034",
+      "reference_sha256": "29bab29bff515df27d307b784698142b2ba6d02f170f3fb4929dc611d7f4521c",
+      "built_sha256": "29bab29bff515df27d307b784698142b2ba6d02f170f3fb4929dc611d7f4521c",
    "symbols": {
      "FUN_800275b4": "0x800275b4",
      "FUN_80028c74": "0x80028c74",
@@ -12760,6 +12960,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800280c8",
+      "reference_sha256": "a06e504569f3d0219ad1a72c683213e9dfc0037ef754125c3e1618b7914330ab",
+      "built_sha256": "a06e504569f3d0219ad1a72c683213e9dfc0037ef754125c3e1618b7914330ab",
    "symbols": {
      "FUN_80029410": "0x80029410",
      "FUN_80028e80": "0x80028e80",
@@ -12773,6 +12975,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028150",
+      "reference_sha256": "bd396457ddde5ce2c1a4c330b30a3f6c660eff90d0f28e086276eec0f6ff376b",
+      "built_sha256": "bd396457ddde5ce2c1a4c330b30a3f6c660eff90d0f28e086276eec0f6ff376b",
    "symbols": {
      "FUN_80029410": "0x80029410",
      "FUN_80028e80": "0x80028e80",
@@ -12786,6 +12990,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800281f4",
+      "reference_sha256": "78e29a4b2334a869d577732b3131f19b909fa64733bf5cc169135eaa676d1127",
+      "built_sha256": "78e29a4b2334a869d577732b3131f19b909fa64733bf5cc169135eaa676d1127",
    "symbols": {
      "FUN_80028fc8": "0x80028fc8"
    }
@@ -12796,7 +13002,9 @@
     "size": 56,
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
-   "section": ".text.FUN_8002821c"
+   "section": ".text.FUN_8002821c",
+      "reference_sha256": "ad735feb5c29d486b1559e481b280dd71fe436d3000b4e99da4391ab1848de29",
+      "built_sha256": "ad735feb5c29d486b1559e481b280dd71fe436d3000b4e99da4391ab1848de29"
  },
   {
     "name": "FUN_80028254",
@@ -12805,6 +13013,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028254",
+      "reference_sha256": "3bed910aa52ee980dcecec187bd8e7b91d89b1ed6f7d3fedd4a3bf16cc6962be",
+      "built_sha256": "3bed910aa52ee980dcecec187bd8e7b91d89b1ed6f7d3fedd4a3bf16cc6962be",
     "symbols": {
       "FUN_800282e4": "0x800282e4"
     }
@@ -12815,7 +13025,9 @@
     "size": 72,
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
-    "section": ".text.FUN_8002829c"
+    "section": ".text.FUN_8002829c",
+      "reference_sha256": "268e055d7bb419c3e410b7248d35a55d0ac8f59e474b4eb80f068947aed4a8ed",
+      "built_sha256": "268e055d7bb419c3e410b7248d35a55d0ac8f59e474b4eb80f068947aed4a8ed"
   },
   {
     "name": "FUN_800282e4",
@@ -12823,7 +13035,9 @@
     "size": 24,
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
-    "section": ".text.FUN_800282e4"
+    "section": ".text.FUN_800282e4",
+      "reference_sha256": "8e73805d42e8e7aa7c96833c591a2192944d58e230f74a7c41f54306588314a2",
+      "built_sha256": "8e73805d42e8e7aa7c96833c591a2192944d58e230f74a7c41f54306588314a2"
   },
   {
     "name": "FUN_80028358",
@@ -12832,6 +13046,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028358",
+      "reference_sha256": "62c11ea28de4fa109027a8285b01b5cdbb56f4d03ef2e405e4a17c6c2b307757",
+      "built_sha256": "62c11ea28de4fa109027a8285b01b5cdbb56f4d03ef2e405e4a17c6c2b307757",
     "symbols": {
       "FUN_80026940": "0x80026940"
     }
@@ -12843,6 +13059,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028398",
+      "reference_sha256": "7f8a07397e735c846d090ebd3b96278a6016fff07e4ae3866bcd2c2213419a39",
+      "built_sha256": "7f8a07397e735c846d090ebd3b96278a6016fff07e4ae3866bcd2c2213419a39",
     "symbols": {
       "FUN_8003bac8": "0x8003bac8",
       "FUN_80029ed0": "0x80029ed0",
@@ -12874,6 +13092,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028588",
+      "reference_sha256": "b81ff150c3d3db29f545207483fd987470479b32e31e43f12a8cc799cf0530c2",
+      "built_sha256": "b81ff150c3d3db29f545207483fd987470479b32e31e43f12a8cc799cf0530c2",
     "symbols": {
       "FUN_800356ec": "0x800356ec",
       "FUN_8002f29c": "0x8002f29c"
@@ -12886,6 +13106,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028600",
+      "reference_sha256": "8d302c9d83256f70af0515e918b4ed59215f3f1e4acc6c3e75afbb305aac2ebd",
+      "built_sha256": "8d302c9d83256f70af0515e918b4ed59215f3f1e4acc6c3e75afbb305aac2ebd",
     "symbols": {}
   },
   {
@@ -12895,6 +13117,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800286bc",
+      "reference_sha256": "084fdf4cfcf3fc5e69d3a9e8bc5a73fff5ae6a6744ba4ed924fceb1262be8a5c",
+      "built_sha256": "084fdf4cfcf3fc5e69d3a9e8bc5a73fff5ae6a6744ba4ed924fceb1262be8a5c",
     "symbols": {
       "FUN_8003bac8": "0x8003bac8"
     }
@@ -12906,6 +13130,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800286e4",
+      "reference_sha256": "efe4561fac1208ad49676d97eb1b75d637237d476e363b78927eaa58ab61b020",
+      "built_sha256": "efe4561fac1208ad49676d97eb1b75d637237d476e363b78927eaa58ab61b020",
     "symbols": {}
   },
   {
@@ -12915,6 +13141,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028740",
+      "reference_sha256": "02495eb1cb7fee57b830ea0c68247e592c208f9eb03039a0ee3f23fdbdcfb32d",
+      "built_sha256": "02495eb1cb7fee57b830ea0c68247e592c208f9eb03039a0ee3f23fdbdcfb32d",
     "symbols": {
       "sym_8002422c": "0x8002422c",
       "sym_800287d0": "0x800287d0"
@@ -12927,6 +13155,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800287e0",
+      "reference_sha256": "b9c2660b518431709bfdf7392f790cf236b7f6738e4623d659318ac5591af2df",
+      "built_sha256": "b9c2660b518431709bfdf7392f790cf236b7f6738e4623d659318ac5591af2df",
     "symbols": {
       "sym_800294d4": "0x800294d4",
       "sym_80028b6c": "0x80028b6c",
@@ -12942,6 +13172,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028894",
+      "reference_sha256": "99ba85f8cd17c53d0beeeda5ff073259958a5c1c862804db97b9eade7119ffeb",
+      "built_sha256": "99ba85f8cd17c53d0beeeda5ff073259958a5c1c862804db97b9eade7119ffeb",
     "symbols": {
       "sym_800292e8": "0x800292e8",
       "sym_80028d3c": "0x80028d3c"
@@ -12954,6 +13186,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800289d0",
+      "reference_sha256": "5ae9f7d9ce424e93d01f811ef8dd7d12bc0f8a61253d52f7ecf2bcb0f6f1ce58",
+      "built_sha256": "5ae9f7d9ce424e93d01f811ef8dd7d12bc0f8a61253d52f7ecf2bcb0f6f1ce58",
     "symbols": {
       "sym_8002ef5c": "0x8002ef5c"
     }
@@ -12965,6 +13199,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_800289f4",
+      "reference_sha256": "ac9e5f6c1bf1e17ca09e4b512da8d05a9931823ba5d0d6e2e98823a334bc8bdd",
+      "built_sha256": "ac9e5f6c1bf1e17ca09e4b512da8d05a9931823ba5d0d6e2e98823a334bc8bdd",
     "symbols": {
       "sym_8002f42c": "0x8002f42c"
     }
@@ -12976,6 +13212,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028a8c",
+      "reference_sha256": "2fcf37804a7a80d559b721d2e3c3efb98df5aa50ce7ed83ade1a471dfa1a1fe7",
+      "built_sha256": "2fcf37804a7a80d559b721d2e3c3efb98df5aa50ce7ed83ade1a471dfa1a1fe7",
     "symbols": {
       "sym_80024e00": "0x80024e00"
     }
@@ -12987,6 +13225,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028aac",
+      "reference_sha256": "d2b846e2f46e72de7493cfbe475013abba75d16480c13580469644c4987acd00",
+      "built_sha256": "d2b846e2f46e72de7493cfbe475013abba75d16480c13580469644c4987acd00",
     "symbols": {
       "sym_800358f8": "0x800358f8"
     }
@@ -12998,6 +13238,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028ad0",
+      "reference_sha256": "6bed795af37927b996e22a8ccbcfa732af41aecbda0c6cc733bc445721f3f33a",
+      "built_sha256": "6bed795af37927b996e22a8ccbcfa732af41aecbda0c6cc733bc445721f3f33a",
     "symbols": {
       "sym_8003bac8": "0x8003bac8"
     }
@@ -13009,6 +13251,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028b00",
+      "reference_sha256": "f0a74b6fb541d2561bada1a7fb9668837ef622c9436fe3f00816c05873532a8a",
+      "built_sha256": "f0a74b6fb541d2561bada1a7fb9668837ef622c9436fe3f00816c05873532a8a",
     "symbols": {
       "sym_8003f8bc": "0x8003f8bc",
       "sym_8003fd44": "0x8003fd44",
@@ -13022,6 +13266,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028b6c",
+      "reference_sha256": "f7be237b7ad8ad272afb5af429f4dfd2854cf0184f3b1fc8c65a61c5cc41439f",
+      "built_sha256": "f7be237b7ad8ad272afb5af429f4dfd2854cf0184f3b1fc8c65a61c5cc41439f",
     "symbols": {}
   },
   {
@@ -13031,6 +13277,8 @@
     "language": "asm",
     "source": "src/ddr5thmix/StateTransition.s",
     "section": ".text.FUN_80028c04",
+      "reference_sha256": "9916caea0d8dbf1bf2b98bd4f0e35570e2590045da10e997ab151dcf2e33319b",
+      "built_sha256": "9916caea0d8dbf1bf2b98bd4f0e35570e2590045da10e997ab151dcf2e33319b",
     "symbols": {}
   },
   {
