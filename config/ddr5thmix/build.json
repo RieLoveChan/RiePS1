@@ -2313,7 +2313,9 @@
       "size": 84,
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCore.s",
-      "section": ".text.FUN_8009971c"
+      "section": ".text.FUN_8009971c",
+      "reference_sha256": "9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6",
+      "built_sha256": "9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6"
     },
     {
       "name": "main",
