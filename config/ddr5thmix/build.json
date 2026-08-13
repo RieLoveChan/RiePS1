@@ -307,6 +307,13 @@
       ]
     },
     {
+      "name": "runtime-callback-7f334",
+      "description": "Runtime callback helper and subordinate state update.",
+      "functions": [
+        "FUN_8007f334"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -2545,6 +2552,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeCallback7f218.s",
       "section": ".text.FUN_8007f218"
+    },
+    {
+      "name": "FUN_8007f334",
+      "address": "0x8007f334",
+      "size": 416,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeCallback7f334.s",
+      "section": ".text.FUN_8007f334"
     },
     {
       "name": "FUN_8007c074",
