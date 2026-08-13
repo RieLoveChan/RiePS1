@@ -1,3 +1,5 @@
+- Manifest-evidence completion: replaced 27 historical `PLACEHOLDER` hash pairs in `LibrarySignatureBatch9.s` after fresh individual verification. All 27/27 functions and 21,380/21,380 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; recorded the actual reference/build SHA-256 values.
+
 - Manifest-evidence completion: verified the remaining 115 PsyQ/GTE support symbols individually with GCC 14.2.0/binutils 2.43. All 115/115 functions and 2,304/2,304 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added all reference/build hash pairs to the manifest.
 
 - Manifest-evidence completion: reverified the 12 GTE wrappers `LightColor`, `DpqColorLight`, `DpqColor3`, `Intpl`, `Square12`, `Square0`, `OuterProduct12`, `OuterProduct0`, `SetVertex0`, `SetVertex1`, `SetVertex2`, and `SetVertexTri`. All 12/12 functions and 512/512 selected bytes match lawful executable SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`; added the reproducible reference/build hash pairs.
