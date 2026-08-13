@@ -720,6 +720,13 @@
       ]
     },
     {
+      "name": "runtime-helper-90860",
+      "description": "Runtime resource, timing, and state helper.",
+      "functions": [
+        "FUN_80090860"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -3430,6 +3437,14 @@
       "language": "asm",
       "source": "src/ddr5thmix/RuntimeHelper902cc.s",
       "section": ".text.FUN_800902cc"
+    },
+    {
+      "name": "FUN_80090860",
+      "address": "0x80090860",
+      "size": 1812,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper90860.s",
+      "section": ".text.FUN_80090860"
     },
     {
       "name": "FUN_8007c074",
