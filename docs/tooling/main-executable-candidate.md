@@ -86,6 +86,21 @@ verified source. Their identical 60-byte mode-input handlers raise the
 candidate to 2,183 sections / 492,464 verified function bytes and reduce the
 unresolved payload to 335,712 bytes.
 
+The previously manifest-backed session handlers `FUN_80049f7c` and
+`FUN_80049fa4` were independently rechecked on 2026-08-14 before candidate
+integration. Each is 40 bytes and matched the lawful executable SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee` under
+GCC 14.2.0/binutils 2.43. Their respective reference/built SHA-256 values are
+`94e6b362b4f02e23619b2832a0505ae5ec73394021a17547cfe32dea958794d0` and
+`db9432f8529741e58f1652b0a31d8a93359e8a0ddbbbe1b1d295e6794b76d90f`.
+
+Re-running the complete candidate builder with all manifest entries produced
+2,185 sections / 492,544 verified function bytes plus the existing 222,448
+verified BSS zero-fill bytes: 714,992 verified text bytes and 335,632
+deliberately zero-filled unresolved bytes. The local candidate SHA-256 was
+`e1cb164014332db654e063087f6ddc82e41fdb83e15b28240182c5e78d8dac37`.
+It remains `bootable: false` and `whole_executable_match: false`.
+
 # Header source
 
 The `executable.psx_exe` fields in
