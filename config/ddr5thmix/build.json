@@ -27119,6 +27119,48 @@
       "section": ".text.FUN_80078ecc",
       "reference_sha256": "b22434c5e8d658b89741bc1f49ef9041a56ce7c184efe25dc7b5474a49702dd6",
       "built_sha256": "b22434c5e8d658b89741bc1f49ef9041a56ce7c184efe25dc7b5474a49702dd6"
+    },
+    {
+      "name": "__main",
+      "address": "0x800206f8",
+      "size": 8,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqCrt0.s",
+      "section": ".text.__main",
+      "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
+      "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
+    },
+    {
+      "name": "start",
+      "address": "0x80020700",
+      "size": 36,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqCrt0.s",
+      "section": ".text.start",
+      "reference_sha256": "b7f80062771d51e6b6e1f0a216c59beb9148fa71371c1c082f2abb7cf3f0f69c",
+      "built_sha256": "b7f80062771d51e6b6e1f0a216c59beb9148fa71371c1c082f2abb7cf3f0f69c"
+    },
+    {
+      "name": "stup1",
+      "address": "0x80020724",
+      "size": 124,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqCrt0.s",
+      "section": ".text.stup1",
+      "reference_sha256": "4c9894e5ffc8dcd38cfd4c8b22b9ea004d2eee6b942667e32cc2dd06fa18afc2",
+      "built_sha256": "4c9894e5ffc8dcd38cfd4c8b22b9ea004d2eee6b942667e32cc2dd06fa18afc2",
+      "symbols": { "InitHeap": "0x8003baf8" }
+    },
+    {
+      "name": "stup0",
+      "address": "0x800207a0",
+      "size": 12,
+      "language": "asm",
+      "source": "src/ddr5thmix/PsyqCrt0.s",
+      "section": ".text.stup0",
+      "reference_sha256": "f36898e7e8aa7f5436d6b08d8f90847328de75ad6705e0777a6a9734ba058815",
+      "built_sha256": "f36898e7e8aa7f5436d6b08d8f90847328de75ad6705e0777a6a9734ba058815",
+      "symbols": { "main": "0x800226a4" }
     }
   ]
 }

@@ -68,6 +68,12 @@ a structurally valid PS-X EXE without importing reference bytes. It does not
 solve the remaining text/data reconstruction, runtime validation, or disc
 rebuild gates.
 
+The next run added PsyQ crt0's `__main`, `start`, `stup1`, and `stup0`
+sections (180 bytes total) after individual hash-gated verification. The
+candidate now has 2,181 sections / 492,344 verified bytes, 558,280 unresolved
+zero-filled bytes, and SHA-256
+`9b5dca1bc66a78643701875e2e4a5722ee575cc10ece82f448b7a1aa09cccff6`.
+
 # Header source
 
 The `executable.psx_exe` fields in
