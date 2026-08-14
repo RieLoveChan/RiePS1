@@ -620,7 +620,7 @@ byte-level scan (not sampling) found:
   range already documented in this project's manual review of `start`
   (`docs/games/ddr-5th-mix-jp-symbol-map.csv`, row `0x80020700`): "zeroes
   `DAT_800e2938`..`UNK_80118e28`", i.e. `0x800e2938`–`0x80118e28`
-  (221,936 bytes). The scanned run's start is 7 bytes earlier and its end is
+  (222,448 bytes). The scanned run's start is 7 bytes earlier and its end is
   7,840 bytes later than that documented range. The two figures agree to
   within 0.4% and the start addresses agree to within a word, which is
   strong circumstantial corroboration that this is the same BSS region (the

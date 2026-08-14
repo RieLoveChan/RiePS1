@@ -16,7 +16,15 @@
       "bss_size": "0x00000000",
       "stack_address": "0x801ffff0",
       "stack_size": "0x00000000"
-    }
+    },
+    "zero_fill_ranges": [
+      {
+        "name": "crt0_bss",
+        "start": "0x800e2938",
+        "end": "0x80118e28",
+        "evidence": "start at 0x80020700 stores zero then increments by four while address < 0x80118e28"
+      }
+    ]
   },
   "toolchain": {
     "target": "mipsel-none-elf",

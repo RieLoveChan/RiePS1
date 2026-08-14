@@ -74,6 +74,13 @@ candidate now has 2,181 sections / 492,344 verified bytes, 558,280 unresolved
 zero-filled bytes, and SHA-256
 `9b5dca1bc66a78643701875e2e4a5722ee575cc10ece82f448b7a1aa09cccff6`.
 
+The candidate manifest also declares crt0's exact zero-initialized range
+`0x800e2938`–`0x80118e28` (222,448 bytes). The builder proves that it lies
+inside the loaded text image, does not overlap a reconstructed section, and
+is all zero in the generated payload. With this BSS coverage, 714,792 of
+1,050,624 payload bytes are source- or zero-range-verified and 335,832 remain
+unresolved; bootability and whole-image identity remain false.
+
 # Header source
 
 The `executable.psx_exe` fields in

@@ -154,6 +154,23 @@ try { $stream.Write($psxHeader, 0, $psxHeader.Length); $stream.Write($payload, 0
 finally { $stream.Dispose() }
 
 $coveredBytes = @($written | Where-Object { $_ }).Count
+$zeroFillBytes = 0
+if ($manifest.executable.PSObject.Properties.Name -contains 'zero_fill_ranges') {
+    foreach ($range in @($manifest.executable.zero_fill_ranges)) {
+        [uint64]$rangeStart = ConvertFrom-HexAddress ([string]$range.start)
+        [uint64]$rangeEnd = ConvertFrom-HexAddress ([string]$range.end)
+        if ($rangeEnd -le $rangeStart -or $rangeStart -lt $textAddress -or $rangeEnd -gt $textAddress + [uint64]$textSize) {
+            throw "Invalid zero-fill range '$($range.name)'."
+        }
+        [int]$rangeOffset = [int]($rangeStart - $textAddress)
+        [int]$rangeSize = [int]($rangeEnd - $rangeStart)
+        for ($i = 0; $i -lt $rangeSize; $i++) {
+            if ($written[$rangeOffset + $i]) { throw "Zero-fill range '$($range.name)' overlaps a reconstructed section." }
+            if ($payload[$rangeOffset + $i] -ne 0) { throw "Zero-fill range '$($range.name)' is not zero." }
+        }
+        $zeroFillBytes += $rangeSize
+    }
+}
 $summary = [ordered]@{
     schema_version = 1
     kind = 'partial_psx_exe_candidate'
@@ -165,7 +182,9 @@ $summary = [ordered]@{
     psx_header = $header
     function_count = $ordered.Count
     verified_function_bytes = $coveredBytes
-    unresolved_text_bytes = $textSize - $coveredBytes
+    verified_zero_fill_bytes = $zeroFillBytes
+    verified_text_bytes = $coveredBytes + $zeroFillBytes
+    unresolved_text_bytes = $textSize - $coveredBytes - $zeroFillBytes
     zero_filled_unresolved_text = $true
     bootable = $false
     whole_executable_match = $false
