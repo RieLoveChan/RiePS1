@@ -4301,7 +4301,7 @@ FUN_8002d5d4:
     addiu   $a0,$zero,2
     addu    $a0,$v1,$zero
     lw      $ra,16($sp)
-    addu    $v0,$a0,$v0
+    addu    $v0,$a0,$zero
     jr      $ra
     addiu   $sp,$sp,24
     .end FUN_8002d5d4

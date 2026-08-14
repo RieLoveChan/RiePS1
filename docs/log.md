@@ -1,3 +1,5 @@
+- PS-X EXE candidate validation: corrected `FUN_8002d5d4`'s stale final `addu` operand after the new candidate gate and the existing function verifier independently exposed its 56-byte mismatch. GCC 14.2.0/binutils 2.43 then rebuilt all 2,177 manifest functions into a local header-correct PS-X EXE candidate with 492,164 verified function bytes and 558,460 deliberately zero-filled unresolved bytes; it explicitly remains non-bootable and not a whole-image match.
+
 - PS-X EXE candidate gate: added `Build-MainExecutableCandidate.ps1`, which creates a header-correct, zero-filled partial image only after each manifest function is rebuilt and hash-checked with documented bindings. Its first full run exposed and independently reproduced a stale `FUN_8002d5d4` manifest/source mismatch, so it correctly produced no candidate and no bootability or whole-image claim.
 
 - TIM local rendering: added a revalidating TIM-to-PNG renderer and used it under ignored `work/` on all replay-observed TIM archives. It produced 251 PNGs and four manifests; System.Drawing reopened the 640×134 output successfully. No image pixels, manifests, or other game assets were committed.

@@ -33,10 +33,11 @@ verification workflow and the pinned toolchain installed:
 Generated objects, linked sections, candidate EXE, and JSON report stay under
 the ignored `build/ddr5thmix/main-candidate/` directory.
 
-# Current validation result
+# Validation history
 
-On 2026-08-14, GCC 14.2.0 and GNU binutils 2.43 compiled the complete source
-set and the builder correctly rejected `FUN_8002d5d4` before image output:
+The first complete run on 2026-08-14 correctly rejected `FUN_8002d5d4`
+before image output. This exposed a stale source instruction rather than an
+image-builder defect:
 
 | Field | Result |
 |---|---|
@@ -45,12 +46,27 @@ set and the builder correctly rejected `FUN_8002d5d4` before image output:
 | Manifest reference/build SHA-256 | `5392ea1cf452cfea03f801e47f2eb8ce6f19ae48085f9a9b3574ecc728bacc23` |
 | Rebuilt SHA-256 | `3e8679b88a6d30205656df6db8dcbf0842446fff5e17ceaeb523f1f457c18891` |
 
-The existing `Invoke-FunctionMatch.ps1` independently reproduced the same
-byte mismatch against the lawful input. Consequently the repository's
-aggregate completion claim must not be used as proof that an executable can
-yet be generated from the current source/manifest. The next required unit is
-to repair or reclassify this function's source and manifest evidence, then
-rerun the candidate builder from the first function onward.
+`Invoke-FunctionMatch.ps1` independently reproduced the mismatch against the
+lawful input. The source was corrected from `addu $v0,$a0,$v0` to
+`addu $v0,$a0,$zero`; the function then matched its recorded 56-byte SHA-256
+pair again.
+
+The rerun completed all 2,177 function checks with GCC 14.2.0 and GNU
+binutils 2.43 and emitted a local candidate with SHA-256
+`5e3804b2aec5a625adee5be4ac2ab6ba9039a18296eac3c8cb362b09cc346367`:
+
+| Field | Result |
+|---|---|
+| Verified function bytes | 492,164 |
+| Zero-filled unresolved text bytes | 558,460 |
+| Header + payload size | 1,052,672 bytes |
+| Bootable | `false` |
+| Whole-executable match | `false` |
+
+This proves the current manifest sections can be relocated and assembled into
+a structurally valid PS-X EXE without importing reference bytes. It does not
+solve the remaining text/data reconstruction, runtime validation, or disc
+rebuild gates.
 
 # Header source
 
