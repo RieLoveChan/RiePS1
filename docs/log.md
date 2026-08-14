@@ -1,3 +1,5 @@
+- PS-X EXE candidate gate: added `Build-MainExecutableCandidate.ps1`, which creates a header-correct, zero-filled partial image only after each manifest function is rebuilt and hash-checked with documented bindings. Its first full run exposed and independently reproduced a stale `FUN_8002d5d4` manifest/source mismatch, so it correctly produced no candidate and no bootability or whole-image claim.
+
 - TIM local rendering: added a revalidating TIM-to-PNG renderer and used it under ignored `work/` on all replay-observed TIM archives. It produced 251 PNGs and four manifests; System.Drawing reopened the 640×134 output successfully. No image pixels, manifests, or other game assets were committed.
 
 - Replay asset classification: structurally validated two complete `pBAV` sound banks and four TIM resource slices from the partial Rage/song-17-sai/Maniac trace. The TIM slices contain 251 images in total, including several 640×134 4bpp images; no replay-observed slice is yet proven to contain a TMD model. Added metadata-only TIM inventory tooling and recorded the exact validated dimensions without committing assets.

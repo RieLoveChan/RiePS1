@@ -4,7 +4,19 @@
   "executable": {
     "sha256": "4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee",
     "load_address": "0x8001a800",
-    "header_size": 2048
+    "header_size": 2048,
+    "psx_exe": {
+      "entry_point": "0x80020700",
+      "global_pointer": "0x00000000",
+      "text_address": "0x8001a800",
+      "text_size": "0x00100800",
+      "data_address": "0x00000000",
+      "data_size": "0x00000000",
+      "bss_address": "0x00000000",
+      "bss_size": "0x00000000",
+      "stack_address": "0x801ffff0",
+      "stack_size": "0x00000000"
+    }
   },
   "toolchain": {
     "target": "mipsel-none-elf",
