@@ -81,6 +81,11 @@ is all zero in the generated payload. With this BSS coverage, 714,792 of
 1,050,624 payload bytes are source- or zero-range-verified and 335,832 remain
 unresolved; bootability and whole-image identity remain false.
 
+`FUN_800219b8` and `FUN_80021a30` were then promoted from manual review to
+verified source. Their identical 60-byte mode-input handlers raise the
+candidate to 2,183 sections / 492,464 verified function bytes and reduce the
+unresolved payload to 335,712 bytes.
+
 # Header source
 
 The `executable.psx_exe` fields in
