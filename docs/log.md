@@ -1,5 +1,6 @@
 ## 2026-08-15
 
+* **Extraction**: Added decoder-delimited prefix support to `Expand-ResourceLz.ps1` without changing its strict default. Sixteen `0x00000008` descriptor containers have an LZ prefix at byte 8; each terminates as a 49,696-byte local output (795,136 bytes total), while 24,622–30,287 following bytes per container remain explicitly unclassified. The local manifest records consumed/trailing ranges and SHA-256 values; no asset-format name is claimed.
 * **Extraction**: Added [indexed-resource table extraction](/docs/tooling/indexed-resource-table-extraction.md) for the 28 descriptor-addressed 0x00000044 resources in lawful READ_DT.BIN. All table offsets were bounds-validated and 84 neutral sections (5,982,984 bytes) were retained only under ignored work/; bounded LZ verification and TIM inventory respectively found zero complete streams and zero valid TIM serializations, so no semantic format is claimed.
 
 - Mode-handler integration: reconstructed and byte-verified the identical 60-byte handlers `FUN_800219b8` and `FUN_80021a30`. Both test the shared input/status bit and request mode `0x10`; GCC 14.2.0/binutils 2.43 produced the recorded SHA-256 `e884c8124e9c49d3ff4aa41f8c83784ccb13070c2030761ed1b501b66c52f45f`. The candidate now has 2,183 sections / 714,912 total verified bytes and 335,712 unresolved bytes.

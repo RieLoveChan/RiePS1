@@ -3,7 +3,7 @@ type: Tool
 title: PlayStation TIM image inventory
 description: Locates and structurally validates embedded PlayStation TIM images, then optionally renders them locally to PNG.
 tags: [ps1, assets, tim, texture, metadata]
-timestamp: 2026-08-14T00:00:00-04:00
+timestamp: 2026-08-15T00:00:00-04:00
 ---
 
 # Usage
@@ -89,3 +89,20 @@ The bounded decoder also requires its terminator to consume the entire declared
 descriptor range, rejecting accidental early terminators in unrelated data.
 `Test-ResourceLzCandidates.ps1` applies that same bounded contract to every
 local descriptor file in one process and writes only a JSON result manifest.
+# Bounded prefix decoding
+
+`Expand-ResourceLz.ps1` defaults to rejecting every byte after its terminator.
+Its explicit `-AllowTrailing` mode preserves that default while enabling
+inspection of a decoder-delimited prefix in a larger container. It reports both
+`input_consumed` and `trailing_input_bytes`; callers must not treat the trailing
+bytes as decoded or classified.
+
+Sixteen descriptor-addressed containers begin with `0x00000008` and carry a
+`0x80001094`-starting LZ prefix at byte offset `8`. With `-AllowTrailing`, each
+prefix terminates and expands to 49,696 bytes; the 16 local outputs total
+795,136 bytes. The decoder leaves 24,622–30,287 input bytes after the
+terminator in each container. These prefixes are retained locally under ignored
+`work/` with source/offset/hash metadata, but no TIM, image, or semantic format
+claim is made for either the outputs or the trailing bytes. The strict mode
+continues to accept known complete LZ TIM streams only when it consumes their
+entire declared input.
