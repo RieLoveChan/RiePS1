@@ -2,6 +2,7 @@
 
 ## 2026-08-14
 
+* **Creation**: Added structural splitting for the 47 title-bearing music resources. Each proves a three-offset layout (`12`, first boundary, second boundary, EOF), so the tool exports 141 neutral raw sections under ignored `work/` without assigning their unverified semantics.
 * **Discovery**: Correlated all 49 non-null linked music descriptors with `READ_DT.BIN`: slots 47–48 are the two already validated VAB banks, while all 47 title-bearing resources begin with the same little-endian `0x0000000c` header and remain a distinct, unassigned raw format. The descriptor extractor retains slot/title/LBA/size/SHA-256 locally without committing game data.
 * **Creation**: Added descriptor-driven music-resource extraction: the 49 non-null linked executable descriptors can now be bounds-checked against lawful `READ_DT.BIN` and exported by slot/LBA under ignored `work/`.
 * **Update**: Added optional raw TIM extraction to the structurally validating inventory, so every accepted serialized TIM range can be retained under ignored `work/` with its source offset and dimensions in the JSON manifest. Against complete `READ_DT.BIN`, it exported 298 raw TIM files (1,196,176 bytes) matching the 298 rendered PNGs; no image content is committed.
