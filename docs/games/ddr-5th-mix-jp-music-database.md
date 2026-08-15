@@ -110,10 +110,12 @@ extracted locally as title-associated raw resources, but their internal format
 and semantic contents remain unassigned.
 
 The second of the three structurally bounded sections is stronger: in all 47
-resources its leading little-endian word equals the section byte length, and
-that length is divisible by 12. It can therefore be preserved as a
-self-sized table of 12-byte records, while the purpose of each record remains
-unresolved.
+resources its leading little-endian word equals the section byte length. A
+fresh alignment audit shows a 12-byte header followed by a 32-bit word stream,
+not a proven 12-byte-record table: the 47 payloads contain 16,722 words and
+all terminate in zero. See
+[/docs/tooling/music-word-table-inventory.md](/docs/tooling/music-word-table-inventory.md).
+The purpose of those words remains unresolved.
 
 # Record fields
 

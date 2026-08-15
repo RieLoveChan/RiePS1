@@ -19,3 +19,4 @@
 * [DDR 5th Mix descriptor fill-resource inventory](descriptor-fill-inventory.md) - Proves uniform descriptor ranges are padding rather than assets.
 * [DDR 5th Mix counted-offset resource extraction](counted-offset-resource-extraction.md) - Separates validated counted offset directories into neutral sections.
 * [DDR 5th Mix descriptor extraction coverage](descriptor-extraction-coverage.md) - Hash-verifies every descriptor-addressed local range.
+* [DDR 5th Mix music word-table inventory](music-word-table-inventory.md) - Corrects the central music-section model and validates its bounded 32-bit word streams.
