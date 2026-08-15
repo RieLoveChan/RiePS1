@@ -85,3 +85,5 @@ Pass `-VerifyOnly` to the decoder to validate a candidate and return its output
 size/hash without creating a file.  This makes negative or broad format scans
 safe to run against lawful local descriptor ranges; an `OutPath` is required
 only when an expanded asset is intentionally retained under `work/`.
+The bounded decoder also requires its terminator to consume the entire declared
+descriptor range, rejecting accidental early terminators in unrelated data.
