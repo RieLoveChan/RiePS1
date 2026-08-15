@@ -80,3 +80,8 @@ TIM ranges under ignored `work/` (1,240,640 bytes in total).  Together with
 the 265 single-TIM `0x80001094` expansions, descriptor-addressed LZ data
 therefore yields 512 validated TIM images.  No semantic name is assigned to
 either header family.
+
+Pass `-VerifyOnly` to the decoder to validate a candidate and return its output
+size/hash without creating a file.  This makes negative or broad format scans
+safe to run against lawful local descriptor ranges; an `OutPath` is required
+only when an expanded asset is intentionally retained under `work/`.
