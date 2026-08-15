@@ -1,5 +1,6 @@
 ## 2026-08-15
 
+* **Validation**: Added `Test-DescriptorExtractionCoverage.ps1`. The local descriptor manifest has 544 ranges (32,281,965 bytes), and the hash/size audit reports 544 valid, zero invalid: physical descriptor extraction is complete while format/semantic classification remains separate.
 * **Extraction**: Added `Split-CountedOffsetResources.ps1` and applied it to two `0x0000001b` resources. Their 27-entry monotonic directories yield 54 bounded local sections (121,264 bytes) plus two suffixes (38,288 bytes); TIM, VAG, VAB, and TMD validators accept zero structures across all outputs.
 * **Extraction**: Completed the three `0x00000007` descriptor containers: direct TIM extraction yields 41 images at LBA `0x7b5c` and 47 at `0x7e23`; the LBA `0x7aea` wrapper yields one 8bpp 320×240 LZ TIM. Its 194,967-byte suffix has zero TIM, VAG, VAB, or TMD structures, so it remains neutral raw data.
 * **Extraction**: Revalidated the non-LZ `0x00000005` descriptor at LBA `0x7c51` as a direct TIM archive. It contains 103 complete TIMs (102 × 4bpp 84×60 and one × 4bpp 640×134; 306,512 bytes), all separately extracted and rendered locally without semantic names.
