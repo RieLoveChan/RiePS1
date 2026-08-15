@@ -36,4 +36,10 @@ The renderer revalidates each TIM before converting BGR555 CLUT/direct colours
 and indexed 4-, 8-, or 16-bit pixels to PNG. It writes a JSON manifest beside
 the ignored PNGs. On the replay-observed TIM slices it rendered all 251
 validated images, including a `640×134` PNG confirmed readable by System.Drawing.
-No PNGs, manifests, or input assets are committed.
+
+Against the lawful local `READ_DT.BIN` SHA-256
+`004cbd9fa5c260b32f25319f5ae652208a7c80fbb056fa0e72127eb83d30453a`,
+the inventory validated 298 TIM images and the renderer produced 298 PNGs
+under ignored `work/`. A former candidate at `0x1a48ff8` is now rejected:
+its declared 16×512 CLUT does not match its serialized length. No PNGs,
+manifests, or input assets are committed.

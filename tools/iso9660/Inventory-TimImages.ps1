@@ -25,7 +25,10 @@ for ($offset = 0; $offset -le $bytes.Length - 20; $offset += 4) {
     $hasClut = ($flags -band 8) -ne 0
     if ($hasClut) {
         $clutBytes = Read-UInt32Le $bytes $cursor
-        if ($clutBytes -lt 12 -or $cursor + $clutBytes + 12 -gt $bytes.Length) { continue }
+        if ($clutBytes -lt 12 -or $cursor + $clutBytes -gt $bytes.Length) { continue }
+        $clutWidth = Read-UInt16Le $bytes ($cursor + 8)
+        $clutHeight = Read-UInt16Le $bytes ($cursor + 10)
+        if ($clutWidth -lt 1 -or $clutHeight -lt 1 -or $clutBytes -ne (12 + 2 * $clutWidth * $clutHeight)) { continue }
         $cursor += $clutBytes
     }
     $imageBytes = Read-UInt32Le $bytes $cursor

@@ -2,6 +2,7 @@
 
 ## 2026-08-14
 
+* **Update**: Corrected 4bpp TIM pixel addressing and CLUT structural validation in the local TIM tools. The complete lawful `READ_DT.BIN` inventory now validates and renders 298 TIM images under ignored `work/`; the former `0x1a48ff8` candidate is rejected because its CLUT geometry and length disagree. No game pixels were committed.
 * **Creation**: Added [VAB bank inventory and raw-sample extraction](/docs/tooling/vab-bank-inventory.md), which validates both replay-observed `pBAV` banks and exports 31 and 15 local SPU-ADPCM samples without committing game content.
 * **Creation**: Added [TMD model inventory and extraction](/docs/tooling/tmd-model-inventory.md), which found one complete 22-object model in lawful `READ_DT.BIN` and exported its 8,378-byte range only under ignored `work/`.
 
