@@ -71,3 +71,12 @@ and yields the already-counted 77,344-byte TIM (SHA-256
 Thus the 266 table entries yield 265 distinct extracted TIM resources.
 Expanded files, concatenations, and manifests remain only beneath ignored
 `work/`.
+
+The same decoder accepts all 20 descriptor ranges with leading word
+`0x800010d4`.  They expand to 1,240,640 bytes and contain 247 complete TIMs:
+the first stream contains 19 and each of the other 19 streams contains 12.
+`Inventory-TimImages.ps1 -ExtractDir` separated all 247 original serialized
+TIM ranges under ignored `work/` (1,240,640 bytes in total).  Together with
+the 265 single-TIM `0x80001094` expansions, descriptor-addressed LZ data
+therefore yields 512 validated TIM images.  No semantic name is assigned to
+either header family.
