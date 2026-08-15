@@ -17,3 +17,4 @@
 * [TIM image inventory](tim-image-inventory.md) - Bounds-validates embedded PlayStation TIM images and records metadata only.
 * [DDR 5th Mix indexed-resource table extraction](indexed-resource-table-extraction.md) - Separates the validated 0x44 descriptor family into neutral local sections.
 * [DDR 5th Mix descriptor fill-resource inventory](descriptor-fill-inventory.md) - Proves uniform descriptor ranges are padding rather than assets.
+* [DDR 5th Mix counted-offset resource extraction](counted-offset-resource-extraction.md) - Separates validated counted offset directories into neutral sections.
