@@ -1,5 +1,6 @@
 ## 2026-08-15
 
+* **Validation**: Re-ran the ISO inventory with full local extraction and independently re-hashed every output. All six ISO 9660 root entries (394,356,804 bytes) match their recorded sizes and SHA-256 values under ignored `work/`; together with the 544/544 descriptor-range audit, physical asset extraction coverage is complete. Semantic classification of neutral raw ranges remains separate work.
 * **Validation**: Added `Test-DescriptorExtractionCoverage.ps1`. The local descriptor manifest has 544 ranges (32,281,965 bytes), and the hash/size audit reports 544 valid, zero invalid: physical descriptor extraction is complete while format/semantic classification remains separate.
 * **Extraction**: Added `Split-CountedOffsetResources.ps1` and applied it to two `0x0000001b` resources. Their 27-entry monotonic directories yield 54 bounded local sections (121,264 bytes) plus two suffixes (38,288 bytes); TIM, VAG, VAB, and TMD validators accept zero structures across all outputs.
 * **Extraction**: Completed the three `0x00000007` descriptor containers: direct TIM extraction yields 41 images at LBA `0x7b5c` and 47 at `0x7e23`; the LBA `0x7aea` wrapper yields one 8bpp 320×240 LZ TIM. Its 194,967-byte suffix has zero TIM, VAG, VAB, or TMD structures, so it remains neutral raw data.

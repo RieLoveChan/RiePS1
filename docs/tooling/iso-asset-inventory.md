@@ -34,6 +34,20 @@ The supplied data track contains six ISO 9660 files and no subdirectories:
 | `XA.STR` | 33,456,128 | `28e9b8763b353c3bccc6861c5477fa5b27f23074e6219021c157ab51838aa1c8` | CD-XA ADPCM stream; 61 raw-sector streams demultiplexed locally; see [/docs/tooling/xa-audio-demux.md](/docs/tooling/xa-audio-demux.md) |
 | `DUMMY.BIN` | 27,648,000 | `f4c77051ab98f1ac6105bc3d3f284bbb9369ddaa6a64e8a333ebc1d1e2b9c76c` | All-zero padding; no asset payload |
 
+# Full local extraction coverage
+
+On 2026-08-15, the inventory command was run with
+`-ExtractDir work/ddr5thmix-extract/iso-files` against the lawful local
+`track.bin`. It wrote all six ISO entries (394,356,804 bytes total) below the
+ignored `work/` directory. A separate SHA-256 and length pass over each output
+matched every manifest record: six valid files, zero mismatches, and
+394,356,804 verified bytes.
+
+This completes physical extraction coverage for the ISO root and for all 544
+descriptor-addressed `READ_DT.BIN` ranges. Format and semantic classification
+of retained neutral raw ranges remains distinct research work; it is not a
+claim that every resource has a human-readable name or decoder.
+
 # Limits and next decoder work
 
 `STR.BIN` and `XA.STR` are already unpacked from the ISO as complete
