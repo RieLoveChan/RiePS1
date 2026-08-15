@@ -36,6 +36,21 @@ The 47 complete sections total 67,452 bytes. The validator checks the
 declared length, alignment, slot uniqueness, common terminal word, and each
 local section SHA-256.
 
+# Runtime correlation
+
+The exact-reconstructed music dispatcher `FUN_8007a8f4` obtains the selected
+resource descriptor through `FUN_8007f14c` and calls
+`FUN_80020d24(descriptor, 0x80174000)`. The loader stores the descriptor size
+and LBA-derived request state, so this is a complete load of the selected
+resource into that RAM base. Once its completion state succeeds,
+`FUN_8007a8f4` reads the little-endian words at `+0x04` and `+0x08`, adds both
+to `0x80174000`, and passes the resulting in-resource addresses to subsequent
+routines. Thus the three leading words are runtime-relative section offsets,
+not merely an extraction convention.
+
+This establishes the title-slot to resource to loaded-layout relationship.
+It does not establish the individual central-word commands or prove a
+step-chart interpretation.
 # Correction and limits
 
 An earlier observation called these data “12-byte records” solely because the

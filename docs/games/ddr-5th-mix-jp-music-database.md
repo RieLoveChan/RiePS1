@@ -116,6 +116,12 @@ not a proven 12-byte-record table: the 47 payloads contain 16,722 words and
 all terminate in zero. See
 [/docs/tooling/music-word-table-inventory.md](/docs/tooling/music-word-table-inventory.md).
 The purpose of those words remains unresolved.
+The runtime relationship is stronger than filename or ordering correlation:
+`FUN_8007a8f4` obtains the selected descriptor through `FUN_8007f14c`, loads
+it at `0x80174000` through `FUN_80020d24`, then reads and applies the resource
+words at `+0x04` and `+0x08` as offsets from that same base after load
+completion. This proves the leading words are consumed as in-resource section
+offsets; it does not identify the central stream’s word semantics.
 
 # Record fields
 
