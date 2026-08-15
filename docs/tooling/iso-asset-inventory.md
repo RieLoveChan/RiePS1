@@ -29,7 +29,7 @@ The supplied data track contains six ISO 9660 files and no subdirectories:
 |---|---:|---|---|
 | `SLPM_868.97` | 1,052,672 | `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee` | PS-X EXE |
 | `SYSTEM.CNF` | 68 | `78826a4a81331c433b9628439415a48c03aedfbc2aafaaa3614c243e31c59c2b` | Boot configuration |
-| `READ_DT.BIN` | 32,768,000 | `004cbd9fa5c260b32f25319f5ae652208a7c80fbb056fa0e72127eb83d30453a` | Mixed overlay/resource container; HOW TO PLAY overlay at `0x1630000`, six validated VAB banks (66 raw samples), 16 standalone VAG samples, 298 embedded TIM images plus 265 validated LZ-expanded TIM images, and one validated 22-object TMD at `0x1633068` |
+| `READ_DT.BIN` | 32,768,000 | `004cbd9fa5c260b32f25319f5ae652208a7c80fbb056fa0e72127eb83d30453a` | Mixed overlay/resource container; HOW TO PLAY overlay at `0x1630000`, six validated VAB banks (66 raw samples), 16 standalone VAG samples, 298 embedded TIM images plus 265 validated LZ-expanded TIM images (from 266 descriptors, one a truncated duplicate), and one validated 22-object TMD at `0x1633068` |
 | `STR.BIN` | 299,431,936 | `ec6fe3090949faaffa88edd3f7808b02c37b6b1a28d46c20ce62410511f22294` | Sector-aligned VAG ADPCM sample bank; 1,764 headers; see [/docs/tooling/vag-sample-inventory.md](/docs/tooling/vag-sample-inventory.md) |
 | `XA.STR` | 33,456,128 | `28e9b8763b353c3bccc6861c5477fa5b27f23074e6219021c157ab51838aa1c8` | CD-XA ADPCM stream; 61 raw-sector streams demultiplexed locally; see [/docs/tooling/xa-audio-demux.md](/docs/tooling/xa-audio-demux.md) |
 | `DUMMY.BIN` | 27,648,000 | `f4c77051ab98f1ac6105bc3d3f284bbb9369ddaa6a64e8a333ebc1d1e2b9c76c` | All-zero padding; no asset payload |

@@ -61,8 +61,13 @@ of those ranges terminate successfully.  Their local expanded outputs total
 `70e18102e5c6f708c210cbd4d50f57a1d94b773a6f5ce640b1d1a2beaa12587a`, and
 the TIM inventory reports `tim_count: 265` for that stream.
 
-The remaining candidate,
+The remaining descriptor,
 `lba_05cfb_offset_0076d800_size_00005a71.bin`, reproducibly stops with
-`Unexpected end in run`.  It is retained as an unclassified descriptor range,
-not counted as a TIM or written as an expanded asset.  Expanded files,
-concatenations, and manifests remain only beneath ignored `work/`.
+`Unexpected end in run`.  It is not an additional asset: its 23,153 bytes are
+a strict prefix of the 72,385-byte descriptor at the same LBA,
+`lba_05cfb_offset_0076d800_size_00011ac1.bin`.  The longer range terminates
+and yields the already-counted 77,344-byte TIM (SHA-256
+`60083b3dc1f2d0940f714f89fa0d5d92cd352ee010c3231bcaa08f59bae420ff`).
+Thus the 266 table entries yield 265 distinct extracted TIM resources.
+Expanded files, concatenations, and manifests remain only beneath ignored
+`work/`.
