@@ -2,6 +2,7 @@
 
 ## 2026-08-14
 
+* **Creation**: Added descriptor-driven music-resource extraction: the 49 non-null linked executable descriptors can now be bounds-checked against lawful `READ_DT.BIN` and exported by slot/LBA under ignored `work/`.
 * **Update**: Added optional raw TIM extraction to the structurally validating inventory, so every accepted serialized TIM range can be retained under ignored `work/` with its source offset and dimensions in the JSON manifest. Against complete `READ_DT.BIN`, it exported 298 raw TIM files (1,196,176 bytes) matching the 298 rendered PNGs; no image content is committed.
 * **Update**: Applied the VAB extractor to complete lawful `READ_DT.BIN`: six internally consistent `pBAV` banks at `0x800` through `0xcd800` yielded 66 raw SPU-ADPCM samples (1,010,176 bytes) under ignored `work/`. The two replay-observed banks are confirmed as the complete entries at `0xb000` and `0x3a800`; no game audio was committed.
 * **Update**: Corrected 4bpp TIM pixel addressing and CLUT structural validation in the local TIM tools. The complete lawful `READ_DT.BIN` inventory now validates and renders 298 TIM images under ignored `work/`; the former `0x1a48ff8` candidate is rejected because its CLUT geometry and length disagree. No game pixels were committed.
