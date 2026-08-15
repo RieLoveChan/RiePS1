@@ -2,6 +2,7 @@
 
 ## 2026-08-14
 
+* **Extraction**: Reproduced the verified `FUN_8002a8b8` LZ stream decoder with a 4 MiB per-asset safety bound. Of 266 descriptor-addressed `0x80001094` candidates, 252 terminated and expanded successfully under ignored `work/`; 14 were rejected without output because they did not satisfy the bounded stream contract.
 * **Discovery**: Header classification of the 544 descriptor-table candidates recovers all six validated VAB banks and all 16 standalone VAG files, plus 266 blocks sharing `0x80001094` and 47 title-associated `0x0000000c` blocks. The two repeated nonstandard headers remain unassigned pending structural decoder evidence.
 * **Discovery**: A bounded scan of the executable data-table region `0x92000`–`0x94000` found 544 unique, bounds-valid `(byte_count, LBA)` pairs targeting `READ_DT.BIN`. Their local copies and SHA-256 manifest remain under ignored `work/`; they are explicitly descriptor-addressed candidates rather than format or semantic classifications.
 * **Discovery**: The middle section of every one of the 47 title-bearing music resources is a self-sized 12-byte-record table: all 47 leading little-endian lengths equal the extracted section length, and all lengths divide exactly by 12. Record semantics remain explicitly unresolved.
