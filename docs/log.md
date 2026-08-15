@@ -1,5 +1,6 @@
 ## 2026-08-15
 
+* **Extraction**: Added `Split-LzPrefixContainers.ps1`, which reproducibly writes both bounded LZ-prefix outputs and their 16 remaining suffix ranges. The suffixes total 416,550 bytes; TIM, VAG, VAB, and TMD validators accept zero structures across them, so they remain neutral raw data with hashes and boundaries recorded locally.
 * **Extraction**: Added decoder-delimited prefix support to `Expand-ResourceLz.ps1` without changing its strict default. Sixteen `0x00000008` descriptor containers have an LZ prefix at byte 8; each terminates as a 49,696-byte local output (795,136 bytes total), while 24,622–30,287 following bytes per container remain explicitly unclassified. The local manifest records consumed/trailing ranges and SHA-256 values; no asset-format name is claimed.
 * **Extraction**: Added [indexed-resource table extraction](/docs/tooling/indexed-resource-table-extraction.md) for the 28 descriptor-addressed 0x00000044 resources in lawful READ_DT.BIN. All table offsets were bounds-validated and 84 neutral sections (5,982,984 bytes) were retained only under ignored work/; bounded LZ verification and TIM inventory respectively found zero complete streams and zero valid TIM serializations, so no semantic format is claimed.
 

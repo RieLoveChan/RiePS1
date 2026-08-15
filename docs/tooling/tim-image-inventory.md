@@ -103,6 +103,23 @@ prefix terminates and expands to 49,696 bytes; the 16 local outputs total
 795,136 bytes. The decoder leaves 24,622–30,287 input bytes after the
 terminator in each container. These prefixes are retained locally under ignored
 `work/` with source/offset/hash metadata, but no TIM, image, or semantic format
-claim is made for either the outputs or the trailing bytes. The strict mode
+claim is made for either the outputs or the trailing bytes.
+
+`Split-LzPrefixContainers.ps1` reproduces the split: it requires the 8-byte
+wrapper and LZ prefix, invokes the decoder with `-AllowTrailing`, writes both
+the 16 decoded prefixes and 16 suffix ranges under ignored `work/`, and records
+source, consumed offset, hashes, and filenames. The suffixes total 416,550
+bytes. TIM, VAG, VAB, and TMD structural validators all report zero accepted
+assets across those suffixes; they remain neutral raw data rather than being
+assigned an image, audio, model, or semantic name.
+
+```powershell
+& .\tools\iso9660\Split-LzPrefixContainers.ps1 `
+  -InputDir .\work\ddr5thmix-extract\descriptor-table-assets `
+  -OutDir .\work\ddr5thmix-extract\header08-composite-sections `
+  -OutJson .\work\ddr5thmix-extract\header08-composite-sections\manifest.json
+```
+
+The strict mode
 continues to accept known complete LZ TIM streams only when it consumes their
 entire declared input.
