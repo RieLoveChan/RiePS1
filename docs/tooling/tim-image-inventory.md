@@ -87,3 +87,5 @@ safe to run against lawful local descriptor ranges; an `OutPath` is required
 only when an expanded asset is intentionally retained under `work/`.
 The bounded decoder also requires its terminator to consume the entire declared
 descriptor range, rejecting accidental early terminators in unrelated data.
+`Test-ResourceLzCandidates.ps1` applies that same bounded contract to every
+local descriptor file in one process and writes only a JSON result manifest.
