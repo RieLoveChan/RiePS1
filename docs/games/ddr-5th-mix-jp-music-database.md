@@ -99,6 +99,16 @@ empty reserved slot**. Calling all 50 values “valid songs” was too broad.
 No title or gameplay record identifies the two extra resources, so their
 content remains unnamed.
 
+# Descriptor-addressed disc resources
+
+All 49 non-null descriptors resolve into the `READ_DT.BIN` ISO extent (base
+LBA 20,000) with their first word as byte count and second word as LBA: the
+two non-record slots reproduce the `pBAV` banks at `0x4e95` and `0x4e36`.
+The 47 title-bearing slots have a common little-endian `0x0000000c` leading
+word and no supported TIM, VAB, VAG, or TMD signature. They are therefore
+extracted locally as title-associated raw resources, but their internal format
+and semantic contents remain unassigned.
+
 # Record fields
 
 | Offset | Exported field | Interpretation | Confidence/evidence |

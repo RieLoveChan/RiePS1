@@ -2,6 +2,7 @@
 
 ## 2026-08-14
 
+* **Discovery**: Correlated all 49 non-null linked music descriptors with `READ_DT.BIN`: slots 47–48 are the two already validated VAB banks, while all 47 title-bearing resources begin with the same little-endian `0x0000000c` header and remain a distinct, unassigned raw format. The descriptor extractor retains slot/title/LBA/size/SHA-256 locally without committing game data.
 * **Creation**: Added descriptor-driven music-resource extraction: the 49 non-null linked executable descriptors can now be bounds-checked against lawful `READ_DT.BIN` and exported by slot/LBA under ignored `work/`.
 * **Update**: Added optional raw TIM extraction to the structurally validating inventory, so every accepted serialized TIM range can be retained under ignored `work/` with its source offset and dimensions in the JSON manifest. Against complete `READ_DT.BIN`, it exported 298 raw TIM files (1,196,176 bytes) matching the 298 rendered PNGs; no image content is committed.
 * **Update**: Applied the VAB extractor to complete lawful `READ_DT.BIN`: six internally consistent `pBAV` banks at `0x800` through `0xcd800` yielded 66 raw SPU-ADPCM samples (1,010,176 bytes) under ignored `work/`. The two replay-observed banks are confirmed as the complete entries at `0xb000` and `0x3a800`; no game audio was committed.
