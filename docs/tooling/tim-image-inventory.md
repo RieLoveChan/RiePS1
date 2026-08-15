@@ -123,3 +123,28 @@ assigned an image, audio, model, or semantic name.
 The strict mode
 continues to accept known complete LZ TIM streams only when it consumes their
 entire declared input.
+
+# Header-5 LZ TIM containers
+
+Four descriptor-addressed containers begin with `0x00000005` and contain a
+`0x80001094` LZ prefix at byte offset `16`. Run the same splitter with the
+independent wrapper and prefix parameters:
+
+```powershell
+& .\tools\iso9660\Split-LzPrefixContainers.ps1 `
+  -InputDir .\work\ddr5thmix-extract\descriptor-table-assets `
+  -OutDir .\work\ddr5thmix-extract\header05-composite-sections `
+  -OutJson .\work\ddr5thmix-extract\header05-composite-sections\manifest.json `
+  -PrefixOffset 16 `
+  -RequiredFirstWord 5
+```
+
+All four prefixes terminate and are structurally valid 8bpp 320×240 TIMs:
+their serialized sizes are 77,856 or 78,368 bytes. `Inventory-TimImages.ps1 -ExtractDir` retained four original `.tim` files (312,448 bytes) locally, and
+`Render-TimImages.ps1` produced four readable 320×240 PNGs. The four suffix
+ranges total 396,801 bytes and contain zero structurally valid TIM, VAG, VAB,
+or TMD resources. No screen or semantic asset names are assigned.
+
+Together, the descriptor-addressed LZ work yields 516 structurally valid TIM
+images: 512 from the complete `0x80001094`/`0x800010d4` families and four from
+these header-5 wrappers.

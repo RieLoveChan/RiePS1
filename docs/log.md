@@ -1,5 +1,6 @@
 ## 2026-08-15
 
+* **Extraction**: Generalized `Split-LzPrefixContainers.ps1` for independent wrapper/prefix offsets. The four `0x00000005` containers with LZ at offset 16 yield four structurally validated 8bpp 320×240 TIMs (312,448 bytes), extracted and rendered locally; their 396,801 suffix bytes contain zero TIM, VAG, VAB, or TMD structures.
 * **Validation**: Added `Inventory-FillResources.ps1` and proved all 17 descriptor candidates beginning `0xffffffff` are uniform `0xff` fill (479,405 bytes). They are padding rather than asset payloads and are excluded from decoder work.
 * **Extraction**: Added `Split-LzPrefixContainers.ps1`, which reproducibly writes both bounded LZ-prefix outputs and their 16 remaining suffix ranges. The suffixes total 416,550 bytes; TIM, VAG, VAB, and TMD validators accept zero structures across them, so they remain neutral raw data with hashes and boundaries recorded locally.
 * **Extraction**: Added decoder-delimited prefix support to `Expand-ResourceLz.ps1` without changing its strict default. Sixteen `0x00000008` descriptor containers have an LZ prefix at byte 8; each terminates as a 49,696-byte local output (795,136 bytes total), while 24,622–30,287 following bytes per container remain explicitly unclassified. The local manifest records consumed/trailing ranges and SHA-256 values; no asset-format name is claimed.

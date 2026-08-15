@@ -4,6 +4,7 @@ param(
     [Parameter(Mandatory = $true)][string]$OutDir,
     [Parameter(Mandatory = $true)][string]$OutJson,
     [uint32]$PrefixOffset = 8,
+    [uint32]$RequiredFirstWord = 8,
     [uint32]$PrefixMagic = 2147487892
 )
 
@@ -33,7 +34,7 @@ $rows = [Collections.Generic.List[object]]::new()
 foreach ($resource in Get-ChildItem -LiteralPath $source -File | Sort-Object Name) {
     $bytes = [IO.File]::ReadAllBytes($resource.FullName)
     if ($bytes.Length -lt $PrefixOffset + 4) { continue }
-    if ([BitConverter]::ToUInt32($bytes, 0) -ne $PrefixOffset) { continue }
+    if ([BitConverter]::ToUInt32($bytes, 0) -ne $RequiredFirstWord) { continue }
     if ([BitConverter]::ToUInt32($bytes, [int]$PrefixOffset) -ne $PrefixMagic) { continue }
 
     $temp = Join-Path ([IO.Path]::GetTempPath()) ('ps1-lz-prefix-' + [guid]::NewGuid().ToString() + '.bin')
