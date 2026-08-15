@@ -24,3 +24,5 @@
 * [DDR 5th Mix descriptor header inventory](descriptor-header-inventory.md) - Groups all descriptor ranges by first-word metadata without assigning formats.
 
 * [DDR 5th Mix EXIT menu-resource family](exit-menu-resource-inventory.md) - Text evidence for three EXIT-signature interface resources.
+
+* [DDR 5th Mix large offset-directory resources](large-offset-directory-resources.md) - Validates six 490–502-entry descriptor directories without naming their entries.
