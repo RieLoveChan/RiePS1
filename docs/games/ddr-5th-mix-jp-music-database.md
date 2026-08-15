@@ -109,6 +109,12 @@ word and no supported TIM, VAB, VAG, or TMD signature. They are therefore
 extracted locally as title-associated raw resources, but their internal format
 and semantic contents remain unassigned.
 
+The second of the three structurally bounded sections is stronger: in all 47
+resources its leading little-endian word equals the section byte length, and
+that length is divisible by 12. It can therefore be preserved as a
+self-sized table of 12-byte records, while the purpose of each record remains
+unresolved.
+
 # Record fields
 
 | Offset | Exported field | Interpretation | Confidence/evidence |

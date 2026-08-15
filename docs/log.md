@@ -2,6 +2,7 @@
 
 ## 2026-08-14
 
+* **Discovery**: The middle section of every one of the 47 title-bearing music resources is a self-sized 12-byte-record table: all 47 leading little-endian lengths equal the extracted section length, and all lengths divide exactly by 12. Record semantics remain explicitly unresolved.
 * **Creation**: Added structural splitting for the 47 title-bearing music resources. Each proves a three-offset layout (`12`, first boundary, second boundary, EOF), so the tool exports 141 neutral raw sections under ignored `work/` without assigning their unverified semantics.
 * **Discovery**: Correlated all 49 non-null linked music descriptors with `READ_DT.BIN`: slots 47–48 are the two already validated VAB banks, while all 47 title-bearing resources begin with the same little-endian `0x0000000c` header and remain a distinct, unassigned raw format. The descriptor extractor retains slot/title/LBA/size/SHA-256 locally without committing game data.
 * **Creation**: Added descriptor-driven music-resource extraction: the 49 non-null linked executable descriptors can now be bounds-checked against lawful `READ_DT.BIN` and exported by slot/LBA under ignored `work/`.
