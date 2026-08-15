@@ -3,7 +3,7 @@ type: Tool
 title: PlayStation TIM image inventory
 description: Locates and structurally validates embedded PlayStation TIM images, then optionally renders them locally to PNG.
 tags: [ps1, assets, tim, texture, metadata]
-timestamp: 2026-08-13T00:00:00-04:00
+timestamp: 2026-08-14T00:00:00-04:00
 ---
 
 # Usage
@@ -49,3 +49,20 @@ under ignored `work/`. Raw extraction also produced 298 original `.tim` files
 former candidate at `0x1a48ff8` is now rejected: its declared 16×512 CLUT does
 not match its serialized length. No PNGs, manifests, or input assets are
 committed.
+
+# Descriptor-addressed LZ TIM resources
+
+The separately reconstructed `FUN_8002a8b8` decoder is implemented by
+`Expand-ResourceLz.ps1`.  For the same lawful `READ_DT.BIN` revision, 266
+descriptor-addressed ranges begin with little-endian word `0x80001094`.  With
+a 4 MiB output bound enforced for literal, run, and back-reference tokens, 265
+of those ranges terminate successfully.  Their local expanded outputs total
+18,473,440 bytes; concatenating them gives SHA-256
+`70e18102e5c6f708c210cbd4d50f57a1d94b773a6f5ce640b1d1a2beaa12587a`, and
+the TIM inventory reports `tim_count: 265` for that stream.
+
+The remaining candidate,
+`lba_05cfb_offset_0076d800_size_00005a71.bin`, reproducibly stops with
+`Unexpected end in run`.  It is retained as an unclassified descriptor range,
+not counted as a TIM or written as an expanded asset.  Expanded files,
+concatenations, and manifests remain only beneath ignored `work/`.
