@@ -145,9 +145,9 @@ their serialized sizes are 77,856 or 78,368 bytes. `Inventory-TimImages.ps1 -Ext
 ranges total 396,801 bytes and contain zero structurally valid TIM, VAG, VAB,
 or TMD resources. No screen or semantic asset names are assigned.
 
-Together, the descriptor-addressed LZ work yields 516 structurally valid TIM
-images: 512 from the complete `0x80001094`/`0x800010d4` families and four from
-these header-5 wrappers.
+Together, the descriptor-addressed LZ work yields 517 structurally valid TIM
+images: 512 from the complete `0x80001094`/`0x800010d4` families, four from
+header-5 wrappers, and one from the header-7 wrapper below.
 # Direct header-5 TIM archive
 
 The remaining `0x00000005` descriptor at LBA `0x7c51`
@@ -160,3 +160,19 @@ a rendered 84×60 image successfully. This direct archive is already included
 in the complete `READ_DT.BIN` raw-TIM inventory; this descriptor-specific run
 makes the resource boundary and local extraction reproducible. No screen or
 semantic names are inferred.
+
+# Header-7 direct and LZ TIM resources
+
+The three `0x00000007` descriptor containers have mixed layouts. Direct TIM
+inventory/extraction validates 41 images (415,424 bytes) at LBA `0x7b5c` and
+47 images (123,328 bytes) at LBA `0x7e23`; the former has 40 × 4bpp 96×192 and
+one × 4bpp 640×134, while the latter has 47 × 4bpp 192×32. These direct TIMs
+remain ignored local outputs and are already represented by the whole-container
+TIM inventory.
+
+At LBA `0x7aea`, a `0x80001094` LZ prefix begins at byte `20`. The generic
+splitter invocation `-PrefixOffset 20 -RequiredFirstWord 7` yields one complete
+8bpp 320×240 TIM (77,344 bytes; SHA-256
+`ea4f4516e9c22f7fc9aa32d6dd6c018d62a36f3f7d14ed415217eb45f8ab2b47`) and a
+194,967-byte suffix. TIM, VAG, VAB, and TMD validators accept zero structures
+in that suffix. No screen or semantic resource names are assigned.
