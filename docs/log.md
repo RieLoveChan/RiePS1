@@ -2,6 +2,10 @@
 
 ## 2026-08-14
 
+* **Creation**: Added [VAB bank inventory and raw-sample extraction](/docs/tooling/vab-bank-inventory.md), which validates both replay-observed `pBAV` banks and exports 31 and 15 local SPU-ADPCM samples without committing game content.
+
+## 2026-08-14
+
 * **Update**: Rechecked session handlers `FUN_80049f7c` and `FUN_80049fa4` with the hash-gated function workflow, then rebuilt the [partial PS-X EXE candidate](/docs/tooling/main-executable-candidate.md) with 2,185 verified sections (714,992 verified text bytes); it remains explicitly non-bootable and not a whole-image match.
 
 

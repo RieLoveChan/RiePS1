@@ -62,9 +62,9 @@ internally consistent. Applied to the 15 local slices above, it establishes:
 
 | Frame | LBA | Classification | Validated contents |
 |---:|---:|---|---|
-| 1156 | `0x4e95` | VAB sound bank | `pBAV`, version 7, declared size 190,688, 3 programs, 33 tones |
+| 1156 | `0x4e95` | VAB sound bank | `pBAV`, version 7, declared size 190,688, 3 programs, 33 tones, 31 raw samples |
 | 1265 | `0x83b9` | Pointer-table/text payload, format pending | First 20 words are RAM addresses `0x801743ac`–`0x80174c74`; contains the ASCII anti-modification message. This is an overlay/data candidate, not yet proven executable. |
-| 1878 | `0x4e36` | VAB sound bank | `pBAV`, version 7, declared size 193,904, 1 program, 15 tones |
+| 1878 | `0x4e36` | VAB sound bank | `pBAV`, version 7, declared size 193,904, 1 program, 15 tones, 15 raw samples |
 | 2124 | `0x7b5c` | TIM archive | 41 TIMs: 40 × 4bpp 96×192 and 1 × 4bpp 640×134 |
 | 2391 | `0x7c51` | TIM archive | 103 TIMs: 102 × 4bpp 84×60 and 1 × 4bpp 640×134 |
 | 2697 | `0x7d03` | TIM archive | 106 TIMs: 12 × 8bpp 64×40, 47 × 4bpp 192×32, and 47 × 4bpp 128×40 |
@@ -77,6 +77,7 @@ TMD 3D model. The image archives are strong evidence for 2D UI, sprites, or
 background material, but their exact screen/character assignment needs a
 runtime screenshot or loader-consumer correlation.
 The four TIM-containing slices were rendered locally to 251 PNGs under work/ddr5thmix-extract/tim-renders/; each slice has an ignored manifest.json. Rendered outputs require visual/runtime correlation before receiving screen or character names.
+The VAB slices were independently revalidated and their raw sample extents exported locally by [`Inventory-VabBanks.ps1`](/tools/iso9660/Inventory-VabBanks.ps1); the VAG-count field is an upper index, so their 30 and 14 values correspond to 31 and 15 samples.
 
 # Commands
 
