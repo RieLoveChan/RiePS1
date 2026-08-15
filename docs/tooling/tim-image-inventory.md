@@ -148,3 +148,15 @@ or TMD resources. No screen or semantic asset names are assigned.
 Together, the descriptor-addressed LZ work yields 516 structurally valid TIM
 images: 512 from the complete `0x80001094`/`0x800010d4` families and four from
 these header-5 wrappers.
+# Direct header-5 TIM archive
+
+The remaining `0x00000005` descriptor at LBA `0x7c51`
+(`lba_07c51_offset_01718800_size_00058bd4.bin`, SHA-256
+`d69de884cc61f2fcc9c3a8c4846ff5921b0f50aa7af7be48e064017324f35880`) is not a
+wrapped LZ resource. `Inventory-TimImages.ps1 -ExtractDir` validates and writes
+103 serialized TIMs (306,512 bytes): 102 4bpp 84×60 images and one 4bpp 640×134
+image. `Render-TimImages.ps1` produced 103 local PNGs; System.Drawing reopened
+a rendered 84×60 image successfully. This direct archive is already included
+in the complete `READ_DT.BIN` raw-TIM inventory; this descriptor-specific run
+makes the resource boundary and local extraction reproducible. No screen or
+semantic names are inferred.

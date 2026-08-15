@@ -1,5 +1,6 @@
 ## 2026-08-15
 
+* **Extraction**: Revalidated the non-LZ `0x00000005` descriptor at LBA `0x7c51` as a direct TIM archive. It contains 103 complete TIMs (102 × 4bpp 84×60 and one × 4bpp 640×134; 306,512 bytes), all separately extracted and rendered locally without semantic names.
 * **Extraction**: Generalized `Split-LzPrefixContainers.ps1` for independent wrapper/prefix offsets. The four `0x00000005` containers with LZ at offset 16 yield four structurally validated 8bpp 320×240 TIMs (312,448 bytes), extracted and rendered locally; their 396,801 suffix bytes contain zero TIM, VAG, VAB, or TMD structures.
 * **Validation**: Added `Inventory-FillResources.ps1` and proved all 17 descriptor candidates beginning `0xffffffff` are uniform `0xff` fill (479,405 bytes). They are padding rather than asset payloads and are excluded from decoder work.
 * **Extraction**: Added `Split-LzPrefixContainers.ps1`, which reproducibly writes both bounded LZ-prefix outputs and their 16 remaining suffix ranges. The suffixes total 416,550 bytes; TIM, VAG, VAB, and TMD validators accept zero structures across them, so they remain neutral raw data with hashes and boundaries recorded locally.
