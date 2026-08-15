@@ -11,6 +11,7 @@
 * [DDR 5th Mix ISO asset inventory](iso-asset-inventory.md) - Inventory, hashes, and local extraction of the disc's asset containers.
 * [DDR 5th Mix VAG sample inventory](vag-sample-inventory.md) - Metadata-only inventory proving that STR.BIN is a VAG ADPCM sample bank, not a standard video stream.
 * [DDR 5th Mix VAB bank inventory](vab-bank-inventory.md) - Bounds-validates replay-observed VAB banks and extracts raw SPU-ADPCM samples locally.
+* [DDR 5th Mix TMD model inventory](tmd-model-inventory.md) - Bounds-validates and extracts complete fixed-pointer TMD models locally.
 * [DDR 5th Mix XA audio demultiplexing](xa-audio-demux.md) - Reconstructs raw XA sectors and extracts each routed audio stream locally.
 * [DDR 5th Mix runtime CD-read asset mapping](cd-read-asset-mapping.md) - Maps replay-observed READ_DT requests to local, hashed slices.
 * [TIM image inventory](tim-image-inventory.md) - Bounds-validates embedded PlayStation TIM images and records metadata only.

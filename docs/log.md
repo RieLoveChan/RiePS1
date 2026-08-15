@@ -3,6 +3,7 @@
 ## 2026-08-14
 
 * **Creation**: Added [VAB bank inventory and raw-sample extraction](/docs/tooling/vab-bank-inventory.md), which validates both replay-observed `pBAV` banks and exports 31 and 15 local SPU-ADPCM samples without committing game content.
+* **Creation**: Added [TMD model inventory and extraction](/docs/tooling/tmd-model-inventory.md), which found one complete 22-object model in lawful `READ_DT.BIN` and exported its 8,378-byte range only under ignored `work/`.
 
 ## 2026-08-14
 
