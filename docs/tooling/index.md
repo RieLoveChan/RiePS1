@@ -22,3 +22,5 @@
 * [DDR 5th Mix music word-table inventory](music-word-table-inventory.md) - Corrects the central music-section model and validates its bounded 32-bit word streams.
 
 * [DDR 5th Mix descriptor header inventory](descriptor-header-inventory.md) - Groups all descriptor ranges by first-word metadata without assigning formats.
+
+* [DDR 5th Mix EXIT menu-resource family](exit-menu-resource-inventory.md) - Text evidence for three EXIT-signature interface resources.
