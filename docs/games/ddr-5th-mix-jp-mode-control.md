@@ -1,9 +1,9 @@
 ---
 type: Reconstructed Module
 title: DDR 5th Mix Mode-Control Module
-description: Reproducible game-owned module grouping twenty accepted mode/submode and session-control functions.
+description: Reproducible game-owned module grouping twenty-one accepted mode/submode and session-control functions.
 tags: [ps1, ddr5thmix, decompilation, module, state-machine]
-timestamp: 2026-07-19T00:00:00-04:00
+timestamp: 2026-08-16T00:00:00-04:00
 ---
 
 # Boundary
@@ -18,6 +18,7 @@ large screen implementations and PsyQ library functions.
 |---|---:|---|
 | `FUN_80022148` | 36 | Copy an opaque two-word state snapshot; external dependency below the inventoried range. |
 | `FUN_80022b30` | 456 | Mode-`0x10`/default submode-`0x01` menu: reads/writes `menu_selection_index`, transitions via a 3-entry mode table, or draws the idle menu. |
+| `FUN_80023048` | 132 | Mode-0 submode dispatcher. |
 | `FUN_800230cc` | 112 | Mode-4 submode dispatcher and secondary-state byte copy. |
 | `FUN_8002313c` | 52 | Session termination-latch setter. |
 | `FUN_80023170` | 32 | Session-entry flag reset. |
@@ -37,7 +38,7 @@ large screen implementations and PsyQ library functions.
 | `FUN_800236bc` | 16 | Secondary-state byte-0 setter. |
 | `FUN_800236cc` | 8 | Empty mode-4 hook. |
 
-Total: twenty functions and 1,660 selected bytes.
+Total: twenty-one functions and 1,792 selected bytes.
 
 # Range inventory
 
@@ -48,7 +49,9 @@ dependency called by the in-range mode-`0xff` path. The twentieth member,
 `FUN_80022b30` (456 bytes), is mode `0x10`/default submode `0x01`'s menu
 handler — added 2026-07-24 while resolving `PTR_DAT_800ac8e8+0x2c` (see
 below); it sits directly beside `FUN_800232cc` in mode `0x10`'s own submode
-dispatch but outside the contiguous `0x800230cc–0x800236cc` range.
+dispatch but outside the contiguous `0x800230cc–0x800236cc` range. The
+twenty-first member, `FUN_80023048` (132 bytes), is mode 0's outer submode
+dispatcher immediately before that range.
 
 This is a logical/code-range inventory, not proof of an original PsyQ object
 boundary. No linker map or object archive has yet tied all 18 functions to one
@@ -91,6 +94,11 @@ On 2026-07-24, after adding `FUN_80022b30` as semantic MIPS assembly
 against the same executable SHA-256; built/reference SHA-256 for the added
 function is
 `8fcfaea11d4c06cb6a3415a4b7bc3ed2dd9b0b81563f096fbd3a8602d03f1893`.
+On 2026-08-16, GNU binutils 2.43 assembled the new semantic MIPS source
+`src/ddr5thmix/RuntimeManual23048.s`; `Invoke-FunctionMatch.ps1` matched all
+132 bytes at file offset `0x9048` against the same hash-gated executable.
+Both streams hash to
+`d33e6971e7aad6b322e6e7d8e755d05ca70b394d5fc485a115bb8899ba96aadc`.
 The generated `mode-control.match.json` remains ignored under `/build/`.
 
 This is a reproducible multi-function verification unit, not yet one linked

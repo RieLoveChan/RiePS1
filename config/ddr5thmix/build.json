@@ -37,6 +37,7 @@
       "description": "Game-owned mode/submode mutation, session-entry reset, termination latch, and bounded dispatcher handlers.",
       "functions": [
         "FUN_800230cc",
+        "FUN_80023048",
         "FUN_80022148",
         "FUN_8002313c",
         "FUN_80023170",
@@ -1128,6 +1129,22 @@
       "section": ".text.FUN_8007eea8",
       "reference_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1",
       "built_sha256": "6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1"
+    },
+    {
+      "name": "FUN_80023048",
+      "address": "0x80023048",
+      "size": 132,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeManual23048.s",
+      "section": ".text.FUN_80023048",
+      "reference_sha256": "d33e6971e7aad6b322e6e7d8e755d05ca70b394d5fc485a115bb8899ba96aadc",
+      "built_sha256": "d33e6971e7aad6b322e6e7d8e755d05ca70b394d5fc485a115bb8899ba96aadc",
+      "symbols": {
+        "PTR_DAT_800ac8e8": "0x800ac8e8",
+        "FUN_800235f8": "0x800235f8",
+        "FUN_80023690": "0x80023690",
+        "FUN_80022f04": "0x80022f04"
+      }
     },
     {
       "name": "FUN_800230cc",

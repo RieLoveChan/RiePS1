@@ -545,7 +545,7 @@ structure based at `DAT_800f2908` (inside `FUN_8007fdec`), not
 
 `FUN_80022b30` is reconstructed as semantic MIPS assembly in
 `src/ddr5thmix/FUN_80022b30.s` (added to the `mode-control` module, now
-twenty functions/1,660 bytes) and matches all 456 reference bytes under GNU
+twenty-one functions/1,792 bytes) and matches all 456 reference bytes under GNU
 binutils 2.43; built/reference SHA-256
 `8fcfaea11d4c06cb6a3415a4b7bc3ed2dd9b0b81563f096fbd3a8602d03f1893`. Promoted
 to `confidence = verified`, `source_status = hand_written_source`.

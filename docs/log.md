@@ -1,3 +1,7 @@
+## 2026-08-16
+
+* **Reconstruction / Validation**: Added semantic MIPS source for mode-0 dispatcher `FUN_80023048` and hash-gated it against the lawful `SLPM_868.97_1` executable. GNU binutils 2.43 matched all 132 bytes; [the mode-control module](/docs/games/ddr-5th-mix-jp-mode-control.md) now has 21 accepted functions / 1,792 bytes.
+
 ## 2026-08-15
 
 * **Classification**: Validated six `0x000007ac`–`0x000007dc` resources as self-bounded monotonic offset directories. Their 490–502 entries each remain in bounds after 1,964–2,012-byte headers; entry format and semantics remain unassigned.

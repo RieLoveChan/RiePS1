@@ -43,7 +43,7 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
   -Module mode-control
 ```
 
-The module contains twenty accepted functions and 1,660 compared bytes. Its
+The module contains twenty-one accepted functions and 1,792 compared bytes. Its
 shared `/src/ddr5thmix/mode_control.h` records the two partial state layouts
 used by the functions; compile-time offset assertions prevent a field-map edit
 from silently moving an observed access.
