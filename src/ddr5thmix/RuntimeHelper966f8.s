@@ -6,7 +6,7 @@
 .globl FUN_800966f8
 .type FUN_800966f8, @function
 FUN_800966f8:
-/* Runtime resource and state helper. */
+/* Event eligibility predicate over shared/indexed input snapshots. */
 .L800966f8:
 /* 0x800966f8 */ addiu	$v0,$zero,3
 .L800966fc:
@@ -328,4 +328,3 @@ FUN_800966f8:
 .L80096974:
 /* 0x80096974 */ addu	$v0,$v1,$zero
 .size FUN_800966f8, .-FUN_800966f8
-

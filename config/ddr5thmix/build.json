@@ -910,7 +910,7 @@
     },
     {
       "name": "runtime-helper-966f8",
-      "description": "Runtime resource and state helper.",
+      "description": "Event eligibility predicate over shared/indexed input snapshots.",
       "functions": [
         "FUN_800966f8"
       ]
