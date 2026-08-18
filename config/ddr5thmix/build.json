@@ -24812,6 +24812,7 @@
       "language": "asm",
       "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
       "section": ".text.FUN_800971e4",
+      "description": "Per-player timing post-processor: obtains an unresolved timing value, applies observed global byte factors, and returns the scaled result.",
       "reference_sha256": "0f7fd64bcf3e66a0cff51d241d27ca46c8528f16d934d6c47244b3a6c6796906",
       "built_sha256": "0f7fd64bcf3e66a0cff51d241d27ca46c8528f16d934d6c47244b3a6c6796906"
     },

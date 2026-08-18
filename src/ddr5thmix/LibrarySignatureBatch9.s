@@ -23932,7 +23932,7 @@ FUN_8007ef8c:
     .end FUN_8007ef8c
     .size FUN_8007ef8c, . - FUN_8007ef8c
 
-/* FUN_800971e4 (0x800971e4, 156 bytes) */
+/* FUN_800971e4 (0x800971e4, 156 bytes): per-player timing post-processor. */
     .section .text.FUN_800971e4,"ax",@progbits
     .globl FUN_800971e4
     .type FUN_800971e4, @function
