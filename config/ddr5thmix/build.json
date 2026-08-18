@@ -24656,6 +24656,17 @@
       "built_sha256": "59eac890e246ec5e48111728f2e2c474eb171fc0bf6038f78eebbe5afa63ebde"
     },
     {
+      "name": "FUN_80098f8c",
+      "address": "0x80098f8c",
+      "size": 316,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_80098f8c",
+      "description": "Timing/resource state machine: obtains the interpolated value, waits through readiness phases, submits the low-byte resource selector, and reports the current phase.",
+      "reference_sha256": "8492fcfc2f3174d783faa4da9a455935573d6e7015735a2cc17b82c2da8f1200",
+      "built_sha256": "8492fcfc2f3174d783faa4da9a455935573d6e7015735a2cc17b82c2da8f1200"
+    },
+    {
       "name": "FUN_800991f4",
       "address": "0x800991f4",
       "size": 288,

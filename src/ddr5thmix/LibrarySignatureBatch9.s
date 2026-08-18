@@ -23650,6 +23650,35 @@ FUN_8007e10c:
     .end FUN_8007e10c
     .size FUN_8007e10c, . - FUN_8007e10c
 
+/* FUN_80098f8c (0x80098f8c, 316 bytes): timing/resource state machine. */
+    .section .text.FUN_80098f8c,"ax",@progbits
+    .globl FUN_80098f8c
+    .type FUN_80098f8c, @function
+    .ent FUN_80098f8c
+FUN_80098f8c:
+    .word   0x27bdffe8, 0xafb00010, 0x00808021, 0x3c02800f
+    .word   0x8c443b98, 0x00000000, 0x14800003, 0xafbf0014
+    .word   0x080263f0, 0x00002821, 0x0c02647d, 0x00000000
+    .word   0x00402821, 0x3c028011, 0x8c436c50, 0x00000000
+    .word   0x2c620005, 0x10400032, 0x3c028002, 0x2442f350
+    .word   0x00031880, 0x00621821, 0x8c620000, 0x00000000
+    .word   0x00400008, 0x00000000, 0x0c0096c6, 0x24040002
+    .word   0x3c028011, 0x8c436c50, 0x3c048011, 0xac806c48
+    .word   0x24630001, 0x08026427, 0xac436c50, 0x3c038011
+    .word   0x8c626c48, 0x00000000, 0x24420001, 0x0c00a0a7
+    .word   0xac626c48, 0x1440001b, 0x3c028011, 0x08026423
+    .word   0x3c038011, 0x320400ff, 0x00052c00, 0x0c00a032
+    .word   0x00052c03, 0x3c048011, 0x8c826c50, 0x3c038011
+    .word   0xac606c48, 0x24420001, 0x08026427, 0xac826c50
+    .word   0x3c038011, 0x8c626c48, 0x00000000, 0x24420001
+    .word   0x0c00a087, 0xac626c48, 0x10400005, 0x3c038011
+    .word   0x8c626c50, 0x00000000, 0x24420001, 0xac626c50
+    .word   0x3c028011, 0x84426c54, 0x00000000, 0x1c400003
+    .word   0x2402ffff, 0x3c028011, 0x8c426c50, 0x8fbf0014
+    .word   0x8fb00010, 0x03e00008, 0x27bd0018
+    .end FUN_80098f8c
+    .size FUN_80098f8c, . - FUN_80098f8c
+
 /* FUN_800991f4 (0x800991f4, 288 bytes): timing-table interpolator. */
     .section .text.FUN_800991f4,"ax",@progbits
     .globl FUN_800991f4
