@@ -6,7 +6,7 @@
 .globl FUN_80096978
 .type FUN_80096978, @function
 FUN_80096978:
-/* Runtime resource, dispatch, and state helper. */
+/* Indexed input/event state transition: update 20-byte record and return scaled result. */
 .L80096978:
 /* 0x80096978 */ addiu	$sp,$sp,-56
 .L8009697c:
@@ -936,4 +936,3 @@ FUN_80096978:
 .L800970b4:
 /* 0x800970b4 */ addiu	$sp,$sp,56
 .size FUN_80096978, .-FUN_80096978
-

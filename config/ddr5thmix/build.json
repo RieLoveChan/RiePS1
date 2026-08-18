@@ -917,7 +917,7 @@
     },
     {
       "name": "runtime-helper-96978",
-      "description": "Runtime resource, dispatch, and state helper.",
+      "description": "Indexed input/event state transition with table-scaled output.",
       "functions": [
         "FUN_80096978"
       ]
