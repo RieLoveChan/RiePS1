@@ -24656,6 +24656,17 @@
       "built_sha256": "59eac890e246ec5e48111728f2e2c474eb171fc0bf6038f78eebbe5afa63ebde"
     },
     {
+      "name": "FUN_80099314",
+      "address": "0x80099314",
+      "size": 312,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_80099314",
+      "description": "Global timing quantizer: scans the runtime timing table, computes a fixed-point segment value, and clamps the returned short to 20..300.",
+      "reference_sha256": "0663d6fffc9970ae6eab89327a91f23405f820dd29a7ca0a8745a7aa82187c13",
+      "built_sha256": "0663d6fffc9970ae6eab89327a91f23405f820dd29a7ca0a8745a7aa82187c13"
+    },
+    {
       "name": "FUN_8009944c",
       "address": "0x8009944c",
       "size": 144,

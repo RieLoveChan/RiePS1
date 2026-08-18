@@ -20,6 +20,7 @@
 * [DDR 5th Mix runtime graphics clear module](ddr-5th-mix-jp-runtime-graphics-clear.md) - Conditional display-area clear helper matching 172 bytes.
 * [DDR 5th Mix runtime player initialization module](ddr-5th-mix-jp-runtime-player-init.md) - Two player-record initializer matching 176 bytes.
 * [DDR 5th Mix runtime timing post-processor module](ddr-5th-mix-jp-runtime-timing-postprocessor.md) - Per-player timing scaling around the unresolved FUN_80099314 provider, matching 156 bytes.
+* [DDR 5th Mix runtime timing quantizer module](ddr-5th-mix-jp-runtime-timing-quantizer.md) - Global timing-table quantizer with bounded 20..300 output, matching 312 bytes.
 * [DDR 5th Mix runtime state initialization module](ddr-5th-mix-jp-runtime-state-init.md) - Selected-record and per-player flag initializer matching 176 bytes.
 * [DDR 5th Mix runtime synchronization initialization module](ddr-5th-mix-jp-runtime-sync-init.md) - Synchronization loop and three-structure initializer matching 176 bytes.
 * [DDR 5th Mix runtime record initialization module](ddr-5th-mix-jp-runtime-record-init.md) - Indexed record and region initializer matching 180 bytes.
