@@ -24699,6 +24699,17 @@
       "built_sha256": "fdfdef5348c3a61a7322b0c5846138684a53bcdc616b12c0de651b723d054893"
     },
     {
+      "name": "FUN_800994dc",
+      "address": "0x800994dc",
+      "size": 332,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800994dc",
+      "description": "Runtime record alignment normalizer: scans 0x800 records, applies mode-specific 0x800/0x400 alignment, and refreshes the shared runtime helper.",
+      "reference_sha256": "d2d52b531341ba367249b263492354ff4878e717c598d765b7d886844c00fc98",
+      "built_sha256": "d2d52b531341ba367249b263492354ff4878e717c598d765b7d886844c00fc98"
+    },
+    {
       "name": "FUN_8009b784",
       "address": "0x8009b784",
       "size": 144,
