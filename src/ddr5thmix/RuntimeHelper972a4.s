@@ -6,7 +6,7 @@
 .globl FUN_800972a4
 .type FUN_800972a4, @function
 FUN_800972a4:
-/* Runtime resource and state helper. */
+/* Runtime resource/state bootstrap: reset 32 records, select initial pair, initialize display state. */
 .L800972a4:
 /* 0x800972a4 */ addiu	$sp,$sp,-24
 .L800972a8:
@@ -170,4 +170,3 @@ FUN_800972a4:
 .L800973e4:
 /* 0x800973e4 */ addiu	$sp,$sp,24
 .size FUN_800972a4, .-FUN_800972a4
-

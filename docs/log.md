@@ -1,3 +1,7 @@
+## 2026-08-18
+
+* **Semantic reconstruction**: Reclassified `FUN_800972a4` from a generic runtime helper to a bounded runtime resource/state bootstrap. Static evidence now records its reset of `0x800e2a60`, 32 eight-byte records at `0x80116aa0`, index-zero selection from the two observed pointer tables, publication of the selected pair, graphics-state setup, and final `640` request. The resource class and original table names remain explicitly unresolved; the existing 324/324 byte-match evidence is unchanged.
+
 ## 2026-08-16
 
 * **Reconstruction / Validation**: Added semantic MIPS source for mode-0 dispatcher `FUN_80023048` and hash-gated it against the lawful `SLPM_868.97_1` executable. GNU binutils 2.43 matched all 132 bytes; [the mode-control module](/docs/games/ddr-5th-mix-jp-mode-control.md) now has 21 accepted functions / 1,792 bytes.
