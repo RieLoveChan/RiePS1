@@ -61,6 +61,12 @@ with `--config`. Firmware configuration is preserved without reusing an existing
 emulation process or modifying the user's primary BizHawk profile. The temporary
 profile also disables automatic loading and saving of the last quicksave slot,
 which otherwise carries frame and machine state across nominally fresh runs.
+Since 2026-08-18 the three settings' regex match (`SingleInstanceMode`,
+`AutoLoadLastSaveSlot`, `AutoSaveLastSaveSlot`) accepts either `true` or
+`false` in the source config, not only `true`: a `-ConfigPath` pointing at a
+previous run's own already-rewritten `bizhawk-config.ini` (which has all
+three already `false`) used to make the launcher throw instead of just
+re-applying the same values.
 
 # CD-read polling probe
 
@@ -156,6 +162,59 @@ specific screen" task in this project:
    boot sequence as probabilistic, not guaranteed; confirm the intended
    target screen was actually reached with a screenshot (not only the
    screen-index poll) before trusting data gathered under it.
+
+# Movie-checkpoint screenshot probe
+
+`tools/bizhawk/probe-movie-screenshots.lua` (2026-08-18) is a third Lua
+probe, run via the default `run-probe.ps1 -LuaPath
+tools/bizhawk/probe-movie-screenshots.lua -Frames 5100`, built to capture a
+screenshot at five fixed frame checkpoints (1200, 2150, 2400, 2700, 5050)
+without needing per-task Lua changes for each new screen of interest.
+
+**`-MoviePath` does not drive input in this build.** A local-only,
+git-ignored `.bk2` recording (`runtime/bizhawk/init_to_gameplay.bk2`, not
+committed — `/runtime/bizhawk/` is fully git-ignored) plays a real
+boot-to-gameplay session. Its `Input Log.txt` fixes every one of the five
+checkpoint frames on an idle input row, which only makes sense if the probe
+was designed to run alongside that exact movie via `run-probe.ps1
+-MoviePath`. This build's CLI accepts `--movie=<path>` without error (its
+help string, extracted from `BizHawk.Client.Common.dll`, confirms the flag:
+"input movie which should be loaded on launch"), and the game hash the movie
+was recorded against (`909E6710`) matches the hash of the disc under test.
+Despite that, two independent runs on 2026-08-18 with `-MoviePath
+.\runtime\bizhawk\init_to_gameplay.bk2` produced byte-for-byte the same five
+screenshots as a zero-input run — including at frame 5050, more than 4,600
+frames past the movie's last recorded button press — meaning the movie loads
+but never actually drives the core's input. The cause was not further
+diagnosed (out of scope once a working alternative was confirmed); treat
+`-MoviePath` as unverified/likely non-functional for this BizHawk
+2.11 x64/Nymashock build rather than assuming it works.
+
+**Working fallback: transcribe the movie into `joypad.set` calls.** The
+`.bk2`'s `Input Log.txt` (inside the zip) is a plain per-frame text table —
+17 digital-button columns plus 4 analog-stick columns, one row per frame.
+The recorded session never moved a stick off neutral (128), and never
+pressed more than one digital button in the same frame, so its full input
+can be losslessly reduced to a run-length-encoded list of `(start_frame,
+end_frame, button)` triples (78 events across the 5,375-frame recording).
+`probe-movie-screenshots.lua` now bakes that literal table in as Lua source
+and replays it with `joypad.set` each frame — the same mechanism already
+proven reliable in this repo for a different broken automation path (see
+"Memory-access watch probe" above on `event.on_bus_*`). This makes the probe
+self-contained: it reproduces the recorded session without needing the
+git-ignored `.bk2` file to be present at all.
+
+**Result, replayed 2026-08-18:** frame 1200 is pre-boot black (as with zero
+input); frame 2150 is the real `CAUTION`/`プレイ上のお願い` attract-loop
+warning screen; frames 2400 and 2700 are both the `DanceDanceRevolution
+5thMIX` title-logo splash (held steady across that span); frame 5050 is a
+`FAILED` gameplay-session result screen. This confirms the joypad-replay
+approach reproduces a genuine boot → attract/warning → title → gameplay →
+result sequence, not just a stuck boot dialog. No screen-flow or symbol-map
+claim is asserted from this alone (no RAM/state evidence was gathered, only
+screenshots at five points); it is recorded here as a working, reproducible
+capture method for future targeted evidence-gathering, the same role
+`probe-inst-demo-watch.lua` fills for byte-level watches.
 
 # Evidence produced
 

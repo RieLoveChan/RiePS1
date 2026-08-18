@@ -77,13 +77,13 @@ if (-not (Test-Path -LiteralPath $sourceConfigPath -PathType Leaf)) {
 }
 $runConfigPath = Join-Path $outputDir 'bizhawk-config.ini'
 $configText = [IO.File]::ReadAllText($sourceConfigPath)
-$singleInstancePattern = [regex]::new('"SingleInstanceMode"\s*:\s*true')
+$singleInstancePattern = [regex]::new('"SingleInstanceMode"\s*:\s*(true|false)')
 if (-not $singleInstancePattern.IsMatch($configText)) {
     throw 'Expected SingleInstanceMode=true in the configured BizHawk profile.'
 }
 $runConfigText = $singleInstancePattern.Replace($configText, '"SingleInstanceMode": false', 1)
 foreach ($setting in @('AutoLoadLastSaveSlot', 'AutoSaveLastSaveSlot')) {
-    $pattern = [regex]::new('"' + $setting + '"\s*:\s*true')
+    $pattern = [regex]::new('"' + $setting + '"\s*:\s*(true|false)')
     if (-not $pattern.IsMatch($runConfigText)) {
         throw "Expected $setting=true in the configured BizHawk profile."
     }
