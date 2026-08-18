@@ -22600,6 +22600,32 @@ FUN_80098050:
     .end FUN_80098050
     .size FUN_80098050, . - FUN_80098050
 
+/* FUN_800980c4 (0x800980c4, 264 bytes): flagged record-field propagator. */
+    .section .text.FUN_800980c4,"ax",@progbits
+    .globl FUN_800980c4
+    .type FUN_800980c4, @function
+    .ent FUN_800980c4
+FUN_800980c4:
+    .word 0x27bdffe0, 0x00805821, 0x00051e83, 0x30620001
+    .word 0x8fa80034, 0x97aa0030, 0x10400039, 0x30650007
+    .word 0x3c028002, 0x244fea48, 0x8dec0000, 0x8ded0004
+    .word 0x8dee0008, 0xafac0000, 0xafad0004, 0xafae0008
+    .word 0x8dec000c, 0x8ded0010, 0x8dee0014, 0xafac000c
+    .word 0xafad0010, 0xafae0014, 0x8dec0018, 0x8ded001c
+    .word 0xafac0018, 0xafad001c, 0x00051080, 0x03a21021
+    .word 0x30630004, 0x8c450000, 0x10600012, 0x00063040
+    .word 0x18c0001f, 0x00001821, 0x31090001, 0x31080002
+    .word 0x2484000e, 0x11200002, 0x00000000, 0xa487000c
+    .word 0x11000002, 0x00000000, 0xa48a0000, 0x24630001
+    .word 0x0066102a, 0x1440fff7, 0x00852021, 0x08026071
+    .word 0x00000000, 0x18c0000e, 0x00001821, 0x31090001
+    .word 0x31080002, 0x2564000e, 0x11200002, 0x00000000
+    .word 0xa4870008, 0x11000002, 0x00000000, 0xa48a0000
+    .word 0x24630001, 0x0066102a, 0x1440fff7, 0x00852021
+    .word 0x03e00008, 0x27bd0020
+    .end FUN_800980c4
+    .size FUN_800980c4, . - FUN_800980c4
+
 /* FUN_80097c38 (0x80097c38, 120 bytes) */
     .section .text.FUN_80097c38,"ax",@progbits
     .globl FUN_80097c38

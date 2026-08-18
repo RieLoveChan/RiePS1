@@ -24036,6 +24036,17 @@
       "built_sha256": "af111c12ccd8f15ff0e654064bb1c262ea59eed2c82a4995c3f174a36e53f2d4"
     },
     {
+      "name": "FUN_800980c4",
+      "address": "0x800980c4",
+      "size": 264,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800980c4",
+      "description": "Flagged record-field propagator: selects a stride from the high flag bits, then conditionally writes two halfword fields across a bounded record run.",
+      "reference_sha256": "6b9abb2bcbb19642fa6c61a403b8ce4008c16d1516ed60b4b4dd180900221211",
+      "built_sha256": "6b9abb2bcbb19642fa6c61a403b8ce4008c16d1516ed60b4b4dd180900221211"
+    },
+    {
       "name": "FUN_80097c38",
       "address": "0x80097c38",
       "size": 120,
