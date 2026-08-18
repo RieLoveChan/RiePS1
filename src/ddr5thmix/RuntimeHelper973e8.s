@@ -7,7 +7,7 @@
 .type FUN_800973e8, @function
 .ent FUN_800973e8
 FUN_800973e8:
-/* Opcode-faithful reconstruction from the lawful executable reference. */
+/* Runtime graphics/resource initializer: synchronize 32 records, choose display mode, publish active pair. */
 /* 0x800973e8 */ .word 0x27bdffb8
 /* 0x800973ec */ .word 0xafb1002c
 /* 0x800973f0 */ .word 0x3c118011

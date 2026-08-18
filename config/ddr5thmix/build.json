@@ -931,7 +931,7 @@
     },
     {
       "name": "runtime-helper-973e8",
-      "description": "Runtime resource, image upload, display setup, and active-buffer helper.",
+      "description": "Runtime graphics/resource initializer, display-mode selection, and active-pair publication.",
       "functions": [
         "FUN_800973e8"
       ]

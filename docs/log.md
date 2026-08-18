@@ -1,5 +1,6 @@
 ## 2026-08-18
 
+* **Semantic reconstruction**: Refined `FUN_800973e8` from a generic resource/display helper to a bounded runtime graphics/resource initializer. The evidence now records its 32-record synchronization loop, conditional `LoadImage`, the observed 320x240 versus 640x480 `GsInitGraph2` branches, two display-descriptor initializations, and active-pair republishing. Resource identity, display-descriptor names, and screen semantics remain explicitly unresolved; the existing 1,420/1,420 byte-match evidence is unchanged.
 * **Semantic reconstruction**: Reclassified `FUN_800972a4` from a generic runtime helper to a bounded runtime resource/state bootstrap. Static evidence now records its reset of `0x800e2a60`, 32 eight-byte records at `0x80116aa0`, index-zero selection from the two observed pointer tables, publication of the selected pair, graphics-state setup, and final `640` request. The resource class and original table names remain explicitly unresolved; the existing 324/324 byte-match evidence is unchanged.
 
 ## 2026-08-16
