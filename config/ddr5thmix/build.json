@@ -24656,6 +24656,17 @@
       "built_sha256": "59eac890e246ec5e48111728f2e2c474eb171fc0bf6038f78eebbe5afa63ebde"
     },
     {
+      "name": "FUN_800991f4",
+      "address": "0x800991f4",
+      "size": 288,
+      "language": "asm",
+      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "section": ".text.FUN_800991f4",
+      "description": "Timing-table interpolator: locates adjacent 16-byte records and linearly interpolates their halfword +8 values.",
+      "reference_sha256": "5997c273b5d46ea799bf74dc597115e6776d8ccdaea63af0ed4a254d14da242f",
+      "built_sha256": "5997c273b5d46ea799bf74dc597115e6776d8ccdaea63af0ed4a254d14da242f"
+    },
+    {
       "name": "FUN_80099314",
       "address": "0x80099314",
       "size": 312,

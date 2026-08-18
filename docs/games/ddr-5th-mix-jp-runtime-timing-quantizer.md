@@ -24,6 +24,9 @@ the global timing state at `0x800f3ac0` and a table rooted at `0x800f3bac`.
 - The returned signed halfword is clamped to a minimum of 20 and a maximum
   of 300. The observed fixed-point form is therefore a bounded quantized
   timing value, but its original unit is not established.
+- The companion `FUN_800991f4` reads the same table for an interpolated
+  halfword value, but it is called from a separate state transition and is
+  not assumed to initialize or mutate this quantizer's table.
 - Direct static callers are `FUN_80096978` at `0x80097000` and
   `FUN_800971e4` at `0x80097204`. The caller-visible ABI is a no-argument
   provider returning a signed `short` in `v0`; any value placed in `a0` by a
