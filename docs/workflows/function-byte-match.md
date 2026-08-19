@@ -67,6 +67,37 @@ pwsh -File tools/build/Invoke-ModuleMatch.ps1 `
 
 `screen-selector` contains twenty-two accepted functions and 2,348 compared bytes.
 
+# Disassembly-transcription sources
+
+Most batches since 2026-08 write `.s` sources by disassembling the reference
+bytes with `mipsel-none-elf-objdump -M no-aliases -EL` and mechanically
+transcribing the result (per-instruction `.L` labels, `$`-prefixed
+registers, local labels for in-range branch/jump targets, raw hex for
+everything else) rather than writing semantic C or hand assembly. This
+sidesteps the extensive GCC-compatibility shimming documented throughout
+this file for small functions, at the cost of not asserting anything about
+original source form (already true of the semantic-assembly approach below).
+
+`tools/build/dis2asm.py` automates this transcription (added 2026-08-18,
+after doing it ad hoc for several batches). Given `0xADDR,SIZE,NAME` triples
+on stdin, it writes one ready-to-register `.s` file per function and prints
+a summary line noting whether the manifest entry needs `"symbols": {}` (true
+whenever the function contains an absolute `j`/`jal` to a local label --
+MIPS J-format encoding depends on where the instruction itself is placed, so
+an unlinked object assembled at address 0 encodes such branches wrong; see
+`FUN_80098880`'s and `FUN_80099b40`'s reconstructions for worked examples).
+It also works around a GNU objdump quirk where 2+ consecutive
+byte-identical instruction words collapse into a bare `...` line in linear
+disassembly, silently dropping their addresses -- first caught via a
+byte-mismatch on `FUN_8004c27c` (1,856 bytes) and `FUN_8007fdec` (8,356
+bytes, this project's largest function) where two repeated `mfhi`/`mflo`
+instructions were silently eaten.
+
+```powershell
+python tools/build/dis2asm.py work/ddr5thmix-extract/exe/SLPM_868.97_1 <outdir>
+# stdin: one "0xADDR,SIZE,NAME" per line
+```
+
 # Accepted functions
 
 ## Screen-selector
