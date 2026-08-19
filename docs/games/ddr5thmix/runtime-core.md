@@ -9,7 +9,7 @@ timestamp: 2026-07-19T00:00:00-04:00
 # Boundary
 
 `runtime-core` connects `main`'s own loop to the completed
-[mode-control module](/docs/games/ddr-5th-mix-jp-mode-control.md). It contains
+[mode-control module](/docs/games/ddr5thmix/mode-control.md). It contains
 `main` itself, the per-frame input adapter, runtime-state reset, top-level
 mode dispatcher, shared frame-state updates, and the CD read-request state
 that feeds the resource-loading path.
@@ -86,7 +86,7 @@ under GNU binutils 2.43.
 
 # Shared layouts and globals
 
-The [global map](/docs/games/ddr-5th-mix-jp-globals.md) now covers sixteen
+The [global map](/docs/games/ddr5thmix/globals.md) now covers sixteen
 fixed symbols/ranges. `DdrModeState` records the verified input-edge blocks,
 counter/direction bytes, screen-range flag, and the 0x140-byte prefix cleared
 by `FUN_8002216c`. That cleared prefix is not evidence that the allocation
@@ -128,5 +128,5 @@ or a whole-executable match.
 # Citations
 
 [1] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)
-[2] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
-[3] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[2] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)
+[3] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)

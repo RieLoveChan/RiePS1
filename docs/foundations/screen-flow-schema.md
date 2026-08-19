@@ -10,7 +10,7 @@ timestamp: 2026-07-13T23:00:00-04:00
 
 Some games expose a single dispatcher function that reads a "mode"/"screen"
 field and branches to per-screen handlers — see
-`/docs/games/ddr-5th-mix-jp-symbol-map.md`'s review of `FUN_80022cf8` for
+`/docs/games/ddr5thmix/symbol-map.md`'s review of `FUN_80022cf8` for
 the discovery that prompted this schema. Once such a dispatcher is found,
 mapping every mode value to what screen it actually represents is one of
 the highest-leverage reverse-engineering tasks available: it turns a flat
@@ -56,4 +56,4 @@ One row per distinct mode/submode value the dispatcher handles.
 # Citations
 
 [1] [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md)
-[2] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[2] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)

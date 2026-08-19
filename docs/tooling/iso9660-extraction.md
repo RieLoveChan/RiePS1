@@ -38,7 +38,7 @@ sector layouts (untested against multi-track discs or Mode 1 images).
 
 `Read-BootExecutable.ps1` only walks the root directory today; PS1 boot
 executables are conventionally at disc root, which held for the one input
-tested (`/docs/games/ddr-5th-mix-jp.md`). `Extract-IsoFile.ps1` traverses
+tested (`/docs/games/ddr5thmix/revision-manifest.md`). `Extract-IsoFile.ps1` traverses
 subdirectories and ignores ISO 9660 `;version` suffixes while matching path
 components case-insensitively.
 

@@ -52,7 +52,7 @@ separate clean-checkout audit may accept and merge it under
 # Exact owned inventory
 
 The owned set is exactly the rows in the fixed-base
-`docs/games/ddr-5th-mix-jp-symbol-map.csv` satisfying all of these predicates:
+`docs/games/ddr5thmix/symbol-map.csv` satisfying all of these predicates:
 
 - `confidence == tool_heuristic`;
 - `source_status == decompiler_output_only`;
@@ -74,7 +74,7 @@ base it contains **297 unique functions / 58,952 bytes** and has SHA-256:
 Reproduce the inventory from the package root:
 
 ```powershell
-$rows = Import-Csv docs/games/ddr-5th-mix-jp-symbol-map.csv |
+$rows = Import-Csv docs/games/ddr5thmix/symbol-map.csv |
     Where-Object {
         $_.confidence -eq 'tool_heuristic' -and
         $_.source_status -eq 'decompiler_output_only' -and
@@ -116,7 +116,7 @@ The delivery diff against the fixed base may modify only:
 
 - `src/ddr5thmix/LibrarySignatureBatch9.s` (new);
 - `config/ddr5thmix/build.json`;
-- `docs/games/ddr-5th-mix-jp-symbol-map.csv`;
+- `docs/games/ddr5thmix/symbol-map.csv`;
 - `README.md`;
 - `docs/log.md`.
 
@@ -125,7 +125,7 @@ function. Do not edit prior reconstructed sources, workflows, tools, maps,
 headers, or game-owned modules. If a specific function's declared boundary
 turns out to be wrong (a real possibility for this package — see the status
 note above), correcting that row's `size` in
-`docs/games/ddr-5th-mix-jp-symbol-map.csv` is in scope and expected; record
+`docs/games/ddr5thmix/symbol-map.csv` is in scope and expected; record
 the correction and its evidence plainly, the same way Batch 4 recorded its
 `SYS_OBJ_181C` immediate fix. Do not expand scope beyond the owned set to
 compensate for a wrong boundary (e.g. do not silently absorb neighboring

@@ -85,7 +85,7 @@ foreach ($entry in @($manifest.functions)) {
         foreach ($symbol in $entry.symbols.PSObject.Properties) { $resolvedSymbols[$symbol.Name] = [string]$symbol.Value }
     }
 }
-$csvPath = Join-Path $repoRoot 'docs/games/ddr-5th-mix-jp-symbol-map.csv'
+$csvPath = Join-Path $repoRoot 'docs/games/ddr5thmix/symbol-map.csv'
 foreach ($row in @(Import-Csv -LiteralPath $csvPath)) {
     if ($row.address -match '^0x8[0-9a-fA-F]{7}$' -and $row.proposed_name -match '^[A-Za-z_][A-Za-z0-9_]*$') {
         if (-not $resolvedSymbols.ContainsKey($row.proposed_name)) { $resolvedSymbols[$row.proposed_name] = $row.address }

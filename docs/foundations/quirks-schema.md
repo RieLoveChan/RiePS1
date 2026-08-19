@@ -11,7 +11,7 @@ timestamp: 2026-07-13T00:00:00-04:00
 PS1-era developers (Konami included) routinely relied on undefined behavior,
 timing assumptions, hand-tuned assembly, or toolchain-specific tricks that a
 "clean" reimplementation would naturally avoid. For a `byte_match` success
-contract (see `/docs/games/ddr-5th-mix-jp.md`), these are not bugs to fix —
+contract (see `/docs/games/ddr5thmix/revision-manifest.md`), these are not bugs to fix —
 they are exact behavior a matching decompilation must reproduce. This schema
 fixes how a finding gets recorded so it survives being useful across games,
 without over-generalizing from a single observation.
@@ -62,4 +62,4 @@ the *target game's own code*.
 # Citations
 
 [1] [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md)
-[2] [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md)
+[2] [/docs/games/ddr5thmix/revision-manifest.md](/docs/games/ddr5thmix/revision-manifest.md)

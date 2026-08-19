@@ -60,10 +60,10 @@ Read these files completely, in this order:
 1. `AGENTS.md`
 2. `spec.md`
 3. `docs/index.md`
-4. `docs/games/ddr-5th-mix-jp.md`
+4. `docs/games/ddr5thmix/revision-manifest.md`
 5. `docs/foundations/linked-object-evidence.md` (the entire document — this
    package's primary unit only extends it)
-6. `docs/games/ddr-5th-mix-jp-symbol-map.md` and its CSV
+6. `docs/games/ddr5thmix/symbol-map.md` and its CSV
 7. `docs/workflows/function-byte-match.md`
 8. `docs/workflows/external-agent-acceptance.md` (the delivery/acceptance gate
    this package's delivery must satisfy)
@@ -115,7 +115,7 @@ all-or-nothing delivery.
 
 Reuse the same hash-gated lawful executable and pinned toolchain already
 established by `/docs/workflows/function-byte-match.md` and
-`/docs/games/ddr-5th-mix-jp.md` — do not introduce a second unpinned copy.
+`/docs/games/ddr5thmix/revision-manifest.md` — do not introduce a second unpinned copy.
 Reuse the existing shared headless Ghidra 12.1.2 project
 (`runtime/ghidra/projects/ddr5thmix`, program `SLPM_868.97_1`) with
 `tools/ghidra/scripts/DumpBytes.java`, `DumpFunctionDetail.java`,
@@ -288,7 +288,7 @@ concrete, cited result (including if that result is itself inconclusive).
 
 ## Unit E — Remaining verified-global-layout semantics (README item 1)
 
-Survey `docs/games/ddr-5th-mix-jp-globals.md`/`.csv` and the `mode_control.h`
+Survey `docs/games/ddr5thmix/globals.md`/`.csv` and the `mode_control.h`
 partial state layouts for any remaining observed byte offset that has a
 concrete reader or writer but no assigned name/semantics yet, beyond the
 already-resolved `+0x09`/`+0x17`/`+0x2c` and the already-exhausted `+0x2e`

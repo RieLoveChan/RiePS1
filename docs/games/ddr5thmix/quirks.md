@@ -7,8 +7,8 @@ timestamp: 2026-07-15T16:00:00-04:00
 ---
 
 Schema: [/docs/foundations/quirks-schema.md](/docs/foundations/quirks-schema.md).
-Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
-Symbol map: [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md).
+Revision: [/docs/games/ddr5thmix/revision-manifest.md](/docs/games/ddr5thmix/revision-manifest.md).
+Symbol map: [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md).
 
 Manual review of the PsyQ crt0 chain and `main`'s game loop (see the
 symbol map) turned up nothing outside standard PsyQ 4.4.0 behavior —
@@ -32,7 +32,7 @@ usage, or similar.
 (includes a literal `"TEST_MODE"` entry); the still-unresolved question
 of how mode `0x10`/submode `0x01`'s interactive menu (`FUN_80022b30`) is
 ever actually reached in play (see
-`/docs/games/ddr-5th-mix-jp-screen-flow.md`'s open structural
+`/docs/games/ddr5thmix/screen-flow.md`'s open structural
 questions).
 
 **Correction 2026-07-15**: an earlier version of this entry also cited

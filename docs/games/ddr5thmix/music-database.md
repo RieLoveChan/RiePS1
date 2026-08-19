@@ -2,13 +2,13 @@
 type: Data Map
 title: Dance Dance Revolution 5th Mix (Japan) — Linked Music Database
 description: Reproducible map of 47 playable music_info records and their 50-slot linked resource index in SLPM-86897.
-resource: /docs/games/ddr-5th-mix-jp-music-database.csv
+resource: /docs/games/ddr5thmix/music-database.csv
 tags: [ps1, ddr5thmix, music-database, data-map, reverse-engineering]
 timestamp: 2026-07-29T18:00:00-04:00
 ---
 
-Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
-Data: [ddr-5th-mix-jp-music-database.csv](/docs/games/ddr-5th-mix-jp-music-database.csv).
+Revision: [/docs/games/ddr5thmix/revision-manifest.md](/docs/games/ddr5thmix/revision-manifest.md).
+Data: [ddr5thmix/music-database.csv](/docs/games/ddr5thmix/music-database.csv).
 
 # Result
 
@@ -38,7 +38,7 @@ Export the table from a lawful local extraction:
 ```powershell
 .\tools\ddr5thmix\Export-MusicDatabase.ps1 `
   -ExePath <path-to-SLPM_868.97> `
-  -OutCsv docs/games/ddr-5th-mix-jp-music-database.csv `
+  -OutCsv docs/games/ddr5thmix/music-database.csv `
   -OutJson work/ddr5thmix-extract/music-database.json
 ```
 

@@ -129,7 +129,7 @@ The twenty-two-function unit implements the enter/update/exit callback hierarchy
 | `FUN_80075af0` | 8 | `6d64edf91449c1b17746c1ef18afa2eb25c70bdf1322ab3df5a2630993b7e2f1` |
 | `FUN_80075af8` | 140 | `51814c35d43b112da91fe0ffd09e73e92b2bd793d7fa297da2915d1220a1d36b` |
 
-See the [screen-selector concept](/docs/games/ddr-5th-mix-jp-screen-selector.md)
+See the [screen-selector concept](/docs/games/ddr5thmix/screen-selector.md)
 for callback structure, router logic, and evidence.
 
 ## Runtime-core
@@ -148,7 +148,7 @@ flag. GNU binutils 2.43 matches all 2,232 selected bytes:
 | `FUN_8009971c` | 84 | `9b97a71eb74d113a9897b4374f924b4f81698830977427ba462d31f989481ce6` |
 | `main` | 408 | `275cc516d5a5aca266a3d7789aadf4e22815bfc6775003b54bb9ec8fd7321303` |
 
-See the [runtime-core concept](/docs/games/ddr-5th-mix-jp-runtime-core.md)
+See the [runtime-core concept](/docs/games/ddr5thmix/runtime-core.md)
 for boundary, negative attempts, global-layout evidence, and limitations.
 
 ## Completed `0x800230cc–0x800236cc` range

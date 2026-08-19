@@ -28,9 +28,9 @@ Read these files completely, in this order:
 1. `AGENTS.md`
 2. `spec.md`
 3. `docs/index.md`
-4. `docs/games/ddr-5th-mix-jp.md`
-5. `docs/games/ddr-5th-mix-jp-screen-flow.md`
-6. `docs/games/ddr-5th-mix-jp-symbol-map.md`
+4. `docs/games/ddr5thmix/revision-manifest.md`
+5. `docs/games/ddr5thmix/screen-flow.md`
+6. `docs/games/ddr5thmix/symbol-map.md`
 7. `docs/tooling/ghidra-setup.md`
 8. `docs/workflows/function-byte-match.md`
 9. `docs/foundations/legal-provenance.md`
@@ -151,7 +151,7 @@ includes, adapting names only when repository conventions require it:
 
 - `config/ddr5thmix/inst-demo-overlay.json` or an equivalent manifest section;
 - `src/ddr5thmix/overlays/inst_demo/` sources and headers;
-- `docs/games/ddr-5th-mix-jp-inst-demo-overlay.md` as the main OKF concept;
+- `docs/games/ddr5thmix/inst-demo-overlay.md` as the main OKF concept;
 - a machine-readable overlay function/range map under `docs/games/`;
 - overlay-specific verification scripts under `tools/build/` if the existing
   verifier cannot safely handle raw overlay input;

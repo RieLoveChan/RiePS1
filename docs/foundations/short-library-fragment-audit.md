@@ -10,7 +10,7 @@ timestamp: 2026-08-03T00:00:00-04:00
 
 The 14 remaining real-address rows are not 14 reconstruction targets. One is a one-byte data/object marker and the other 13 are four-byte pieces emitted by the `ghidra_psx_ldr` PsyQ-signature/object annotation. Twelve of those 13 pieces contain ordinary MIPS instruction words inside a coherent `<prefix>_OBJ_<offset>` run. One is a zero word used as alignment/padding. None is promoted to an independently callable function.
 
-The lawful input is `work/ddr5thmix-extract/exe/SLPM_868.97_1`, SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`. The address-to-file mapping is `file_offset = address - 0x8001a800 + 2048`. The symbol-map input is `docs/games/ddr-5th-mix-jp-symbol-map.csv` at the audited working-tree revision. No reference bytes are committed.
+The lawful input is `work/ddr5thmix-extract/exe/SLPM_868.97_1`, SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`. The address-to-file mapping is `file_offset = address - 0x8001a800 + 2048`. The symbol-map input is `docs/games/ddr5thmix/symbol-map.csv` at the audited working-tree revision. No reference bytes are committed.
 
 # Classification
 

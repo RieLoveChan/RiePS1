@@ -10,8 +10,8 @@ param(
 <#
 Verifies the structural claims made for the previously-unresolved
 0x801e6b6c-0x801e6e57 (748-byte) data range of the inst-demo overlay
-(see /docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv and
-/docs/games/ddr-5th-mix-jp-inst-demo-overlay.md). Every claim here is
+(see /docs/games/ddr5thmix/inst-demo-overlay-map.csv and
+/docs/games/ddr5thmix/inst-demo-overlay.md). Every claim here is
 purely structural (offsets, sizes, zero/nonzero state, pointer-table
 arithmetic) and never asserts or embeds the literal non-zero byte
 content of any data table, per this project's ban on tracking
@@ -100,7 +100,7 @@ if ($hash -ne $expectedSha256) {
 }
 
 if (-not (Test-Path -LiteralPath $ExePath)) {
-    throw "Main executable not found at $ExePath. Extract it from the lawful input per docs/games/ddr-5th-mix-jp.md."
+    throw "Main executable not found at $ExePath. Extract it from the lawful input per docs/games/ddr5thmix/revision-manifest.md."
 }
 $exeBytes = [System.IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $ExePath).Path)
 $exeHash = [System.BitConverter]::ToString($hasher.ComputeHash($exeBytes)).Replace('-', '').ToLowerInvariant()

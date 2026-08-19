@@ -2,7 +2,7 @@
 type: Global Map
 title: DDR 5th Mix (Japan) Global Map
 description: Evidence-qualified fixed-address data symbols and partial pointed-to layouts for the target executable.
-resource: /docs/games/ddr-5th-mix-jp-globals.csv
+resource: /docs/games/ddr5thmix/globals.csv
 tags: [ps1, ddr5thmix, globals, reverse-engineering]
 timestamp: 2026-07-19T00:00:00-04:00
 ---
@@ -152,7 +152,7 @@ not tool-assigned labels. Index 0 is the literal sentinel `NONE`. Entries
 (`ABA_BLUE`/`BBA_BLUE`/... through `..._GREN`/`..._REDD`/`..._YELO`).
 Entries 41-131 are individual named screen/asset resources, several of which
 directly confirm identities that were previously only `suspected` or
-`unverified` in [screen-flow](/docs/games/ddr-5th-mix-jp-screen-flow.md) and
+`unverified` in [screen-flow](/docs/games/ddr5thmix/screen-flow.md) and
 elsewhere: `WARN_16` (WARNING), `CAUT_25` (CAUTION), `KLOGO_16` (KONAMI
 logo), `TITLE_25`, `RSLBK_16`/`RSLDL_25`/`RSLOB_25` (RESULT),
 `MSLBK_16`/`MSLOB_25`/`MSLTA_25`/`MSLTT_16` (MUSIC SELECT),
@@ -199,5 +199,5 @@ to reproduce the byte evidence.
 
 # Citations
 
-[1] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
-[2] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
+[1] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)
+[2] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)

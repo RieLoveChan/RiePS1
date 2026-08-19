@@ -20,4 +20,4 @@ The remaining 167 `library_signature` rows after Batch 12 are therefore not all 
 
 # Evidence
 
-The classification is reproduced from `docs/games/ddr-5th-mix-jp-symbol-map.csv` by selecting `address` values beginning with `0x2000`, `proposed_name` beginning with `gte_`, and `confidence = library_signature`. The real-address short-row inventory is the complementary `library_signature` set with `size <= 4` and no `0x2000` prefix.
+The classification is reproduced from `docs/games/ddr5thmix/symbol-map.csv` by selecting `address` values beginning with `0x2000`, `proposed_name` beginning with `gte_`, and `confidence = library_signature`. The real-address short-row inventory is the complementary `library_signature` set with `size <= 4` and no `0x2000` prefix.

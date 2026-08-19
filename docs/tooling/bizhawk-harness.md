@@ -46,7 +46,7 @@ script the launcher autoloads; it defaults to `tools/bizhawk/probe.lua` (the
 smoke-test probe below) but any script following the same
 `RIE_BIZHAWK_OUTPUT`/`RIE_BIZHAWK_FRAMES`/`probe-stage.log`/`report.json`
 convention can be pointed at instead, e.g.
-`tools/bizhawk/probe-inst-demo-watch.lua` (see "Memory-access watch probe").
+`tools/ddr5thmix/probe-inst-demo-watch.lua` (see "Memory-access watch probe").
 
 BizHawk 2.11 opens its Lua Console while the probe runs. Do not add
 `--chromeless`: in the tested Windows release that combination prevented the
@@ -70,7 +70,7 @@ re-applying the same values.
 
 # CD-read polling probe
 
-`tools/bizhawk/probe-cd-reads.lua` polls the two runtime fields written by the
+`tools/ddr5thmix/probe-cd-reads.lua` polls the two runtime fields written by the
 verified CD request path: current LBA at virtual `0x800e2958` and requested
 byte size at `0x800e2940` (both addressed as masked Main RAM offsets). It
 emits an event only when either value changes. It can be launched without a new
@@ -97,7 +97,7 @@ without the core accepting new input that frame). Hold any simulated press
 for at least ~10 frames to make sure the core actually registers it, then
 release. Two-frame presses did work in initial testing here, but that was
 not a reliable general result -- this rule is now followed by
-`tools/bizhawk/probe-inst-demo-watch.lua`'s boot-setup dialog presses.
+`tools/ddr5thmix/probe-inst-demo-watch.lua`'s boot-setup dialog presses.
 
 Real PSX joypad button names exposed to Lua on this core have **no `"P1 "`
 prefix** and use the bare PlayStation glyphs: `joypad.get(1)` on this build
@@ -111,11 +111,11 @@ the button simply never presses).
 
 # Memory-access watch probe
 
-`tools/bizhawk/probe-inst-demo-watch.lua` (2026-07-23) is a second Lua
-probe, run via `run-probe.ps1 -LuaPath tools/bizhawk/probe-inst-demo-watch.lua
+`tools/ddr5thmix/probe-inst-demo-watch.lua` (2026-07-23) is a second Lua
+probe, run via `run-probe.ps1 -LuaPath tools/ddr5thmix/probe-inst-demo-watch.lua
 -Frames 13000`, built to gather dynamic (runtime) evidence about specific
 byte ranges in the DDR 5th Mix HOW TO PLAY overlay
-(`docs/games/ddr-5th-mix-jp-inst-demo-overlay.md`'s "Third pass"). It is a
+(`docs/games/ddr5thmix/inst-demo-overlay.md`'s "Third pass"). It is a
 reusable pattern for any future "watch this address range during this
 specific screen" task in this project:
 
@@ -130,7 +130,7 @@ specific screen" task in this project:
    exception to an otherwise zero-input run.
 2. **Screen-index polling, not save-state seeking.** The probe locates its
    target window by polling the documented screen-index global
-   `DAT_800f2908` (`docs/games/ddr-5th-mix-jp-globals.md`) each frame via a
+   `DAT_800f2908` (`docs/games/ddr5thmix/globals.md`) each frame via a
    plain `memory.read_u16_le`, rather than by a fixed frame count, and only
    pays for expensive per-byte watching once the target screen index is
    actually observed.
@@ -165,9 +165,9 @@ specific screen" task in this project:
 
 # Movie-checkpoint screenshot probe
 
-`tools/bizhawk/probe-movie-screenshots.lua` (2026-08-18) is a third Lua
+`tools/ddr5thmix/probe-movie-screenshots.lua` (2026-08-18) is a third Lua
 probe, run via the default `run-probe.ps1 -LuaPath
-tools/bizhawk/probe-movie-screenshots.lua -Frames 5100`, built to capture a
+tools/ddr5thmix/probe-movie-screenshots.lua -Frames 5100`, built to capture a
 screenshot at five fixed frame checkpoints (1200, 2150, 2400, 2700, 5050)
 without needing per-task Lua changes for each new screen of interest.
 

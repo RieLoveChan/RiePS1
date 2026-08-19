@@ -26,11 +26,11 @@ Read these files completely, in this order:
 1. `AGENTS.md`
 2. `spec.md`
 3. `docs/index.md`
-4. `docs/games/ddr-5th-mix-jp.md`
-5. `docs/games/ddr-5th-mix-jp-screen-flow.md`, especially "State-2 game
+4. `docs/games/ddr5thmix/revision-manifest.md`
+5. `docs/games/ddr5thmix/screen-flow.md`, especially "State-2 game
    session and its six-state selector"
-6. `docs/games/ddr-5th-mix-jp-symbol-map.md`
-7. `docs/games/ddr-5th-mix-jp-globals.md`
+6. `docs/games/ddr5thmix/symbol-map.md`
+7. `docs/games/ddr5thmix/globals.md`
 8. `docs/workflows/function-byte-match.md`
 9. `docs/foundations/legal-provenance.md`
 
@@ -129,7 +129,7 @@ this module.
 
 # Documentation and shared-file coordination
 
-Create `docs/games/ddr-5th-mix-jp-screen-selector.md` as an OKF concept and
+Create `docs/games/ddr5thmix/screen-selector.md` as an OKF concept and
 link it from `docs/games/index.md`. Update the symbol-map CSV/concept,
 function-byte-match playbook, nearest `log.md`, global map if new fixed
 symbols are required, and README totals only after verification.

@@ -10,10 +10,10 @@ timestamp: 2026-07-23T00:00:00-04:00
 
 `game-session-endgame` contains all eighteen enter/update/exit callbacks for
 states 8-13 of the 15-state gameplay session. It complements the exact
-[lifecycle router](/docs/games/ddr-5th-mix-jp-game-session-router.md) (states
+[lifecycle router](/docs/games/ddr5thmix/game-session-router.md) (states
 14 and the outer wrappers), the state 0-3
-[opening module](/docs/games/ddr-5th-mix-jp-game-session-opening.md), and the
-state 4-7 [gameplay module](/docs/games/ddr-5th-mix-jp-game-session-gameplay.md).
+[opening module](/docs/games/ddr5thmix/game-session-opening.md), and the
+state 4-7 [gameplay module](/docs/games/ddr5thmix/game-session-gameplay.md).
 Together these four modules complete the entire 15-state child graph (states
 0-14), matching all 45 enter/update/exit callback-table entries the router's
 table inventory reproduced.
@@ -21,7 +21,7 @@ table inventory reproduced.
 Boundaries and disassembly came from `DumpFunctionDetail.java` against the
 shared Ghidra 12.1.2 project's `SLPM_868.97_1` program, reconfirming (with no
 drift) the same-day static-review boundaries already recorded in
-[the screen-flow document](/docs/games/ddr-5th-mix-jp-screen-flow.md#result-and-end-of-session-branches)
+[the screen-flow document](/docs/games/ddr5thmix/screen-flow.md#result-and-end-of-session-branches)
 back on 2026-07-15.
 
 | State | Screen/role | Enter | Update | Exit | Bytes |
@@ -140,7 +140,7 @@ no gameplay-session callback remains unreconstructed.
 
 # Citations
 
-[1] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
-[2] [/docs/games/ddr-5th-mix-jp-game-session-router.md](/docs/games/ddr-5th-mix-jp-game-session-router.md)
-[3] [/docs/games/ddr-5th-mix-jp-game-session-gameplay.md](/docs/games/ddr-5th-mix-jp-game-session-gameplay.md)
+[1] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)
+[2] [/docs/games/ddr5thmix/game-session-router.md](/docs/games/ddr5thmix/game-session-router.md)
+[3] [/docs/games/ddr5thmix/game-session-gameplay.md](/docs/games/ddr5thmix/game-session-gameplay.md)
 [4] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)

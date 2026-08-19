@@ -4,7 +4,7 @@ param(
     [ValidateScript({ Test-Path -LiteralPath $_ -PathType Leaf })]
     [string]$ExePath,
 
-    [string]$CsvPath = "docs/games/ddr-5th-mix-jp-symbol-map.csv",
+    [string]$CsvPath = "docs/games/ddr5thmix/symbol-map.csv",
     [string]$ManifestPath = "config/ddr5thmix/build.json",
     [string]$CodeStart = "8001a800",
     [string]$CodeEnd = "8011b000",

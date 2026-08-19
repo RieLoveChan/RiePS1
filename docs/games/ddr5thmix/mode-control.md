@@ -11,7 +11,7 @@ timestamp: 2026-08-16T00:00:00-04:00
 `mode-control` is the first named game-owned reconstruction unit in
 `/config/ddr5thmix/build.json`. It groups state mutation and small dispatcher
 handlers that share the globals and partial layouts in the
-[global map](/docs/games/ddr-5th-mix-jp-globals.md). It deliberately excludes
+[global map](/docs/games/ddr5thmix/globals.md). It deliberately excludes
 large screen implementations and PsyQ library functions.
 
 | Function | Bytes | Role |
@@ -109,4 +109,4 @@ or whole-executable identity.
 # Citations
 
 [1] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)
-[2] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[2] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)

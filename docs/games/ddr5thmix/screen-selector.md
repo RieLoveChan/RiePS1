@@ -51,6 +51,6 @@ Substate 3 (`MUSIC SEL`) additionally owns three helper subroutines: `FUN_800755
 
 # Citations
 
-[1] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
-[2] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[1] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)
+[2] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)
 [3] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)

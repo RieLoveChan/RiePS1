@@ -275,7 +275,7 @@ respectively, `502be280c00d0b1348da587d428d84b44187df8de0ffd33b28a1596c0bace070`
 Re-running the tracked checker:
 
 ```powershell
-pwsh -NoProfile -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -CsvPath docs/games/ddr-5th-mix-jp-symbol-map.csv -Prefix SYS -ObjectStart ([Convert]::ToInt64('800381e8',16)) -ObjectEnd ([Convert]::ToInt64('8003b114',16))
+pwsh -NoProfile -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -CsvPath docs/games/ddr5thmix/symbol-map.csv -Prefix SYS -ObjectStart ([Convert]::ToInt64('800381e8',16)) -ObjectEnd ([Convert]::ToInt64('8003b114',16))
 ```
 
 produces `span_bytes: 12076`, `obj_rows: 68`,
@@ -618,7 +618,7 @@ byte-level scan (not sampling) found:
 - **One dominant zero run of 222,455 bytes at `0x800e2931`–`0x8011acc8`.**
   This closely matches — but does not exactly reproduce — the BSS-clear
   range already documented in this project's manual review of `start`
-  (`docs/games/ddr-5th-mix-jp-symbol-map.csv`, row `0x80020700`): "zeroes
+  (`docs/games/ddr5thmix/symbol-map.csv`, row `0x80020700`): "zeroes
   `DAT_800e2938`..`UNK_80118e28`", i.e. `0x800e2938`–`0x80118e28`
   (222,448 bytes). The scanned run's start is 7 bytes earlier and its end is
   7,840 bytes later than that documented range. The two figures agree to
@@ -860,7 +860,7 @@ To maintain evidentiary rigor across all future agent work, object boundary clai
 # Reproduction
 
 - Address/offset/gap arithmetic: read `/config/ddr5thmix/build.json` and
-  `/docs/games/ddr-5th-mix-jp-symbol-map.csv` directly; every figure above is
+  `/docs/games/ddr5thmix/symbol-map.csv` directly; every figure above is
   computed from those two tracked files alone.
 - Byte-content spot checks: `tools/ghidra/scripts/DumpBytes.java` against the
   shared headless project (`runtime/ghidra/projects/ddr5thmix`, program
@@ -871,7 +871,7 @@ To maintain evidentiary rigor across all future agent work, object boundary clai
 # Citations
 
 [1] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)
-[2] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[2] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)
 [3] [/docs/tooling/ghidra-setup.md](/docs/tooling/ghidra-setup.md)
 [4] [ghidra_psx_ldr README](https://github.com/lab313ru/ghidra_psx_ldr/blob/master/README.md)
 [5] [/docs/workflows/decompile-recompile.md](/docs/workflows/decompile-recompile.md)

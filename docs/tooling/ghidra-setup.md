@@ -147,7 +147,7 @@ and command-list analysis are recorded in the game's screen-flow concept.
 
 # First-run result: Dance Dance Revolution 5th Mix (Japan)
 
-Importing `/docs/games/ddr-5th-mix-jp.md`'s boot executable
+Importing `/docs/games/ddr5thmix/revision-manifest.md`'s boot executable
 (`SLPM_868.97;1`) with the PSX loader and full auto-analysis (~224s,
 dominated by the 163s PsyQ Signatures analyzer) produced:
 
@@ -156,7 +156,7 @@ dominated by the 163s PsyQ Signatures analyzer) produced:
 - **PsyQ Version `4.4.0`**, auto-detected by ghidra_psx_ldr's bundled
   signature database (`data/psyq440.gdt`). This resolves the manifest's
   previously "unconfirmed" note about the original toolchain lineage — see
-  `/docs/games/ddr-5th-mix-jp.md`.
+  `/docs/games/ddr5thmix/revision-manifest.md`.
 - Memory blocks matching the standard PS1 map (scratchpad, MCTRL/IO ports,
   DMA channels, timers, CDROM/GPU/MDEC/SPU registers, a synthetic GTE macro
   segment at `0x20000000` with named `gte_*` library functions, and RAM
@@ -168,7 +168,7 @@ dominated by the 163s PsyQ Signatures analyzer) produced:
 The Ghidra project itself lives at `runtime/ghidra/projects/ddr5thmix.gpr`
 (git-ignored via the existing `*.gpr`/`*.rep/` patterns) and is not part of
 the repository; reproduce it from the CHD with the extraction commands in
-`/docs/games/ddr-5th-mix-jp.md` plus `Import-BootExecutable.ps1`.
+`/docs/games/ddr5thmix/revision-manifest.md` plus `Import-BootExecutable.ps1`.
 
 # Citations
 

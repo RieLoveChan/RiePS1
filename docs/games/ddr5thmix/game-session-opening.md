@@ -10,7 +10,7 @@ timestamp: 2026-07-19T00:00:00-04:00
 
 `game-session-opening` contains all twelve enter/update/exit callbacks for
 states 0–3 of the 15-state gameplay session. It complements the exact
-[lifecycle router](/docs/games/ddr-5th-mix-jp-game-session-router.md).
+[lifecycle router](/docs/games/ddr5thmix/game-session-router.md).
 
 | State | Screen/role | Enter | Update | Exit | Bytes |
 |---:|---|---|---|---|---:|
@@ -26,7 +26,7 @@ Total: twelve functions and 1,736 selected bytes.
 Added 2026-08-18. `FUN_8006ede8` (state 0's `PLAY START` update, above)
 conditionally calls `FUN_8004d0a0`, which loads and draws resource `caut_25`
 through the resource-name-to-index/index-to-address pair
-`FUN_800985c8`/`FUN_80098880` (see [globals](/docs/games/ddr-5th-mix-jp-globals.md)'s
+`FUN_800985c8`/`FUN_80098880` (see [globals](/docs/games/ddr5thmix/globals.md)'s
 "Resource-name table"). The call is gated on a value derived from this
 callback's own elapsed-frame counter at offset `+0x74` (the same field the
 existing `slti ...,0xde`/`0xdf` "permits Start/Circle to skip ahead" checks
@@ -34,7 +34,7 @@ read), so the caution draw is a timed early-transition element of the
 `PLAY START` sequence, not a persistent overlay for its whole duration.
 
 This is unrelated to the attract loop's own WARNING/"Caution" screen (see
-[screen-flow](/docs/games/ddr-5th-mix-jp-screen-flow.md) state 0), which
+[screen-flow](/docs/games/ddr5thmix/screen-flow.md) state 0), which
 loads its six-resource presentation through a different, numbered-ID path
 (`FUN_8004c27c`) and never touches `FUN_800985c8`. `caut_25` names a
 resource the game itself calls "caution", used specifically during the
@@ -80,5 +80,5 @@ object layout, original source spelling, or a whole-executable match.
 
 # Citations
 
-[1] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
+[1] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)
 [2] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)

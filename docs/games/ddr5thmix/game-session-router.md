@@ -9,7 +9,7 @@ timestamp: 2026-07-19T00:00:00-04:00
 # Boundary
 
 `game-session-router` is the lifecycle shell around the 15-state gameplay
-session documented in the [screen-flow concept](/docs/games/ddr-5th-mix-jp-screen-flow.md).
+session documented in the [screen-flow concept](/docs/games/ddr5thmix/screen-flow.md).
 It contains the three outer-state-2 wrappers, the child initializer/tick/cleanup
 triple, and all three callbacks for terminal child state 14.
 
@@ -91,5 +91,5 @@ flow evidence.
 # Citations
 
 [1] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)
-[2] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
-[3] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
+[2] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)
+[3] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)

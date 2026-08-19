@@ -10,13 +10,13 @@ Schema: [/docs/foundations/quirks-schema.md](/docs/foundations/quirks-schema.md)
 
 No entries yet — this project has reverse-engineered exactly one game so
 far ([Dance Dance Revolution 5th Mix
-(Japan)](/docs/games/ddr-5th-mix-jp-quirks.md)), and per the schema,
+(Japan)](/docs/games/ddr5thmix/quirks.md)), and per the schema,
 promotion here requires a pattern independently observed in a **second**
 game or backed by an external citation, not a single game's evidence.
 
 When a second Konami PS1 title enters this project and a quirk from its
 game-scoped log matches something already seen in
-[ddr-5th-mix-jp-quirks.md](/docs/games/ddr-5th-mix-jp-quirks.md) (or vice
+[ddr5thmix/quirks.md](/docs/games/ddr5thmix/quirks.md) (or vice
 versa), promote it here: keep the generalized description and evidence
 links to both games' quirk logs, and set `status: confirmed_shared` in both
 game-scoped entries.

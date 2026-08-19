@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$CsvPath = "docs/games/ddr-5th-mix-jp-symbol-map.csv",
+    [string]$CsvPath = "docs/games/ddr5thmix/symbol-map.csv",
     [string]$Prefix = "SYS",
     [int64]$ObjectStart = [Convert]::ToInt64("800381e8", 16),
     [int64]$ObjectEnd = [Convert]::ToInt64("8003b114", 16)

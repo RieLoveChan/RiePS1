@@ -10,12 +10,12 @@ timestamp: 2026-07-23T00:00:00-04:00
 
 `game-session-gameplay` contains all twelve enter/update/exit callbacks for
 states 4–7 of the 15-state gameplay session. It complements the exact
-[lifecycle router](/docs/games/ddr-5th-mix-jp-game-session-router.md) and the
-state 0–3 [opening module](/docs/games/ddr-5th-mix-jp-game-session-opening.md).
+[lifecycle router](/docs/games/ddr5thmix/game-session-router.md) and the
+state 0–3 [opening module](/docs/games/ddr5thmix/game-session-opening.md).
 Boundaries and disassembly came from `DumpFunctionDetail.java` against the
 shared Ghidra 12.1.2 project's `SLPM_868.97_1` program, first confirmed by the
 same-day structural inventory in
-[the screen-flow document](/docs/games/ddr-5th-mix-jp-screen-flow.md#structural-inventory-prepareintrodancingstage-end-callbacks-2026-07-23).
+[the screen-flow document](/docs/games/ddr5thmix/screen-flow.md#structural-inventory-prepareintrodancingstage-end-callbacks-2026-07-23).
 
 | State | Screen/role | Enter | Update | Exit | Bytes |
 |---:|---|---|---|---|---:|
@@ -109,6 +109,6 @@ object layout, original source spelling, or a whole-executable match.
 
 # Citations
 
-[1] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
-[2] [/docs/games/ddr-5th-mix-jp-game-session-opening.md](/docs/games/ddr-5th-mix-jp-game-session-opening.md)
+[1] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)
+[2] [/docs/games/ddr5thmix/game-session-opening.md](/docs/games/ddr5thmix/game-session-opening.md)
 [3] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)

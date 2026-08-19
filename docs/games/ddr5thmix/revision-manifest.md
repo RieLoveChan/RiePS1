@@ -7,13 +7,13 @@ timestamp: 2026-07-13T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/revision-manifest-schema.md](/docs/foundations/revision-manifest-schema.md).
-Symbol map: [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md).
-Global map: [/docs/games/ddr-5th-mix-jp-globals.md](/docs/games/ddr-5th-mix-jp-globals.md).
-Mode-control module: [/docs/games/ddr-5th-mix-jp-mode-control.md](/docs/games/ddr-5th-mix-jp-mode-control.md).
-Runtime-core module: [/docs/games/ddr-5th-mix-jp-runtime-core.md](/docs/games/ddr-5th-mix-jp-runtime-core.md).
-Quirk log: [/docs/games/ddr-5th-mix-jp-quirks.md](/docs/games/ddr-5th-mix-jp-quirks.md).
-Screen flow: [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md).
-Music database: [/docs/games/ddr-5th-mix-jp-music-database.md](/docs/games/ddr-5th-mix-jp-music-database.md).
+Symbol map: [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md).
+Global map: [/docs/games/ddr5thmix/globals.md](/docs/games/ddr5thmix/globals.md).
+Mode-control module: [/docs/games/ddr5thmix/mode-control.md](/docs/games/ddr5thmix/mode-control.md).
+Runtime-core module: [/docs/games/ddr5thmix/runtime-core.md](/docs/games/ddr5thmix/runtime-core.md).
+Quirk log: [/docs/games/ddr5thmix/quirks.md](/docs/games/ddr5thmix/quirks.md).
+Screen flow: [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md).
+Music database: [/docs/games/ddr5thmix/music-database.md](/docs/games/ddr5thmix/music-database.md).
 Matching build: [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md).
 
 # Revision identity

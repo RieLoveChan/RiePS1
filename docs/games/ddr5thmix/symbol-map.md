@@ -2,14 +2,14 @@
 type: Symbol Map
 title: Dance Dance Revolution 5th Mix (Japan) — Symbol Map
 description: Function symbol map for SLPM_868.97;1 with confidence tiers and documented startup, input, and nested state-machine review evidence.
-resource: /docs/games/ddr-5th-mix-jp-symbol-map.csv
+resource: /docs/games/ddr5thmix/symbol-map.csv
 tags: [ps1, ddr5thmix, symbol-map, ghidra, psyq]
 timestamp: 2026-07-25T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md).
-Revision: [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md).
-Data: [ddr-5th-mix-jp-symbol-map.csv](/docs/games/ddr-5th-mix-jp-symbol-map.csv)
+Revision: [/docs/games/ddr5thmix/revision-manifest.md](/docs/games/ddr5thmix/revision-manifest.md).
+Data: [ddr5thmix/symbol-map.csv](/docs/games/ddr5thmix/symbol-map.csv)
 (2,124 rows, one per function — 2,026 from the original bulk export, 92 added
 2026-07-15 for indirect-call-only targets, and six selector exit/terminal
 callbacks added 2026-07-19 after inventorying all three selector tables).
@@ -54,7 +54,7 @@ this project actually asserts.
 - **824 rows** inside the real code segment (`0x8001a800`–`0x8011afff`)
   matched against the PsyQ `4.4.0` signature database. The first several are
   a strong sanity check that the PsyQ 4.4.0 identification in
-  `/docs/games/ddr-5th-mix-jp.md` is correct: `start` (`0x80020700`, the
+  `/docs/games/ddr5thmix/revision-manifest.md` is correct: `start` (`0x80020700`, the
   entry point — matches the PS-X EXE header's `pc0` exactly), `stup0`,
   `stup1`, and `__main` are the standard PsyQ crt0/C-runtime startup routine
   names, not game-specific code. One row, `2MBYTE_OBJ_B4` at `0x800207ac`
@@ -87,7 +87,7 @@ for one or more addresses). All four promoted to `confidence = manual`,
 
 So the full boot sequence is `start → stup1 → InitHeap → stup0 → main →
 trap`, entirely standard PsyQ 4.4.0 boilerplate — independent corroboration
-that the toolchain identification in `/docs/games/ddr-5th-mix-jp.md` is
+that the toolchain identification in `/docs/games/ddr5thmix/revision-manifest.md` is
 correct, since these names and this exact sequence are PsyQ-specific, not
 generic guesses.
 
@@ -656,7 +656,7 @@ promoted to `confidence = manual`.
   `FUN_8007eea8` is exactly `jr ra; nop`; it cannot load or parse the named
   file. The path is a retained source/build marker, while the 47-record
   runtime music table is already linked at `DAT_800df3d8`; see
-  `/docs/games/ddr-5th-mix-jp-music-database.md`. The function also
+  `/docs/games/ddr5thmix/music-database.md`. The function also
   initializes two per-something record
   structures (stride `0x9284` bytes — plausibly one per player), then
   calls six more unreviewed functions and a function pointer.
@@ -840,7 +840,7 @@ game-option/settings names ("Diet Mode" is a real, documented DDR feature
 — a calorie-tracking workout mode). Not yet followed up.
 
 **Direct corroboration of the repository owner's domain-knowledge
-account** (see `/docs/games/ddr-5th-mix-jp-screen-flow.md`'s "Known
+account** (see `/docs/games/ddr5thmix/screen-flow.md`'s "Known
 screen sequence") stands regardless of the correction above, across two
 separate accounts — the attract loop and (added 2026-07-15) the actual
 gameplay session flow (Caution → Style Select → Select Character →
@@ -1219,7 +1219,7 @@ xref dumps provide the reproducible evidence. Seven existing helpers were
 promoted after this deeper review. The current map has 2,124 functions, with
 102 manual rows and 510,344 function-body bytes. The exact hierarchy, timers,
 and runtime correlation are recorded in
-`/docs/games/ddr-5th-mix-jp-screen-flow.md`.
+`/docs/games/ddr5thmix/screen-flow.md`.
 
 # What this map is not yet
 
@@ -1239,7 +1239,7 @@ and runtime correlation are recorded in
 
 # Reproduction
 
-1. Follow `/docs/games/ddr-5th-mix-jp.md` to extract and hash
+1. Follow `/docs/games/ddr5thmix/revision-manifest.md` to extract and hash
    `SLPM_868.97;1`.
 2. `tools\ghidra\Import-BootExecutable.ps1` to import and auto-analyze it.
 3. `analyzeHeadless <project> ddr5thmix -process SLPM_868.97_1 -noanalysis
@@ -1259,4 +1259,4 @@ and runtime correlation are recorded in
 
 [1] [/docs/foundations/symbol-map-schema.md](/docs/foundations/symbol-map-schema.md)
 [2] [/docs/tooling/ghidra-setup.md](/docs/tooling/ghidra-setup.md)
-[3] [/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md)
+[3] [/docs/games/ddr5thmix/revision-manifest.md](/docs/games/ddr5thmix/revision-manifest.md)

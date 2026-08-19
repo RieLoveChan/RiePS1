@@ -17,7 +17,7 @@ original source-file name.
 # Verification
 
 The lawful input revision is the boot executable recorded by the [revision
-manifest](/docs/games/ddr-5th-mix-jp.md), SHA-256
+manifest](/docs/games/ddr5thmix/revision-manifest.md), SHA-256
 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`.
 With GCC 14.2.0/binutils 2.43 targeting `mipsel-none-elf`, this command
 returned `byte_match: True` for every function:

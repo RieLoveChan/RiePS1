@@ -63,7 +63,7 @@ Re-running `DumpDataXrefs.java` byte-granular (every address, not just 4-byte-al
 
 **Now unresolved: 0x801e6b84–0x801e6ba3 (32 B, partial reference) plus two 24-byte all-zero runs, 80 bytes total** (down from 288). No literal byte content from any of these spans is recorded in any tracked file; see the range map CSV for exact boundaries.
 
-**Checker**: `tools/build/Test-InstDemoRecordArray.ps1` reproduces the overlay and main-executable SHA-256 gates, the complete sentinel/timing-row assertions, the 460-byte zero-at-rest assertion for the GPU record tail, fixed-stride MIPS arithmetic, caller-side modulo-12 bound, and the 13 active pointer targets without embedding literal table content.
+**Checker**: `tools/ddr5thmix/Test-InstDemoRecordArray.ps1` reproduces the overlay and main-executable SHA-256 gates, the complete sentinel/timing-row assertions, the 460-byte zero-at-rest assertion for the GPU record tail, fixed-stride MIPS arithmetic, caller-side modulo-12 bound, and the 13 active pointer targets without embedding literal table content.
 
 ## Third pass: dynamic verification attempt (BizHawk, 2026-07-23)
 
@@ -88,7 +88,7 @@ timeout returns to the attract loop's `WARNING` state, since the inherited
 screen index is `0x1c`. From there the run is genuinely zero-input through
 `WARNING` → `TITLE` → HOW TO PLAY, matching this document's own tick
 accounting. The active window was confirmed both by polling the documented
-screen-index global `DAT_800f2908` (`docs/games/ddr-5th-mix-jp-globals.md`)
+screen-index global `DAT_800f2908` (`docs/games/ddr5thmix/globals.md`)
 for its `PLAY DEMO` value (`0x24`) and, independently, by a mid-window
 screenshot literally showing the "HOW TO PLAY" tutorial screen. The
 measured active window (screen index entry to exit) was 1,989 frames,
@@ -132,8 +132,8 @@ evidence agreeing with the two static passes for the two all-zero runs,
 and an honest scope limit (write-only) for the partially-referenced
 32-byte table. The fourth and fifth passes supersede those classifications.
 
-**Reproduction**: `tools/bizhawk/probe-inst-demo-watch.lua`, run via
-`tools/bizhawk/run-probe.ps1 -Frames 13000 -LuaPath tools/bizhawk/probe-inst-demo-watch.lua`.
+**Reproduction**: `tools/ddr5thmix/probe-inst-demo-watch.lua`, run via
+`tools/bizhawk/run-probe.ps1 -Frames 13000 -LuaPath tools/ddr5thmix/probe-inst-demo-watch.lua`.
 Requires a local BizHawk 2.11 install and a lawful CHD in `input/chd/`
 (neither is committed to this repository); see
 `docs/tooling/bizhawk-harness.md` for full setup, the boot-dialog input
@@ -222,7 +222,7 @@ The main executable interacts with the overlay via three primary entry points:
 
 The overlay's animation is driven by a command script runner (`FUN_801e42ec` @ `0x801e42ec`, 180 bytes) interpreting 8-byte steps `[func_ptr, arg1_ptr]` starting at `0x801e66c4`.
 
-Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptTrace.ps1`) confirms:
+Dynamically derived script trace verification (`tools/ddr5thmix/Test-InstDemoScriptTrace.ps1`) confirms:
 - **Total Script Steps**: 97 steps (96 non-jump callbacks + 1 explicit jump at step 38 from `0x801e67f4` to `0x801e67fc`).
 - **Null Terminator**: `0x801e69cc` (step 97).
 - **24 Waits of 60 Ticks**: 1,440 ticks total.
@@ -247,7 +247,7 @@ Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptT
   - `mipsel-none-elf-objcopy` (GNU binutils 2.43)
 - **Source Files**: `/src/ddr5thmix/overlays/inst_demo/InstDemoOverlay.s`, `/src/ddr5thmix/overlays/inst_demo/InstDemoOverlayData.s`, and `/src/ddr5thmix/overlays/inst_demo/inst_demo_overlay.h`
 - **Manifest**: `/config/ddr5thmix/inst-demo-overlay.json`
-- **Range Map CSV**: [/docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv](/docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv)
+- **Range Map CSV**: [/docs/games/ddr5thmix/inst-demo-overlay-map.csv](/docs/games/ddr5thmix/inst-demo-overlay-map.csv)
 
 ## Reproduction Commands
 
@@ -261,11 +261,11 @@ Dynamically derived script trace verification (`tools/build/Test-InstDemoScriptT
    ```
 3. **97-Step / 1,910-Tick Script Trace Verification**:
    ```powershell
-   pwsh -File tools/build/Test-InstDemoScriptTrace.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
+   pwsh -File tools/ddr5thmix/Test-InstDemoScriptTrace.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
    ```
 4. **748-Byte Tail Range Structural Verification** (fixed-stride tables, sentinel, reachable bounds):
    ```powershell
-   pwsh -File tools/build/Test-InstDemoRecordArray.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
+   pwsh -File tools/ddr5thmix/Test-InstDemoRecordArray.ps1 -OverlayPath work/ddr5thmix-overlays/inst-demo.bin
    ```
 
 # External Callees
@@ -277,6 +277,6 @@ Out-of-overlay calls from `InstDemoOverlay.s` target standard main executable lo
 
 # Citations
 
-[1] [/docs/games/ddr-5th-mix-jp-screen-flow.md](/docs/games/ddr-5th-mix-jp-screen-flow.md)
+[1] [/docs/games/ddr5thmix/screen-flow.md](/docs/games/ddr5thmix/screen-flow.md)
 [2] [/docs/tooling/ghidra-setup.md](/docs/tooling/ghidra-setup.md)
 [3] [/docs/workflows/function-byte-match.md](/docs/workflows/function-byte-match.md)

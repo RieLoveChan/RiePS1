@@ -14,7 +14,7 @@ This one-function game-owned module reconstructs `FUN_80098880` at
 `/src/ddr5thmix/RuntimeHelper98880.s`; the build manifest registers it in the
 `runtime-helper-98880` module and `.text.FUN_80098880` section, produced the
 same way as `FUN_800985c8` (disassembly transcription, not semantic C/asm --
-see the [985c8 module concept](/docs/games/ddr-5th-mix-jp-runtime-helper-985c8.md)).
+see the [985c8 module concept](/docs/games/ddr5thmix/runtime-helper-985c8.md)).
 
 Unlike every other `.s` source in this project as of this reconstruction,
 this function's manifest entry required an explicit `"symbols": {}` property
@@ -60,7 +60,7 @@ The entry count (146) is one less than `FUN_800985c8`'s resource-name table
 **confirmed**, not just suggestive: reading `FUN_800985c8`'s callers finds
 several chained directly as `FUN_80098880(FUN_800985c8("name_NN"))`. Full
 detail, including five 16-bit fields the chained callers read from this
-function's return value, is in the [globals concept](/docs/games/ddr-5th-mix-jp-globals.md)'s
+function's return value, is in the [globals concept](/docs/games/ddr5thmix/globals.md)'s
 "Resource-name table" section. The struct layout at `0x800dfd64`+ is still
 not analyzed field-by-field beyond those five fields.
 

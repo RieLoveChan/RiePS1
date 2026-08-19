@@ -8,7 +8,7 @@ timestamp: 2026-08-13T00:00:00-04:00
 
 # Scope
 
-`tools/bizhawk/probe-cd-reads.lua` observes the current request LBA at
+`tools/ddr5thmix/probe-cd-reads.lua` observes the current request LBA at
 `0x800e2958` and byte count at `0x800e2940`, fields statically traced through
 the CD request path. `Extract-ObservedCdLoads.ps1` maps a non-zero request in
 the `READ_DT.BIN` LBA extent back to its byte range, bounds-checks it, writes

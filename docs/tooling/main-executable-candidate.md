@@ -105,6 +105,6 @@ It remains `bootable: false` and `whole_executable_match: false`.
 
 The `executable.psx_exe` fields in
 `/config/ddr5thmix/build.json` transcribe the header recorded in
-[/docs/games/ddr-5th-mix-jp.md](/docs/games/ddr-5th-mix-jp.md): entry point
+[/docs/games/ddr5thmix/revision-manifest.md](/docs/games/ddr5thmix/revision-manifest.md): entry point
 `0x80020700`, text address `0x8001a800`, text size `0x00100800`, and stack
 address `0x801ffff0`. They are metadata only and contain no game bytes.

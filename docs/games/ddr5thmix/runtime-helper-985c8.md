@@ -41,7 +41,7 @@ table byte, and returns the zero-based index of the first full match.
 If no match is found, it retries up to twice more: first appending a forced
 `_16` suffix to the name (overwriting its last two significant characters),
 then a forced `_25` suffix, both common resolution/bit-depth markers that
-recur throughout the table (see the [globals concept](/docs/games/ddr-5th-mix-jp-globals.md)'s
+recur throughout the table (see the [globals concept](/docs/games/ddr5thmix/globals.md)'s
 "Resource-name table" section for the full dumped table and what these
 markers likely mean). If none of the three scans matches and the input
 contained no `?`, it calls `printf("unknow name (%s)\n")` -- this exact
@@ -51,7 +51,7 @@ one -- and returns `0` rather than `-1`.
 
 This supports the bounded semantic name **resource-name-to-index lookup**.
 The full name table it scans is itself documented in
-[globals](/docs/games/ddr-5th-mix-jp-globals.md), dumped with the new
+[globals](/docs/games/ddr5thmix/globals.md), dumped with the new
 `tools/ghidra/scripts/DumpPointerStringTable.java`, and contains real
 original PsyQ-era resource names (not tool-assigned labels).
 
@@ -60,19 +60,19 @@ All ten direct call sites (`DumpFunctionCallers.java 0x800985c8`) were read
 caveat each: `caut_25` is drawn during the gameplay session's `PLAY START`
 transition (`FUN_8006ede8`), not the attract loop's separately-confirmed
 WARNING/"Caution" screen -- see
-[game-session-opening](/docs/games/ddr-5th-mix-jp-game-session-opening.md).
+[game-session-opening](/docs/games/ddr5thmix/game-session-opening.md).
 `hlink_25` is drawn by the attract loop's state-1 (a second `RANKING`
 screen index write, `FUN_80054114`), but the name itself more literally
 matches the game's own debug string `LETS LINK` than `RANKING`, which is
 recorded as an open question in
-[screen-flow](/docs/games/ddr-5th-mix-jp-screen-flow.md) rather than
+[screen-flow](/docs/games/ddr5thmix/screen-flow.md) rather than
 resolved. `title_25`/`hbota_25` (TITLE/PUSH START) were already documented
 independently before this pass. `hbota_25` also turned out to be a shared
 digit/glyph sprite sheet used by an on-screen counter renderer
 (`FUN_80085254`/`FUN_80085ff8`), not itself a screen -- so its presence in
 the name table doesn't mean every table entry is a screen background;
 several are UI/font assets (see the character-set groups in
-[globals](/docs/games/ddr-5th-mix-jp-globals.md)). `arrow_16` is drawn by a
+[globals](/docs/games/ddr5thmix/globals.md)). `arrow_16` is drawn by a
 music-select-adjacent cursor/comparison routine (`FUN_80093f20`, which reads
 the documented `DAT_800f2908` screen-index global directly) but was not
 traced further here.

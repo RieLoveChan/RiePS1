@@ -1136,7 +1136,7 @@
     },
     {
       "name": "runtime-block-8009b94c",
-      "description": "FUN_8009b94c is a large phase-byte dispatcher (params 0-0x22, 0xef-0xff) driving async open/read/seek calls (the FUN_8002d5xx/FUN_8009b5xx/FUN_8009b7xx family) against PTR_DAT_800e0b1c; FUN_8009befc initializes/zeroes that control block and PTR_DAT_800e0b74 from a template at DAT_8001f4ex; FUN_8009c02c is the outer poller that the already-verified FUN_80099cb0 calls to drive this pipeline (see docs/games/ddr-5th-mix-jp-globals.md's unknown_045 entry).",
+      "description": "FUN_8009b94c is a large phase-byte dispatcher (params 0-0x22, 0xef-0xff) driving async open/read/seek calls (the FUN_8002d5xx/FUN_8009b5xx/FUN_8009b7xx family) against PTR_DAT_800e0b1c; FUN_8009befc initializes/zeroes that control block and PTR_DAT_800e0b74 from a template at DAT_8001f4ex; FUN_8009c02c is the outer poller that the already-verified FUN_80099cb0 calls to drive this pipeline (see docs/games/ddr5thmix/globals.md's unknown_045 entry).",
       "functions": [
         "FUN_8009b94c",
         "FUN_8009befc",
@@ -1145,7 +1145,7 @@
     },
     {
       "name": "runtime-block-8009c5f4",
-      "description": "FUN_8009c5f4 computes the aux1_*/aux2_* edge-state words already documented in docs/games/ddr-5th-mix-jp-globals.md (PTR_DAT_800ac8e8 offsets 0x6c-0x88, 'source subsystem remains unknown') from a bit table at PTR_DAT_800ac8e8+0x50; FUN_8009d120 gates an FUN_8002d930 call on a per-port flag pair at PTR_DAT_800e0b18+0x78/0x79.",
+      "description": "FUN_8009c5f4 computes the aux1_*/aux2_* edge-state words already documented in docs/games/ddr5thmix/globals.md (PTR_DAT_800ac8e8 offsets 0x6c-0x88, 'source subsystem remains unknown') from a bit table at PTR_DAT_800ac8e8+0x50; FUN_8009d120 gates an FUN_8002d930 call on a per-port flag pair at PTR_DAT_800e0b18+0x78/0x79.",
       "functions": [
         "FUN_8009c5f4",
         "FUN_8009d120"
@@ -1169,7 +1169,7 @@
     },
     {
       "name": "runtime-block-8009e138",
-      "description": "Font/glyph raster helpers: FUN_8009e138 unpacks a font glyph via Krom2RawAdd; FUN_8009e33c walks a string calling FUN_8009e138 plus LoadImage per character; FUN_8009e4cc is the already-documented glyph_color contributor (see docs/games/ddr-5th-mix-jp-globals.md, offset 0x17); FUN_8009eab4 builds GPU quad primitives (setPolyFT4-shaped, per Ghidra's own decompiler annotation) for a bordered glyph cell.",
+      "description": "Font/glyph raster helpers: FUN_8009e138 unpacks a font glyph via Krom2RawAdd; FUN_8009e33c walks a string calling FUN_8009e138 plus LoadImage per character; FUN_8009e4cc is the already-documented glyph_color contributor (see docs/games/ddr5thmix/globals.md, offset 0x17); FUN_8009eab4 builds GPU quad primitives (setPolyFT4-shaped, per Ghidra's own decompiler annotation) for a bordered glyph cell.",
       "functions": [
         "FUN_8009e138",
         "FUN_8009e33c",
@@ -1179,14 +1179,14 @@
     },
     {
       "name": "runtime-block-8009f0a8",
-      "description": "The resolution-switch sequence already documented in docs/games/ddr-5th-mix-jp-screen-flow.md and -symbol-map.md: ResetGraph/GsInitGraph2/SetDefDrawEnv/SetDefDispEnv for the 512x480 vs 640x480 mode.",
+      "description": "The resolution-switch sequence already documented in docs/games/ddr5thmix/screen-flow.md and docs/games/ddr5thmix/symbol-map.md: ResetGraph/GsInitGraph2/SetDefDrawEnv/SetDefDispEnv for the 512x480 vs 640x480 mode.",
       "functions": [
         "FUN_8009f0a8"
       ]
     },
     {
       "name": "runtime-block-800a00d4",
-      "description": "FUN_800a00d4 is the jump-table dispatcher on PTR_DAT_800ac8ec[0x40] already cited in docs/games/ddr-5th-mix-jp-globals.md, -screen-flow.md, and -symbol-map.md; FUN_800a0640 sets result-code bytes in a per-table-row struct (DAT_800fbb8c) from bit tests on DAT_800e1418, indexed by PTR_DAT_800ac8ec[0x51].",
+      "description": "FUN_800a00d4 is the jump-table dispatcher on PTR_DAT_800ac8ec[0x40] already cited in docs/games/ddr5thmix/globals.md, docs/games/ddr5thmix/screen-flow.md, and docs/games/ddr5thmix/symbol-map.md; FUN_800a0640 sets result-code bytes in a per-table-row struct (DAT_800fbb8c) from bit tests on DAT_800e1418, indexed by PTR_DAT_800ac8ec[0x51].",
       "functions": [
         "FUN_800a00d4",
         "FUN_800a0640"
@@ -1325,7 +1325,7 @@
     },
     {
       "name": "runtime-block-800a9210",
-      "description": "Calendar/day-graph drawing cluster. FUN_800a9210/FUN_800a9300 build a day-array (0x3c=60 days) sorted via FUN_800a345c, converting dates through FUN_800ac764; FUN_800a964c handles cursor-scroll input across the day range; FUN_800a99e8/FUN_800a9eb8 draw the bar/line graph with axis min/max scaling (DAT_80118ab8/DAT_80118ac0); FUN_800aa810/FUN_800aaa28/FUN_800aac9c draw individual graph markers/bars; FUN_800aadac accumulates a per-day running value from the DAT_800f2908 record array; FUN_800aaf38 draws a day-of-week icon grid; FUN_800ab2a0/FUN_800ab408 draw a course-name/judgment-count label block (FUN_800ab408 already cited in docs/games/ddr-5th-mix-jp-globals.md, -screen-flow.md, and docs/log.md); FUN_800ab768 scrolls a calendar-day list. Consistent with a calendar/history graph screen, but the specific quantity graphed (e.g. weight or calories, if this is the workout-mode diary) is not confirmed from these functions alone. Follow-up 2026-08-19: traced the caller chain -- FUN_800a8ad4 (a thin wrapper) calls FUN_800a9210 directly, and its own caller FUN_80073554 (a session-adjacent screen callback) delegates to the sibling results dispatcher FUN_800a68b8 instead of its own inline per-song score-animation code whenever DAT_80105083 is set. DAT_80105083 is already documented elsewhere (docs/games/ddr-5th-mix-jp-game-session-gameplay.md) as a per-timeline flag/bitmask reached through player-relative addressing, not confirmed as a named game mode. This makes the calendar/graph cluster read as a mode-gated alternative to the normal results screen. Confirmed 2026-08-19: DAT_80105083 is the GAME MODE(0)/EVENT MODE(1) selector, set by the main menu's FUN_8004b654 (see docs/games/ddr-5th-mix-jp-screen-flow.md's 'GAME MODE vs EVENT MODE flag' note). This cluster is EVENT MODE's results/progress screen; the specific quantity graphed (most likely a day-by-day EVENT MODE progress count) is still not confirmed.",
+      "description": "Calendar/day-graph drawing cluster. FUN_800a9210/FUN_800a9300 build a day-array (0x3c=60 days) sorted via FUN_800a345c, converting dates through FUN_800ac764; FUN_800a964c handles cursor-scroll input across the day range; FUN_800a99e8/FUN_800a9eb8 draw the bar/line graph with axis min/max scaling (DAT_80118ab8/DAT_80118ac0); FUN_800aa810/FUN_800aaa28/FUN_800aac9c draw individual graph markers/bars; FUN_800aadac accumulates a per-day running value from the DAT_800f2908 record array; FUN_800aaf38 draws a day-of-week icon grid; FUN_800ab2a0/FUN_800ab408 draw a course-name/judgment-count label block (FUN_800ab408 already cited in docs/games/ddr5thmix/globals.md, docs/games/ddr5thmix/screen-flow.md, and docs/log.md); FUN_800ab768 scrolls a calendar-day list. Consistent with a calendar/history graph screen, but the specific quantity graphed (e.g. weight or calories, if this is the workout-mode diary) is not confirmed from these functions alone. Follow-up 2026-08-19: traced the caller chain -- FUN_800a8ad4 (a thin wrapper) calls FUN_800a9210 directly, and its own caller FUN_80073554 (a session-adjacent screen callback) delegates to the sibling results dispatcher FUN_800a68b8 instead of its own inline per-song score-animation code whenever DAT_80105083 is set. DAT_80105083 is already documented elsewhere (docs/games/ddr5thmix/game-session-gameplay.md) as a per-timeline flag/bitmask reached through player-relative addressing, not confirmed as a named game mode. This makes the calendar/graph cluster read as a mode-gated alternative to the normal results screen. Confirmed 2026-08-19: DAT_80105083 is the GAME MODE(0)/EVENT MODE(1) selector, set by the main menu's FUN_8004b654 (see docs/games/ddr5thmix/screen-flow.md's 'GAME MODE vs EVENT MODE flag' note). This cluster is EVENT MODE's results/progress screen; the specific quantity graphed (most likely a day-by-day EVENT MODE progress count) is still not confirmed.",
       "functions": [
         "FUN_800a9210",
         "FUN_800a9300",

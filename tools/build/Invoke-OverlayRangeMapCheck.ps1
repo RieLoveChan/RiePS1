@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $false)]
-    [string]$CsvPath = "docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv",
+    [string]$CsvPath = "docs/games/ddr5thmix/inst-demo-overlay-map.csv",
 
     [Parameter(Mandatory = $false)]
     [int]$ExpectedTotalBytes = 11864,

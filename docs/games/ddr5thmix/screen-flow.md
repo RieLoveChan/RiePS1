@@ -7,7 +7,7 @@ timestamp: 2026-07-16T00:00:00-04:00
 ---
 
 Schema: [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md).
-Symbol map: [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md).
+Symbol map: [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md).
 
 # Dispatcher
 
@@ -15,7 +15,7 @@ Symbol map: [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-j
 per-frame loop. Reads a 16-bit "mode" field at `PTR_DAT_800ac8e8+0x28`;
 `mode == 2` and the unmatched-mode default both additionally read a 16-bit
 "submode" field at `PTR_DAT_800ac8e8+0x2a`. Full structural review:
-`/docs/games/ddr-5th-mix-jp-symbol-map.md`, "Manual review: `FUN_80022cf8`".
+`/docs/games/ddr5thmix/symbol-map.md`, "Manual review: `FUN_80022cf8`".
 
 # A 42-entry screen-name string table
 
@@ -190,7 +190,7 @@ addressing idiom (its two write sites, `sb zero,10107(v0)` and
 because the base is computed through that split arithmetic, not a single
 `lui`/`addiu` pair). This resolves `DAT_80105083`'s role, previously
 described only as "a per-timeline flag/bitmask" in
-[game-session-gameplay](/docs/games/ddr-5th-mix-jp-game-session-gameplay.md):
+[game-session-gameplay](/docs/games/ddr5thmix/game-session-gameplay.md):
 it is the `GAME MODE`(`0`)/`EVENT MODE`(`1`) selector, read throughout the
 reconstructed `0x80099edc`-`0x800ac764` block (Batch-353) to gate simplified
 end-of-play processing (`FUN_800a1724`) and a calendar/day-graph results
@@ -203,7 +203,7 @@ separate field from the per-player play-mode/step-input-format selector at
 `DAT_800f2908`'s array offset `+0x49` (see the `runtime-block-800a1724`
 symbol-map notes). **`+0x49`'s setter, resolved 2026-08-19**: found in
 `FUN_8006ffd8` (the 15-state gameplay-session tick function,
-[game-session-router](/docs/games/ddr-5th-mix-jp-game-session-router.md)
+[game-session-router](/docs/games/ddr5thmix/game-session-router.md)
 module) after the direct-reference and per-player-init sweeps that missed
 `DAT_80105083` earlier failed to find it here too -- Ghidra assigns this
 struct's individual offsets separate `DAT_800f29xx` symbol names wherever
@@ -244,7 +244,7 @@ identify the record-data structure.
 
 The three wrappers, child init/tick/cleanup functions, and terminal-state
 callbacks are now exact in the
-[game-session-router module](/docs/games/ddr-5th-mix-jp-game-session-router.md):
+[game-session-router module](/docs/games/ddr5thmix/game-session-router.md):
 nine functions and 1,684 selected bytes. This does not yet claim the other 42
 distinct callbacks in the three child tables.
 
@@ -494,7 +494,7 @@ re-analysis was run and no other program in the project was touched.
 Ghidra's existing auto-analysis boundaries for all twelve functions are
 unchanged since the 2026-07-15 manual review that first populated the symbol
 map — sizes and per-function unique-callee counts match
-[the symbol map](/docs/games/ddr-5th-mix-jp-symbol-map.md) exactly, so no
+[the symbol map](/docs/games/ddr5thmix/symbol-map.md) exactly, so no
 `CreateFunctionCmd` boundary fixes were needed this pass.
 
 | State | Role | Enter (bytes) | Update (bytes) | Exit (bytes) |
@@ -559,7 +559,7 @@ library-signature callee first, alongside the already-reviewed three.
 ## Data globals referenced but not yet catalogued
 
 The decompiled C for these twelve functions references 26 fixed-address
-globals absent from [the global map](/docs/games/ddr-5th-mix-jp-globals.md)
+globals absent from [the global map](/docs/games/ddr5thmix/globals.md)
 (which currently covers `DAT_800f2900` and `DAT_800f2908` from the
 `runtime-core` module, both of which *are* referenced here and already
 documented). No field types, structure boundaries, or semantics are claimed
@@ -795,7 +795,7 @@ the state-5 overlay's own chart/judgment/scoring reuse remains unproven.
 in the same instruction pair (the `sh` lands in the delay slot of the call
 below), invokes `FUN_8004d468`, which queues resource `hlink_25` through the
 resource-name-to-index/index-to-address pair `FUN_800985c8`/`FUN_80098880`
-(see [globals](/docs/games/ddr-5th-mix-jp-globals.md)'s "Resource-name
+(see [globals](/docs/games/ddr5thmix/globals.md)'s "Resource-name
 table"). This is new evidence added 2026-08-18, distinct from and
 independent of state 6's own `FUN_800547f4`, which loads a different,
 numbered "ranking group 12" through the unrelated `FUN_8004c27c`-style
@@ -1042,6 +1042,6 @@ separate rows since it isn't mode-specific.
 # Citations
 
 [1] [/docs/foundations/screen-flow-schema.md](/docs/foundations/screen-flow-schema.md)
-[2] [/docs/games/ddr-5th-mix-jp-symbol-map.md](/docs/games/ddr-5th-mix-jp-symbol-map.md)
-[3] [/docs/games/ddr-5th-mix-jp-inst-demo-overlay.md](/docs/games/ddr-5th-mix-jp-inst-demo-overlay.md)
-[4] [/docs/games/ddr-5th-mix-jp-globals.md](/docs/games/ddr-5th-mix-jp-globals.md)
+[2] [/docs/games/ddr5thmix/symbol-map.md](/docs/games/ddr5thmix/symbol-map.md)
+[3] [/docs/games/ddr5thmix/inst-demo-overlay.md](/docs/games/ddr5thmix/inst-demo-overlay.md)
+[4] [/docs/games/ddr5thmix/globals.md](/docs/games/ddr5thmix/globals.md)

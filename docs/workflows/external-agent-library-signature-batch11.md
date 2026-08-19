@@ -47,7 +47,7 @@ and proven for Batch 10.
 # Exact owned inventory
 
 The owned set is exactly the rows in the fixed-base
-`docs/games/ddr-5th-mix-jp-symbol-map.csv` satisfying all of these predicates:
+`docs/games/ddr5thmix/symbol-map.csv` satisfying all of these predicates:
 
 - `confidence == library_signature`;
 - `source_status == decompiler_output_only`;
@@ -65,7 +65,7 @@ base it contains **75 unique functions / 25,920 bytes** and has SHA-256:
 Reproduce the inventory from the package root:
 
 ```powershell
-$rows = Import-Csv docs/games/ddr-5th-mix-jp-symbol-map.csv |
+$rows = Import-Csv docs/games/ddr5thmix/symbol-map.csv |
     Where-Object {
         $_.confidence -eq 'library_signature' -and
         $_.source_status -eq 'decompiler_output_only' -and

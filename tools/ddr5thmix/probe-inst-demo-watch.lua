@@ -1,11 +1,11 @@
 -- Dynamic memory-access probe for the DDR 5th Mix (Japan) HOW TO PLAY overlay's
 -- three data sub-ranges that were unresolved when this historical dynamic
 -- pass was written (the later static fourth/fifth passes resolve them; see
--- docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv). Runs the attract loop
+-- docs/games/ddr5thmix/inst-demo-overlay-map.csv). Runs the attract loop
 -- with no controller input (aside from a documented one-time boot setup, see
 -- below), detects the HOW TO PLAY ("inst demo") overlay's active window by
 -- polling the documented screen-index global DAT_800f2908 (see
--- docs/games/ddr-5th-mix-jp-globals.md), then watches the three target ranges
+-- docs/games/ddr5thmix/globals.md), then watches the three target ranges
 -- (plus a known-active control range) for byte-level value changes every
 -- frame during that window.
 --
@@ -75,7 +75,7 @@ checkpoint("apis-configured")
 memory.usememorydomain("MainRAM")
 
 -- ---------------------------------------------------------------------
--- Target ranges, per docs/games/ddr-5th-mix-jp-inst-demo-overlay-map.csv
+-- Target ranges, per docs/games/ddr5thmix/inst-demo-overlay-map.csv
 -- ---------------------------------------------------------------------
 local ranges = {
     { name = "zero_run_a", lo = 0x801e6b6c, hi = 0x801e6b83 }, -- 24 B all-zero
@@ -92,7 +92,7 @@ local ranges = {
 }
 
 -- DAT_800f2908: documented 16-bit screen-name-index global
--- (docs/games/ddr-5th-mix-jp-globals.md). Physical/MainRAM-domain offset.
+-- (docs/games/ddr5thmix/globals.md). Physical/MainRAM-domain offset.
 local SCREEN_INDEX_PHYS = 0x800f2908 & 0x1FFFFF
 local PLAY_DEMO_INDEX = 0x24 -- state 5 / HOW TO PLAY overlay, per screen-flow.md
 
@@ -108,7 +108,7 @@ local EXIT_BUFFER = 60 -- extra frames to keep watching after the screen index c
 -- One-time boot setup: BizHawk mounts a freshly-blank virtual memory
 -- card, which this game detects as "card present but no system data" and
 -- blocks on a YES/NO prompt (real, documented behavior per
--- docs/games/ddr-5th-mix-jp-screen-flow.md's "Memory Card Auto Load" boot
+-- docs/games/ddr5thmix/screen-flow.md's "Memory Card Auto Load" boot
 -- step) -- not a synthetic skip of the attract loop. Confirmed empirically
 -- (screenshots) as exactly two sequential dialogs: "no system data,
 -- create?" then a "start as-is?" confirmation, both dismissed by a single
