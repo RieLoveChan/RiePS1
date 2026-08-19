@@ -951,6 +951,20 @@
       ]
     },
     {
+      "name": "title-resource-queue",
+      "description": "Queues title_25, hbota_25, and resource 0x70 through FUN_8002a8b0 for the TITLE/PUSH START screens.",
+      "functions": [
+        "FUN_8004d010"
+      ]
+    },
+    {
+      "name": "runtime-helper-99628",
+      "description": "Per-player 0x9284-stride record scaling helper: reads record field +0x54, computes proportional values, and submits them to FUN_800a3770.",
+      "functions": [
+        "FUN_80099628"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -4431,6 +4445,26 @@
       "section": ".text.FUN_800985c8",
       "reference_sha256": "e9c24b0f0ce61ec28a27ea42857f6ed976e34e1c91bfb0ec1df46d6fe0cf9143",
       "built_sha256": "e9c24b0f0ce61ec28a27ea42857f6ed976e34e1c91bfb0ec1df46d6fe0cf9143"
+    },
+    {
+      "name": "FUN_8004d010",
+      "address": "0x8004d010",
+      "size": 104,
+      "language": "asm",
+      "source": "src/ddr5thmix/TitleResourceQueue.s",
+      "section": ".text.FUN_8004d010",
+      "reference_sha256": "654728da69000f595d84ba43a630a14c24208b799520c67b62bf790c986fe93d",
+      "built_sha256": "654728da69000f595d84ba43a630a14c24208b799520c67b62bf790c986fe93d"
+    },
+    {
+      "name": "FUN_80099628",
+      "address": "0x80099628",
+      "size": 244,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper99628.s",
+      "section": ".text.FUN_80099628",
+      "reference_sha256": "c84dcf156945550ac85e7b6bbdf6fb430ea3cabd5b8e43bc321c401208ddea89",
+      "built_sha256": "c84dcf156945550ac85e7b6bbdf6fb430ea3cabd5b8e43bc321c401208ddea89"
     },
     {
       "name": "FUN_80098880",
