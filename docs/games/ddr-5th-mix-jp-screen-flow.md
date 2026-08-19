@@ -162,7 +162,7 @@ is intentionally not tracked because it is copyrighted game output.
 | Main-menu row | Selector result | Next `DAT_80105124` state |
 |---|---:|---:|
 | `GAME MODE` | 1 | 2 |
-| `EVENT MODE` | 2 | 2 (different setup flags) |
+| `EVENT MODE` | 2 | 2 (different setup flags -- **confirmed 2026-08-19**, see below) |
 | `LESSON MODE` | 3 | 3 |
 | `TRAINING` | 4 | 4 |
 | `EDIT` | 5 | 5 |
@@ -179,6 +179,29 @@ at `confidence: verified`: literal resource/string evidence, exact agreement
 with all 11 visible rows, and the owner's runtime observation agree. It also
 turns states 2–9, 12, and 13 into semantically constrained next targets even
 before their callback bodies are reviewed.
+
+**GAME MODE vs EVENT MODE flag, confirmed 2026-08-19**: `FUN_8004b654`'s
+`switch(uVar4)` (`uVar4` is `FUN_80050e5c`'s selector result) sets
+`DAT_80105083 = 0` for `case 1` (`GAME MODE`) and `DAT_80105083 = 1` for
+`case 2` (`EVENT MODE`), both before transitioning to the same outer state 2.
+Found by a raw disassembly search for the field's `s0+0x10000+0x277b`
+addressing idiom (its two write sites, `sb zero,10107(v0)` and
+`sb v0,10107(v1)`, don't show up in a same-address Ghidra reference sweep
+because the base is computed through that split arithmetic, not a single
+`lui`/`addiu` pair). This resolves `DAT_80105083`'s role, previously
+described only as "a per-timeline flag/bitmask" in
+[game-session-gameplay](/docs/games/ddr-5th-mix-jp-game-session-gameplay.md):
+it is the `GAME MODE`(`0`)/`EVENT MODE`(`1`) selector, read throughout the
+reconstructed `0x80099edc`-`0x800ac764` block (Batch-353) to gate simplified
+end-of-play processing (`FUN_800a1724`) and a calendar/day-graph results
+screen (`runtime-block-800a9210`) that runs instead of the normal per-song
+results display whenever `EVENT MODE` is active. `GAME MODE`'s branch also
+sets `DAT_800f291f` conditionally from `FUN_800a0008()`
+(`PTR_DAT_800e0b18[0x86] == 1`), while `EVENT MODE` always sets it to `1`;
+the meaning of that second flag is not yet investigated. This does not
+resolve the separate per-player play-mode/step-input-format selector found
+at `DAT_800f2908`'s array offset `+0x49` (see the `runtime-block-800a1724`
+symbol-map notes) -- that field's own setter is still untraced.
 
 **Additional runtime captures, 2026-07-15**: the owner followed five of those
 rows and supplied screenshots whose visible headings are `ARCADE LINK`,
