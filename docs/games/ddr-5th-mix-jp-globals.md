@@ -137,6 +137,44 @@ Se repitió el barrido reproducible con Ghidra 12.1.2 headless sobre `SLPM_868.9
 La revisión separó accesos fijos de expresiones indexadas. `+0xf2` se comporta como `alternate_input_mapping_flag`: selecciona una ruta alternativa basada en tablas; `+0xf3` como `input_mapping_enabled`: habilita la capa de traducción de entradas. `+0x102` se conserva como `input_mapping_variant_flag`, pues selecciona el mapeo extendido/directo; `+0x103` como `input_button_layout_variant`, pues cambia la conversión de bits de botones. Son nombres conductuales, no nombres de dominio definitivos.
 
 No apareció otro offset con evidencia suficiente para asignar semántica estable más allá de `+0x09`, `+0x17`, `+0x2c` y del negativo exhaustivo de `+0x2e`. Los restantes accesos corresponden a reset, contadores, estado de entrada o índices dinámicos por jugador/subsistema. Se conserva `unknown_*` donde no hay evidencia discriminante.
+# Resource-name table (`PTR_DAT_800e0804`)
+
+`FUN_800985c8` (reconstructed 2026-08-18, byte-exact) linearly scans a
+147-entry array of pointers at `PTR_DAT_800e0804`, each pointing to an 8-byte
+name buffer, to convert a wildcard-tolerant (`?`) input name to its
+zero-based index. Dumped in full with the new
+`tools/ghidra/scripts/DumpPointerStringTable.java`
+(`analyzeHeadless <project> ddr5thmix -process SLPM_868.97_1 -noanalysis
+-scriptPath tools/ghidra/scripts -postScript DumpPointerStringTable.java
+0x800e0804 147`), the table is real, human-readable original resource names,
+not tool-assigned labels. Index 0 is the literal sentinel `NONE`. Entries
+1-40 are a 4x10 grid of character-select palette variants
+(`ABA_BLUE`/`BBA_BLUE`/... through `..._GREN`/`..._REDD`/`..._YELO`).
+Entries 41-131 are individual named screen/asset resources, several of which
+directly confirm identities that were previously only `suspected` or
+`unverified` in [screen-flow](/docs/games/ddr-5th-mix-jp-screen-flow.md) and
+elsewhere: `WARN_16` (WARNING), `CAUT_25` (CAUTION), `KLOGO_16` (KONAMI
+logo), `TITLE_25`, `RSLBK_16`/`RSLDL_25`/`RSLOB_25` (RESULT),
+`MSLBK_16`/`MSLOB_25`/`MSLTA_25`/`MSLTT_16` (MUSIC SELECT),
+`CSLBK_16`/`CSLIC_25`/`CSLOB_25` (CHARACTER SELECT), `SSLBK_16`/`SSLDF_MM`/
+`SSLDM_MM`/`SSLOB_25`/`SSLOP_25` (STYLE SELECT), `ENDIN_25`/`ENDOB_25`
+(ENDING), `GOVER_25`/`HGOVE_25` (GAME OVER), `HJOIN_25`/`LJOIN_25`/
+`HLINK_25` (link/join screens), `BLOGO_16`/`OBLOG_16` and `OKLOG_16` (further
+logo variants), and `DANGR_16`. The `_16`/`_25` suffixes recur throughout
+(seen in `FUN_800985c8`'s own fallback-retry logic) and read as bit-depth or
+resolution markers, not part of the semantic name. Entries 132-146 are
+character-set/font resource groups keyed by point size and script
+(`AC0808`/`AC1112`/`AC1616`, `NM1220`/`NM2020`/`NM2422`/`NM3222`, `SC1216`,
+`ACXX12`/`ACXX16`/`ACXX20`, `NMXX32`, `REXX16`).
+
+The companion function `FUN_80098880` (also reconstructed 2026-08-18) takes a
+1-based index in the same 1-146 range and returns an address from a separate,
+non-uniform-stride set of 146 targets near `0x800dfd64-0x800e0774`. The
+matching count (146, vs. this table's 147 minus its `NONE` sentinel) is
+suggestive of a companion resource-descriptor accessor, but the indexed
+struct's layout has not been analyzed, so this is recorded as an open lead,
+not a confirmed relationship.
+
 # Reproduction
 
 The address and access evidence comes from the Ghidra 12.1.2 field/xref dumps
