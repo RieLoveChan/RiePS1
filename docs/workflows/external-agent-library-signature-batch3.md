@@ -164,7 +164,7 @@ inventory from 227 to **367 verified functions**, reduce
 `library_signature` from 918 to **778**, and increase exact reconstruction
 from 17,800 to **19,364 bytes**. Overall main-plus-overlay totals should become
 **437 functions / 28,736 selected bytes**. Derive and check these figures
-mechanically; do not copy them into README or the log if the measured inventory
+mechanically; do not copy them into the DDR 5th Mix readme or the log if the measured inventory
 differs.
 
 # Known audit traps

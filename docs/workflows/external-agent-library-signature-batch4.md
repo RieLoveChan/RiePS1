@@ -174,7 +174,7 @@ inventory from 367 to **449 verified functions** (17.3% to **21.1%**), reduce
 1,658 to **1,576**, and increase exact main-executable reconstruction from
 19,364 to **21,468 bytes**. Overall main-plus-overlay totals should become
 **519 functions / 30,840 selected code bytes**. Derive and check these figures
-mechanically; do not copy them into README or the log if the measured inventory
+mechanically; do not copy them into the DDR 5th Mix readme or the log if the measured inventory
 differs.
 
 # Mandatory self-audit before delivery

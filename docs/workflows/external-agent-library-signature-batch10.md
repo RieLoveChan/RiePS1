@@ -250,7 +250,7 @@ main-executable reconstruction from 101,864 to **128,820 bytes** (9.7% to
 **12.3%** of the 1,050,624-byte code region). Overall main-plus-overlay
 totals should become **1,255 functions / 138,192 selected code bytes**.
 Derive and check these figures mechanically from the actually measured
-inventory; do not copy them into README or the log if the measured inventory
+inventory; do not copy them into the DDR 5th Mix readme or the log if the measured inventory
 differs.
 
 # Mandatory self-audit before delivery

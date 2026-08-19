@@ -10,7 +10,7 @@ branch: agent/linked-object-boundary
 
 # Objective
 
-Advance README's "Recommended next targets" item 2 (linked-object validation)
+Advance the DDR 5th Mix readme's ("Recommended next targets") item 2 (linked-object validation)
 by extending `/docs/foundations/linked-object-evidence.md` toward its own
 stated falsifiable bar for an "object boundary confirmed" claim, then continue
 through the ordered backlog in this document one bounded unit at a time.
@@ -97,7 +97,8 @@ all-or-nothing delivery.
 - Never cherry-pick, merge, amend, squash, reset, clean, or otherwise absorb
   another agent's or the repository owner's concurrent changes.
 - Shared files (`config/ddr5thmix/build.json`, the symbol-map CSV/concept,
-  `docs/foundations/linked-object-evidence.md`, `docs/log.md`, `README.md`)
+  `docs/foundations/linked-object-evidence.md`, `docs/log.md`,
+  `docs/games/ddr5thmix/readme.md`)
   may be edited when a unit's result requires it, but pull/rebase first,
   preserve existing content, and resolve conflicts normally. If integration is
   uncertain, leave a precise integration note instead of guessing.
@@ -262,8 +263,8 @@ preceding 8-byte word pairs:
    30 accepted stubs in `/docs/workflows/function-byte-match.md`.
 3. Only promote their symbol-map rows to `verified`/`hand_written_source` if
    the hash comparison actually passes; update the BIOS-stub table and
-   totals in `function-byte-match.md`, the symbol map, and README's exact-byte
-   totals together in the same commit as the passing verification.
+   totals in `function-byte-match.md`, the symbol map, and the DDR 5th Mix
+   readme's exact-byte totals together in the same commit as the passing verification.
 
 Done when: either two new exact byte matches are recorded with full evidence
 (name/address/size/reference SHA-256/built SHA-256/toolchain/command per the
@@ -286,7 +287,7 @@ Done when: the gap has a reproducible classification recorded with the exact
 dump command and byte-range evidence, replacing "left unexamined" with a
 concrete, cited result (including if that result is itself inconclusive).
 
-## Unit E — Remaining verified-global-layout semantics (README item 1)
+## Unit E — Remaining verified-global-layout semantics (DDR 5th Mix readme item 1)
 
 Survey `docs/games/ddr5thmix/globals.md`/`.csv` and the `mode_control.h`
 partial state layouts for any remaining observed byte offset that has a
@@ -314,7 +315,7 @@ Update `docs/foundations/linked-object-evidence.md` in place per unit,
 correcting superseded statements visibly (mark what changed and why) rather
 than deleting them, matching this project's established practice. Add a
 newest-first `docs/log.md` entry for each meaningfully completed unit — do
-not log formatting-only changes. Update README's status table and
+not log formatting-only changes. Update the DDR 5th Mix readme's status table and
 "Recommended next targets" section only after a unit's own verification
 passes, not preemptively. `config/ddr5thmix/build.json`, the symbol-map
 CSV/concept, and `function-byte-match.md` are shared with any concurrently

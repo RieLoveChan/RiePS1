@@ -243,7 +243,7 @@ increase exact main-executable reconstruction from 42,912 to **101,864
 bytes** (from 4.1% to **9.7%** of the 1,050,624-byte code region — this
 package alone should roughly double the true byte-exact reconstruction
 percentage). Derive and check these figures mechanically from the actually
-measured inventory; do not copy them into README or the log if a boundary
+measured inventory; do not copy them into the DDR 5th Mix readme or the log if a boundary
 correction changed the totals.
 
 # Mandatory self-audit before delivery

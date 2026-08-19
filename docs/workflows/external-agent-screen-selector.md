@@ -130,11 +130,11 @@ this module.
 # Documentation and shared-file coordination
 
 Create `docs/games/ddr5thmix/screen-selector.md` as an OKF concept and
-link it from `docs/games/index.md`. Update the symbol-map CSV/concept,
+link it from `docs/games/ddr5thmix/index.md`. Update the symbol-map CSV/concept,
 function-byte-match playbook, nearest `log.md`, global map if new fixed
-symbols are required, and README totals only after verification.
+symbols are required, and the DDR 5th Mix readme (`docs/games/ddr5thmix/readme.md`) totals only after verification.
 
-`config/ddr5thmix/build.json`, the symbol map, README, and logs are shared
+`config/ddr5thmix/build.json`, the symbol map, the DDR 5th Mix readme, and logs are shared
 files that the concurrent runtime-core work may also change. Pull/rebase before
 editing their final form, preserve both modules' entries, resolve conflicts
 normally, and rerun the aggregate selector verifier after resolution. Never
