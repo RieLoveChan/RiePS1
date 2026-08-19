@@ -965,6 +965,14 @@
       ]
     },
     {
+      "name": "runtime-helper-99b40",
+      "description": "Outer-state-11 restoration pipeline (FUN_80099b40, resolution-switch stage sequencer) and its asynchronous player/runtime initialization subpipeline (FUN_80099cb0).",
+      "functions": [
+        "FUN_80099b40",
+        "FUN_80099cb0"
+      ]
+    },
+    {
       "name": "runtime-object-init",
       "description": "Runtime model/object mapping, linking, coordinate setup, and texture-page initialization.",
       "functions": [
@@ -4465,6 +4473,28 @@
       "section": ".text.FUN_80099628",
       "reference_sha256": "c84dcf156945550ac85e7b6bbdf6fb430ea3cabd5b8e43bc321c401208ddea89",
       "built_sha256": "c84dcf156945550ac85e7b6bbdf6fb430ea3cabd5b8e43bc321c401208ddea89"
+    },
+    {
+      "name": "FUN_80099b40",
+      "address": "0x80099b40",
+      "size": 368,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper99b40.s",
+      "section": ".text.FUN_80099b40",
+      "reference_sha256": "46ecb412d2c157fabe3ffd2e213b53740ea4583a3fffd38c64b7f161f8545365",
+      "built_sha256": "46ecb412d2c157fabe3ffd2e213b53740ea4583a3fffd38c64b7f161f8545365",
+      "symbols": {}
+    },
+    {
+      "name": "FUN_80099cb0",
+      "address": "0x80099cb0",
+      "size": 396,
+      "language": "asm",
+      "source": "src/ddr5thmix/RuntimeHelper99cb0.s",
+      "section": ".text.FUN_80099cb0",
+      "reference_sha256": "c444572d6208cc44d1d75fe6ff306455fb9df82b1e60048ee4237d0471520552",
+      "built_sha256": "c444572d6208cc44d1d75fe6ff306455fb9df82b1e60048ee4237d0471520552",
+      "symbols": {}
     },
     {
       "name": "FUN_80098880",
