@@ -1216,7 +1216,7 @@
     },
     {
       "name": "runtime-block-800a1724",
-      "description": "Step-judgment bookkeeping over the per-player record array at DAT_800f2908 and per-song counters at PTR_DAT_800e0b18+0x24/0x46/0x4c, calling the already-known sound-cue trigger FUN_8009d274 on judgment/milestone thresholds. Consistent with a gameplay judgment-count/combo tracker, but the exact judgment-tier mapping (e.g. which offset is Perfect/Great/Good/Boo) is not confirmed from these two functions alone.",
+      "description": "End-of-play finalization (FUN_800a1724) and a lifetime-statistics/unlock-announcement scanner (FUN_800a1cd8) over the per-player record array at DAT_800f2908 and lifetime counters at PTR_DAT_800e0b18+0x46/0x48/0x4a/0x4c/0x4e, firing one-time announcements through the message-queue primitive FUN_8009d274. Not a live per-arrow judgment tally -- corrected 2026-08-19 after a field-xref sweep found the per-player result byte these functions branch on (+0x49) is written elsewhere, through an alias not reachable from this pass, so no Perfect/Great/Good/Boo mapping is asserted.",
       "functions": [
         "FUN_800a1724",
         "FUN_800a1cd8"
