@@ -748,6 +748,30 @@ DEMONSTRATION label.
 This proves literal gameplay-engine reuse for the CATCH DEMO states, while
 the state-5 overlay's own chart/judgment/scoring reuse remains unproven.
 
+## State 1: second RANKING variant
+
+`FUN_80054114` (76 bytes, verified byte-exact) writes `0x25` (`RANKING`) and,
+in the same instruction pair (the `sh` lands in the delay slot of the call
+below), invokes `FUN_8004d468`, which queues resource `hlink_25` through the
+resource-name-to-index/index-to-address pair `FUN_800985c8`/`FUN_80098880`
+(see [globals](/docs/games/ddr-5th-mix-jp-globals.md)'s "Resource-name
+table"). This is new evidence added 2026-08-18, distinct from and
+independent of state 6's own `FUN_800547f4`, which loads a different,
+numbered "ranking group 12" through the unrelated `FUN_8004c27c`-style
+resource path used by state 0's WARNING/company block. The two RANKING
+variants therefore do not share a resource-loading mechanism.
+
+The name `hlink_25` is not self-evidently "RANKING" the way `caut_25` reads
+as "CAUTION" — DDR cabinets have a separate arcade link-play feature, and the
+game's own 42-name debug string table includes `LETS LINK` as a distinct
+entry (see "A 42-entry screen-name string table" above), which is a more
+literal match for a name containing "link". Whether `hlink_25` is a
+link-branded RANKING background (e.g. showing rankings with a link-play
+banner or icon) or this state's actual screen identity is closer to `LETS
+LINK` than to a second `RANKING` screen is not resolved here; recorded as an
+open question rather than asserted either way. The `0x25` write itself is
+not in question.
+
 ## State 6: BEST RANKING and loop closure
 
 `FUN_800547f4` writes `0x25` (`RANKING`) and loads ranking group 12.

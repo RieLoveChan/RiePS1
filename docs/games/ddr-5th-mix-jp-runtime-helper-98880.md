@@ -56,17 +56,21 @@ the returned address itself -- it only computes and returns it, so nothing
 here establishes what the target region holds.
 
 The entry count (146) is one less than `FUN_800985c8`'s resource-name table
-(147, including its `NONE` sentinel at index 0), which is suggestive of a
-companion accessor -- name-to-index in one direction, index-to-record-address
-in the other -- but this is not confirmed: the struct layout at
-`0x800dfd64`+ has not been analyzed, and no caller of either function has
-been read to check whether they are actually used together. Recorded as an
-open lead in the [globals concept](/docs/games/ddr-5th-mix-jp-globals.md).
+(147, including its `NONE` sentinel at index 0) -- and this is now
+**confirmed**, not just suggestive: reading `FUN_800985c8`'s callers finds
+several chained directly as `FUN_80098880(FUN_800985c8("name_NN"))`. Full
+detail, including five 16-bit fields the chained callers read from this
+function's return value, is in the [globals concept](/docs/games/ddr-5th-mix-jp-globals.md)'s
+"Resource-name table" section. The struct layout at `0x800dfd64`+ is still
+not analyzed field-by-field beyond those five fields.
 
 # Evidence boundaries
 
 The byte-match proves the instruction sequence for the recorded executable
 and toolchain, including the exact 146 target addresses (read directly from
 the reconstructed `lui`/`addiu` pairs, not inferred). The relationship to
-`FUN_800985c8`'s name table, the layout of the addressed records, and every
-caller of this function remain unanalyzed.
+`FUN_800985c8`'s name table is confirmed via that function's callers (see
+above); this function's own 77 direct callers have not been swept, so this
+is not a claim about every use site, only the ones found by reading
+`FUN_800985c8`'s callers. The full layout of the addressed records beyond
+the five fields noted above remains unanalyzed.

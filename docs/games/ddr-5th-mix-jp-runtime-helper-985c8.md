@@ -53,10 +53,29 @@ This supports the bounded semantic name **resource-name-to-index lookup**.
 The full name table it scans is itself documented in
 [globals](/docs/games/ddr-5th-mix-jp-globals.md), dumped with the new
 `tools/ghidra/scripts/DumpPointerStringTable.java`, and contains real
-original PsyQ-era resource names (not tool-assigned labels) that corroborate
-several previously `suspected`/`unverified` screen identities in
-[screen-flow](/docs/games/ddr-5th-mix-jp-screen-flow.md) -- that promotion is
-not made in this pass and is recorded as an open lead.
+original PsyQ-era resource names (not tool-assigned labels).
+
+All ten direct call sites (`DumpFunctionCallers.java 0x800985c8`) were read
+2026-08-18. Two names attach to already-established screen identities with a
+caveat each: `caut_25` is drawn during the gameplay session's `PLAY START`
+transition (`FUN_8006ede8`), not the attract loop's separately-confirmed
+WARNING/"Caution" screen -- see
+[game-session-opening](/docs/games/ddr-5th-mix-jp-game-session-opening.md).
+`hlink_25` is drawn by the attract loop's state-1 (a second `RANKING`
+screen index write, `FUN_80054114`), but the name itself more literally
+matches the game's own debug string `LETS LINK` than `RANKING`, which is
+recorded as an open question in
+[screen-flow](/docs/games/ddr-5th-mix-jp-screen-flow.md) rather than
+resolved. `title_25`/`hbota_25` (TITLE/PUSH START) were already documented
+independently before this pass. `hbota_25` also turned out to be a shared
+digit/glyph sprite sheet used by an on-screen counter renderer
+(`FUN_80085254`/`FUN_80085ff8`), not itself a screen -- so its presence in
+the name table doesn't mean every table entry is a screen background;
+several are UI/font assets (see the character-set groups in
+[globals](/docs/games/ddr-5th-mix-jp-globals.md)). `arrow_16` is drawn by a
+music-select-adjacent cursor/comparison routine (`FUN_80093f20`, which reads
+the documented `DAT_800f2908` screen-index global directly) but was not
+traced further here.
 
 # Evidence boundaries
 
@@ -65,6 +84,7 @@ and toolchain. The name-table contents come from a direct memory dump of
 initialized data in the same executable, not from inference. The malformed
 `printf` call, the `unknow`/`unknown` typo, and the `_16`/`_25` fallback
 suffixes are all read directly from the reconstructed instruction sequence.
-What consumes this function's return value, and whether every one of the 147
-table entries maps to a screen (as opposed to a texture, palette, or other
-asset), is not established here.
+The caller-based attributions above cover this function's ten direct call
+sites, not the full transitive reachability of every one of the 147 table
+entries; entries not reached from a read caller are not claimed to be
+screens, textures, or any other specific asset type.

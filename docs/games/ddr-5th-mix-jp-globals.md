@@ -169,11 +169,24 @@ character-set/font resource groups keyed by point size and script
 
 The companion function `FUN_80098880` (also reconstructed 2026-08-18) takes a
 1-based index in the same 1-146 range and returns an address from a separate,
-non-uniform-stride set of 146 targets near `0x800dfd64-0x800e0774`. The
-matching count (146, vs. this table's 147 minus its `NONE` sentinel) is
-suggestive of a companion resource-descriptor accessor, but the indexed
-struct's layout has not been analyzed, so this is recorded as an open lead,
-not a confirmed relationship.
+non-uniform-stride set of 146 targets near `0x800dfd64-0x800e0774`.
+
+**Confirmed 2026-08-18 as a companion pair**, not just a suggestive entry
+count: `DumpFunctionCallers.java 0x800985c8` shows several callers chained
+directly as `FUN_80098880(FUN_800985c8("name_NN"))` -- `FUN_8004d0a0`
+(`caut_25`) and, three times, `FUN_80085254`/`FUN_80085ff8` (`hbota_25`).
+Callers that only forward the name to `FUN_8002a8b0` instead
+(`FUN_8004d010`, `FUN_8004d468`, `FUN_8006216c`) skip `FUN_80098880`
+entirely, so the record it returns is not needed by every consumer -- a
+plain image-queue-by-index call is apparently enough on its own, while some
+draw paths additionally need per-resource fields. `FUN_80085254`/`FUN_80085ff8`
+read five signed-16-bit fields from the returned address, at offsets `+2`,
+`+4`, `+0xa`, `+0xe`, and `+0x10`, and pass them straight into the
+unanalyzed `FUN_800860f8` alongside screen-position arguments -- plausibly a
+sprite-sheet cell descriptor (position/dimensions) given `hbota_25`'s
+digit-rendering use, but `FUN_800860f8` itself has not been read, so no
+individual field's meaning is asserted. The full struct layout is not
+analyzed further here.
 
 # Reproduction
 
