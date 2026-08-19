@@ -198,10 +198,28 @@ screen (`runtime-block-800a9210`) that runs instead of the normal per-song
 results display whenever `EVENT MODE` is active. `GAME MODE`'s branch also
 sets `DAT_800f291f` conditionally from `FUN_800a0008()`
 (`PTR_DAT_800e0b18[0x86] == 1`), while `EVENT MODE` always sets it to `1`;
-the meaning of that second flag is not yet investigated. This does not
-resolve the separate per-player play-mode/step-input-format selector found
-at `DAT_800f2908`'s array offset `+0x49` (see the `runtime-block-800a1724`
-symbol-map notes) -- that field's own setter is still untraced.
+the meaning of that second flag is not yet investigated. This is a
+separate field from the per-player play-mode/step-input-format selector at
+`DAT_800f2908`'s array offset `+0x49` (see the `runtime-block-800a1724`
+symbol-map notes). **`+0x49`'s setter, resolved 2026-08-19**: found in
+`FUN_8006ffd8` (the 15-state gameplay-session tick function,
+[game-session-router](/docs/games/ddr-5th-mix-jp-game-session-router.md)
+module) after the direct-reference and per-player-init sweeps that missed
+`DAT_80105083` earlier failed to find it here too -- Ghidra assigns this
+struct's individual offsets separate `DAT_800f29xx` symbol names wherever
+*other* code happens to address them directly, so a field-xref sweep on
+`DAT_800f2908` itself only ever finds accesses that go through *that*
+particular symbol, not the struct as a whole. Per player, if that player's
+own `+0x12` field equals `1` (a join-request flag), the code checks the
+*other* player's `+0x24` field: if it's below `2`, this player's `+0x49`
+becomes `1` (solo/first joiner) and `+0x12` becomes `2`; otherwise `+0x49`
+becomes `5` (a second player joining an already-active session, i.e.
+couple-mode pairing), `+0x12` becomes `3`, and the other player's `+0x92`
+field is also set to `5`. Combined with the input-bit-merge values (`2`,
+`0xa`) already found in `FUN_8007fdec` and `7` as the established
+inactive-slot sentinel, `+0x49` is now understood end-to-end (setter and
+effect) as a session-role/play-format selector, though it still lacks a
+definitive SINGLE/DOUBLE/COUPLE name mapping without further corroboration.
 
 **Additional runtime captures, 2026-07-15**: the owner followed five of those
 rows and supplied screenshots whose visible headings are `ARCADE LINK`,
