@@ -837,13 +837,125 @@ In decompilation research, object prefix names derived from Ghidra PSX loader au
 
 ### `SYS` Object (`0x800381e8`–`0x8003b114`, 12,076 bytes)
 - **Supported evidence**: 100.0% byte account (12,076 / 12,076 covered bytes, `gap_bytes: 0`, `merged_intervals: 1`), corroborated by Ghidra disassembly of 3 missing rows (`SYS_OBJ_F80`, `SYS_OBJ_22F4`, `SYS_OBJ_2828`) all resolving to base `0x800381e8`. Bounded by 8-byte zero-alignment padding at both start (`0x800381dc`–`0x800381e7`) and end (`0x8003b114`–`0x8003b11b`).
-- **Missing evidence**: Direct PsyQ SDK library object filename or symbol table entry proving `SYS` corresponds to a specific SDK object file (e.g. `LIBSYS.OBJ`).
-- **Status**: `candidate_for_audit` (object-boundary proven, semantic object name unconfirmed).
+- **Missing evidence** (resolved 2026-08-19 — see §2b): the SDK library object filename is `SYS.OBJ` from LIBGPU.LIB, corroborated with exact label offsets by the PsyQ 4.4.0 signature database bundled with this project's `ghidra_psx_ldr` install; the lawful `.OBJ`/`.LIB` byte-match provenance the `boundary_confirmed` tier requires is still absent.
+- **Status**: `candidate_for_audit` (object-boundary proven and byte-matched; object name corroborated against the bundled SDK-derived signature database — see §2b).
 
 ### `FORMAT` Object (`0x8003b6e8`–`0x8003ba38`, 848 bytes)
 - **Supported evidence**: 100.0% byte account (848 / 848 covered bytes, `gap_bytes: 0`, `merged_intervals: 1`), all 3 `FORMAT_OBJ_*` rows resolving to base `0x8003b6e8`. Bounded by 8-byte zero-alignment padding at start (`0x8003b6e0`–`0x8003b6e7`) and landing directly on verified BIOS stub `_card_read` (`0x8003ba38`).
-- **Missing evidence**: Direct PsyQ SDK library object filename or symbol table entry proving `FORMAT` corresponds to `CARD.OBJ` or `FORMAT.OBJ`.
-- **Status**: `candidate_for_audit` (object-boundary proven, semantic object name unconfirmed).
+- **Missing evidence** (resolved 2026-08-19 — see §2b): the SDK library object filename is `FORMAT.OBJ` from LIBCARD.LIB, corroborated by the bundled PsyQ 4.4.0 signature database (`_card_format`@0x144 and label offsets @0xf0/@0x320 matching `FORMAT_OBJ_F0`/`FORMAT_OBJ_320`; the object's exclusive end lands on `A79.OBJ`'s `_card_read`@0x0, with both entries in the same LIBCARD.LIB); the lawful `.OBJ`/`.LIB` byte-match provenance the `boundary_confirmed` tier requires is still absent.
+- **Status**: `candidate_for_audit` (object-boundary proven and byte-matched; object name corroborated against the bundled SDK-derived signature database — see §2b).
+
+## 2b. Update 2026-08-19 (Unit F): object-name identity corroborated against the bundled PsyQ 4.4.0 signature database
+
+The external linked-object-boundary work package's Unit F left the object names'
+semantic identity open, recording that a prior web search for a primary PsyQ SDK
+source found none. A genuinely new avenue was checked this session and resolves
+the question for all eight confirmed objects: the signature database **bundled
+with this project's own `ghidra_psx_ldr` install** —
+`tools/local/ghidra_12.1.2_PUBLIC/Ghidra/Extensions/ghidra_psx_ldr/data/psyq/440/*.json`
+(version directory `440` = PsyQ 4.4.0, matching the SDK revision this project
+already pinned; `data/psyq/generator/psyq_sig.py` documents how the author
+generated these files from the actual SDK library archives). One JSON exists per
+`.LIB`/`.OBJ`, and each entry carries the SDK object filename, a byte signature,
+and label names with intra-object offsets. This is the same database every
+`symbol_source_type = IMPORTED` function name in the symbol map was applied from;
+it had not previously been queried for object identity.
+
+For all eight confirmed objects, the DB's object name and internal label offsets
+agree exactly with the already byte-matched function addresses recorded in this
+document (offsets relative to each object's confirmed base; `0x...=...` is DB
+offset = our address arithmetic):
+
+| Our object (base) | SDK object (library) | Exact offset agreements |
+|---|---|---|
+| `SYS` (`0x800381e8`) | `SYS.OBJ` (LIBGPU.LIB) | `ResetGraph`@0x0=0x800381e8; `SetDispMask`@0x2e4=0x800384cc; `DrawSync`@0x37c=0x80038564 |
+| `FORMAT` (`0x8003b6e8`) | `FORMAT.OBJ` (LIBCARD.LIB) | `_card_format`@0x144=0x8003b82c (a named CSV row, 476 bytes, ending exactly where `FORMAT_OBJ_320` begins); DB labels `text_F0`@0xf0/`text_320`@0x320 = CSV rows `FORMAT_OBJ_F0`/`FORMAT_OBJ_320`; exclusive end 0x8003ba38 = `A79.OBJ`'s `_card_read`@0x0, with both `FORMAT.OBJ` and `A79.OBJ` entries of the same LIBCARD.LIB |
+| `SSSTART` (`0x8003030c`) | `SSSTART.OBJ` (LIBSND.LIB) | `SsStart`@0x230=0x8003053c; `SsStart2`@0x250=0x8003055c |
+| `S_SCA` (`0x8002ff3c`) | `S_SCA.OBJ` (LIBSPU.LIB) | `SpuSetCommonAttr`@0x0=0x8002ff3c |
+| `PRESET` (`0x8007c4e0`) | `PRESET.OBJ` (LIBGS.LIB) | `GsLinkObject5`@0x0=0x8007c4e0 |
+| `PADENTRY` (`0x8003c548`) | `PADENTRY.OBJ` (LIBPAD.LIB) | `PadChkVsync`@0x0=0x8003c548; `PadStartCom`@0x20=0x8003c568; `PadStopCom`@0x40=0x8003c588; `PadChkMtap`@0x60=0x8003c5a8; `PadGetState`@0xac=0x8003c5f4; `PadInfoMode`@0x178=0x8003c6c0; `PadSetActAlign`@0x3ec=0x8003c934; `PadSetMainMode`@0x424=0x8003c96c; `PadSetAct`@0x46c=0x8003c9b4 |
+| `PADMAIN` (`0x8003ca08`) | `PADMAIN.OBJ` (LIBPAD.LIB) | `PadEnableCom`@0x0=0x8003ca08; `_padClrIntSio0`@0xd0c=0x8003d714; `_padWaitRXready`@0xd9c=0x8003d7a4 |
+| `PADCMD` (`0x8003d7d8`) | `PADCMD.OBJ` (LIBPAD.LIB) | `_padSetAct`@0x0=0x8003d7d8; `_padSetActAlign`@0x8bc |
+
+The DB also refines the criterion-2 neighbor corroborations recorded above:
+`SsSetMVol`, `SsSeqCalledTbyT`, `SsSetSerialAttr`, and `GsMapModelingData` — the
+functions whose measured ends border these objects — are labels of *separate* SDK
+objects (`SSSMV.OBJ`, `SSCALL.OBJ`, `SSSATTR.OBJ`, `GS_105.OBJ`), which is exactly
+why the earlier pass recorded them as adjacency cross-checks rather than as each
+object's own first function. The object-internal corroborations in the table above
+are the stronger, name-identity form.
+
+### Boundary correction surfaced by this pass: `PADENTRY` and `PADMAIN` spans were truncated
+
+The DB labels for `PADENTRY.OBJ` continue past `0x3ec` (`PadSetMainMode`@0x424,
+`PadSetAct`@0x46c) and for `PADMAIN.OBJ` past `0xd0c` (`_padWaitRXready`@0xd9c,
+`loc_DA8`@0xda8). All three continuation functions are already present in the
+symbol map as verified rows at exactly `base + offset`
+(`PadSetMainMode`@0x8003c96c, `PadSetAct`@0x8003c9b4, `_padWaitRXready`@0x8003d7a4),
+so the spans declared in the 2026-08-04 updates — `PADENTRY` `0x8003c548`–`0x8003c934`
+and `PADMAIN` `0x8003ca08`–`0x8003d714` — ended at a label that the DB attributes
+to the same object, i.e. they were **truncated**, not complete. Re-running the
+merge-and-gap checker over the corrected extents closes both byte accounts with
+zero gaps and one merged interval:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix PADENTRY -ObjectStart 0x8003c548 -ObjectEnd 0x8003c9fc
+# => span 1204, covered 1204, gap_bytes 0, merged_intervals 1, base_consistent true
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build/Invoke-PsyqObjectBoundaryCheck.ps1 -Prefix PADMAIN -ObjectStart 0x8003ca08 -ObjectEnd 0x8003d7cc
+# => span 3524, covered 3524, gap_bytes 0, merged_intervals 1, base_consistent true
+```
+
+The new trailing edges are real zero padding, checked directly against the
+hash-gated program (`DumpBytes.java 0x8003c9fc 12` and `DumpBytes.java 0x8003d7cc 12`
+both print twelve `00` bytes), so the corrected extents are
+`PADENTRY` `0x8003c548`–`0x8003c9fc` (1,204 bytes) and `PADMAIN` `0x8003ca08`–`0x8003d7cc`
+(3,524 bytes), each followed by 12 bytes of zero-alignment padding before the next
+object (`PADMAIN` at `0x8003ca08`, `PADCMD` at `0x8003d7d8`). The four-criteria bar
+still holds for both objects at the corrected extents (complete byte account,
+boundary agreement, checked edge padding at both true edges). This supersedes the
+PADENTRY/PADMAIN span declarations in the 2026-08-04 update paragraph above.
+
+Reproduction (requires the documented `ghidra_psx_ldr` install, per
+`/docs/tooling/ghidra-setup.md`; the database lives under the git-ignored
+`tools/local/` and is not committed):
+
+```powershell
+# per-object label/offset dump for the pinned SDK version (PsyQ 4.4.0):
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build/Get-PsyqSigObject.ps1 -Object SYS.OBJ -Version 440
+# label-to-object lookup, e.g. the SSSTART corroboration:
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build/Get-PsyqSigObject.ps1 -Label SsStart -Version 440
+```
+
+What this establishes, and what it does not:
+
+- **Establishes**: the eight `<name>` prefixes are real SDK library object names
+  (`SYS.OBJ`, `FORMAT.OBJ`, `SSSTART.OBJ`, `S_SCA.OBJ`, `PRESET.OBJ`,
+  `PADENTRY.OBJ`, `PADMAIN.OBJ`, `PADCMD.OBJ`), and their internal label offsets
+  agree exactly with independently byte-matched function addresses — i.e., both
+  the object boundaries and the object-name readings are now corroborated by a
+  second, unrelated source (the plugin author's extraction of the actual SDK
+  archives) rather than resting on the symbol map's own naming alone.
+- **Does not establish**: the `boundary_confirmed` tier of §3 below. That tier
+  requires a primary direct provenance link — an exact byte match against an
+  object built from lawful PsyQ 4.4.0 `.OBJ`/`.LIB` sources, embedded
+  path/string literals inside the object itself, or explicit linker-map
+  references. The signature database is a third-party extraction of the
+  proprietary SDK (the same evidence class every `IMPORTED` function name in the
+  symbol map already relies on); it is not a lawful SDK source, and the 8-byte
+  `Ps` object-header markers in the executable carry no name string. All eight
+  objects therefore remain `candidate_for_audit` for the boundary claim, with
+  name identity now separately corroborated. Obtaining lawful `.OBJ`/`.LIB`
+  byte-match provenance remains future work requiring the owner's lawful SDK.
+- One circularity caveat, stated plainly: the `_OBJ_` fragment prefixes and the
+  `IMPORTED` names trace to this same database via `ghidra_psx_ldr`'s signature
+  application, so the *names* are not fully independent of the symbol map. The
+  *offsets* are independent: they were fixed by hand review and exact byte match,
+  and the DB's internal per-object layout agrees with them byte-for-byte.
+- One name-collision caveat: `SYS.OBJ` is not unique in the DB — a second,
+  unrelated `SYS.OBJ` exists in LIBCD.LIB (CD-status functions such as `CdSync`,
+  `CdControl`). Identity here is fixed by the function content (`ResetGraph`,
+  `SetDispMask`, `DrawSync` are all LIBGPU `SYS.OBJ` labels), not by the name
+  alone.
 
 ## 3. Falsifiable Standard for Object Boundary Claims
 

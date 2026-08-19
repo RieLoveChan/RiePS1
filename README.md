@@ -141,9 +141,15 @@ plus all
    [linked-object evidence](docs/foundations/linked-object-evidence.md). Every
    other `<name>_OBJ_*` run remains `candidate_only` until it independently
    passes the same checks. A bounded, ordered backlog toward object-name
-   semantic identity (lowest priority; still open even for the confirmed
-   objects) is defined in the
-   [external linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md).
+   semantic identity (lowest priority) is defined in the
+   [external linked-object-boundary work package](docs/workflows/external-agent-linked-object-boundary.md);
+   its Unit F question was resolved 2026-08-19: all eight confirmed object names
+   (`SYS`, `FORMAT`, `SSSTART`, `S_SCA`, `PRESET`, `PADENTRY`, `PADMAIN`, `PADCMD`)
+   were corroborated against the PsyQ 4.4.0 signature database bundled with the
+   project's `ghidra_psx_ldr` install, with exact intra-object offset agreement
+   ([linked-object evidence §2b](docs/foundations/linked-object-evidence.md)); the
+   `boundary_confirmed` tier still requires lawful `.OBJ`/`.LIB` byte-match
+   provenance, so the boundary claims remain `candidate_for_audit`.
 
 The HOW TO PLAY overlay's former 80-byte limit was explicitly reopened on
 2026-07-25. Raw-MIPS call-chain, stride, and bounds proofs resolved the
