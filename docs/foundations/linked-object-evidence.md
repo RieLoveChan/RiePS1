@@ -1102,6 +1102,78 @@ whole-image match, and not lawful provenance (the names and offsets still trace
 to the third-party bundled signature database; the byte-match evidence for the
 base functions is independent of it, as for the prior eight).
 
+## 2e. Update 2026-08-19: the remaining multi-row candidates, all confirmed
+
+The same four-criteria procedure was then applied to **every remaining
+multi-row `ALIGNED_COMPLETE` candidate** from the §2c screening (36 runs). All
+36 pass: criterion 1 (checker over `[base, end)` reports `gap_bytes: 0`,
+`merged_intervals: 1`, `base_consistent: true` for each), criterion 2 (each
+base is a `verified`/`hand_written_source` byte-matched function that equals the
+DB object's `label@0x0` — the same match table as §2d, all 36 verified by the
+same DB query), and criterion 3 (edge padding below, dumped directly with
+`DumpBytes.java <edge> 16`). No run in this batch is both-edge-dense; every
+object has at least one padded edge, and every dense edge lands exactly on a
+verified neighbor row (`SpuRead`, `SsEnd`, `SsUtSetReverbDepth`,
+`SsVabOpenHeadSticky`, `GsGetActiveBuff`, `CdInit`, `FUN_80056034`). Adjacent
+seams were cross-checked from both sides and agree (e.g. `S_SAV` trailing 4B =
+`S_CRWA` leading 4B at `0x8002eba8`; `COR_05` leading 12B = `GS_137` trailing
+12B at `0x80054fbc`; `FGO_02` trailing 4B = `SPRINTF` leading 4B at
+`0x800613ec`). Where a 16-byte leading window was entirely zero, the pad is
+reported as `≥16B` (its true extent extends past the window, bounded by the
+previous object's measured end).
+
+| Object (base–end) | Bytes | Base function = DB `label@0x0` | Leading | Trailing |
+|---|---|---|---|---|
+| `S_SR` (`0x8002e4fc`–`0x8002e5c8`) | 204 | `SpuSetReverb` | 12B | 4B |
+| `S_M_UTIL` (`0x8002e75c`–`0x8002e868`) | 268 | `_SpuIsInAllocateArea` | ≥16B | 4B |
+| `S_SAV` (`0x8002e8ec`–`0x8002eba8`) | 700 | `_SpuSetAnyVoice` | ≥16B | 4B |
+| `S_CRWA` (`0x8002ebac`–`0x8002ed40`) | 404 | `SpuClearReverbWorkArea` | 4B | 12B |
+| `S_SI` (`0x8002ed4c`–`0x8002ee88`) | 316 | `SpuSetIRQ` | 12B | 4B |
+| `S_SK` (`0x8002ef5c`–`0x8002f118`) | 444 | `SpuSetKey` | ≥16B | 4B |
+| `S_GKS` (`0x8002f11c`–`0x8002f1ac`) | 144 | `SpuGetKeyStatus` | 8B | dense |
+| `SR_GAKS` (`0x8002f2cc`–`0x8002f428`) | 348 | `SpuRGetAllKeysStatus` | ≥16B | 4B |
+| `S_N2P` (`0x8002fa2c`–`0x8002fc2c`) | 512 | `_spu_note2pitch` | 8B | dense |
+| `SSTICK` (`0x8003197c`–`0x80031ac4`) | 328 | `SsSetTickMode` | 12B | 8B |
+| `TEMPO` (`0x80031acc`–`0x80031ce8`) | 540 | `_SsSndTempo` | 8B | 4B |
+| `UT_KEYV` (`0x80031cec`–`0x800320bc`) | 976 | `SsUtKeyOnV` | 8B | dense |
+| `S_SRMP` (`0x8003214c`–`0x80032620`) | 1,236 | `SpuSetReverbModeParam` | 8B | 12B |
+| `VM_NO1` (`0x800337fc`–`0x80033d64`) | 1,384 | `vmNoiseOn` | 12B | 8B |
+| `VM_NOWON` (`0x80033e7c`–`0x80034344`) | 1,224 | `_SsVmKeyOnNow` | dense | 8B |
+| `S_M_INT` (`0x80034cac`–`0x80034fac`) | 768 | `_spu_gcSPU` | 8B | dense |
+| `VS_VTBP` (`0x800354cc`–`0x80035650`) | 388 | `SsVabTransBodyPartly` | dense | 12B |
+| `S_ITC` (`0x8003571c`–`0x800357c0`) | 164 | `SpuIsTransferCompleted` | 8B | 12B |
+| `INTR_VB` (`0x800361c8`–`0x800362dc`) | 276 | `startIntrVSync` | 4B | 12B |
+| `INTR_DMA` (`0x800362e8`–`0x80036584`) | 668 | `startIntrDMA` | ≥16B | 4B |
+| `GS_001` (`0x80036758`–`0x80036ca8`) | 1,360 | `GsInitGraph` | 4B | dense |
+| `GS_107` (`0x80037988`–`0x80037ef0`) | 1,384 | `GsSetFlatLight` | ≥16B | 8B |
+| `GS_123` (`0x80038118`–`0x800381e0`) | 200 | `Gssub_make_matrix` | ≥16B | 8B |
+| `COUNTER` (`0x8003bca8`–`0x8003be14`) | 364 | `SetRCnt` | 4B | 4B |
+| `FIRST` (`0x8003be18`–`0x8003c0b4`) | 668 | `firstfile` | 8B | 4B |
+| `PAD` (`0x8003c0d8`–`0x8003c3d4`) | 764 | `SetInitPadFlag` | 4B | 4B |
+| `WAITRC2` (`0x8003f528`–`0x8003f5e8`) | 192 | `setRC2wait` | ≥16B | dense |
+| `EVENT` (`0x8003f5e8`–`0x8003f72c`) | 324 | `CdInit` | dense | 12B |
+| `GEO_00` (`0x8004964c`–`0x80049718`) | 204 | `rsin` | dense | 4B |
+| `FGO_01` (`0x8005391c`–`0x80053ba8`) | 652 | `RotMatrix` | 4B | 4B |
+| `GS_108` (`0x800548e8`–`0x80054964`) | 124 | `GsSetLightMode` | 4B | 4B |
+| `COR_05` (`0x80054fc8`–`0x800551b4`) | 492 | `csqrt_1` | 12B | 4B |
+| `GS_133` (`0x800554c8`–`0x80055780`) | 696 | `GsGetLw` | 12B | 8B |
+| `GS_131` (`0x80055a94`–`0x80056034`) | 1,440 | `GsSetRefView2` | 4B | dense |
+| `FGO_02` (`0x80061160`–`0x800613ec`) | 652 | `RotMatrixYXZ` | 12B | 4B |
+| `FGO_03` (`0x8007e1e8`–`0x8007e474`) | 652 | `RotMatrixZYX` | dense | 4B |
+
+The confirmed set is now **fifty-two objects** (16 + these 36, 35,296 bytes
+total), spanning LIBSPU, LIBSND, LIBETC, LIBGPU, LIBGS, LIBGTE, LIBCD, LIBC,
+LIBAPI, LIBPAD, and LIBCARD. Criterion 4 scope, stated once for all thirty-six:
+each confirms one object's internal layout and boundary, not PSYLINK's
+whole-executable section ordering, not that GNU binutils reproduces PsyQ's own
+object format, not a whole-image match, and not lawful provenance (names and
+offsets trace to the third-party bundled signature database; base-function
+byte-match evidence is independent of it). The remaining non-confirmed
+`<name>_OBJ_*` rows are the single-row fragments (weak candidates: one coarse
+row covering a DB object, no multi-row structure to corroborate), the
+truncation-flagged runs (`VM_SEQ`, `MSC02`, `UT_REV`, second `SYS` cluster),
+and `PADIF` (open 4-byte base discrepancy) — all previously recorded.
+
 ## 3. Falsifiable Standard for Object Boundary Claims
 
 To maintain evidentiary rigor across all future agent work, object boundary claims must adhere to the following two-tier classification standard:
