@@ -54,8 +54,10 @@ def find_objdump():
         return found
     raise RuntimeError('mipsel-none-elf-objdump not found; set MIPS_TOOLCHAIN_BIN')
 
-def load_base_address(repo_root):
-    manifest_path = os.path.join(repo_root, 'config', 'ddr5thmix', 'build.json')
+def load_base_address(repo_root, manifest_rel=None):
+    if manifest_rel is None:
+        manifest_rel = os.path.join('config', 'ddr5thmix', 'build.json')
+    manifest_path = os.path.join(repo_root, manifest_rel)
     with open(manifest_path, encoding='utf-8') as f:
         manifest = json.load(f)
     load_addr = int(manifest['executable']['load_address'], 16)
@@ -169,9 +171,10 @@ def convert(dis_text, start_addr, end_addr, func_name):
 
 if __name__ == '__main__':
     exe_path, outdir = sys.argv[1], sys.argv[2]
+    manifest_rel = sys.argv[3] if len(sys.argv) > 3 else None
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     objdump = find_objdump()
-    base = load_base_address(repo_root)
+    base = load_base_address(repo_root, manifest_rel)
 
     funcs = []  # (addr, size, name)
     for line in sys.stdin:

@@ -25,6 +25,10 @@ infrastructure meant to carry over when a second target is added:
 
 * [DDR 5th Mix (Japan)](docs/games/ddr5thmix/readme.md) - Current target; status, completed foundations, and next targets in the game's own readme, with its [documentation index](docs/games/ddr5thmix/index.md).
 
+Adding a second target follows the [new-target onboarding procedure](docs/workflows/new-target-onboarding.md): each game gets its own self-contained
+`docs/games/<target>/` folder (readme + index + revision manifest), and the
+shared verifiers accept the new target's manifest/CSV paths via parameters.
+
 ## Documentation
 
 * [Knowledge bundle](docs/index.md) - OKF bundle root: foundations, tooling, workflows, and games.

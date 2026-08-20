@@ -6,6 +6,8 @@ param(
 
     [string]$Module = 'mode-control',
 
+    [string]$ManifestPath = 'config/ddr5thmix/build.json',
+
     [string]$ToolchainBin,
 
     [string]$OutDir
@@ -15,7 +17,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..')).Path
-$manifestPath = Join-Path $repoRoot 'config\ddr5thmix\build.json'
+$manifestPath = Join-Path $repoRoot $ManifestPath
 $manifest = Get-Content -Raw -LiteralPath $manifestPath | ConvertFrom-Json
 $modules = @($manifest.modules | Where-Object { $_.name -eq $Module })
 if ($modules.Count -ne 1) {

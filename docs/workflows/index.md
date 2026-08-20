@@ -16,3 +16,4 @@
 * [Library-signature reconstruction batch 10](external-agent-library-signature-batch10.md) - Fixed 151-function package of 129–255-byte main-executable signatures, the third sliced sub-range of the 65-byte-and-larger backlog; executed directly rather than delegated, and completed.
 * [Library-signature reconstruction batch 11](external-agent-library-signature-batch11.md) - Fixed 75-function package of 256–511-byte main-executable signatures, the fourth sliced sub-range of the 65-byte-and-larger backlog; executed directly and completed.
 * [Library-signature reconstruction batch 12](external-agent-library-signature-batch12.md) - Directly verified the final 15 real 512+ byte PsyQ signatures.
+* [New-target onboarding](new-target-onboarding.md) - Reproducible procedure to add a second PS1 target onto the shared extraction/analysis/reconstruction infrastructure.
