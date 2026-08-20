@@ -88,14 +88,17 @@ plus all
   a graphics-init-once latch, a shared termination flag, and more — and
   corrected the struct's asserted size from `0xbc` to the `bzero`-evidenced
   `0xd0`. See [`DdrSecondaryState` partial layout](/docs/games/ddr5thmix/globals.md).
-- **First confirmed PsyQ object boundaries:** `SYS`, `FORMAT`, `SSSTART`,
-  `S_SCA`, `PRESET`, `PADENTRY`, `PADMAIN`, and `PADCMD` each independently
+- **Confirmed PsyQ object boundaries:** `SYS`, `FORMAT`, `SSSTART`,
+  `S_SCA`, `PRESET`, `PADENTRY`, `PADMAIN`, `PADCMD`, and (2026-08-19)
+  `SPU`, `MIDIREAD`, `PADPORTD`, `PADSEQD`, `SPRINTF`, `S_SVA`, `GS_137`,
+  `VS_VH` — sixteen objects in total — each independently
   satisfy this project's own four-criterion `object_boundary_confirmed` bar —
   complete byte account, an independently-derived boundary agreeing with a
   hand-reviewed function entry point, and a checked edge-padding convention.
-  Three further candidates (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`) each met two of
-  the four criteria with a checked negative result (no edge padding at all)
-  on the third, recorded honestly rather than as confirmed. See
+  Four further candidates (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`, and `INTR`) each
+  met two of the four criteria with a checked negative result (no edge padding
+  at all) on the third, recorded honestly rather than as confirmed; `PADIF`
+  has an open 4-byte boundary discrepancy at its base and is not promoted. See
   [linked-object evidence](/docs/foundations/linked-object-evidence.md).
 - **Object-name identity corroborated (2026-08-19):** all eight confirmed
   object names were corroborated against the PsyQ 4.4.0 signature database
@@ -118,18 +121,20 @@ plus all
    reproduce inter-function layout instead of placing functions independently.
    **The falsifiable four-criterion bar defined in
    [linked-object evidence](/docs/foundations/linked-object-evidence.md) is now
-   met for eight objects** — `SYS`, `FORMAT`, `SSSTART`, `S_SCA`, `PRESET`,
-   `PADENTRY`, `PADMAIN`, and `PADCMD` (the latter three consecutive/adjacent
-   in the same PAD cluster), spanning three distinct library regions
-   (SPU/sequencer, `GS_*` graphics, PAD driver) — each with a complete
+   met for sixteen objects** — `SYS`, `FORMAT`, `SSSTART`, `S_SCA`, `PRESET`,
+   `PADENTRY`, `PADMAIN`, `PADCMD`, `SPU`, `MIDIREAD`, `PADPORTD`, `PADSEQD`,
+   `SPRINTF`, `S_SVA`, `GS_137`, and `VS_VH` (the PAD-cluster objects
+   consecutive/adjacent), spanning multiple distinct library regions
+   (SPU/sequencer, `GS_*` graphics, PAD driver, LIBC, and LIBCARD's memory-card
+   surface) — each with a complete
    zero-gap byte account, an independently-derived boundary agreeing with a
    hand-reviewed/byte-matched function entry point, and a checked
    (non-uniform, honestly reported) edge-padding convention. A systematic scan
-   of the 59 multi-row `<name>_OBJ_*` runs also found three real negative
-   results (`BIOS_OBJ_*`, `UT_REV`, `VSYNC` — complete byte account and a
-   corroborated boundary, but dense edges with no padding anywhere; all three
-   sit in the same tightly packed SPU-library region, suggestively one dense
-   object rather than several small ones). Full per-object detail, addresses,
+   of the multi-row `<name>_OBJ_*` runs also found four real negative
+   results (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`, and `INTR` — complete byte
+   account and a corroborated boundary, but dense edges with no padding
+   anywhere; `VSYNC` and `INTR` sit in the same tightly packed LIBETC
+   interrupt region, suggestively dense objects rather than padded ones). Full per-object detail, addresses,
    and reproduction commands are in
    [linked-object evidence](/docs/foundations/linked-object-evidence.md). Every
    other `<name>_OBJ_*` run remains `candidate_only` until it independently

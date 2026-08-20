@@ -1035,6 +1035,73 @@ What this establishes, and what it does not:
   edge padding). All remain `candidate_only` pending that bar; the screening
   only raises candidates and flags truncations, it does not confirm objects.
 
+## 2d. Update 2026-08-19: four-criteria confirmation of the best multi-row candidates
+
+The full falsifiable bar of §3 was then applied to the strongest multi-row
+candidates from the §2c screening: runs that are `ALIGNED_COMPLETE`, whose
+declared base is occupied by a `verified`/`hand_written_source` (byte-matched)
+function, and whose DB object's first label is that same function. Eight of
+them pass all four criteria and are promoted to `object_boundary_confirmed`:
+
+| Object (base–end) | Bytes | Base function = DB `label@0x0` | Leading edge | Trailing edge |
+|---|---|---|---|---|
+| `SPU` (`0x8002d9bc`–`0x8002e4f0`) | 2,868 | `_spu_init` (verified) | 12 zero bytes (`0x8002d9b0`–`0x8002d9bc`) | 12 zero bytes (`0x8002e4f0`–`0x8002e4fc`) |
+| `MIDIREAD` (`0x80030b6c`–`0x80031258`) | 1,772 | `_SsSeqPlay` (verified) | 4 zero bytes (`0x80030b68`–`0x80030b6c`) | 4 zero bytes (`0x80031258`–`0x8003125c`) |
+| `PADPORTD` (`0x8003ea08`–`0x8003f064`) | 1,628 | `PadInitDirect` (verified) | 8 zero bytes (`0x8003ea00`–`0x8003ea08`) | 4 zero bytes (`0x8003f064`–`0x8003f068`) |
+| `PADSEQD` (`0x8003f068`–`0x8003f51c`) | 1,204 | `_padInitDirSeq` (verified) | 4 zero bytes (`0x8003f064`–`0x8003f068`) | 12 zero bytes (`0x8003f51c`–`0x8003f528`) |
+| `SPRINTF` (`0x800613f0`–`0x80061c74`) | 2,180 | `sprintf` (verified) | 4 zero bytes (`0x800613ec`–`0x800613f0`) | 12 zero bytes (`0x80061c74`–`0x80061c80`) |
+| `S_SVA` (`0x8002f42c`–`0x8002fa24`) | 1,528 | `SpuSetVoiceAttr` (verified) | 4 zero bytes (`0x8002f428`–`0x8002f42c`) | 8 zero bytes (`0x8002fa24`–`0x8002fa2c`) |
+| `GS_137` (`0x800549b8`–`0x80054fbc`) | 1,540 | `GsSetRefView2L` (verified) | dense (SetBackColor's `jr ra`/nop runs into the prologue, 0 pad) | 12 zero bytes (`0x80054fbc`–`0x80054fc8`) |
+| `VS_VH` (`0x80034fac`–`0x80035408`) | 1,116 | `SsVabOpenHeadSticky` (verified) | dense (S_M_INT's `jr ra`/nop runs into the prologue, 0 pad) | 4 zero bytes (`0x80035408`–`0x8003540c`) |
+
+For each: criterion 1 (complete byte account) reproduced with
+`Invoke-PsyqObjectBoundaryCheck.ps1` over `[base, end)` — all eight report
+`gap_bytes: 0`, `merged_intervals: 1`, `base_consistent: true`; criterion 2 is
+the base function's byte-match plus the DB's independent `label@0x0` agreement
+(the base function name in the symbol map equals the DB object's first label —
+`_spu_init`, `_SsSeqPlay`, `PadInitDirect`, `_padInitDirSeq`, `sprintf`,
+`SpuSetVoiceAttr`, `GsSetRefView2L`, `SsVabOpenHeadSticky`); criterion 3 is the
+checked edge padding above, dumped directly from the hash-gated program with
+`DumpBytes.java <edge> 16` (all quoted byte patterns observed in this session).
+The confirmed set is now sixteen objects (the prior eight plus these eight),
+spanning LIBSPU, LIBSND, LIBGPU, LIBGS, LIBCARD, LIBC, and LIBPAD (SYS/`FORMAT`
+from LIBGPU/LIBCARD, the PAD-driver cluster, the SPU/sequencer region, the
+`GS_*` graphics region, and LIBC's `sprintf`).
+
+Two other candidates from the screening were checked and are **not** promoted,
+each for a different, precisely recorded reason:
+
+- **`INTR` (`0x80035b08`–`0x800361c8`, 1,728 bytes) — negative on criterion 3.**
+  Criterion 1 holds (`gap_bytes: 0`, `merged_intervals: 1`) and the base is the
+  verified byte-matched `ResetCallback` (DB `INTR.OBJ` `label@0x0` =
+  `ResetCallback`), but both true edges are dense: `VSYNC_OBJ_200`'s
+  `jr ra`/nop epilogue (`0x80035b00`/`0x80035b04`) runs directly into
+  `ResetCallback`'s prologue at `0x80035b08`, and the object's last row ends
+  exactly at `0x800361c8` where `startIntrVSync` begins. Zero padding at either
+  edge — the same dense-edge shape as the three prior negatives
+  (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`; `VSYNC` is the one of those sitting in the
+  same tightly packed LIBETC interrupt region as `INTR`, while `BIOS` is
+  LIBCD/LIBMCRD and `UT_REV` is LIBSND). Recorded as a fourth honest negative, not a
+  confirmation.
+- **`PADIF` (`0x8003e3d8`–`0x8003e9fc`, 1,572 bytes) — unresolved boundary
+  discrepancy, not confirmed.** The DB's implied base `0x8003e3d8` (from
+  `PADIF_OBJ_48` at `0x8003e420` and DB `PADIF.OBJ` `label@0x0` = `loc_0`) is
+  straddled by the verified gap-sweep row `FUN_8003e3d4`
+  (`0x8003e3d4`–`0x8003e420`, 76 bytes, byte-matched Batch-9), whose first word
+  is a zero/nop at `0x8003e3d4` before a classic `addiu sp,sp,-0x18` prologue at
+  `0x8003e3d8`. As a result neither `[0x8003e3d4, end)` (object would include
+  the nop and disagree with the DB base) nor `[0x8003e3d8, end)` (72-byte gap
+  from the excluded `FUN_8003e3d4`) yields a clean byte account. The 4-byte
+  discrepancy at the `PADCMD`/`PADIF` seam is left open for a focused
+  `FUN_8003e3d4` boundary re-check; `PADIF` is not promoted.
+
+Criterion 4 scope, stated once for all eight confirmations: each confirms one
+object's internal layout and boundary, not PSYLINK's whole-executable section
+ordering, not that GNU binutils reproduces PsyQ's own object format, not a
+whole-image match, and not lawful provenance (the names and offsets still trace
+to the third-party bundled signature database; the byte-match evidence for the
+base functions is independent of it, as for the prior eight).
+
 ## 3. Falsifiable Standard for Object Boundary Claims
 
 To maintain evidentiary rigor across all future agent work, object boundary claims must adhere to the following two-tier classification standard:
