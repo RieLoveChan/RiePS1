@@ -149,9 +149,15 @@ plus all
    end landed on its own DB label, and the corrected extent has a padded
    trailing edge). Full per-object detail, addresses,
    and reproduction commands are in
-   [linked-object evidence](/docs/foundations/linked-object-evidence.md). Every
-   other `<name>_OBJ_*` run remains `candidate_only` until it independently
-   passes the same checks. A bounded, ordered backlog toward object-name
+   [linked-object evidence](/docs/foundations/linked-object-evidence.md). The
+   29 single-row `_OBJ_` fragments were closed 2026-08-19: every DB label of
+   every fragment's object lands inside an existing verified symbol-map row
+   (148/148 covered — the fragments are signature-applier naming artifacts,
+   their objects already fully catalogued; no boundary claim is possible from a
+   single row). The `<name>_OBJ_*` population is thus fully resolved: 57
+   confirmed, 3 dense-edge negatives, 29 fragments documented
+   ([linked-object evidence §2g](/docs/foundations/linked-object-evidence.md)).
+   A bounded, ordered backlog toward object-name
    semantic identity (lowest priority) is defined in the
    [external linked-object-boundary work package](/docs/workflows/external-agent-linked-object-boundary.md);
    its Unit F question was resolved 2026-08-19: all eight confirmed object names

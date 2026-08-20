@@ -1208,6 +1208,43 @@ The only remaining non-confirmed `<name>_OBJ_*` rows are the single-row
 fragments, whose sole coarse row cannot carry the multi-row corroboration the
 bar requires.
 
+## 2g. Update 2026-08-19: single-row fragments closed — every DB object is fully catalogued
+
+The 29 single-row `_OBJ_` fragments (one row per run) were the last open
+`<name>_OBJ_*` population. They cannot be boundary-confirmed — the four-criteria
+bar requires multi-row structure — but the open question was whether each
+fragment's DB object is otherwise catalogued in the symbol map or whether
+uncatalogued code hides behind it. That is now answered definitively: for every
+fragment, **every** label of its `<prefix>.OBJ` in the PsyQ 4.4.0 database
+lands inside an existing symbol-map row span. Reproduced with
+`tools/build/Test-PsyqFragmentCoverage.ps1`:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build/Test-PsyqFragmentCoverage.ps1
+# single-row fragments: 29; DB labels checked: 148; covered: 148; uncovered: 0  ->  PASS
+```
+
+Of the 148 covering rows, 146 are `verified` (144 named non-`FUN_*` rows plus 2
+`FUN_*` rows) and 2 are `library_signature` — and those two are the fragment
+rows themselves: `2MBYTE_OBJ_B4` (the documented one-byte `"Ps"` object-header
+marker at `0x800207ac`) and `PATCHGTE_OBJ_DC`. Representative named rows that
+carry a fragment object's functions: `S_M_INIT` → `SpuInitMalloc`; `GS_002` →
+`GsGetActiveBuff`/`GsSetDrawBuffOffset`; `GS_004` → `GsSetOffset`; `FGO_04` →
+`RotMatrixX`; `FGO_05` → `RotMatrixY`; `MEMMOVE` → `memmove`; `READ` → `PCread`;
+`GEO_01` → `rcos`; `E03` → `SetDefDrawEnv`; `P36` → `MargePrim`; and so on.
+
+Conclusion, closing the topic: every single-row fragment's DB object is already
+fully catalogued in the symbol map under named verified rows; the fragment
+`_OBJ_` row is a `ghidra_psx_ldr` signature-applier naming artifact (a coarse
+row the applier left for one object position), not an uncatalogued object and
+not a boundary. Name identity for all 29 is corroborated by the same database
+as everything else in this document; no boundary claim is made or possible from
+a single row, so the fragments remain outside the confirmed set with no further
+action required and no symbol-map change needed. With this, the `<name>_OBJ_*`
+population is fully resolved: 57 objects `object_boundary_confirmed`, 3
+recorded dense-edge negatives (`BIOS_OBJ_*`, `VSYNC`, `INTR`), and 29
+single-row fragments documented as fully-catalogued naming artifacts.
+
 ## 3. Falsifiable Standard for Object Boundary Claims
 
 To maintain evidentiary rigor across all future agent work, object boundary claims must adhere to the following two-tier classification standard:
