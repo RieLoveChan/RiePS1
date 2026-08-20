@@ -1174,6 +1174,40 @@ row covering a DB object, no multi-row structure to corroborate), the
 truncation-flagged runs (`VM_SEQ`, `MSC02`, `UT_REV`, second `SYS` cluster),
 and `PADIF` (open 4-byte base discrepancy) — all previously recorded.
 
+## 2f. Update 2026-08-19: truncation re-checks and the `PADIF` resolution
+
+The five runs flagged in §2c/§2d — the four whose DB objects extend past the
+declared run end (`VM_SEQ`, `MSC02`, `UT_REV`, the second `SYS` cluster) and
+`PADIF`'s base discrepancy — were re-checked at their DB-pinned corrected
+extents with the same four-criteria bar. All five now confirm:
+
+| Object (corrected extent) | Bytes | Base = DB `label@0x0` | Leading | Trailing | Note |
+|---|---|---|---|---|---|
+| `VM_SEQ` (`0x8003434c`–`0x80034a5c`) | 1,808 | `_SsVmSetSeqVol` | 8B pad | dense (onto `_SsVmVSetUp`) | run end `0x800348b8` was truncated; DB object continues through `_SsVmGetSeqVol`/`_SsVmGetSeqLVol`/`_SsVmGetSeqRVol`/`_SsVmSeqKeyOff` |
+| `MSC02` (`0x80060eb0`–`0x80061158`) | 680 | `InvSquareRoot` | dense | 8B pad (onto `RotMatrixYXZ`/FGO_02) | DB label at `0x1c0` = `MatrixNormal` was exactly the old run end; corrected extent ends at `MatrixNormal`'s measured end |
+| `UT_REV` (`0x80032afc`–`0x80032ba8`) | 172 | `SsUtSetReverbType` | dense | 4B pad (onto `FUN_80032bac`) | **reverses the earlier dense-edge negative**: the old end `0x80032b98` landed on `SsUtGetReverbType`, which is `UT_REV.OBJ`'s own `label@0x9c`, not the next object; the true trailing edge is padded |
+| `SYS`/CD (`0x8003f738`–`0x8003fec8`) | 1,936 | `CdStatus` | ≥16B pad | dense (onto `BIOS_OBJ_0`) | the second `SYS` run is **LIBCD's** `SYS.OBJ` (CD system: `CdStatus`…`CdPosToInt`), distinct from the LIBGPU `SYS.OBJ` confirmed in §2b; the name collision is resolved concretely |
+| `PADIF` (`0x8003e3d4`–`0x8003e9fc`) | 1,576 | `FUN_8003e3d4` (verified; DB `loc_0` at `0x8003e3d8`) | dense (onto PADCMD end `0x8003e3d4`) | 12B pad (onto `PadInitDirect`) | **discrepancy resolved**: the object's DB-implied base is `0x8003e3d8`; the first 4 bytes (`0x8003e3d4`, a nop — the first word of the verified gap-sweep row `FUN_8003e3d4`) are a leading alignment nop. The byte account over `[0x8003e3d4, 0x8003e9fc)` closes (`gap_bytes: 0`, `merged_intervals: 1`); the checker's `base_consistent` flag is false only because the row starts 4 bytes before the DB base — the earlier "72-byte gap" was an artifact of checking from the DB base while the row starts earlier |
+
+Criterion 1 for each reproduced with `Invoke-PsyqObjectBoundaryCheck.ps1` over
+the corrected range — all five report `gap_bytes: 0`, `merged_intervals: 1`
+(`PADIF` additionally `base_consistent: false` for the 4-byte nop reason
+above); criterion 2 is the byte-matched base function equal to the DB object's
+`label@0x0` (`_SsVmSetSeqVol`, `InvSquareRoot`, `SsUtSetReverbType`,
+`CdStatus`; `PADIF`'s base row is the verified `FUN_8003e3d4`); criterion 3 is
+the checked edge padding above, dumped directly (`DumpBytes.java <edge> 16`)
+in this session. The confirmed set is now **fifty-seven objects / 41,468
+bytes**, and the earlier negative list shrinks from four to three
+(`BIOS_OBJ_*`, `VSYNC`, `INTR` — all genuinely both-edge-dense at their true
+extents). Criterion 4 scope, stated once: each confirms one object's internal
+layout and boundary, not PSYLINK's whole-executable section ordering, not
+GNU-binutils reproduction of PsyQ's object format, not a whole-image match, and
+not lawful provenance (names/offsets trace to the third-party bundled
+signature database; base-function byte-match evidence is independent of it).
+The only remaining non-confirmed `<name>_OBJ_*` rows are the single-row
+fragments, whose sole coarse row cannot carry the multi-row corroboration the
+bar requires.
+
 ## 3. Falsifiable Standard for Object Boundary Claims
 
 To maintain evidentiary rigor across all future agent work, object boundary claims must adhere to the following two-tier classification standard:

@@ -94,15 +94,18 @@ plus all
   `VS_VH`, plus all 36 remaining multi-row candidates (`S_*`, `SR_GAKS`,
   `SSTICK`, `TEMPO`, `UT_KEYV`, `VM_*`, `VS_VTBP`, `INTR_VB`/`INTR_DMA`,
   `GS_001`/`GS_107`/`GS_108`/`GS_123`/`GS_131`/`GS_133`, `COUNTER`, `FIRST`,
-  `PAD`, `WAITRC2`, `EVENT`, `GEO_00`, `COR_05`, `FGO_01`/`FGO_02`/`FGO_03`)
-  — **fifty-two objects in total** — each independently
+  `PAD`, `WAITRC2`, `EVENT`, `GEO_00`, `COR_05`, `FGO_01`/`FGO_02`/`FGO_03`),
+  and (2026-08-19) the re-checked truncations `VM_SEQ`, `MSC02`, `UT_REV`,
+  the LIBCD `SYS`/CD object, and `PADIF` — **fifty-seven objects in total** — each independently
   satisfy this project's own four-criterion `object_boundary_confirmed` bar —
   complete byte account, an independently-derived boundary agreeing with a
   hand-reviewed function entry point, and a checked edge-padding convention.
-  Four further candidates (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`, and `INTR`) each
+  Three further candidates (`BIOS_OBJ_*`, `VSYNC`, and `INTR`) each
   met two of the four criteria with a checked negative result (no edge padding
-  at all) on the third, recorded honestly rather than as confirmed; `PADIF`
-  has an open 4-byte boundary discrepancy at its base and is not promoted. See
+  at all) on the third, recorded honestly rather than as confirmed. `PADIF`
+  was confirmed at its corrected extent with a documented 4-byte leading
+  alignment nop at its base (the earlier "discrepancy" was an artifact of the
+  first row starting 4 bytes before the DB-implied base). See
   [linked-object evidence](/docs/foundations/linked-object-evidence.md).
 - **Object-name identity corroborated (2026-08-19):** all eight confirmed
   object names were corroborated against the PsyQ 4.4.0 signature database
@@ -125,10 +128,11 @@ plus all
    reproduce inter-function layout instead of placing functions independently.
    **The falsifiable four-criterion bar defined in
    [linked-object evidence](/docs/foundations/linked-object-evidence.md) is now
-   met for fifty-two objects** — the eight originals plus the full remaining
+   met for fifty-seven objects** — the eight originals plus the full remaining
    multi-row candidate population (`S_*`/`SR_GAKS`/`SSTICK`/`TEMPO`/`UT_KEYV`/
    `VM_*`/`VS_VTBP`/`INTR_*`/`GS_*`/`COUNTER`/`FIRST`/`PAD`/`WAITRC2`/`EVENT`/
-   `GEO_00`/`COR_05`/`FGO_*`; the PAD-cluster objects
+   `GEO_00`/`COR_05`/`FGO_*`, plus the re-checked `VM_SEQ`/`MSC02`/`UT_REV`/
+   LIBCD-`SYS`/`PADIF`; the PAD-cluster objects
    consecutive/adjacent), spanning multiple distinct library regions
    (SPU/sequencer, `GS_*` graphics, `GTE`, PAD driver, LIBC, LIBCD, LIBAPI,
    and LIBCARD's memory-card
@@ -136,11 +140,14 @@ plus all
    zero-gap byte account, an independently-derived boundary agreeing with a
    hand-reviewed/byte-matched function entry point, and a checked
    (non-uniform, honestly reported) edge-padding convention. A systematic scan
-   of the multi-row `<name>_OBJ_*` runs also found four real negative
-   results (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`, and `INTR` — complete byte
+   of the multi-row `<name>_OBJ_*` runs also found three real negative
+   results (`BIOS_OBJ_*`, `VSYNC`, and `INTR` — complete byte
    account and a corroborated boundary, but dense edges with no padding
    anywhere; `VSYNC` and `INTR` sit in the same tightly packed LIBETC
-   interrupt region, suggestively dense objects rather than padded ones). Full per-object detail, addresses,
+   interrupt region, suggestively dense objects rather than padded ones; the
+   earlier fourth negative `UT_REV` was reversed on re-check — its truncated
+   end landed on its own DB label, and the corrected extent has a padded
+   trailing edge). Full per-object detail, addresses,
    and reproduction commands are in
    [linked-object evidence](/docs/foundations/linked-object-evidence.md). Every
    other `<name>_OBJ_*` run remains `candidate_only` until it independently
