@@ -957,6 +957,84 @@ What this establishes, and what it does not:
   `SetDispMask`, `DrawSync` are all LIBGPU `SYS.OBJ` labels), not by the name
   alone.
 
+## 2c. Update 2026-08-19: systematic screening of all remaining `<name>_OBJ_*` runs
+
+The same signature database and offset-matching method was then applied to
+**every** remaining `<name>_OBJ_*` run in the symbol map — the whole candidate
+population the 2026-08-04 pass left at `candidate_only`, not just the eight
+objects confirmed above. A new script (`tools/build/Invoke-PsyqObjectRunScreen.ps1`)
+groups main-overlay `_OBJ_` rows into runs by `(prefix, implied base)` (the same
+`address − offset = constant base` arithmetic used throughout this document),
+looks each run up as `<prefix>.OBJ` in the bundled PsyQ 4.4.0 database, and
+reports per DB object: label count, max label offset, how many run rows land
+exactly on a DB label offset, and whether the DB object extends past the run's
+declared end (`ALIGNED_COMPLETE` / `ALIGNED_TRUNCATED` / `NAME_ONLY` /
+`NO_DB_OBJECT`).
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build/Invoke-PsyqObjectRunScreen.ps1
+```
+
+Result, reproduced with the command above against the tracked symbol map and
+the bundled `data/psyq/440/` database:
+
+- **77 candidate runs screened; all 77 have a same-named `<prefix>.OBJ` in the
+  PsyQ 4.4.0 database, and all 77 have at least one offset-aligned match.**
+  Among the 77 candidates, 75 are `ALIGNED_COMPLETE` (every run row lands on a
+  DB label offset and the DB object's max label offset fits within the run's
+  extent) and 2 are `ALIGNED_TRUNCATED` (`VM_SEQ`, `MSC02` — the same truncated
+  shape `PADENTRY`/`PADMAIN` showed, see the boundary-correction subsection
+  above). Zero candidate runs have no DB object. Separately, one already-handled
+  run also shows the truncated shape (`UT_REV`, LIBSND, extent `0x9c` with a DB
+  label at exactly `0x9c`), so the full truncation-flagged set is `VM_SEQ`,
+  `MSC02`, `UT_REV` plus the already-corrected `PADENTRY`/`PADMAIN` and the
+  second `SYS` cluster. The "unconfirmed stylistic guess" framing for the
+  non-`SYS` names (work package Unit F, recorded 2026-07-27) is now resolved
+  systematically: the prefixes are real SDK library object names spanning
+  LIBSPU, LIBSND, LIBETC, LIBGS, LIBGTE, LIBGPU, LIBCD, LIBC/LIBC2, LIBAPI,
+  LIBPAD, and LIBSN — the entire PsyQ library surface.
+- **Two new truncation flags, same shape as `PADENTRY`/`PADMAIN`:** `VM_SEQ`
+  (`0x8003434c`–`0x800348b8`) — DB `VM_SEQ.OBJ` (LIBSND) continues through
+  `_SsVmGetSeqVol`/`_SsVmGetSeqLVol`/`_SsVmGetSeqRVol`/`_SsVmSeqKeyOff`
+  (`0x800348b8`–`0x80034a5c`), which the symbol map already holds as verified
+  named rows outside the run; and `MSC02` (`0x80060eb0`–`0x80061070`) — DB
+  `MSC02.OBJ` (LIBGTE) has a label at offset `0x1c0`, i.e. exactly at the run's
+  declared end (`MatrixNormal` @`0x80061070`). Both need the same extended
+  byte-account + edge-dump re-check as `PADENTRY`/`PADMAIN` before any boundary
+  claim; neither is promoted here.
+- **Name collisions now mapped concretely:** `SYS` — LIBGPU (this document's
+  confirmed object, 68/68 aligned) vs. LIBCD (the second `SYS` cluster at
+  `0x8003f738` is the LIBCD `SYS.OBJ`, 4/46 aligned, truncated); `PAD` — LIBAPI
+  (4/4 aligned, the real match) vs. LIBETC (`NAME_ONLY`, 0 aligned); `SPRINTF`
+  — LIBC (22/22 aligned) vs. LIBC2 (6/22); `MEMMOVE` — LIBC/LIBC2 (identical
+  label sets); `BIOS` — LIBCD (21/126) and LIBMCRD (2/21) both match the
+  previously-negative `BIOS` run. In every case identity is fixed by offset
+  alignment, not by the name alone.
+- **The three earlier edge-negatives (`BIOS_OBJ_*`, `UT_REV`, `VSYNC`) now have
+  name identity corroborated too** — `BIOS.OBJ` (LIBCD/LIBMCRD), `UT_REV.OBJ`
+  (LIBSND, `ALIGNED_TRUNCATED` — see the truncation-flag note above), `VSYNC.OBJ`
+  (LIBETC, `ALIGNED_COMPLETE`).
+  Their negative status was about edge padding (criterion 3), never about the
+  name; that distinction is unchanged.
+
+What this establishes, and what it does not:
+
+- **Establishes**: name identity for the entire `<name>_OBJ_*` surface — every
+  prefix is a real SDK object name — plus per-run structural agreement between
+  the run rows and the DB's intra-object layout. It also triages the remaining
+  population for full boundary confirmation: multi-row, `ALIGNED_COMPLETE` runs
+  in regions without a confirmed object yet (e.g. `SPU`, `MIDIREAD`, `INTR`,
+  `PADIF`, `PADPORTD`, `PADSEQD`, `SPRINTF`, `S_SVA`, `GS_137`, `VS_VH`) are
+  the natural next full four-criteria candidates; `VM_SEQ`/`MSC02` (and
+  `UT_REV`, the second `SYS` cluster) need the truncation re-check first.
+- **Does not establish**: any boundary claim. As in §2b, the names and row
+  placements trace to the same database via `ghidra_psx_ldr`'s signature
+  application (circularity caveat applies verbatim), the DB is a third-party
+  extraction of the proprietary SDK, and none of the 77 runs has been through
+  the full four-criteria bar (byte account + independent boundary + checked
+  edge padding). All remain `candidate_only` pending that bar; the screening
+  only raises candidates and flags truncations, it does not confirm objects.
+
 ## 3. Falsifiable Standard for Object Boundary Claims
 
 To maintain evidentiary rigor across all future agent work, object boundary claims must adhere to the following two-tier classification standard:

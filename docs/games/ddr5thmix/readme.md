@@ -142,7 +142,14 @@ plus all
    project's `ghidra_psx_ldr` install, with exact intra-object offset agreement
    ([linked-object evidence §2b](/docs/foundations/linked-object-evidence.md)); the
    `boundary_confirmed` tier still requires lawful `.OBJ`/`.LIB` byte-match
-   provenance, so the boundary claims remain `candidate_for_audit`.
+   provenance, so the boundary claims remain `candidate_for_audit`. A systematic
+   screening of the same database then corroborated **all** remaining
+   `<name>_OBJ_*` runs — 77/77 names present as SDK objects, 75 aligned-complete,
+   2 truncated (`VM_SEQ`, `MSC02`, the same shape as the corrected
+   `PADENTRY`/`PADMAIN` spans; the already-handled `UT_REV` shows the same shape),
+   zero runs without a DB object — resolving name
+   identity for the whole PsyQ library surface
+   ([linked-object evidence §2c](/docs/foundations/linked-object-evidence.md)).
 
 The HOW TO PLAY overlay's former 80-byte limit was explicitly reopened on
 2026-07-25. Raw-MIPS call-chain, stride, and bounds proofs resolved the
