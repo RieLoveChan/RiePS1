@@ -1110,6 +1110,13 @@
       ]
     },
     {
+      "name": "runtime-helper-98050",
+      "description": "Record-header tagged-value wrapper forwarding to the record-field propagator FUN_800980c4.",
+      "functions": [
+        "FUN_80098050"
+      ]
+    },
+    {
       "name": "runtime-block-80099edc",
       "description": "Async operation/resource-request state poller dispatching on the phase byte at PTR_DAT_800e0b1c (states 0/5/6..0xf/0x10/0xf0, returns status codes 0-5); calls FUN_8002c7a0.",
       "functions": [
@@ -25889,7 +25896,7 @@
       "address": "0x80098050",
       "size": 116,
       "language": "asm",
-      "source": "src/ddr5thmix/LibrarySignatureBatch9.s",
+      "source": "src/ddr5thmix/RuntimeHelper98050.s",
       "section": ".text.FUN_80098050",
       "reference_sha256": "af111c12ccd8f15ff0e654064bb1c262ea59eed2c82a4995c3f174a36e53f2d4",
       "built_sha256": "af111c12ccd8f15ff0e654064bb1c262ea59eed2c82a4995c3f174a36e53f2d4"

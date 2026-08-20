@@ -22583,22 +22583,6 @@ FUN_80099910:
     .end FUN_80099910
     .size FUN_80099910, . - FUN_80099910
 
-/* FUN_80098050 (0x80098050, 116 bytes) */
-    .section .text.FUN_80098050,"ax",@progbits
-    .globl FUN_80098050
-    .type FUN_80098050, @function
-    .ent FUN_80098050
-FUN_80098050:
-    .word   0x27bdffd8, 0x3c0200ff, 0x3442ffff, 0xafbf0020
-    .word   0xafb1001c, 0xafb00018, 0x8c830000, 0x24840004
-    .word   0x30c6ffff, 0x8c880000, 0x3c108000, 0xafa70014
-    .word   0x30a7ffff, 0x24840004, 0xafa60010, 0x00621024
-    .word   0x00508825, 0x3c02ff00, 0x00622824, 0x0c026031
-    .word   0x01003021, 0x12300002, 0x00001021, 0x02201021
-    .word   0x8fbf0020, 0x8fb1001c, 0x8fb00018, 0x03e00008
-    .word   0x27bd0028
-    .end FUN_80098050
-    .size FUN_80098050, . - FUN_80098050
 
 /* FUN_800980c4 (0x800980c4, 264 bytes): flagged record-field propagator. */
     .section .text.FUN_800980c4,"ax",@progbits

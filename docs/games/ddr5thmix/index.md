@@ -141,6 +141,7 @@
 * [DDR 5th Mix runtime helper 96558 module](runtime-helper-96558.md) - Runtime resource and state helper matching 200 bytes.
 * [DDR 5th Mix runtime event eligibility predicate 966f8 module](runtime-helper-966f8.md) - Tests event-specific input masks across shared/indexed snapshots; 640 bytes matched.
 * [DDR 5th Mix runtime input-state transition 96978 module](runtime-helper-96978.md) - Updates one indexed input/event record and returns a table-scaled result; 1,856 bytes matched.
+* [DDR 5th Mix runtime record-header wrapper 98050 module](runtime-helper-98050.md) - Reads a 12-byte runtime record header, computes a tagged mode word, and forwards the header fields to the record-field propagator FUN_800980c4; 116 bytes matched.
 * [DDR 5th Mix runtime helper 972a4 module](runtime-helper-972a4.md) - Runtime resource and state helper matching 324 bytes.
 * [DDR 5th Mix runtime graphics/resource initializer 973e8 module](runtime-helper-973e8.md) - Synchronizes 32 resource records, selects the graphics mode, initializes display descriptors, and republishes the active pair; 1,420 bytes matched.
 * [DDR 5th Mix HOW TO PLAY overlay module](inst-demo-overlay.md) - Reconstructed executable overlay surface matching 70 functions and 9,372 code bytes, with command list script verification.
