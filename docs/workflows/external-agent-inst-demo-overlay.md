@@ -4,7 +4,8 @@ title: External agent package — DDR 5th Mix HOW TO PLAY overlay
 description: Isolated long-running package to inventory, reconstruct, and verify the complete executable code surface of the inst demo overlay.
 tags: [ps1, ddr5thmix, delegation, overlay, decompilation, state-machine]
 timestamp: 2026-07-19T00:00:00-04:00
-status: ready
+status: completed
+completed: 2026-08-20
 branch: agent/inst-demo-overlay
 ---
 

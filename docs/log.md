@@ -1,5 +1,14 @@
 ## 2026-08-20
 
+* **Work-package status finalized**: Marked the two fully-executed external
+  work packages `completed` (with `completed: 2026-08-20`) in their
+  frontmatter: `external-agent-inst-demo-overlay.md` (HOW TO PLAY overlay,
+  100% whole-overlay match since 2026-07-25) and
+  `external-agent-linked-object-boundary.md` (all backlog units A–F
+  executed through the 2026-08-19 object-boundary confirmations). This
+  matches the already-`completed` screen-selector and library-signature
+  batch-12 packages.
+
 * **EXIT resources classified (semantic backlog item)**: The three
   `0x54495845` READ_DT.BIN resources are now structurally classified as the
   EXIT-mode menu text databases: `0x83d8` (97,408 B) = options menu (six
