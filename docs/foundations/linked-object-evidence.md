@@ -1001,8 +1001,19 @@ What this establishes, and what it does not:
   symbol map already relies on); it is not a lawful SDK source, and the 8-byte
   `Ps` object-header markers in the executable carry no name string. All eight
   objects therefore remain `candidate_for_audit` for the boundary claim, with
-  name identity now separately corroborated. Obtaining lawful `.OBJ`/`.LIB`
-  byte-match provenance remains future work requiring the owner's lawful SDK.
+  name identity now separately corroborated. **Constraint (2026-08-20)**: the
+  project has **no lawful SDK access**, and every `boundary_confirmed`
+  provenance example in §3 requires SDK material (`.OBJ`/`.LIB` files, object
+  internals, or the PSYLINK linker map). The four-criteria RE bar
+  (`object_boundary_confirmed`, 57 objects) is therefore the **terminal,
+  not-degradable tier** under the project's constraints; the `boundary_confirmed`
+  tier is recorded as **not pursuable**, not as deferred work. The closest
+  RE-derived corroboration available — the RCS `$Id:` source-version strings
+  (`intr.c,v 1.75`, `sys.c,v 1.140`, `bios.c,v 1.86`) embedded in the
+  executable's leading rodata — identify which SDK source files were linked,
+  but live in the final binary, not inside a standalone object, so they do not
+  satisfy the tier as written; they are recorded in
+  [executable-rodata.md](/docs/games/ddr5thmix/executable-rodata.md).
 - One circularity caveat, stated plainly: the `_OBJ_` fragment prefixes and the
   `IMPORTED` names trace to this same database via `ghidra_psx_ldr`'s signature
   application, so the *names* are not fully independent of the symbol map. The
@@ -1313,6 +1324,13 @@ To maintain evidentiary rigor across all future agent work, object boundary clai
 2. **`boundary_confirmed`**:
    - Requires: All `candidate_for_audit` criteria PLUS at least one primary direct provenance link (e.g. exact byte match against a standalone object built from lawful PsyQ 4.4.0 `.OBJ`/`.LIB` sources, embedded path/string literals within the object, or explicit PsyQ linker map symbol table references).
    - Meaning: Confirms both contiguous translation unit layout and exact SDK/source object identity.
+   - **Constraint (2026-08-20)**: every provenance example requires lawful SDK
+     material. The project has **no lawful SDK access**, so this tier is
+     **not pursuable**; `candidate_for_audit` / `object_boundary_confirmed`
+     (the four-criteria RE bar, met by 57 objects) is the terminal
+     achievable tier. Claims must not be described as "pending" or "blocked"
+     for this tier — it is out of scope by constraint, and that is the honest
+     terminal state (see §2b).
 
 # Reproduction
 

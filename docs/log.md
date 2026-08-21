@@ -1,5 +1,20 @@
 ## 2026-08-20
 
+* **PsyQ tier constraint recorded (no lawful SDK access)**: Recorded that the
+  project has no lawful PsyQ SDK, so the `boundary_confirmed` tier of
+  [linked-object evidence §3](/docs/foundations/linked-object-evidence.md)
+  is **not pursuable** (its provenance examples all require SDK material:
+  `.OBJ`/`.LIB` byte-match, object-internal literals, or the PSYLINK linker
+  map). The four-criteria RE bar (`object_boundary_confirmed`, 57 objects)
+  is the terminal achievable tier and must not be described as
+  "blocked"/"pending". Documented the closest RE-derived corroboration — the
+  RCS `$Id:` source-version strings (`intr.c,v 1.75`, `sys.c,v 1.140`,
+  `bios.c,v 1.86`) embedded in the leading rodata — which identify the
+  linked SDK source files but live in the final binary, not in a standalone
+  object, so they do not satisfy the tier as written. Updated the tier
+  ladder in §3, the §2b "Does not establish" note, and the readme's next
+  targets item 3.
+
 * **Work-package status finalized**: Marked the two fully-executed external
   work packages `completed` (with `completed: 2026-08-20`) in their
   frontmatter: `external-agent-inst-demo-overlay.md` (HOW TO PLAY overlay,

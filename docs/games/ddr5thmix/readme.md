@@ -136,11 +136,17 @@ bytes.
    pairs previously counted among the 544 descriptors are corrected to 445
    real table entries; see
    [trailing-asset-region](/docs/games/ddr5thmix/trailing-asset-region.md).)
-3. **Object-boundary lawful provenance (blocked):** the
-   `object_boundary_confirmed` tier still requires `.OBJ`/`.LIB` byte-match
-   against the lawful SDK; all 57 confirmed objects remain
-   `candidate_for_audit` for the boundary claim. Requires the owner's lawful
-   SDK.
+3. **Object-boundary lawful provenance (not pursuable — no SDK access):**
+   the top `boundary_confirmed` tier requires `.OBJ`/`.LIB` byte-match or
+   other primary provenance that only lawful SDK material can provide, and
+   the project has no lawful SDK access. This is **not** a blocked/pending
+   item: the four-criteria RE bar (`object_boundary_confirmed`, met by all
+   57 objects, plus the 3 dense-edge negatives and 29 fragments) is the
+   terminal achievable tier under the project's constraints. The closest
+   RE-derived corroboration (the RCS `$Id:` source-version strings embedded
+   in the leading rodata) is recorded in
+   [executable-rodata.md](/docs/games/ddr5thmix/executable-rodata.md); see
+   [linked-object evidence §3](/docs/foundations/linked-object-evidence.md).
 4. **Second target (blocked):** the shared verifiers and the onboarding
    procedure [/docs/workflows/new-target-onboarding.md](/docs/workflows/new-target-onboarding.md)
    are ready; picking a game and supplying a lawful dump is an owner
