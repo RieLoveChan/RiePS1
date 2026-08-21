@@ -1,5 +1,30 @@
 ## 2026-08-20
 
+* **Leading region classified (linked-object evidence §5.2, closed)**: The
+  previously "strong but unverified" leading-gap lead is now a checked
+  classification with a whole-region census (new
+  `tools/build/classify-data-region.py`; lawful input SHA-256
+  `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`): of
+  6,078 aligned words, 2,151 (35.4%) point into the image, 7,763 bytes are
+  printable-ASCII string runs, `0x8001f5d0`–`0x8002030c` is a 3,388-byte
+  Shift-JIS block of 110 memory-card/PocketStation/link-data/download/
+  auto-save UI messages, and the control-flow census is 0 branches / 12 j /
+  21 jr (vs 29–66 branches + 53–121 jumps per ~1,000 words in verified
+  code). The block is a **rodata block**: PsyQ SDK debug strings (RCS
+  `$Id:` headers of `intr.c`/`sys.c`/`bios.c`), PsyQ per-object
+  function-pointer tables whose targets resolve to the confirmed object
+  rows (`S_SVA`, `S_SCA`, `GS_123`, `PADENTRY`, `BIOS`, `SPRINTF`,
+  `PRESET` — an independent corroboration of the object boundaries), game
+  string tables (session-state names matching the session-router docs,
+  song-group names, stage names, graphic-resource names, arrow-pattern
+  names), game function-pointer tables (mode handlers at `0x8001a840`,
+  runtime helpers at `0x8002031c`, runtime blocks at `0x800206dc`), and the
+  Shift-JIS message block. Pointer targets were cross-referenced against
+  the symbol map (159 resolved). New concept
+  [executable-rodata.md](/docs/games/ddr5thmix/executable-rodata.md)
+  records the full structural map; §5.3's open-items list now scopes the
+  remaining "suspected" classification to §5.1's asset-data region only.
+
 * **BSS boundary reconciled (linked-object evidence §5.1)**: A full byte scan
   of the lawful `SLPM_868.97_1` (SHA-256
   `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`) shows the

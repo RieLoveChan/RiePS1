@@ -658,13 +658,31 @@ shows a repeating 4-byte little-endian pattern whose low 16 bits step by a
 small constant and whose high 16 bits are consistently `0x800a` (e.g. bytes
 `98 af 0a 80`, `a0 af 0a 80`, `a8 af 0a 80`, ... decoding to the pointer
 sequence `0x800aaf98`, `0x800aaf a0`, `0x800aafa8`, ...) — consistent with a
-pointer/jump table into the `0x800aXXXX` region, not instructions. Both
-observations point the same direction: this is a debug string table plus a
-data table, not un-inventoried code. This has **not** been checked with the
-same rigor as §1/§2 (no exhaustive byte-by-byte classification, no
-cross-reference of the pointer table's targets against the symbol map); it
-is reported as a strong but unverified lead, in keeping with this document's
-practice of separating what was checked from what remains open.
+pointer/jump table into the `0x800aXXXX` region, not instructions.
+
+**Update 2026-08-20 — classified with the whole-region census.** The full
+span was checked with `tools/build/classify-data-region.py` (new) against
+the lawful input (SHA-256
+`4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`,
+`file_offset = address - 0x8001a000`): of 6,078 aligned words, 2,151
+(35.4%) are pointers into the image, 7,763 bytes are printable-ASCII string
+runs, a 3,388-byte contiguous block at `0x8001f5d0`–`0x8002030c` is
+Shift-JIS Japanese UI text (110 messages), 4,552 bytes are zero, and the
+control-flow census is **0 branches / 12 j / 21 jr** in the whole span —
+versus ~29–66 branches + 53–121 jumps per ~1,000 words in verified code
+ranges of the same file. The earlier "strong but unverified lead" is now a
+checked classification: this is a **rodata block** — PsyQ SDK debug strings
+(`$Id:` RCS headers of `intr.c`/`sys.c`/`bios.c`), PsyQ **per-object
+function-pointer tables** whose targets resolve to the confirmed object rows
+(`S_SVA`, `S_SCA`, `GS_123`, `PADENTRY`, `BIOS`, `SPRINTF`, `PRESET` — an
+independent corroboration of §2's object boundaries), game string tables
+(session-state names, song-group names, stage names, graphic-resource
+names, arrow-pattern names), game function-pointer tables (mode handlers at
+`0x8001a840`, runtime helpers at `0x8002031c`, runtime blocks at
+`0x800206dc`), and the Shift-JIS UI message block. The pointer-table
+targets **were** cross-referenced against the symbol map (159 resolved to
+named rows). Full structural map:
+[leading executable rodata block](/docs/games/ddr5thmix/executable-rodata.md).
 
 ## 5.3 What remains open
 
@@ -688,14 +706,16 @@ practice of separating what was checked from what remains open.
   does not need to rediscover them by hand. **Resolved 2026-08-04**: both
   rows corrected to their maximum non-overlapping size (56 and 128 bytes)
   and re-verified `byte_match: true`; see the 2026-08-04 update below.
-- The suspected asset-data classification in §5.1 and the suspected
-  string/pointer-table classification in §5.2 are both sampling-based
-  impressions, not the exhaustive per-byte instruction-decode evidence this
-  document otherwise requires (§1, §2). Neither should be cited as more
-  than "suspected" until confirmed by a systematic check (e.g. attempting
-  MIPS disassembly across the full span and confirming it fails to decode
-  as valid instructions throughout, or identifying the asset container
-  format).
+- The suspected asset-data classification in §5.1 is still a sampling-based
+  impression, not the exhaustive per-byte instruction-decode evidence this
+  document otherwise requires (§1, §2); it should not be cited as more than
+  "suspected" until confirmed by a systematic check (attempting MIPS
+  disassembly across the full span and confirming it fails to decode as
+  valid instructions throughout, or identifying the asset container
+  format). The string/pointer-table classification of §5.2 is **no longer
+  open**: it was confirmed 2026-08-20 by the whole-region word/string/
+  pointer census and control-flow density check above (see
+  [executable-rodata.md](/docs/games/ddr5thmix/executable-rodata.md)).
 
 ## 5.4 Cataloguing pass: 297 new `tool_heuristic` rows
 

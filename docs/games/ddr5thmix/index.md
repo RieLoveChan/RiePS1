@@ -4,6 +4,7 @@
 * [Revision manifest](revision-manifest.md) - The project's first target revision; byte-match decompilation.
 * [DDR 5th Mix (Japan) symbol map](symbol-map.md) - First-pass, tool-generated function symbol map with confidence tiers.
 * [DDR 5th Mix (Japan) global map](globals.md) - Fixed-address data symbols and partial layouts used by reconstructed game logic.
+* [DDR 5th Mix leading executable rodata block](executable-rodata.md) - Structural map of the executable's leading non-code region: PsyQ debug strings, per-object function-pointer tables, game string and pointer tables, and the Shift-JIS UI message block.
 * [DDR 5th Mix mode-control module](mode-control.md) - Reproducible game-owned reconstruction unit: nineteen functions covering the inventoried range plus one external dependency.
 * [DDR 5th Mix runtime-core module](runtime-core.md) - Five exact functions connecting main-loop input/reset work to mode dispatch and its shared epilogue.
 * [DDR 5th Mix screen-selector module](screen-selector.md) - Nested six-state screen selector hierarchy, callbacks, and next-state router matching twenty-two functions.
