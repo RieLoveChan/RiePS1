@@ -615,21 +615,34 @@ byte-level scan (not sampling) found:
   identify the container format, and this is a sampling-based impression,
   not the byte-by-byte instruction-decode check §1 and §2 used for
   code/padding classification.
-- **One dominant zero run of 222,455 bytes at `0x800e2931`–`0x8011acc8`.**
-  This closely matches — but does not exactly reproduce — the BSS-clear
-  range already documented in this project's manual review of `start`
+- **One dominant zero run of 222,455 bytes at `0x800e2931`–`0x80118e28`.**
+  This closely matches the BSS-clear range already documented in this
+  project's manual review of `start`
   (`docs/games/ddr5thmix/symbol-map.csv`, row `0x80020700`): "zeroes
   `DAT_800e2938`..`UNK_80118e28`", i.e. `0x800e2938`–`0x80118e28`
-  (222,448 bytes). The scanned run's start is 7 bytes earlier and its end is
-  7,840 bytes later than that documented range. The two figures agree to
-  within 0.4% and the start addresses agree to within a word, which is
-  strong circumstantial corroboration that this is the same BSS region (the
-  small discrepancy is unexplained — worth resolving before treating the
-  boundary as exact — but this is on-disk zero content either way, not
-  asset data). If corroborated, this reclassifies roughly half of this
-  giant gap as **already-understood, zero-initialized static storage**, not
-  an unknown-content blob: nothing to reverse-engineer, only a `.bss`-style
-  declaration to add to a future linker script.
+  (222,448 bytes).
+  **Update 2026-08-20 — boundary reconciled with a full byte scan** (input
+  SHA-256 `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`,
+  `file_offset = address - 0x8001a000`): the maximal zero run is exactly
+  `0x800e2931`–`0x80118e28` (222,455 bytes; the byte before is `0x1f`, the
+  byte after is `0xff`). Its **end equals the documented crt0 end exactly**;
+  the earlier draft's "end `0x8011acc8`, 7,840 bytes later" was a
+  transcription error — `0x8011acc8` is instead where the separate 840-byte
+  all-zero tail begins (`0x8011acb8`–`0x8011b000`), which sits after
+  non-zero asset data, not contiguous with the BSS run. The only real
+  discrepancy is the 7 leading bytes `0x800e2931`–`0x800e2937`: they are
+  zero, but the crt0 loop's first written address is `0x800e2938`. A dump of
+  the preceding bytes shows a 4-byte-strided data table whose words alternate
+  `0x1f`/`0x1e` (last word `1f 00 00 00` at `0x800e2930`), so the 7 bytes are
+  zero alignment padding between that table and the BSS start — on-disk
+  zeros the crt0 loop does not cover, belonging to the asset-data region's
+  classification, not to BSS. The manifest's zero-fill range
+  (`0x800e2938`–`0x80118e28`, 222,448 bytes) is therefore **correct as
+  declared**; no manifest change is needed. This reclassifies roughly half
+  of this giant gap as **already-understood, zero-initialized static
+  storage**, not an unknown-content blob: nothing to reverse-engineer, only
+  the `.bss`-style declaration already present in
+  `config/ddr5thmix/build.json` (`zero_fill_ranges.crt0_bss`).
 - The remaining 30,733 bytes are smaller zero runs (up to 4,203 bytes each)
   interspersed within the non-zero span, plus an 840-byte all-zero tail
   immediately before `0x8011b000`.

@@ -1,5 +1,20 @@
 ## 2026-08-20
 
+* **BSS boundary reconciled (linked-object evidence §5.1)**: A full byte scan
+  of the lawful `SLPM_868.97_1` (SHA-256
+  `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`) shows the
+  trailing region's dominant zero run is exactly
+  `0x800e2931`–`0x80118e28` (222,455 bytes) — its **end equals the documented
+  crt0 BSS end exactly**; the earlier draft's "end `0x8011acc8`, 7,840 bytes
+  later" was a transcription error (`0x8011acc8` is where the separate
+  840-byte all-zero tail begins). The only real discrepancy is 7 leading
+  zero bytes `0x800e2931`–`0x800e2937`, which a preceding 4-byte-strided
+  data table (words alternating `0x1f`/`0x1e`, last at `0x800e2930`) shows
+  to be alignment padding between that table and the crt0 loop's first
+  written address `0x800e2938` — asset-data-region zeros, not BSS. The
+  manifest's `zero_fill_ranges.crt0_bss` (`0x800e2938`–`0x80118e28`,
+  222,448 B) is correct as declared; no build.json change needed.
+
 * **Candidate build refresh**: Re-ran `Build-MainExecutableCandidate.ps1`
   against the full current manifest (2,326 functions — library-signature
   batches, whole-executable gap sweep, and the runtime helper/block modules
