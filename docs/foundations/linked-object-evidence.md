@@ -615,6 +615,29 @@ byte-level scan (not sampling) found:
   identify the container format, and this is a sampling-based impression,
   not the byte-by-byte instruction-decode check §1 and §2 used for
   code/padding classification.
+  **Update 2026-08-20 — classified with a whole-region census.** The full
+  span is now mapped (see
+  [trailing executable data region](/docs/games/ddr5thmix/trailing-asset-region.md)):
+  a UI resource-name table (`MENU`/`GAME`/`RAM`/`TEST`) with sprite-frame
+  coordinate records; the **445-entry `(byte_count, LBA)` descriptor table**
+  into `READ_DT.BIN` (offset `(LBA − 0x4e20) × 2048`, all bounds-valid —
+  **correcting the 2026-08-14 "544 pairs" record**: 99 of the 544 earlier
+  pairs have no 8-byte-aligned occurrence in the executable and are
+  4-byte-aligned cross-word coincidences of adjacent records, not table
+  entries); secondary segment/music-offset tables (including a 47-row
+  duplicated-offset table at `0x800adb20`); an embedded-data zone with
+  16-byte asset-buffer records whose sizes match descriptor counts, PsyQ
+  library strings (`Library Programs (c) 1993-1997 Sony Computer
+  Entertainment Inc.`, GTE matrix-stack error strings) and game strings
+  (`Lesson Mode`, `Arcade Link`, `Information`); the crt0 BSS run
+  (below); a post-BSS `0xff`-fill zone; and an 840-byte zero tail. The
+  `0x80001094`/`0x800010d4` words and `0x00000010` words in the embedded
+  zone are **negative results**: they fail the project's own LZ decoder and
+  TIM validation respectively, so they are data values, not compressed
+  streams or TIM images. A census caveat is recorded: raw opcode density is
+  not a reliable code/data discriminator here (16-bit-strided tables
+  produce branch/jump-looking words; disassembly of the dense runs shows
+  invalid instruction forms).
 - **One dominant zero run of 222,455 bytes at `0x800e2931`–`0x80118e28`.**
   This closely matches the BSS-clear range already documented in this
   project's manual review of `start`
@@ -706,15 +729,16 @@ named rows). Full structural map:
   does not need to rediscover them by hand. **Resolved 2026-08-04**: both
   rows corrected to their maximum non-overlapping size (56 and 128 bytes)
   and re-verified `byte_match: true`; see the 2026-08-04 update below.
-- The suspected asset-data classification in §5.1 is still a sampling-based
-  impression, not the exhaustive per-byte instruction-decode evidence this
-  document otherwise requires (§1, §2); it should not be cited as more than
-  "suspected" until confirmed by a systematic check (attempting MIPS
-  disassembly across the full span and confirming it fails to decode as
-  valid instructions throughout, or identifying the asset container
-  format). The string/pointer-table classification of §5.2 is **no longer
-  open**: it was confirmed 2026-08-20 by the whole-region word/string/
-  pointer census and control-flow density check above (see
+- The asset-data classification of §5.1 is **no longer open**: it was
+  confirmed 2026-08-20 by the whole-region census (UI tables, the
+  445-entry descriptor table, secondary tables, embedded data + PsyQ/game
+  strings, BSS, post-BSS `0xff` zone, zero tail) with the LZ/TIM negative
+  tests and the recorded census caveat — see
+  [trailing-asset-region.md](/docs/games/ddr5thmix/trailing-asset-region.md).
+  Remaining work on this region is byte-level reproduction/splicing toward
+  `whole_executable_match`, not classification. The string/pointer-table
+  classification of §5.2 is also **no longer open** (confirmed the same day
+  by the word/string/pointer census; see
   [executable-rodata.md](/docs/games/ddr5thmix/executable-rodata.md)).
 
 ## 5.4 Cataloguing pass: 297 new `tool_heuristic` rows

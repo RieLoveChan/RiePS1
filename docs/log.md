@@ -1,5 +1,37 @@
 ## 2026-08-20
 
+* **Trailing region classified (linked-object evidence §5.1, closed)**: The
+  previously "suspected" asset-data classification is now a checked
+  whole-region census (lawful `SLPM_868.97_1`, SHA-256
+  `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`). The
+  452,472-byte region `0x800ac888`–`0x8011b000` maps as: a UI resource-name
+  table (`MENU`/`GAME`/`RAM`/`TEST`) with sprite-frame coordinate records;
+  the **445-entry `(byte_count, LBA)` descriptor table** at
+  `0x800ac9f8`–`0x800ad7e0` into `READ_DT.BIN` (offset `(LBA−0x4e20)×2048`,
+  all bounds-valid; LBA `0x7c51` = the documented `0x00000005` TIM archive);
+  secondary segment/music-offset tables (incl. a 47-row duplicated-offset
+  table); an embedded-data zone with 16-byte asset-buffer records whose
+  sizes match descriptor counts plus PsyQ library strings (`Library
+  Programs (c) 1993-1997 Sony Computer Entertainment Inc.`, GTE matrix-stack
+  errors) and game strings (`Lesson Mode`, `Arcade Link`, `Information`);
+  the crt0 BSS run; a post-BSS `0xff`-fill zone; and an 840-byte zero tail.
+  **Descriptor-count correction**: the 2026-08-14 "544 unique pairs" figure
+  accepted 4-byte-aligned pairs; 99 of them are cross-word coincidences
+  (word1 of one record + word0 of the next) with no 8-byte-aligned
+  occurrence anywhere in the executable — the table proper has 445 entries.
+  The 99 extracted READ_DT.BIN ranges remain real, hash-verified bytes.
+  Correction notes added to descriptor-extraction-coverage.md,
+  descriptor-header-inventory.md, and iso-asset-inventory.md. **Negative
+  results recorded**: the zone's `0x80001094`/`0x800010d4` words fail the
+  project's own LZ decoder and its `0x00000010` words fail TIM validation,
+  so they are data values, not compressed streams/TIMs. A census caveat is
+  recorded: raw opcode density is not a reliable code/data discriminator
+  (16-bit-strided tables produce branch/jump-looking words; dense-run
+  disassembly shows invalid instruction forms). New concept
+  [trailing-asset-region.md](/docs/games/ddr5thmix/trailing-asset-region.md);
+  §5.3's open-items list is now empty of classification items for both
+  non-code regions.
+
 * **Leading region classified (linked-object evidence §5.2, closed)**: The
   previously "strong but unverified" leading-gap lead is now a checked
   classification with a whole-region census (new

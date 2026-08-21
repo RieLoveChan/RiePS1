@@ -48,6 +48,13 @@ descriptor-addressed `READ_DT.BIN` ranges. Format and semantic classification
 of retained neutral raw ranges remains distinct research work; it is not a
 claim that every resource has a human-readable name or decoder.
 
+**Correction (2026-08-20)**: 99 of the 544 descriptor-addressed ranges are
+4-byte-aligned cross-word coincidences in the executable's descriptor-table
+zone rather than descriptor-table entries; the table proper
+(`0x800ac9f8`–`0x800ad7e0`) has 445 entries. The 99 ranges are still real,
+hash-verified `READ_DT.BIN` bytes. See
+[trailing executable data region](/docs/games/ddr5thmix/trailing-asset-region.md).
+
 # Limits and next decoder work
 
 `STR.BIN` and `XA.STR` are already unpacked from the ISO as complete
