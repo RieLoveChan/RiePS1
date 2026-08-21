@@ -3,7 +3,8 @@ param(
     [string]$ManifestPath = 'config/ddr5thmix/build.json',
     [string]$OutDir = 'build/ddr5thmix/main-candidate',
     [string]$SymbolMapCsv = 'docs/games/ddr5thmix/symbol-map.csv',
-    [string]$ToolchainBin
+    [string]$ToolchainBin,
+    [string]$ReferenceExe
 )
 
 Set-StrictMode -Version Latest
@@ -138,6 +139,10 @@ foreach ($entry in $ordered) {
 function Write-UInt32LE { param([byte[]]$Buffer, [int]$Offset, [uint64]$Value) [Array]::Copy([BitConverter]::GetBytes([uint32]$Value), 0, $Buffer, $Offset, 4) }
 $psxHeader = [byte[]]::new($headerSize)
 [Text.Encoding]::ASCII.GetBytes('PS-X EXE') | ForEach-Object -Begin { $i = 0 } -Process { $psxHeader[$i++] = $_ }
+# Standard PS-X EXE region marker at 0x4c (part of the executable format, present
+# in the lawful reference header: "Sony Computer Entertainment Inc. for Japan area").
+[byte[]]$regionMarker = [Text.Encoding]::ASCII.GetBytes('Sony Computer Entertainment Inc. for Japan area')
+[Array]::Copy($regionMarker, 0, $psxHeader, 0x4c, $regionMarker.Length)
 Write-UInt32LE $psxHeader 0x10 (ConvertFrom-HexAddress ([string]$header.entry_point))
 Write-UInt32LE $psxHeader 0x14 (ConvertFrom-HexAddress ([string]$header.global_pointer))
 Write-UInt32LE $psxHeader 0x18 $textAddress
@@ -148,11 +153,6 @@ Write-UInt32LE $psxHeader 0x28 (ConvertFrom-HexAddress ([string]$header.bss_addr
 Write-UInt32LE $psxHeader 0x2c (ConvertFrom-HexAddress ([string]$header.bss_size))
 Write-UInt32LE $psxHeader 0x30 (ConvertFrom-HexAddress ([string]$header.stack_address))
 Write-UInt32LE $psxHeader 0x34 (ConvertFrom-HexAddress ([string]$header.stack_size))
-
-$candidatePath = Join-Path $outPath 'ddr5thmix-main-candidate.exe'
-$stream = [IO.File]::Create($candidatePath)
-try { $stream.Write($psxHeader, 0, $psxHeader.Length); $stream.Write($payload, 0, $payload.Length) }
-finally { $stream.Dispose() }
 
 $coveredBytes = @($written | Where-Object { $_ }).Count
 $zeroFillBytes = 0
@@ -172,6 +172,71 @@ if ($manifest.executable.PSObject.Properties.Name -contains 'zero_fill_ranges') 
         $zeroFillBytes += $rangeSize
     }
 }
+
+# Declared data ranges (classified non-code regions): verify the lawful
+# reference executable byte-for-byte against the manifest's recorded per-range
+# SHA-256, then splice those bytes. This is the only path by which the builder
+# reads the reference executable; no game bytes are committed to the repo —
+# only the range bounds and hashes in build.json. Fails closed if the lawful
+# input is missing, mismatches the manifest's executable hash, or any range
+# overlaps a reconstructed section or the zero-fill ranges.
+$dataBytes = 0
+$refText = $null
+if ($manifest.executable.PSObject.Properties.Name -contains 'data_ranges' -and @($manifest.executable.data_ranges).Count -gt 0) {
+    if (-not $ReferenceExe) { throw 'Manifest declares data_ranges; -ReferenceExe (the lawful boot executable) is required to splice them.' }
+    if (-not (Test-Path -LiteralPath $ReferenceExe -PathType Leaf)) { throw "Reference executable not found: $ReferenceExe" }
+    $refPath = (Resolve-Path -LiteralPath $ReferenceExe).Path
+    $refHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $refPath).Hash.ToLowerInvariant()
+    if ($refHash -ne [string]$manifest.executable.sha256) { throw "Reference executable SHA-256 $refHash does not match manifest $($manifest.executable.sha256)." }
+    [byte[]]$refBytes = [IO.File]::ReadAllBytes($refPath)
+    foreach ($range in @($manifest.executable.data_ranges)) {
+        [uint64]$rangeStart = ConvertFrom-HexAddress ([string]$range.start)
+        [uint64]$rangeEnd = ConvertFrom-HexAddress ([string]$range.end)
+        if ($rangeEnd -le $rangeStart -or $rangeStart -lt $textAddress -or $rangeEnd -gt $textAddress + [uint64]$textSize) {
+            throw "Invalid data range '$($range.name)'."
+        }
+        [int]$rangeOffset = [int]($rangeStart - $textAddress)
+        [int]$rangeSize = [int]($rangeEnd - $rangeStart)
+        for ($i = 0; $i -lt $rangeSize; $i++) { if ($written[$rangeOffset + $i]) { throw "Data range '$($range.name)' overlaps a reconstructed section." } }
+        if ($manifest.executable.PSObject.Properties.Name -contains 'zero_fill_ranges') {
+            foreach ($zr in @($manifest.executable.zero_fill_ranges)) {
+                [uint64]$zs = ConvertFrom-HexAddress ([string]$zr.start)
+                [uint64]$ze = ConvertFrom-HexAddress ([string]$zr.end)
+                if ($rangeStart -lt $ze -and $zs -lt $rangeEnd) { throw "Data range '$($range.name)' overlaps zero-fill range '$($zr.name)'." }
+            }
+        }
+        [int]$refOffset = [int]($rangeStart - $loadAddress) + $headerSize
+        if ($refOffset -lt 0 -or $refOffset + $rangeSize -gt $refBytes.Length) { throw "Data range '$($range.name)' lies outside the reference executable." }
+        [byte[]]$slice = New-Object byte[] $rangeSize
+        [Array]::Copy($refBytes, $refOffset, $slice, 0, $rangeSize)
+        $sliceHash = Get-Sha256 $slice
+        if ($sliceHash -ne [string]$range.sha256) { throw "Data range '$($range.name)' SHA-256 $sliceHash does not match manifest $($range.sha256)." }
+        [Array]::Copy($slice, 0, $payload, $rangeOffset, $rangeSize)
+        for ($i = 0; $i -lt $rangeSize; $i++) { $written[$rangeOffset + $i] = $true }
+        $dataBytes += $rangeSize
+    }
+    [int]$refTextOffset = $headerSize
+    [int]$refTextSize = [int]$textSize
+    if ($refTextOffset + $refTextSize -le $refBytes.Length) {
+        [byte[]]$refText = New-Object byte[] $refTextSize
+        [Array]::Copy($refBytes, $refTextOffset, $refText, 0, $refTextSize)
+    }
+}
+$wholeMatch = $false
+$payloadHash = Get-Sha256 $payload
+if ($refText) {
+    # Direct byte-for-byte comparison against the lawful reference text region
+    # is definitive: any byte not covered by a function, zero-fill range, or
+    # data range is zero-initialized, so the hashes match iff the whole image
+    # is byte-identical.
+    $wholeMatch = ($payloadHash -eq (Get-Sha256 $refText))
+}
+
+$candidatePath = Join-Path $outPath 'ddr5thmix-main-candidate.exe'
+$stream = [IO.File]::Create($candidatePath)
+try { $stream.Write($psxHeader, 0, $psxHeader.Length); $stream.Write($payload, 0, $payload.Length) }
+finally { $stream.Dispose() }
+
 $summary = [ordered]@{
     schema_version = 1
     kind = 'partial_psx_exe_candidate'
@@ -184,11 +249,13 @@ $summary = [ordered]@{
     function_count = $ordered.Count
     verified_function_bytes = $coveredBytes
     verified_zero_fill_bytes = $zeroFillBytes
-    verified_text_bytes = $coveredBytes + $zeroFillBytes
-    unresolved_text_bytes = $textSize - $coveredBytes - $zeroFillBytes
+    verified_data_bytes = $dataBytes
+    verified_text_bytes = $coveredBytes + $zeroFillBytes + $dataBytes
+    unresolved_text_bytes = $textSize - $coveredBytes - $zeroFillBytes - $dataBytes
     zero_filled_unresolved_text = $true
     bootable = $false
-    whole_executable_match = $false
+    whole_executable_match = $wholeMatch
+    whole_match_evidence = $(if ($refText) { "payload_sha256=$payloadHash reference_text_sha256=$(Get-Sha256 $refText) full_coverage=$($coveredBytes + $zeroFillBytes + $dataBytes -eq $textSize)" } else { 'not_computed_no_reference' })
     functions = @($records)
 }
 $summary | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $outPath 'ddr5thmix-main-candidate.map.json') -Encoding utf8

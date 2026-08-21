@@ -24,6 +24,253 @@
         "end": "0x80118e28",
         "evidence": "start at 0x80020700 stores zero then increments by four while address < 0x80118e28"
       }
+    ],
+    "data_ranges": [
+      {
+        "name": "leading_rodata",
+        "start": "0x8001a800",
+        "end": "0x800206f8",
+        "sha256": "cd0e14782465b05d1999ce034068f1466f6455819794d8ba9177058bb733c1f1",
+        "evidence": "classified 2026-08-20 as the leading rodata block (PsyQ debug strings, per-object function-pointer tables, game string/pointer tables, Shift-JIS UI messages); docs/games/ddr5thmix/executable-rodata.md"
+      },
+      {
+        "name": "trailing_descriptor_asset",
+        "start": "0x800ac888",
+        "end": "0x800e2931",
+        "sha256": "579852a8513b482a5e1bfaac6b284c264f4744186503fae2cbca0217abb21bf8",
+        "evidence": "classified 2026-08-20 as the descriptor/asset data zone (445-entry READ_DT.BIN descriptor table, UI tables, embedded data + PsyQ/game strings); docs/games/ddr5thmix/trailing-asset-region.md"
+      },
+      {
+        "name": "trailing_post_bss",
+        "start": "0x80118e28",
+        "end": "0x8011b000",
+        "sha256": "56bfb58889c1098eceef17f15a90515a28e732f08e4f5aadf142703a88b9f8af",
+        "evidence": "classified 2026-08-20 as the post-BSS 0xff-fill zone plus the 840-byte zero tail; docs/games/ddr5thmix/trailing-asset-region.md"
+      },
+      {
+        "name": "residual_800207ae",
+        "start": "0x800207ae",
+        "end": "0x800207af",
+        "sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_800207b2",
+        "start": "0x800207b2",
+        "end": "0x800207b3",
+        "sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_800207b6",
+        "start": "0x800207b6",
+        "end": "0x800207b7",
+        "sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_800207ba",
+        "start": "0x800207ba",
+        "end": "0x800207bb",
+        "sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8002e5ac",
+        "start": "0x8002e5ac",
+        "end": "0x8002e5b0",
+        "sha256": "7814c12d0f92a5feb27202bc92b059f1bec2b0c9ea4cffc8886d3d9d517724e5",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8002f599",
+        "start": "0x8002f599",
+        "end": "0x8002f59c",
+        "sha256": "7a87eac5e0e21740b16876ca18b0d50fd742750b235fa25d18e9942e31b2193d",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8002f679",
+        "start": "0x8002f679",
+        "end": "0x8002f67c",
+        "sha256": "7a87eac5e0e21740b16876ca18b0d50fd742750b235fa25d18e9942e31b2193d",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_80030c48",
+        "start": "0x80030c48",
+        "end": "0x80030c49",
+        "sha256": "9e076ceaf246b6003d9c2680a2b4cf0bffd069805902b0b5edeebf49039fe4bd",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_80030c4a",
+        "start": "0x80030c4a",
+        "end": "0x80030c4c",
+        "sha256": "c39f866c68543d736349d84f8e44f7328304783a2ec335e536c79b2fd36b77cf",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_80031e40",
+        "start": "0x80031e40",
+        "end": "0x80031e44",
+        "sha256": "2ce0a231d83c504bf58db4160eee9b8b9054b9431dd82e81e959283d36b40f2d",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_800365b8",
+        "start": "0x800365b8",
+        "end": "0x800365bb",
+        "sha256": "41c3dcff1a08b6feacad5e2ac4751b1bb696c9ad3f0721b62b670be6747bc76d",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_800365be",
+        "start": "0x800365be",
+        "end": "0x800365bf",
+        "sha256": "3f39d5c348e5b79d06e842c114e6cc571583bbf44e4b0ebfda1a01ec05745d43",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003ba68",
+        "start": "0x8003ba68",
+        "end": "0x8003ba6b",
+        "sha256": "12e52c31daccf7b1f6384fa0610a225afc9424cea5e3cc5b6ba975cf003ca9b0",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003ba6e",
+        "start": "0x8003ba6e",
+        "end": "0x8003ba6f",
+        "sha256": "3f39d5c348e5b79d06e842c114e6cc571583bbf44e4b0ebfda1a01ec05745d43",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003bb28",
+        "start": "0x8003bb28",
+        "end": "0x8003bb2a",
+        "sha256": "eff6e7a1bc97fe7fd326c73642feefb306607803ff7d45a15beda347e3bc9c86",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003bb2e",
+        "start": "0x8003bb2e",
+        "end": "0x8003bb2f",
+        "sha256": "3f39d5c348e5b79d06e842c114e6cc571583bbf44e4b0ebfda1a01ec05745d43",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003c6ac",
+        "start": "0x8003c6ac",
+        "end": "0x8003c6ad",
+        "sha256": "a83dd0ccbffe39d071cc317ddf6e97f5c6b1c87af91919271f9fa140b0508c6c",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003c6ae",
+        "start": "0x8003c6ae",
+        "end": "0x8003c6b0",
+        "sha256": "4c4638a9cf4343bbfa67e95be408170abfbbd7d364124b8c1e56785dc842cd95",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003dad4",
+        "start": "0x8003dad4",
+        "end": "0x8003dad5",
+        "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003dad6",
+        "start": "0x8003dad6",
+        "end": "0x8003dad8",
+        "sha256": "6c7ca952d46473101dd810ed530210f7c627a7b1b0a8bed62532ba423d4a8bbe",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003e088",
+        "start": "0x8003e088",
+        "end": "0x8003e089",
+        "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003e08a",
+        "start": "0x8003e08a",
+        "end": "0x8003e08c",
+        "sha256": "6c7ca952d46473101dd810ed530210f7c627a7b1b0a8bed62532ba423d4a8bbe",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8003e318",
+        "start": "0x8003e318",
+        "end": "0x8003e31a",
+        "sha256": "af122e7c036c3a6dfcd5d15d1e0826bd491a79068adff1555056f9df3e2e40d0",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8005410c",
+        "start": "0x8005410c",
+        "end": "0x8005410d",
+        "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8005410e",
+        "start": "0x8005410e",
+        "end": "0x80054111",
+        "sha256": "7868a58c853e3736605b9f52295fc0096037a71bbf32aca4b0c40ca82fc58106",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_80054112",
+        "start": "0x80054112",
+        "end": "0x80054114",
+        "sha256": "0a1147b5e338901a57101c6ffde3d6424abc456641ac43a110af24afb8a31843",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_80054e3c",
+        "start": "0x80054e3c",
+        "end": "0x80054e3d",
+        "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_80054e3e",
+        "start": "0x80054e3e",
+        "end": "0x80054e40",
+        "sha256": "8fd5480eeb41fb0d6179303b07e733b700d739ab8a05fdc9f93efc8186d0d9af",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_800550f8",
+        "start": "0x800550f8",
+        "end": "0x800550f9",
+        "sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_800550fa",
+        "start": "0x800550fa",
+        "end": "0x800550fc",
+        "sha256": "1d5c771fb55d205500ef148bb5274e1e3c5ced5121a710fb3411d035e1e91206",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8007cc24",
+        "start": "0x8007cc24",
+        "end": "0x8007cc25",
+        "sha256": "bd4fc42a21f1f860a1030e6eba23d53ecab71bd19297ab6c074381d4ecee0018",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      },
+      {
+        "name": "residual_8007cc26",
+        "start": "0x8007cc26",
+        "end": "0x8007cc28",
+        "sha256": "6aa2c7238d4c03daa99d28b622140c333d4edce6184e860cebcab6799b6915ac",
+        "evidence": "PsyQ object-header marker / non-code residue (symbol-map library_signature row or documented startup marker prefix); byte-exact vs the lawful executable, verified 2026-08-20"
+      }
     ]
   },
   "toolchain": {

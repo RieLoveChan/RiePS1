@@ -1,5 +1,27 @@
 ## 2026-08-20
 
+* **Whole-image byte match (`whole_executable_match: true`)**: Following the
+  two non-code-region classifications, `config/ddr5thmix/build.json` gained
+  an `executable.data_ranges` section (three large ranges — leading rodata
+  24,312 B, trailing descriptor/asset 221,353 B, post-BSS 8,664 B — plus 32
+  residual PsyQ object-header marker runs, 254,387 bytes total), each with a
+  recorded SHA-256. `Build-MainExecutableCandidate.ps1` now accepts
+  `-ReferenceExe`, verifies its full-file SHA-256 against the manifest,
+  verifies every data range byte-for-byte, splices those bytes, writes the
+  standard PS-X EXE region marker at 0x4c, and compares the built payload
+  against the reference text region. Result (GCC 14.2.0/binutils 2.43,
+  2,326 functions): verified text bytes 1,049,351 of 1,050,624 (572,516
+  function + 222,448 BSS + 254,387 data; the 1,273 remaining bytes are zero
+  padding, identical by construction), payload SHA-256
+  `b4a1a391a3c3afca848caa48cf433198de8a849132d5b8f6fbabdb94b23acb35` ==
+  reference text, and the candidate file is **byte-identical to the lawful
+  `SLPM_868.97_1`** (SHA-256
+  `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee`, direct
+  file comparison). `bootable` stays `false` pending the disc gate's
+  emulator/hardware boot test. This closes the "Executable accepted" gate's
+  whole-image requirement; docs updated (main-executable-candidate.md,
+  readme status + next targets).
+
 * **Trailing region classified (linked-object evidence §5.1, closed)**: The
   previously "suspected" asset-data classification is now a checked
   whole-region census (lawful `SLPM_868.97_1`, SHA-256

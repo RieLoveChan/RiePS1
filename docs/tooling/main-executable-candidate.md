@@ -15,10 +15,19 @@ and verifies the resulting section SHA-256 before inserting it at its runtime
 offset in a standard 2,048-byte PS-X EXE header.
 
 The builder never reads or copies the lawful reference executable into its
-output. Bytes outside verified manifest sections are zero-filled deliberately.
+output **except** for the manifest-declared `data_ranges` — the two
+classified non-code regions (leading rodata block and trailing
+descriptor/asset data), whose byte-for-byte content is verified against a
+recorded per-range SHA-256 before being spliced. Every other byte comes from
+verified manifest sections; anything still uncovered is zero-filled
+deliberately. When `data_ranges` are declared, `-ReferenceExe` (the lawful
+boot executable) is required, its full-file SHA-256 is checked against the
+manifest before any splice, and the built payload is compared byte-for-byte
+against the reference text region to compute `whole_executable_match`.
 It labels the output `partial_psx_exe_candidate`, `bootable: false`, and
-`whole_executable_match: false`; a successful output is therefore a
-reproducible structural artifact, not an identity or bootability claim.
+`whole_executable_match: <computed>`; a successful whole-image match is a
+reproducible structural artifact whose bootability still requires the disc
+gate's emulator/hardware test.
 
 # Reproduction
 
@@ -119,6 +128,39 @@ already covered by the manifest). See
 [linked-object evidence §5](/docs/foundations/linked-object-evidence.md) for
 the classification evidence; reproducing those regions is the remaining work
 toward `whole_executable_match`.
+
+### 2026-08-20 — whole-image byte match (`whole_executable_match: true`)
+
+Following the classification of both non-code regions
+([executable-rodata.md](/docs/games/ddr5thmix/executable-rodata.md),
+[trailing-asset-region.md](/docs/games/ddr5thmix/trailing-asset-region.md)),
+the manifest gained a `data_ranges` section recording each region's bounds
+and SHA-256 (three large ranges plus 32 residual PsyQ object-header marker
+bytes, 254,387 bytes total). The builder now accepts `-ReferenceExe` (the
+lawful boot executable), verifies its full-file SHA-256 against the
+manifest, verifies every data range byte-for-byte against its recorded
+hash, splices those bytes, and compares the built payload against the
+reference text region. The 2026-08-20 run with
+`-ReferenceExe work/ddr5thmix-extract/exe/SLPM_868.97_1` produced:
+
+| Field | Result |
+|---|---|
+| Verified function bytes | 572,516 |
+| Verified zero-fill (crt0 BSS) bytes | 222,448 |
+| Verified data-range bytes | 254,387 |
+| Verified text bytes | 1,049,351 (of 1,050,624) |
+| Unresolved (zero-padding) bytes | 1,273 — byte-identical by construction |
+| Payload SHA-256 | `b4a1a391a3c3afca848caa48cf433198de8a849132d5b8f6fbabdb94b23acb35` (= reference text region) |
+| `whole_executable_match` | `true` |
+| Candidate SHA-256 | `4e0308ca35000fe91bf0b468297125061efeb16198c27fd13c950003d94c4aee` — **byte-identical to the lawful `SLPM_868.97_1`** (verified with a direct file comparison) |
+| Bootable | `false` — not yet boot-tested; requires the disc gate's emulator/hardware test |
+
+The header's standard PS-X EXE region marker (`Sony Computer Entertainment
+Inc. for Japan area` at 0x4c) is now written by the builder, completing the
+byte-identical reproduction. The candidate remains labeled
+`partial_psx_exe_candidate` with `bootable: false` because bootability is a
+runtime property the disc gate must test; the whole-image byte identity is
+now a proven build artifact.
 
 # Header source
 
