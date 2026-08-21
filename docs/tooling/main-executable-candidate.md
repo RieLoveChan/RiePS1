@@ -101,6 +101,25 @@ deliberately zero-filled unresolved bytes. The local candidate SHA-256 was
 `e1cb164014332db654e063087f6ddc82e41fdb83e15b28240182c5e78d8dac37`.
 It remains `bootable: false` and `whole_executable_match: false`.
 
+On 2026-08-20 the builder was re-run against the full current manifest
+(library-signature batches, whole-executable gap sweep, and the runtime
+helper/block modules reconstructed through `FUN_80098050`). It assembled and
+hash-checked all 2,326 manifest functions: 572,516 verified function bytes
+plus the 222,448-byte crt0 BSS zero-fill = 794,964 verified text bytes;
+255,660 bytes remain deliberately zero-filled. Local candidate SHA-256
+`b8639d775594a5b5d28cb381295c8251656e575e818c044219c2ed1c691dbfb2`.
+It remains `bootable: false` and `whole_executable_match: false`.
+
+The 255,660 unresolved bytes are exactly the two classified non-code regions
+of the text image: the leading rodata block (`0x8001a800`–`0x800206f8`,
+24,312 bytes — debug/UI strings, string tables, string-pointer tables, and
+function-pointer tables) and the trailing asset-data-plus-BSS region
+(`0x800ac888`–`0x8011b000`, 452,472 bytes, minus the 222,448-byte zero range
+already covered by the manifest). See
+[linked-object evidence §5](/docs/foundations/linked-object-evidence.md) for
+the classification evidence; reproducing those regions is the remaining work
+toward `whole_executable_match`.
+
 # Header source
 
 The `executable.psx_exe` fields in
