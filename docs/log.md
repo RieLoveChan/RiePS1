@@ -1,5 +1,39 @@
 ## 2026-08-20
 
+* **EXIT resources classified (semantic backlog item)**: The three
+  `0x54495845` READ_DT.BIN resources are now structurally classified as the
+  EXIT-mode menu text databases: `0x83d8` (97,408 B) = options menu (six
+  main labels `DIET/GRAPHIC/GAME OPTION`, `MEMORY CARD`, `CONTROLLER
+  SETTING`, `SOUND OPTION`; Shift-JIS descriptions incl. モード選択画面に戻ります。
+  and ＤＩＥＴ　ＭＯＤＥに関する設定をします。; option values `GAME LEVEL 8/HARDEST`..`1/EASIEST`,
+  `TIME LIMIT`, `MAX STAGE`, `BG BRIGHT`, `BG EFFECT`, ...), `0x8408`
+  (103,112 B) = DIET MODE screens (`DIET DIARY`, `DIET RECORDS`, `MUSIC
+  RECORDS`, `PLAY`/`CLEAR`), `0x8591` (152,272 B) = link/information
+  screens (`NEW VERSION LINK`, `5thMIX LINK`, `LINK DATA CREATE/LOAD/SAVE`,
+  `NAME ENTRY`, `INFORMATION`, `INTERNET RANKING`, `BISLPM-86252link5to4`
+  filenames, song titles). Each is a sequence of per-screen ASCII +
+  Shift-JIS label blocks ending in a zero-filled tail; the consumers are
+  the reconstructed options cluster `runtime-block-800a384c`. New concept
+  [exit-menu-resources.md](/docs/games/ddr5thmix/exit-menu-resources.md);
+  the 2026-08-15 tooling note
+  (exit-menu-resource-inventory.md) updated with a pointer.
+
+* **Music command streams (semantic backlog item)**: Structural pass over
+  the 47 title-associated `0x0000000c` READ_DT.BIN resources shows they are
+  per-song **step-chart payloads** with at least two sub-encodings:
+  (A) doubled-nibble arrow words (`00110011`, `00880022`, `00000044` —
+  nibbles from {1,2,4,8} doubled to 0x11/0x22/0x44/0x88, a natural 4-arrow
+  bitmask encoding) in e.g. DYNAMITE RAVE(Long ver.)/STILL IN MY HEART/
+  BROKEN MY HEART; (B) `(offset, value)` timing-pair rows (`00009000
+  00000677 00033000 00001588` ...) in e.g. Healing Vision/ECSTASY. Honest
+  scope: sub-encoding A covers ~4% of all non-zero words across the 47
+  streams (one component, not the whole format), and the exact command
+  semantics remain unassigned pending a dedicated decoder traced against
+  the chart consumer `FUN_8007a8f4`. New concept
+  [music-command-streams.md](/docs/games/ddr5thmix/music-command-streams.md).
+  The `0x00000044` descriptor family and the descriptor suffix ranges
+  remain unassigned after this pass (no new structural evidence).
+
 * **Whole-image byte match (`whole_executable_match: true`)**: Following the
   two non-code-region classifications, `config/ddr5thmix/build.json` gained
   an `executable.data_ranges` section (three large ranges — leading rodata
